@@ -415,29 +415,28 @@ CREATE TABLE administrator (
 	email	VARCHAR2(500)	NOT NULL,
 	treasure	VARCHAR2(200)	NOT NULL,
 	adminhiredate	DATE		NULL,
-	admindeptnum	VARCHAR2(20) NULL
 );
 commit;
 
-COMMENT ON COLUMN administrator.adminid IS 'admin no';
+COMMENT ON COLUMN administrator.adminid IS '관리자번호';
 
-COMMENT ON COLUMN administrator.adminname IS 'ad name';
+COMMENT ON COLUMN administrator.adminname IS '관리자명';
 
-COMMENT ON COLUMN administrator.adminadssn IS 'ad ssn';
+COMMENT ON COLUMN administrator.adminadssn IS '주민등록번호';
 
-COMMENT ON COLUMN administrator.address IS 'ad address';
+COMMENT ON COLUMN administrator.address IS '주소';
 
-COMMENT ON COLUMN administrator.phone IS 'ad phone';
+COMMENT ON COLUMN administrator.phone IS '전화번호';
 
-COMMENT ON COLUMN administrator.gender IS 'ad gender';
+COMMENT ON COLUMN administrator.gender IS '성별';
 
-COMMENT ON COLUMN administrator.email IS 'ad email';
+COMMENT ON COLUMN administrator.email IS '이메일';
 
-COMMENT ON COLUMN administrator.treasure IS 'ad treasure';
+COMMENT ON COLUMN administrator.treasure IS '나의보물1호';
 
-COMMENT ON COLUMN administrator.adminhiredate IS 'ad hire date';
+COMMENT ON COLUMN administrator.adminhiredate IS '입사일';
 
-COMMENT ON COLUMN administrator.admindeptnum IS '부서코드';
+
 
 
 
@@ -459,8 +458,10 @@ CREATE TABLE absence (
 	requestid	VARCHAR2(30) NOT NULL,
 	studentid	VARCHAR2(10) NOT NULL,
 	requestdate DATE	DEFAULT SYSDATE	NOT NULL,
-	limitcancledate DATE DEFAULT SYSDATE+1 NOT NULL,
-	information VARCHAR2(200) NOT NULL
+	limitcanceldate DATE DEFAULT SYSDATE+1 NOT NULL,
+	information VARCHAR2(200) NOT NULL,
+		approval char(1) default 'N', 
+		constraints chk_per check (approval in ('Y','N'))
 );
 
 COMMENT ON COLUMN absence.requestid IS '신청코드';
@@ -469,9 +470,11 @@ COMMENT ON COLUMN absence.studentid IS '학번';
 
 COMMENT ON COLUMN absence.requestdate IS '신청일';
 
-COMMENT ON COLUMN absence.limitcancledate IS '취소제한날짜';
+COMMENT ON COLUMN absence.limitcanceldate IS '취소제한날짜';
 
 COMMENT ON COLUMN absence.information IS '안내사항';
+
+comment on COLUMN absence.approval is '승인';
 
 
 
@@ -1489,3 +1492,4 @@ INSERT INTO schedule VALUES ('s160','A005','2021학년도 1학기 복학 신청'
 -- 공지사항
 INSERT INTO notice VALUES ('10001','A002','2020학년도 제2학기 비전임교원(초빙/겸임/강사) 초빙','김기수','20/07/10','2020학년도 제2학기 신규 임용할 비전임교원(초빙/겸임/강사)을 다음과 같이 모십니다.\n<인터넷 지원서 입력기간>\n2020.07.22(수) ~ 07.26(일) 오후 23:00까지\n<서류접수(지원자 전원)>\n2020.07.27(월) ~ 07.28(화) 오후 14:00까지(2일간)\n자세한 사항은 아래 사이트에서 확인하시기 바랍니다.','','',50);
 
+commit
