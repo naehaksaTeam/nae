@@ -7,12 +7,21 @@
 <title>Insert title here</title>
 <style>
 body{
+
+}
+td,tr{
+border : 1px solid black;
+
+}
+table{
 text-align : center;
+background-color : white;
 }
 </style>
 </head>
 <body>
-
+<h1>강의계획서 페이지</h1>
+<hr>
 <table style="border:2px solid black;">
 <tr>
 <th>

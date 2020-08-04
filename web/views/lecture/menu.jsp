@@ -10,11 +10,11 @@
 <h1>수강신청 메뉴 테스트 페이지</h1>
 <hr>
 <button onclick="javascript:location.href='/beet/showplan'" >강의 계획서</button>
-<button onclick="" >수강신청(미구현)</button>
-<button onclick="" >시간표 조회(미구현)</button>
-<button onclick="" >학점관리(미구현)</button>
-<button onclick="" >휴보강신청(미구현)</button>
-<button onclick="" >수강과목추가(관리자)(미구현)</button>
+<button onclick="javascript:location.href='/beet/showplan'" >수강신청(미구현)</button>
+<button onclick="javascript:location.href='/beet/showplan'" >시간표 조회(미구현)</button>
+<button onclick="javascript:location.href='/beet/showplan'" >학점관리(미구현)</button>
+<button onclick="javascript:location.href='/beet/showplan'" >휴보강신청(미구현)</button>
+<button onclick="javascript:location.href='/beet/showplan'" >수강과목추가(관리자)(미구현)</button>
 <hr>
 <img src="/beet/resources/images/BigBeet.jpg">
 </body>
