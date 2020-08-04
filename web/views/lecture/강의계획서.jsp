@@ -5,8 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+body{
+text-align : center;
+}
+</style>
 </head>
 <body>
+
 <table style="border:2px solid black;">
 <tr>
 <th>
@@ -64,5 +70,6 @@
 </tr>
 <% } %>
 </table>
+
 </body>
 </html>
