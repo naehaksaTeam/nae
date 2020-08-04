@@ -15,5 +15,7 @@
 <button onclick="" >학점관리(미구현)</button>
 <button onclick="" >휴보강신청(미구현)</button>
 <button onclick="" >수강과목추가(관리자)(미구현)</button>
+<hr>
+<img src="/beet/resources/images/BigBeet.jpg">
 </body>
 </html>
