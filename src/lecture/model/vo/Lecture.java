@@ -1,4 +1,4 @@
-package lecture.vo;
+package lecture.model.vo;
 
 public class Lecture implements java.io.Serializable{
 	private final static long serialVersionUID = 1232342343L;
@@ -7,30 +7,14 @@ public class Lecture implements java.io.Serializable{
 	private String lname;
 	private String category;
 	private int capacity;
-	private String termno;
+	private String content;
+
 	private String ltime;
 	private String professorid;
 	private String room;
 	public Lecture() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-	public Lecture(String lcode, String lname, String category, int capacity, String termno, String ltime,
-			String professorid, String room) {
-		super();
-		this.lcode = lcode;
-		this.lname = lname;
-		this.category = category;
-		this.capacity = capacity;
-		this.termno = termno;
-		this.ltime = ltime;
-		this.professorid = professorid;
-		this.room = room;
-	}
-	@Override
-	public String toString() {
-		return "Lecture [lcode=" + lcode + ", lname=" + lname + ", category=" + category + ", capacity=" + capacity
-				+ ", termno=" + termno + ", ltime=" + ltime + ", professorid=" + professorid + ", room=" + room + "]";
 	}
 	public String getLcode() {
 		return lcode;
@@ -56,11 +40,11 @@ public class Lecture implements java.io.Serializable{
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
-	public String getTermno() {
-		return termno;
+	public String getContent() {
+		return content;
 	}
-	public void setTermno(String termno) {
-		this.termno = termno;
+	public void setContent(String content) {
+		this.content = content;
 	}
 	public String getLtime() {
 		return ltime;
@@ -77,9 +61,27 @@ public class Lecture implements java.io.Serializable{
 	public String getRoom() {
 		return room;
 	}
+	public Lecture(String lcode, String lname, String category, int capacity, String content, String ltime,
+			String professorid, String room) {
+		super();
+		this.lcode = lcode;
+		this.lname = lname;
+		this.category = category;
+		this.capacity = capacity;
+		this.content = content;
+		this.ltime = ltime;
+		this.professorid = professorid;
+		this.room = room;
+	}
+	@Override
+	public String toString() {
+		return "Lecture [lcode=" + lcode + ", lname=" + lname + ", category=" + category + ", capacity=" + capacity
+				+ ", content=" + content + ", ltime=" + ltime + ", professorid=" + professorid + ", room=" + room + "]";
+	}
 	public void setRoom(String room) {
 		this.room = room;
 	}
+	
 	
 	
 }

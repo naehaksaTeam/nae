@@ -1,4 +1,4 @@
-package lecture.model;
+package lecture.model.dao;
 
 import static common.JDBCTemp.close;
 
@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import lecture.vo.Lecture;
+import lecture.model.vo.Lecture;
 
 public class LectureDao {
 
@@ -332,6 +332,38 @@ public class LectureDao {
 		}
 		
 		return idcount;
+	}
+
+
+	public ArrayList<Lecture> selectAllPlan(Connection conn) {
+		ArrayList<Lecture> list = new ArrayList<Lecture>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "select * from lplan join professor using (professorid) join lecture using (lcode)";
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Lecture l = new Lecture();
+				l.setCapacity(rset.getInt("capacity"));
+				l.setCategory(rset.getString("category"));
+				l.setLcode(rset.getString("lcode"));
+				l.setLname(rset.getString("lname"));
+				l.setLtime(rset.getString("ltime"));
+				l.setProfessorid(rset.getString("professorid"));
+				l.setRoom(rset.getString("room"));
+				l.setContent(rset.getString("content"));
+				
+				list.add(l);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 }

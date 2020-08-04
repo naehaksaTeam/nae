@@ -1,4 +1,4 @@
-package lecture.service;
+package lecture.model.service;
 
 import static common.JDBCTemp.close;
 import static common.JDBCTemp.commit;
@@ -9,8 +9,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.util.ArrayList;
 
-import lecture.model.LectureDao;
-import lecture.vo.Lecture;
+import lecture.model.dao.LectureDao;
+import lecture.model.vo.Lecture;
 
 public class LectureService {
 
@@ -132,5 +132,13 @@ public class LectureService {
 		int idcount = ldao.selectCheckId(conn,userid);
 		close(conn);
 		return idcount;
+	}
+
+	public ArrayList<Lecture> selectAllPlan() {
+		Connection conn = getConnection();
+		ArrayList<Lecture> list = ldao.selectAllPlan(conn);
+		close(conn);
+		
+		return list;
 	}
 }
