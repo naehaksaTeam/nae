@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-톰켓테스트입니다.
+톰켓테스트입니다. 
 <button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
 </body>
 </html>
