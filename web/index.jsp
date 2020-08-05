@@ -4,10 +4,20 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>beet</title>
 </head>
 <body>
-톰켓테스트입니다.
+
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
 <button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
 </body>
 </html>

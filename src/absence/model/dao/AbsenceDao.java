@@ -1,17 +1,35 @@
 package absence.model.dao;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import absence.model.vo.Absence;
-import static common.JDBCTemp.close;
+import static common.JDBCTemp.*;
 
 public class AbsenceDao {
 	public AbsenceDao() {};
 	
 	public ArrayList<Absence> selectAbsence(Connection conn) {
 		ArrayList<Absence> list = new ArrayList<Absence>();
+		Statement stmt = null;
+		ResultSet rset = null;
 		
+		String query = "select * from absence";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Absence ab = new Absence();
+				
+			}
+			
+		} catch (Exception e) {
+			
+		}
 		return list;
 	};
 	
@@ -21,10 +39,11 @@ public class AbsenceDao {
 		return absence;
 	};
 	
-	public Absence selectOneAbsence(Connection conn, String requestid, String studentid) {
-		Absence absence = new Absence();
+	
+	public ArrayList<Absence> selectPrivateAbsence(Connection conn, String studentid) {
+		ArrayList<Absence> list = new ArrayList<Absence>();
 		
-		return absence;
+		return list;
 	};
 	
 	

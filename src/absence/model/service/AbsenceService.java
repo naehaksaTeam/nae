@@ -30,11 +30,11 @@ public class AbsenceService {
 		return absence;
 	};
 	
-	public Absence selectOneAbsence(String requestid, String studentid) {
+	public ArrayList<Absence> selectPrivateAbsence(String studentid) {
 		Connection conn = getConnection();
-		Absence absence = adao.selectOneAbsence(conn, requestid, studentid);
+		ArrayList<Absence> list = adao.selectPrivateAbsence(conn, studentid);
 		close(conn);
-		return absence;
+		return list;
 	};
 	
 	public ArrayList<Absence> selectApprovalAbsence(String able) {
