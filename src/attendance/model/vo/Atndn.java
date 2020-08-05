@@ -26,6 +26,7 @@ public class Atndn{
 	private String week14;
 	private String week15;
 	private String week16;
+	
 	public Atndn(String lcode, String studentid, String thisweek, String absent3, String week1, String week2,
 			String week3, String week4, String week5, String week6, String week7, String week8, String week9,
 			String week10, String week11, String week12, String week13, String week14, String week15, String week16) {
@@ -51,6 +52,7 @@ public class Atndn{
 		this.week15 = week15;
 		this.week16 = week16;
 	}
+	
 	public Atndn(String lcode, String studentid, String thisweek, String absent3) {
 		super();
 		this.lcode = lcode;

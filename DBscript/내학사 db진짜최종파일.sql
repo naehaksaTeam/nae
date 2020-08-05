@@ -1502,4 +1502,22 @@ INSERT INTO schedule VALUES ('s160','A005','2021학년도 1학기 복학 신청'
 -- 공지사항
 INSERT INTO notice VALUES ('10001','A002','2020학년도 제2학기 비전임교원(초빙/겸임/강사) 초빙','김기수','20/07/10','2020학년도 제2학기 신규 임용할 비전임교원(초빙/겸임/강사)을 다음과 같이 모십니다.\n<인터넷 지원서 입력기간>\n2020.07.22(수) ~ 07.26(일) 오후 23:00까지\n<서류접수(지원자 전원)>\n2020.07.27(월) ~ 07.28(화) 오후 14:00까지(2일간)\n자세한 사항은 아래 사이트에서 확인하시기 바랍니다.','','',50);
 
+
+-- 조회검색용 뷰 생성
+
+CREATE OR REPLACE VIEW AtndnView
+as select semester, lcode, lname, studentid, majorname, lpoint, studentname, category, week1, week2, week3, week4,
+week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16
+from student
+join major using (majorno)
+join lapplication using (studentid)
+join lecture using (lcode)
+left join attendance using (lcode, studentid);
+
+CREATE OR REPLACE VIEW LScoreView
+as SELECT STUDENTID, STUDENTNAME, MAJORNAME, LCODE, LNAME, CATEGORY, ATNDNSCORE, MIDSCORE, FINALSCORE, TOTALSCORE, GRADE
+FROM STUDENT
+JOIN MAJOR USING (MAJORNO)
+JOIN LECTURESCORE USING (STUDENTID)
+JOIN LECTURE USING (LCODE);
 commit;
