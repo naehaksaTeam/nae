@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<h1>시간표조회</h1>
+<hr>
 
+<% ArrayList<lecture> list = session.getAttribute("timetable"); %>
+<% if(list == null){ %>
+
+
+<% } %>
 </body>
 </html>
