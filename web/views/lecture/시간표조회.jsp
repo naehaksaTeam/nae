@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" impotr="java.util.ArrayList,lecture.model.vo." %>
 <!DOCTYPE html>
 <html>
 <head>

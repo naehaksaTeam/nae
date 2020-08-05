@@ -17,8 +17,7 @@ public class JDBCTemp {
 		Connection conn = null;
 		Properties p = new Properties();
 		try {
-//			Class.forName("orcle.jdbc.driver.OracleDriver");
-//			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe","student","student");
+
 			String cp = JDBCTemp.class.getResource("./").getPath();
 			p.load(new FileReader(cp + "jdbc.properties"));
 			
@@ -41,7 +40,22 @@ public class JDBCTemp {
 		
 		return conn;
 	}
-	
+
+//	public static Connection getConnection() {
+//	      Connection conn = null;
+//	     
+//	      try {
+//	         //context.xml 의 리소스 엘리먼트의 설정값을 읽어와서 dbcp에서 커넥션을 받도록 처리
+//	    	 Context initContext = new InitialContext();
+//	         DataSource ds = (DataSource)initContext.lookup("java:comp/env/jdbc/myoracle");
+//	         conn = ds.getConnection();
+//	         conn.setAutoCommit(false);
+//	      } catch (Exception e) {
+//	         e.printStackTrace();
+//	      }
+//	     
+//	      return conn;
+//	   }
 
 	
 	public static void close(Connection conn) {

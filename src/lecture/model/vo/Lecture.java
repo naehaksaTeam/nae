@@ -8,7 +8,6 @@ public class Lecture implements java.io.Serializable{
 	private String category;
 	private int capacity;
 	private String content;
-
 	private String ltime;
 	private String professorid;
 	private String room;
