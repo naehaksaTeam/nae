@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 import student.model.vo.Student;
 import static common.JDBCTemp.*;
-public class StudentDao {
-   public StudentDao() {
+public class MemberDao {
+   public  MemberDao() {
    }
    
    
