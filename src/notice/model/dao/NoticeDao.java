@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 import notice.model.vo.Notice;
 import static common.JDBCTemp.*;
 
@@ -31,8 +32,8 @@ public class NoticeDao {
 				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
 				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
 				notice.setNoticeContent(rset.getString("NOTICECONTENT"));
-				notice.setOriginalFile(rset.getString("ORIGINAL_FILEPATH"));
-				notice.setRenameFile(rset.getString("RENAME_FILEPATH"));
+				notice.setOriginalFile(rset.getString("ORIGINALFILE"));
+				notice.setRenameFile(rset.getString("RENAMEFILE"));
 				list.add(notice);
 			}
 		} catch (Exception e) {
@@ -63,8 +64,8 @@ public class NoticeDao {
 				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
 				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
 				notice.setNoticeContent(rset.getString("NOTICECONTENT"));
-				notice.setOriginalFile(rset.getString("ORIGINAL_FILEPATH"));
-				notice.setRenameFile(rset.getString("RENAME_FILEPATH"));
+				notice.setOriginalFile(rset.getString("ORIGINALFILE"));
+				notice.setRenameFile(rset.getString("RENAMEFILE"));
 			}
 
 		} catch (Exception e) {
@@ -105,7 +106,7 @@ public class NoticeDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
-		String query = "update notice set noticetitle = ? , noticecontent=? , noticedate = sysdate , original_filepath=?, rename_filepath= ?  where noticeno = ? ";
+		String query = "update notice set noticetitle = ? , noticecontent=? , noticedate = sysdate , originalfile=?, renamefile= ?  where noticeno = ? ";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -176,5 +177,5 @@ public class NoticeDao {
 		}
 		return list;
 	}
-
+	
 }
