@@ -300,9 +300,9 @@ CREATE TABLE lecturescore (
 	receptionno VARCHAR2(10)	NOT NULL,
 	lcode	VARCHAR2(10)		NOT NULL,
 	studentid	VARCHAR2(10)		NOT NULL,
-	atndscore	NUMBER		NULL,
+	atndnscore	NUMBER		NULL,
 	midscore		NUMBER		NULL,
-	examscore	NUMBER		NULL,
+	finalscore	NUMBER		NULL,
 	totalscore	NUMBER		NULL,
 	grade	CHAR(2)		NULL,
 	atndnbelow CHAR(1) 	NULL
@@ -852,7 +852,7 @@ INSERT INTO lroom VALUES ('203','본관','15');
 
 --강의 
 INSERT INTO lecture VALUES ('l001','P101','문학개론','전공','3','22','월','101');
-INSERT INTO lecture VALUES ('l002','P404','화학공학입문','교양1','2','30','화','102');
+INSERT INTO lecture VALUES ('l002','P404','화학공학입문','교양','2','30','화','102');
 INSERT INTO lecture VALUES ('l003','P410','화공열역학1','전공','3','21','수','103');
 INSERT INTO lecture VALUES ('l004','P416','프로젝트종합설계  ','전공','2','24','목','201');
 INSERT INTO lecture VALUES ('l005','P107','C프로그래밍','전공','3','26','금','202');
