@@ -7,14 +7,14 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import member.model.vo.Member;
+import member.model.vo.StudentMember;
 import static common.JDBCTemp.close;
 
-public class MemberDao {
-	public MemberDao() {}
+public class StudentMemberDao {
+	public StudentMemberDao() {}
 	
-	public Member loginCheck(Connection conn, String userid, String userpwd) {
-		Member member = null;
+	public MemberDao loginCheck(Connection conn, String userid, String userpwd) {
+		MemberDao member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -28,7 +28,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				member = new Member();
+				member = new StudentMember();
 				
 				member.setUserid(userid);
 				member.setUserpwd(userpwd);
@@ -50,7 +50,7 @@ public class MemberDao {
 		return member;
 	}
 
-	public int insertMember(Connection conn, Member member) {
+	public int insertMember(Connection conn, StudentMember member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -77,8 +77,8 @@ public class MemberDao {
 		return result;
 	}
 
-	public Member selectMember(Connection conn, String userid) {
-		Member member = null;
+	public StudentMember selectMember(Connection conn, String userid) {
+		StudentMember member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -91,7 +91,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				member = new Member();
+				member = new StudentMember();
 				
 				member.setUserid(userid);
 				member.setUserpwd(rset.getString("userpwd"));
