@@ -1,15 +1,13 @@
 package student.model.dao;
 
-import static common.JDBCTemp.close;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import student.model.vo.Member;
 import student.model.vo.Student;
+import static common.JDBCTemp.*;
 public class MemberDao {
    public  MemberDao() {
    }
@@ -170,42 +168,5 @@ public class MemberDao {
 
       return result;
    }
-
-
-public Student loginCheck(Connection conn, String userid, String userpwd) {
-	Member member = null;
-    PreparedStatement pstmt = null;
-    ResultSet rset =null;
-    
-    String query = "select * from crypto_member where userid = ? and userpwd = ?";
-    
-    try {
-       pstmt = conn.prepareStatement(query);
-       pstmt.setString(1, userid);
-       pstmt.setString(2, userpwd);
-       
-       rset = pstmt.executeQuery();
-       
-       if(rset.next()) {
-          member = new Member();
-          
-          member.setId(userid);
-          member.setPassword(userpwd);
-          member.setName(rset.getString("username"));
-          member.setGender(rset.getString("gender"));
-          member.setPhone(rset.getString("phone"));
-          member.setEmail(rset.getString("email"));
-          member.setAddress(rset.getString("etc"));
-          member.setTreasure(rset.getString("enroll_date"));
-          member.setSsn(rset.getString("lastModified"));
-       }
-    } catch (Exception e) {
-       e.printStackTrace();
-    }finally {
-       close(rset);
-       close(pstmt);
-    }
-    return member;
-}
 
 }
