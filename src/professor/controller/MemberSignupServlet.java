@@ -39,14 +39,15 @@ public class MemberSignupServlet extends HttpServlet {
 				
 				Member member = new Member();
 				
+				member.setId(request.getParameter("id"));
 				member.setName(request.getParameter("name"));
 				member.setSsn(request.getParameter("ssn"));
-				member.setId(request.getParameter("userid"));
-				member.setPassword(request.getParameter("password"));
-				member.setGender(request.getParameter("gender"));
+				member.setAddress(request.getParameter("address"));
 				member.setPhone(request.getParameter("phone"));
+				member.setGender(request.getParameter("gender"));
 				member.setEmail(request.getParameter("email"));
-				
+				member.setTreasure(request.getParameter("treasure"));
+				member.setPassword(request.getParameter("password"));
 				
 				//같은 이름으로 여러 개의 값이 전송온 경우
 				//hobby=game&hobby=climb&hobby=sports

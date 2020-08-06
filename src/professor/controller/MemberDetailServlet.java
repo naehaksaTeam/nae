@@ -1,7 +1,6 @@
 package professor.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import professor.model.service.MemberService;
 import student.model.vo.Member;
 
 /**
- * Servlet implementation class MemberAllListServlet
+ * Servlet implementation class MemberDetailServlet
  */
-@WebServlet("/alllist")
-public class MemberAllListServlet extends HttpServlet {
+@WebServlet("/mdetail")
+public class MemberDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberAllListServlet() {
+    public MemberDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,17 +31,25 @@ public class MemberAllListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//회원 전체 조회용 컨트롤러 
-				ArrayList<Member> list = new MemberService().selectList();
+		// 내정보 보기(My Page) 처리용 컨트롤러
+		
+				//1. 전송온 값에 한글이 있다면 인코딩 처리함
+				//2. 전송온 값 꺼내서 변수 또는 객체에 기록 저장함
+				String userid = request.getParameter("userid");
+				
+				//3. 서비스 객체 생성하고, 메소드 실행할 때 값 전달하고 결과받기
+				Member member = new MemberService().selectMember(userid);
+				
+				//4. 받은 결과를 가지고 성공/실패 페이지를 내보냄
+				//뷰페이지와 페이지에 출력할 정보도 함깨 보내려면, RequestDispatcher 사용
 				RequestDispatcher view = null;
-				if(list.size()>0) { //전체조회 (사이즈크기 0보다크면 성공 )
-					view = request.getRequestDispatcher("views/member/memberAllListView.jsp");
-					request.setAttribute("list", list);
+				if(member != null) {  //성공시
+					view = request.getRequestDispatcher("beet/member/myInfoPage.jsp");
+					request.setAttribute("member", member);
 					view.forward(request, response);
-					
-				}else { //실패 
+				}else {  //실패시
 					view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", "회원 전체 조회 실패");
+					request.setAttribute("message", "My Page 상세조회 요청 실패");
 					view.forward(request, response);
 				}
 	}

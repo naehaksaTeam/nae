@@ -4,9 +4,11 @@ import static common.JDBCTemp.close;
 import static common.JDBCTemp.getConnection;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import student.model.dao.MemberDao;
 import student.model.vo.Admin;
+import student.model.vo.Member;
 import student.model.vo.Professor;
 import student.model.vo.Student;
 
@@ -34,6 +36,30 @@ private MemberDao mdao = new MemberDao();
 		Admin member = mdao.loginCheck(conn, userid, userpwd);
 		close(conn);
 		return member;
+	}
+	
+	public int deleteMember(String userid) {
+		Connection conn = getConnection();
+		Admin member = mdao.loginCheck(conn, userid, userpwd);
+		close(conn);
+		return member;
+	}
+	
+	public int insertMember(Member member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public Member selectMember(String userid) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public ArrayList<Member> selectList() {
+		Connection conn = getConnection();
+			ArrayList<Member> list = mdao.selectList(conn);
+			close(conn);
+			return list;
+			
+		
 	}
 	
 }
