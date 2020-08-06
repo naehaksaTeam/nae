@@ -70,7 +70,7 @@ public class AbsenceDao {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, studentid);
 			
-			
+			rset = pstmt.executeQuery();
 			while(rset.next()) {
 				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("information"), rset.getString("approval"));
 				
@@ -132,13 +132,49 @@ public class AbsenceDao {
 
 	public ArrayList<Absence> selectApprovalAbsence(Connection conn, String able) {
 		ArrayList<Absence> list = new ArrayList<Absence>(); //승인된 아이들만 조회 able이 Y로 옴
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		
+		String query = "select * from absence where appoval = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, able);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("information"), rset.getString("approval"));
+				
+				list.add(ab);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
 		return list;
 	}
 
 	public ArrayList<Absence> selectDeappAbsence(Connection conn, String able) {
 		ArrayList<Absence> list = new ArrayList<Absence>(); // 미승인된 아이들만 조회. able이 N으로 옴
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		
+		String query = "select * from absence";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, able);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("information"), rset.getString("approval"));
+				
+				list.add(ab);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
 		return list;
 	};
 }
