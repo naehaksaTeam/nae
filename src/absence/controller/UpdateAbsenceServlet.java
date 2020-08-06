@@ -25,8 +25,7 @@ public class UpdateAbsenceServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//승인 완료되면 학생테이블의 휴학여부 바꾸어준다
 	}
 
 	/**

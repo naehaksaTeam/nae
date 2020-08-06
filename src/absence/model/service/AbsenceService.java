@@ -51,9 +51,9 @@ public class AbsenceService {
 		return list;
 	};
 	
-	public int insertAbsence(String requestid) {
+	public int insertAbsence(String value, String studentid) {
 		Connection conn = getConnection();
-		int result = adao.insertAbsence(conn, requestid);
+		int result = adao.insertAbsence(conn, value, studentid);
 		
 		if(result > 0) {
 			commit(conn);

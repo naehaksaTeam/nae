@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class Absence implements Serializable{
 	private final long serialVersionUID = 6669;
-	private String resuestid;
+	private String requestid;
 	private String studentid;
 	private Date requestdate;
 	private Date limitcancledate;
@@ -16,10 +16,10 @@ public class Absence implements Serializable{
 		super();
 	}
 
-	public Absence(String resuestid, String studentid, Date requestdate, Date limitcancledate, String information,
+	public Absence(String requestid, String studentid, Date requestdate, Date limitcancledate, String information,
 			String approval) {
 		super();
-		this.resuestid = resuestid;
+		this.requestid = requestid;
 		this.studentid = studentid;
 		this.requestdate = requestdate;
 		this.limitcancledate = limitcancledate;
@@ -27,12 +27,12 @@ public class Absence implements Serializable{
 		this.approval = approval;
 	}
 
-	public String getResuestid() {
-		return resuestid;
+	public String getRequestid() {
+		return requestid;
 	}
 
-	public void setResuestid(String resuestid) {
-		this.resuestid = resuestid;
+	public void setRequestid(String requestid) {
+		this.requestid = requestid;
 	}
 
 	public String getStudentid() {
@@ -77,7 +77,7 @@ public class Absence implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Absence [resuestid=" + resuestid + ", studentid=" + studentid + ", requestdate=" + requestdate
+		return "Absence [requestid=" + requestid + ", studentid=" + studentid + ", requestdate=" + requestdate
 				+ ", limitcancledate=" + limitcancledate + ", information=" + information + ", approval=" + approval
 				+ "]";
 	}

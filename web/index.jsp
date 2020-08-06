@@ -3,21 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>beet</title>
 </head>
 <body>
-
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<h1>WELCOME PAGE!</h1>
+<a href="/beet/views/absence/absenceRequestView.jsp">학생신청페이지</a>
 </body>
 </html>

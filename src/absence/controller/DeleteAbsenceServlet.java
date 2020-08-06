@@ -20,6 +20,9 @@ public class DeleteAbsenceServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//승인 상태일때 신청취소 요청오면 delete해서 result >0 이면 학생테이블에 가서 휴학여부 바꾸어준다.
+		//미승인 상태일 때는 delete만 진행
+		
 		request.setCharacterEncoding("utf-8");
 		
 		String requestid = request.getParameter("requestid");
