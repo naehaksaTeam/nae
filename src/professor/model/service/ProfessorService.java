@@ -1,13 +1,20 @@
 package professor.model.service;
 
+import static common.JDBCTemp.close;
+import static common.JDBCTemp.commit;
+import static common.JDBCTemp.getConnection;
+import static common.JDBCTemp.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import professor.model.dao.ProfessorDao;
 import professor.model.vo.Professor;
+import student.model.vo.Student;
 
 	public class ProfessorService {
 		
-		private ProfessorDao pdao = new Professor();
+		private ProfessorDao pdao = new ProfessorDao();
 		
 		public ProfessorService() {}
 
@@ -22,7 +29,7 @@ import professor.model.vo.Professor;
 			return result;
 		}
 
-		public Student selectOne(String professorId) {
+		public Professor selectOne(String professorId) {
 			Connection conn = getConnection();
 			Professor professor = pdao.selectOne(conn, professorId);
 			close(conn);
@@ -36,7 +43,7 @@ import professor.model.vo.Professor;
 			return list;
 		}
 
-		public int update(ProfessorVo professor) {
+		public int update(Professor professor) {
 			Connection conn = getConnection();
 			int result = pdao.update(conn, professor);
 			if(result > 0)
@@ -68,4 +75,4 @@ import professor.model.vo.Professor;
 
 
 
-}
+

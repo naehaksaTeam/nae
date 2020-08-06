@@ -1,12 +1,14 @@
 package admin.model.dao;
 
+import static common.JDBCTemp.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import admin.model.vo.Admin;
-import static common.JDBCTemp.*;
 
 public class AdminDao {
 	public AdminDao() {}
@@ -22,7 +24,11 @@ public class AdminDao {
 			pstmt.setString(1, admin.getAdminid());
 			pstmt.setString(2, admin.getAdminname());
 			pstmt.setString(3, admin.getAdminssn());
-			pstmt.setString(4, admin.getAdress());
+			pstmt.setString(4, admin.getAddress());
+			pstmt.setString(5, admin.getPhone());
+			pstmt.setString(6, admin.getEmail());
+			pstmt.setString(7, admin.getTreasure());
+			pstmt.setDate(8, admin.getAdminhiredate());
 			
 		
 			result = pstmt.executeUpdate();
@@ -36,8 +42,9 @@ public class AdminDao {
 		return result;
 	}
 
-	public Admin selectOne(Connection conn, String Adminid) {
-		Administaror Admin = null;
+	
+	public Admin selectOne(Connection conn, String adminid) {
+		Admin admin = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -45,15 +52,13 @@ public class AdminDao {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, studentid);
+			pstmt.setString(1, adminid);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				professor = new ProfessorVo();
+				admin = new Admin();
 				
-				
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -62,7 +67,7 @@ public class AdminDao {
 			close(pstmt);
 		}
 		
-		return professor;
+		return admin;
 	}
 
 	public ArrayList<Admin> selectList(Connection conn) {
