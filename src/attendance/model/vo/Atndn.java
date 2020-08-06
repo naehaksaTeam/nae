@@ -1,4 +1,4 @@
-package attendance.model.vo;
+ package attendance.model.vo;
 
 import lecture.model.vo.Lecture;
 
@@ -117,9 +117,7 @@ public class Atndn extends Lecture{
 	}
 
 	public void setCategory(String category) {
-		this.category = category;sdfds
-		dsfdsfds
-		fsdfsdf
+		this.category = category;
 		
 	}
 
