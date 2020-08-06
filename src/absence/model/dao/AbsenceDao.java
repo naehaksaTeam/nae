@@ -25,7 +25,7 @@ public class AbsenceDao {
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("information"), rset.getString("approval"));
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
 				
 				list.add(ab);
 			}
@@ -49,7 +49,7 @@ public class AbsenceDao {
 			rset = pstmt.executeQuery();
 
 			if(rset.next()) {
-				absence = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("information"), rset.getString("approval"));
+				absence = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -72,7 +72,7 @@ public class AbsenceDao {
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("information"), rset.getString("approval"));
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
 				
 				list.add(ab);
 			}
@@ -87,7 +87,7 @@ public class AbsenceDao {
 
 	public int insertAbsence(Connection conn, String value, String studentid) {
 		int result = 0;
-		State
+		Statement stmt = null;
 		String query = "insert into absence values(?+(select max(requestid)))";
 		
 		try {
@@ -149,7 +149,7 @@ public class AbsenceDao {
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("information"), rset.getString("approval"));
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
 				
 				list.add(ab);
 			}
@@ -165,7 +165,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence";
+		String query =  "select * from absence where appoval = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -173,7 +173,7 @@ public class AbsenceDao {
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("information"), rset.getString("approval"));
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
 				
 				list.add(ab);
 			}
