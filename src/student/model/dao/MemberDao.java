@@ -19,13 +19,13 @@ public class MemberDao {
       int result = 0;
       PreparedStatement pstmt = null;
 
-      String query = "insert into student values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,defalut,defalut,?)";
+      String query = "insert into student values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,defalut,defalut,?,?)";
 
       try {
          pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, student.getStudentid());
-         pstmt.setString(2, student.getStudentname());
-         pstmt.setString(3, student.getStudentssn());
+         pstmt.setString(1, student.getId());
+         pstmt.setString(2, student.getName());
+         pstmt.setString(3, student.getSsn());
          pstmt.setString(4, student.getAddress());
          pstmt.setString(5, student.getPhone());
          pstmt.setString(6, student.getEmail());
@@ -33,7 +33,7 @@ public class MemberDao {
          pstmt.setString(8, student.getCategoryname());
          pstmt.setString(9, student.getMajorno());
          pstmt.setString(10, student.getSsname());
-
+         pstmt.setString(11, student.getPassword());
          result = pstmt.executeUpdate();
 
       } catch (Exception e) {
@@ -60,9 +60,9 @@ public class MemberDao {
          if (rset.next()) {
             student = new Student();
 
-            student.setStudentid("studentid");
-            student.setStudentname(rset.getString("studentname"));
-            student.setStudentssn(rset.getString("studentssn"));
+            student.setId("id");
+            student.setName(rset.getString("name"));
+            student.setSsn(rset.getString("ssn"));
             student.setAddress(rset.getString("address"));
             student.setPhone(rset.getString("phone"));
             student.setGender(rset.getString("gender"));
@@ -74,6 +74,7 @@ public class MemberDao {
             student.setAbsencewhether(rset.getString("absencewhether"));
             student.setAbsencecount(rset.getInt("absencecount"));
             student.setSsname(rset.getString("ssname"));
+            student.setPassword(rset.getString("password"));
          }
       } catch (Exception e) {
          e.printStackTrace();
@@ -101,9 +102,9 @@ public class MemberDao {
          while (rset.next()) {
             Student student = new Student();
             
-            student.setStudentid("studentid");
-            student.setStudentname(rset.getString("studentname"));
-            student.setStudentssn(rset.getString("studentssn"));
+            student.setId("id");
+            student.setName(rset.getString("studentname"));
+            student.setSsn(rset.getString("studentssn"));
             student.setAddress(rset.getString("address"));
             student.setPhone(rset.getString("phone"));
             student.setGender(rset.getString("gender"));
@@ -136,7 +137,7 @@ public class MemberDao {
 
       try {
          pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, student.getStudentid());
+         pstmt.setString(1, student.getId());
          pstmt.setString(2, student.getMajorno());
 
          result = pstmt.executeUpdate();
@@ -170,42 +171,5 @@ public class MemberDao {
 
       return result;
    }
-
-
-public Student loginCheck(Connection conn, String userid, String userpwd) {
-	Member member = null;
-    PreparedStatement pstmt = null;
-    ResultSet rset =null;
-    
-    String query = "select * from crypto_member where userid = ? and userpwd = ?";
-    
-    try {
-       pstmt = conn.prepareStatement(query);
-       pstmt.setString(1, userid);
-       pstmt.setString(2, userpwd);
-       
-       rset = pstmt.executeQuery();
-       
-       if(rset.next()) {
-          member = new Member();
-          
-          member.setId(userid);
-          member.setPassword(userpwd);
-          member.setName(rset.getString("username"));
-          member.setGender(rset.getString("gender"));
-          member.setPhone(rset.getString("phone"));
-          member.setEmail(rset.getString("email"));
-          member.setAddress(rset.getString("etc"));
-          member.setTreasure(rset.getString("enroll_date"));
-          member.setSsn(rset.getString("lastModified"));
-       }
-    } catch (Exception e) {
-       e.printStackTrace();
-    }finally {
-       close(rset);
-       close(pstmt);
-    }
-    return member;
-}
 
 }
