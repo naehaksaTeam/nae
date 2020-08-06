@@ -16,8 +16,35 @@ DROP TABLE lecturescore CASCADE CONSTRAINTS;
 DROP TABLE professor CASCADE CONSTRAINTS;
 DROP TABLE schedule CASCADE CONSTRAINTS;
 DROP TABLE termscore CASCADE CONSTRAINTS;
+DROP TABLE absenceinfor CASCADE CONSTRAINTS;
 
 ------------------------------------------------------------------------------------------------------------------
+create table absenceinfor (
+   information varchar2(200) primary key
+);
+COMMENT ON COLUMN absenceinfor.information IS '안내사항';
+
+CREATE TABLE absence (
+   requestid   VARCHAR2(30) NOT NULL,
+   studentid   VARCHAR2(10) NOT NULL,
+   requestdate DATE   DEFAULT SYSDATE   NOT NULL,
+   limitcanceldate DATE DEFAULT SYSDATE+1 NOT NULL,
+   approval char(1) default 'N', 
+   constraints chk_per check (approval in ('Y','N'))
+);
+
+COMMENT ON COLUMN absence.requestid IS '신청코드';
+
+COMMENT ON COLUMN absence.studentid IS '학번';
+
+COMMENT ON COLUMN absence.requestdate IS '신청일';
+
+COMMENT ON COLUMN absence.limitcanceldate IS '취소제한날짜';
+
+comment on COLUMN absence.approval is '승인';
+
+
+
 
 CREATE TABLE lplan (
 	lcode	VARCHAR2(10)		NOT NULL,
@@ -131,12 +158,17 @@ COMMENT ON COLUMN attendance.week16 IS '16주차출결';
 
 
 
+
 CREATE TABLE schedule (
    scheduleid   varchar2(10)      NOT NULL,
    adno   varchar2(10)      NOT NULL,
    schname   varchar2(1000)      NULL,
-   schstartdate   date      NOT NULL,
-    schenddate date       NULL
+   schstartyear   number      NOT NULL,
+   schstartmonth   number      NOT NULL,
+   schstartdate   number      NOT NULL,
+   schendyear   number      NULL,
+   schendmonth   number      NULL,
+   schenddate   number      NULL
 
 );
 
@@ -146,9 +178,19 @@ COMMENT ON COLUMN schedule.adno IS '관리자번호';
 
 COMMENT ON COLUMN schedule.schname IS '일정명';
 
-COMMENT ON COLUMN schedule.schstartdate IS '시작날짜';
+COMMENT ON COLUMN schedule.schstartyear IS '시작년도';
 
-COMMENT ON COLUMN schedule.schenddate IS '끝날짜';
+COMMENT ON COLUMN schedule.schstartmonth IS '시작월';
+
+COMMENT ON COLUMN schedule.schstartdate IS '시작일';
+
+COMMENT ON COLUMN schedule.schendyear IS '끝년도';
+
+COMMENT ON COLUMN schedule.schendmonth IS '끝월';
+
+COMMENT ON COLUMN schedule.schenddate IS '끝일';
+
+
 
 
 CREATE TABLE lroom (
@@ -457,28 +499,6 @@ COMMENT ON COLUMN ssbenefitst.studentid IS '학번';
 COMMENT ON COLUMN ssbenefitst.ssname IS '장학금명';
 
 
-
-CREATE TABLE absence (
-	requestid	VARCHAR2(30) NOT NULL,
-	studentid	VARCHAR2(10) NOT NULL,
-	requestdate DATE	DEFAULT SYSDATE	NOT NULL,
-	limitcanceldate DATE DEFAULT SYSDATE+1 NOT NULL,
-	information VARCHAR2(200) NOT NULL,
-		approval char(1) default 'N', 
-		constraints chk_per check (approval in ('Y','N'))
-);
-
-COMMENT ON COLUMN absence.requestid IS '신청코드';
-
-COMMENT ON COLUMN absence.studentid IS '학번';
-
-COMMENT ON COLUMN absence.requestdate IS '신청일';
-
-COMMENT ON COLUMN absence.limitcanceldate IS '취소제한날짜';
-
-COMMENT ON COLUMN absence.information IS '안내사항';
-
-comment on COLUMN absence.approval is '승인';
 
 
 
@@ -1442,61 +1462,62 @@ INSERT INTO attendance VALUES ('l002','201901585','90','N','1','1','1','1','1','
 
 -- 학사일정
 
-INSERT INTO schedule VALUES ('s101','A003','2019학년도 1학기 복학 신청','2019/02/12','2019/02/15');
-INSERT INTO schedule VALUES ('s102','A003','2019학년도 1학기 등록','2019/02/18','2020/02/20');
-INSERT INTO schedule VALUES ('s103','A003',' 1학기 휴학 신청','2019/02/21','2019/02/23');
-INSERT INTO schedule VALUES ('s104','A003',' 신입생 입학식','2019/02/15','2019/02/15');
-INSERT INTO schedule VALUES ('s105','A003',' 1학기 수강신청','2019/02/24','2019/02/27');
-INSERT INTO schedule VALUES ('s106','A003','2019학년도 1학기 개강','2019/03/02','2019/03/03');
-INSERT INTO schedule VALUES ('s107','A003','1학기 수강신청 정정','2019/03/02','2019/03/05');
-INSERT INTO schedule VALUES ('s108','A003','1학기 중간 평가기간','2019/04/06','2019/04/20');
-INSERT INTO schedule VALUES ('s109','A003',' 2학기 교내장학금 신청','2019/05/10','2019/05/10');
-INSERT INTO schedule VALUES ('s110','A003','1학기 기말 평가기간','2019/06/01','2019/06/20');
-INSERT INTO schedule VALUES ('s111','A003','1학기 종강','2019/06/12','2019/06/13');
-INSERT INTO schedule VALUES ('s112','A003','1학기 성적입력 및 정정','2019/06/12','2019/06/25');
-INSERT INTO schedule VALUES ('s113','A003','1학기 공휴일로 인한 수업보강기간','2019/06/15','2019/06/18');
-INSERT INTO schedule VALUES ('s114','A003','개교기념일','2019/06/28','2019/06/28');
-INSERT INTO schedule VALUES ('s115','A003','2019학년도 2학기 복학 신청','2019/07/27','2019/08/02');
-INSERT INTO schedule VALUES ('s116','A003','후기 학위수여식','2019/08/21','2019/08/22');
-INSERT INTO schedule VALUES ('s117','A003',' 2학기 수강신청','2019/08/24','2019/08/27');
-INSERT INTO schedule VALUES ('s118','A003',' 2019년 2학기 등록 및 휴학 신청','2019/08/25','2019/08/28');
-INSERT INTO schedule VALUES ('s119','A003','2학기 개강','2019/09/01','2019/09/01');
-INSERT INTO schedule VALUES ('s120','A003','수강신청 정정','2019/09/07','2019/09/07');
-INSERT INTO schedule VALUES ('s121','A003','2학기 중간 평가 기간','2019/09/28','2019/10/13');
-INSERT INTO schedule VALUES ('s122','A003','2020학년도 1학기 교내장학금 신청','2019/11/01','2019/11/13');
-INSERT INTO schedule VALUES ('s123','A003',' 2학기 기말 평가 기간','2019/11/30','2019/12/20');
-INSERT INTO schedule VALUES ('s124','A003',' 2학기 종강','2019/12/14','2019/12/14');
-INSERT INTO schedule VALUES ('s125','A003','2학기 성적입력 및 정정','2019/12/15','2019/01/04');
-INSERT INTO schedule VALUES ('s126','A003','2학기 공휴일로 인한 수업보강기간','2019/12/16','2019/12/18');
-INSERT INTO schedule VALUES ('s127','A005','2020학년도 신입생 정시 입학전형','2020/01/10','2020/02/01');
-INSERT INTO schedule VALUES ('s128','A005','2020학년도 1학기 복학 신청','2020/02/12','2020/02/15');
-INSERT INTO schedule VALUES ('s129','A005','2020학년도 1학기 등록','2020/02/18','2020/02/20');
-INSERT INTO schedule VALUES ('s130','A005',' 1학기 휴학 신청','2020/02/21','2020/02/23');
-INSERT INTO schedule VALUES ('s131','A005',' 신입생 입학식','2020/02/15','2020/02/15');
-INSERT INTO schedule VALUES ('s132','A005',' 1학기 수강신청','2020/02/24','2020/02/27');
-INSERT INTO schedule VALUES ('s133','A005','2020학년도 1학기 개강','2020/03/02','2020/03/02');
-INSERT INTO schedule VALUES ('s134','A005','1학기 수강신청 정정','2020/03/02','2020/03/05');
-INSERT INTO schedule VALUES ('s135','A005','1학기 중간 평가기간','2020/04/06','2020/04/20');
-INSERT INTO schedule VALUES ('s136','A005',' 2학기 교내장학금 신청','2020/05/10','2020/05/10');
-INSERT INTO schedule VALUES ('s137','A005','1학기 기말 평가기간','2020/06/01','2020/06/20');
-INSERT INTO schedule VALUES ('s138','A005','1학기 종강','2020/06/12','2020/06/12');
-INSERT INTO schedule VALUES ('s139','A005','1학기 성적입력 및 정정','2020/06/12','2020/06/25');
-INSERT INTO schedule VALUES ('s140','A005','1학기 공휴일로 인한 수업보강기간','2020/06/15','2020/06/18');
-INSERT INTO schedule VALUES ('s141','A005','개교기념일','2020/06/28','2020/06/28');
-INSERT INTO schedule VALUES ('s142','A005','2020학년도 2학기 복학 신청','2020/07/27','2020/08/02');
-INSERT INTO schedule VALUES ('s143','A005','후기 학위수여식','2020/08/21','2020/08/21');
-INSERT INTO schedule VALUES ('s144','A005',' 2학기 수강신청','2020/08/24','2020/08/27');
-INSERT INTO schedule VALUES ('s145','A005',' 2020년 2학기 등록 및 휴학 신청','2020/08/25','2020/08/28');
-INSERT INTO schedule VALUES ('s146','A005','2학기 개강','2020/09/01','2020/09/01');
-INSERT INTO schedule VALUES ('s147','A005','수강신청 정정','2020/09/01','2020/09/07');
-INSERT INTO schedule VALUES ('s148','A005','2학기 중간 평가 기간','2020/09/28','2020/10/13');
-INSERT INTO schedule VALUES ('s149','A005','2021학년도 1학기 교내장학금 신청','2020/11/01','2020/11/13');
-INSERT INTO schedule VALUES ('s150','A005',' 2학기 기말 평가 기간','2020/11/30','2020/12/20');
-INSERT INTO schedule VALUES ('s156','A005',' 2학기 종강','2020/12/14','2020/12/14');
-INSERT INTO schedule VALUES ('s157','A005','2학기 성적입력 및 정정','2020/12/15','2020/01/04');
-INSERT INTO schedule VALUES ('s158','A005','2학기 공휴일로 인한 수업보강기간','2020/12/16','2020/12/18');
-INSERT INTO schedule VALUES ('s159','A005','2021학년도 신입생 정시 입학전형','2021/01/10','2021/02/01');
-INSERT INTO schedule VALUES ('s160','A005','2021학년도 1학기 복학 신청','2021/01/27','2021/02/03');
+
+INSERT INTO schedule VALUES ('s101','A003','2019학년도 1학기 복학 신청','2019','02','12','2019','02','15' );
+INSERT INTO schedule VALUES ('s102','A003','2019학년도 1학기 등록','2019','02','18','2020','02','20');
+INSERT INTO schedule VALUES ('s103','A003',' 1학기 휴학 신청','2019','02','21','2019','02','23');
+INSERT INTO schedule VALUES ('s104','A003',' 신입생 입학식','2019','02','15','2019','02','15');
+INSERT INTO schedule VALUES ('s105','A003',' 1학기 수강신청','2019','02','24','2019','02','27');
+INSERT INTO schedule VALUES ('s106','A003','2019학년도 1학기 개강','2019','03','02','2019','03','03');
+INSERT INTO schedule VALUES ('s107','A003','1학기 수강신청 정정','2019','03','02','2019','03','05');
+INSERT INTO schedule VALUES ('s108','A003','1학기 중간 평가기간','2019','04','06','2019','04','20');
+INSERT INTO schedule VALUES ('s109','A003',' 2학기 교내장학금 신청','2019','05','10','2019','05','10');
+INSERT INTO schedule VALUES ('s110','A003','1학기 기말 평가기간','2019','06','01','2019','06','20');
+INSERT INTO schedule VALUES ('s111','A003','1학기 종강','2019','06','12','2019','06','13');
+INSERT INTO schedule VALUES ('s112','A003','1학기 성적입력 및 정정','2019','06','12','2019','06','25');
+INSERT INTO schedule VALUES ('s113','A003','1학기 공휴일로 인한 수업보강기간','2019','06','15','2019','06','18');
+INSERT INTO schedule VALUES ('s114','A003','개교기념일','2019','06','28','2019','06','28');
+INSERT INTO schedule VALUES ('s115','A003','2019학년도 2학기 복학 신청','2019','07','27','2019','08','02');
+INSERT INTO schedule VALUES ('s116','A003','후기 학위수여식','2019','08','21','2019','08','22');
+INSERT INTO schedule VALUES ('s117','A003',' 2학기 수강신청','2019','08','24','2019','08','27');
+INSERT INTO schedule VALUES ('s118','A003',' 2019년 2학기 등록 및 휴학 신청','2019','08','25','2019','08','28');
+INSERT INTO schedule VALUES ('s119','A003','2학기 개강','2019','09','01','2019','09','01');
+INSERT INTO schedule VALUES ('s120','A003','수강신청 정정','2019','09','07','2019','09','07');
+INSERT INTO schedule VALUES ('s121','A003','2학기 중간 평가 기간','2019','09','28','2019','10','13');
+INSERT INTO schedule VALUES ('s122','A003','2020학년도 1학기 교내장학금 신청','2019','11','01','2019','11','13');
+INSERT INTO schedule VALUES ('s123','A003',' 2학기 기말 평가 기간','2019','11','30','2019','12','20');
+INSERT INTO schedule VALUES ('s124','A003',' 2학기 종강','2019','12','14','2019','12','14');
+INSERT INTO schedule VALUES ('s125','A003','2학기 성적입력 및 정정','2019','12','15','2019','01','04');
+INSERT INTO schedule VALUES ('s126','A003','2학기 공휴일로 인한 수업보강기간','2019','12','16','2019','12','18');
+INSERT INTO schedule VALUES ('s127','A005','2020학년도 신입생 정시 입학전형','2020','01','10','2020','02','01');
+INSERT INTO schedule VALUES ('s128','A005','2020학년도 1학기 복학 신청','2020','02','12','2020','02','15');
+INSERT INTO schedule VALUES ('s129','A005','2020학년도 1학기 등록','2020','02','18','2020','02','20');
+INSERT INTO schedule VALUES ('s130','A005',' 1학기 휴학 신청','2020','02','21','2020','02','23');
+INSERT INTO schedule VALUES ('s131','A005',' 신입생 입학식','2020','02','15','2020','02','15');
+INSERT INTO schedule VALUES ('s132','A005',' 1학기 수강신청','2020','02','24','2020','02','27');
+INSERT INTO schedule VALUES ('s133','A005','2020학년도 1학기 개강','2020','03','02','2020','03','02');
+INSERT INTO schedule VALUES ('s134','A005','1학기 수강신청 정정','2020','03','02','2020','03','05');
+INSERT INTO schedule VALUES ('s135','A005','1학기 중간 평가기간','2020','04','06','2020','04','20');
+INSERT INTO schedule VALUES ('s136','A005',' 2학기 교내장학금 신청','2020','05','10','2020','05','10');
+INSERT INTO schedule VALUES ('s137','A005','1학기 기말 평가기간','2020','06','01','2020','06','20');
+INSERT INTO schedule VALUES ('s138','A005','1학기 종강','2020','06','12','2020','06','12');
+INSERT INTO schedule VALUES ('s139','A005','1학기 성적입력 및 정정','2020','06','12','2020','06','25');
+INSERT INTO schedule VALUES ('s140','A005','1학기 공휴일로 인한 수업보강기간','2020','06','15','2020','06','18');
+INSERT INTO schedule VALUES ('s141','A005','개교기념일','2020','06','28','2020','06','28');
+INSERT INTO schedule VALUES ('s142','A005','2020학년도 2학기 복학 신청','2020','07','27','2020','08','02');
+INSERT INTO schedule VALUES ('s143','A005','후기 학위수여식','2020','08','21','2020','08','21');
+INSERT INTO schedule VALUES ('s144','A005',' 2학기 수강신청','2020','08','24','2020','08','27');
+INSERT INTO schedule VALUES ('s145','A005',' 2020년 2학기 등록 및 휴학 신청','2020','08','25','2020','08','28');
+INSERT INTO schedule VALUES ('s146','A005','2학기 개강','2020','09','01','2020','09','01');
+INSERT INTO schedule VALUES ('s147','A005','수강신청 정정','2020','09','01','2020','09','07');
+INSERT INTO schedule VALUES ('s148','A005','2학기 중간 평가 기간','2020','09','28','2020','10','13');
+INSERT INTO schedule VALUES ('s149','A005','2021학년도 1학기 교내장학금 신청','2020','11','01','2020','11','13');
+INSERT INTO schedule VALUES ('s150','A005',' 2학기 기말 평가 기간','2020','11','30','2020','12','20');
+INSERT INTO schedule VALUES ('s156','A005',' 2학기 종강','2020','12','14','2020','12','14');
+INSERT INTO schedule VALUES ('s157','A005','2학기 성적입력 및 정정','2020','12','15','2020','01','04');
+INSERT INTO schedule VALUES ('s158','A005','2학기 공휴일로 인한 수업보강기간','2020','12','16','2020','12','18');
+INSERT INTO schedule VALUES ('s159','A005','2021학년도 신입생 정시 입학전형','2021','01','10','2021','02','01');
+INSERT INTO schedule VALUES ('s160','A005','2021학년도 1학기 복학 신청','2021','01','27','2021','02','03');
 
 
 -- 공지사항
