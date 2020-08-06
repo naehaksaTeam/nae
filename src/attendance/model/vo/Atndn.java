@@ -117,7 +117,10 @@ public class Atndn extends Lecture{
 	}
 
 	public void setCategory(String category) {
-		this.category = category;
+		this.category = category;sdfds
+		dsfdsfds
+		fsdfsdf
+		
 	}
 
 	public void setProfessorname(String professorname) {
