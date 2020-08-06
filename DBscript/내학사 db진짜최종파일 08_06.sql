@@ -16,17 +16,40 @@ DROP TABLE lecturescore CASCADE CONSTRAINTS;
 DROP TABLE professor CASCADE CONSTRAINTS;
 DROP TABLE schedule CASCADE CONSTRAINTS;
 DROP TABLE termscore CASCADE CONSTRAINTS;
+DROP TABLE absenceinfor CASCADE CONSTRAINTS;
 
 ------------------------------------------------------------------------------------------------------------------
 create table absenceinfor (
-	information varchar2(200) primary key
+   information varchar2(200) primary key
 );
 COMMENT ON COLUMN absenceinfor.information IS '안내사항';
+
+CREATE TABLE absence (
+   requestid   VARCHAR2(30) NOT NULL,
+   id   VARCHAR2(10) NOT NULL,
+   requestdate DATE   DEFAULT SYSDATE   NOT NULL,
+   limitcanceldate DATE DEFAULT SYSDATE+1 NOT NULL,
+   approval char(1) default 'N', 
+   constraints chk_per check (approval in ('Y','N'))
+);
+
+COMMENT ON COLUMN absence.requestid IS '신청코드';
+
+COMMENT ON COLUMN absence.id IS '학번';
+
+COMMENT ON COLUMN absence.requestdate IS '신청일';
+
+COMMENT ON COLUMN absence.limitcanceldate IS '취소제한날짜';
+
+comment on COLUMN absence.approval is '승인';
+
+
+
 
 CREATE TABLE lplan (
 	lcode	VARCHAR2(10)		NOT NULL,
 	room	VARCHAR2(20)		NOT NULL,
-	professorid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	content	VARCHAR2(500)		NULL
 );
 
@@ -34,21 +57,21 @@ COMMENT ON COLUMN lplan.lcode IS '강의코드';
 
 COMMENT ON COLUMN lplan.room IS '강의실명';
 
-COMMENT ON COLUMN lplan.professorid IS '교수번호';
+COMMENT ON COLUMN lplan.id IS '교수번호';
 
 COMMENT ON COLUMN lplan.content IS '수업내용';
 
 
 CREATE TABLE termscore (
     semester    VARCHAR2(10)    NOT NULL,
-    studentid   VARCHAR2(10)    NOT NULL,
+    id   VARCHAR2(10)    NOT NULL,
     termaplpoint    NUMBER      NULL,
     termgetpoint    NUMBER      NULL,
     grdpoint    NUMBER  DEFAULT 130 NULL,
     tgpa    NUMBER      NULL
 );
 COMMENT ON COLUMN termscore.semester IS '년도학기';
-COMMENT ON COLUMN termscore.studentid IS '학번';
+COMMENT ON COLUMN termscore.id IS '학번';
 COMMENT ON COLUMN termscore.termaplpoint IS '총신청학점';
 COMMENT ON COLUMN termscore.termgetpoint IS '총취득학점';
 COMMENT ON COLUMN termscore.grdpoint IS '졸업이수학점';
@@ -88,7 +111,7 @@ COMMENT ON COLUMN notice.noticereadcount IS '조회수';
 
 CREATE TABLE attendance (
 	lcode	VARCHAR2(10)		NOT NULL,
-	studentid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	thisweek	VARCHAR2(10)		NULL,
 	absent3	CHAR(1)	DEFAULT 'N'	NULL,
 week1	CHAR(1)		NULL,
@@ -111,7 +134,7 @@ week16	CHAR(1)		NULL
 
 COMMENT ON COLUMN attendance.lcode IS '강의코드';
 
-COMMENT ON COLUMN attendance.studentid IS '학번';
+COMMENT ON COLUMN attendance.id IS '학번';
 
 COMMENT ON COLUMN attendance.thisweek IS '현재출석주차';
 
@@ -135,12 +158,17 @@ COMMENT ON COLUMN attendance.week16 IS '16주차출결';
 
 
 
+
 CREATE TABLE schedule (
    scheduleid   varchar2(10)      NOT NULL,
    adno   varchar2(10)      NOT NULL,
    schname   varchar2(1000)      NULL,
-   schstartdate   date      NOT NULL,
-    schenddate date       NULL
+   schstartyear   number      NOT NULL,
+   schstartmonth   number      NOT NULL,
+   schstartdate   number      NOT NULL,
+   schendyear   number      NULL,
+   schendmonth   number      NULL,
+   schenddate   number      NULL
 
 );
 
@@ -150,9 +178,19 @@ COMMENT ON COLUMN schedule.adno IS '관리자번호';
 
 COMMENT ON COLUMN schedule.schname IS '일정명';
 
-COMMENT ON COLUMN schedule.schstartdate IS '시작날짜';
+COMMENT ON COLUMN schedule.schstartyear IS '시작년도';
 
-COMMENT ON COLUMN schedule.schenddate IS '끝날짜';
+COMMENT ON COLUMN schedule.schstartmonth IS '시작월';
+
+COMMENT ON COLUMN schedule.schstartdate IS '시작일';
+
+COMMENT ON COLUMN schedule.schendyear IS '끝년도';
+
+COMMENT ON COLUMN schedule.schendmonth IS '끝월';
+
+COMMENT ON COLUMN schedule.schenddate IS '끝일';
+
+
 
 
 CREATE TABLE lroom (
@@ -170,7 +208,7 @@ COMMENT ON COLUMN lroom.roommax IS '수용인원';
 
 CREATE TABLE lecture (
 	lcode	VARCHAR2(10)		NOT NULL,
-	professorid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	lname	VARCHAR2(100)		NULL,
 	category	VARCHAR2(30)		NULL,
 	lpoint NUMBER 	NULL, 
@@ -181,7 +219,7 @@ CREATE TABLE lecture (
 
 COMMENT ON COLUMN lecture.lcode IS '강의코드';
 
-COMMENT ON COLUMN lecture.professorid IS '교수번호';
+COMMENT ON COLUMN lecture.id IS '교수번호';
 
 COMMENT ON COLUMN lecture.lname IS '강의명';
 
@@ -241,7 +279,7 @@ COMMENT ON COLUMN major.categoryname IS '구분명';
 CREATE TABLE lapplication (
 	receptionno	VARCHAR2(10)		NOT NULL,
 	lcode	VARCHAR2(10)		NOT NULL,
-	studentid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	semester	VARCHAR2(10)		NOT NULL,
 	lpersonnel	VARCHAR2(20)		NOT NULL,
 	room	VARCHAR2(10)		NOT NULL,
@@ -252,7 +290,7 @@ COMMENT ON COLUMN lapplication.receptionno IS '강의신청코드';
 
 COMMENT ON COLUMN lapplication.lcode IS '강의코드';
 
-COMMENT ON COLUMN lapplication.studentid IS '학생번호';
+COMMENT ON COLUMN lapplication.id IS '학생번호';
 
 COMMENT ON COLUMN lapplication.semester IS '년도학기';
 
@@ -264,7 +302,7 @@ COMMENT ON COLUMN lapplication.retake IS '재수강여부';
 
 CREATE TABLE reception (
 	receptionno	VARCHAR2(10)		NOT NULL,
-	professorid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	reason	VARCHAR2(500)		NOT NULL,
 	way	VARCHAR2(20)		NOT NULL,
 	dayoff	DATE	DEFAULT SYSDATE	NOT NULL,
@@ -272,12 +310,12 @@ CREATE TABLE reception (
 	rtime	VARCHAR2(10)		NOT NULL,
 	lcode	VARCHAR2(10)		NOT NULL,
 	room	VARCHAR2(20)		NOT NULL,
-	subprofessorid	VARCHAR2(10)		NULL
+	subid	VARCHAR2(10)		NULL
 );
 
 COMMENT ON COLUMN reception.receptionno IS '접수번호';
 
-COMMENT ON COLUMN reception.professorid IS '신청교수번호';
+COMMENT ON COLUMN reception.id IS '신청교수번호';
 
 COMMENT ON COLUMN reception.reason IS '사유';
 
@@ -293,16 +331,16 @@ COMMENT ON COLUMN reception.lcode IS '강의코드';
 
 COMMENT ON COLUMN reception.room IS '강의실명';
 
-COMMENT ON COLUMN reception.subprofessorid IS '대리교수번호';
+COMMENT ON COLUMN reception.subid IS '대리교수번호';
 
 
 CREATE TABLE lecturescore (
 	receptionno VARCHAR2(10)	NOT NULL,
 	lcode	VARCHAR2(10)		NOT NULL,
-	studentid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	atndnscore	NUMBER		NULL,
 	midscore		NUMBER		NULL,
-	finalscore	NUMBER		NULL,
+	finalscore		NUMBER		NULL,
 	totalscore	NUMBER		NULL,
 	grade	CHAR(2)		NULL,
 	atndnbelow CHAR(1) 	NULL
@@ -312,7 +350,7 @@ COMMENT ON COLUMN lecturescore.receptionno IS '강의신청코드';
 
 COMMENT ON COLUMN lecturescore.lcode IS '강의코드';
 
-COMMENT ON COLUMN lecturescore.studentid IS '학번';
+COMMENT ON COLUMN lecturescore.id IS '학번';
 
 COMMENT ON COLUMN lecturescore.atndscore IS '출결점수';
 
@@ -329,9 +367,9 @@ COMMENT ON COLUMN lecturescore.atndnbelow IS '출석미달';
 
 
 CREATE TABLE student (
-	studentid	VARCHAR2(10)		NOT NULL,
-	studentname	VARCHAR2(20)		NOT NULL,
-	studentssn	VARCHAR2(14)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
+	name	VARCHAR2(20)		NOT NULL,
+	ssn	VARCHAR2(14)		NOT NULL,
 	address	VARCHAR2(500)	NOT NULL,
 	phone	VARCHAR2(20)	NULL,
 	gender	VARCHAR2(1)	DEFAULT 'M'	NOT NULL,
@@ -343,13 +381,17 @@ CREATE TABLE student (
 	absencewhether	VARCHAR2(1)	DEFAULT 'N'	NULL,
 	absencecount	NUMBER	DEFAULT 0	NULL,
 	ssname	VARCHAR2(30)	NULL
+	
+	
 );
 
-COMMENT ON COLUMN student.studentid IS '학생번호';
 
-COMMENT ON COLUMN student.studentname IS '학생명';
 
-COMMENT ON COLUMN student.studentssn IS '주민등록번호';
+COMMENT ON COLUMN student.id IS '학생번호';
+
+COMMENT ON COLUMN student.name IS '학생명';
+
+COMMENT ON COLUMN student.ssn IS '주민등록번호';
 
 COMMENT ON COLUMN student.categoryname IS '구분명';
 
@@ -376,9 +418,9 @@ COMMENT ON COLUMN student.ssname IS '장학금명';
 
 
 CREATE TABLE professor (
-	professorid	VARCHAR2(10)		NOT NULL,
-	professorname	VARCHAR2(10)		NOT NULL,
-	professorssn	VARCHAR2(20)		NULL,
+	id	VARCHAR2(10)		NOT NULL,
+	name	VARCHAR2(10)		NOT NULL,
+	ssn	VARCHAR2(20)		NULL,
 	address	VARCHAR2(500)	NOT NULL,
 	phone	VARCHAR2(20)	NULL,
 	gender	VARCHAR2(1)	DEFAULT 'M'	NOT NULL,
@@ -388,11 +430,11 @@ CREATE TABLE professor (
 	majorno	VARCHAR2(20)		NOT NULL
 );
 
-COMMENT ON COLUMN professor.professorid IS '교수번호';
+COMMENT ON COLUMN professor.id IS '교수번호';
 
-COMMENT ON COLUMN professor.professorname IS '교수명';
+COMMENT ON COLUMN professor.name IS '교수명';
 
-COMMENT ON COLUMN professor.professorssn IS '주민등록번호';
+COMMENT ON COLUMN professor.ssn IS '주민등록번호';
 
 COMMENT ON COLUMN professor.categoryname IS '구분명';
 
@@ -410,23 +452,23 @@ COMMENT ON COLUMN professor.treasure IS '나의보물1호';
 
 
 CREATE TABLE administrator (
-	adminid	VARCHAR2(10)	NOT NULL,
-	adminname	VARCHAR2(10)	NOT NULL,
-	adminadssn	VARCHAR2(20)	NOT NULL,
+	id	VARCHAR2(10)	NOT NULL,
+	name	VARCHAR2(10)	NOT NULL,
+	ssn	VARCHAR2(20)	NOT NULL,
 	address	VARCHAR2(500)	NOT NULL,
 	phone	VARCHAR2(20)	NULL,
 	gender	VARCHAR2(1)	DEFAULT 'M'	NOT NULL,
 	email	VARCHAR2(500)	NOT NULL,
 	treasure	VARCHAR2(200)	NOT NULL,
-	adminhiredate	DATE		NULL,
+	adminhiredate	DATE		NULL
 );
-commit;
 
-COMMENT ON COLUMN administrator.adminid IS '관리자번호';
 
-COMMENT ON COLUMN administrator.adminname IS '관리자명';
+COMMENT ON COLUMN administrator.ssn IS '관리자번호';
 
-COMMENT ON COLUMN administrator.adminadssn IS '주민등록번호';
+COMMENT ON COLUMN administrator.name IS '관리자명';
+
+COMMENT ON COLUMN administrator.adminssn IS '주민등록번호';
 
 COMMENT ON COLUMN administrator.address IS '주소';
 
@@ -446,42 +488,23 @@ COMMENT ON COLUMN administrator.adminhiredate IS '입사일';
 
 CREATE TABLE ssbenefitst (
 	benefitterm NUMBER NOT NULL,
-	studentid	VARCHAR2(10) NOT NULL,
+	id	VARCHAR2(10) NOT NULL,
 	ssname	VARCHAR2(40) NOT NULL
 );
 
 COMMENT ON COLUMN ssbenefitst.benefitterm IS '장학금수혜학기';
 
-COMMENT ON COLUMN ssbenefitst.studentid IS '학번';
+COMMENT ON COLUMN ssbenefitst.id IS '학번';
 
 COMMENT ON COLUMN ssbenefitst.ssname IS '장학금명';
 
 
 
-CREATE TABLE absence (
-	requestid	VARCHAR2(30) NOT NULL,
-	studentid	VARCHAR2(10) NOT NULL,
-	requestdate DATE	DEFAULT SYSDATE	NOT NULL,
-	limitcanceldate DATE DEFAULT SYSDATE+1 NOT NULL,
-		approval char(1) default 'N', 
-		constraints chk_per check (approval in ('Y','N'))
-);
-
-COMMENT ON COLUMN absence.requestid IS '신청코드';
-
-COMMENT ON COLUMN absence.studentid IS '학번';
-
-COMMENT ON COLUMN absence.requestdate IS '신청일';
-
-COMMENT ON COLUMN absence.limitcanceldate IS '취소제한날짜';
-
-comment on COLUMN absence.approval is '승인';
-
 
 
 ALTER TABLE termscore ADD CONSTRAINT PK_TOTALSCORE PRIMARY KEY (
 	semester,
-	studentid
+	id
 	
 );
 
@@ -491,7 +514,7 @@ ALTER TABLE notice ADD CONSTRAINT PK_NOTICE PRIMARY KEY (
 
 ALTER TABLE attendance ADD CONSTRAINT PK_ATTENDANCE PRIMARY KEY (
 	lcode,
-	studentid
+	id
 );
 
 ALTER TABLE schedule ADD CONSTRAINT PK_SCHEDULE PRIMARY KEY (
@@ -531,20 +554,20 @@ ALTER TABLE lecturescore ADD CONSTRAINT PK_LECTURESCORE PRIMARY KEY (
 );
 
 ALTER TABLE student ADD CONSTRAINT PK_STUDENT PRIMARY KEY (
-	studentid
+	id
 );
 
 ALTER TABLE professor ADD CONSTRAINT PK_PROFESSOR PRIMARY KEY (
-	professorid
+	id
 );
 
 ALTER TABLE administrator ADD CONSTRAINT PK_ADMIN PRIMARY KEY (
-	adminid
+	ssn
 );
 
 ALTER TABLE ssbenefitst ADD CONSTRAINT PK_SSBENEFITST PRIMARY KEY (
 	benefitterm,
-	studentid
+	id
 );
 
 ALTER TABLE absence ADD CONSTRAINT PK_ABSENCE PRIMARY KEY (
@@ -558,10 +581,10 @@ ALTER TABLE lplan ADD CONSTRAINT PK_LPLAN PRIMARY KEY (
 
 
 ALTER TABLE termscore ADD CONSTRAINT FK_student_TO_totalscore_1 FOREIGN KEY (
-	studentid
+	id
 )
 REFERENCES student (
-	studentid
+	id
 );
 
 ALTER TABLE lecturescore ADD CONSTRAINT FK_lecture_TO_totalscore_1 FOREIGN KEY (
@@ -576,7 +599,7 @@ ALTER TABLE notice ADD CONSTRAINT FK_admin_TO_notice_1 FOREIGN KEY (
 	adno
 )
 REFERENCES administrator (
-	adminid
+	ssn
 );
 
 ALTER TABLE attendance ADD CONSTRAINT FK_lecture_TO_attendance_1 FOREIGN KEY (
@@ -587,25 +610,25 @@ REFERENCES lecture (
 );
 
 ALTER TABLE attendance ADD CONSTRAINT FK_student_TO_attendance_1 FOREIGN KEY (
-	studentid
+	id
 )
 REFERENCES student (
-	studentid
+	id
 );
 
 ALTER TABLE schedule ADD CONSTRAINT FK_admin_TO_schedule_1 FOREIGN KEY (
 	adno
 )
 REFERENCES administrator (
-	adminid
+	ssn
 );
 
 
 ALTER TABLE lecture ADD CONSTRAINT FK_professor_TO_lecture_1 FOREIGN KEY (
-	professorid
+	id
 )
 REFERENCES professor (
-	professorid
+	id
 );
 
 alter table lecture disable constraint FK_professor_TO_lecture_1;
@@ -628,10 +651,10 @@ REFERENCES lecture (
 );
 
 ALTER TABLE lapplication ADD CONSTRAINT FK_student_TO_lapplication_1 FOREIGN KEY (
-	studentid
+	id
 )
 REFERENCES student (
-	studentid
+	id
 );
 
 
@@ -644,17 +667,17 @@ REFERENCES lroom (
 
 
 ALTER TABLE reception ADD CONSTRAINT FK_professor_TO_reception_1 FOREIGN KEY (
-	professorid
+	id
 )
 REFERENCES professor (
-	professorid
+	id
 );
 
 ALTER TABLE reception ADD CONSTRAINT FK_professor_TO_reception_2 FOREIGN KEY (
-	subprofessorid
+	subid
 )
 REFERENCES professor (
-	professorid
+	id
 );
 
 ALTER TABLE reception ADD CONSTRAINT FK_lecture_TO_reception_1 FOREIGN KEY (
@@ -679,10 +702,10 @@ REFERENCES lecture (
 );
 
 ALTER TABLE lecturescore ADD CONSTRAINT FK_student_TO_lecturescore_1 FOREIGN KEY (
-	studentid
+	id
 )
 REFERENCES student (
-	studentid
+	id
 );
 
 ALTER TABLE student ADD CONSTRAINT FK_category_TO_student_1 FOREIGN KEY (
@@ -721,14 +744,14 @@ REFERENCES major (
 );
 
 
-ALTER TABLE ssbenefitst ADD CONSTRAINT FK_student_TO_ssbenefitst_1 FOREIGN KEY (studentid)
-REFERENCES student (studentid) on delete cascade;
+ALTER TABLE ssbenefitst ADD CONSTRAINT FK_student_TO_ssbenefitst_1 FOREIGN KEY (id)
+REFERENCES student (id) on delete cascade;
 
 ALTER TABLE ssbenefitst ADD CONSTRAINT FK_scholarship_TO_ssbenefitst FOREIGN KEY (ssname)
 REFERENCES scholarship (ssname) on delete cascade;
 
-ALTER TABLE absence ADD CONSTRAINT FK_student_TO_absence_1 FOREIGN KEY (studentid)
-REFERENCES student (studentid) on delete cascade;
+ALTER TABLE absence ADD CONSTRAINT FK_student_TO_absence_1 FOREIGN KEY (id)
+REFERENCES student (id) on delete cascade;
 
 
 ALTER TABLE lplan ADD CONSTRAINT FK_lecture_TO_lplan_1 FOREIGN KEY (
@@ -746,11 +769,16 @@ REFERENCES lroom (
 );
 
 ALTER TABLE lplan ADD CONSTRAINT FK_professor_TO_lplan_1 FOREIGN KEY (
-	professorid
+	id
 )
 REFERENCES professor (
-	professorid
+	id
 );
+
+--비밀번호 컬럼추가
+ALTER TABLE STUDENT ADD (password varchar2(200));
+ALTER TABLE PROFESSOR ADD (password varchar2(200));
+ALTER TABLE ADMINISTRATOR ADD (password varchar2(200));
 
 --구분
 INSERT INTO category VALUES ('인문계열');
@@ -765,77 +793,78 @@ INSERT INTO major VALUES ('3','화학공학과','30','4100000','공학계열');
 INSERT INTO major VALUES ('4','경영학과','30','3300000','사회계열');
 INSERT INTO major VALUES ('5','음악학과','30','4900000','예술계열');
 
+
 --학생
-INSERT INTO student VALUES ('201701341','이세라','950130-2115471','울산시 남구 삼산동 1461-1 우성APT 103/1302  ','01035273275','F','ogilder5n@state.gov','건곤일척','인문계열','1','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201701456','백준용','930601-1107352','서울시영등포구여의도동한양아파트B동304','01062537346','M','mstratton3p@latimes.com','갈팡질팡','인문계열','1','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201701457','강재이','931207-1114453','전주시 완산구 효자동 성원맨숀 나/1501','01013152778','M','ashepton6@wikia.com','갑오징어','인문계열','1','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201701541','이준형','940809-1137226','서울종로구연지동136-56전국기독교연합회관','01021626123','M','abrahams63@wordpress.com','거울속나','인문계열','1','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201701621','한승완','951102-1136484','인천시연수구연수동579대우1차아파트102동201호','01096673685','M','vmuffitt87@geocities.com','검은기사','인문계열','1','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201702117','김현욱','940908-1134172','경기과천부림동41주공@318-901','01084837364','M','lrysom2e@stanford.edu','꼬마공주','인문계열','2','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201702359','손유현','930702-1126831','전북김제시금구면금구리431-4송원아파트306','01064174724','M','jhusselbee3z@cbc.ca','깐따삐아','인문계열','2','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201702632','최유종','950216-1162478','전북군산시경장동 488-4','01017114295','M','sclive7q@cnn.com','꼬마신사','인문계열','2','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201702813','한승엽','930130-1160985','고양시 일산구 백석동 1316번지 현대밀라트1차 B동515호','01086559591','M','dalbiston86@whitehouse.gov','김치라면','인문계열','2','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201702857','김명철','940326-1148449','부산광역시 북구 만덕3동 909-8 19/2번지 102호','01013822185','M','dpeagrimy@4shared.com','꼬깃꼬깃','인문계열','2','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201703153','이무공','941101-1125046','경기도 화성시 향남면 평리 76번지','01074963878','M','bkinton5d@gmpg.org','다이어리','공학계열','3','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201703341','김명훈','930816-1135754','경기도 성남시 분당구 서현동 87 삼성아파트 110-802호','01039426219','M','fdragonette10@newsvine.com','눈의여왕','공학계열','3','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201703446','최유진','940630-1111569','전주시 덕진구 인후3동 아중현대ⓐ 109/505','01043746466','M','mbirch7r@e-recht24.de','뉴발란스','공학계열','3','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201703739','장재황','930324-1114439','경기남양주시별내면청학리409청학주공아파트310-804','01016888661','M','mbordessa6j@weebly.com','노트필기','공학계열','3','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201703915','권병국','950720-1147333','경기도 용인시 양지면 주북리 50-1호','01085214935','M','tbowlesworthm@fastcompany.com','달바라기','공학계열','3','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201704261','이자영','940708-2118563','대전유성구전민동426-4나래아파트101-401','01018844677','F','jcolquitt5z@meetup.com','도깨비불','사회계열','4','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201704412','박미경','941112-2102847','경기도 성남시 분당구 궁내동 중앙하이츠 208-401','01036865657','F','jvonhindenburg2y@msu.edu','도라에몽','사회계열','4','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201704854','이성현','950918-1108935','광주시 서구 화정동 859-1 현대APT103/311','01035142891','M','rellul5k@bravesites.com','동그라미','사회계열','4','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201704913','정장윤','930405-1142623','울산동구서부동257-4현대패밀리서부아파트121-1407','01037691192','M','mbright6v@ftc.gov','던킨도넛','사회계열','4','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201704962','김현구','930930-1112281','전북 완주군 이서면 갈산리 526','01045117365','M','kspeedy2b@oracle.com','데스노트','사회계열','4','2017/03/01','N','0','');
-INSERT INTO student VALUES ('201705171','김정우','930420-1129344','광주광역시 동구 지산 2 동 704-59','01013872959','M','vreadie1x@1und1.de','러브러브','예술계열','5','2017/03/01','Y','0','');
-INSERT INTO student VALUES ('201705523','윤재홍','931014-2139250','서울시 강남구 도곡2동 개포럭키ⓐ 1/606','01035741559','F','ktrevon55@sbwire.com','러브비트','예술계열','5','2017/03/01','Y','0','');
-INSERT INTO student VALUES ('201705645','정성원','950113-1176680','충북청주시상당구영운동125-5청주한국병원','01082261276','M','vhansemann6s@51.la','레드카드','예술계열','5','2017/03/01','Y','0','');
-INSERT INTO student VALUES ('201705756','김미경','951011-2111402','경기도 성남시 분당구 구미동75 우방빌라 105-301','01029617368','F','mwardrope13@wsj.com','레스토랑','예술계열','5','2017/03/01','Y','0','');
-INSERT INTO student VALUES ('201705853','김명희','940720-2107577','경기도 파주시 교하면 와동리 375-3','01093835297','F','rpaute12@hc360.com','러브홀릭','예술계열','5','2017/03/01','Y','0','');
-INSERT INTO student VALUES ('201801284','김준호','940930-1143843','경기도안양시동안구호계1차현대홈타운105/402','01016719515','M','ameese20@unblog.fr','경상북도','인문계열','1','2018/03/01','N','0','');
-INSERT INTO student VALUES ('201801345','우정근','950611-1121269','경기도고양시일산구백석동삼부@101-1504','01025977344','M','trameaux4s@whitehouse.gov','고기고기','인문계열','1','2018/03/01','N','0','');
-INSERT INTO student VALUES ('201801719','신상민','960321-1119985','전북 부안읍 연곡리 398-4 부안남초등학교','01079182933','M','flamers46@macromedia.com','고등학생','인문계열','1','2018/03/01','N','0','');
-INSERT INTO student VALUES ('201801738','이형선','940417-1131191','전남광양중동1665성호@203-1806','01018426189','M','lhubbart6c@google.de','경상남도','인문계열','1','2018/03/01','N','0','');
-INSERT INTO student VALUES ('201801748','김유신','930110-2102682','전주시 완산구 효자동1가 260 상산고등학교','01097313471','F','grosenfelt1o@webmd.com','가면놀이','인문계열','1','2018/03/01','N','0','');
-INSERT INTO student VALUES ('201801759','김보람','960820-2132992','부천시 원미구 역곡 2동 산 51- 18번지 현대 아파트 A나동 505호','01033295818','F','vnutbean15@buzzfeed.com','고슴도치','인문계열','1','2018/03/01','N','0','');
-INSERT INTO student VALUES ('201801917','고성준','950205-1161101','대구시북구칠성동1가56-1','01064873633','M','kbredeed@51.la','계란말이','인문계열','1','2018/03/01','N','0','');
-INSERT INTO student VALUES ('201801967','권준호','950921-1116260','서울시양천구목동신시가지@716동103호','01046828396','M','sstallybrassp@cbslocal.com','고등학교','인문계열','1','2018/03/01','N','0','');
-INSERT INTO student VALUES ('201901122','조의조','950101-2150027','인천시부평구산곡동경남@102-1507','01082233421','F','pmelmar77@linkedin.com','곤지곤지','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901131','심진아','960115-2121026','서울 노원구 하계동 270 현대아파트 105-1204','01074658649','F','lgent4b@tinyurl.com','기말고사','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901211','최효정','970715-2119633','경기도 안산시 상록구 사동 푸르지오6차 610-104','01095515917','F','bluparto7y@tamu.edu','귀염둥이','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901231','홍경희','960329-2107647','경기도 광주시 퇴촌면 광동리 206 금성리버빌 101-202호','01091911576','F','rpippard8d@answers.com','국가대표','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901272','김혜영','960930-2143357','충남 천안시 신부동 509-9번지','01059892369','F','ffarnhill2l@google.com.hk','국민연금','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901273','오재진','971115-1109926','경기도분당구야탑동장미마을현대@805-304','01073616369','M','hpottiphar4n@scientificamerican.com','귀차니즘','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901534','박재석','950502-1111724','전북정읍시수성동1027부영아파트206-1502','01036689947','M','cmounch3f@goodreads.com','곰돌이푸','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901585','강승주','970124-1148068','서울양천구신정동신정현대아파트107-1405','01022942193','M','fcordell4@addthis.com','국어사전','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901592','안희준','961001-1124494','여수시 문수동 797번지 주공 아파트 103동 1509호','01055736743','M','cwoollin4h@skype.com','기억상실','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901594','장성진','940517-1176799','서울시 강동구 명일동 48-14원일학원','01044838282','M','bmarushak6i@smh.com.au','금상첨화','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901649','김윤정','951129-2118794','전북전주시완산구효자동1가622-6','01048949182','F','ccanadas1q@blogtalkradio.com','공부의신','인문계열','1','2019/03/01','N','0','');
-INSERT INTO student VALUES ('201901848','권지완','950807-1114158','전북 전주시 완산구 평화동2가 현대아파트 101-705','01094816474','M','aspilemanq@mtv.com','곰실곰실','인문계열','1','2019/03/01','N','0','');
+INSERT INTO student VALUES ('201701341','이세라','950130-2115471','울산시 남구 삼산동 1461-1 우성APT 103/1302  ','01035273275','F','ogilder5n@state.gov','건곤일척','인문계열','1','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201701456','백준용','930601-1107352','서울시영등포구여의도동한양아파트B동304','01062537346','M','mstratton3p@latimes.com','갈팡질팡','인문계열','1','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201701457','강재이','931207-1114453','전주시 완산구 효자동 성원맨숀 나/1501','01013152778','M','ashepton6@wikia.com','갑오징어','인문계열','1','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201701541','이준형','940809-1137226','서울종로구연지동136-56전국기독교연합회관','01021626123','M','abrahams63@wordpress.com','거울속나','인문계열','1','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201701621','한승완','951102-1136484','인천시연수구연수동579대우1차아파트102동201호','01096673685','M','vmuffitt87@geocities.com','검은기사','인문계열','1','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201702117','김현욱','940908-1134172','경기과천부림동41주공@318-901','01084837364','M','lrysom2e@stanford.edu','꼬마공주','인문계열','2','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201702359','손유현','930702-1126831','전북김제시금구면금구리431-4송원아파트306','01064174724','M','jhusselbee3z@cbc.ca','깐따삐아','인문계열','2','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201702632','최유종','950216-1162478','전북군산시경장동 488-4','01017114295','M','sclive7q@cnn.com','꼬마신사','인문계열','2','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201702813','한승엽','930130-1160985','고양시 일산구 백석동 1316번지 현대밀라트1차 B동515호','01086559591','M','dalbiston86@whitehouse.gov','김치라면','인문계열','2','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201702857','김명철','940326-1148449','부산광역시 북구 만덕3동 909-8 19/2번지 102호','01013822185','M','dpeagrimy@4shared.com','꼬깃꼬깃','인문계열','2','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201703153','이무공','941101-1125046','경기도 화성시 향남면 평리 76번지','01074963878','M','bkinton5d@gmpg.org','다이어리','공학계열','3','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201703341','김명훈','930816-1135754','경기도 성남시 분당구 서현동 87 삼성아파트 110-802호','01039426219','M','fdragonette10@newsvine.com','눈의여왕','공학계열','3','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201703446','최유진','940630-1111569','전주시 덕진구 인후3동 아중현대ⓐ 109/505','01043746466','M','mbirch7r@e-recht24.de','뉴발란스','공학계열','3','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201703739','장재황','930324-1114439','경기남양주시별내면청학리409청학주공아파트310-804','01016888661','M','mbordessa6j@weebly.com','노트필기','공학계열','3','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201703915','권병국','950720-1147333','경기도 용인시 양지면 주북리 50-1호','01085214935','M','tbowlesworthm@fastcompany.com','달바라기','공학계열','3','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201704261','이자영','940708-2118563','대전유성구전민동426-4나래아파트101-401','01018844677','F','jcolquitt5z@meetup.com','도깨비불','사회계열','4','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201704412','박미경','941112-2102847','경기도 성남시 분당구 궁내동 중앙하이츠 208-401','01036865657','F','jvonhindenburg2y@msu.edu','도라에몽','사회계열','4','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201704854','이성현','950918-1108935','광주시 서구 화정동 859-1 현대APT103/311','01035142891','M','rellul5k@bravesites.com','동그라미','사회계열','4','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201704913','정장윤','930405-1142623','울산동구서부동257-4현대패밀리서부아파트121-1407','01037691192','M','mbright6v@ftc.gov','던킨도넛','사회계열','4','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201704962','김현구','930930-1112281','전북 완주군 이서면 갈산리 526','01045117365','M','kspeedy2b@oracle.com','데스노트','사회계열','4','2017/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201705171','김정우','930420-1129344','광주광역시 동구 지산 2 동 704-59','01013872959','M','vreadie1x@1und1.de','러브러브','예술계열','5','2017/03/01','Y','0','','MTIzNA==');
+INSERT INTO student VALUES ('201705523','윤재홍','931014-2139250','서울시 강남구 도곡2동 개포럭키ⓐ 1/606','01035741559','F','ktrevon55@sbwire.com','러브비트','예술계열','5','2017/03/01','Y','0','','MTIzNA==');
+INSERT INTO student VALUES ('201705645','정성원','950113-1176680','충북청주시상당구영운동125-5청주한국병원','01082261276','M','vhansemann6s@51.la','레드카드','예술계열','5','2017/03/01','Y','0','','MTIzNA==');
+INSERT INTO student VALUES ('201705756','김미경','951011-2111402','경기도 성남시 분당구 구미동75 우방빌라 105-301','01029617368','F','mwardrope13@wsj.com','레스토랑','예술계열','5','2017/03/01','Y','0','','MTIzNA==');
+INSERT INTO student VALUES ('201705853','김명희','940720-2107577','경기도 파주시 교하면 와동리 375-3','01093835297','F','rpaute12@hc360.com','러브홀릭','예술계열','5','2017/03/01','Y','0','','MTIzNA==');
+INSERT INTO student VALUES ('201801284','김준호','940930-1143843','경기도안양시동안구호계1차현대홈타운105/402','01016719515','M','ameese20@unblog.fr','경상북도','인문계열','1','2018/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201801345','우정근','950611-1121269','경기도고양시일산구백석동삼부@101-1504','01025977344','M','trameaux4s@whitehouse.gov','고기고기','인문계열','1','2018/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201801719','신상민','960321-1119985','전북 부안읍 연곡리 398-4 부안남초등학교','01079182933','M','flamers46@macromedia.com','고등학생','인문계열','1','2018/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201801738','이형선','940417-1131191','전남광양중동1665성호@203-1806','01018426189','M','lhubbart6c@google.de','경상남도','인문계열','1','2018/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201801748','김유신','930110-2102682','전주시 완산구 효자동1가 260 상산고등학교','01097313471','F','grosenfelt1o@webmd.com','가면놀이','인문계열','1','2018/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201801759','김보람','960820-2132992','부천시 원미구 역곡 2동 산 51- 18번지 현대 아파트 A나동 505호','01033295818','F','vnutbean15@buzzfeed.com','고슴도치','인문계열','1','2018/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201801917','고성준','950205-1161101','대구시북구칠성동1가56-1','01064873633','M','kbredeed@51.la','계란말이','인문계열','1','2018/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201801967','권준호','950921-1116260','서울시양천구목동신시가지@716동103호','01046828396','M','sstallybrassp@cbslocal.com','고등학교','인문계열','1','2018/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901122','조의조','950101-2150027','인천시부평구산곡동경남@102-1507','01082233421','F','pmelmar77@linkedin.com','곤지곤지','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901131','심진아','960115-2121026','서울 노원구 하계동 270 현대아파트 105-1204','01074658649','F','lgent4b@tinyurl.com','기말고사','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901211','최효정','970715-2119633','경기도 안산시 상록구 사동 푸르지오6차 610-104','01095515917','F','bluparto7y@tamu.edu','귀염둥이','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901231','홍경희','960329-2107647','경기도 광주시 퇴촌면 광동리 206 금성리버빌 101-202호','01091911576','F','rpippard8d@answers.com','국가대표','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901272','김혜영','960930-2143357','충남 천안시 신부동 509-9번지','01059892369','F','ffarnhill2l@google.com.hk','국민연금','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901273','오재진','971115-1109926','경기도분당구야탑동장미마을현대@805-304','01073616369','M','hpottiphar4n@scientificamerican.com','귀차니즘','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901534','박재석','950502-1111724','전북정읍시수성동1027부영아파트206-1502','01036689947','M','cmounch3f@goodreads.com','곰돌이푸','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901585','강승주','970124-1148068','서울양천구신정동신정현대아파트107-1405','01022942193','M','fcordell4@addthis.com','국어사전','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901592','안희준','961001-1124494','여수시 문수동 797번지 주공 아파트 103동 1509호','01055736743','M','cwoollin4h@skype.com','기억상실','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901594','장성진','940517-1176799','서울시 강동구 명일동 48-14원일학원','01044838282','M','bmarushak6i@smh.com.au','금상첨화','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901649','김윤정','951129-2118794','전북전주시완산구효자동1가622-6','01048949182','F','ccanadas1q@blogtalkradio.com','공부의신','인문계열','1','2019/03/01','N','0','','MTIzNA==');
+INSERT INTO student VALUES ('201901848','권지완','950807-1114158','전북 전주시 완산구 평화동2가 현대아파트 101-705','01094816474','M','aspilemanq@mtv.com','곰실곰실','인문계열','1','2019/03/01','N','0','','MTIzNA==');
 
 
 --교수
-INSERT INTO professor VALUES ('P505','박태환','710704-1138184','경기 안양시 만안구 석수1동373-3백조(A)202동506','01092162982','M','acowlishaw4@domainmarket.com','울룩불룩','사회계열','4');
-INSERT INTO professor VALUES ('P511','한상욱','670326-1173189','경남 김해시 부원동 111-5 강남빌라 A-502','01043741625','M','dmcconaghyc@hubpages.com','원자폭탄','사회계열','4');
-INSERT INTO professor VALUES ('P517','박은미','770127-2107141','경기도 구리시 인창동 아름마을 원일A 102-905','01065147546','F','dbonnesenk@sina.com.cn','위풍당당','사회계열','4');
-INSERT INTO professor VALUES ('P101','김영주','830910-2160684','경기도 용인시 구성면 언남리 341-7 상록빌라 2-1','01079864126','F','nackland0@seesaa.net','윈드러너','인문계열','1');
-INSERT INTO professor VALUES ('P107','서준원','661010-1167110','강원도 원주시 단구동 황수A 3-407','01098293269','M','blemery8@wix.com','유라시아','인문계열','1');
-INSERT INTO professor VALUES ('P113','이지현','690130-1117554','경기도 고양시 일산구 주엽동 강선마을 동신아파트 406-704호','01096588678','M','wguiderag@e-recht24.de','유리구슬','인문계열','1');
-INSERT INTO professor VALUES ('P202','이주진','670810-1100589','경기도 평택시 서정동592-17    7/1','01075443752','M','hleleu1@google.com.br','유리그릇','인문계열','2');
-INSERT INTO professor VALUES ('P208','홍재준','790828-1175232','경기 동두천시 상패동 무궁화빌라 10-402','01029675389','M','csimper9@lycos.com','유리상자','인문계열','2');
-INSERT INTO professor VALUES ('P214','박철우','730405-1146127','전북 전주시 완산구 서신동 쌍용A 602-806','01092358653','M','goswalh@cargocollective.com','유성타임','인문계열','2');
-INSERT INTO professor VALUES ('P606','이협수','741224-1158811','서울 동작구 흑석1동238-89  동림빌라301호','01075184953','M','sharrington6@mozilla.org','유아독존','예술계열','5');
-INSERT INTO professor VALUES ('P612','이선영','840924-2147346','전북 군산시 경암동 685-9','01079291279','F','lheininge@parallels.com','이런저런','예술계열','5');
-INSERT INTO professor VALUES ('P618','김유림','630202-1118697','경북 포항시 북구 흥해읍 초복동 146-1','01027718995','M','mterrettm@twitpic.com','이렁저렁','예술계열','5');
-INSERT INTO professor VALUES ('P404','변현주','600117-2105253','서울 금천구 시흥본동880-40','01058553332','F','pkollas3@cnn.com','이만저만','공학계열','3');
-INSERT INTO professor VALUES ('P410','김소영','650801-1162117','인천광역시 남동구 논현동 논현주공A 210동502호','01035841116','M','pibotsonb@cyberchimps.com','이솝우화','공학계열','3');
-INSERT INTO professor VALUES ('P416','김희민','641009-1164667','서울시 강동구 천호3동 565 현대타워A 708','01035212311','M','mstoltingj@moonfruit.com','이심전심','공학계열','3');
+INSERT INTO professor VALUES ('P505','박태환','710704-1138184','경기 안양시 만안구 석수1동373-3백조(A)202동506','01092162982','M','acowlishaw4@domainmarket.com','울룩불룩','사회계열','4','MTIzNA==');
+INSERT INTO professor VALUES ('P511','한상욱','670326-1173189','경남 김해시 부원동 111-5 강남빌라 A-502','01043741625','M','dmcconaghyc@hubpages.com','원자폭탄','사회계열','4','MTIzNA==');
+INSERT INTO professor VALUES ('P517','박은미','770127-2107141','경기도 구리시 인창동 아름마을 원일A 102-905','01065147546','F','dbonnesenk@sina.com.cn','위풍당당','사회계열','4','MTIzNA==');
+INSERT INTO professor VALUES ('P101','김영주','830910-2160684','경기도 용인시 구성면 언남리 341-7 상록빌라 2-1','01079864126','F','nackland0@seesaa.net','윈드러너','인문계열','1','MTIzNA==');
+INSERT INTO professor VALUES ('P107','서준원','661010-1167110','강원도 원주시 단구동 황수A 3-407','01098293269','M','blemery8@wix.com','유라시아','인문계열','1','MTIzNA==');
+INSERT INTO professor VALUES ('P113','이지현','690130-1117554','경기도 고양시 일산구 주엽동 강선마을 동신아파트 406-704호','01096588678','M','wguiderag@e-recht24.de','유리구슬','인문계열','1','MTIzNA==');
+INSERT INTO professor VALUES ('P202','이주진','670810-1100589','경기도 평택시 서정동592-17    7/1','01075443752','M','hleleu1@google.com.br','유리그릇','인문계열','2','MTIzNA==');
+INSERT INTO professor VALUES ('P208','홍재준','790828-1175232','경기 동두천시 상패동 무궁화빌라 10-402','01029675389','M','csimper9@lycos.com','유리상자','인문계열','2','MTIzNA==');
+INSERT INTO professor VALUES ('P214','박철우','730405-1146127','전북 전주시 완산구 서신동 쌍용A 602-806','01092358653','M','goswalh@cargocollective.com','유성타임','인문계열','2','MTIzNA==');
+INSERT INTO professor VALUES ('P606','이협수','741224-1158811','서울 동작구 흑석1동238-89  동림빌라301호','01075184953','M','sharrington6@mozilla.org','유아독존','예술계열','5','MTIzNA==');
+INSERT INTO professor VALUES ('P612','이선영','840924-2147346','전북 군산시 경암동 685-9','01079291279','F','lheininge@parallels.com','이런저런','예술계열','5','MTIzNA==');
+INSERT INTO professor VALUES ('P618','김유림','630202-1118697','경북 포항시 북구 흥해읍 초복동 146-1','01027718995','M','mterrettm@twitpic.com','이렁저렁','예술계열','5','MTIzNA==');
+INSERT INTO professor VALUES ('P404','변현주','600117-2105253','서울 금천구 시흥본동880-40','01058553332','F','pkollas3@cnn.com','이만저만','공학계열','3','MTIzNA==');
+INSERT INTO professor VALUES ('P410','김소영','650801-1162117','인천광역시 남동구 논현동 논현주공A 210동502호','01035841116','M','pibotsonb@cyberchimps.com','이솝우화','공학계열','3','MTIzNA==');
+INSERT INTO professor VALUES ('P416','김희민','641009-1164667','서울시 강동구 천호3동 565 현대타워A 708','01035212311','M','mstoltingj@moonfruit.com','이심전심','공학계열','3','MTIzNA==');
 --관리자
 
-INSERT INTO administrator VALUES ('A001','이미경','891016-2103506','경기남양주 와부읍 도곡리 쌍용A 102-301','01059359285','F','mmackimmieq@reddit.com','알콩달콩','1997/03/01','1041016-2103506');
-INSERT INTO administrator VALUES ('A002','김기수','930613-2107771','경북 경산시 진량읍 신상리 868 우방힐타운 101-1805','01091571426','F','mbabbt@thetimes.co.uk','애니타임','1997/07/01','1080613-2107771');
-INSERT INTO administrator VALUES ('A003','김현경','840105-2152957','서울 서대문구 홍은1동440-1   나동101호','01041281595','F','ndecarolir@yahoo.com','어벤져스','1999/08/01','990105-2152957');
-INSERT INTO administrator VALUES ('A004','임진숙','790125-1143548','경기도 성남시 수정구 수진2동 삼부아파트103-1505','01037417473','M','areedmano@example.com','어쿠스틱','2000/07/01','940125-1143548');
-INSERT INTO administrator VALUES ('A005','최귀화','850619-1127701','서울 중랑구 망우1동163-62 그린빌라 가동103호','01046164752','M','lantuks@cornell.edu','엄지공주','2001/03/01','1000619-1127701');
+INSERT INTO administrator VALUES ('A001','이미경','891016-2103506','경기남양주 와부읍 도곡리 쌍용A 102-301','01059359285','F','mmackimmieq@reddit.com','알콩달콩','1997/03/01','MTIzNA==');
+INSERT INTO administrator VALUES ('A002','김기수','930613-2107771','경북 경산시 진량읍 신상리 868 우방힐타운 101-1805','01091571426','F','mbabbt@thetimes.co.uk','애니타임','1997/07/01','MTIzNA==');
+INSERT INTO administrator VALUES ('A003','김현경','840105-2152957','서울 서대문구 홍은1동440-1   나동101호','01041281595','F','ndecarolir@yahoo.com','어벤져스','1999/08/01','MTIzNA==');
+INSERT INTO administrator VALUES ('A004','임진숙','790125-1143548','경기도 성남시 수정구 수진2동 삼부아파트103-1505','01037417473','M','areedmano@example.com','어쿠스틱','2000/07/01','MTIzNA==');
+INSERT INTO administrator VALUES ('A005','최귀화','850619-1127701','서울 중랑구 망우1동163-62 그린빌라 가동103호','01046164752','M','lantuks@cornell.edu','엄지공주','2001/03/01','MTIzNA==');
 
 
 --장학금
@@ -1433,69 +1462,69 @@ INSERT INTO attendance VALUES ('l002','201901585','90','N','1','1','1','1','1','
 
 -- 학사일정
 
-INSERT INTO schedule VALUES ('s101','A003','2019학년도 1학기 복학 신청','2019/02/12','2019/02/15');
-INSERT INTO schedule VALUES ('s102','A003','2019학년도 1학기 등록','2019/02/18','2020/02/20');
-INSERT INTO schedule VALUES ('s103','A003',' 1학기 휴학 신청','2019/02/21','2019/02/23');
-INSERT INTO schedule VALUES ('s104','A003',' 신입생 입학식','2019/02/15','2019/02/15');
-INSERT INTO schedule VALUES ('s105','A003',' 1학기 수강신청','2019/02/24','2019/02/27');
-INSERT INTO schedule VALUES ('s106','A003','2019학년도 1학기 개강','2019/03/02','2019/03/03');
-INSERT INTO schedule VALUES ('s107','A003','1학기 수강신청 정정','2019/03/02','2019/03/05');
-INSERT INTO schedule VALUES ('s108','A003','1학기 중간 평가기간','2019/04/06','2019/04/20');
-INSERT INTO schedule VALUES ('s109','A003',' 2학기 교내장학금 신청','2019/05/10','2019/05/10');
-INSERT INTO schedule VALUES ('s110','A003','1학기 기말 평가기간','2019/06/01','2019/06/20');
-INSERT INTO schedule VALUES ('s111','A003','1학기 종강','2019/06/12','2019/06/13');
-INSERT INTO schedule VALUES ('s112','A003','1학기 성적입력 및 정정','2019/06/12','2019/06/25');
-INSERT INTO schedule VALUES ('s113','A003','1학기 공휴일로 인한 수업보강기간','2019/06/15','2019/06/18');
-INSERT INTO schedule VALUES ('s114','A003','개교기념일','2019/06/28','2019/06/28');
-INSERT INTO schedule VALUES ('s115','A003','2019학년도 2학기 복학 신청','2019/07/27','2019/08/02');
-INSERT INTO schedule VALUES ('s116','A003','후기 학위수여식','2019/08/21','2019/08/22');
-INSERT INTO schedule VALUES ('s117','A003',' 2학기 수강신청','2019/08/24','2019/08/27');
-INSERT INTO schedule VALUES ('s118','A003',' 2019년 2학기 등록 및 휴학 신청','2019/08/25','2019/08/28');
-INSERT INTO schedule VALUES ('s119','A003','2학기 개강','2019/09/01','2019/09/01');
-INSERT INTO schedule VALUES ('s120','A003','수강신청 정정','2019/09/07','2019/09/07');
-INSERT INTO schedule VALUES ('s121','A003','2학기 중간 평가 기간','2019/09/28','2019/10/13');
-INSERT INTO schedule VALUES ('s122','A003','2020학년도 1학기 교내장학금 신청','2019/11/01','2019/11/13');
-INSERT INTO schedule VALUES ('s123','A003',' 2학기 기말 평가 기간','2019/11/30','2019/12/20');
-INSERT INTO schedule VALUES ('s124','A003',' 2학기 종강','2019/12/14','2019/12/14');
-INSERT INTO schedule VALUES ('s125','A003','2학기 성적입력 및 정정','2019/12/15','2019/01/04');
-INSERT INTO schedule VALUES ('s126','A003','2학기 공휴일로 인한 수업보강기간','2019/12/16','2019/12/18');
-INSERT INTO schedule VALUES ('s127','A005','2020학년도 신입생 정시 입학전형','2020/01/10','2020/02/01');
-INSERT INTO schedule VALUES ('s128','A005','2020학년도 1학기 복학 신청','2020/02/12','2020/02/15');
-INSERT INTO schedule VALUES ('s129','A005','2020학년도 1학기 등록','2020/02/18','2020/02/20');
-INSERT INTO schedule VALUES ('s130','A005',' 1학기 휴학 신청','2020/02/21','2020/02/23');
-INSERT INTO schedule VALUES ('s131','A005',' 신입생 입학식','2020/02/15','2020/02/15');
-INSERT INTO schedule VALUES ('s132','A005',' 1학기 수강신청','2020/02/24','2020/02/27');
-INSERT INTO schedule VALUES ('s133','A005','2020학년도 1학기 개강','2020/03/02','2020/03/02');
-INSERT INTO schedule VALUES ('s134','A005','1학기 수강신청 정정','2020/03/02','2020/03/05');
-INSERT INTO schedule VALUES ('s135','A005','1학기 중간 평가기간','2020/04/06','2020/04/20');
-INSERT INTO schedule VALUES ('s136','A005',' 2학기 교내장학금 신청','2020/05/10','2020/05/10');
-INSERT INTO schedule VALUES ('s137','A005','1학기 기말 평가기간','2020/06/01','2020/06/20');
-INSERT INTO schedule VALUES ('s138','A005','1학기 종강','2020/06/12','2020/06/12');
-INSERT INTO schedule VALUES ('s139','A005','1학기 성적입력 및 정정','2020/06/12','2020/06/25');
-INSERT INTO schedule VALUES ('s140','A005','1학기 공휴일로 인한 수업보강기간','2020/06/15','2020/06/18');
-INSERT INTO schedule VALUES ('s141','A005','개교기념일','2020/06/28','2020/06/28');
-INSERT INTO schedule VALUES ('s142','A005','2020학년도 2학기 복학 신청','2020/07/27','2020/08/02');
-INSERT INTO schedule VALUES ('s143','A005','후기 학위수여식','2020/08/21','2020/08/21');
-INSERT INTO schedule VALUES ('s144','A005',' 2학기 수강신청','2020/08/24','2020/08/27');
-INSERT INTO schedule VALUES ('s145','A005',' 2020년 2학기 등록 및 휴학 신청','2020/08/25','2020/08/28');
-INSERT INTO schedule VALUES ('s146','A005','2학기 개강','2020/09/01','2020/09/01');
-INSERT INTO schedule VALUES ('s147','A005','수강신청 정정','2020/09/01','2020/09/07');
-INSERT INTO schedule VALUES ('s148','A005','2학기 중간 평가 기간','2020/09/28','2020/10/13');
-INSERT INTO schedule VALUES ('s149','A005','2021학년도 1학기 교내장학금 신청','2020/11/01','2020/11/13');
-INSERT INTO schedule VALUES ('s150','A005',' 2학기 기말 평가 기간','2020/11/30','2020/12/20');
-INSERT INTO schedule VALUES ('s156','A005',' 2학기 종강','2020/12/14','2020/12/14');
-INSERT INTO schedule VALUES ('s157','A005','2학기 성적입력 및 정정','2020/12/15','2020/01/04');
-INSERT INTO schedule VALUES ('s158','A005','2학기 공휴일로 인한 수업보강기간','2020/12/16','2020/12/18');
-INSERT INTO schedule VALUES ('s159','A005','2021학년도 신입생 정시 입학전형','2021/01/10','2021/02/01');
-INSERT INTO schedule VALUES ('s160','A005','2021학년도 1학기 복학 신청','2021/01/27','2021/02/03');
+
+INSERT INTO schedule VALUES ('s101','A003','2019학년도 1학기 복학 신청','2019','02','12','2019','02','15' );
+INSERT INTO schedule VALUES ('s102','A003','2019학년도 1학기 등록','2019','02','18','2020','02','20');
+INSERT INTO schedule VALUES ('s103','A003',' 1학기 휴학 신청','2019','02','21','2019','02','23');
+INSERT INTO schedule VALUES ('s104','A003',' 신입생 입학식','2019','02','15','2019','02','15');
+INSERT INTO schedule VALUES ('s105','A003',' 1학기 수강신청','2019','02','24','2019','02','27');
+INSERT INTO schedule VALUES ('s106','A003','2019학년도 1학기 개강','2019','03','02','2019','03','03');
+INSERT INTO schedule VALUES ('s107','A003','1학기 수강신청 정정','2019','03','02','2019','03','05');
+INSERT INTO schedule VALUES ('s108','A003','1학기 중간 평가기간','2019','04','06','2019','04','20');
+INSERT INTO schedule VALUES ('s109','A003',' 2학기 교내장학금 신청','2019','05','10','2019','05','10');
+INSERT INTO schedule VALUES ('s110','A003','1학기 기말 평가기간','2019','06','01','2019','06','20');
+INSERT INTO schedule VALUES ('s111','A003','1학기 종강','2019','06','12','2019','06','13');
+INSERT INTO schedule VALUES ('s112','A003','1학기 성적입력 및 정정','2019','06','12','2019','06','25');
+INSERT INTO schedule VALUES ('s113','A003','1학기 공휴일로 인한 수업보강기간','2019','06','15','2019','06','18');
+INSERT INTO schedule VALUES ('s114','A003','개교기념일','2019','06','28','2019','06','28');
+INSERT INTO schedule VALUES ('s115','A003','2019학년도 2학기 복학 신청','2019','07','27','2019','08','02');
+INSERT INTO schedule VALUES ('s116','A003','후기 학위수여식','2019','08','21','2019','08','22');
+INSERT INTO schedule VALUES ('s117','A003',' 2학기 수강신청','2019','08','24','2019','08','27');
+INSERT INTO schedule VALUES ('s118','A003',' 2019년 2학기 등록 및 휴학 신청','2019','08','25','2019','08','28');
+INSERT INTO schedule VALUES ('s119','A003','2학기 개강','2019','09','01','2019','09','01');
+INSERT INTO schedule VALUES ('s120','A003','수강신청 정정','2019','09','07','2019','09','07');
+INSERT INTO schedule VALUES ('s121','A003','2학기 중간 평가 기간','2019','09','28','2019','10','13');
+INSERT INTO schedule VALUES ('s122','A003','2020학년도 1학기 교내장학금 신청','2019','11','01','2019','11','13');
+INSERT INTO schedule VALUES ('s123','A003',' 2학기 기말 평가 기간','2019','11','30','2019','12','20');
+INSERT INTO schedule VALUES ('s124','A003',' 2학기 종강','2019','12','14','2019','12','14');
+INSERT INTO schedule VALUES ('s125','A003','2학기 성적입력 및 정정','2019','12','15','2019','01','04');
+INSERT INTO schedule VALUES ('s126','A003','2학기 공휴일로 인한 수업보강기간','2019','12','16','2019','12','18');
+INSERT INTO schedule VALUES ('s127','A005','2020학년도 신입생 정시 입학전형','2020','01','10','2020','02','01');
+INSERT INTO schedule VALUES ('s128','A005','2020학년도 1학기 복학 신청','2020','02','12','2020','02','15');
+INSERT INTO schedule VALUES ('s129','A005','2020학년도 1학기 등록','2020','02','18','2020','02','20');
+INSERT INTO schedule VALUES ('s130','A005',' 1학기 휴학 신청','2020','02','21','2020','02','23');
+INSERT INTO schedule VALUES ('s131','A005',' 신입생 입학식','2020','02','15','2020','02','15');
+INSERT INTO schedule VALUES ('s132','A005',' 1학기 수강신청','2020','02','24','2020','02','27');
+INSERT INTO schedule VALUES ('s133','A005','2020학년도 1학기 개강','2020','03','02','2020','03','02');
+INSERT INTO schedule VALUES ('s134','A005','1학기 수강신청 정정','2020','03','02','2020','03','05');
+INSERT INTO schedule VALUES ('s135','A005','1학기 중간 평가기간','2020','04','06','2020','04','20');
+INSERT INTO schedule VALUES ('s136','A005',' 2학기 교내장학금 신청','2020','05','10','2020','05','10');
+INSERT INTO schedule VALUES ('s137','A005','1학기 기말 평가기간','2020','06','01','2020','06','20');
+INSERT INTO schedule VALUES ('s138','A005','1학기 종강','2020','06','12','2020','06','12');
+INSERT INTO schedule VALUES ('s139','A005','1학기 성적입력 및 정정','2020','06','12','2020','06','25');
+INSERT INTO schedule VALUES ('s140','A005','1학기 공휴일로 인한 수업보강기간','2020','06','15','2020','06','18');
+INSERT INTO schedule VALUES ('s141','A005','개교기념일','2020','06','28','2020','06','28');
+INSERT INTO schedule VALUES ('s142','A005','2020학년도 2학기 복학 신청','2020','07','27','2020','08','02');
+INSERT INTO schedule VALUES ('s143','A005','후기 학위수여식','2020','08','21','2020','08','21');
+INSERT INTO schedule VALUES ('s144','A005',' 2학기 수강신청','2020','08','24','2020','08','27');
+INSERT INTO schedule VALUES ('s145','A005',' 2020년 2학기 등록 및 휴학 신청','2020','08','25','2020','08','28');
+INSERT INTO schedule VALUES ('s146','A005','2학기 개강','2020','09','01','2020','09','01');
+INSERT INTO schedule VALUES ('s147','A005','수강신청 정정','2020','09','01','2020','09','07');
+INSERT INTO schedule VALUES ('s148','A005','2학기 중간 평가 기간','2020','09','28','2020','10','13');
+INSERT INTO schedule VALUES ('s149','A005','2021학년도 1학기 교내장학금 신청','2020','10','20','2020','10','27');
+INSERT INTO schedule VALUES ('s150','A005',' 2학기 기말 평가 기간','2020','11','30','2020','12','20');
+INSERT INTO schedule VALUES ('s156','A005',' 2학기 종강','2020','12','14','2020','12','14');
+INSERT INTO schedule VALUES ('s157','A005','2학기 성적입력 및 정정','2020','12','15','2020','01','04');
+INSERT INTO schedule VALUES ('s158','A005','2학기 공휴일로 인한 수업보강기간','2020','12','16','2020','12','18');
+INSERT INTO schedule VALUES ('s159','A005','2021학년도 신입생 정시 입학전형','2021','01','10','2021','02','01');
+INSERT INTO schedule VALUES ('s160','A005','2021학년도 1학기 복학 신청','2021','01','27','2021','02','03');
 
 
 -- 공지사항
 INSERT INTO notice VALUES ('10001','A002','2020학년도 제2학기 비전임교원(초빙/겸임/강사) 초빙','김기수','20/07/10','2020학년도 제2학기 신규 임용할 비전임교원(초빙/겸임/강사)을 다음과 같이 모십니다.\n<인터넷 지원서 입력기간>\n2020.07.22(수) ~ 07.26(일) 오후 23:00까지\n<서류접수(지원자 전원)>\n2020.07.27(월) ~ 07.28(화) 오후 14:00까지(2일간)\n자세한 사항은 아래 사이트에서 확인하시기 바랍니다.','','',50);
 
-
 CREATE OR REPLACE VIEW AtndnView
-as select semester, lcode, lname, studentid, majorname, studentname, category, lpoint, ltime, le.capacity, professorname, week1, week2, week3, week4,
+as select semester, lcode, lname, studentid, majorname, studentname, category, lpoint, ltime, le.room, le.capacity, professorname, absent3, week1, week2, week3, week4,
 week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16
 from student s
 join major m using (majorno)
@@ -1511,5 +1540,13 @@ JOIN MAJOR USING (MAJORNO)
 JOIN LECTURESCORE USING (STUDENTID)
 JOIN LECTURE USING (LCODE);
 
+select s.id, s.name, majorname, lcode, lname, category, ATNDNSCORE, MIDSCORE, FINALSCORE, TOTALSCORE, GRADE
+from student s
+join major using (majorno)
+join lecturescore ls on (s.id=ls.id)
+join lecture using (lcode);
 
-commit
+commit;
+
+
+
