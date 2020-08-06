@@ -18,6 +18,10 @@ DROP TABLE schedule CASCADE CONSTRAINTS;
 DROP TABLE termscore CASCADE CONSTRAINTS;
 
 ------------------------------------------------------------------------------------------------------------------
+create table absenceinfor (
+	information varchar2(200) primary key
+);
+COMMENT ON COLUMN absenceinfor.information IS '안내사항';
 
 CREATE TABLE lplan (
 	lcode	VARCHAR2(10)		NOT NULL,
@@ -459,7 +463,6 @@ CREATE TABLE absence (
 	studentid	VARCHAR2(10) NOT NULL,
 	requestdate DATE	DEFAULT SYSDATE	NOT NULL,
 	limitcanceldate DATE DEFAULT SYSDATE+1 NOT NULL,
-	information VARCHAR2(200) NOT NULL,
 		approval char(1) default 'N', 
 		constraints chk_per check (approval in ('Y','N'))
 );
@@ -471,8 +474,6 @@ COMMENT ON COLUMN absence.studentid IS '학번';
 COMMENT ON COLUMN absence.requestdate IS '신청일';
 
 COMMENT ON COLUMN absence.limitcanceldate IS '취소제한날짜';
-
-COMMENT ON COLUMN absence.information IS '안내사항';
 
 comment on COLUMN absence.approval is '승인';
 
