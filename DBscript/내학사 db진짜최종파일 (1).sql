@@ -300,9 +300,9 @@ CREATE TABLE lecturescore (
 	receptionno VARCHAR2(10)	NOT NULL,
 	lcode	VARCHAR2(10)		NOT NULL,
 	studentid	VARCHAR2(10)		NOT NULL,
-	atndscore	NUMBER		NULL,
+	atndnscore	NUMBER		NULL,
 	midscore		NUMBER		NULL,
-	examscore	NUMBER		NULL,
+	finalscore	NUMBER		NULL,
 	totalscore	NUMBER		NULL,
 	grade	CHAR(2)		NULL,
 	atndnbelow CHAR(1) 	NULL
@@ -318,7 +318,7 @@ COMMENT ON COLUMN lecturescore.atndscore IS '출결점수';
 
 COMMENT ON COLUMN lecturescore.midscore IS '중간점수';
 
-COMMENT ON COLUMN lecturescore.examscore IS '기말점수';
+COMMENT ON COLUMN lecturescore.finalscore IS '기말점수';
 
 COMMENT ON COLUMN lecturescore.totalscore IS '과목총점수';
 
@@ -852,7 +852,7 @@ INSERT INTO lroom VALUES ('203','본관','15');
 
 --강의 
 INSERT INTO lecture VALUES ('l001','P101','문학개론','전공','3','22','월','101');
-INSERT INTO lecture VALUES ('l002','P404','화학공학입문','교양1','2','30','화','102');
+INSERT INTO lecture VALUES ('l002','P404','화학공학입문','교양','2','30','화','102');
 INSERT INTO lecture VALUES ('l003','P410','화공열역학1','전공','3','21','수','103');
 INSERT INTO lecture VALUES ('l004','P416','프로젝트종합설계  ','전공','2','24','목','201');
 INSERT INTO lecture VALUES ('l005','P107','C프로그래밍','전공','3','26','금','202');
@@ -1492,5 +1492,24 @@ INSERT INTO schedule VALUES ('s160','A005','2021학년도 1학기 복학 신청'
 
 -- 공지사항
 INSERT INTO notice VALUES ('10001','A002','2020학년도 제2학기 비전임교원(초빙/겸임/강사) 초빙','김기수','20/07/10','2020학년도 제2학기 신규 임용할 비전임교원(초빙/겸임/강사)을 다음과 같이 모십니다.\n<인터넷 지원서 입력기간>\n2020.07.22(수) ~ 07.26(일) 오후 23:00까지\n<서류접수(지원자 전원)>\n2020.07.27(월) ~ 07.28(화) 오후 14:00까지(2일간)\n자세한 사항은 아래 사이트에서 확인하시기 바랍니다.','','',50);
+
+
+CREATE OR REPLACE VIEW AtndnView
+as select semester, lcode, lname, studentid, majorname, studentname, category, lpoint, ltime, le.capacity, professorname, week1, week2, week3, week4,
+week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16
+from student s
+join major m using (majorno)
+join lapplication la using (studentid)
+join lecture le using (lcode)
+join professor using (professorid)
+left join attendance using (lcode, studentid);
+
+CREATE OR REPLACE VIEW LScoreView
+as SELECT STUDENTID, STUDENTNAME, MAJORNAME, LCODE, LNAME, CATEGORY, ATNDNSCORE, MIDSCORE, FINALSCORE, TOTALSCORE, GRADE
+FROM STUDENT
+JOIN MAJOR USING (MAJORNO)
+JOIN LECTURESCORE USING (STUDENTID)
+JOIN LECTURE USING (LCODE);
+
 
 commit

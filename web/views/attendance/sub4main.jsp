@@ -36,7 +36,12 @@
 
 <h1>출결 성적 등록</h1>
 
-
+<div class="세션대신 입력폼쓰는중">
+<form action="/beet/mylctr" method="get">
+studentid<input type="text" name="studentid">
+<input type="submit" value="입력">
+</form>
+</div>
 
 <div class="btn-group">
   <button onclick="javascript:location.href='/beet/mylctr'" >강의목록</button>
