@@ -20,7 +20,7 @@
 </form>
 <hr>
 <button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
-<button onclick="javascript:location.href='views/attendance/atndnList.jsp'">출결 목록 테스트</button>
+<button onclick="javascript:location.href='views/attendance/sub4main.jsp'">출결 목록 테스트</button>
 <button onclick="javascript:location.href='views/absence/absenceRequestView.jsp'">학생신청페이지</button>
 </body>
 </html>
