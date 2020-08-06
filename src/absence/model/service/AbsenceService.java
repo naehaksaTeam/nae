@@ -33,7 +33,6 @@ public class AbsenceService {
 	public ArrayList<Absence> selectPrivateAbsence(String studentid) {
 		Connection conn = getConnection();
 		ArrayList<Absence> list = adao.selectPrivateAbsence(conn, studentid);
-		System.out.println("service 단의 list : " + list);
 		close(conn);
 		return list;
 	};

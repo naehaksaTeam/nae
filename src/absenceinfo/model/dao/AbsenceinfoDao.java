@@ -16,14 +16,17 @@ public class AbsenceinfoDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absenceinfo";
+		String query = "select * from absenceinfor";
 		
 		try {
 			stmt = conn.createStatement();
 			
 			rset = stmt.executeQuery(query);
 			
-			
+			while(rset.next()) {
+				info = new Absenceinfo(rset.getString("information"));
+			}
+			System.out.println(info);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

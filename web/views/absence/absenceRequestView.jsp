@@ -28,10 +28,10 @@
 <br><br><br><br>
 이페이지에서 select랑 insert 모두 처리 !
 <hr>
+<div align="center">
+<button width="20" onclick="javascript:location.href='/beet/selectab?studentid=<%=st1.getId()%>'">조 회</button>
+</div>
 <h1 align="center">조회 테이블</h1>
-
-<button onclick="javascript:location.href='/beet/selectab?studentid=<%=st1.getId()%>'">조 회</button>
-
 <h2 align="center"><%=st1.getName() %> 님의 신청내역 조회</h2>
 <% if(list == null){ %>
 <table align="center" width="1000" height="100" style="font-size: 20pt; background-color: blue;"><th>신청 내역이 없습니다</th></table>
@@ -39,6 +39,7 @@
 	<% for(Absence aa : list){ %>
 	<table>
 	<tr><th><%=aa.getRequestid() %></th><th><%=aa.getRequestdate() %></th><th><%=aa.getLimitcanceldate() %></th><th><%=aa.getApproval() %></th> </tr>
+	<tr><td align="right"><button name="cancel" onclick="javascript:href='deleteab">신청취소</button></td></tr>
 	</table>
 	
 <% }} %>
@@ -47,42 +48,42 @@
 <div>
 <table align="center" width="1000" height="550" style="font-size: 20pt; background-color: pink;">
 <% if(st1.getAbsencewhether().equals("Y")){ %>
-<tr><th>현재 <%=st1.getName() %>님은 
-	휴학상태입니다</th></tr>
+<tr><th>현재 <%=st1.getName() %>님은 휴학상태입니다</th></tr>
 <tr>
-	<td>
-		안내사항 
+	<td align="center">
+		안 내 사 항 
 		<br>
-		information
+		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
+		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
+		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
 	</td>
 </tr>
 <tr>
-	<td>
-		OO신청 취소 가능은 내일까지 가능합니다.<br> 취소가능 날짜가 지나면 신청 취소는 불가능합니다
+	<td align="center">
+		재학 신청 취소는 내일까지 가능합니다.<br> 취소가능 날짜가 지나면 신청 취소는 불가능합니다
 	</td>
 </tr>
 <tr><td align="center"><button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=st1.getId()%>'">휴학신청</button>&nbsp;&nbsp;<button name="value" value="b">복학신청</button></td></tr>
  휴학신청이면 신청번호에 a가 붙는다. 복학신청이면 신청번호에 b가 붙는다.
-<tr><td align="right"><button name="cancle" value="cancle">신청취소</button></td></tr>
+
 <% }else{ %>
-<tr><th>현재 <%=st1.getName() %>님은 
-	재학상태입니다</th></tr>
+<tr><th>현재 <%=st1.getName() %>님은 재학상태입니다</th></tr>
 <tr>
-	<td>
+	<td align="center">
 		안내사항 
 		<br>
-		information
+		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
+		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
+		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
 	</td>
 </tr>
 <tr>
-	<td>
-		OO신청 취소 가능은 내일까지 가능합니다.<br> 취소가능 날짜가 지나면 신청 취소는 불가능합니다
+	<td align="center">
+		휴학 신청 취소는 내일까지 가능합니다.<br> 취소가능 날짜가 지나면 신청 취소는 불가능합니다
 	</td>
 </tr>
 
-취소 서블릿 주소 /cancleab
 <tr><td align="center"><button name="value" value="a" onclick="javascript:location.href='/beet/insertab'">휴학신청</button></td></tr>
-<tr><td align="right"><button name="cancle" value="cancle">신청취소</button></td></tr>
 <% } %>
 </table>
 </div>
