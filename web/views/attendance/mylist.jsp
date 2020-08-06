@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="attendance.model.vo.Atndn, java.util.ArrayList"%>
+<% 
+	ArrayList<Atndn> list = (ArrayList<Atndn>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,17 +84,17 @@ cellpadding:20px;
 <th>담당교수</th>
 
 </tr>
+<% for(Atndn a : list){  %>
 <tr>
-<td>20170124-1</td>
-<td>전공필수</td>
-<td>과목명이몇글자일까</td>
-<td>월요일 몇시몇시</td>
-<td>3학점</td>
-<td>40명</td>
-<td>참쌀 교수님</td>
-
+<td><%= a.getLcode() %></td>
+<td><%= a.getCategory() %></td>
+<td><%= a.getLname() %></td>
+<td><%= a.getLtime() %></td>
+<td><%= a.getLpoint() %></td>
+<td><%= a.getCapacity() %></td>
+<td><%= a.getProfessorname() %></td>
 </tr>
-
+<% } %>
 </table>
 
 

@@ -21,23 +21,31 @@ public class AtndnDao {
 	
 //select 내 강의목록(리스트-> lecture꺼 갖다쓰려면?? studentname??) 
 	//view 쓸 수 있나?  //vo 만들기?? 
-	public ArrayList selectMyLctr(Connection conn, String studentid) {
-		ArrayList list = new ArrayList();
+	public ArrayList<Atndn> selectMyLctr(Connection conn, String studentid) {
+		ArrayList<Atndn> list = new ArrayList<Atndn>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from AtndnView";
-		
+		String query = "select semester, lcode, category, lname, lpoint, capacity, ltime, professorname from AtndnView where studentid = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, studentid);
 			
+			rset = pstmt.executeQuery(); 
 			while(rset.next()) {
-				Lecture lctr = new Lecture();
-
-				//sql 순서 바꾸기 
-				list.add(lctr);
+				Atndn atndn = new Atndn();
+				
+				atndn.setSemester(rset.getString("semester"));
+				atndn.setLcode(rset.getString("lcode"));
+				atndn.setCategory(rset.getString("category"));
+				atndn.setLname(rset.getString("lname"));
+				atndn.setLtime(rset.getString("ltime"));
+				atndn.setLpoint(rset.getInt("lpoint"));
+				atndn.setCapacity(rset.getInt("capacity"));
+				atndn.setProfessorname(rset.getString("professorname"));
+				list.add(atndn);
 			}
-			rset = pstmt.executeQuery();
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
