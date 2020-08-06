@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.TimeTable" %>
+    pageEncoding="UTF-8" impotr="java.util.ArrayList,lecture.model.vo." %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,7 @@
 <h1>시간표조회</h1>
 <hr>
 
-<% ArrayList<TimeTable> list = (ArrayList<TimeTable>)session.getAttribute("timetable"); %>
+<% ArrayList<lecture> list = session.getAttribute("timetable"); %>
 <% if(list == null){ %>
 
 
