@@ -31,8 +31,9 @@ public class AbsenceDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
 		close(stmt);
+		}
 		return list;
 	};
 	
@@ -53,8 +54,9 @@ public class AbsenceDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
 		close(pstmt);
+		}
 		return absence;
 	};
 	
@@ -64,7 +66,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence";
+		String query = "select * from absence where studentid = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -72,30 +74,34 @@ public class AbsenceDao {
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
+				Absence ab = new Absence(rset.getString("requestid"), studentid ,rset.getDate("requestdate"), rset.getDate("limitcanceldate"), rset.getString("approval"));
 				
 				list.add(ab);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
 		close(pstmt);
+		}
+		System.out.println("dao 의 list :" + list);
 		return list;
 	};
-	
-	
 
 	public int insertAbsence(Connection conn, String value, String studentid) {
 		int result = 0;
-		Statement stmt = null;
-		String query = "insert into absence values(?+(select max(requestid)))";
+		PreparedStatement pstmt = null;
+		String query = "insert into absence values(concat( ?, (select max(substr(requestid,2))+1 from absence)), 201701456, default, default, default)";
 		
 		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, value);
 			
+			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+		close(pstmt);
 		}
-		close(stmt);
 		return result;
 	};
 	
@@ -131,13 +137,15 @@ public class AbsenceDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
 		close(pstmt);
+		}
 		return result;
 	}
 
 	public ArrayList<Absence> selectApprovalAbsence(Connection conn, String able) {
-		ArrayList<Absence> list = new ArrayList<Absence>(); //승인된 아이들만 조회 able이 Y로 옴
+		ArrayList<Absence> list = new ArrayList<Absence>(); // 승인된 아이들만 조회 able이 Y로 옴
+																						   // 미승인된 아이들만 조회. able이 N으로 옴
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -160,27 +168,4 @@ public class AbsenceDao {
 		return list;
 	}
 
-	public ArrayList<Absence> selectDeappAbsence(Connection conn, String able) {
-		ArrayList<Absence> list = new ArrayList<Absence>(); // 미승인된 아이들만 조회. able이 N으로 옴
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String query =  "select * from absence where appoval = ?";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, able);
-			
-			rset = pstmt.executeQuery();
-			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
-				
-				list.add(ab);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		close(pstmt);
-		return list;
-	};
 }

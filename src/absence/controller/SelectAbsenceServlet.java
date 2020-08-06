@@ -25,10 +25,12 @@ public class SelectAbsenceServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//학번을 가져옴 . 
-		String studentid = "201701341";
+		String studentid = request.getParameter("studentid");
+		
+		System.out.println("여기 서블릿으로 오니 ? " + studentid);
 		
 		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(studentid);
-		
+		System.out.println(list);
 		RequestDispatcher view = null;
 		if( list != null) {
 			view = request.getRequestDispatcher("views/absence/absenceRequestView.jsp");
@@ -36,7 +38,7 @@ public class SelectAbsenceServlet extends HttpServlet {
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("error", "학번 : " +studentid +"\n 신청내역이 없습니다.");
+			request.setAttribute("message", "학번 : " +studentid +"\n 신청내역이 없습니다.");
 			view.forward(request, response);
 		}
 		
