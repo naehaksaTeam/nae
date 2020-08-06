@@ -87,9 +87,15 @@ public class AbsenceDao {
 
 	public int insertAbsence(Connection conn, String value, String studentid) {
 		int result = 0;
-		
+		State
 		String query = "insert into absence values(?+(select max(requestid)))";
 		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(stmt);
 		return result;
 	};
 	
