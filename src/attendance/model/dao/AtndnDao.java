@@ -3,11 +3,12 @@ package attendance.model.dao;
 import static common.JDBCTemp.close;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import attendance.model.vo.Atndn;
 import lecture.model.vo.Lecture;
@@ -44,15 +45,12 @@ public class AtndnDao {
 				atndn.setCapacity(rset.getInt("capacity"));
 				atndn.setProfessorname(rset.getString("pname"));
 				list.add(atndn);
-			}
-			
-			
+			}			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
-		
 		return list;
 	}
 	//select 나의 출결현황 
@@ -97,6 +95,7 @@ public class AtndnDao {
 		}finally {
 			close(pstmt);
 		}
+	
 		return list;	
 		}
 			

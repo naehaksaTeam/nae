@@ -5,9 +5,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<h1>성적입력_ 등급입력 페이지 (팝업처리할거야)</h1>
+
 </head>
 <body>
-
+<h1>성적입력_ ajax 사용할거야 등급입력 페이지 (팝업처리할거야)</h1>
+<!--과목정보 출력 -->
+<input type="button" id="chn" value="변경" /><!-- ajax 쓸건데 굳이? -->
+<table>
+<thead>
+  <tr>
+    <th>등급</th>
+    <th>A+</th>
+    <th>A</th>
+    <th>B+</th>
+    <th>B</th>
+    <th>C+</th>
+    <th>C</th>
+    <th>D+</th>
+    <th>D</th>
+    <th>F</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <th>등급기준</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>가능인원</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>누적분포</td>
+    <td><%= %></td>
+    <td><%= %></td>
+    <td><%= %></td>
+    <td><%= %></td>
+    <td><%= %></td>
+    <td><%= %></td>
+    <td><%= %></td>
+    <td><%= %></td>
+    <td><%= %></td>
+  </tr>
+</tbody>
+</table>
+<input type="button" id="chnsave" value="저장" />
+<input type="button" id="chncancel" value="취소" />
 </body>
 </html>
