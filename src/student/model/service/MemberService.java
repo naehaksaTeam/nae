@@ -6,8 +6,7 @@ import static common.JDBCTemp.getConnection;
 import java.sql.Connection;
 
 import student.model.dao.MemberDao;
-import student.model.vo.Admin;
-import student.model.vo.Professor;
+import student.model.vo.Member;
 import student.model.vo.Student;
 
 public class MemberService {
@@ -15,10 +14,10 @@ public class MemberService {
 	
 	public MemberService() {}
 	
-	public Student loginCheck(String userid, String userpwd) {
+	public Member loginCheck(String userid, String userpwd) {
 			
 		Connection conn = getConnection();
-		Student member = mdao.loginCheck(conn, userid, userpwd);
+		Member member = mdao.loginCheck(conn, userid, userpwd);
 		close(conn);
 		return member;
 	}

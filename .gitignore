@@ -1,6 +1,2 @@
-<<<<<<< HEAD
-.class
-=======
-.class
-
->>>>>>> f22cd8eee7f01b46162206fa10c2be0511e554af
+bin/
+web/WEB-INF/classes/
