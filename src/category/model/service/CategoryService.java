@@ -19,13 +19,6 @@ public class CategoryService {
 		return list;
 	};
 	
-	public Category selectOneCategory(String catename) {
-		Connection conn = getConnection();
-		Category category = cdao.selectOneCategory(conn, catename);
-		close(conn);
-		return category;
-	};
-	
 	public int insertCategory(String catename) {
 		Connection conn = getConnection();
 		int result = cdao.insertCategory(conn, catename);
@@ -39,9 +32,9 @@ public class CategoryService {
 		return result;
 	};
 	
-	public int updateCategory(String catename) {
+	public int updateCategory(String catename, String newname) {
 		Connection conn = getConnection();
-		int result = cdao.updateCategory(conn, catename);
+		int result = cdao.updateCategory(conn, catename, newname);
 		
 		if(result > 0) {
 			commit(conn);
