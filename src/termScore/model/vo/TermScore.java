@@ -102,7 +102,7 @@ public class TermScore implements java.io.Serializable{
 	}
 
 	public int getTgpa() {
-		return tgpa;
+		return tgpa;1212
 	}
 
 	@Override
