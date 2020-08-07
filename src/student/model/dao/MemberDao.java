@@ -224,4 +224,31 @@ public Member loginCheck(Connection conn, String userid, String userpwd) {
     return member;
 }
 
+
+public int selectAbCount(Connection conn, String studentid) {
+	int abCount = 0;
+	PreparedStatement pstmt = null;
+	ResultSet rset = null;
+	
+	String query = "select absencecount from student where id = ?";
+	
+	try {
+		pstmt =conn.prepareStatement(query);
+		pstmt.setString(1, studentid);
+		
+		rset = pstmt.executeQuery();
+		if(rset.next()) {
+			abCount = rset.getInt("absencecount");
+		}
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(rset);
+		close(pstmt);
+	}
+	return abCount;
+}
+
+	
+
 }

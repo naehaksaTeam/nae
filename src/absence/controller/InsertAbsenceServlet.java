@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import absence.model.service.AbsenceService;
+import student.model.service.MemberService;
 
 @WebServlet("/insertab")
 public class InsertAbsenceServlet extends HttpServlet {
@@ -26,6 +27,7 @@ public class InsertAbsenceServlet extends HttpServlet {
 		String value = request.getParameter("value");
 		String studentid = request.getParameter("studentid");
 		
+		int abCount = new MemberService().selectAbCount(studentid);
 		int result = new AbsenceService().insertAbsence(value, studentid); 
 
 		result = 0;

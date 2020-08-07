@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" impoart="absence.model.vo.Absence"%>
+    pageEncoding="UTF-8" import="absence.model.vo.Absence, java.util.ArrayList"%>
     
 <!DOCTYPE html>
 <html>
@@ -15,7 +15,6 @@
 취소가능날짜가 지난 경우 absence 테이블에서 삭제처리함.
 		
 삭제delete (신청내역 삭제.절대 복구 안됨)
-
 
 신청번호 앞에 체크박스를 넣어서 체크된 얘들은 승인되거나 삭제되도록 처리
 

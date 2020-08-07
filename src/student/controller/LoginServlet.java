@@ -13,9 +13,6 @@ import javax.servlet.http.HttpSession;
 import student.model.service.MemberService;
 import student.model.vo.Member;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/login.cp")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

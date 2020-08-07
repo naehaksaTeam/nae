@@ -16,7 +16,7 @@
 학생은 장학금만 조회
 <div>
 <h1 align="center">내가받은 장학금 조회</h1>
-<button onclick="javascript:location.href='/beet/selectbenest'" value="나의 장학금 조회">
+<button onclick="javascript:location.href='/beet/selectbenest?studentid=         '" value="나의 장학금 조회">
 <table>
 ssbenefitst에서 select(studentid) 수혜학기로 desc해서 보여주기
 <tr><th>수혜학기</th><th>장학금명</th></tr>

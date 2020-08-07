@@ -22,5 +22,12 @@ public class MemberService {
 		return member;
 	}
 
+	public int selectAbCount(String studentid) {
+		Connection conn = getConnection();
+		int abCount = mdao.selectAbCount(conn, studentid);
+		close(conn);
+		return abCount;
+	}
+
 	
 }
