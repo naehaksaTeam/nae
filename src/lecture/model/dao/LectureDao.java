@@ -339,7 +339,7 @@ public class LectureDao {
 		ArrayList<Lecture> list = new ArrayList<Lecture>();
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = "select * from lplan join professor using (professorid) join lecture using (lcode)";
+		String query = "select * from lplan join professor using (id) join lecture using (lcode)";
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
@@ -351,7 +351,7 @@ public class LectureDao {
 				l.setLcode(rset.getString("lcode"));
 				l.setLname(rset.getString("lname"));
 				l.setLtime(rset.getString("ltime"));
-				l.setProfessorid(rset.getString("professorid"));
+				l.setProfessorid(rset.getString("id"));
 				l.setRoom(rset.getString("room"));
 				l.setContent(rset.getString("content"));
 				

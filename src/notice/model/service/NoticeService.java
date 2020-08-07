@@ -20,7 +20,7 @@ public class NoticeService {
 
 	public ArrayList<Notice> selectAll() {
 		Connection conn = getConnection();
-		ArrayList<Notice> list = ndao.selectList(conn);
+		ArrayList<Notice> list = ndao.selectAll(conn);
 		close(conn);
 		return list;
 	}
@@ -65,9 +65,9 @@ public class NoticeService {
 		return result;
 	}
 
-	public ArrayList<Notice> selectNewTop3() {
+	public ArrayList<Notice> selectTop3() {
 		Connection conn = getConnection();
-		ArrayList<Notice> list = ndao.selectNewTop3(conn);
+		ArrayList<Notice> list = ndao.selectTop3(conn);
 		close(conn);
 		return list;
 	}
