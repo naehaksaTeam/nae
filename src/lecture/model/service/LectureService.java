@@ -156,7 +156,7 @@ public class LectureService {
 			list.setTime(n);
 			System.out.println(n);
 		}
-		System.out.println("s");
+		
 		return list;
 	}
 }
