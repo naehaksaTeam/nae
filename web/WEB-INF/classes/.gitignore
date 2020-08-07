@@ -1,7 +1,9 @@
 /professor/
 /attendance/
 /lecture/
-/common/
+
 /absence/
 /notice/
 /student/
+/admin/
+/termScore/

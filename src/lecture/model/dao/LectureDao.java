@@ -376,15 +376,11 @@ public class LectureDao {
 			pstmt.setString(1, studentid);
 			pstmt.setString(2, clock);
 			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
 				
 				t.setDay(rset.getString("ltime"));
 				t.setName(rset.getString("lname"));
-				t.setTime(rset.getString("ltime"));
+				t.setTime(rset.getString("lclock"));
 				
-				
-			}
 			
 			
 		} catch (Exception e) {
