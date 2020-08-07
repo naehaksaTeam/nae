@@ -364,12 +364,37 @@ public class LectureDao {
 	}
 
 
-	public ArrayList<TimeTable> selecTimeTable(Connection conn, String studentid) {
-		ArrayList<TimeTable> list = new ArrayList<TimeTable>();
+	public TimeTable selecTimeTable(Connection conn, String studentid, String clock) {
+		TimeTable t = new TimeTable();
 		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select lname,ltime,lclock from  lapplication join lecture using (lcode) where lapplication.id = ? and lclock = ?";
 		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, studentid);
+			pstmt.setString(2, clock);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				t.setDay(rset.getString("ltime"));
+				t.setName(rset.getString("lname"));
+				t.setTime(rset.getString("ltime"));
+				
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
 		
-		return list;
+		return t;
 	}
 
 }

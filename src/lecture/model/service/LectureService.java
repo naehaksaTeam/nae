@@ -144,10 +144,10 @@ public class LectureService {
 		return list;
 	}
 
-	public ArrayList<TimeTable> selecTimeTable(String studentid) {
+	public TimeTable selecTimeTable(String studentid, String clock) {
 		// 시간표 조회
 		Connection conn = getConnection();
-		ArrayList<TimeTable> list = ldao.selecTimeTable(conn,studentid);
+		TimeTable list = ldao.selecTimeTable(conn,studentid,clock);
 		close(conn);
 
 		return list;
