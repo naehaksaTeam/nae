@@ -1,12 +1,17 @@
+/admin/
 /attendance/
-/lecture/
-/absence/
 /category/
-/commons/
+/lecture/
+/lectureScore/
+<<<<<<< HEAD
+/termScore/
+/common/
 /member/
-/notice/
+=======
 /professor/
 /scholarship/
 /ssbenefitst/
 /student/
-/common/
+>>>>>>> 6a68917991f985f1f111378ef53c2864149317da
+/absence/
+/notice/
