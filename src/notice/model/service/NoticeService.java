@@ -8,6 +8,7 @@ import static common.JDBCTemp.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+
 import notice.model.dao.NoticeDao;
 import notice.model.vo.Notice;
 
@@ -71,5 +72,20 @@ public class NoticeService {
 		close(conn);
 		return list;
 	}
+
+	public int getListCount() {
+      Connection conn = getConnection();
+      int listCount = ndao.getListCount(conn);
+      close(conn);
+      return listCount;
+   }
+
+	public ArrayList<Notice> selectList(int currentPage, int limit) {
+      Connection conn = getConnection();
+      ArrayList<Notice> list = ndao.selectList(conn, currentPage, limit);
+      close(conn);
+      return list;
+   }
+	
 
 }

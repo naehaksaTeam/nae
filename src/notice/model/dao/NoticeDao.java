@@ -181,5 +181,75 @@ public class NoticeDao {
 		}
 		return list;
 	}
+
+	public int getListCount(Connection conn) {
+      int listCount = 0;
+      Statement stmt = null;
+      ResultSet rset = null;
+
+      String query = "SELECT COUNT(*)FROM Notice";
+
+      try {
+         stmt = conn.createStatement();
+         rset = stmt.executeQuery(query);
+
+         if (rset.next()) {
+            listCount = rset.getInt(1);
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
+      } finally {
+         close(rset);
+         close(stmt);
+      }
+
+      return listCount;
+   }
+
+	public ArrayList<Notice> selectList(Connection conn, int currentPage, int limit) {
+	      ArrayList<Notice> list = new ArrayList<Notice>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+
+	      String query = "SELECT * FROM (SELECT ROWNUM RNUM, noticeno, noticetitle, noticewriter, noticedate, noticecontent, originalfile, "
+	            + "                        renamefile, noticereadcount "
+	            + "                        FROM (SELECT * FROM notice ORDER BY noticedate desc)) "
+	            + "WHERE RNUM >= ? AND RNUM <= ?";
+
+	      int startRow = (currentPage - 1) * limit + 1;
+	      int endRow = startRow + limit - 1;
+
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setInt(1, startRow);
+	         pstmt.setInt(2, endRow);
+
+	         rset = pstmt.executeQuery();
+
+	         while (rset.next()) {
+	            Notice notice = new Notice();
+
+	            notice.setNoticeNo(rset.getInt("noticeno"));
+	            notice.setNoticeTitle(rset.getString("noticetitle"));
+	            notice.setNoticeWriter(rset.getString("noticewriter"));
+	            notice.setNoticeDate(rset.getDate("noticedate"));
+	            notice.setNoticeContent(rset.getString("noticecontent"));
+	            notice.setOriginalFile(rset.getString("originalfile"));
+	            notice.setRenameFile(rset.getString("renamefile"));
+	            notice.setNoticeReadCount(rset.getInt("noticereadcount"));
+	           
+
+	            list.add(notice);
+	         }
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+
+	      return list;
+	   }
 	
 }

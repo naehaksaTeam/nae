@@ -32,7 +32,7 @@
       <% } %>
    </td>
 </tr>
-<tr><th>내 용</th><td><%=notice.getNoticeContent() %></td></tr>
+<tr><th>내 용</th><td><%=notice.getNoticeContent().replace("\n", " ") %></td></tr>
 <tr><th colspan="2"><button onclick="javascript:history.go(-1);">목록</button></th><td></td></tr>
 </table>
 </body>
