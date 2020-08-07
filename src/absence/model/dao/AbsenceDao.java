@@ -83,7 +83,6 @@ public class AbsenceDao {
 		}finally {
 		close(pstmt);
 		}
-		System.out.println("dao 의 list :" + list);
 		return list;
 	};
 

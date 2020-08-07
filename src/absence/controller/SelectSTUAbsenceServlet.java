@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import absence.model.service.AbsenceService;
-import absence.model.vo.Absence;
+import absence.model.vo.Absence;;
 
 @WebServlet("/selectab")
-public class SelectAbsenceServlet extends HttpServlet {
+public class SelectSTUAbsenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public SelectAbsenceServlet() {
+    public SelectSTUAbsenceServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -26,9 +26,7 @@ public class SelectAbsenceServlet extends HttpServlet {
 		
 		//학번을 가져옴 . 
 		String studentid = request.getParameter("studentid");
-		
-		System.out.println("여기 서블릿으로 오니 ? " + studentid);
-		
+
 		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(studentid);
 		System.out.println(list);
 		RequestDispatcher view = null;
