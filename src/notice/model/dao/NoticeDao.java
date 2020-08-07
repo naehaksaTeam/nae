@@ -14,11 +14,15 @@ public class NoticeDao {
 	public NoticeDao() {
 	}
 
-	public ArrayList<Notice> selectList(Connection conn) {
+	public ArrayList<Notice> selectAll(Connection conn) {
 		ArrayList<Notice> list = new ArrayList<Notice>();
 		Statement stmt = null;
 		ResultSet rset = null;
-
+		
+		/*
+		 * 번호</th> <th>제목</th> <th>작성자</th> <th>작성날짜</th> <th>글내용</th> <th>파일첨부</th>
+		 * <th>조회수
+		 */
 		String query = "select * from notice order by noticeno,noticedate asc ";
 		try {
 			stmt = conn.createStatement();
@@ -27,13 +31,13 @@ public class NoticeDao {
 			while (rset.next()) {
 				Notice notice = new Notice();
 
-				notice.setNoticeNo(rset.getInt("NOTICENO"));
-				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
-				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
-				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
-				notice.setNoticeContent(rset.getString("NOTICECONTENT"));
-				notice.setOriginalFile(rset.getString("ORIGINALFILE"));
-				notice.setRenameFile(rset.getString("RENAMEFILE"));
+				notice.setNoticeNo(rset.getInt("notice"));
+				notice.setNoticeTitle(rset.getString("noticetitle"));
+				notice.setNoticeDate(rset.getDate("noticedate"));
+				notice.setNoticeWriter(rset.getString("noticewriter"));
+				notice.setNoticeContent(rset.getString("noticecontent"));
+				notice.setOriginalFile(rset.getString("originalfile"));
+				notice.setNoticeReadCount(rset.getInt("noticereadcount"));
 				list.add(notice);
 			}
 		} catch (Exception e) {
