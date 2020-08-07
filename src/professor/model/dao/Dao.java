@@ -1,4 +1,4 @@
-package student.model.dao;
+package professor.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
