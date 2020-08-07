@@ -34,10 +34,10 @@ public class MemberDeleteServlet extends HttpServlet {
 		
 				//1.
 				//2.
-				String userid = request.getParameter("userid");
+				String id = request.getParameter("id");
 				
 				//3.
-				int result = new MemberService().deleteMember(userid);
+				int result = new MemberService().deleteMember(id);
 				
 				//4.
 				if(result > 0) {  //성공시
@@ -45,7 +45,7 @@ public class MemberDeleteServlet extends HttpServlet {
 					response.sendRedirect("logout");
 				}else {  //실패시
 					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", userid + " 회원님의 탈퇴 요청 실패.");
+					request.setAttribute("message", id + " 회원님의 탈퇴 요청 실패.");
 					view.forward(request, response);
 				}
 	}
