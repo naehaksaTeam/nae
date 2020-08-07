@@ -21,15 +21,15 @@ public class AtndnDao {
 	
 //select 내 강의목록(리스트-> lecture꺼 갖다쓰려면?? studentname??) 
 	//view 쓸 수 있나?  //vo 만들기?? 
-	public ArrayList<Atndn> selectMyLctr(Connection conn, String studentid) {
+	public ArrayList<Atndn> selectMyLctr(Connection conn, String id) {
 		ArrayList<Atndn> list = new ArrayList<Atndn>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select semester, lcode, category, lname, lpoint, capacity, ltime, professorname from AtndnView where studentid = ?";
+		String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where sid = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, studentid);
+			pstmt.setString(1, id);
 			
 			rset = pstmt.executeQuery(); 
 			while(rset.next()) {
@@ -42,7 +42,7 @@ public class AtndnDao {
 				atndn.setLtime(rset.getString("ltime"));
 				atndn.setLpoint(rset.getInt("lpoint"));
 				atndn.setCapacity(rset.getInt("capacity"));
-				atndn.setProfessorname(rset.getString("professorname"));
+				atndn.setProfessorname(rset.getString("pname"));
 				list.add(atndn);
 			}
 			
@@ -55,13 +55,88 @@ public class AtndnDao {
 		
 		return list;
 	}
-	
+	//select 나의 출결현황 
+		public ArrayList<Atndn> AtndnList(Connection conn, String id) {
+			ArrayList<Atndn> list = new ArrayList<Atndn>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			String query = "select sid, category, lcode, lname, ltime, lpoint, room, pname ,absent3,"
+					+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16"
+					+ "from AtndnView where sid = ? and lcode = ?";
+			
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, id);
+				StringBuffer week = new StringBuffer();
+				rset = pstmt.executeQuery(); 
+				while(rset.next()) {
+					Atndn atndn = new Atndn();
+					
+					atndn.setStudentid(rset.getString("id"));
+					atndn.setCategory(rset.getString("category"));
+					atndn.setLcode(rset.getString("lcode"));
+					atndn.setLname(rset.getString("lname"));
+					atndn.setLtime(rset.getString("ltime"));
+					atndn.setLpoint(rset.getInt("lpoint"));
+					atndn.setRoom(rset.getString("room"));
+					atndn.setProfessorname(rset.getString("name"));
+					atndn.setAbsent3((rset.getString("absent3").equals("Y"))?"출석미달":"-");
+					
+					for(int i=1;i<=16;i++) {
+						week.append("atndn.setWeek"+i+"(rset.getString(\"week"+i+"\"));\n");
+					}
+					week.toString();
+					System.out.println(week);
+						
+					list.add(atndn);
+				}
+
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return list;	
+		}
+			
 //select 강의 주차별 (selectone) 
-	public Atndn selectOneLctr(Connection conn, String studentid, String lcode) {
-		Atndn one = new Atndn();
-		
-		return one;
-	}
+//	public Atndn selectOneLctr(Connection conn, String id, String lcode) {
+//		ArrayList<Atndn> list = new ArrayList<Atndn>();
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		
+//		String query = "select studentid, category, lcode, lname, ltime, professorname ,absent3,"
+//				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16"
+//				+ "from AtndnView where id = ? and lcode = ?";
+//		
+//		try {
+//			pstmt = conn.prepareStatement(query);
+//			pstmt.setString(1, id);
+//			
+//			rset = pstmt.executeQuery(); 
+//			while(rset.next()) {
+//				Atndn atndn = new Atndn();
+//				
+//				atndn.setStudentid(rset.getString("studentid"));
+//				atndn.setCategory(rset.getString("category"));
+//				atndn.setLcode(rset.getString("lcode"));
+//				atndn.setLname(rset.getString("lname"));
+//				atndn.setLtime(rset.getString("ltime"));
+//				atndn.setProfessorname(rset.getString("professorname"));
+//				atndn.setAbsent3((rset.getString("absent3").equals("Y"))?"출석미달":"-");
+//				atndn.setLcode(rset.getString("category"));
+//				
+//				
+//				atndn.setLpoint(rset.getInt("lpoint"));
+//				atndn.setCapacity(rset.getInt("capacity"));
+//				
+//				list.add(atndn);
+//			}
+//		
+//		}
+//		return list;
+//	}
 	
 //select 강의 학기별 (리스트, 
 	public ArrayList selectMyTermLctr(Connection conn, String studentid) {

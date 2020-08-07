@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<h1>출결현황</h1>
+<h1>출결현황 - 과목별 출력 </h1>
 </head>
 <body>
 <style type="text/css">
