@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
 				//로그인 상태를 확인하기 위한 세션 객체 만들기
 				HttpSession session = request.getSession();
 				//System.out.println("생성된 세션객체의 id : " + session.getId());
-				
+				//12321
 				//지정한 시간(초)동안 서비스 요청이 없으면,
 				//자동 로그아웃(세션객체를 없앰) 처리 설정할 수 있음
 				//session.setMaxInactiveInterval(10 * 60); //10분 설정
