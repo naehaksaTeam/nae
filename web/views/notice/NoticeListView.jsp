@@ -1,6 +1,7 @@
 <!--  일반회원용 공지사항첫페이지  
  번호 , 제목, 작성자, 첨부파일 , 날짜 , 게시글
 -->
+<%@page import="com.sun.xml.internal.ws.message.StringHeader"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList , notice.model.vo.Notice"%>
@@ -32,11 +33,11 @@
 <% for(Notice n : list){ %>
 <tr>
 <td><%= n.getNoticeNo() %></td>
-<td><a href="/beet/ndetail?noticeno=<%= n.getNoticeNo() %>"><%= n.getNoticeTitle() %></td>
+<td><a href="/beet/ndetail?noticeno=<%= n.getNoticeNo() %>"><%= n.getNoticeTitle().substring(0,15) %></td>
 
 <td><%= n.getNoticeWriter() %></td>
 <td><%= n.getNoticeDate() %></td>
-<td><%= n.getNoticeContent() %></td>
+<td><%= n.getNoticeContent().substring(0,15) %></td>
 <td>
 	<% if(n.getOriginalFile() !=null){ %>
 		◎

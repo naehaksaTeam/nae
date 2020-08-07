@@ -35,7 +35,7 @@ public class NoticeDao {
 				notice.setNoticeTitle(rset.getString("noticetitle"));
 				notice.setNoticeWriter(rset.getString("noticewriter"));
 				notice.setNoticeDate(rset.getDate("noticedate"));
-				notice.setNoticeContent(rset.getString("noticecontent"));
+				notice.setNoticeContent(rset.getString("noticecontent").replace("\n", " "));
 				notice.setOriginalFile(rset.getString("originalfile"));
 				notice.setNoticeReadCount(rset.getInt("noticereadcount"));
 				list.add(notice);
@@ -65,9 +65,9 @@ public class NoticeDao {
 				notice.setNoticeNo(noticeNo);
 				notice.setNoticeNo(rset.getInt("NOTICENO"));
 				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
-				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
 				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
-				notice.setNoticeContent(rset.getString("NOTICECONTENT"));
+				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
+				notice.setNoticeContent(rset.getString("NOTICECONTENT").replace("\n", " "));
 				notice.setOriginalFile(rset.getString("ORIGINALFILE"));
 				notice.setRenameFile(rset.getString("RENAMEFILE"));
 			}
