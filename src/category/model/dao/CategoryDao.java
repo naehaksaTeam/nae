@@ -17,7 +17,7 @@ public class CategoryDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from category";
+		String query = "select * from category order by categoryname";
 		
 		try {
 			stmt = conn.createStatement();
