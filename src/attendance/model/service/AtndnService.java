@@ -20,4 +20,12 @@ public class AtndnService {
 		close(conn);
 		return list;
 	}
+	
+	public ArrayList<Atndn> AtndnList(String id) {
+		Connection conn = getConnection();
+		 ArrayList<Atndn>  list = adao.AtndnList(conn, id);
+		close(conn);
+		return list;
+	}
+
 }
