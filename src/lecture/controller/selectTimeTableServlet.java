@@ -41,6 +41,7 @@ public class selectTimeTableServlet extends HttpServlet {
 		TimeTable list13 = new LectureService().selecTimeTable(studentid,"13");
 		TimeTable list14 = new LectureService().selecTimeTable(studentid,"14");
 		TimeTable list15 = new LectureService().selecTimeTable(studentid,"15");
+		
 		HashMap map = new HashMap();
 		map.put("list9", list9);
 		map.put("list10", list10);

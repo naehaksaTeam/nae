@@ -65,10 +65,10 @@ border:1px solid black;
 <% } %>
 </tr>
 <tr>
-<td>10 : 00 ~ 11 : 50</td>
-<% if(((TimeTable)(list.get("list9"))) != null){ %>
+<td>10 : 00 ~ 10 : 50</td>
+<% if(((TimeTable)(list.get("list10"))) != null){ %>
 <td>
-<% if((((TimeTable)(list.get("list10"))).getDay()).equals("월")){ %>
+<% if(((TimeTable)(list.get("list10"))).getDay().equals("월")){ %>
 <%= ((TimeTable)(list.get("list10"))).getName() %>
 <% }else{ %>
 	&nbsp;
@@ -160,28 +160,28 @@ border:1px solid black;
 </td>
 <td>
 <% if(((TimeTable)(list.get("list12"))).getDay().equals("화")){ %>
-<%= ((TimeTable)(list.get("list9"))).getName() %>
+<%= ((TimeTable)(list.get("list12"))).getName() %>
 <% }else{ %>
 	&nbsp;
 <% } %>
 </td>
 <td>
 <% if(((TimeTable)(list.get("list12"))).getDay().equals("수")){ %>
-<%= ((TimeTable)(list.get("list9"))).getName() %>
+<%= ((TimeTable)(list.get("list12"))).getName() %>
 <% }else{ %>
 	&nbsp;
 <% } %>
 </td>
 <td>
 <% if(((TimeTable)(list.get("list12"))).getDay().equals("목")){ %>
-<%= ((TimeTable)(list.get("list9"))).getName() %>
+<%= ((TimeTable)(list.get("list12"))).getName() %>
 <% }else{ %>
 	&nbsp;
 <% } %>
 </td>
 <td>
 <% if(((TimeTable)(list.get("list12"))).getDay().equals("금")){ %>
-<%= ((TimeTable)(list.get("list9"))).getName() %>
+<%= ((TimeTable)(list.get("list12"))).getName() %>
 <% }else{ %>
 	&nbsp;
 <% } %>
@@ -276,10 +276,10 @@ border:1px solid black;
 </tr>
 <tr>
 <td>15 : 00 ~ 15 : 50</td>
-<% if(((TimeTable)(list.get("list15"))) != null){ %>
+<% if(((TimeTable)(list.get("list14"))) != null){ %>
 <td>
-<% if(((TimeTable)(list.get("list15"))).getDay().equals("월")){ %>
-<%= ((TimeTable)(list.get("list9"))).getName() %>
+<% if(((TimeTable)(list.get("list14"))).getDay().equals("월")){ %>
+<%= ((TimeTable)(list.get("list14"))).getName() %>
 <% }else{ %>
 	&nbsp;
 <% } %>

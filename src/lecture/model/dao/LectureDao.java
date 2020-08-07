@@ -381,7 +381,6 @@ public class LectureDao {
 				t.setDay(rset.getString("ltime"));
 				t.setName(rset.getString("lname"));
 				t.setTime(rset.getString("lclock"));
-				System.out.println(t);
 			}
 			
 			

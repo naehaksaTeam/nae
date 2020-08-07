@@ -149,14 +149,12 @@ public class LectureService {
 		Connection conn = getConnection();
 		TimeTable list = ldao.selecTimeTable(conn,studentid,clock);
 		close(conn);
-		if(list == null) {
+		if(list.getName() == null) {
 			String n = "공강";
 			list.setDay(n);
 			list.setName(n);
 			list.setTime(n);
-			System.out.println(n);
 		}
-		
 		return list;
 	}
 }
