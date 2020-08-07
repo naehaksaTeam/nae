@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String error = (String)request.getAttribute("error");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>beet</title>
+<title>Insert title here</title>
+<h1>성적검색 - 관리자용 (학생, 교과목, 학기 )</h1>
 </head>
 <body>
-<h1 align="center">error.jsp</h1>
 
-에러발생 : <%= error %>
 </body>
 </html>

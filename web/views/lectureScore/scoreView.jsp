@@ -1,17 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String error = (String)request.getAttribute("error");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>beet</title>
+<title>Insert title here</title>
+<h1>성적조회페이지 - 학생용 일정기간만 조회하게 하고싶다 </h1>
 </head>
 <body>
-<h1 align="center">error.jsp</h1>
 
-에러발생 : <%= error %>
 </body>
 </html>

@@ -44,6 +44,13 @@ public class AbsenceService {
 		return list;
 	};
 	
+	public ArrayList<Absence> selectDeappAbsence(String able) {
+		Connection conn = getConnection();
+		ArrayList<Absence> list = adao.selectDeappAbsence(conn, able);
+		close(conn);
+		return list;
+	};
+	
 	public int insertAbsence(String value, String studentid) {
 		Connection conn = getConnection();
 		int result = adao.insertAbsence(conn, value, studentid);

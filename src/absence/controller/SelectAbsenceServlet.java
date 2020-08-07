@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import absence.model.service.AbsenceService;
-import absence.model.vo.Absence;;
+import absence.model.vo.Absence;
 
 @WebServlet("/selectab")
-public class SelectSTUAbsenceServlet extends HttpServlet {
+public class SelectAbsenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public SelectSTUAbsenceServlet() {
+    public SelectAbsenceServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -25,10 +25,10 @@ public class SelectSTUAbsenceServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//학번을 가져옴 . 
-		String studentid = request.getParameter("studentid");
-
+		String studentid = "201701341";
+		
 		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(studentid);
-		System.out.println(list);
+		
 		RequestDispatcher view = null;
 		if( list != null) {
 			view = request.getRequestDispatcher("views/absence/absenceRequestView.jsp");
@@ -36,7 +36,7 @@ public class SelectSTUAbsenceServlet extends HttpServlet {
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "학번 : " +studentid +"\n 신청내역이 없습니다.");
+			request.setAttribute("error", "학번 : " +studentid +"\n 신청내역이 없습니다.");
 			view.forward(request, response);
 		}
 		

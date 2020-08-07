@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<h1>성적입력페이지</h1>
 </head>
 <body>
 

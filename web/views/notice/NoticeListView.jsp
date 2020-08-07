@@ -14,7 +14,7 @@
 <title>test1</title>
 </head>
 <body>
-<%@ include file="../common/header.jsp" %>
+
 <hr>
 <h1 align="center">공지사항</h1>
 <br>
@@ -22,26 +22,31 @@
 <tr>
 <th>번호</th>
 <th>제목</th>
+
 <th>작성자</th>
+<th>작성날짜</th>
+<th>글내용</th>
 <th>첨부파일</th>
-<th>날짜</th>
-<th>게시글</th>
+<th>조회수</th>
 </tr>
 <% for(Notice n : list){ %>
 <tr>
 <td><%= n.getNoticeNo() %></td>
-<td><a href="/test1/ndetail?noticeno=<%= n.getNoticeNo() %>"><%= n.getNoticeTitle() %></td>
-<td><%= n.getNoticeWriter() %></td>
-<td>
-	<% if(n.getOriginalFilepath() !=null){ %>
-	◎
-	
-	<%}else{ //첨부파일 없을때  %>
+<td><a href="/beet/ndetail?noticeno=<%= n.getNoticeNo() %>"><%= n.getNoticeTitle() %></td>
 
-	<% } %>
-</td>
+<td><%= n.getNoticeWriter() %></td>
 <td><%= n.getNoticeDate() %></td>
 <td><%= n.getNoticeContent() %></td>
+<td>
+	<% if(n.getOriginalFile() !=null){ %>
+		◎
+	<%}else{ //첨부파일 없을때  %>
+		&nbsp;
+	<% } %>
+</td>
+
+<td><%= n.getNoticeReadCount() %></td> 
+
 
 <% } %>
 </tr>
