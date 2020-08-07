@@ -13,16 +13,16 @@ import professor.model.service.MemberService;
 import student.model.vo.Member;
 
 /**
- * Servlet implementation class MemberSignupServlet
+ * Servlet implementation class MemberUpdateServelet
  */
-@WebServlet("/msignup")
-public class MemberSignupServlet extends HttpServlet {
+@WebServlet("/mupdate")
+public class MemberUpdateServelet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberSignupServlet() {
+    public MemberUpdateServelet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +31,11 @@ public class MemberSignupServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 회원가입 처리용 컨트롤러
-				//1. 전송온 값에 한글이 있다면 인코딩 처리함
+		//회원 정보 수정 컨트롤러 
+				//1.한글화 처리
 				request.setCharacterEncoding("utf-8");
 				
-				//2. 전송온 값 꺼내서, 변수 또는 객체에 기록 저장 처리함
-				
+				//2.
 				Member member = new Member();
 				
 				member.setId(request.getParameter("id"));
@@ -49,29 +48,16 @@ public class MemberSignupServlet extends HttpServlet {
 				member.setTreasure(request.getParameter("treasure"));
 				member.setPassword(request.getParameter("password"));
 				
-				//같은 이름으로 여러 개의 값이 전송온 경우
-				//hobby=game&hobby=climb&hobby=sports
-				/*
-				 * String[] hobbies = request.getParameterValues("hobby"); for(String hobby :
-				 * hobbies) { System.out.println(hobby); } //, 를 구분자로 문자배열을 하나의 문자열로 합치기 String
-				 * joinHobby = String.join(",", hobbies); System.out.println(joinHobby);
-				 * member.setHobby(joinHobby);
-				 */
-			
+				//3. 
+				int result = new MemberService().updateMember(member);
 				
-				//3. 서비스 객체 생성하고, 서비스 메소드를 이용해서 객체 전달하고
-				//처리 결과받기
-				int result = new MemberService().insertMember(member);
-				
-				//4. 받은 결과에 따라 성공/실패 뷰 선택해서 내보내기
-				if(result > 0) {
-					response.sendRedirect("beet/views/member/loginPage.html");
-				}else {
-					//response.sendRedirect("/test1/views/common/error.jsp");
-					
-					RequestDispatcher view = request
-							.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", "회원 가입 실패!");
+				//4.
+				if(result >0) {//수정 성공시
+					//myinfo 서블릿을 실행해서 , 내 정보보기 페이지를 내보냄 (수정된 정보를 다시 select해서 내보내야함)
+					response.sendRedirect("/beet/myinfo?userid="+ member.getId());
+				}else {//수정실패시
+					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+					request.setAttribute("message",member.getId()+"회원의 정보 수정 실패.");
 					view.forward(request, response);
 				}
 	}

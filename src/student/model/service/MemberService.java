@@ -22,5 +22,9 @@ public class MemberService {
 		return member;
 	}
 
+	public int insertMember(Member member) {
+	
+	}
+
 	
 }

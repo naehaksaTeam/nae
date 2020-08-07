@@ -31,10 +31,10 @@ public class NoticeDao {
 			while (rset.next()) {
 				Notice notice = new Notice();
 
-				notice.setNoticeNo(rset.getInt("notice"));
+				notice.setNoticeNo(rset.getInt("noticeno"));
 				notice.setNoticeTitle(rset.getString("noticetitle"));
-				notice.setNoticeDate(rset.getDate("noticedate"));
 				notice.setNoticeWriter(rset.getString("noticewriter"));
+				notice.setNoticeDate(rset.getDate("noticedate"));
 				notice.setNoticeContent(rset.getString("noticecontent"));
 				notice.setOriginalFile(rset.getString("originalfile"));
 				notice.setNoticeReadCount(rset.getInt("noticereadcount"));
