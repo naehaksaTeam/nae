@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 import student.model.vo.Student;
 import static common.JDBCTemp.*;
-public class MemberDao {
-   public  MemberDao() {
+public class Dao {
+   public  Dao() {
    }
    
    
@@ -17,13 +17,13 @@ public class MemberDao {
       int result = 0;
       PreparedStatement pstmt = null;
 
-      String query = "insert into student values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,defalut,defalut,?)";
+      String query = "insert into student values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,defalut,defalut,default)";
 
       try {
          pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, student.getStudentid());
-         pstmt.setString(2, student.getStudentname());
-         pstmt.setString(3, student.getStudentssn());
+         pstmt.setString(1, student.getId());
+         pstmt.setString(2, student.getName());
+         pstmt.setString(3, student.getSsn());
          pstmt.setString(4, student.getAddress());
          pstmt.setString(5, student.getPhone());
          pstmt.setString(6, student.getEmail());
@@ -44,12 +44,12 @@ public class MemberDao {
    }
    
    //학생 한명선택
-   public Student selectOne(Connection conn, String studentid) {
+   public Student selectOne(Connection conn, String id) {
       Student student = null;
       Statement stmt = null;
       ResultSet rset = null;
 
-      String query = "select * from student where studentid="+ studentid;
+      String query = "select * from student where id="+ id;
 
       try {
          stmt = conn.createStatement();
@@ -58,9 +58,9 @@ public class MemberDao {
          if (rset.next()) {
             student = new Student();
 
-            student.setStudentid("studentid");
-            student.setStudentname(rset.getString("studentname"));
-            student.setStudentssn(rset.getString("studentssn"));
+            student.setId("id");
+            student.setName(rset.getString("name"));
+            student.setSsn(rset.getString("ssn"));
             student.setAddress(rset.getString("address"));
             student.setPhone(rset.getString("phone"));
             student.setGender(rset.getString("gender"));
@@ -72,6 +72,7 @@ public class MemberDao {
             student.setAbsencewhether(rset.getString("absencewhether"));
             student.setAbsencecount(rset.getInt("absencecount"));
             student.setSsname(rset.getString("ssname"));
+            student.setPassword(rset.getString("password"));
          }
       } catch (Exception e) {
          e.printStackTrace();
@@ -99,9 +100,9 @@ public class MemberDao {
          while (rset.next()) {
             Student student = new Student();
             
-            student.setStudentid("studentid");
-            student.setStudentname(rset.getString("studentname"));
-            student.setStudentssn(rset.getString("studentssn"));
+            student.setId("id");
+            student.setName(rset.getString("name"));
+            student.setSsn(rset.getString("ssn"));
             student.setAddress(rset.getString("address"));
             student.setPhone(rset.getString("phone"));
             student.setGender(rset.getString("gender"));
@@ -113,6 +114,7 @@ public class MemberDao {
             student.setAbsencewhether(rset.getString("absencewhether"));
             student.setAbsencecount(rset.getInt("absencecount"));
             student.setSsname(rset.getString("ssname"));
+            student.setPassword(rset.getString("password"));
 
             list.add(student);
          }
@@ -130,11 +132,11 @@ public class MemberDao {
       int result = 0;
       PreparedStatement pstmt = null;
 
-      String query = "update student set studentid = ? where majorno = ?";
+      String query = "update student set id = ? where majorno = ?";
 
       try {
          pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, student.getStudentid());
+         pstmt.setString(1, student.getId());
          pstmt.setString(2, student.getMajorno());
 
          result = pstmt.executeUpdate();
@@ -148,15 +150,15 @@ public class MemberDao {
       return result;
    }
 
-   public int delete(Connection conn, String studentid) {
+   public int delete(Connection conn, String id) {
       int result = 0;
       PreparedStatement pstmt = null;
 
-      String query = "delete from student where studentid = ?";
+      String query = "delete from student where id = ?";
 
       try {
          pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, studentid);
+         pstmt.setString(1, id);
 
          result = pstmt.executeUpdate();
 
