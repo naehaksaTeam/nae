@@ -26,7 +26,7 @@ COMMENT ON COLUMN absenceinfor.information IS '안내사항';
 
 CREATE TABLE absence (
    requestid   VARCHAR2(30) NOT NULL,
-   studentid   VARCHAR2(10) NOT NULL,
+   id   VARCHAR2(10) NOT NULL,
    requestdate DATE   DEFAULT SYSDATE   NOT NULL,
    limitcanceldate DATE DEFAULT SYSDATE+1 NOT NULL,
    approval char(1) default 'N', 
@@ -35,7 +35,7 @@ CREATE TABLE absence (
 
 COMMENT ON COLUMN absence.requestid IS '신청코드';
 
-COMMENT ON COLUMN absence.studentid IS '학번';
+COMMENT ON COLUMN absence.id IS '학번';
 
 COMMENT ON COLUMN absence.requestdate IS '신청일';
 
@@ -49,7 +49,7 @@ comment on COLUMN absence.approval is '승인';
 CREATE TABLE lplan (
 	lcode	VARCHAR2(10)		NOT NULL,
 	room	VARCHAR2(20)		NOT NULL,
-	professorid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	content	VARCHAR2(500)		NULL
 );
 
@@ -57,21 +57,21 @@ COMMENT ON COLUMN lplan.lcode IS '강의코드';
 
 COMMENT ON COLUMN lplan.room IS '강의실명';
 
-COMMENT ON COLUMN lplan.professorid IS '교수번호';
+COMMENT ON COLUMN lplan.id IS '교수번호';
 
 COMMENT ON COLUMN lplan.content IS '수업내용';
 
 
 CREATE TABLE termscore (
     semester    VARCHAR2(10)    NOT NULL,
-    studentid   VARCHAR2(10)    NOT NULL,
+    id   VARCHAR2(10)    NOT NULL,
     termaplpoint    NUMBER      NULL,
     termgetpoint    NUMBER      NULL,
     grdpoint    NUMBER  DEFAULT 130 NULL,
     tgpa    NUMBER      NULL
 );
 COMMENT ON COLUMN termscore.semester IS '년도학기';
-COMMENT ON COLUMN termscore.studentid IS '학번';
+COMMENT ON COLUMN termscore.id IS '학번';
 COMMENT ON COLUMN termscore.termaplpoint IS '총신청학점';
 COMMENT ON COLUMN termscore.termgetpoint IS '총취득학점';
 COMMENT ON COLUMN termscore.grdpoint IS '졸업이수학점';
@@ -111,7 +111,7 @@ COMMENT ON COLUMN notice.noticereadcount IS '조회수';
 
 CREATE TABLE attendance (
 	lcode	VARCHAR2(10)		NOT NULL,
-	studentid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	thisweek	VARCHAR2(10)		NULL,
 	absent3	CHAR(1)	DEFAULT 'N'	NULL,
 week1	CHAR(1)		NULL,
@@ -134,7 +134,7 @@ week16	CHAR(1)		NULL
 
 COMMENT ON COLUMN attendance.lcode IS '강의코드';
 
-COMMENT ON COLUMN attendance.studentid IS '학번';
+COMMENT ON COLUMN attendance.id IS '학번';
 
 COMMENT ON COLUMN attendance.thisweek IS '현재출석주차';
 
@@ -208,7 +208,7 @@ COMMENT ON COLUMN lroom.roommax IS '수용인원';
 
 CREATE TABLE lecture (
 	lcode	VARCHAR2(10)		NOT NULL,
-	professorid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	lname	VARCHAR2(100)		NULL,
 	category	VARCHAR2(30)		NULL,
 	lpoint NUMBER 	NULL, 
@@ -219,7 +219,7 @@ CREATE TABLE lecture (
 
 COMMENT ON COLUMN lecture.lcode IS '강의코드';
 
-COMMENT ON COLUMN lecture.professorid IS '교수번호';
+COMMENT ON COLUMN lecture.id IS '교수번호';
 
 COMMENT ON COLUMN lecture.lname IS '강의명';
 
@@ -279,7 +279,7 @@ COMMENT ON COLUMN major.categoryname IS '구분명';
 CREATE TABLE lapplication (
 	receptionno	VARCHAR2(10)		NOT NULL,
 	lcode	VARCHAR2(10)		NOT NULL,
-	studentid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	semester	VARCHAR2(10)		NOT NULL,
 	lpersonnel	VARCHAR2(20)		NOT NULL,
 	room	VARCHAR2(10)		NOT NULL,
@@ -290,7 +290,7 @@ COMMENT ON COLUMN lapplication.receptionno IS '강의신청코드';
 
 COMMENT ON COLUMN lapplication.lcode IS '강의코드';
 
-COMMENT ON COLUMN lapplication.studentid IS '학생번호';
+COMMENT ON COLUMN lapplication.id IS '학생번호';
 
 COMMENT ON COLUMN lapplication.semester IS '년도학기';
 
@@ -302,7 +302,7 @@ COMMENT ON COLUMN lapplication.retake IS '재수강여부';
 
 CREATE TABLE reception (
 	receptionno	VARCHAR2(10)		NOT NULL,
-	professorid	VARCHAR2(10)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
 	reason	VARCHAR2(500)		NOT NULL,
 	way	VARCHAR2(20)		NOT NULL,
 	dayoff	DATE	DEFAULT SYSDATE	NOT NULL,
@@ -310,12 +310,12 @@ CREATE TABLE reception (
 	rtime	VARCHAR2(10)		NOT NULL,
 	lcode	VARCHAR2(10)		NOT NULL,
 	room	VARCHAR2(20)		NOT NULL,
-	subprofessorid	VARCHAR2(10)		NULL
+	subid	VARCHAR2(10)		NULL
 );
 
 COMMENT ON COLUMN reception.receptionno IS '접수번호';
 
-COMMENT ON COLUMN reception.professorid IS '신청교수번호';
+COMMENT ON COLUMN reception.id IS '신청교수번호';
 
 COMMENT ON COLUMN reception.reason IS '사유';
 
@@ -331,16 +331,16 @@ COMMENT ON COLUMN reception.lcode IS '강의코드';
 
 COMMENT ON COLUMN reception.room IS '강의실명';
 
-COMMENT ON COLUMN reception.subprofessorid IS '대리교수번호';
+COMMENT ON COLUMN reception.subid IS '대리교수번호';
 
 
 CREATE TABLE lecturescore (
 	receptionno VARCHAR2(10)	NOT NULL,
 	lcode	VARCHAR2(10)		NOT NULL,
-	studentid	VARCHAR2(10)		NOT NULL,
-	atndscore	NUMBER		NULL,
+	id	VARCHAR2(10)		NOT NULL,
+	atndnscore	NUMBER		NULL,
 	midscore		NUMBER		NULL,
-	examscore	NUMBER		NULL,
+	finalscore		NUMBER		NULL,
 	totalscore	NUMBER		NULL,
 	grade	CHAR(2)		NULL,
 	atndnbelow CHAR(1) 	NULL
@@ -350,13 +350,13 @@ COMMENT ON COLUMN lecturescore.receptionno IS '강의신청코드';
 
 COMMENT ON COLUMN lecturescore.lcode IS '강의코드';
 
-COMMENT ON COLUMN lecturescore.studentid IS '학번';
+COMMENT ON COLUMN lecturescore.id IS '학번';
 
 COMMENT ON COLUMN lecturescore.atndscore IS '출결점수';
 
 COMMENT ON COLUMN lecturescore.midscore IS '중간점수';
 
-COMMENT ON COLUMN lecturescore.examscore IS '기말점수';
+COMMENT ON COLUMN lecturescore.finalscore IS '기말점수';
 
 COMMENT ON COLUMN lecturescore.totalscore IS '과목총점수';
 
@@ -367,9 +367,9 @@ COMMENT ON COLUMN lecturescore.atndnbelow IS '출석미달';
 
 
 CREATE TABLE student (
-	studentid	VARCHAR2(10)		NOT NULL,
-	studentname	VARCHAR2(20)		NOT NULL,
-	studentssn	VARCHAR2(14)		NOT NULL,
+	id	VARCHAR2(10)		NOT NULL,
+	name	VARCHAR2(20)		NOT NULL,
+	ssn	VARCHAR2(14)		NOT NULL,
 	address	VARCHAR2(500)	NOT NULL,
 	phone	VARCHAR2(20)	NULL,
 	gender	VARCHAR2(1)	DEFAULT 'M'	NOT NULL,
@@ -387,11 +387,11 @@ CREATE TABLE student (
 
 
 
-COMMENT ON COLUMN student.studentid IS '학생번호';
+COMMENT ON COLUMN student.id IS '학생번호';
 
-COMMENT ON COLUMN student.studentname IS '학생명';
+COMMENT ON COLUMN student.name IS '학생명';
 
-COMMENT ON COLUMN student.studentssn IS '주민등록번호';
+COMMENT ON COLUMN student.ssn IS '주민등록번호';
 
 COMMENT ON COLUMN student.categoryname IS '구분명';
 
@@ -418,9 +418,9 @@ COMMENT ON COLUMN student.ssname IS '장학금명';
 
 
 CREATE TABLE professor (
-	professorid	VARCHAR2(10)		NOT NULL,
-	professorname	VARCHAR2(10)		NOT NULL,
-	professorssn	VARCHAR2(20)		NULL,
+	id	VARCHAR2(10)		NOT NULL,
+	name	VARCHAR2(10)		NOT NULL,
+	ssn	VARCHAR2(20)		NULL,
 	address	VARCHAR2(500)	NOT NULL,
 	phone	VARCHAR2(20)	NULL,
 	gender	VARCHAR2(1)	DEFAULT 'M'	NOT NULL,
@@ -430,11 +430,11 @@ CREATE TABLE professor (
 	majorno	VARCHAR2(20)		NOT NULL
 );
 
-COMMENT ON COLUMN professor.professorid IS '교수번호';
+COMMENT ON COLUMN professor.id IS '교수번호';
 
-COMMENT ON COLUMN professor.professorname IS '교수명';
+COMMENT ON COLUMN professor.name IS '교수명';
 
-COMMENT ON COLUMN professor.professorssn IS '주민등록번호';
+COMMENT ON COLUMN professor.ssn IS '주민등록번호';
 
 COMMENT ON COLUMN professor.categoryname IS '구분명';
 
@@ -452,9 +452,9 @@ COMMENT ON COLUMN professor.treasure IS '나의보물1호';
 
 
 CREATE TABLE administrator (
-	adminid	VARCHAR2(10)	NOT NULL,
-	adminname	VARCHAR2(10)	NOT NULL,
-	adminadssn	VARCHAR2(20)	NOT NULL,
+	id	VARCHAR2(10)	NOT NULL,
+	name	VARCHAR2(10)	NOT NULL,
+	ssn	VARCHAR2(20)	NOT NULL,
 	address	VARCHAR2(500)	NOT NULL,
 	phone	VARCHAR2(20)	NULL,
 	gender	VARCHAR2(1)	DEFAULT 'M'	NOT NULL,
@@ -462,11 +462,11 @@ CREATE TABLE administrator (
 	treasure	VARCHAR2(200)	NOT NULL,
 	adminhiredate	DATE		NULL
 );
-commit;
 
-COMMENT ON COLUMN administrator.adminid IS '관리자번호';
 
-COMMENT ON COLUMN administrator.adminname IS '관리자명';
+COMMENT ON COLUMN administrator.ssn IS '관리자번호';
+
+COMMENT ON COLUMN administrator.name IS '관리자명';
 
 COMMENT ON COLUMN administrator.adminssn IS '주민등록번호';
 
@@ -488,13 +488,13 @@ COMMENT ON COLUMN administrator.adminhiredate IS '입사일';
 
 CREATE TABLE ssbenefitst (
 	benefitterm NUMBER NOT NULL,
-	studentid	VARCHAR2(10) NOT NULL,
+	id	VARCHAR2(10) NOT NULL,
 	ssname	VARCHAR2(40) NOT NULL
 );
 
 COMMENT ON COLUMN ssbenefitst.benefitterm IS '장학금수혜학기';
 
-COMMENT ON COLUMN ssbenefitst.studentid IS '학번';
+COMMENT ON COLUMN ssbenefitst.id IS '학번';
 
 COMMENT ON COLUMN ssbenefitst.ssname IS '장학금명';
 
@@ -504,7 +504,7 @@ COMMENT ON COLUMN ssbenefitst.ssname IS '장학금명';
 
 ALTER TABLE termscore ADD CONSTRAINT PK_TOTALSCORE PRIMARY KEY (
 	semester,
-	studentid
+	id
 	
 );
 
@@ -514,7 +514,7 @@ ALTER TABLE notice ADD CONSTRAINT PK_NOTICE PRIMARY KEY (
 
 ALTER TABLE attendance ADD CONSTRAINT PK_ATTENDANCE PRIMARY KEY (
 	lcode,
-	studentid
+	id
 );
 
 ALTER TABLE schedule ADD CONSTRAINT PK_SCHEDULE PRIMARY KEY (
@@ -554,20 +554,20 @@ ALTER TABLE lecturescore ADD CONSTRAINT PK_LECTURESCORE PRIMARY KEY (
 );
 
 ALTER TABLE student ADD CONSTRAINT PK_STUDENT PRIMARY KEY (
-	studentid
+	id
 );
 
 ALTER TABLE professor ADD CONSTRAINT PK_PROFESSOR PRIMARY KEY (
-	professorid
+	id
 );
 
 ALTER TABLE administrator ADD CONSTRAINT PK_ADMIN PRIMARY KEY (
-	adminid
+	ssn
 );
 
 ALTER TABLE ssbenefitst ADD CONSTRAINT PK_SSBENEFITST PRIMARY KEY (
 	benefitterm,
-	studentid
+	id
 );
 
 ALTER TABLE absence ADD CONSTRAINT PK_ABSENCE PRIMARY KEY (
@@ -581,10 +581,10 @@ ALTER TABLE lplan ADD CONSTRAINT PK_LPLAN PRIMARY KEY (
 
 
 ALTER TABLE termscore ADD CONSTRAINT FK_student_TO_totalscore_1 FOREIGN KEY (
-	studentid
+	id
 )
 REFERENCES student (
-	studentid
+	id
 );
 
 ALTER TABLE lecturescore ADD CONSTRAINT FK_lecture_TO_totalscore_1 FOREIGN KEY (
@@ -599,7 +599,7 @@ ALTER TABLE notice ADD CONSTRAINT FK_admin_TO_notice_1 FOREIGN KEY (
 	adno
 )
 REFERENCES administrator (
-	adminid
+	ssn
 );
 
 ALTER TABLE attendance ADD CONSTRAINT FK_lecture_TO_attendance_1 FOREIGN KEY (
@@ -610,25 +610,25 @@ REFERENCES lecture (
 );
 
 ALTER TABLE attendance ADD CONSTRAINT FK_student_TO_attendance_1 FOREIGN KEY (
-	studentid
+	id
 )
 REFERENCES student (
-	studentid
+	id
 );
 
 ALTER TABLE schedule ADD CONSTRAINT FK_admin_TO_schedule_1 FOREIGN KEY (
 	adno
 )
 REFERENCES administrator (
-	adminid
+	ssn
 );
 
 
 ALTER TABLE lecture ADD CONSTRAINT FK_professor_TO_lecture_1 FOREIGN KEY (
-	professorid
+	id
 )
 REFERENCES professor (
-	professorid
+	id
 );
 
 alter table lecture disable constraint FK_professor_TO_lecture_1;
@@ -651,10 +651,10 @@ REFERENCES lecture (
 );
 
 ALTER TABLE lapplication ADD CONSTRAINT FK_student_TO_lapplication_1 FOREIGN KEY (
-	studentid
+	id
 )
 REFERENCES student (
-	studentid
+	id
 );
 
 
@@ -667,17 +667,17 @@ REFERENCES lroom (
 
 
 ALTER TABLE reception ADD CONSTRAINT FK_professor_TO_reception_1 FOREIGN KEY (
-	professorid
+	id
 )
 REFERENCES professor (
-	professorid
+	id
 );
 
 ALTER TABLE reception ADD CONSTRAINT FK_professor_TO_reception_2 FOREIGN KEY (
-	subprofessorid
+	subid
 )
 REFERENCES professor (
-	professorid
+	id
 );
 
 ALTER TABLE reception ADD CONSTRAINT FK_lecture_TO_reception_1 FOREIGN KEY (
@@ -702,10 +702,10 @@ REFERENCES lecture (
 );
 
 ALTER TABLE lecturescore ADD CONSTRAINT FK_student_TO_lecturescore_1 FOREIGN KEY (
-	studentid
+	id
 )
 REFERENCES student (
-	studentid
+	id
 );
 
 ALTER TABLE student ADD CONSTRAINT FK_category_TO_student_1 FOREIGN KEY (
@@ -744,14 +744,14 @@ REFERENCES major (
 );
 
 
-ALTER TABLE ssbenefitst ADD CONSTRAINT FK_student_TO_ssbenefitst_1 FOREIGN KEY (studentid)
-REFERENCES student (studentid) on delete cascade;
+ALTER TABLE ssbenefitst ADD CONSTRAINT FK_student_TO_ssbenefitst_1 FOREIGN KEY (id)
+REFERENCES student (id) on delete cascade;
 
 ALTER TABLE ssbenefitst ADD CONSTRAINT FK_scholarship_TO_ssbenefitst FOREIGN KEY (ssname)
 REFERENCES scholarship (ssname) on delete cascade;
 
-ALTER TABLE absence ADD CONSTRAINT FK_student_TO_absence_1 FOREIGN KEY (studentid)
-REFERENCES student (studentid) on delete cascade;
+ALTER TABLE absence ADD CONSTRAINT FK_student_TO_absence_1 FOREIGN KEY (id)
+REFERENCES student (id) on delete cascade;
 
 
 ALTER TABLE lplan ADD CONSTRAINT FK_lecture_TO_lplan_1 FOREIGN KEY (
@@ -769,10 +769,10 @@ REFERENCES lroom (
 );
 
 ALTER TABLE lplan ADD CONSTRAINT FK_professor_TO_lplan_1 FOREIGN KEY (
-	professorid
+	id
 )
 REFERENCES professor (
-	professorid
+	id
 );
 
 --비밀번호 컬럼추가
@@ -881,7 +881,7 @@ INSERT INTO lroom VALUES ('203','본관','15');
 
 --강의 
 INSERT INTO lecture VALUES ('l001','P101','문학개론','전공','3','22','월','101');
-INSERT INTO lecture VALUES ('l002','P404','화학공학입문','교양1','2','30','화','102');
+INSERT INTO lecture VALUES ('l002','P404','화학공학입문','교양','2','30','화','102');
 INSERT INTO lecture VALUES ('l003','P410','화공열역학1','전공','3','21','수','103');
 INSERT INTO lecture VALUES ('l004','P416','프로젝트종합설계  ','전공','2','24','목','201');
 INSERT INTO lecture VALUES ('l005','P107','C프로그래밍','전공','3','26','금','202');
@@ -1523,9 +1523,30 @@ INSERT INTO schedule VALUES ('s160','A005','2021학년도 1학기 복학 신청'
 -- 공지사항
 INSERT INTO notice VALUES ('10001','A002','2020학년도 제2학기 비전임교원(초빙/겸임/강사) 초빙','김기수','20/07/10','2020학년도 제2학기 신규 임용할 비전임교원(초빙/겸임/강사)을 다음과 같이 모십니다.\n<인터넷 지원서 입력기간>\n2020.07.22(수) ~ 07.26(일) 오후 23:00까지\n<서류접수(지원자 전원)>\n2020.07.27(월) ~ 07.28(화) 오후 14:00까지(2일간)\n자세한 사항은 아래 사이트에서 확인하시기 바랍니다.','','',50);
 
+CREATE OR REPLACE VIEW AtndnView
+as select semester, lcode, lname, studentid, majorname, studentname, category, lpoint, ltime, le.room, le.capacity, professorname, absent3, week1, week2, week3, week4,
+week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16
+from student s
+join major m using (majorno)
+join lapplication la using (studentid)
+join lecture le using (lcode)
+join professor using (professorid)
+left join attendance using (lcode, studentid);
+
+CREATE OR REPLACE VIEW LScoreView
+as SELECT STUDENTID, STUDENTNAME, MAJORNAME, LCODE, LNAME, CATEGORY, ATNDNSCORE, MIDSCORE, FINALSCORE, TOTALSCORE, GRADE
+FROM STUDENT
+JOIN MAJOR USING (MAJORNO)
+JOIN LECTURESCORE USING (STUDENTID)
+JOIN LECTURE USING (LCODE);
+
+select s.id, s.name, majorname, lcode, lname, category, ATNDNSCORE, MIDSCORE, FINALSCORE, TOTALSCORE, GRADE
+from student s
+join major using (majorno)
+join lecturescore ls on (s.id=ls.id)
+join lecture using (lcode);
+
 commit;
-
-
 
 
 
