@@ -31,6 +31,7 @@ public class SelectScholarshipServlet extends HttpServlet {
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", );
 		}
 	}
 
