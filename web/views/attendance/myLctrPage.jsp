@@ -116,11 +116,11 @@
 	ArrayList<Atndn> list2 = new ArrayList<Atndn>();
 	var selected = document.getElementbyId(myselect);
 	
-	function SelectSemester{		
+/* 	function(){		
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getSemester().equals(selected)){
 				
-			}
+			} */
 			
 		}
 	}

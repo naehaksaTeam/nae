@@ -21,7 +21,7 @@ public class AtndnDao {
 
 	
 //select 내 강의목록(리스트-> lecture꺼 갖다쓰려면?? studentname??) 
-	//view 쓸 수 있나?  //vo 만들기?? 
+	//view 쓸 수 있나?  //vo 만들기??  컬럼중복 뭐지 ㅠㅠ group by dinstinct 다 안됨 
 	public ArrayList<Atndn> selectMyLctr(Connection conn, String id) {
 		ArrayList<Atndn> list = new ArrayList<Atndn>();
 		PreparedStatement pstmt = null;
@@ -53,13 +53,13 @@ public class AtndnDao {
 		}
 		return list;
 	}
-	//select 나의 출결현황 
-		public ArrayList<Atndn> AtndnList(Connection conn, String id) {
+	//select 출결현황 
+		public ArrayList<Atndn> AtndnList(Connection conn, String id, String lcode) {
 			ArrayList<Atndn> list = new ArrayList<Atndn>();
 			PreparedStatement pstmt = null;
 			ResultSet rset = null;
 			
-			String query = "select sid, category, lcode, lname, ltime, lpoint, room, pname ,absent3,"
+			String query = "select sid, category, lcode, lname, ltime, l lpoint, room, pname ,absent3,"
 					+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16"
 					+ "from AtndnView where sid = ? and lcode = ?";
 			
