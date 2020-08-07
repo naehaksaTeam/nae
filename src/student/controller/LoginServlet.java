@@ -50,7 +50,7 @@ public class LoginServlet extends HttpServlet {
 			MemberService mservice = new MemberService();
 			//로그인 처리용 메소드로 값 전달하고, 처리 결과 받기
 			Member loginMember = (Member)mservice.loginCheck(userid, userpwd);
-			
+			System.out.println(loginMember);
 			//4. 받은 결과로 성공이면 성공페이지를, 실패이면 실패페이지를 내보냄
 			if(loginMember != null) {
 				//로그인 상태를 확인하기 위한 세션 객체 만들기

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import absence.model.service.AbsenceService;
 import absence.model.vo.Absence;;
@@ -23,14 +24,16 @@ public class SelectSTUAbsenceServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
+
 		//학번을 가져옴 . 
 		String studentid = request.getParameter("studentid");
 
 		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(studentid);
 		System.out.println(list);
 		RequestDispatcher view = null;
-		if( list != null) {
+		if(loginMember != null && list != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginMember", loginMember);
 			view = request.getRequestDispatcher("views/absence/absenceRequestView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);

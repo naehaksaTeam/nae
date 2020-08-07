@@ -47,7 +47,7 @@ studentid  <input type="text" name="studentid">
   <button onclick="javascript:location.href='/beet/mylctr'" >강의목록</button>
   <button onclick="javascript:location.href='/beet/atnlist'" >출결현황</button>
   <button onclick="javascript:location.href='/beet/atnedit'" >출결입력</button>
-  <button onclick="javascript:location.href='/beet/atnlist'" >성적조회</button>
+  <button onclick="javascript:location.href='/beet/tsselect'" >성적조회</button>
   <button onclick="javascript:location.href='/beet/atnlist'" >성적입력</button>
   <button>성적조회</button>
 </div>
