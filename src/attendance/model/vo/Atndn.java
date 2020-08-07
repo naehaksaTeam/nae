@@ -2,7 +2,8 @@
 
 import lecture.model.vo.Lecture;
 
-public class Atndn extends Lecture{
+public class Atndn extends Lecture  implements java.io.Serializable {
+	private final static long serialVersionUID = 456456L;
 	private String lcode;
 	private String studentid;
 	private String thisweek;
