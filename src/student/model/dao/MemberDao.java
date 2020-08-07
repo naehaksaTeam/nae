@@ -1,13 +1,15 @@
 package student.model.dao;
 
+import static common.JDBCTemp.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import student.model.vo.Member;
 import student.model.vo.Student;
-import static common.JDBCTemp.*;
 public class MemberDao {
    public  MemberDao() {
    }
@@ -17,13 +19,13 @@ public class MemberDao {
       int result = 0;
       PreparedStatement pstmt = null;
 
-      String query = "insert into student values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,defalut,defalut,?)";
+      String query = "";
 
       try {
          pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, student.getStudentid());
-         pstmt.setString(2, student.getStudentname());
-         pstmt.setString(3, student.getStudentssn());
+         pstmt.setString(1, student.getId());
+         pstmt.setString(2, student.getName());
+         pstmt.setString(3, student.getSsn());
          pstmt.setString(4, student.getAddress());
          pstmt.setString(5, student.getPhone());
          pstmt.setString(6, student.getEmail());
@@ -49,7 +51,7 @@ public class MemberDao {
       Statement stmt = null;
       ResultSet rset = null;
 
-      String query = "select * from student where studentid="+ studentid;
+      String query = "select * from student where id="+ studentid;
 
       try {
          stmt = conn.createStatement();
@@ -58,9 +60,9 @@ public class MemberDao {
          if (rset.next()) {
             student = new Student();
 
-            student.setStudentid("studentid");
-            student.setStudentname(rset.getString("studentname"));
-            student.setStudentssn(rset.getString("studentssn"));
+            student.setId("id");
+            student.setName(rset.getString("name"));
+            student.setSsn(rset.getString("ssn"));
             student.setAddress(rset.getString("address"));
             student.setPhone(rset.getString("phone"));
             student.setGender(rset.getString("gender"));
@@ -99,9 +101,9 @@ public class MemberDao {
          while (rset.next()) {
             Student student = new Student();
             
-            student.setStudentid("studentid");
-            student.setStudentname(rset.getString("studentname"));
-            student.setStudentssn(rset.getString("studentssn"));
+            student.setId("id");
+            student.setName(rset.getString("name"));
+            student.setSsn(rset.getString("ssn"));
             student.setAddress(rset.getString("address"));
             student.setPhone(rset.getString("phone"));
             student.setGender(rset.getString("gender"));
@@ -130,11 +132,11 @@ public class MemberDao {
       int result = 0;
       PreparedStatement pstmt = null;
 
-      String query = "update student set studentid = ? where majorno = ?";
+      String query = "update student set id = ? where majorno = ?";
 
       try {
          pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, student.getStudentid());
+         pstmt.setString(1, student.getId());
          pstmt.setString(2, student.getMajorno());
 
          result = pstmt.executeUpdate();
@@ -152,7 +154,7 @@ public class MemberDao {
       int result = 0;
       PreparedStatement pstmt = null;
 
-      String query = "delete from student where studentid = ?";
+      String query = "delete from student where id = ?";
 
       try {
          pstmt = conn.prepareStatement(query);
@@ -168,5 +170,58 @@ public class MemberDao {
 
       return result;
    }
+
+
+public Member loginCheck(Connection conn, String userid, String userpwd) {
+	Member member = null;
+    PreparedStatement pstmt = null;
+    ResultSet rset =null;
+    
+    String query = "select * " + 
+    		"from (" + 
+    		"select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null from student " + 
+    		"union " + 
+    		"select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " + 
+    		"union " + 
+    		"select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator " + 
+    		") " + 
+    		"where id = ? and password = ?";
+    
+    try {
+       pstmt = conn.prepareStatement(query);
+       pstmt.setString(1, userid);
+       pstmt.setString(2, userpwd);
+       
+       rset = pstmt.executeQuery();
+       
+       if(rset.next()) {
+          member = new Member();
+          
+          member.setId(userid);
+          member.setPassword(userpwd);
+          member.setName(rset.getString("name"));
+          member.setGender(rset.getString("gender"));
+          member.setPhone(rset.getString("phone"));
+          member.setEmail(rset.getString("email"));
+          member.setAddress(rset.getString("address"));
+          member.setTreasure(rset.getString("treasure"));
+          member.setSsn(rset.getString("ssn"));
+          member.setAbsencecount(rset.getInt("absencecount"));
+          member.setAbsencewhether(rset.getString("absencewhether"));
+          //member.setAdminhiredate(rset.getDate("adminhiredate"));//인식 안됨...(확인요청)
+          member.setCategoryname(rset.getString("categoryname"));
+          member.setEntrancedate(rset.getDate("entrancedate"));
+          member.setMajorno(rset.getString("majorno"));
+          member.setSsname(rset.getString("ssname"));
+          
+       }
+    } catch (Exception e) {
+       e.printStackTrace();
+    }finally {
+       close(rset);
+       close(pstmt);
+    }
+    return member;
+}
 
 }

@@ -12,9 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
-import student.model.vo.Admin;
-import student.model.vo.Professor;
-import student.model.vo.Student;
+import student.model.vo.Member;
 
 /**
  * Servlet Filter implementation class SessionCheckFilter
@@ -47,48 +45,20 @@ public class SessionCheckFilter implements Filter {
 		// 로그인 한 상태면 요청한 서블릿으로 넘어감
 
 		HttpServletRequest hrequest = (HttpServletRequest) request;
+		Member loginMember = (Member)hrequest.getSession(false).getAttribute("loginMember");
+		// 세션객체를 꺼내서 그 안에 저장된 getAttribute 를 가져옴
+		if (loginMember == null) {
+			RequestDispatcher view = hrequest.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", "필터 : 로그인해야 이용할 수 있습니다.");
+			view.forward(hrequest, response);
 
-		if (check.equals("student")) {
-			Student loginMember = (Student) hrequest.getSession(false).getAttribute("loginMember");
-			// 세션객체를 꺼내서 그 안에 저장된 getAttribute 를 가져옴
-			if (loginMember == null) {
-				RequestDispatcher view = hrequest.getRequestDispatcher("views/common/error.jsp");
-				request.setAttribute("message", "필터 : 로그인해야 이용할 수 있습니다.");
-				view.forward(hrequest, response);
-
-			} else {
-				// 요청한 서블리으로 넘ㄱㄱ로그인하면 얘가 실행
-				chain.doFilter(request, response);
-
-			}
-		} else if (check.equals("professor")) {
-			Professor loginMember = (Professor) hrequest.getSession(false).getAttribute("loginMember");
-			// 세션객체를 꺼내서 그 안에 저장된 getAttribute 를 가져옴
-			if (loginMember == null) {
-				RequestDispatcher view = hrequest.getRequestDispatcher("views/common/error.jsp");
-				request.setAttribute("message", "필터 : 로그인해야 이용할 수 있습니다.");
-				view.forward(hrequest, response);
-
-			} else {
-				// 요청한 서블리으로 넘ㄱㄱ로그인하면 얘가 실행
-				chain.doFilter(request, response);
-
-			}
 		} else {
-			Admin loginMember = (Admin) hrequest.getSession(false).getAttribute("loginMember");
-			// 세션객체를 꺼내서 그 안에 저장된 getAttribute 를 가져옴
-			if (loginMember == null) {
-				RequestDispatcher view = hrequest.getRequestDispatcher("views/common/error.jsp");
-				request.setAttribute("message", "필터 : 로그인해야 이용할 수 있습니다.");
-				view.forward(hrequest, response);
+			// 요청한 서블리으로 넘ㄱㄱ로그인하면 얘가 실행
+			chain.doFilter(request, response);
 
-			} else {
-				// 요청한 서블리으로 넘ㄱㄱ로그인하면 얘가 실행
-				chain.doFilter(request, response);
-
-			}
 		}
-		////
+
+		
 
 	}
 

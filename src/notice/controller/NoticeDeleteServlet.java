@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class NoticeDeleteServlet
  */
-@WebServlet("/ndelete.ad")
+@WebServlet("/ndelete.all")
 public class NoticeDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

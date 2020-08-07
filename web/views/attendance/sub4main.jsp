@@ -36,9 +36,9 @@
 
 <h1>출결 성적 등록</h1>
 
-<div class="세션대신 입력폼쓰는중">
+<div class="세션대신 입력폼쓰는중" style="margin-bottom:50px;">
 <form action="/beet/mylctr" method="get">
-studentid<input type="text" name="studentid">
+studentid  <input type="text" name="studentid">
 <input type="submit" value="입력">
 </form>
 </div>
@@ -46,6 +46,9 @@ studentid<input type="text" name="studentid">
 <div class="btn-group">
   <button onclick="javascript:location.href='/beet/mylctr'" >강의목록</button>
   <button onclick="javascript:location.href='/beet/atnlist'" >출결현황</button>
+  <button onclick="javascript:location.href='/beet/atnedit'" >출결입력</button>
+  <button onclick="javascript:location.href='/beet/atnlist'" >성적조회</button>
+  <button onclick="javascript:location.href='/beet/atnlist'" >성적입력</button>
   <button>성적조회</button>
 </div>
 

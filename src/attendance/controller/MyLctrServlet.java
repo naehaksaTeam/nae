@@ -40,7 +40,7 @@ public class MyLctrServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		
 		if(list.size() > 0) {
-			view = request.getRequestDispatcher("/views/attendance/mylist.jsp");
+			view = request.getRequestDispatcher("/views/attendance/myLctrPage.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {
