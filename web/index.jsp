@@ -13,7 +13,7 @@
 <hr>
 
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
-<%@ include file="/views/common/sessionChk.jsp" %>
+<%@ include file="views/common/sessionChk.jsp" %>
 
 
 <button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
