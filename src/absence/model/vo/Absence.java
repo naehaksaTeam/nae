@@ -4,26 +4,24 @@ import java.io.Serializable;
 import java.sql.Date;
 
 public class Absence implements Serializable{
-	private final long serialVersionUID = 6669;
+	private final long serialVersionUID = 6669L;
 	private String requestid;
 	private String studentid;
 	private Date requestdate;
-	private Date limitcancledate;
-	private String information;
+	private Date limitcanceldate;
 	private String approval;
 	
 	public Absence() {
 		super();
 	}
 
-	public Absence(String requestid, String studentid, Date requestdate, Date limitcancledate, String information,
+	public Absence(String requestid, String studentid, Date requestdate, Date limitcanceldate,
 			String approval) {
 		super();
 		this.requestid = requestid;
 		this.studentid = studentid;
 		this.requestdate = requestdate;
-		this.limitcancledate = limitcancledate;
-		this.information = information;
+		this.limitcanceldate = limitcanceldate;
 		this.approval = approval;
 	}
 
@@ -51,20 +49,12 @@ public class Absence implements Serializable{
 		this.requestdate = requestdate;
 	}
 
-	public Date getLimitcancledate() {
-		return limitcancledate;
+	public Date getLimitcanceldate() {
+		return limitcanceldate;
 	}
 
-	public void setLimitcancledate(Date limitcancledate) {
-		this.limitcancledate = limitcancledate;
-	}
-
-	public String getInformation() {
-		return information;
-	}
-
-	public void setInformation(String information) {
-		this.information = information;
+	public void setLimitcanceldate(Date limitcanceldate) {
+		this.limitcanceldate = limitcanceldate;
 	}
 
 	public String getApproval() {
@@ -78,7 +68,7 @@ public class Absence implements Serializable{
 	@Override
 	public String toString() {
 		return "Absence [requestid=" + requestid + ", studentid=" + studentid + ", requestdate=" + requestdate
-				+ ", limitcancledate=" + limitcancledate + ", information=" + information + ", approval=" + approval
+				+ ", limitcanceldate=" + limitcanceldate + ", approval=" + approval
 				+ "]";
 	}
 
