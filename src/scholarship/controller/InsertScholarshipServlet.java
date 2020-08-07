@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import scholarship.model.vo.Scholarship;
+
 /**
  * Servlet implementation class InsertScholarshipServlet
  */
@@ -14,24 +16,18 @@ import javax.servlet.http.HttpServletResponse;
 public class InsertScholarshipServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
     public InsertScholarshipServlet() {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		Scholarship ss = new Scholarship();
+		
+		ss.setSsname(request.getParameter("ssname"));
+		ss.setBenefitcon(request.getParameter("benefitcon"));
+		ss.setValue(Integer.parseInt(request.getParameter("value")));
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
