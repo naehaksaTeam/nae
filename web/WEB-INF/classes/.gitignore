@@ -2,4 +2,9 @@
 /attendance/
 /lecture/
 /common/
+<<<<<<< HEAD
+=======
+/absence/
+/notice/
+>>>>>>> 9e7f5668830876750832afc82669878c0111ada8
 /student/

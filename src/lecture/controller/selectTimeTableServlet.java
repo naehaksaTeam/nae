@@ -34,14 +34,24 @@ public class selectTimeTableServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String studentid = request.getParameter("who");
-		
-		ArrayList<TimeTable> list = new LectureService().selecTimeTable(studentid);
-		
-	
+		LectureService ls = new LectureService();
+		TimeTable list9 = ls.selecTimeTable(studentid,"9");
+		TimeTable list10 = ls.selecTimeTable(studentid,"10");
+		TimeTable list11 = ls.selecTimeTable(studentid,"11");
+		TimeTable list12 = ls.selecTimeTable(studentid,"12");
+		TimeTable list13 = ls.selecTimeTable(studentid,"13");
+		TimeTable list14 = ls.selecTimeTable(studentid,"14");
+		TimeTable list15 = ls.selecTimeTable(studentid,"15");
 		
 		RequestDispatcher view = null;
 		view = request.getRequestDispatcher("/views/lecture/강의계획서.jsp");
-		request.setAttribute("list", list);
+		request.setAttribute("list9", list9);
+		request.setAttribute("list10", list10);
+		request.setAttribute("list11", list11);
+		request.setAttribute("list12", list12);
+		request.setAttribute("list13", list13);
+		request.setAttribute("list14", list14);
+		request.setAttribute("list15", list15);
 		view.forward(request, response);
 		
 	}

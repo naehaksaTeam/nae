@@ -16,13 +16,10 @@ DROP TABLE lecturescore CASCADE CONSTRAINTS;
 DROP TABLE professor CASCADE CONSTRAINTS;
 DROP TABLE schedule CASCADE CONSTRAINTS;
 DROP TABLE termscore CASCADE CONSTRAINTS;
-DROP TABLE absenceinfor CASCADE CONSTRAINTS;
+
 
 ------------------------------------------------------------------------------------------------------------------
-create table absenceinfor (
-   information varchar2(200) primary key
-);
-COMMENT ON COLUMN absenceinfor.information IS '안내사항';
+
 
 CREATE TABLE absence (
    requestid   VARCHAR2(30) NOT NULL,
@@ -352,7 +349,7 @@ COMMENT ON COLUMN lecturescore.lcode IS '강의코드';
 
 COMMENT ON COLUMN lecturescore.id IS '학번';
 
-COMMENT ON COLUMN lecturescore.atndscore IS '출결점수';
+COMMENT ON COLUMN lecturescore.atndnscore IS '출결점수';
 
 COMMENT ON COLUMN lecturescore.midscore IS '중간점수';
 
@@ -461,14 +458,15 @@ CREATE TABLE administrator (
 	email	VARCHAR2(500)	NOT NULL,
 	treasure	VARCHAR2(200)	NOT NULL,
 	adminhiredate	DATE		NULL
+	
 );
 
 
-COMMENT ON COLUMN administrator.ssn IS '관리자번호';
+COMMENT ON COLUMN administrator.id IS '관리자번호';
 
 COMMENT ON COLUMN administrator.name IS '관리자명';
 
-COMMENT ON COLUMN administrator.adminssn IS '주민등록번호';
+COMMENT ON COLUMN administrator.ssn IS '주민등록번호';
 
 COMMENT ON COLUMN administrator.address IS '주소';
 
@@ -562,7 +560,7 @@ ALTER TABLE professor ADD CONSTRAINT PK_PROFESSOR PRIMARY KEY (
 );
 
 ALTER TABLE administrator ADD CONSTRAINT PK_ADMIN PRIMARY KEY (
-	ssn
+	id
 );
 
 ALTER TABLE ssbenefitst ADD CONSTRAINT PK_SSBENEFITST PRIMARY KEY (
@@ -599,7 +597,7 @@ ALTER TABLE notice ADD CONSTRAINT FK_admin_TO_notice_1 FOREIGN KEY (
 	adno
 )
 REFERENCES administrator (
-	ssn
+	id
 );
 
 ALTER TABLE attendance ADD CONSTRAINT FK_lecture_TO_attendance_1 FOREIGN KEY (
@@ -620,7 +618,7 @@ ALTER TABLE schedule ADD CONSTRAINT FK_admin_TO_schedule_1 FOREIGN KEY (
 	adno
 )
 REFERENCES administrator (
-	ssn
+	id
 );
 
 
@@ -880,30 +878,30 @@ INSERT INTO lroom VALUES ('202','본관','15');
 INSERT INTO lroom VALUES ('203','본관','15');
 
 --강의 
-INSERT INTO lecture VALUES ('l001','P101','문학개론','전공','3','22','월','101');
-INSERT INTO lecture VALUES ('l002','P404','화학공학입문','교양','2','30','화','102');
-INSERT INTO lecture VALUES ('l003','P410','화공열역학1','전공','3','21','수','103');
-INSERT INTO lecture VALUES ('l004','P416','프로젝트종합설계  ','전공','2','24','목','201');
-INSERT INTO lecture VALUES ('l005','P107','C프로그래밍','전공','3','26','금','202');
-INSERT INTO lecture VALUES ('l006','P107','객체지향프로그래밍','전공','2','29','월','203');
-INSERT INTO lecture VALUES ('l007','P113','반도체소자','전공','3','25','화','101');
-INSERT INTO lecture VALUES ('l008','P606','대중음악의 이해','교양','2','22','수','102');
-INSERT INTO lecture VALUES ('l009','P612','비전공자를위한피아노','교양','3','21','목','103');
-INSERT INTO lecture VALUES ('l010','P618','건반화성1','전공','2','29','금','201');
-INSERT INTO lecture VALUES ('l011','P202','영어동화읽기','교양','3','21','월','202');
-INSERT INTO lecture VALUES ('l012','P208','영어작문','전공','2','18','화','203');
-INSERT INTO lecture VALUES ('l013','P214','드라마입문','교양','3','18','수','101');
-INSERT INTO lecture VALUES ('l014','P101','국문학개론','전공','2','25','목','102');
-INSERT INTO lecture VALUES ('l015','P101','현대시론','교양','3','28','금','103');
-INSERT INTO lecture VALUES ('l016','P101','고전명시감상','교양','2','19','월','201');
-INSERT INTO lecture VALUES ('l017','P101','국어음운론','전공','3','24','화','202');
-INSERT INTO lecture VALUES ('l018','P107','현대비평론','교양','2','21','수','203');
-INSERT INTO lecture VALUES ('l019','P107','국어문법','교양','3','28','목','101');
-INSERT INTO lecture VALUES ('l020','P113','국어사','전공','2','30','금','102');
-INSERT INTO lecture VALUES ('l021','P113','일상속문학','교양','3','29','월','103');
-INSERT INTO lecture VALUES ('l022','P505','경영정보시스템','교양','2','18','화','201');
-INSERT INTO lecture VALUES ('l023','P511','조직행동론','교양','3','27','수','202');
-INSERT INTO lecture VALUES ('l024','P517','현대사회의대인관계','교양','2','26','목','203');
+INSERT INTO lecture VALUES ('l001','P101','문학개론','전공','3','22','월','101','10');
+INSERT INTO lecture VALUES ('l002','P404','화학공학입문','교양','2','30','화','102','12');
+INSERT INTO lecture VALUES ('l003','P410','화공열역학1','전공','3','21','수','103','13');
+INSERT INTO lecture VALUES ('l004','P416','프로젝트종합설계  ','전공','2','24','목','201','13');
+INSERT INTO lecture VALUES ('l005','P107','C프로그래밍','전공','3','26','금','202','12');
+INSERT INTO lecture VALUES ('l006','P107','객체지향프로그래밍','전공','2','29','월','203','11');
+INSERT INTO lecture VALUES ('l007','P113','반도체소자','전공','3','25','화','101','10');
+INSERT INTO lecture VALUES ('l008','P606','대중음악의 이해','교양','2','22','수','102','11');
+INSERT INTO lecture VALUES ('l009','P612','비전공자를위한피아노','교양','3','21','목','103','10');
+INSERT INTO lecture VALUES ('l010','P618','건반화성1','전공','2','29','금','201','13');
+INSERT INTO lecture VALUES ('l011','P202','영어동화읽기','교양','3','21','월','202','15');
+INSERT INTO lecture VALUES ('l012','P208','영어작문','전공','2','18','화','203','14');
+INSERT INTO lecture VALUES ('l013','P214','드라마입문','교양','3','18','수','101','14');
+INSERT INTO lecture VALUES ('l014','P101','국문학개론','전공','2','25','목','102','12');
+INSERT INTO lecture VALUES ('l015','P101','현대시론','교양','3','28','금','103','9');
+INSERT INTO lecture VALUES ('l016','P101','고전명시감상','교양','2','19','월','201','13');
+INSERT INTO lecture VALUES ('l017','P101','국어음운론','전공','3','24','화','202','15');
+INSERT INTO lecture VALUES ('l018','P107','현대비평론','교양','2','21','수','203','15');
+INSERT INTO lecture VALUES ('l019','P107','국어문법','교양','3','28','목','101','14');
+INSERT INTO lecture VALUES ('l020','P113','국어사','전공','2','30','금','102','13');
+INSERT INTO lecture VALUES ('l021','P113','일상속문학','교양','3','29','월','103','12');
+INSERT INTO lecture VALUES ('l022','P505','경영정보시스템','교양','2','18','화','201','11');
+INSERT INTO lecture VALUES ('l023','P511','조직행동론','교양','3','27','수','202','10');
+INSERT INTO lecture VALUES ('l024','P517','현대사회의대인관계','교양','2','26','목','203','9');
 
 --강의신청
 INSERT INTO lapplication VALUES ('r1901001','l001','201901211','201901','15','101','N');
@@ -1524,29 +1522,21 @@ INSERT INTO schedule VALUES ('s160','A005','2021학년도 1학기 복학 신청'
 INSERT INTO notice VALUES ('10001','A002','2020학년도 제2학기 비전임교원(초빙/겸임/강사) 초빙','김기수','20/07/10','2020학년도 제2학기 신규 임용할 비전임교원(초빙/겸임/강사)을 다음과 같이 모십니다.\n<인터넷 지원서 입력기간>\n2020.07.22(수) ~ 07.26(일) 오후 23:00까지\n<서류접수(지원자 전원)>\n2020.07.27(월) ~ 07.28(화) 오후 14:00까지(2일간)\n자세한 사항은 아래 사이트에서 확인하시기 바랍니다.','','',50);
 
 CREATE OR REPLACE VIEW AtndnView
-as select semester, lcode, lname, studentid, majorname, studentname, category, lpoint, ltime, le.room, le.capacity, professorname, absent3, week1, week2, week3, week4,
+as select semester,lcode, lname, s.id sid, s.name sname, category, majorname, lpoint, ltime, le.room, le.capacity, p.name pname, absent3, week1, week2, week3, week4,
 week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16
 from student s
 join major m using (majorno)
-join lapplication la using (studentid)
+join lapplication la on (s.id=la.id)
 join lecture le using (lcode)
-join professor using (professorid)
-left join attendance using (lcode, studentid);
+join professor p on (le.id = p.id)
+left join attendance using (lcode);
 
 CREATE OR REPLACE VIEW LScoreView
-as SELECT STUDENTID, STUDENTNAME, MAJORNAME, LCODE, LNAME, CATEGORY, ATNDNSCORE, MIDSCORE, FINALSCORE, TOTALSCORE, GRADE
-FROM STUDENT
-JOIN MAJOR USING (MAJORNO)
-JOIN LECTURESCORE USING (STUDENTID)
-JOIN LECTURE USING (LCODE);
-
-select s.id, s.name, majorname, lcode, lname, category, ATNDNSCORE, MIDSCORE, FINALSCORE, TOTALSCORE, GRADE
+as select s.id sid, s.name, majorname, lcode, lname, category, ATNDNSCORE, MIDSCORE, FINALSCORE, TOTALSCORE, GRADE
 from student s
 join major using (majorno)
 join lecturescore ls on (s.id=ls.id)
 join lecture using (lcode);
 
+
 commit;
-
-
-
