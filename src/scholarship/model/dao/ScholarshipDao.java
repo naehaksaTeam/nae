@@ -1,8 +1,12 @@
 package scholarship.model.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import category.model.vo.Category;
 import scholarship.model.vo.Scholarship;
 import static common.JDBCTemp.close;
 
@@ -11,19 +15,66 @@ public class ScholarshipDao {
 	
 	public ArrayList<Scholarship> selectScholarship(Connection conn) {
 		ArrayList<Scholarship> list = new ArrayList<Scholarship>();
+		Statement stmt = null;
+		ResultSet rset = null;
 		
+		String query="select * from scholarship order by ssname";
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Scholarship ss = new Scholarship(rset.getString("ssname"), rset.getString("benefitcon"), rset.getInt("value"));
+				
+				list.add(ss);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(rset);
+		close(stmt);
 		return list;
 	};
 
 	public Scholarship selectOneScholarship(Connection conn, String ssname) {
-		Scholarship ssst = new Scholarship();
+		Scholarship ss = new Scholarship();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		
-		return ssst;
+		String query="select * from scholarship where ssname = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ssname);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				ss = new Scholarship(rset.getString("ssname"), rset.getString("benefitcon"), rset.getInt("value"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(rset);
+		close(pstmt);
+		return ss;
 	}
 	
-	public int insertScholarship(Connection conn, String ssname) {
+	public int insertScholarship(Connection conn, Scholarship ss) {
 		int result = 0;
+		PreparedStatement pstmt = null;
 		
+		String query="insert into scholarship values(?,?,?)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ss.getSsname());
+			pstmt.setString(2, ss.getBenefitcon());
+			pstmt.setInt(3, ss.getValue());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
 		return result;
 	}
 
