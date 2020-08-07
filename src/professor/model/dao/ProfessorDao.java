@@ -1,19 +1,21 @@
 package professor.model.dao;
 
+import static common.JDBCTemp.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import student.model.vo.Professor;
 import student.model.vo.Student;
-import static common.JDBCTemp.*;
-public class Dao {
-   public  Dao() {
+public class ProfessorDao {
+   public  ProfessorDao() {
    }
    
    
-   public int insert(Connection conn, Student student) {
+   public int insert(Connection conn, Professor professor) {
       int result = 0;
       PreparedStatement pstmt = null;
 
