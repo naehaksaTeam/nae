@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import lecture.model.vo.Lecture;
+import lecture.model.vo.TimeTable;
 
 public class LectureDao {
 
@@ -35,10 +36,6 @@ public class LectureDao {
 			
 			if(rset.next()) {
 				member = new Lecture();
-				
-	
-				
-				//System.out.println(member);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -362,6 +359,15 @@ public class LectureDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		return list;
+	}
+
+
+	public ArrayList<TimeTable> selecTimeTable(Connection conn, String studentid) {
+		ArrayList<TimeTable> list = new ArrayList<TimeTable>();
+		
+		
 		
 		return list;
 	}

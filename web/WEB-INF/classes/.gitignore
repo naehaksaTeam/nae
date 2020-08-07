@@ -1,13 +1,4 @@
-/absence/
-/notice/
-/student/
-/admin/
-/attendance/
-/category/
-/lecture/
-/lectureScore/
-/member/
 /professor/
-/scholarship/
-/ssbenefitst/
-/termScore/
+/attendance/
+/lecture/
+/common/
