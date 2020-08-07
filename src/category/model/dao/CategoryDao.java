@@ -77,7 +77,7 @@ public class CategoryDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into category values(?)";
+		String query = "insert into category values( ? )";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -88,6 +88,7 @@ public class CategoryDao {
 			e.printStackTrace();
 		}
 		close(pstmt);
-		return 0;
+		System.out.println("DAO의 result : " + result);
+		return result;
 	};
 }

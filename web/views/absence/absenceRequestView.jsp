@@ -20,10 +20,13 @@
 </head>
 <body>
 <%@ include file="../common/header.jsp"%>
+<div align="center">
+<button onclick="javascript:location.href='/beet/views/categoryTest/categoryTestView.jsp'">CATEGORY VIEW</button>
+</div>
+
 학생이 휴학이나 복학 신청할 페이지(insert 할 때 휴학카운트가 6이상이면 신청 안됨)
 <br>
 신청버튼을 누르면 다시 이 페이지가 뜨고 조회란에 방금 신청한 내용이 보이게 설정
-
 신청 조회(select)까지 studentid 가지고 조회.
 <br><br><br><br>
 이페이지에서 select랑 insert 모두 처리 !
@@ -39,7 +42,7 @@
 	<% for(Absence aa : list){ %>
 	<table>
 	<tr><th><%=aa.getRequestid() %></th><th><%=aa.getRequestdate() %></th><th><%=aa.getLimitcanceldate() %></th><th><%=aa.getApproval() %></th> </tr>
-	<tr><td align="right"><button name="cancel" onclick="javascript:href='deleteab">신청취소</button></td></tr>
+	<tr><td align="right"><button name="cancel" onclick="javascript:location.href='/beet/deleteab'">신청취소</button></td></tr>
 	</table>
 	
 <% }} %>
