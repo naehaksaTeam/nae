@@ -1,4 +1,4 @@
-package professor.controller;
+package student.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
