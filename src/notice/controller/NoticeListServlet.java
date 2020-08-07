@@ -13,6 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
 
+
+
+
+
 /**
  * Servlet implementation class NoticeListServlet
  */
@@ -38,7 +42,7 @@ public class NoticeListServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		
-		if(list.size() ==0 ) {
+		if(list.size() > 0 ) {
 			
 				view= request.getRequestDispatcher("views/notice/noticeListView.jsp");
 				System.out.println("성공");
