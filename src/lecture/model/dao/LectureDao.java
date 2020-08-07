@@ -377,10 +377,12 @@ public class LectureDao {
 			pstmt.setString(2, clock);
 			rset = pstmt.executeQuery();
 				
+			if(rset.next()) {
 				t.setDay(rset.getString("ltime"));
 				t.setName(rset.getString("lname"));
 				t.setTime(rset.getString("lclock"));
 				
+			}
 			
 			
 		} catch (Exception e) {

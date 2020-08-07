@@ -10,9 +10,9 @@
 <h1>시간표조회</h1>
 <hr>
 
-<% ArrayList<TimeTable> list = (ArrayList<TimeTable>)session.getAttribute("list"); %>
-<% if(list == null){ %>
-
+<% TimeTable list9 = (TimeTable)session.getAttribute("list9"); %>
+<% if(list9 == null){ %>
+	확인
 <% } %>
 </body>
 </html>
