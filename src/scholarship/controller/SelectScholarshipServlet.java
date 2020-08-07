@@ -31,7 +31,7 @@ public class SelectScholarshipServlet extends HttpServlet {
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", );
+			request.setAttribute("message", "장학금 조회에 실패하였습니다");
 		}
 	}
 

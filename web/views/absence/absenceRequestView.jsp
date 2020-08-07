@@ -21,7 +21,15 @@
 <body>
 <%@ include file="../common/header.jsp"%>
 <div align="center">
-<button onclick="javascript:location.href='/beet/views/categoryTest/categoryTestView.jsp'">CATEGORY VIEW</button>
+<h1>TEST BUTTON</h1>
+<button onclick="javascript:location.href='/beet/views/absenceManagementView.jsp'">ABSENCE MANAGEMENT ADMIN(미완성)</button>
+<button onclick="javascript:location.href='/beet/views/categoryTest/categoryTestView.jsp'">CATEGORY VIEW(기능완성)</button>
+<button onclick="javascript:location.href='/beet/views/scholarship/selectScholarView.jsp'">SCHOLARSHIP, SSBENEFITST SELECT STU(미완성)</button>
+<button onclick="javascript:location.href='/beet/views/scholarship/scholarshipManagementView.jsp'">SCHOLARSHIP MANAGEMENT ADMIN(미완성)</button>
+<button onclick="javascript:location.href='/beet/views/ssbenefit/ssbenefitstManagementView.jsp'">SSBENEFIT MANAGEMENT ADMIN</button>
+
+
+
 </div>
 
 학생이 휴학이나 복학 신청할 페이지(insert 할 때 휴학카운트가 6이상이면 신청 안됨)

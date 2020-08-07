@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import absence.model.service.AbsenceService;
-import absence.model.vo.Absence;;
+import absence.model.vo.Absence;
+
+
 
 @WebServlet("/selectab")
 public class SelectSTUAbsenceServlet extends HttpServlet {
@@ -28,8 +30,8 @@ public class SelectSTUAbsenceServlet extends HttpServlet {
 		String studentid = request.getParameter("studentid");
 
 		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(studentid);
-		System.out.println(list);
 		RequestDispatcher view = null;
+
 		if( list != null) {
 			view = request.getRequestDispatcher("views/absence/absenceRequestView.jsp");
 			request.setAttribute("list", list);
