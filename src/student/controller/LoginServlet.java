@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import student.model.service.MemberService;
-import student.model.vo.Admin;
-import student.model.vo.Professor;
-import student.model.vo.Student;
+import student.model.vo.Member;
 
 /**
  * Servlet implementation class LoginServlet
@@ -47,11 +45,11 @@ public class LoginServlet extends HttpServlet {
 		String userpwd = request.getParameter("userpwd");
 		String check = request.getParameter("userchk");
 		System.out.println(userid + ", " + userpwd);
-		if(check.equals("student")) {
+		
 			//3. Model 객체 선언 및 생성하고, 
 			MemberService mservice = new MemberService();
 			//로그인 처리용 메소드로 값 전달하고, 처리 결과 받기
-			Student loginMember = mservice.loginCheckStudent(userid, userpwd);
+			Member loginMember = (Member)mservice.loginCheck(userid, userpwd);
 			
 			//4. 받은 결과로 성공이면 성공페이지를, 실패이면 실패페이지를 내보냄
 			if(loginMember != null) {
@@ -79,71 +77,7 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("message", "로그인 실패 또는 로그인 제한상태입니다!");
 				view.forward(request, response);
 			}
-		}else if(check.equals("professor")) {
-			//3. Model 객체 선언 및 생성하고, 
-			MemberService mservice = new MemberService();
-			//로그인 처리용 메소드로 값 전달하고, 처리 결과 받기
-			Professor loginMember = mservice.loginCheckProfessor(userid, userpwd);
-			
-			//4. 받은 결과로 성공이면 성공페이지를, 실패이면 실패페이지를 내보냄
-			if(loginMember != null) {
-				//로그인 상태를 확인하기 위한 세션 객체 만들기
-				HttpSession session = request.getSession();
-				//System.out.println("생성된 세션객체의 id : " + session.getId());
-				
-				//지정한 시간(초)동안 서비스 요청이 없으면,
-				//자동 로그아웃(세션객체를 없앰) 처리 설정할 수 있음
-				//session.setMaxInactiveInterval(10 * 60); //10분 설정
-				
-				
-				//로그인한 동안 여러 페이지와 서블릿들이 공유하고자 원하는 정보 저장함
-				session.setAttribute("loginMember", loginMember);
-				
-				response.sendRedirect("index.jsp");
-			}else {
-				//로그인 요청한 클라이언트 브라우저로 에러페이지 내보냄
-				//response.sendRedirect("views/common/error.jsp");
-				
-				//에러페이지로 오류 메세지로 같이 보내려면
-				RequestDispatcher view = 
-						request.getRequestDispatcher("views/common/error.jsp");
-				//절대경로 사용 못 함, 상대경로만 사용할 수 있음
-				request.setAttribute("message", "로그인 실패 또는 로그인 제한상태입니다!");
-				view.forward(request, response);
-			}
-		}else {
-			//3. Model 객체 선언 및 생성하고, 
-			MemberService mservice = new MemberService();
-			//로그인 처리용 메소드로 값 전달하고, 처리 결과 받기
-			Admin loginMember = mservice.loginCheckAdmin(userid, userpwd);
-			
-			//4. 받은 결과로 성공이면 성공페이지를, 실패이면 실패페이지를 내보냄
-			if(loginMember != null) {
-				//로그인 상태를 확인하기 위한 세션 객체 만들기
-				HttpSession session = request.getSession();
-				//System.out.println("생성된 세션객체의 id : " + session.getId());
-				
-				//지정한 시간(초)동안 서비스 요청이 없으면,
-				//자동 로그아웃(세션객체를 없앰) 처리 설정할 수 있음
-				//session.setMaxInactiveInterval(10 * 60); //10분 설정
-				
-				
-				//로그인한 동안 여러 페이지와 서블릿들이 공유하고자 원하는 정보 저장함
-				session.setAttribute("loginMember", loginMember);
-				
-				response.sendRedirect("index.jsp");
-			}else {
-				//로그인 요청한 클라이언트 브라우저로 에러페이지 내보냄
-				//response.sendRedirect("views/common/error.jsp");
-				
-				//에러페이지로 오류 메세지로 같이 보내려면
-				RequestDispatcher view = 
-						request.getRequestDispatcher("views/common/error.jsp");
-				//절대경로 사용 못 함, 상대경로만 사용할 수 있음
-				request.setAttribute("message", "로그인 실패 또는 로그인 제한상태입니다!");
-				view.forward(request, response);
-			}
-		}
+		
 		
 		
 	}
