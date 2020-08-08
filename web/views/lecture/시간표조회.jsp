@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.HashMap,lecture.model.vo.TimeTable,student.model.vo.Member" %>
+    pageEncoding="UTF-8" import="java.util.HashMap,lecture.model.vo.TimeTable,student.model.vo.Member" errorPage="../../views/common/error.jsp" %>
 <% HashMap list = (HashMap)request.getAttribute("list"); %>
 
     

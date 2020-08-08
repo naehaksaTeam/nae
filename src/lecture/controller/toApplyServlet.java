@@ -36,6 +36,7 @@ public class toApplyServlet extends HttpServlet {
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
 		request.setAttribute("list", list);
+		request.setAttribute("result", "널값제거용");
 		view.forward(request, response);
 	}
 

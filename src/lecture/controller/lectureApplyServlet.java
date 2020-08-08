@@ -1,11 +1,17 @@
 package lecture.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import lecture.model.service.LectureService;
+import lecture.model.vo.Lecture;
 
 /**
  * Servlet implementation class lectureApplyServlet
@@ -26,8 +32,28 @@ public class lectureApplyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		ArrayList<Lecture> list = new LectureService().selectOpenedLectures();
+		request.setAttribute("list", list);
+		
+		String lname = request.getParameter("lname");
+		String name = request.getParameter("who");
+		int r = new LectureService().applyLecture(lname,name);
+		RequestDispatcher view = null;
+		if(r > 0) {
+			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
+			request.setAttribute("result", "ok");
+			view.forward(request, response);
+		}else if(r == -1){
+			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
+			request.setAttribute("result", "already");
+			view.forward(request, response);
+		}else {
+			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
+			request.setAttribute("result", "no");
+			view.forward(request, response);
+		}
+		
+		
 	}
 
 	/**

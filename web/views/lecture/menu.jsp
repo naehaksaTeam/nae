@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" errorPage="../../views/common/error.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,7 @@
 <button onclick="javascript:location.href='/beet/showTimeTable?who=<%= m.getId() %>'" >시간표 조회</button>
 <button onclick="javascript:location.href='/beet/showplan'" >휴보강신청(미구현)</button>
 <button onclick="javascript:location.href='/beet/toapl'" >수강과목추가 [관리자]</button>
-<button onclick="javascript:location.href='/beet/toapply'">첫 화면으로!</button>
+<button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
 <hr>
 <img src="/beet/resources/images/BigBeet.jpg">
 <% } %>

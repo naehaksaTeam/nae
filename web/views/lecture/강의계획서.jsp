@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture" errorPage="../../views/common/error.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,28 +29,28 @@ background-color : white;
 <table style="border:2px solid black;">
 <tr>
 <th>
-강의코드
+&nbsp;강의코드&nbsp;
 </th>
 <th>
-강의명
+&nbsp;강의명&nbsp;
 </th>
 <th>
-강의 카테고리
+&nbsp;강의 카테고리&nbsp;
 </th>
 <th>
-수강인원
+&nbsp;수강 정원&nbsp;
 </th>
 <th>
-강의 내용
+&nbsp;강의 내용&nbsp;
 </th>
 <th>
-강의시간
+&nbsp;강의시간&nbsp;
 </th>
 <th>
-교수아이디
+&nbsp;강의교수&nbsp;
 </th>
 <th>
-강의실
+&nbsp;강의실&nbsp;
 </th>
 </tr>
 <% ArrayList<Lecture> list = (ArrayList<Lecture>)request.getAttribute("list");  %>

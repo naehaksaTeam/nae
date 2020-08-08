@@ -349,7 +349,7 @@ public class LectureDao {
 				l.setLcode(rset.getString("lcode"));
 				l.setLname(rset.getString("lname"));
 				l.setLtime(rset.getString("ltime"));
-				l.setProfessorid(rset.getString("id"));
+				l.setProfessorid(rset.getString("name"));
 				l.setRoom(rset.getString("room"));
 				l.setContent(rset.getString("content"));
 				
@@ -465,21 +465,23 @@ public class LectureDao {
 		ResultSet rset = null;
 		String query = "select * from lplan join professor using (id) join lecture using (lcode)right join " + 
 				"(SELECT SUBSTR(table_name,3,length(table_name)) lname FROM all_tables where owner = 'BEETPROJECT1' and table_name like 'ZZ%') " + 
-				"using (lname)";
+				"a using (lname) right join " + 
+				"(select SUBSTR(table_name,3,length(table_name)) lname, data_default from SYS.all_tab_columns where owner = 'BEETPROJECT1' and table_name like 'ZZ%') " + 
+				"using ( lname )";
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()) {
 				Lecture l = new Lecture();
-				l.setCapacity(rset.getInt("capacity"));
+				l.setCapacity((rset.getInt("data_default")));
 				l.setCategory(rset.getString("category"));
 				l.setLcode(rset.getString("lcode"));
 				l.setLname(rset.getString("lname"));
 				l.setLtime(rset.getString("ltime"));
-				l.setProfessorid(rset.getString("id"));
+				l.setProfessorid(rset.getString("name"));
 				l.setRoom(rset.getString("room"));
-				l.setContent(rset.getString("content"));
+				l.setContent(rset.getString("lclock"));
 				
 				list.add(l);
 				
@@ -493,6 +495,53 @@ public class LectureDao {
 	}
 
 
-
+	public int applyLecture(Connection conn, String lname,String name) {
+		// 수강신청버튼구현 4중 쿼리
+		int r = 0;
+		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select data_default from SYS.all_tab_columns where owner = 'BEETPROJECT1' and table_name like ?";
+		String query2 = "select count(*) c from zz" + lname;
+		String query3 = "insert into zz" + lname + " values ('" + name + "')";
+		String chk = "select * from zz" + lname;
+		int n1 = 0;
+		int n2 = 0;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%" + lname);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				n1 = rset.getInt("data_default");
+				close(pstmt);
+			}
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query2);
+			if(rset.next()) {
+				n2 = rset.getInt("c");
+				close(stmt);
+			}
+			if(n1 > n2) {
+				Statement stmtChk = conn.createStatement();
+				rset = stmtChk.executeQuery(chk);
+				while(rset.next()) {
+					if(rset.getString("name").equals(name)) {
+						close(stmtChk);
+						return -1;
+					}
+				}
+				Statement stmt2 = conn.createStatement();
+				r = stmt2.executeUpdate(query3);
+				close(stmt2);
+			}else {
+				close(rset);
+				return 0;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return r;
+	}
 
 }

@@ -62,6 +62,7 @@ public class JDBCTemp {
 	public static void close(Connection conn) {
 		try {
 			conn.close();
+			System.out.println("conn 정상 닫힘");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -70,6 +71,7 @@ public class JDBCTemp {
 	public static void close(Statement conn) {
 		try {
 			conn.close();
+			System.out.println("stmt 정상 닫힘");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -78,6 +80,7 @@ public class JDBCTemp {
 	public static void close(PreparedStatement conn) {
 		try {
 			conn.close();
+			System.out.println("pstmt 정상 닫힘");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -86,6 +89,7 @@ public class JDBCTemp {
 	public static void close(ResultSet conn) {
 		try {
 			conn.close();
+			System.out.println("rset 정상 닫힘");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -94,6 +98,7 @@ public class JDBCTemp {
 	public static void rollback(Connection conn) {
 		try {
 			conn.rollback();
+			System.out.println("rollback 정상");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -102,6 +107,7 @@ public class JDBCTemp {
 	public static void commit(Connection conn) {
 		try {
 			conn.commit();
+			System.out.println("commit 성공");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

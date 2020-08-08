@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture,student.model.vo.Member" errorPage="../../views/common/error.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +8,9 @@
 <style type="text/css">
 td{
 border : 1px solid skyblue;
+text-align : center;
 }
+
 </style>
 </head>
 <body>
@@ -23,28 +25,28 @@ border : 1px solid skyblue;
 <table style="border:2px solid black;">
 <tr>
 <th>
-강의코드
+&nbsp;강의코드&nbsp;
 </th>
 <th>
-강의명
+&nbsp;강의명&nbsp;
 </th>
 <th>
-강의 카테고리
+&nbsp;강의 카테고리&nbsp;
 </th>
 <th>
-수강인원
+&nbsp;수강 정원&nbsp;
 </th>
 <th>
-강의 내용
+&nbsp;시간&nbsp;
 </th>
 <th>
-강의시간
+&nbsp;강의교수&nbsp;
 </th>
 <th>
-교수아이디
+&nbsp;강의실&nbsp;
 </th>
 <th>
-강의실
+&nbsp;신청하기&nbsp;
 </th>
 </tr>
 <% ArrayList<Lecture> list = (ArrayList<Lecture>)request.getAttribute("list");  %>
@@ -54,7 +56,7 @@ border : 1px solid skyblue;
 <%= l.getLcode() %>
 </td>
 <td>
-<%= l.getLname() %>
+&nbsp;<%= l.getLname() %>&nbsp;
 </td>
 <td>
 <%= l.getCategory() %>
@@ -63,7 +65,7 @@ border : 1px solid skyblue;
 <%= l.getCapacity() %>
 </td>
 <td>
-<%= l.getLtime() %>
+&nbsp;<%= l.getLtime() %>, <%= l.getContent() %>시&nbsp;
 </td>
 <td>
 <%= l.getProfessorid() %>
@@ -72,11 +74,31 @@ border : 1px solid skyblue;
 <%= l.getRoom() %>
 </td>
 <td>
-<button onclick="javascript:location.href='/beet/lapply?lname=<%= l.getLname() %>'">신청</button>
+<% if((request.getAttribute("result")).equals("no")){ %>
+<b>마감</b>
+<% }else{ %>
+<form action="/beet/lapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
+<button type="submit" name="lname" value="<%= l.getLname() %>">수강신청</button>
+</form>
+<% } %>
 </td>
 </tr>
 <% } %>
 </table>
+
+<div style="color:red;">
+<% if((request.getAttribute("result")) != null ){ %>
+<% if((request.getAttribute("result")).equals("ok")){ %>
+결과 : "축하드립니다!!! 수강신청 성공!!!
+<% }else if((request.getAttribute("result")).equals("no")){ %>
+결과 : 수강신청 실패...
+<% }else if((request.getAttribute("result")).equals("already")){ %>
+결과 : 이미 수강신청에 성공!
+<% }else{ %>
+행운을 빕니다...!
+<% } %>
+<% } %>
+</div>
 
 <br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
 <% } %>

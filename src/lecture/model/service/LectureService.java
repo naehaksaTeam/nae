@@ -171,10 +171,10 @@ public class LectureService {
 			ldao.createRoom(conn,lecture,roommax);
 			commit(conn);
 			close(conn);
-			conn = getConnection();
-			ldao.setRoommax(conn,lecture);
-			commit(conn);
-			close(conn);
+//			conn = getConnection();
+//			ldao.setRoommax(conn,lecture);
+//			commit(conn);
+//			close(conn);
 			
 			conn = getConnection();
 			r = ldao.selectRoom(conn,lecture);
@@ -190,5 +190,19 @@ public class LectureService {
 		close(conn);
 
 		return list;
+	}
+
+	public int applyLecture(String lname, String name) {
+		//수강신청버튼구현
+		int r = 0;
+		Connection conn = getConnection();
+		r = ldao.applyLecture(conn,lname,name);
+		if(r > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return r;
 	}
 }

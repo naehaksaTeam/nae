@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="student.model.vo.Member" %>
+    pageEncoding="UTF-8" import="student.model.vo.Member" isErrorPage="false" %>
 <% Member m = (Member)session.getAttribute("loginMember"); %>
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,7 @@
 </head>
 <body>
 <% if(m == null){ %>
-<form action="/beet/login.cp">
+<form action="/beet/login.cp" >
 아이디:<input type="text" name="userid">
 비밀번호:<input type="password" name="userpwd">
 <br>학생<input type="radio" name="userchk" value="student">

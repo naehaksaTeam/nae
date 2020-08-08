@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture,student.model.vo.Member" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture,student.model.vo.Member" errorPage="../../views/common/error.jsp" %>
 <% ArrayList<Lecture> list = (ArrayList<Lecture>)request.getAttribute("list");  %>
 <!DOCTYPE html>
 <html>
