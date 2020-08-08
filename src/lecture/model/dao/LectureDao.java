@@ -333,6 +333,7 @@ public class LectureDao {
 
 
 	public ArrayList<Lecture> selectAllPlan(Connection conn) {
+		//강의계획서 조회
 		ArrayList<Lecture> list = new ArrayList<Lecture>();
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -365,6 +366,7 @@ public class LectureDao {
 
 
 	public TimeTable selecTimeTable(Connection conn, String studentid, String clock) {
+		//시간표조회
 		TimeTable t = new TimeTable();
 		
 		PreparedStatement pstmt = null;
@@ -393,5 +395,68 @@ public class LectureDao {
 		
 		return t;
 	}
+
+
+	public void createRoom(Connection conn, String lecture,int roommax) {
+		//수강신청개설1
+		String max = "" + roommax;
+		Statement stmt = null;
+		String query = "create table zz" + lecture + " ( name varchar2(500) default " + max + " )";
+		
+		try {
+			stmt = conn.createStatement();
+			stmt.execute(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+		}
+	}
+
+
+	public void setRoommax(Connection conn, String lecture) {
+		//수강신청개설2
+		int r = 0;
+		Statement stmt = null;
+		String query = "insert into zz" + lecture + " values (default)";
+		
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+		}
+	}
+
+
+	public String selectRoom(Connection conn, String lecture) {
+		String r = "";
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT table_name FROM all_tables where table_name like ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%" + lecture);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = rset.getString("table_name");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		if(r.length() > 1) {
+			return r.substring(2,r.length());
+		}
+		return r;
+	}
+
+
+
 
 }

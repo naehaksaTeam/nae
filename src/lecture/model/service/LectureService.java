@@ -157,4 +157,29 @@ public class LectureService {
 		}
 		return list;
 	}
+
+	public String createRoom(String lecture,int roommax) {
+		String r = "";
+		
+		Connection conn = getConnection();
+		r = ldao.selectRoom(conn,lecture);
+		close(conn);
+		if(r.equals(lecture)) {
+			return "already";
+		}else {
+			conn = getConnection();
+			ldao.createRoom(conn,lecture,roommax);
+			commit(conn);
+			close(conn);
+			conn = getConnection();
+			ldao.setRoommax(conn,lecture);
+			commit(conn);
+			close(conn);
+			
+			conn = getConnection();
+			r = ldao.selectRoom(conn,lecture);
+			close(conn);
+		}
+		return r;
+	}
 }

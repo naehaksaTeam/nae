@@ -11,12 +11,15 @@
 <style>
 table{
 border:2px solid black;
+text-align:center;
 }
 td{
 border:1px solid black;
 width:100px;
 height:100px;
-text-align:center;
+}
+th{
+border:1px solid black;
 }
 
 </style>
@@ -26,6 +29,14 @@ text-align:center;
 <hr>
 
 <table>
+<tr>
+<th></th>
+<th>월</th>
+<th>화</th>
+<th>수</th>
+<th>목</th>
+<th>금</th>
+</tr>
 <tr>
 <td>09 : 00 ~ <br>09 : 50</td>
 <% if(((TimeTable)(list.get("list9"))) != null){ %>
