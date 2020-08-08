@@ -432,6 +432,7 @@ public class LectureDao {
 
 
 	public String selectRoom(Connection conn, String lecture) {
+		//수강신청개설 중복체크
 		String r = "";
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -454,6 +455,41 @@ public class LectureDao {
 			return r.substring(2,r.length());
 		}
 		return r;
+	}
+
+
+	public ArrayList<Lecture> selectOpenedLectures(Connection conn) {
+		//열린강의조회
+		ArrayList<Lecture> list = new ArrayList<Lecture>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "select * from lplan join professor using (id) join lecture using (lcode)right join " + 
+				"(SELECT SUBSTR(table_name,3,length(table_name)) lname FROM all_tables where owner = 'BEETPROJECT1' and table_name like 'ZZ%') " + 
+				"using (lname)";
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Lecture l = new Lecture();
+				l.setCapacity(rset.getInt("capacity"));
+				l.setCategory(rset.getString("category"));
+				l.setLcode(rset.getString("lcode"));
+				l.setLname(rset.getString("lname"));
+				l.setLtime(rset.getString("ltime"));
+				l.setProfessorid(rset.getString("id"));
+				l.setRoom(rset.getString("room"));
+				l.setContent(rset.getString("content"));
+				
+				list.add(l);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 

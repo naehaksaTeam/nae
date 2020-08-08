@@ -15,11 +15,11 @@
 <hr>
 <%@ include file="/views/common/sessionChk.jsp" %>
 <button onclick="javascript:location.href='/beet/showplan.ss'" >강의 계획서</button>
-<button onclick="javascript:location.href='/beet/lapply?who=<%= m.getId() %>'" >수강신청</button>
+<button onclick="javascript:location.href='/beet/toapply?who=<%= m.getId() %>'" >수강신청</button>
 <button onclick="javascript:location.href='/beet/showTimeTable?who=<%= m.getId() %>'" >시간표 조회</button>
 <button onclick="javascript:location.href='/beet/showplan'" >휴보강신청(미구현)</button>
 <button onclick="javascript:location.href='/beet/toapl'" >수강과목추가 [관리자]</button>
-<button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<button onclick="javascript:location.href='/beet/toapply'">첫 화면으로!</button>
 <hr>
 <img src="/beet/resources/images/BigBeet.jpg">
 <% } %>

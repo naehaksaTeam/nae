@@ -182,4 +182,13 @@ public class LectureService {
 		}
 		return r;
 	}
+
+	public ArrayList<Lecture> selectOpenedLectures() {
+		//열려있는 강의 가져오기
+		Connection conn = getConnection();
+		ArrayList<Lecture> list = ldao.selectOpenedLectures(conn);
+		close(conn);
+
+		return list;
+	}
 }

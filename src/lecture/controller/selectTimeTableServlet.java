@@ -1,5 +1,5 @@
 package lecture.controller;
-
+//학생시간표조회하기
 import java.io.IOException;
 import java.util.HashMap;
 
