@@ -1,13 +1,11 @@
 package student.model.service;
 
-import static common.JDBCTemp.close;
-import static common.JDBCTemp.getConnection;
+import static common.JDBCTemp.*;
 
 import java.sql.Connection;
 
 import student.model.dao.MemberDao;
 import student.model.vo.Member;
-import student.model.vo.Student;
 
 public class MemberService {
 	private MemberDao mdao = new MemberDao();
@@ -22,12 +20,28 @@ public class MemberService {
 		return member;
 	}
 
-	public int selectAbCount(String studentid) {
-		Connection conn = getConnection();
-		int abCount = mdao.selectAbCount(conn, studentid);
-		close(conn);
-		return abCount;
-	}
 
+	public int updateAbsenceY(String studentid) {
+		Connection conn = getConnection();
+		int result = mdao.updateAbsenceY(conn, studentid);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 	
+	public int updateAbsenceN(String studentid) {
+		Connection conn = getConnection();
+		int result = mdao.updateAbsenceN(conn, studentid);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
 }

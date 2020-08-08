@@ -225,28 +225,42 @@ public Member loginCheck(Connection conn, String userid, String userpwd) {
 }
 
 
-public int selectAbCount(Connection conn, String studentid) {
-	int abCount = 0;
+public int updateAbsenceY(Connection conn, String studentid) {
+	int result = 0;
 	PreparedStatement pstmt = null;
-	ResultSet rset = null;
 	
-	String query = "select absencecount from student where id = ?";
+	String query = "update student set absencewhether = 'Y' where id = ?";
 	
 	try {
-		pstmt =conn.prepareStatement(query);
+		pstmt = conn.prepareStatement(query);
 		pstmt.setString(1, studentid);
 		
-		rset = pstmt.executeQuery();
-		if(rset.next()) {
-			abCount = rset.getInt("absencecount");
-		}
+		result=pstmt.executeUpdate();
 	} catch (Exception e) {
 		e.printStackTrace();
 	}finally {
-		close(rset);
 		close(pstmt);
 	}
-	return abCount;
+	return result;
+}
+	
+public int updateAbsenceN(Connection conn, String studentid) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update student set absencewhether = 'N' where id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, studentid);
+			
+			result=pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 }
 
 	

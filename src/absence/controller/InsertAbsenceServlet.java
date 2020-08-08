@@ -22,15 +22,12 @@ public class InsertAbsenceServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//학생 휴학신청 처리용 컨트롤러
-		request.setCharacterEncoding("utf-8");
 		
 		String value = request.getParameter("value");
 		String studentid = request.getParameter("studentid");
 		
-		int abCount = new MemberService().selectAbCount(studentid);
 		int result = new AbsenceService().insertAbsence(value, studentid); 
 
-		result = 0;
 		if(result >0) { //성공한다면 absenceRequestView.jsp }else {
 			response.sendRedirect("/beet/views/absence/absenceSelectView.jsp");
 		}else {

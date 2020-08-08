@@ -57,9 +57,22 @@ public class AbsenceService {
 		return result;
 	};
 	
-	public int updateAbsence(String requestid) {
+	public int updateYAbsence(String requestid) {
 		Connection conn = getConnection();
-		int result = adao.updateAbsence(conn, requestid);
+		int result = adao.updateYAbsence(conn, requestid);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	};
+	
+	public int updateNAbsence(String requestid) {
+		Connection conn = getConnection();
+		int result = adao.updateNAbsence(conn, requestid);
 		
 		if(result > 0) {
 			commit(conn);
@@ -81,5 +94,12 @@ public class AbsenceService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public ArrayList<Absence> selectABA(String value) {
+		Connection conn = getConnection();
+		ArrayList<Absence> list = adao.selectABA(conn, value);
+		close(conn);
+		return list;
 	};
 }
