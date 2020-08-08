@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import student.model.vo.Member;
 import student.model.vo.Student;
 public class MemberDao {
@@ -19,20 +18,26 @@ public class MemberDao {
       int result = 0;
       PreparedStatement pstmt = null;
 
-      String query = "";
+      String query = "insert into member values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       try {
          pstmt = conn.prepareStatement(query);
          pstmt.setString(1, student.getId());
-         pstmt.setString(2, student.getName());
-         pstmt.setString(3, student.getSsn());
-         pstmt.setString(4, student.getAddress());
-         pstmt.setString(5, student.getPhone());
-         pstmt.setString(6, student.getEmail());
-         pstmt.setString(7, student.getTreasure());
-         pstmt.setString(8, student.getCategoryname());
-         pstmt.setString(9, student.getMajorno());
-         pstmt.setString(10, student.getSsname());
+         pstmt.setString(2, student.getPassword());
+         pstmt.setString(3, student.getName());
+         pstmt.setString(4, student.getSsn());
+         pstmt.setString(5, student.getAddress());
+         pstmt.setString(6, student.getPhone());
+         pstmt.setString(7, student.getCategoryname());
+         pstmt.setString(8, student.getGender());
+         pstmt.setString(9, student.getEmail());
+         pstmt.setString(10, student.getTreasure());
+         
+      
+         
+     	
+	
+
 
          result = pstmt.executeUpdate();
 
@@ -45,13 +50,13 @@ public class MemberDao {
       return result;
    }
    
-   //학생 한명선택
-   public Student selectOne(Connection conn, String studentid) {
+   //한명선택
+   public Student selectOne(Connection conn, String id) {
       Student student = null;
       Statement stmt = null;
       ResultSet rset = null;
 
-      String query = "select * from student where id="+ studentid;
+      String query = "select * from student where id="+ id;
 
       try {
          stmt = conn.createStatement();
@@ -128,6 +133,7 @@ public class MemberDao {
       return list;
    }
 
+   	//정보수정
    public int update(Connection conn, Student student) {
       int result = 0;
       PreparedStatement pstmt = null;
@@ -224,4 +230,66 @@ public Member loginCheck(Connection conn, String userid, String userpwd) {
     return member;
 }
 
+//정보추가
+public int insertMember(Connection conn, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "insert into member values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getPassword());
+			pstmt.setString(3, member.getName());
+			pstmt.setString(4, member.getSsn());
+			pstmt.setString(5, member.getAddress());
+			pstmt.setString(6, member.getPhone());
+			pstmt.setString(7, member.getCategoryname());
+			pstmt.setString(8, member.getGender());
+			pstmt.setString(9, member.getEmail());
+			pstmt.setString(10, member.getTreasure());
+			result = pstmt.executeUpdate();
+			System.out.println("dao성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+public int updateMember(Connection conn, Member member) {
+	
+	int result = 0;
+	PreparedStatement pstmt = null;
+	
+	String query = "insert into member values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	try {
+		pstmt = conn.prepareStatement(query);
+		pstmt.setString(1, member.getId());
+		pstmt.setString(2, member.getPassword());
+		pstmt.setString(3, member.getName());
+		pstmt.setString(4, member.getSsn());
+		pstmt.setString(5, member.getAddress());
+		pstmt.setString(6, member.getPhone());
+		pstmt.setString(7, member.getCategoryname());
+		pstmt.setString(8, member.getGender());
+		pstmt.setString(9, member.getEmail());
+		pstmt.setString(10, member.getTreasure());
+		
+	
+		result = pstmt.executeUpdate();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}
+	
+	return result;
+
+	}
 }
