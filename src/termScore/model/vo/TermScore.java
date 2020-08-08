@@ -11,12 +11,12 @@ public class TermScore implements java.io.Serializable{
 	private int termaplpoint;
 	private int termgetpoint;
 	private int grdpoint;
-	private int tgpa;
+	private double tgpa;
 	
 	public TermScore() {}
 	
 	public TermScore(String semester, String sid, String sname, String cateogoryname, String majorname,
-			int termaplpoint, int termgetpoint, int grdpoint, int tgpa) {
+			int termaplpoint, int termgetpoint, int grdpoint, double tgpa) {
 		super();
 		this.semester = semester;
 		this.sid = sid;
@@ -61,7 +61,7 @@ public class TermScore implements java.io.Serializable{
 		this.grdpoint = grdpoint;
 	}
 
-	public void setTgpa(int tgpa) {
+	public void setTgpa(double tgpa) {
 		this.tgpa = tgpa;
 	}
 
@@ -101,7 +101,7 @@ public class TermScore implements java.io.Serializable{
 		return grdpoint;
 	}
 
-	public int getTgpa() {
+	public double getTgpa() {
 		return tgpa;
 	}
 

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="termScore.model.vo.TermScore, student.model.vo.Member " %>
+<%@ include file="/views/common/sessionChk.jsp" %>
+<%
+	Member loginmember = (Member)session.getAttribute("loginMember");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,21 +38,40 @@
 </style>
 
 <body>
-
+<script type="text/javascript">
+function twosend(){
+	document.tsForm.action="/beet/tosselect";
+	document.tsForm.submit();
+	document.tsForm.action="/beet/tesselect";
+	document.tsForm.submit();
+}
+</script>
 <h1>출결 성적 등록</h1>
 
 <div class="세션대신 입력폼쓰는중" style="margin-bottom:50px;">
 <form action="/beet/mylctr" method="get">
-studentid  <input type="text" name="studentid">
+studentid  <input type="text" name="studentid" >
 <input type="submit" value="입력">
 </form>
 </div>
 
+<div>
+<form action="/beet/tosselect" method="post">
+ <input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+ 
+  <input type="submit" value="전체성적조회">
+  </form>
+  
+  <form action="/beet/tesselect" method="post">
+ <input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+ 
+  <input type="submit" value="학기성적조회">
+  </form>
+</div>
 <div class="btn-group">
-  <button onclick="javascript:location.href='/beet/mylctr'" >강의목록</button>
+  <button onclick="javascript:location.href='/beet/atnlist'" >강의목록</button>
   <button onclick="javascript:location.href='/beet/atnlist'" >출결현황</button>
   <button onclick="javascript:location.href='/beet/atnedit'" >출결입력</button>
-  <button onclick="javascript:location.href='/beet/tsselect'" >성적조회</button>
   <button onclick="javascript:location.href='/beet/atnlist'" >성적입력</button>
   <button>성적조회</button>
 </div>
