@@ -1,4 +1,4 @@
-package ssbenefitst.controller;
+package absence.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,26 +10,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ssbenefitst.model.service.SsbenefitstService;
-import ssbenefitst.model.vo.Ssbenefitst;
+import absence.model.service.AbsenceService;
+import absence.model.vo.Absence;
 
-@WebServlet("/selectbenest")
-public class SelectSsbenefitstServlet extends HttpServlet {
+@WebServlet("/selectaball")
+public class SelectAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public SelectSsbenefitstServlet() {
+    public SelectAllServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String studentid = request.getParameter("studentid");
-		System.out.println(studentid);
-		ArrayList<Ssbenefitst> list = new SsbenefitstService().selectPrivateSsst(studentid);
+		ArrayList<Absence> list = new AbsenceService().selectAbsence();
 		
 		RequestDispatcher view = null;
 		if(list != null) {
-			view = request.getRequestDispatcher("views/scholarship/selectScholarView.jsp");
+			view = request.getRequestDispatcher("views/absence/absenceManagementView.jsp");
 			request.setAttribute("list", list);
+			view.forward(request, response);
+		}else{
+			view = request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", "휴학, 복학 신청 내역이 없거나 조회에 실패하였습니다.");
 			view.forward(request, response);
 		}
 	}
