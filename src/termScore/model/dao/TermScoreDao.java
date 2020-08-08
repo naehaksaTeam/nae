@@ -32,7 +32,7 @@ public class TermScoreDao {
 				tscore.setTermgetpoint(rset.getInt("tgetpoint"));
 				tscore.setGrdpoint(rset.getInt("grdpoint"));
 				tscore.setTgpa(rset.getDouble("avgtgpa"));	
-				System.out.println(tscore);
+	
 			}
 
 		} catch (Exception e) {

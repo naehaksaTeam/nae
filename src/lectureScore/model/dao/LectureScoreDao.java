@@ -3,6 +3,7 @@ package lectureScore.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import static common.JDBCTemp.*;
 import lectureScore.model.vo.LectureScore;
@@ -17,7 +18,7 @@ public class LectureScoreDao {
 		ResultSet rset = null;
 		ArrayList<LectureScore> list = new ArrayList<LectureScore>();
 
-		String query = "select sid, lcode, lname, category, lpoint, grade, retake from LScoreView where sid= ? and semester = ?";
+		String query = "select receptionno, sid, lcode, lname, category, lpoint, grade, retake from LScoreView where sid= ? and semester = ?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -87,5 +88,100 @@ public class LectureScoreDao {
 		return list;
 	}
 	
+	//교수 성적입력페이지 이동
+	public ArrayList<LectureScore> selectProfLectureScore(Connection conn, String lname, String semester) {
+		ArrayList<LectureScore> list = new ArrayList<LectureScore>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select lname, categoryname, majorname, sid, sname, retake, atndnscore, midscore, finalscore, totalscore, grade "
+					+ "from LscoreView where lname = ? and semester = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			System.out.println(lname);
+			System.out.println(semester);
+			pstmt.setString(1, lname);
+			pstmt.setString(2, semester);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				LectureScore lscore = new LectureScore();
+
+				lscore.setCategoryname(rset.getString("categoryname"));
+				lscore.setMajorname(rset.getString("majorname"));
+				lscore.setSid(rset.getString("sid"));
+				lscore.setSname(rset.getString("sname"));
+				lscore.setRetake(rset.getString("retake").equals("Y")?"Y":"N");
+				lscore.setAtndnscore(rset.getInt("atndnscore"));
+				lscore.setMidscore(rset.getInt("midscore"));
+				lscore.setFinalscore(rset.getInt("finalscore"));
+				lscore.setTotalscore(rset.getInt("totalscore"));
+				lscore.setGrade(rset.getString("grade"));
+				
+				list.add(lscore);
+
+			}	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 	
+	
+	
+	//교수 성적 업데이트
+	public int updateScore(Connection conn, LectureScore lscore) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update lecturescore set atndnscore=?, midscore=?, finalscore=?, totalscore=?, grade=? where receptionno = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, lscore.getAtndnscore());
+			pstmt.setInt(2, lscore.getMidscore());
+			pstmt.setInt(3, lscore.getFinalscore());
+			pstmt.setInt(4, (lscore.getAtndnscore()+lscore.getMidscore()+lscore.getFinalscore()));
+			pstmt.setString(5, lscore.getGrade());
+			pstmt.setString(6, lscore.getReceptionno());
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	//성적
+	public int deleteScore(Connection conn, LectureScore lscore) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "insert into lectureScore values(atndnscore=?, midscore=?, finalscore=?, totalscore=?, grade=?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, lscore.getAtndnscore());
+			pstmt.setInt(2, lscore.getMidscore());
+			pstmt.setInt(3, lscore.getFinalscore());
+			pstmt.setInt(4, (lscore.getAtndnscore()+lscore.getMidscore()+lscore.getFinalscore()));
+			pstmt.setString(5, lscore.getGrade());
+			pstmt.setString(6, lscore.getReceptionno());
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

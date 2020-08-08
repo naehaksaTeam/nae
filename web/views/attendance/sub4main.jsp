@@ -49,6 +49,7 @@ function twosend(){
 <h1>출결 성적 등록</h1>
 <h3>학생용</h3>
 <div class="학생 조회용">
+
 <form action="/beet/mylctr" method="post">
 <input type="hidden" name="userid" value="<%=loginmember.getId() %>">
 <input type="submit" class="btn-sm" value="나의강의조회">
@@ -76,7 +77,7 @@ function twosend(){
 <br>
 <h3>교수용</h3>
 <div class="교수 조회용">
-<form action="/beet/scselect.prof" method="post">
+<form action="/beet/scmain.p" method="post">
 <input type="hidden" name="userid" value="<%=loginmember.getId() %>">
 <input type="submit" class="btn-sm" value="나의강의목록">
  </form>

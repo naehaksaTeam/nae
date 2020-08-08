@@ -26,4 +26,25 @@ public class LectureScoreService {
 		return list;
 	}
 	
+	public int updateScore(LectureScore lscore) {
+		Connection conn = getConnection();
+		int result = ldao.updateScore(conn, lscore);
+		
+		if (result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result;
+	}
+	
+	public ArrayList<LectureScore> selectProfLectureScore(String lname, String semester) {
+		Connection conn = getConnection();
+		ArrayList<LectureScore> list = ldao.selectProfLectureScore(conn, lname, semester);
+		close(conn);
+		return list;
+	}
+	
 }

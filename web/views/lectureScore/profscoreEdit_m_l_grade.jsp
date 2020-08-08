@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<h1>성적입력_ ajax 사용할거야 등급입력 페이지 (팝업처리할거야)</h1>
+<h1>성적입력_ajax 등급입력 페이지 (팝업처리)</h1>
 <!--과목정보 출력 -->
 <input type="button" id="chn" value="변경" /><!-- ajax 쓸건데 굳이? -->
 <table>

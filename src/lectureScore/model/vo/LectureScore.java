@@ -3,6 +3,7 @@ package lectureScore.model.vo;
 public class LectureScore implements java.io.Serializable{
 	private static final long SerialVersionUID = 45612L;
 	
+	private String receptionno;
 	private String sid;
 	private String sname;
 	private String categoryname;
@@ -24,10 +25,11 @@ public class LectureScore implements java.io.Serializable{
 	
 	public LectureScore() {}
 
-	public LectureScore(String sid, String sname, String categoryname, String majorname, String semester, String lcode,
-			String lname, String category, int lpoint, String retake, int atndnscore, int midscore, int finalscore,
-			int totalscore, String grade, String pid, String pname, int capacity) {
+	public LectureScore(String receptionno, String sid, String sname, String categoryname, String majorname,
+			String semester, String lcode, String lname, String category, int lpoint, String retake, int atndnscore,
+			int midscore, int finalscore, int totalscore, String grade, String pid, String pname, int capacity) {
 		super();
+		this.receptionno = receptionno;
 		this.sid = sid;
 		this.sname = sname;
 		this.categoryname = categoryname;
@@ -46,6 +48,10 @@ public class LectureScore implements java.io.Serializable{
 		this.pid = pid;
 		this.pname = pname;
 		this.capacity = capacity;
+	}
+
+	public void setReceptionno(String receptionno) {
+		this.receptionno = receptionno;
 	}
 
 	public void setSid(String sid) {
@@ -124,6 +130,10 @@ public class LectureScore implements java.io.Serializable{
 		return SerialVersionUID;
 	}
 
+	public String getReceptionno() {
+		return receptionno;
+	}
+
 	public String getSid() {
 		return sid;
 	}
@@ -198,14 +208,13 @@ public class LectureScore implements java.io.Serializable{
 
 	@Override
 	public String toString() {
-		return "LectureScore [sid=" + sid + ", sname=" + sname + ", categoryname=" + categoryname + ", majorname="
-				+ majorname + ", semester=" + semester + ", lcode=" + lcode + ", lname=" + lname + ", category="
-				+ category + ", lpoint=" + lpoint + ", retake=" + retake + ", atndnscore=" + atndnscore + ", midscore="
-				+ midscore + ", finalscore=" + finalscore + ", totalscore=" + totalscore + ", grade=" + grade + ", pid="
-				+ pid + ", pname=" + pname + ", capacity=" + capacity + "]";
+		return "LectureScore [receptionno=" + receptionno + ", sid=" + sid + ", sname=" + sname + ", categoryname="
+				+ categoryname + ", majorname=" + majorname + ", semester=" + semester + ", lcode=" + lcode + ", lname="
+				+ lname + ", category=" + category + ", lpoint=" + lpoint + ", retake=" + retake + ", atndnscore="
+				+ atndnscore + ", midscore=" + midscore + ", finalscore=" + finalscore + ", totalscore=" + totalscore
+				+ ", grade=" + grade + ", pid=" + pid + ", pname=" + pname + ", capacity=" + capacity + "]";
 	}
 
-	
 	
 	
 	

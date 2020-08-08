@@ -5,17 +5,17 @@ import lecture.model.vo.Lecture;
 public class Atndn extends Lecture  implements java.io.Serializable {
 	private final static long serialVersionUID = 456456L;
 	private String lcode;
-	private String studentid;
+	private String sid;
 	private String thisweek;
 	private String absent3;
 	
 	//join용  
 	private String semester;
-	private String studentname;
+	private String sname;
 	private String majorname;
 	private int lpoint;
 	private String category;
-	private String professorname;
+	private String pname;
 	
 	private String week1;
 	private String week2;
@@ -38,21 +38,21 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Atndn(String lcode, String studentid, String thisweek, String absent3, String semester, String studentname,
-			String majorname, int lpoint, String category, String professorname, String week1, String week2,
-			String week3, String week4, String week5, String week6, String week7, String week8, String week9,
-			String week10, String week11, String week12, String week13, String week14, String week15, String week16) {
+	public Atndn(String lcode, String sid, String thisweek, String absent3, String semester, String sname,
+			String majorname, int lpoint, String category, String pname, String week1, String week2, String week3,
+			String week4, String week5, String week6, String week7, String week8, String week9, String week10,
+			String week11, String week12, String week13, String week14, String week15, String week16) {
 		super();
 		this.lcode = lcode;
-		this.studentid = studentid;
+		this.sid = sid;
 		this.thisweek = thisweek;
 		this.absent3 = absent3;
 		this.semester = semester;
-		this.studentname = studentname;
+		this.sname = sname;
 		this.majorname = majorname;
 		this.lpoint = lpoint;
 		this.category = category;
-		this.professorname = professorname;
+		this.pname = pname;
 		this.week1 = week1;
 		this.week2 = week2;
 		this.week3 = week3;
@@ -71,26 +71,27 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 		this.week16 = week16;
 	}
 
-	public Atndn(String lcode, String studentid, String thisweek, String semester, String studentname, String majorname,
-			int lpoint, String category, String professorname) {
+	public Atndn(String lcode, String sid, String thisweek, String absent3, String semester, String sname,
+			String majorname, int lpoint, String category, String pname) {
 		super();
 		this.lcode = lcode;
-		this.studentid = studentid;
+		this.sid = sid;
 		this.thisweek = thisweek;
+		this.absent3 = absent3;
 		this.semester = semester;
-		this.studentname = studentname;
+		this.sname = sname;
 		this.majorname = majorname;
 		this.lpoint = lpoint;
 		this.category = category;
-		this.professorname = professorname;
+		this.pname = pname;
 	}
 
 	public void setLcode(String lcode) {
 		this.lcode = lcode;
 	}
 
-	public void setStudentid(String studentid) {
-		this.studentid = studentid;
+	public void setSid(String sid) {
+		this.sid = sid;
 	}
 
 	public void setThisweek(String thisweek) {
@@ -105,8 +106,8 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 		this.semester = semester;
 	}
 
-	public void setStudentname(String studentname) {
-		this.studentname = studentname;
+	public void setSname(String sname) {
+		this.sname = sname;
 	}
 
 	public void setMajorname(String majorname) {
@@ -119,11 +120,10 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 
 	public void setCategory(String category) {
 		this.category = category;
-		
 	}
 
-	public void setProfessorname(String professorname) {
-		this.professorname = professorname;
+	public void setPname(String pname) {
+		this.pname = pname;
 	}
 
 	public void setWeek1(String week1) {
@@ -190,12 +190,16 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 		this.week16 = week16;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	public String getLcode() {
 		return lcode;
 	}
 
-	public String getStudentid() {
-		return studentid;
+	public String getSid() {
+		return sid;
 	}
 
 	public String getThisweek() {
@@ -210,8 +214,8 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 		return semester;
 	}
 
-	public String getStudentname() {
-		return studentname;
+	public String getSname() {
+		return sname;
 	}
 
 	public String getMajorname() {
@@ -226,8 +230,8 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 		return category;
 	}
 
-	public String getProfessorname() {
-		return professorname;
+	public String getPname() {
+		return pname;
 	}
 
 	public String getWeek1() {
@@ -296,15 +300,15 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 
 	@Override
 	public String toString() {
-		return "Atndn [lcode=" + lcode + ", studentid=" + studentid + ", thisweek=" + thisweek + ", absent3=" + absent3
-				+ ", semester=" + semester + ", studentname=" + studentname + ", majorname=" + majorname + ", lpoint="
-				+ lpoint + ", category=" + category + ", professorname=" + professorname + ", week1=" + week1
-				+ ", week2=" + week2 + ", week3=" + week3 + ", week4=" + week4 + ", week5=" + week5 + ", week6=" + week6
-				+ ", week7=" + week7 + ", week8=" + week8 + ", week9=" + week9 + ", week10=" + week10 + ", week11="
-				+ week11 + ", week12=" + week12 + ", week13=" + week13 + ", week14=" + week14 + ", week15=" + week15
-				+ ", week16=" + week16 + "]";
+		return "Atndn [lcode=" + lcode + ", sid=" + sid + ", thisweek=" + thisweek + ", absent3=" + absent3
+				+ ", semester=" + semester + ", sname=" + sname + ", majorname=" + majorname + ", lpoint=" + lpoint
+				+ ", category=" + category + ", pname=" + pname + ", week1=" + week1 + ", week2=" + week2 + ", week3="
+				+ week3 + ", week4=" + week4 + ", week5=" + week5 + ", week6=" + week6 + ", week7=" + week7 + ", week8="
+				+ week8 + ", week9=" + week9 + ", week10=" + week10 + ", week11=" + week11 + ", week12=" + week12
+				+ ", week13=" + week13 + ", week14=" + week14 + ", week15=" + week15 + ", week16=" + week16 + "]";
 	}
 
+	 
 	
 	
 	

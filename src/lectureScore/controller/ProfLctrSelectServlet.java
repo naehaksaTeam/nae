@@ -16,14 +16,14 @@ import lectureScore.model.vo.LectureScore;
 /**
  * Servlet implementation class ScoreSelectServlet
  */
-@WebServlet("/scselect.prof")
-public class ScoreSelectServlet extends HttpServlet {
+@WebServlet("/scmain.p")
+public class ProfLctrSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 427L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ScoreSelectServlet() {
+    public ProfLctrSelectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,7 +42,7 @@ public class ScoreSelectServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		
 		if(list != null) {
-			view = request.getRequestDispatcher("views/lectureScore/profscoreEdit_List.jsp");
+			view = request.getRequestDispatcher("views/lectureScore/profscoreEdit_main.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {

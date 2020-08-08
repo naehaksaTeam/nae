@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="attendance.model.vo.Atndn, java.util.*"%>
+<%@ page import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member"%>
 <%
-	ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
+Member loginmember = (Member)session.getAttribute("loginMember");
+ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 
 	Set<String> set = new HashSet<String>();
 	for (Atndn a : list) {
@@ -56,6 +57,7 @@
 
 	<h1 align="center">강의목록</h1>
 	<table>
+
 		<tr>
 			<td class="title" colspan="4">과목명</td>
 			<td rowspan="3">
@@ -106,7 +108,15 @@
 			<td><%=a.getLtime()%></td>
 			<td><%=a.getLpoint()%></td>
 			<td><%=a.getCapacity()%></td>
-			<td><%=a.getProfessorname()%></td>
+			<td><%=a.getPname() %></td>
+			<td>
+			<form action="/beet/atnlist" method="post">
+<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+<input type="hidden" name="lcode" value="<%=a.getLcode() %>">
+<input type="submit" class="btn-sm" value="출결조회">
+<!-- 강의목록 join시 중복되는 문제 해결 필요 -->
+ </form>
+ </td>
 		</tr>
 		<% } %>
 	</table>

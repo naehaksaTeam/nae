@@ -32,12 +32,7 @@ public class AtndnUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1.
-		
-		
-		
-		
-		
-		
+
 		
 //				request.setCharacterEncoding("utf-8");
 //				//2. 

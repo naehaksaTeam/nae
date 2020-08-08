@@ -4,7 +4,6 @@ import static common.JDBCTemp.close;
 import static common.JDBCTemp.getConnection;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import attendance.model.dao.AtndnDao;
@@ -21,16 +20,15 @@ public class AtndnService {
 		return list;
 	}
 	
-	public ArrayList<Atndn> AtndnList(String id) {
-		Connection conn = getConnection();
-		 ArrayList<Atndn>  list = adao.AtndnList(conn, id);
-		close(conn);
-		return list;
-	}
+	/*
+	 * public ArrayList<Atndn> AtndnList(String id) { Connection conn =
+	 * getConnection(); ArrayList<Atndn> list = adao.AtndnList(conn, id);
+	 * close(conn); return list; }
+	 */
 	
-	public ArrayList<Atndn> AtndnList(Connection conn, String id, String lcode){
+	public ArrayList<Atndn> selectLctrAtndn(String sid, String lcode){
 		Connection conn = getConnection();
-		 ArrayList<Atndn>  list = adao.AtndnList(conn, id, lcode);
+		 ArrayList<Atndn>  list = adao.selectLctrAtndn(conn, sid, lcode);
 		close(conn);
 		return list;
 	}
