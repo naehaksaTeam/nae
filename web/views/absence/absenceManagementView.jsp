@@ -23,16 +23,16 @@
 <table id="selecta"> 휴학신청 : 신청번호로 나눔
 조회하기 승인여부, 학번, 신청번호로
 <tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th></tr>
-<% for(Absence ab : list){ %>
+<% //for(Absence ab : list){ %>
 <tr><td>list[i].get</td><td></td><td></td><td></td></tr>
-<% } %>
+<% //} %>
 </table>
 
 <table id="selectb"> 복학신청 : 신청번호로 나눔
 <tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th></tr>
-<% for(Absence ab : list){ %>
+<% //for(Absence ab : list){ %>
 <tr><td></td><td></td><td></td><td></td></tr>
-<% } %>
+<% //} %>
 </table>
 </div>
 </body>

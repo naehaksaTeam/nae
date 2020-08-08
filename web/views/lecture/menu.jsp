@@ -15,7 +15,7 @@
 <button onclick="javascript:location.href='/beet/showTimeTable?who=<%= m.getId() %>'" >시간표 조회</button>
 <button onclick="javascript:location.href='/beet/showplan'" >학점관리(미구현)</button>
 <button onclick="javascript:location.href='/beet/showplan'" >휴보강신청(미구현)</button>
-<button onclick="javascript:location.href='/beet/toapl'" >수강과목추가(관리자)</button>
+<button onclick="javascript:location.href='/beet/toapl'" >수강과목추가 [관리자]</button>
 <hr>
 <img src="/beet/resources/images/BigBeet.jpg">
 </body>

@@ -13,5 +13,6 @@
 <h1 align="center">error.jsp</h1>
 
 에러발생 : <%= error %>
+<button onclick="javascript:location.href='index.jsp'">첫 화면으로!</button>
 </body>
 </html>

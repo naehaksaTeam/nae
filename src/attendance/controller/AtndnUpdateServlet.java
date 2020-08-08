@@ -2,15 +2,11 @@ package attendance.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import member.model.service.MemberService;
-import member.model.vo.Member;
 
 /**
  * Servlet implementation class AtndnUpdateServlet
@@ -63,7 +59,7 @@ public class AtndnUpdateServlet extends HttpServlet {
 //					request.setAttribute("message", member.getUserid()+ " 회원의 정보 수정 실패");
 //					view.forward(request, response);
 //				}
-//	}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

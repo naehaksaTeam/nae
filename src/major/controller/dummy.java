@@ -1,4 +1,4 @@
-package absence.controller;
+package major.controller;
 
 public class dummy {
 

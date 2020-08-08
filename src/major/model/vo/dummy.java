@@ -1,4 +1,4 @@
-package absence.controller;
+package major.model.vo;
 
 public class dummy {
 

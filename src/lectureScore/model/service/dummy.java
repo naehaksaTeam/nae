@@ -1,4 +1,4 @@
-package absence.controller;
+package lectureScore.model.service;
 
 public class dummy {
 

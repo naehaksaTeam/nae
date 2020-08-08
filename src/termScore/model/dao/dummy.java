@@ -1,4 +1,4 @@
-package absence.controller;
+package termScore.model.dao;
 
 public class dummy {
 
