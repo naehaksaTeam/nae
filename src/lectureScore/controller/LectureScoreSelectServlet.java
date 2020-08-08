@@ -1,7 +1,6 @@
-package attendance.controller;
+package lectureScore.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -11,46 +10,44 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import attendance.model.service.AtndnService;
-import attendance.model.vo.Atndn;
+import lectureScore.model.service.LectureScoreService;
+import lectureScore.model.vo.LectureScore;
 
 /**
- * Servlet implementation class MyLctrServlet
+ * Servlet implementation class LectureScoreSelectServlet
  */
-@WebServlet("/mylctr")
-public class MyLctrServlet extends HttpServlet {
-	private static final long serialVersionUID = 417L;
+@WebServlet("/lsselect")
+public class LectureScoreSelectServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyLctrServlet() {
+    public LectureScoreSelectServlet() {
         super();
-       
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String sid = request.getParameter("userid");
+		String semester = "202001";
 		
-		ArrayList<Atndn> list = new AtndnService().selectMyLctr(sid);
+		ArrayList<LectureScore> list = new LectureScoreService().selectLectureScore(sid, semester);
+		
 		RequestDispatcher view = null;
 		
-		if(list.size() > 0) {
-			view = request.getRequestDispatcher("/views/attendance/myLctrPage.jsp");
+		if(list != null) {
+			view = request.getRequestDispatcher("views/lectureScore/lectureScoreView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "나의 강의목록 조회 실패");
+			request.setAttribute("message", sid + "과목별 성적 조회 실패");
 			view.forward(request, response);
 		}
-		
-		
 	}
 
 	/**

@@ -1,12 +1,13 @@
 package lectureScore.model.vo;
 
-public class LScore implements java.io.Serializable{
+public class LectureScore implements java.io.Serializable{
 	private static final long SerialVersionUID = 45612L;
 	
 	private String sid;
 	private String sname;
 	private String categoryname;
 	private String majorname;
+	private String semester;
 	private String lcode;
 	private String lname;
 	private String category;
@@ -19,17 +20,19 @@ public class LScore implements java.io.Serializable{
 	private String grade;
 	private String pid;
 	private String pname;
+	private int capacity;
 	
-	public LScore() {}
-	
-	public LScore(String sid, String sname, String categoryname, String majorname, String lcode, String lname,
-			String category, int lpoint, String retake, int atndnscore, int midscore, int finalscore, int totalscore,
-			String grade, String pid, String pname) {
+	public LectureScore() {}
+
+	public LectureScore(String sid, String sname, String categoryname, String majorname, String semester, String lcode,
+			String lname, String category, int lpoint, String retake, int atndnscore, int midscore, int finalscore,
+			int totalscore, String grade, String pid, String pname, int capacity) {
 		super();
 		this.sid = sid;
 		this.sname = sname;
 		this.categoryname = categoryname;
 		this.majorname = majorname;
+		this.semester = semester;
 		this.lcode = lcode;
 		this.lname = lname;
 		this.category = category;
@@ -42,6 +45,7 @@ public class LScore implements java.io.Serializable{
 		this.grade = grade;
 		this.pid = pid;
 		this.pname = pname;
+		this.capacity = capacity;
 	}
 
 	public void setSid(String sid) {
@@ -58,6 +62,10 @@ public class LScore implements java.io.Serializable{
 
 	public void setMajorname(String majorname) {
 		this.majorname = majorname;
+	}
+
+	public void setSemester(String semester) {
+		this.semester = semester;
 	}
 
 	public void setLcode(String lcode) {
@@ -108,6 +116,10 @@ public class LScore implements java.io.Serializable{
 		this.pname = pname;
 	}
 
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+
 	public static long getSerialversionuid() {
 		return SerialVersionUID;
 	}
@@ -126,6 +138,10 @@ public class LScore implements java.io.Serializable{
 
 	public String getMajorname() {
 		return majorname;
+	}
+
+	public String getSemester() {
+		return semester;
 	}
 
 	public String getLcode() {
@@ -176,14 +192,19 @@ public class LScore implements java.io.Serializable{
 		return pname;
 	}
 
+	public int getCapacity() {
+		return capacity;
+	}
+
 	@Override
 	public String toString() {
-		return "LScore [sid=" + sid + ", sname=" + sname + ", categoryname=" + categoryname + ", majorname="
-				+ majorname + ", lcode=" + lcode + ", lname=" + lname + ", category=" + category + ", lpoint=" + lpoint
-				+ ", retake=" + retake + ", atndnscore=" + atndnscore + ", midscore=" + midscore + ", finalscore="
-				+ finalscore + ", totalscore=" + totalscore + ", grade=" + grade + ", pid=" + pid + ", pname=" + pname
-				+ "]";
+		return "LectureScore [sid=" + sid + ", sname=" + sname + ", categoryname=" + categoryname + ", majorname="
+				+ majorname + ", semester=" + semester + ", lcode=" + lcode + ", lname=" + lname + ", category="
+				+ category + ", lpoint=" + lpoint + ", retake=" + retake + ", atndnscore=" + atndnscore + ", midscore="
+				+ midscore + ", finalscore=" + finalscore + ", totalscore=" + totalscore + ", grade=" + grade + ", pid="
+				+ pid + ", pname=" + pname + ", capacity=" + capacity + "]";
 	}
+
 	
 	
 	

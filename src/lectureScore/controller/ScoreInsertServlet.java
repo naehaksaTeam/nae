@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ScoreInsertServlet
  */
-@WebServlet("/scinsert")
+@WebServlet("/scinsert.prof")
 public class ScoreInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 426L;
        

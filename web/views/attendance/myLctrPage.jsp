@@ -53,6 +53,7 @@
 
 </head>
 <body>
+
 	<h1 align="center">강의목록</h1>
 	<table>
 		<tr>
@@ -73,13 +74,13 @@
 		</tr>
 	</table>
 
-	<table class="selected" cellpadding="10px">
+	<table id="stable" cellpadding="10px">
 		<tr>
-			<select class="semester" id="myselect" onchange="this.form.submit()"
-				style="width: 80px">
+			<select id="selected">
+				style="width: 80px"> <!-- onchange="this.form.submit() -->
 
 				<% while (it.hasNext()) { %>
-				<option value="123"><%=it.next()%></option>
+				<option><%=it.next()%></option>
 				<% } %>
 			</select>
 
@@ -98,6 +99,7 @@
 			for (Atndn a : list) {
 		%>
 		<tr>
+			
 			<td><%=a.getLcode()%></td>
 			<td><%=a.getCategory()%></td>
 			<td><%=a.getLname()%></td>
@@ -108,23 +110,17 @@
 		</tr>
 		<% } %>
 	</table>
+ 
+ <script>
+$(function(){
+	var s = $("#selected option:checked").text();
+	alert(s);
+});
+</script>
 
-	<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
-	<script>
-	
-	//$("#semester option:selected").val()
-	ArrayList<Atndn> list2 = new ArrayList<Atndn>();
-	var selected = document.getElementbyId(myselect);
-	
-/* 	function(){		
-		for(int i=0;i<list.size();i++){
-			if(list.get(i).getSemester().equals(selected)){
-				
-			} */
-			
-		}
-	}
-	</script>
+ 
+
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 
 </body>
 </html>
