@@ -17,8 +17,8 @@ import common.wrapper.CryptoPasswordWrapper;
  * Servlet Filter implementation class CryptoPasswordFilter
  */
 @WebFilter("*.cp")
-public class CryptoPasswordFilter implements Filter {
-
+public class CryptoPasswordFilter implements Filter, java.io.Serializable{
+	private final static long serialVersionUID = 354425433;
     /**
      * Default constructor. 
      */

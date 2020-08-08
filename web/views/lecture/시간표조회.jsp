@@ -25,6 +25,11 @@ border:1px solid black;
 </style>
 </head>
 <body>
+<% if(session.getAttribute("loginMember") == null ){ %>
+<h1>비회원 상태입니다.</h1>
+<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<% }else{ %>
+
 <h1><%= ((Member)session.getAttribute("loginMember")).getName() %>의 시간표조회</h1>
 <hr>
 
@@ -332,5 +337,9 @@ border:1px solid black;
 <% } %>
 </tr>
 </table>
+
+
+<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<% } %>
 </body>
 </html>

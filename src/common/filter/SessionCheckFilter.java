@@ -18,8 +18,8 @@ import student.model.vo.Member;
  * Servlet Filter implementation class SessionCheckFilter
  */
 @WebFilter("*.ss")
-public class SessionCheckFilter implements Filter {
-
+public class SessionCheckFilter implements Filter, java.io.Serializable{
+	private final static long serialVersionUID = 354999433;
 	/**
 	 * Default constructor.
 	 */

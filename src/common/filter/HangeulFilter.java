@@ -13,8 +13,8 @@ import javax.servlet.annotation.WebFilter;
  * Servlet Filter implementation class HangeulFilter
  */
 @WebFilter("/*")
-public class HangeulFilter implements Filter {
-
+public class HangeulFilter implements Filter, java.io.Serializable{
+	private final static long serialVersionUID = 356775433;
     /**
      * Default constructor. 
      */

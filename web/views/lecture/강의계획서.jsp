@@ -20,6 +20,10 @@ background-color : white;
 </style>
 </head>
 <body>
+<% if(session.getAttribute("loginMember") == null ){ %>
+<h1>비회원 상태입니다.</h1>
+<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<% }else{ %>
 <h1>강의계획서 페이지</h1>
 <hr>
 <table style="border:2px solid black;">
@@ -80,5 +84,7 @@ background-color : white;
 <% } %>
 </table>
 
+<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<% } %>
 </body>
 </html>

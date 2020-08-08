@@ -22,6 +22,15 @@ width:100%;
 </style>
 </head>
 <body>
+<% if(session.getAttribute("loginMember") == null ){ %>
+<h1>비회원 상태입니다.</h1>
+<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<% }else if(!((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
+<h1>관리자 전용페이지입니다.</h1>
+<hr>
+<h2>이유 : 관리자계정아님</h2>
+<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<% }else{ %>
 <h1>수강과목추가(관리자전용)</h1>
 <hr>
 <form action="/beet/addlecture" method="post">
@@ -72,5 +81,8 @@ width:100%;
 </b>
 </center>
 </form>
+
+<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<% } %>
 </body>
 </html>

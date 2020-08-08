@@ -16,7 +16,7 @@ import lecture.model.vo.Lecture;
 /**
  * Servlet implementation class showPlanServlet
  */
-@WebServlet("/showplan")
+@WebServlet("/showplan.ss")
 public class showPlanServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
