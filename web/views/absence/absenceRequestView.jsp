@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="absence.model.vo.Absence, java.util.ArrayList"%>
-<%@ page import="student.model.vo.Student" %>  
+<%@ page import="student.model.vo.Member" %>  
 <%
 	ArrayList<Absence> list = (ArrayList<Absence>)request.getAttribute("list");
-	Student loginMember = (Student)session.getAttribute("loginMember");
+	Member loginMember = (Member)session.getAttribute("loginMember");
 %>
     
   
