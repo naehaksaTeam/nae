@@ -33,6 +33,8 @@ public class lectureAddServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Lecture> list = new LectureService().selectAllPlan();
+		ArrayList<Lecture> list2 = new LectureService().selectOpenedLectures();
+		request.setAttribute("list2", list2);
 		request.setAttribute("list", list);
 		
 		int roommax = Integer.parseInt(request.getParameter("roommax"));

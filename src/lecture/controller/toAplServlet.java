@@ -32,12 +32,16 @@ public class toAplServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		ArrayList<Lecture> list = new LectureService().selectAllPlan();
+		ArrayList<Lecture> list2 = new LectureService().selectOpenedLectures();
 		
 		RequestDispatcher view = null;
 		
 		view = request.getRequestDispatcher("/views/lecture/수강과목추가.jsp");
 		request.setAttribute("list", list);
+		request.setAttribute("list2", list2);
+		request.setAttribute("result", "널값제거용");
 		view.forward(request, response);
 	}
 

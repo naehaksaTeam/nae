@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture,student.model.vo.Member" errorPage="../../views/common/error.jsp" %>
+    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture,student.model.vo.Member"  %>
+<% if((request.getAttribute("result")).equals("ok") || (request.getAttribute("result")).equals("already")){
+		session.setAttribute( (String)request.getAttribute("resultForSession") , "확인" );
+   } %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,12 +77,12 @@ text-align : center;
 <%= l.getRoom() %>
 </td>
 <td>
-<% if((request.getAttribute("result")).equals("no")){ %>
-<b>마감</b>
-<% }else{ %>
+<% if((session.getAttribute(l.getLname())) == null ){ %>
 <form action="/beet/lapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
 <button type="submit" name="lname" value="<%= l.getLname() %>">수강신청</button>
 </form>
+<% }else{ %>
+<b>마감</b>
 <% } %>
 </td>
 </tr>
