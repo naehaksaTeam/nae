@@ -13,6 +13,7 @@ import lecture.model.dao.LectureDao;
 import lecture.model.vo.Lecture;
 import lecture.model.vo.Rest;
 import lecture.model.vo.TimeTable;
+import student.model.vo.Member;
 
 public class LectureService {
 
@@ -211,5 +212,50 @@ public class LectureService {
 		ArrayList<Rest> list = ldao.selectRest(conn);
 		close(conn);
 		return list;
+	}
+
+	public ArrayList<Member> selectAllUsers() {
+		//교수리스트 조회
+		Connection conn = getConnection();
+		ArrayList<Member> list = ldao.selectAllUsers(conn);
+		close(conn);
+		return list;
+		
+	}
+
+	public ArrayList<Lecture> selectMyLectures(String id) {
+		//교수의 과목 조회
+		Connection conn = getConnection();
+		ArrayList<Lecture> list = ldao.selectMyLectures(conn,id);
+		close(conn);
+		return list;
+	}
+
+	public int insertRest(Rest r) {
+		//휴보강신청 버튼
+		int rst = 0;
+		Connection conn = getConnection();
+		rst = ldao.insertRest(conn,r);
+		if(rst > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return rst;
+	}
+
+	public int delRest(String no) {
+		//휴보강 철회 버튼
+		int r = 0;
+		Connection conn = getConnection();
+		r = ldao.delRest(conn,no);
+		if(r > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return r;
 	}
 }

@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lecture.model.service.LectureService;
+import lecture.model.vo.Lecture;
 import lecture.model.vo.Rest;
+import student.model.vo.Member;
 
 /**
  * Servlet implementation class toRestServlet
@@ -33,9 +35,14 @@ public class toRestServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Rest> list = new LectureService().selectRest();//휴보강신청목록을 관리자에게
+		ArrayList<Lecture> list2 = new LectureService().selectAllPlan();//전체강의목록불러오기
+		String id = request.getParameter("who");
+		ArrayList<Lecture> list3 = new LectureService().selectMyLectures(id);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/lecture/휴보강신청.jsp");
 		request.setAttribute("list", list);
+		request.setAttribute("list2", list2);
+		request.setAttribute("list3", list3);
 		view.forward(request, response);
 		
 	}

@@ -70,7 +70,7 @@ border:1px solid red;
 <%= l.getCapacity() %>
 </td>
 <td>
-&nbsp;<%= l.getLtime() %>, <%= l.getContent() %>시&nbsp;
+&nbsp;<%= l.getLtime() %>, <%= l.getLclock() %>시&nbsp;
 </td>
 <td>
 <%= l.getProfessorid() %>

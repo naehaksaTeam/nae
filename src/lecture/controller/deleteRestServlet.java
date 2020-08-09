@@ -1,10 +1,6 @@
 package lecture.controller;
-
+//휴보강 철회 버튼
 import java.io.IOException;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -19,16 +15,16 @@ import lecture.model.vo.Lecture;
 import lecture.model.vo.Rest;
 
 /**
- * Servlet implementation class requestRestServlet
+ * Servlet implementation class modifyRestServlet
  */
-@WebServlet("/requestr")
-public class requestRestServlet extends HttpServlet {
+@WebServlet("/delrest")
+public class deleteRestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public requestRestServlet() {
+    public deleteRestServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,23 +33,9 @@ public class requestRestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DateFormat df=new SimpleDateFormat("yy-MM-dd");
-		Date d1 = Date.valueOf(request.getParameter("dayoff"));
-		Date d2 = Date.valueOf(request.getParameter("rday"));
-		
-		Rest r = new Rest();
-		r.setDayoff(d1);
-		r.setRday(d2);
-		r.setId(request.getParameter("userid"));
-		r.setLcode(request.getParameter("lcode"));
-		r.setReason(request.getParameter("reason"));
-		r.setReceptionno(request.getParameter("receptionno"));
-		r.setRoom(request.getParameter("room"));
-		r.setRtime(request.getParameter("rtime"));
-		r.setSubid(request.getParameter("subid"));
-		r.setWay(request.getParameter("way"));
-		
-		int result = new LectureService().insertRest(r);
+		String no = request.getParameter("what");
+		System.out.println(no);
+		int r = new LectureService().delRest(no);
 		
 		ArrayList<Rest> list = new LectureService().selectRest();//휴보강신청목록을 관리자에게
 		ArrayList<Lecture> list2 = new LectureService().selectAllPlan();//전체강의목록불러오기
@@ -64,15 +46,16 @@ public class requestRestServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		
-		if(result > 0) {
+		if(r > 0) {
 			view = request.getRequestDispatcher("/views/lecture/휴보강신청.jsp");
-			request.setAttribute("result", "ok");
+			request.setAttribute("result", "good");
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("/views/lecture/휴보강신청.jsp");
-			request.setAttribute("result", "no");
+			request.setAttribute("result", "bad");
 			view.forward(request, response);
 		}
+		
 	}
 
 	/**

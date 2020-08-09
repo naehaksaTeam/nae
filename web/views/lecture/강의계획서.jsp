@@ -75,7 +75,7 @@ background-color : white;
 <%= l.getLtime() %>
 </td>
 <td>
-<%= l.getProfessorid() %>
+<%= l.getName() %>
 </td>
 <td>
 <%= l.getRoom() %>

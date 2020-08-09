@@ -8,6 +8,34 @@ public class Lecture implements java.io.Serializable{
 	private String category;
 	private int capacity;
 	private String content;
+	private String lclock;
+	public String getLclock() {
+		return lclock;
+	}
+	public void setLclock(String lclock) {
+		this.lclock = lclock;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	private String name;
+	public Lecture(String lcode, String lname, String category, int capacity, String content, String lclock,
+			String name, String ltime, String professorid, String room) {
+		super();
+		this.lcode = lcode;
+		this.lname = lname;
+		this.category = category;
+		this.capacity = capacity;
+		this.content = content;
+		this.lclock = lclock;
+		this.name = name;
+		this.ltime = ltime;
+		this.professorid = professorid;
+		this.room = room;
+	}
 	private String ltime;
 	private String professorid;
 	private String room;
@@ -35,6 +63,19 @@ public class Lecture implements java.io.Serializable{
 	}
 	public int getCapacity() {
 		return capacity;
+	}
+	public Lecture(String lcode, String lname, String category, int capacity, String content, String name, String ltime,
+			String professorid, String room) {
+		super();
+		this.lcode = lcode;
+		this.lname = lname;
+		this.category = category;
+		this.capacity = capacity;
+		this.content = content;
+		this.name = name;
+		this.ltime = ltime;
+		this.professorid = professorid;
+		this.room = room;
 	}
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
@@ -75,7 +116,8 @@ public class Lecture implements java.io.Serializable{
 	@Override
 	public String toString() {
 		return "Lecture [lcode=" + lcode + ", lname=" + lname + ", category=" + category + ", capacity=" + capacity
-				+ ", content=" + content + ", ltime=" + ltime + ", professorid=" + professorid + ", room=" + room + "]";
+				+ ", content=" + content + ", lclock=" + lclock + ", name=" + name + ", ltime=" + ltime
+				+ ", professorid=" + professorid + ", room=" + room + "]";
 	}
 	public void setRoom(String room) {
 		this.room = room;
