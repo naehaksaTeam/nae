@@ -122,10 +122,13 @@ ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 	</table>
  
  <script>
-$(function(){
-	var s = $("#selected option:checked").text();
-	alert(s);
-});
+ $(function(){
+	 $('#selectSemester').change(function(){
+		 var test = $("#selectSemester option:selected").val();
+		 document.querySelectorAll('tr').value = test;	
+		 alert(test);
+	 });
+ });
 </script>
 
  

@@ -64,6 +64,42 @@
 	<script type="text/javascript" src="/test1/resources/js/jquery-3.5.1.min.js"></script>
 	<!-- jquery로 입력값 받아서 수정하기 변경하기누르면 update 취소 누르면 sendredirect -->
 <script>
+//수정가능 
+function activeEle() {
+	$("input[type=text]").removeAttr('readonly');
+}
+ 
+//숫자 0~100사이만 입력
+var replaceNotInt = /[^0-9]/gi;
+
+$(document).ready(function(){
+    $("input[type=text]").on("focusout", function() { 
+        var x = $(this).val();
+        if (x.length > 0) {
+            if (x.match(replaceNotInt)) {
+               x = x.replace(replaceNotInt, "");
+            }
+            $(this).val(x);
+            
+            if(x > 100) {
+            	$(this).val('100');
+            }
+
+        }
+    }).on("keyup", function() {
+        $(this).val($(this).val().replace(replaceNotInt, ""));
+        
+    });
+   
+    
+}); 
+
+
+//
+var a = document.getElementsByClassName("at");
+for(i=0;i<a.length;i++){
+	console.log(a[i]);
+}
 </script>
 </body>
 </html>
