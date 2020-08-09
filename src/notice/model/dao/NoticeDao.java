@@ -187,7 +187,7 @@ public class NoticeDao {
       Statement stmt = null;
       ResultSet rset = null;
 
-      String query = "SELECT COUNT(*)FROM Notice";
+      String query = "SELECT COUNT(*) FROM Notice";
 
       try {
          stmt = conn.createStatement();

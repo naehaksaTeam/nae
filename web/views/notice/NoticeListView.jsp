@@ -1,7 +1,7 @@
 <!--  일반회원용 공지사항첫페이지  
  번호 , 제목, 작성자, 첨부파일 , 날짜 , 게시글
 -->
-<%@page import="com.sun.xml.internal.ws.message.StringHeader"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList , notice.model.vo.Notice"%>
@@ -21,7 +21,7 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 <title>test1</title>
 <script type="text/javascript">
 function showWriteForm(){
-	location.href = "/test1/views/notice/noticeWriteForm.jsp";
+	location.href = "/beet/views/notice/noticeWriteForm.jsp";
 }
 
 </script>

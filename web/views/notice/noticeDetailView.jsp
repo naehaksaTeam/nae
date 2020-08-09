@@ -26,14 +26,14 @@
    <th>첨부파일</th>
    <td>
       <% if(notice.getOriginalFile() != null) { %>
-         <a href="/test1/nfdown?ofile=<%=notice.getOriginalFile() %>&rfile=<%= notice.getRenameFile()%>"><%=notice.getOriginalFile() %></a>
+         <a href="/beet/nfdown?ofile=<%=notice.getOriginalFile() %>&rfile=<%= notice.getRenameFile()%>"><%=notice.getOriginalFile() %></a>
       <% }else{ %>
          &nbsp;
       <% } %>
    </td>
 </tr>
 <tr><th>내 용</th><td><%=notice.getNoticeContent().replace("\n", " ") %></td></tr>
-<tr><th colspan="2"><button onclick="javascript:history.go(-1);">목록</button></th><td></td></tr>
+<tr><th colspan="2"><button onclick="javascript:history.go(-1);">뒤로가기</button></th><td></td></tr>
 </table>
 </body>
 </html>
