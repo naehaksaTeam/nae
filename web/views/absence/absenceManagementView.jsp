@@ -23,6 +23,7 @@
 <br><br><br><br><br>
 <div>
 
+<<<<<<< HEAD
 <button onclick="javascript:location.href='/beet/selectaba?value=a'">휴 학 조 회</button>
 <button onclick="javascript:location.href='/beet/selectaba?value=b'">복 학 조 회</button>
 <br><br><br><br>
@@ -31,6 +32,13 @@
 <tr><th colspan="5">휴 학 신 청 내 역</th></tr>
 <tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
 <% if(list != null){ %>
+=======
+<div>
+<form action="/beet/updateab">
+<table id="selecta">
+<tr><th>휴 학 신 청 내 역</th><th colspan="4"><button onclick="javascript:location.href='/beet/selectaba?value=a'">조 회</button></th></tr>
+<tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
+>>>>>>> efe1f4b177c2a43ed4672f28454361c787342670
 <% for(Absence ab : list){ %>
 <tr><td><input type="radio" name="requestid" value=<%=ab.getRequestid()%>><%=ab.getRequestid()%></td>
 	<td><%=ab.getStudentid() %></td>
@@ -39,6 +47,7 @@
 	<td><input type="text" name="approval" value="<%= ab.getApproval()%>"><%=ab.getApproval()%></td>
 </tr>
 <tr><td><input type="submit" value="승인하기"></td></tr>
+<<<<<<< HEAD
 <% } %>
 <% } %>
 </table>
@@ -49,6 +58,17 @@
 <tr><th colspan="5">복 학 신 청 내 역</th></tr>
 <tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
 <% if(list != null){ %>
+=======
+<% } %>
+</table>
+</form>
+
+
+<form action="/beet/updateab">
+<table id="selectb">
+<tr><th>복 학 신 청 내 역</th><th colspan="4"><button onclick="javascript:location.href='/beet/selectaba?value=b'">조 회</button></th></tr>
+<tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
+>>>>>>> efe1f4b177c2a43ed4672f28454361c787342670
 <% for(Absence ab : list){ %>
 <tr><td><input type="radio" name="requestid" value=<%=ab.getRequestid()%>><%=ab.getRequestid()%></td>
 	<td><%=ab.getStudentid() %></td>
@@ -58,6 +78,7 @@
 </tr>
 <tr><td><input type="submit" value="승인하기"></td></tr>
 <% } %>
+<<<<<<< HEAD
 <% } %>
 </table>
 </form>
@@ -67,6 +88,15 @@
 <tr><th colspan="5">휴 학, 복 학 신 청 내 역</th></tr>
 <tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
 <% if(list != null){ %>
+=======
+</table>
+</form>
+
+<form action="/beet/deleteab">
+<table id="selectb">
+<tr><th>휴 학,  복 학 신 청 내 역</th><th colspan="4"><button onclick="javascript:location.href='/beet/selectaball'">조 회</button></th></tr>
+<tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
+>>>>>>> efe1f4b177c2a43ed4672f28454361c787342670
 <% for(Absence ab : list){ %>
 <tr><td><input type="radio" name="requestid" value=<%=ab.getRequestid()%>><%=ab.getRequestid()%></td>
 	<td><%=ab.getStudentid() %></td>
@@ -75,7 +105,10 @@
 	<td><%=ab.getApproval()%></td>
 </tr>
 <tr><td><input type="submit" value="삭제하기"></td></tr>
+<<<<<<< HEAD
 <% } %>
+=======
+>>>>>>> efe1f4b177c2a43ed4672f28454361c787342670
 <% } %>
 </table>
 </form>
