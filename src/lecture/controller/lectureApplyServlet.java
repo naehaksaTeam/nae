@@ -52,6 +52,7 @@ public class lectureApplyServlet extends HttpServlet {
 		}else {
 			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
 			request.setAttribute("result", "no");
+			request.setAttribute("resultForSession", lname);
 			view.forward(request, response);
 		}
 		

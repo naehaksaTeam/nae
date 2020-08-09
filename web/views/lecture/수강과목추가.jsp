@@ -123,7 +123,7 @@ border:1px solid red;
 	<% }else if((request.getAttribute("result").equals("good"))){ %>
 		수강목록에서 삭제됨
 	<% }else if((request.getAttribute("result").equals("bad"))){ %>
-		수강삭제 실패...
+		강의내리기 실패...
 	<% }else{ %>
 		버튼을 눌러주세요
 	<% } %>
