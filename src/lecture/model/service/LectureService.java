@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import lecture.model.dao.LectureDao;
 import lecture.model.vo.Lecture;
+import lecture.model.vo.Rest;
 import lecture.model.vo.TimeTable;
 
 public class LectureService {
@@ -202,5 +203,13 @@ public class LectureService {
 		}
 		close(conn);
 		return r;
+	}
+
+	public ArrayList<Rest> selectRest() {
+		//휴보강버튼
+		Connection conn = getConnection();
+		ArrayList<Rest> list = ldao.selectRest(conn);
+		close(conn);
+		return list;
 	}
 }

@@ -10,15 +10,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import lecture.model.vo.Lecture;
+import lecture.model.vo.Rest;
 import lecture.model.vo.TimeTable;
 
 public class LectureDao {
-
+	
+	private String tc = "zz";//강의생성테이블접두사
+	
 	public LectureDao() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	
 	public Lecture loginCheck(Connection conn, String userid, String userpwd) {
 		Lecture member = null;
@@ -101,7 +104,7 @@ public class LectureDao {
 		//개설된 강의 내리기버튼
 		String result = "";
 		Statement stmt = null;
-		String query = "DROP TABLE zz" + lecture + " CASCADE CONSTRAINTS";
+		String query = "DROP TABLE " + tc + lecture + " CASCADE CONSTRAINTS";
 		try {
 			stmt = conn.createStatement();
 			stmt.execute(query);
@@ -399,7 +402,7 @@ public class LectureDao {
 		//수강신청개설1
 		String max = "" + roommax;
 		Statement stmt = null;
-		String query = "create table zz" + lecture + " ( name varchar2(500) default " + max + " )";
+		String query = "create table " + tc + lecture + " ( name varchar2(500) default " + max + " )";
 		
 		try {
 			stmt = conn.createStatement();
@@ -416,7 +419,7 @@ public class LectureDao {
 		//수강신청개설2
 		int r = 0;
 		Statement stmt = null;
-		String query = "insert into zz" + lecture + " values (default)";
+		String query = "insert into " + tc + lecture + " values (default)";
 		
 		try {
 			stmt = conn.createStatement();
@@ -500,9 +503,9 @@ public class LectureDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "select data_default from SYS.all_tab_columns where owner = 'BEETPROJECT1' and table_name like ?";
-		String query2 = "select count(*) c from zz" + lname;
-		String query3 = "insert into zz" + lname + " values ('" + name + "')";
-		String chk = "select * from zz" + lname;
+		String query2 = "select count(*) c from " + tc + lname;
+		String query3 = "insert into " + tc + lname + " values ('" + name + "')";
+		String chk = "select * from " + tc + lname;
 		int n1 = 0;
 		int n2 = 0;
 		try {
@@ -540,6 +543,40 @@ public class LectureDao {
 			e.printStackTrace();
 		}
 		return r;
+	}
+
+
+	public ArrayList<Rest> selectRest(Connection conn) {
+		ArrayList<Rest> list = new ArrayList<Rest>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "select * from reception";
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Rest r = new Rest();
+				r.setDayoff(rset.getDate("dayoff"));
+				r.setId(rset.getString("id"));
+				r.setLcode(rset.getString("lcode"));
+				r.setRday(rset.getDate("rday"));
+				r.setReason(rset.getString("reason"));
+				r.setReceptionno(rset.getString("receptionno"));
+				r.setRoom(rset.getString("room"));
+				r.setRtime(rset.getString("rtime"));
+				r.setSubid(rset.getString("subid"));
+				r.setWay(rset.getString("way"));
+				
+				list.add(r);
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 }

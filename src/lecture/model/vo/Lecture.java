@@ -1,5 +1,5 @@
 package lecture.model.vo;
-
+//강의
 public class Lecture implements java.io.Serializable{
 	private final static long serialVersionUID = 1232342343L;
 	

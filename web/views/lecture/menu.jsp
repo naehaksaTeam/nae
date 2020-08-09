@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" errorPage="../../views/common/error.jsp" %>
+    pageEncoding="UTF-8" import="student.model.vo.Member" errorPage="../../views/common/error.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +15,9 @@
 <hr>
 <%@ include file="/views/common/sessionChk.jsp" %>
 <button onclick="javascript:location.href='/beet/showplan.ss'" >강의 계획서</button>
-<button onclick="javascript:location.href='/beet/toapply?who=<%= m.getId() %>'" >수강신청</button>
-<button onclick="javascript:location.href='/beet/showTimeTable?who=<%= m.getId() %>'" >시간표 조회</button>
-<button onclick="javascript:location.href='/beet/showplan'" >휴보강신청(미구현)</button>
+<button onclick="javascript:location.href='/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>'" >수강신청</button>
+<button onclick="javascript:location.href='/beet/showTimeTable?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>'" >시간표 조회</button>
+<button onclick="javascript:location.href='/beet/torest'" >휴보강신청</button>
 <button onclick="javascript:location.href='/beet/toapl'" >수강과목추가 [관리자]</button>
 <button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
 <hr>

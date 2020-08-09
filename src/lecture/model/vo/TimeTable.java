@@ -1,5 +1,5 @@
 package lecture.model.vo;
-
+//시간표
 public class TimeTable implements java.io.Serializable{
 	private static final long serialVersionUID = 345456456;
 	private String time;
