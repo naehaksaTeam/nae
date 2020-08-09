@@ -11,16 +11,15 @@ import java.util.ArrayList;
 
 import lecture.model.dao.LectureDao;
 import lecture.model.vo.Lecture;
-import lecture.model.vo.TimeTable;
 
 public class LectureService {
 
 	private LectureDao ldao = new LectureDao();
-
+	
 	public LectureService() {
-
+		
 	}
-
+	
 	public Lecture loginCheck(String id, String pw) {
 		Connection conn = getConnection();
 		Lecture member = ldao.loginCheck(conn, id, pw);
@@ -29,11 +28,11 @@ public class LectureService {
 	}
 
 	public int insertLecture(Lecture member) {
-		Connection conn = getConnection();
+		Connection conn =getConnection();
 		int result = ldao.insertLecture(conn, member);
-		if (result > 0) {
+		if(result > 0) {
 			commit(conn);
-		} else {
+		}else {
 			rollback(conn);
 		}
 		close(conn);
@@ -41,33 +40,33 @@ public class LectureService {
 	}
 
 	public Lecture selectLecture(String userid) {
-
+		
 		Connection conn = getConnection();
 		Lecture member = ldao.selectLecture(conn, userid);
 		close(conn);
 		return member;
-
+		
 	}
 
 	public int deleteLecture(String id) {
 		Connection conn = getConnection();
-
+		
 		int result = ldao.deleteLecture(conn, id);
-		if (result > 0) {
+		if(result > 0) {
 			commit(conn);
-		} else {
+		}else {
 			rollback(conn);
 		}
 		close(conn);
 		return result;
 	}
-
+	
 	public int updateLecture(Lecture member) {
 		Connection conn = getConnection();
 		int result = ldao.updateLecture(conn, member);
-		if (result > 0) {
+		if(result > 0) {
 			commit(conn);
-		} else {
+		}else {
 			rollback(conn);
 		}
 		close(conn);
@@ -86,7 +85,7 @@ public class LectureService {
 		int result = ldao.updateLoginOK(conn, userid, loginok);
 		if (result > 0) {
 			commit(conn);
-		} else {
+		}else {
 			rollback(conn);
 		}
 		close(conn);
@@ -130,33 +129,16 @@ public class LectureService {
 
 	public int selectCheckId(String userid) {
 		Connection conn = getConnection();
-		int idcount = ldao.selectCheckId(conn, userid);
+		int idcount = ldao.selectCheckId(conn,userid);
 		close(conn);
 		return idcount;
 	}
 
 	public ArrayList<Lecture> selectAllPlan() {
-		// 강의 계획서 조회
 		Connection conn = getConnection();
 		ArrayList<Lecture> list = ldao.selectAllPlan(conn);
 		close(conn);
-
-		return list;
-	}
-
-	public TimeTable selecTimeTable(String studentid, String clock) {
-		// 시간표 조회
-		Connection conn = getConnection();
-		TimeTable list = ldao.selecTimeTable(conn,studentid,clock);
-		close(conn);
-		if(list == null) {
-			String n = "공강";
-			list.setDay(n);
-			list.setName(n);
-			list.setTime(n);
-			System.out.println(n);
-		}
-		System.out.println("s");
+		
 		return list;
 	}
 }

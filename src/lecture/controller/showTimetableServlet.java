@@ -1,4 +1,4 @@
-package lectureScore.controller;
+package lecture.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ScoreDeleteServlet
+ * Servlet implementation class showTimetableServlet
  */
-@WebServlet("/scdelete")
-public class ScoreDeleteServlet extends HttpServlet {
-	private static final long serialVersionUID = 425L;
+@WebServlet("/showtimetable")
+public class showTimetableServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ScoreDeleteServlet() {
+    public showTimetableServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +26,7 @@ public class ScoreDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//성적삭제	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

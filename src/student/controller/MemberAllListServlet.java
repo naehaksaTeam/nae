@@ -1,4 +1,4 @@
-package termScore.controller;
+package professor.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import termScore.model.service.TermScoreService;
-import termScore.model.vo.TermScore;
+import professor.model.service.MemberService;
+import student.model.vo.Member;
 
 /**
- * Servlet implementation class TermScoreSelectServlet
+ * Servlet implementation class MemberAllListServlet
  */
-@WebServlet("/tesselect")
-public class TermScoreSelectServlet extends HttpServlet {
+@WebServlet("/alllist")
+public class MemberAllListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TermScoreSelectServlet() {
+    public MemberAllListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,24 +32,19 @@ public class TermScoreSelectServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//학생의 전체성적 조회처리 
-		
-		
-		String sid = request.getParameter("userid");
-		response.setContentType("text/html; charset=utf-8");
-		//3
-		ArrayList<TermScore> list = new TermScoreService().selectTermScore(sid);
-		RequestDispatcher view = null;
-		
-		if(list != null) {
-			view = request.getRequestDispatcher("views/termScore/termScoreView.jsp");
-			request.setAttribute("list",  list);
-			view.forward(request, response);
-		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", sid + "학기성적 조회 실패!");
-			view.forward(request, response);
-		}
+		//회원 전체 조회용 컨트롤러 
+				ArrayList<Member> list = new MemberService().selectList();
+				RequestDispatcher view = null;
+				if(list.size()>0) { //전체조회 (사이즈크기 0보다크면 성공 )
+					view = request.getRequestDispatcher("views/member/memberAllListView.jsp");
+					request.setAttribute("list", list);
+					view.forward(request, response);
+					
+				}else { //실패 
+					view = request.getRequestDispatcher("views/common/error.jsp");
+					request.setAttribute("message", "회원 전체 조회 실패");
+					view.forward(request, response);
+				}
 	}
 
 	/**

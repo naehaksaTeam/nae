@@ -10,7 +10,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import lecture.model.vo.Lecture;
-import lecture.model.vo.TimeTable;
 
 public class LectureDao {
 
@@ -36,6 +35,10 @@ public class LectureDao {
 			
 			if(rset.next()) {
 				member = new Lecture();
+				
+	
+				
+				//System.out.println(member);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -361,38 +364,6 @@ public class LectureDao {
 		}
 		
 		return list;
-	}
-
-
-	public TimeTable selecTimeTable(Connection conn, String studentid, String clock) {
-		TimeTable t = new TimeTable();
-		
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String query = "select lname,ltime,lclock from  lapplication join lecture using (lcode) where lapplication.id = ? and lclock = ?";
-		
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, studentid);
-			pstmt.setString(2, clock);
-			rset = pstmt.executeQuery();
-				
-			if(rset.next()) {
-				t.setDay(rset.getString("ltime"));
-				t.setName(rset.getString("lname"));
-				t.setTime(rset.getString("lclock"));
-				
-			}
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return t;
 	}
 
 }

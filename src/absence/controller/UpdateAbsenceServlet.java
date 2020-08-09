@@ -7,30 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class UpdateAbsenceServlet
- */
-@WebServlet("/updatesb")
+@WebServlet("/updateab")
 public class UpdateAbsenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
     public UpdateAbsenceServlet() {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//승인 완료되면 학생테이블의 휴학여부 바꾸어준다
+		
+		//approval이 Y면 되돌려보낸다
+		//1. approval Y로 바꾸고승인 완료되면 
+		
+		
+		//2. a면 휴학신청: 학생테이블의 휴학여부= Y, absencecount + 1.
+		//	 b면 복학신청: 학생테이블의 휴학여부= N
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

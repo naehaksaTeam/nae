@@ -1,11 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="student.model.vo.Member" %>
-<% Member m = (Member)session.getAttribute("loginMember"); %>
+<% Member m = (Member)session.getAttribute("loginMember");%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<script type="text/javascript">
+
+
+$(function() {
+	
+	
+	$("#btn01").click({
+		
+		
+		
+		
+		
+	});
+	
+	
+	
+});
+
+</script>
+
 <title>Insert title here</title>
+
+
+
 </head>
 <body>
 <% if(m == null){ %>

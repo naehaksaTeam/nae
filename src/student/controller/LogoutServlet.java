@@ -1,4 +1,4 @@
-package lectureScore.controller;
+package student.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,18 +6,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ScoreUpdateServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet("/scupdate")
-public class ScoreUpdateServlet extends HttpServlet {
-	private static final long serialVersionUID = 428L;
+@WebServlet("/logout.cp")
+public class LogoutServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ScoreUpdateServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +27,15 @@ public class ScoreUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//성적수정	// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 로그아웃 처리용 컨트롤러
+				//세션 객체 존재 확인
+				HttpSession session = request.getSession(false);
+				if(session != null) {  //로그인한 상태라면 (세션객체가 있다면)
+					//세션 객체를 없앰
+					session.invalidate();
+					response.sendRedirect("index.jsp");
+				}
+		
 	}
 
 	/**

@@ -1,14 +1,14 @@
 package scholarship.model.dao;
 
+import static common.JDBCTemp.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import category.model.vo.Category;
 import scholarship.model.vo.Scholarship;
-import static common.JDBCTemp.close;
 
 public class ScholarshipDao {
 	public ScholarshipDao() {}
@@ -78,14 +78,40 @@ public class ScholarshipDao {
 		return result;
 	}
 
-	public int updateScholarship(Connection conn, String ssname) {
+	public int updateScholarship(Connection conn, Scholarship ss, String originname) {
 		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query="update scholarship set ssname= ?, value= ? where ssname = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ss.getSsname());
+			pstmt.setInt(2, ss.getValue());
+			pstmt.setString(3, originname);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
 		
 		return result;
 	}
 	
 	public int deleteScholarship(Connection conn, String ssname) {
 		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query="delete from scholarship where ssname = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ssname);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
 		
 		return result;
 	}

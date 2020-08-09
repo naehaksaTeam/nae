@@ -1,7 +1,6 @@
 package attendance.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -15,33 +14,32 @@ import attendance.model.service.AtndnService;
 import attendance.model.vo.Atndn;
 
 /**
- * Servlet implementation class MyLctrServlet
+ * Servlet implementation class LctrAtndnServlet
  */
-@WebServlet("/mylctr")
-public class MyLctrServlet extends HttpServlet {
-	private static final long serialVersionUID = 417L;
+@WebServlet("/atnlist")
+public class AtndnSelectServlet extends HttpServlet {
+	private static final long serialVersionUID = 413L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyLctrServlet() {
+    public AtndnSelectServlet() {
         super();
-       
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		String sid = request.getParameter("userid");
-		
-		ArrayList<Atndn> list = new AtndnService().selectMyLctr(sid);
+		String lcode = request.getParameter("lcode");
+		ArrayList<Atndn> list = new AtndnService().selectLctrAtndn(sid, lcode);
 		RequestDispatcher view = null;
 		
 		if(list.size() > 0) {
-			view = request.getRequestDispatcher("/views/attendance/myLctrPage.jsp");
+			view = request.getRequestDispatcher("/views/attendance/lctrAtndnView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {
@@ -49,9 +47,8 @@ public class MyLctrServlet extends HttpServlet {
 			request.setAttribute("message", "나의 강의목록 조회 실패");
 			view.forward(request, response);
 		}
+		}
 		
-		
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,8 +1,6 @@
-package attendance.controller;
+package termScore.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,47 +8,47 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import attendance.model.service.AtndnService;
-import attendance.model.vo.Atndn;
+import termScore.model.service.TermScoreService;
+import termScore.model.vo.TermScore;
 
 /**
- * Servlet implementation class MyLctrServlet
+ * Servlet implementation class TermScoreSelectServlet
  */
-@WebServlet("/mylctr")
-public class MyLctrServlet extends HttpServlet {
-	private static final long serialVersionUID = 417L;
+@WebServlet("/tosselect")
+public class TotalScoreSelectServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyLctrServlet() {
+    public TotalScoreSelectServlet() {
         super();
-       
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//학생의 전체성적 조회처리 
+		
 		
 		String sid = request.getParameter("userid");
-		
-		ArrayList<Atndn> list = new AtndnService().selectMyLctr(sid);
+		response.setContentType("text/html; charset=utf-8");
+		//3
+		TermScore tscore = new TermScoreService().selectTotalScore(sid);
 		RequestDispatcher view = null;
-		
-		if(list.size() > 0) {
-			view = request.getRequestDispatcher("/views/attendance/myLctrPage.jsp");
-			request.setAttribute("list", list);
+		if(tscore != null) {
+			view = request.getRequestDispatcher("views/termScore/totalScoreView.jsp");
+			request.setAttribute("tscore",  tscore);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "나의 강의목록 조회 실패");
+			request.setAttribute("message", sid + "전체성적 조회 실패!");
 			view.forward(request, response);
 		}
-		
-		
 	}
 
 	/**
