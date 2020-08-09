@@ -97,21 +97,19 @@ public class LectureDao {
 		return member;
 	}
 
-	public int deleteLecture(Connection conn, String id) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String query = "delete from member where userid = ?";
+	public void deleteLecture(Connection conn, String lecture) {
+		//개설된 강의 내리기버튼
+		String result = "";
+		Statement stmt = null;
+		String query = "DROP TABLE zz" + lecture + " CASCADE CONSTRAINTS";
 		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, id);
-			
-			result = pstmt.executeUpdate();
-			
+			stmt = conn.createStatement();
+			stmt.execute(query);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(stmt);
 		}
-		
-		return result;
 	}
 	
 	public int updateLecture(Connection conn, Lecture member) {
@@ -432,7 +430,7 @@ public class LectureDao {
 
 
 	public String selectRoom(Connection conn, String lecture) {
-		//수강신청개설 중복체크
+		//수강신청개설 중복체크 (디비에서가져와 자바로 처리하기)
 		String r = "";
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -459,7 +457,7 @@ public class LectureDao {
 
 
 	public ArrayList<Lecture> selectOpenedLectures(Connection conn) {
-		//열린강의조회
+		//열린강의조회 (디비로 처리해서 가져오기)
 		ArrayList<Lecture> list = new ArrayList<Lecture>();
 		Statement stmt = null;
 		ResultSet rset = null;

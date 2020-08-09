@@ -49,17 +49,20 @@ public class LectureService {
 
 	}
 
-	public int deleteLecture(String id) {
+	public String deleteLecture(String lecture) {
+		//개설된 강좌 내리기
+		String r = "";
+		
 		Connection conn = getConnection();
-
-		int result = ldao.deleteLecture(conn, id);
-		if (result > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
+		r = ldao.selectRoom(conn,lecture);
 		close(conn);
-		return result;
+		if(r.equals(lecture)) {
+			conn = getConnection();
+			ldao.deleteLecture(conn, lecture);
+			commit(conn);
+			close(conn);
+		}
+		return r;
 	}
 
 	public int updateLecture(Lecture member) {
@@ -171,11 +174,6 @@ public class LectureService {
 			ldao.createRoom(conn,lecture,roommax);
 			commit(conn);
 			close(conn);
-//			conn = getConnection();
-//			ldao.setRoommax(conn,lecture);
-//			commit(conn);
-//			close(conn);
-			
 			conn = getConnection();
 			r = ldao.selectRoom(conn,lecture);
 			close(conn);

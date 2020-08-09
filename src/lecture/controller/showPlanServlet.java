@@ -1,5 +1,5 @@
 package lecture.controller;
-
+//강의계획서 전체 보기
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -33,7 +33,7 @@ public class showPlanServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Lecture> list = new LectureService().selectAllPlan();
+		ArrayList<Lecture> list = new LectureService().selectAllPlan();//모든 강의계획서보기
 		
 		RequestDispatcher view = null;
 		

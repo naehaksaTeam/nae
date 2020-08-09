@@ -1,5 +1,5 @@
 package lecture.controller;
-//수강신청 페이지로!!
+//메뉴에서 수강신청 페이지로!!
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -32,11 +32,11 @@ public class toApplyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Lecture> list = new LectureService().selectOpenedLectures();
+		ArrayList<Lecture> list = new LectureService().selectOpenedLectures();//개설된 강좌목록 불러오기
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
 		request.setAttribute("list", list);
-		request.setAttribute("result", "널값제거용");
+		request.setAttribute("result", "null값제거용_루삥뽕");
 		view.forward(request, response);
 	}
 

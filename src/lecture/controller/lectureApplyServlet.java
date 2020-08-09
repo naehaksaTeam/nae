@@ -1,5 +1,5 @@
 package lecture.controller;
-
+//수강신청
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -32,27 +32,26 @@ public class lectureApplyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Lecture> list = new LectureService().selectOpenedLectures();
+		ArrayList<Lecture> list = new LectureService().selectOpenedLectures();//개설된강좌목록불러오기
 		request.setAttribute("list", list);
 		
 		String lname = request.getParameter("lname");
 		String name = request.getParameter("who");
-		int r = new LectureService().applyLecture(lname,name);
+		int r = new LectureService().applyLecture(lname,name);//수강신청버튼
+		request.setAttribute("resultForSession", lname);//신청여부 구분하기
+		
 		RequestDispatcher view = null;
 		if(r > 0) {
 			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
 			request.setAttribute("result", "ok");
-			request.setAttribute("resultForSession", lname);
 			view.forward(request, response);
 		}else if(r == -1){
 			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
 			request.setAttribute("result", "already");
-			request.setAttribute("resultForSession", lname);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
 			request.setAttribute("result", "no");
-			request.setAttribute("resultForSession", lname);
 			view.forward(request, response);
 		}
 		

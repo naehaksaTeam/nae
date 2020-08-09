@@ -31,16 +31,17 @@ public class lectureAddServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Lecture> list = new LectureService().selectAllPlan();
-		ArrayList<Lecture> list2 = new LectureService().selectOpenedLectures();
-		request.setAttribute("list2", list2);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		int roommax = Integer.parseInt(request.getParameter("roommax"));//정원
+		String lecture = request.getParameter("lecture");//강의
+		
+		String result = new LectureService().createRoom(lecture,roommax);//강의개설버튼
+		
+		ArrayList<Lecture> list = new LectureService().selectAllPlan();//과목선택리스트불러오기
+		ArrayList<Lecture> list2 = new LectureService().selectOpenedLectures();//개설된 강의목록 불러오기
 		request.setAttribute("list", list);
+		request.setAttribute("list2", list2);
 		
-		int roommax = Integer.parseInt(request.getParameter("roommax"));
-		String lecture = request.getParameter("lecture");
-		
-		String result = new LectureService().createRoom(lecture,roommax);
 		RequestDispatcher view = null;
 		if(result.equals(lecture)) {
 			view = request.getRequestDispatcher("/views/lecture/수강과목추가.jsp");
