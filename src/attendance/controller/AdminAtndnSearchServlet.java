@@ -1,6 +1,7 @@
 package attendance.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -14,16 +15,16 @@ import attendance.model.service.AtndnService;
 import attendance.model.vo.Atndn;
 
 /**
- * Servlet implementation class AtndnEditListServlet
+ * Servlet implementation class AdminAtndnSearchServlet
  */
-@WebServlet("/atnedit.p")
-public class AtndnEditViewServlet extends HttpServlet {
+@WebServlet("/atnsearch")
+public class AdminAtndnSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AtndnEditViewServlet() {
+    public AdminAtndnSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +33,29 @@ public class AtndnEditViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pid = request.getParameter("userid");
-		String semester = "202001";
-		String lcode = request.getParameter("lcode");
+		request.setCharacterEncoding("utf-8"); 
+		response.setContentType("text/html; charset=utf-8"); 
+		String action = request.getParameter("action");
+		String keyword = null;
+		keyword = request.getParameter("keyword");
+
+		AtndnService aservice = new AtndnService();
+		ArrayList<Atndn> list = null;
 		
-		ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester, lcode);
+		switch(action) {
+		case "id" :		list = aservice.selectSearchUserid(keyword); break;
+		case "lecture" :	list = aservice.selectSearchLecture(keyword); break;
+	
+		}
 		
 		RequestDispatcher view = null;
-		
-		if(list != null) {
-			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
+		if(list.size() > 0) {
+			view = request.getRequestDispatcher("beet/attendance/AtndnListView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", pid + "강의 출결관리페이지 조회 실패");
+			request.setAttribute("message", action + " 검색에 대한 " + keyword +" 결과가 존재하지 않습니다.");
 			view.forward(request, response);
 		}
 	}

@@ -50,7 +50,7 @@ public class ProfScoreUpdateServlet extends HttpServlet {
 		int result = new LectureScoreService().updateScore(lscore);
 		
 		if(result > 0) {
-			response.sendRedirect("/beet/proflist");
+			response.sendRedirect("/beet/scmain.p?userid="+lscore.getPid());
 		}else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", " 성적 수정 실패");

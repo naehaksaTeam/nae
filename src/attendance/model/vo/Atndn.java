@@ -16,7 +16,8 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 	private int lpoint;
 	private String category;
 	private String pname;
-	
+	private String pid;
+
 	private String week1;
 	private String week2;
 	private String week3;
@@ -39,9 +40,9 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 	}
 
 	public Atndn(String lcode, String sid, String thisweek, String absent3, String semester, String sname,
-			String majorname, int lpoint, String category, String pname, String week1, String week2, String week3,
-			String week4, String week5, String week6, String week7, String week8, String week9, String week10,
-			String week11, String week12, String week13, String week14, String week15, String week16) {
+			String majorname, int lpoint, String category, String pname, String pid, String week1, String week2,
+			String week3, String week4, String week5, String week6, String week7, String week8, String week9,
+			String week10, String week11, String week12, String week13, String week14, String week15, String week16) {
 		super();
 		this.lcode = lcode;
 		this.sid = sid;
@@ -53,6 +54,7 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 		this.lpoint = lpoint;
 		this.category = category;
 		this.pname = pname;
+		this.pid = pid;
 		this.week1 = week1;
 		this.week2 = week2;
 		this.week3 = week3;
@@ -69,21 +71,6 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 		this.week14 = week14;
 		this.week15 = week15;
 		this.week16 = week16;
-	}
-
-	public Atndn(String lcode, String sid, String thisweek, String absent3, String semester, String sname,
-			String majorname, int lpoint, String category, String pname) {
-		super();
-		this.lcode = lcode;
-		this.sid = sid;
-		this.thisweek = thisweek;
-		this.absent3 = absent3;
-		this.semester = semester;
-		this.sname = sname;
-		this.majorname = majorname;
-		this.lpoint = lpoint;
-		this.category = category;
-		this.pname = pname;
 	}
 
 	public void setLcode(String lcode) {
@@ -124,6 +111,10 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 
 	public void setPname(String pname) {
 		this.pname = pname;
+	}
+
+	public void setPid(String pid) {
+		this.pid = pid;
 	}
 
 	public void setWeek1(String week1) {
@@ -234,6 +225,10 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 		return pname;
 	}
 
+	public String getPid() {
+		return pid;
+	}
+
 	public String getWeek1() {
 		return week1;
 	}
@@ -302,18 +297,14 @@ public class Atndn extends Lecture  implements java.io.Serializable {
 	public String toString() {
 		return "Atndn [lcode=" + lcode + ", sid=" + sid + ", thisweek=" + thisweek + ", absent3=" + absent3
 				+ ", semester=" + semester + ", sname=" + sname + ", majorname=" + majorname + ", lpoint=" + lpoint
-				+ ", category=" + category + ", pname=" + pname + ", week1=" + week1 + ", week2=" + week2 + ", week3="
-				+ week3 + ", week4=" + week4 + ", week5=" + week5 + ", week6=" + week6 + ", week7=" + week7 + ", week8="
-				+ week8 + ", week9=" + week9 + ", week10=" + week10 + ", week11=" + week11 + ", week12=" + week12
-				+ ", week13=" + week13 + ", week14=" + week14 + ", week15=" + week15 + ", week16=" + week16 + "]";
+				+ ", category=" + category + ", pname=" + pname + ", pid=" + pid + ", week1=" + week1 + ", week2="
+				+ week2 + ", week3=" + week3 + ", week4=" + week4 + ", week5=" + week5 + ", week6=" + week6 + ", week7="
+				+ week7 + ", week8=" + week8 + ", week9=" + week9 + ", week10=" + week10 + ", week11=" + week11
+				+ ", week12=" + week12 + ", week13=" + week13 + ", week14=" + week14 + ", week15=" + week15
+				+ ", week16=" + week16 + "]";
 	}
 
-	 
 	
-	
-	
-	
-
 
 	
 }

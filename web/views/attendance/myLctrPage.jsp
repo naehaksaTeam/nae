@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member"%>
+<%@ page import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member,
+java.util.Date, java.text.SimpleDateFormat"%>
 <%
 Member loginmember = (Member)session.getAttribute("loginMember");
 ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
@@ -10,6 +11,17 @@ ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 		set.add(a.getSemester());
 	}
 	Iterator<String> it = set.iterator();
+	
+SimpleDateFormat sdf = new SimpleDateFormat("E");	
+SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");	
+Date today = new Date();
+String day = sdf.format(today);
+Date enter = sdf2.parse("2020-03-02");
+
+long diff = today.getTime() - enter.getTime();
+long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
+
+
 %>
 
 <!DOCTYPE html>
@@ -57,23 +69,26 @@ ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 
 	<h1 align="center">강의목록</h1>
 	<table>
-
+		<% for(Atndn a : list){ 
+			if(a.getLtime().equals("day")){  %>
 		<tr>
-			<td class="title" colspan="4">과목명</td>
+			<td class="title" colspan="4"><%= a.getLname() %></td>
 			<td rowspan="3">
 				<button class=button>강의실로 이동</button>
 			</td>
 		</tr>
 		<tr>
-			<td>202001345-1</td>
-			<td>교양선택</td>
-			<td>인문관 123호</td>
-			<td>수강인원:20명</td>
+			<td><%= a.getLcode() %></td>
+			<td><%= a.getCategory() %></td>
+			<td><%= a.getLtime() %></td>
+			<td><%= a.getCapacity() %>명</td>
 		</tr>
 		<tr>
-			<td colspan="3" style="color: green;">초록색진도율막대차트넣어야지</td>
-			<td>진도율: 65.4%</td>
+			<td  colspan="3" style="color: green;"><progress id="prog" value="<%= diffWeeks %>" max="100"></td>
+			<td id="progress">진도율: <%=diffWeeks %>%</td>
+			
 		</tr>
+		<%}}%>
 	</table>
 
 	<table id="stable" cellpadding="10px">
@@ -121,6 +136,7 @@ ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 		<% } %>
 	</table>
  
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
  <script>
  $(function(){
 	 $('#selectSemester').change(function(){
@@ -129,11 +145,12 @@ ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 		 alert(test);
 	 });
  });
+
+
 </script>
 
  
 
-<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 
 </body>
 </html>

@@ -20,13 +20,17 @@
 
 <h1>성적관리페이지</h1>
 	<div class="manage" style="display:block">
-	<form action="/beet/scselect.p" method="post" style="float:right;">
+	<!-- <form action="/beet/scselect.p" method="post" style="float:right;" onclick="UpdateScore()">
 			<input type="submit" style="width:60pt;height:20pt;" value="성적 입력">
 			<input type="hidden" name="userid" value="">
 			<input type="hidden" name="lname" value="">
-	</form>
+	</form> -->
+	<input type="button" value="성적수정" onclick="activeEle()">
 
+	
 	</div>
+	
+
 <table class="tg">
 		<thead>
 		<tr>
@@ -44,6 +48,7 @@
 		</tr>
 		</thead>
 		<tbody>
+		<form id="score" action="/beet/scupdate.prof">
 			<% int i = 1;for(LectureScore lscore : list) {%>
 			<tr>
 				<td><%= i %></td><% i+=1; %>
@@ -52,18 +57,47 @@
 				<td><%=lscore.getSid()%></td>
 				<td><%=lscore.getSname()%></td>
 				<td><%=lscore.getRetake()%></td>
-				<td><%=lscore.getAtndnscore()%></td>
-				<td><%=lscore.getMidscore()%></td>
-				<td><%=lscore.getFinalscore()%></td>
-				<td><%=lscore.getTotalscore()%></td>
-				<td><%=lscore.getGrade()%></td>
+				<td><input type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
+				<td><input type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
+				<td><input type="text" readonly="readonly" value="<%=lscore.getFinalscore()%>" /></td>
+				<td><input type="text" readonly="readonly" value="<%=lscore.getTotalscore()%>" /></td>
+				<td><input type="text" readonly="readonly" value="<%=lscore.getGrade()%>" /></td>
+				<td><select class="grade" style="width:80px" value="<%=lscore.getGrade()%>"  onClick="aa(sc)">
+					<option value="-" selected disabled hidden>-</option>
+					<option value="A+">A+</option>
+					<option value="A">A</option>
+					<option value="B+">B+</option>
+					<option value="B">B</option>
+					<option value="C+">C+</option>
+					<option value="C">C</option>
+					<option value="D+">D+</option>
+					<option value="D">D</option>
+					<option value="F">F</option>
+					</select></td>
 			</tr>
 			<% } %>
+			
 		</tbody>
 	</table>
-	<script type="text/javascript" src="/test1/resources/js/jquery-3.5.1.min.js"></script>
+		<center>
+		<p style="margin-top:30px;">
+		* 변경 후 반드시 저장을 눌러주세요 
+		</p>
+		<input type="button" id="btn1" value="업데이트" onclick="goUpdate()"> 
+		<input id="save" type="submit" value="저장"> &nbsp; 
+		<input type="reset" value="수정취소"> &nbsp;
+		</form>
+		<a href="javascript:history.go(-1);">이전 페이지</a>
+		</center>
+
+
+	<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 	<!-- jquery로 입력값 받아서 수정하기 변경하기누르면 update 취소 누르면 sendredirect -->
 <script>
+//변경저장
+
+
+
 //수정가능 
 function activeEle() {
 	$("input[type=text]").removeAttr('readonly');
