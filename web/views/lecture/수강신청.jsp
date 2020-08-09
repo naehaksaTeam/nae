@@ -15,6 +15,12 @@ td{
 border : 1px solid skyblue;
 text-align : center;
 }
+<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("P") ||
+		((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A") ){ %>
+#applybtn{
+display:none;
+}
+<% } %>
 
 </style>
 </head>
@@ -81,7 +87,7 @@ text-align : center;
 <td>
 <% if((session.getAttribute(l.getLname())) == null ){ %>
 <form action="/beet/lapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
-<button type="submit" name="lname" value="<%= l.getLname() %>">수강신청</button>
+<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn">수강신청</button>
 </form>
 <% }else if((session.getAttribute(l.getLname())).equals("no")){ %>
 <b>마감</b>
