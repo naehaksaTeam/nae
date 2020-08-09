@@ -66,9 +66,9 @@ public class NoticeService {
 		return result;
 	}
 
-	public ArrayList<Notice> selectTop3() {
+	public ArrayList<Notice> selectTop5() {
 		Connection conn = getConnection();
-		ArrayList<Notice> list = ndao.selectTop3(conn);
+		ArrayList<Notice> list = ndao.selectTop5(conn);
 		close(conn);
 		return list;
 	}
@@ -86,6 +86,16 @@ public class NoticeService {
       close(conn);
       return list;
    }
+
+	public void addReadCount(int noticeno) {
+		Connection conn = getConnection();
+	      int result = ndao.addReadCount(conn, noticeno);
+	      if( result > 0) 
+	         commit(conn);
+	      else 
+	         rollback(conn);
+	      close(conn);
+	   }
 	
 
 }

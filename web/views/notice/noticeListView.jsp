@@ -20,13 +20,14 @@ int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 <meta charset="UTF-8">
 <title>test1</title>
 <script type="text/javascript">
-function showWriteForm(){
-	location.href = "/beet/views/notice/noticeWriteForm.jsp";
+function noticeInsertForm(){
+	location.href = "/beet/views/notice/noticeInsertForm.jsp";
 }
 
 </script>
 </head>
 <body>
+<%@ include file="../common/header.jsp" %> 
 <h2 align="center">게시글 목록 : 총 <%= listCount %>개</h2>
 <hr>
 <h1 align="center">공지사항</h1>
@@ -41,15 +42,16 @@ function showWriteForm(){
 <th>글내용</th>
 <th>첨부파일</th>
 <th>조회수</th>
+
 </tr>
 <% for(Notice n : list){ %>
 <tr>
 <td><%= n.getNoticeNo() %></td>
 <td>
-  <% if(n.getNoticeTitle().length() >5){ %>
-	  <a href="/beet/ndetail?noticeno=<%= n.getNoticeNo() %>"><%= n.getNoticeTitle().substring(0,10) %></a>  
+  <% if(n.getNoticeTitle().length() >10){ %>
+	  <%= n.getNoticeTitle().substring(0,10) %></a>  
 	<% }else{%>
-	  <a href="/beet/ndetail?noticeno=<%= n.getNoticeNo() %>"><%= n.getNoticeTitle() %></a> 
+	 <%= n.getNoticeTitle() %></a> 
 	<% }%> 
 
 </td>
@@ -58,8 +60,8 @@ function showWriteForm(){
 <td><%= n.getNoticeWriter() %></td>
 <td><%= n.getNoticeDate() %></td>
 <td>
-<% if(n.getNoticeContent().length() >20){ %>
-	  <a href="/beet/ndetail?noticeno=<%= n.getNoticeNo() %>"><%= n.getNoticeContent().substring(0,20) %></a>  
+<% if(n.getNoticeContent().length() >15){ %>
+	  <a href="/beet/ndetail?noticeno=<%= n.getNoticeNo() %>"><%= n.getNoticeContent().substring(0,15) %></a>  
 	<% }else{%>
 	  <a href="/beet/ndetail?noticeno=<%= n.getNoticeNo() %>"><%= n.getNoticeContent() %></a> 
 	<% }%> 
@@ -69,10 +71,10 @@ function showWriteForm(){
 	<% if(n.getOriginalFile() !=null){ %>
 		<%= n.getOriginalFile() %>
 	<%}else{ //첨부파일 없을때  %>
-		&nbsp;
+		x
 	<% } %>
 </td>
-
+ 
 <td><%= n.getNoticeReadCount() %></td> 
 
 
@@ -120,8 +122,10 @@ function showWriteForm(){
 	<a href="/beet/nlist?page=<%= maxPage %>">마지막</a>
 <%   } %>
 </div>
-<div style=align:center, text-align:center>
-	<button onclick="showWriteForm();">글쓰기</button>
+<!--  만일 관리자라면 글쓰기가 보여야함 ! 지금은 누구나다보임 -->
+<div style align="right"  text-align:center>
+	<button onclick="noticeInsertForm();">글쓰기</button>
+	<button onclick="javascript:history.go(-1);">뒤로</button>
 	</div>
 <hr>
 <%@include file="/views/common/footer.jsp" %>

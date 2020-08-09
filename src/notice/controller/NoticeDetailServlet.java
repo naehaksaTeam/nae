@@ -33,12 +33,19 @@ public class NoticeDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 공지글 상세보기 처리용 컨트롤러 
 				int noticeno = Integer.parseInt(request.getParameter("noticeno"));
+				NoticeService nservice = new NoticeService();
+				
+				// 조회수 1 증가 처리 : update 
+				nservice.addReadCount(noticeno);
+				
+				
 				
 				Notice notice = new NoticeService().selectNotice(noticeno);
 				RequestDispatcher view = null;
 				if(notice != null) {
 					view = request.getRequestDispatcher("views/notice/noticeDetailView.jsp");
 					System.out.println("성공");
+					System.out.println("날짜순공지사항 출력성공!");
 					
 					request.setAttribute("notice", notice);
 					view.forward(request, response);
