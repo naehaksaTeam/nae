@@ -24,11 +24,7 @@ public class SelectabaabaServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String value  =request.getParameter("value");
-<<<<<<< HEAD
 
-=======
-		
->>>>>>> efe1f4b177c2a43ed4672f28454361c787342670
 		ArrayList<Absence> list = new AbsenceService().selectABA(value);
 		
 		RequestDispatcher view = null;

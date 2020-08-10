@@ -24,8 +24,6 @@ public class SelectSTUAbsenceServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		
 		//학번을 가져옴 . 
 		String studentid = request.getParameter("studentid");
 

@@ -142,6 +142,63 @@ public class AbsenceDao {
 		return result;
 	};
 	
+	//신청취소하면 학생테이블가서 휴학여부바꾸어줌
+	public int studentAbsenceChange(Connection conn, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "  update student set ABSENCEWHETHER = (select case ABSENCEWHETHER when 'Y' then 'N' when 'N' then 'Y' end from student where id = ?) where id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int studentCountPlus(Connection conn, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "  update student set absencecount = absencecount+1 where id = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int studentCountMinus(Connection conn, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "  update student set absencecount = absencecount-1 where id = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	public int deleteAbsence(Connection conn, String requestid) {
 		int result = 0; // 신청취소가 되면 승인여부고려해서 학생테이블의 휴학웨더 바꾸어준다.
 		PreparedStatement pstmt = null;
@@ -185,6 +242,28 @@ public class AbsenceDao {
 		close(pstmt);
 		return list;
 	}
+	
+	public String selectApprovalChk(Connection conn, String requestid) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String approval = null;
+		
+		String query = "select approval from absence where requestid = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, requestid);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				approval = rset.getString("approval");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		close(pstmt);
+		return approval;
+	}
 
 	public ArrayList<Absence> selectABA(Connection conn, String value) {
 		ArrayList<Absence> list = new ArrayList<Absence>();
@@ -209,6 +288,30 @@ public class AbsenceDao {
 		close(pstmt);
 		}
 		return list;
+	}
+	
+	public int canceldateChk(Connection conn, String requestid) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int date = 0;
+		
+		String query = " select to_number(sysdate - LIMITCANCELDATE)  as \"date\" from absence where requestid = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, requestid);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				date  = rset.getInt("date");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return date;
 	}
 
 }

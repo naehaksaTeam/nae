@@ -11,6 +11,10 @@
 <title>beet</title>
 </head>
 <body>
+<header>
+<%@ include file="../common/header.jsp"%>
+</header>
+<%@ include file="/views/common/sessionChk.jsp" %>
 관리자가 학생이 신청한 휴학, 복학 
 조회selectAll, selectone(requestid), selectone(requestid, studentid), 
 승인update(휴학신청인 경우 : 학생테이블의 휴학여부가 Y // 복학신청인 경우 : 휴학여부 N  
@@ -40,11 +44,11 @@
 <tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
 >>>>>>> efe1f4b177c2a43ed4672f28454361c787342670
 <% for(Absence ab : list){ %>
-<tr><td><input type="radio" name="requestid" value=<%=ab.getRequestid()%>><%=ab.getRequestid()%></td>
-	<td><%=ab.getStudentid() %></td>
+<tr><td><input type="radio" name="requestid" readonly value="<%=ab.getRequestid()%>"><%=ab.getRequestid()%></td>
+	<td><input type="text" name="id" readonly value="<%= ab.getStudentid()%>"><%=ab.getStudentid() %></td>
 	<td><%=ab.getRequestdate() %></td>
 	<td><%=ab.getLimitcanceldate() %></td>
-	<td><input type="text" name="approval" value="<%= ab.getApproval()%>"><%=ab.getApproval()%></td>
+	<td><input type="text" name="approval" readonly value="<%= ab.getApproval()%>"><%=ab.getApproval()%></td>
 </tr>
 <tr><td><input type="submit" value="승인하기"></td></tr>
 <<<<<<< HEAD

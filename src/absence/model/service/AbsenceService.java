@@ -6,6 +6,7 @@ import static common.JDBCTemp.getConnection;
 import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import absence.model.dao.AbsenceDao;
@@ -102,4 +103,39 @@ public class AbsenceService {
 		close(conn);
 		return list;
 	};
+	
+	public int canceldateChk(String requestid) {
+		Connection conn = getConnection();
+		int date = adao.canceldateChk(conn, requestid);
+		close(conn);
+		return date;
+	}
+	
+	public String selectApprovalChk(String requestid) {
+		Connection conn = getConnection();
+		String approval = adao.selectApprovalChk(conn, requestid);
+		close(conn);
+		return approval;
+	}
+	
+	public int studentAbsenceChange(String id) {
+		Connection conn = getConnection();
+		int result = adao.studentAbsenceChange(conn, id);
+		close(conn);
+		return result;
+	}
+	
+	public int studentCountPlus(String id) {
+		Connection conn = getConnection();
+		int result = adao.studentAbsenceChange(conn, id);
+		close(conn);
+		return result;
+	}
+	
+	public int studentCountMinus(String id) {
+		Connection conn = getConnection();
+		int result = adao.studentAbsenceChange(conn, id);
+		close(conn);
+		return result;
+	}
 }
