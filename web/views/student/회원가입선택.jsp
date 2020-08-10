@@ -25,13 +25,13 @@ a:hover {text-decoration: none; color: black; font-size:200%;}
 
 <table id="selecttable">
 <td>
-<a href="/beet/toenroll?who='student'">학생</a>
+<a href="/beet/toenroll?who=student">학생</a>
 </td>
 <td>
-<a href="/beet/toenroll?who='professor'">교수</a>
+<a href="/beet/toenroll?who=professor">교수</a>
 </td>
 <td>
-<a href="/beet/toenroll?who='admin'">임직원</a>
+<a href="/beet/toenroll?who=admin">임직원</a>
 </td>
 </table>
 

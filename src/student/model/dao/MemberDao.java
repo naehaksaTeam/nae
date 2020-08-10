@@ -363,20 +363,20 @@ public int insertAdmin(Connection conn, Member member) {
 	int result = 0;
     PreparedStatement pstmt = null;
 
-    String query = "insert into member values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    String query = "insert into administrator values ('A006','제이슨','432321-334223','미쿡','0988777','M','sdfs@asd.com','asd','20/12/22','MTIzNA==')";
 
     try {
        pstmt = conn.prepareStatement(query);
-       pstmt.setString(1, student.getId());
-       pstmt.setString(2, student.getPassword());
-       pstmt.setString(3, student.getName());
-       pstmt.setString(4, student.getSsn());
-       pstmt.setString(5, student.getAddress());
-       pstmt.setString(6, student.getPhone());
-       pstmt.setString(7, student.getCategoryname());
-       pstmt.setString(8, student.getGender());
-       pstmt.setString(9, student.getEmail());
-       pstmt.setString(10, student.getTreasure());
+       pstmt.setString(1, member.getId());
+       pstmt.setString(2, member.getName());
+       pstmt.setString(3, member.getSsn());
+       pstmt.setString(4, member.getAddress());
+       pstmt.setString(5, member.getPhone());
+       pstmt.setString(6, member.getGender());
+       pstmt.setString(7, member.getEmail());
+       pstmt.setString(8, member.getTreasure());
+       pstmt.setDate(9, member.getAdminhiredate());
+       pstmt.setString(10, member.getPassword());
 	
        result = pstmt.executeUpdate();
 
