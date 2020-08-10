@@ -46,38 +46,7 @@ public class MemberDao {
 		return result;
 	}
 
-	// 아이디찾기
-	public Member FindIdMember(Connection conn, String name, String treasure) {
-		Member member = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
 
-		String query = "select * from member where name = ? and treasure = ?";
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, name);
-			pstmt.setString(2, treasure);
-
-			rset = pstmt.executeQuery();
-
-			if (rset.next()) {
-				member = new Member();
-
-				member.setName(rset.getString("name"));
-				member.setTreasure(rset.getString("treasure"));
-
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return member;
-
-	}
 
 	// 한명선택
 	public Member selectOne(Connection conn, String id) {
@@ -309,6 +278,28 @@ public class MemberDao {
 		}
 
 		return result;
+	}
+
+	public Member FindIdMember(Connection conn, Member member) {
+		Member member = null;
+		PreparedStatement pstmt = null;
+	
+
+		String query = "select * from member where name = ? and treasure = ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, name);
+			pstmt.setString(2, treasure);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				member = new Member();
+
+				member.setName(rset.getString("name"));
+				member.setTreasure(rset.getString("treasure"));
+
 	}
 
 }

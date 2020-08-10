@@ -6,6 +6,7 @@ import static common.JDBCTemp.getConnection;
 import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import student.model.dao.MemberDao;
@@ -54,12 +55,20 @@ public class MemberService {
 		return list;
 	}
 
-	public Member FindIdMember(String name, String ) {
+	public Member FindIdMember(String name, String treasure) {
 		Connection conn = getConnection();
-		ResultSet rset = mdao.FindIdMember(conn, member);
+		Member member = mdao.FindIdMember(conn, name, treasure) ;
 		close(conn);
-		return result;
+		return member;
+		
+		
 	}
 
-	
+	public Member FindIdMember(Member member) {
+		Connection conn = getConnection();
+		Member member = mdao.FindIdMember(conn, member) ;
+		close(conn);
+		return member;
+	}
+
 }
