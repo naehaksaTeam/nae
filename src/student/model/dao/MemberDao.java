@@ -280,6 +280,7 @@ public class MemberDao {
 		return result;
 	}
 
+
 	public Member FindIdMember(Connection conn, Member member) {
 		Member member = null;
 		PreparedStatement pstmt = null;
@@ -303,3 +304,8 @@ public class MemberDao {
 	}
 
 }
+
+
+	public Member FindIdMember(Connection conn, String name, String treasure) {
+	
+	}

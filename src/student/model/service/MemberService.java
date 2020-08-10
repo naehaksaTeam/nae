@@ -64,11 +64,5 @@ public class MemberService {
 		
 	}
 
-	public Member FindIdMember(Member member) {
-		Connection conn = getConnection();
-		Member member = mdao.FindIdMember(conn, member) ;
-		close(conn);
-		return member;
-	}
-
+	
 }
