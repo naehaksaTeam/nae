@@ -136,7 +136,7 @@ public class MemberDao {
 	}
 
 	// 정보수정
-	public int update(Connection conn, Member member) {
+	public int updateMember(Connection conn, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
@@ -258,6 +258,7 @@ public class MemberDao {
 		return result;
 	}
 
+	
 
 
 }

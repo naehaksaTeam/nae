@@ -37,9 +37,9 @@ public class MemberService {
 		
 	}
 
-	public int update(Member member) {
+	public int updateMember(Member member) {
 		Connection conn = getConnection();
-		int result = mdao.update(conn, member);
+		int result = mdao.updateMember(conn, member);
 		if(result > 0)
 			commit(conn);
 		else
