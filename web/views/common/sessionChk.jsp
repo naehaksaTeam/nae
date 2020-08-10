@@ -19,6 +19,7 @@
 내학사에 오신것을 환영합니다.
 <form action="/beet/logout.cp">
 <button type="submit" value="로그아웃">로그아웃</button>
+
 </form>
 <% } %>
 <hr>

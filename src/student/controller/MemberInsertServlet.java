@@ -13,16 +13,16 @@ import student.model.service.MemberService;
 import student.model.vo.Member;
 
 /**
- * Servlet implementation class MemberSignupServlet
+ * Servlet implementation class MemberInsertServlet
  */
-@WebServlet("/msignup.cp")
-public class MemberSignupServlet extends HttpServlet {
+@WebServlet("/minsert")
+public class MemberInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberSignupServlet() {
+    public MemberInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,11 +31,15 @@ public class MemberSignupServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 회원가입 처리용 컨트롤러
-			
+		// 회원 정보 추가 처리용 컨트롤러
+		
 				
-				//2. 전송온 값 꺼내서, 변수 또는 객체에 기록 저장 처리함
 				
+
+		//1.
+		request.setCharacterEncoding("utf-8");
+		
+				//2.
 				Member member = new Member();
 				
 				member.setId(request.getParameter("id"));
@@ -48,23 +52,16 @@ public class MemberSignupServlet extends HttpServlet {
 				member.setEmail(request.getParameter("email"));
 				member.setTreasure(request.getParameter("treasure"));
 				member.setPassword(request.getParameter("password"));
-				
-				
-				
-				//3. 서비스 객체 생성하고, 서비스 메소드를 이용해서 객체 전달하고
-				//처리 결과받기
-				
+				//3.
 				int result = new MemberService().insertMember(member);
 				
-				//4. 받은 결과에 따라 성공/실패 뷰 선택해서 내보내기
-				if(result > 0) {
-					response.sendRedirect("beet/web/index.html");
-				}else {
-					//response.sendRedirect("/test1/views/common/error.jsp");
+				//4.
+				if(result > 0) {  
 					
-					RequestDispatcher view = request
-							.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", "회원 가입 실패!");
+					response.sendRedirect("/beet/web/index.jsp");
+					}else {  
+					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+					request.setAttribute("message",  "회원가입 실패.");
 					view.forward(request, response);
 				}
 	}

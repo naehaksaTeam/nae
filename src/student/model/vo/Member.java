@@ -9,14 +9,14 @@ public class Member implements java.io.Serializable {
 	   private String ssn;
 	   private String address;
 	   private String phone;
-	   private String gender;
+	   private String gender;  //M 기본값
 	   private String email;
 	   private String treasure;
 	   private Date adminhiredate;
 	   private String password;
-	   private java.sql.Date entrancedate;
-	   private String absencewhether;
-	   private int absencecount;
+	   private java.sql.Date entrancedate;  //sysdate 기본값
+	   private String absencewhether;  //n 기본값
+	   private int absencecount;     //0 기본값
 	   private String ssname;
 	   private String categoryname;
 	   private String majorno;
