@@ -36,11 +36,11 @@ public class MemberInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 회원 정보 추가 처리용 컨트롤러
-		
-		int result = 0;
+
 		Member member = new Member();
 		
 		if(request.getParameter("major") != null) {
+
 			String[] index = ((String)(request.getParameter("major"))).split(",");
 			
 			for(String s : index) {
@@ -53,61 +53,60 @@ public class MemberInsertServlet extends HttpServlet {
 			member.setCategoryname(categoryname);
 		}
 		
+		if(request.getParameter("adminhiredate") != null) {
+			Date d1 = Date.valueOf(request.getParameter("adminhiredate"));
+			member.setAdminhiredate(d1);
+		}
+		if(request.getParameter("entrancedate") != null) {
+			Date d2 = Date.valueOf(request.getParameter("entrancedate"));
+			member.setEntrancedate(d2);
+		}
+		if(request.getParameter("userid") != null) {
+			member.setId(request.getParameter("userid"));
+		}
+		if(request.getParameter("username") != null) {
+			member.setName(request.getParameter("username"));
+		}
+		if(request.getParameter("userssn") != null) {
+			member.setSsn(request.getParameter("userssn"));
+		}
+		if(request.getParameter("useraddress") != null) {
+			member.setAddress(request.getParameter("useraddress"));
+		}
+		if(request.getParameter("phone") != null) {
+			member.setPhone(request.getParameter("phone"));
+		}
+		if(request.getParameter("email") != null) {
+			member.setEmail(request.getParameter("email"));
+		}
+		if(request.getParameter("treasure") != null) {
+			member.setTreasure(request.getParameter("treasure"));
+		}
+		if(request.getParameter("userpwd") != null) {
+			member.setPassword(request.getParameter("userpwd"));
+		}
+		if(request.getParameter("absencecount") != null) {
+			member.setAbsencecount(Integer.parseInt(request.getParameter("absencecount")));
+		}
+		if(request.getParameter("absencewhether") != null) {
+			member.setAbsencewhether(request.getParameter("absencewhether"));
+		}
+		if(request.getParameter("gender") != null) {
+			member.setGender(request.getParameter("gender"));
+		}
+		
+		request.setAttribute("saved", member);
+		
+		int result = 0;
+	
 		String who = request.getParameter("who");
-		System.out.println("who" + who);
-		System.out.println(request.getParameter("userid"));
-		System.out.println(request.getParameter("userid").substring(0,1));
 		
 		if((who.equals("professor") && (request.getParameter("userid").substring(0,1)).equals("P")) ||
 			(who.equals("admin") && (request.getParameter("userid").substring(0,1)).equals("A")) ||
 			who.equals("student")) {
-			
-			member = new Member();
-			
-			if(request.getParameter("adminhiredate") != null) {
-				Date d1 = Date.valueOf(request.getParameter("adminhiredate"));
-				member.setAdminhiredate(d1);
-			}
-			if(request.getParameter("entrancedate") != null) {
-				Date d2 = Date.valueOf(request.getParameter("entrancedate"));
-				member.setEntrancedate(d2);
-			}
-			if(request.getParameter("userid") != null) {
-				member.setId(request.getParameter("userid"));
-			}
-			if(request.getParameter("username") != null) {
-				member.setName(request.getParameter("username"));
-			}
-			if(request.getParameter("userssn") != null) {
-				member.setSsn(request.getParameter("userssn"));
-			}
-			if(request.getParameter("useraddress") != null) {
-				member.setAddress(request.getParameter("useraddress"));
-			}
-			if(request.getParameter("phone") != null) {
-				member.setPhone(request.getParameter("phone"));
-			}
-			if(request.getParameter("email") != null) {
-				member.setEmail(request.getParameter("email"));
-			}
-			if(request.getParameter("treasure") != null) {
-				member.setTreasure(request.getParameter("treasure"));
-			}
-			if(request.getParameter("userpwd") != null) {
-				member.setPassword(request.getParameter("userpwd"));
-			}
-			if(request.getParameter("absencecount") != null) {
-				member.setAbsencecount(Integer.parseInt(request.getParameter("absencecount")));
-			}
-			if(request.getParameter("absencewhether") != null) {
-				member.setAbsencewhether(request.getParameter("absencewhether"));
-			}
-			if(request.getParameter("gender") != null) {
-				member.setGender(request.getParameter("gender"));
-			}
-			
 
 			result = new MemberService().insertMember(member,who);
+			
 		}				
 
 		if(result > 0) {  
@@ -118,8 +117,9 @@ public class MemberInsertServlet extends HttpServlet {
 			ArrayList<Major> list = new LectureService().selectCategories();
 			request.setAttribute("list", list);
 			
-			RequestDispatcher view = request.getRequestDispatcher("views/common/enrollPage.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/student/enrollPage.jsp");
 			request.setAttribute("who", who);
+			request.setAttribute("result", "no");
 			view.forward(request, response);
 		}
 				

@@ -1,12 +1,31 @@
 <%@ 
 page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8" 
-import="java.util.ArrayList,lecture.model.vo.Lecture,lecture.model.vo.Major" 
-errorPage="../../views/common/error.jsp" 
+import="java.util.ArrayList,lecture.model.vo.Lecture,lecture.model.vo.Major,student.model.vo.Member" 
+
 %>
 <% 
 String who = (String)request.getAttribute("who"); 
 ArrayList<Major> list = (ArrayList<Major>)request.getAttribute("list");
+String userid = " ";
+String username = " ";
+String userssn = " ";
+String useraddress = " ";
+String phone = " ";
+String email = " ";
+String treasure = " ";
+String gender = " ";
+if(request.getAttribute("saved") != null){
+	Member save = (Member)request.getAttribute("saved");
+	userid = save.getId();
+	username = save.getName();
+	userssn = save.getSsn();
+	useraddress = save.getAddress();
+	phone = save.getPhone();
+	email = save.getEmail();
+	treasure = save.getTreasure();
+	gender = save.getGender();
+}
 %>
 <!DOCTYPE html>
 <html>
@@ -59,11 +78,11 @@ function check1() { //중복체크
 </tr>
 <tr class="">
 	<th width="120">*이 름</th>
-	<td><input type="text" name="username" required></td>
+	<td><input type="text" name="username" value="<%= username %>" placeholderrequired></td>
 </tr>
 <tr class="">
 	<th>*아이디</th>
-	<td><input type="text" name="userid" required> &nbsp; 
+	<td><input type="text" name="userid" value="<%= userid %>" required> &nbsp; 
 	<input type="button" value="중복체크" onclick="return false;"></td>
 </tr>
 <tr>
@@ -76,15 +95,15 @@ function check1() { //중복체크
 </tr>
 <tr>
 	<th>*주민등록번호</th>
-	<td><input type="ssn" name="userssn" id="userssn" required></td>
+	<td><input type="ssn" name="userssn" id="userssn" value="<%= userssn %>" required></td>
 </tr>
 <tr>
 	<th>*주소</th>
-	<td><input type="address" name="useraddress" id="useraddress" required></td>
+	<td><input type="address" name="useraddress" id="useraddress" value="<%= useraddress %>" required></td>
 </tr>
 <tr>
 	<th>전화번호</th>
-	<td><input type="tel" name="phone"></td>
+	<td><input type="tel" name="phone" value="<%= phone %>"></td>
 </tr>
 <tr>
 	<th>*성별</th>
@@ -95,17 +114,21 @@ function check1() { //중복체크
 </tr>
 <tr>
 	<th>*이메일</th>
-	<td><input type="email" name="email" required></td>
+	<td><input type="email" name="email" value="<%= email %>" required></td>
 </tr>
 <tr>
 	<th>*나의보물1호</th>
-	<td><input type="treasure" name="treasure" required></td>
+	<td><input type="treasure" name="treasure" value="<%= treasure %>" required></td>
 </tr>
 <tr>
 	<th width="120">임직원 입사일</th>
 	<td>
 	<input type="date" name="adminhiredate">
 	</td>
+</tr>
+</tr>
+<tr Style="display:none;">
+<th></th><td><input type="radio" name="who" value="<%= who %>" checked></td>
 </tr>
 <tr>
 	<th colspan="2">
@@ -134,11 +157,11 @@ function check1() { //중복체크
 </tr>
 <tr class="">
 	<th width="120">*이 름</th>
-	<td><input type="text" name="username" required></td>
+	<td><input type="text" name="username" value="<%= username %>" required></td>
 </tr>
 <tr class="">
 	<th>*아이디</th>
-	<td><input type="text" name="userid" required> &nbsp; 
+	<td><input type="text" name="userid" value="<%= userid %>" required> &nbsp; 
 	<input type="button" value="중복체크" onclick="return false;"></td>
 </tr>
 <tr class="">
@@ -151,15 +174,15 @@ function check1() { //중복체크
 </tr>
 <tr class="">
 	<th>*주민등록번호</th>
-	<td><input type="ssn" name="userssn" id="userssn" required></td>
+	<td><input type="ssn" name="userssn" id="userssn" value="<%= userssn %>" required></td>
 </tr>
 <tr class="">
 	<th>*주소</th>
-	<td><input type="address" name="useraddress" id="useraddress" required></td>
+	<td><input type="address" name="useraddress" id="useraddress" value="<%= useraddress %>" required></td>
 </tr>
 <tr class="">
 	<th>전화번호</th>
-	<td><input type="tel" name="phone"></td>
+	<td><input type="tel" name="phone" value="<%= phone %>"></td>
 </tr>
 <tr class="">
 	<th>*성별</th>
@@ -170,15 +193,19 @@ function check1() { //중복체크
 </tr>
 <tr class="">
 	<th>*이메일</th>
-	<td><input type="email" name="email" required></td>
+	<td><input type="email" name="email" value="<%= email %>" required></td>
 </tr>
 <tr class="">
 	<th>*나의보물1호</th>
-	<td><input type="treasure" name="treasure" required></td>
+	<td><input type="treasure" name="treasure" value="<%= treasure %>" required></td>
 </tr>
 <tr class="pp" class="aa">
 	<th width="120">장학금 이름</th>
 	<td><input type="text" name="ssname"></td>
+</tr>
+</tr>
+<tr Style="display:none;">
+<th></th><td><input type="radio" name="who" value="<%= who %>" checked></td>
 </tr>
 <tr class="">
 	<th colspan="2">
@@ -207,11 +234,11 @@ function check1() { //중복체크
 </tr>
 <tr class="">
 	<th width="120">*이 름</th>
-	<td><input type="text" name="username" required></td>
+	<td><input type="text" name="username" value="<%= username %>" required></td>
 </tr>
 <tr class="">
 	<th>*아이디</th>
-	<td><input type="text" name="userid" required> &nbsp; 
+	<td><input type="text" name="userid" value="<%= userid %>" required> &nbsp; 
 	<input type="button" value="중복체크" onclick="return false;"></td>
 </tr>
 <tr class="">
@@ -224,15 +251,15 @@ function check1() { //중복체크
 </tr>
 <tr class="">
 	<th>*주민등록번호</th>
-	<td><input type="ssn" name="userssn" id="userssn" required></td>
+	<td><input type="ssn" name="userssn" id="userssn" value="<%= userssn %>" required></td>
 </tr>
 <tr class="">
 	<th>*주소</th>
-	<td><input type="address" name="useraddress" id="useraddress" required></td>
+	<td><input type="address" name="useraddress" id="useraddress" value="<%= useraddress %>" required></td>
 </tr>
 <tr class="">
 	<th>전화번호</th>
-	<td><input type="tel" name="phone"></td>
+	<td><input type="tel" name="phone" value="<%= phone %>"></td>
 </tr>
 <tr class="">
 	<th>*성별</th>
@@ -243,11 +270,11 @@ function check1() { //중복체크
 </tr>
 <tr class="">
 	<th>*이메일</th>
-	<td><input type="email" name="email" required></td>
+	<td><input type="email" name="email" value="<%= email %>" required></td>
 </tr>
 <tr class="">
 	<th>*나의보물1호</th>
-	<td><input type="treasure" name="treasure" required></td>
+	<td><input type="treasure" name="treasure" value="<%= treasure %>" required></td>
 </tr>
 <tr class="pp" class="aa">
 	<th width="120">입학날짜</th>
@@ -275,13 +302,13 @@ function check1() { //중복체크
 
 </form>
 
-<b style="color:red;">
+<b style="color:red;font-size:13pt">
 <% if(request.getAttribute("result") == null){ %>
 회원가입 버튼을 눌러주세요!
 <% }else if(who.equals("professor")){ %>
 교수Id는 앞에 P가 반드시 붙어야 합니다.
 <% }else{ %>
-관리Id는 앞에 A가 반드시 붙어야 합니다.
+임직원(관리자)Id는 앞에 A가 반드시 붙어야 합니다.
 <% } %>
 </b>
 
