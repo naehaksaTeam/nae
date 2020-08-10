@@ -47,4 +47,11 @@ public class LectureScoreService {
 		return list;
 	}
 	
+	//전체조회
+	public ArrayList<LectureScore> selectList(){
+		Connection conn = getConnection();
+		ArrayList<LectureScore> list = ldao.selectList(conn);
+		close(conn);
+		return list;
+	}
 }

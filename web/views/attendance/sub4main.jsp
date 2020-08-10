@@ -91,14 +91,20 @@ function twosend(){
 <input type="hidden" name="userid" value="<%=loginmember.getId() %>">
 <input type="submit" class="btn-sm" value="학기성적조회">
 </form>
-  
-<form action="/beet/lsselect" method="post">
+
+<h3>관리자용 </h3> 
+<% if(loginmember.getId().contains("A")){ %>
+<form action="/beet/lctrsearchall" method="post">
 <input type="hidden" name="userid" value="<%=loginmember.getId() %>">
-<input type="submit" class="btn-sm" value="과목별성적조회">
+<input type="submit" class="btn-sm" value="과목성적조회">
 <!-- 학기 ajax로 selected 값 받아서 동적페이지 구현할 예정  -->
-</form>  
+</form> 
+<% }else {%>
+<script type="text/javascript">
+  alert("관리자만 접근가능!");
+</script>
+<% } %>
+
 </div>
-
-
 </body>
 </html>

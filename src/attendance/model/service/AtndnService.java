@@ -35,19 +35,7 @@ public class AtndnService {
 		return list;
 	}
 
-	public ArrayList<Atndn> selectSearchUserid(String keyword) {
-		Connection conn = getConnection();
-		 ArrayList<Atndn>  list = adao.selectSearchUserid(conn, keyword);
-		close(conn);
-		return list;
-	}
 
-	public ArrayList<Atndn> selectSearchLecture(String keyword) {
-		Connection conn = getConnection();
-		 ArrayList<Atndn>  list = adao.selectSearchLecture(conn, keyword);
-		close(conn);
-		return list;
-	}
  //성적이랑 합침 
 	public ArrayList<Atndn> selectProfAtndnList(String pid, String semester, String lcode) {
 		Connection conn = getConnection();

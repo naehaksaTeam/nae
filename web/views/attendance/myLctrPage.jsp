@@ -95,7 +95,6 @@ long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
 		<tr>
 			<select id="selected">
 				style="width: 80px"> <!-- onchange="this.form.submit() -->
-
 				<% while (it.hasNext()) { %>
 				<option><%=it.next()%></option>
 				<% } %>

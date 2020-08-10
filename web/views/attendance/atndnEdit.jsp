@@ -33,6 +33,7 @@ ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 			<th>출결입력</th>
 
 		</tr>
+		<form action="/beet/atnupdate" method="post">
 		<%
 		int i = 1; for (Atndn a : list) {
 		%>
@@ -57,6 +58,7 @@ ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 <center>
 <p>
 	<input type="submit" value="저장"> &nbsp; 
+	</form>
 		<input type="reset" value="취소"> &nbsp;
 		<a href="javascript:history.go(-1);">이전 페이지</a>
 		<a href="/beet/index.jsp">시작 페이지</a>

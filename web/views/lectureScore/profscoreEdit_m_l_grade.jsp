@@ -29,7 +29,7 @@
 <tbody>
   <tr>
     <th>등급기준</th>
-    <td></td>
+    <td><input type="text"></td>
     <td></td>
     <td></td>
     <td></td>

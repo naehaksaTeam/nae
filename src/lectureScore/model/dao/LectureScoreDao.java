@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
+import attendance.model.vo.Atndn;
+
 import static common.JDBCTemp.*;
 import lectureScore.model.vo.LectureScore;
 
@@ -95,7 +98,7 @@ public class LectureScoreDao {
 		ResultSet rset = null;
 		
 		String query = "select lname, categoryname, majorname, sid, sname, retake, atndnscore, midscore, finalscore, totalscore, grade "
-					+ "from LscoreView where lname = ? and semester = ?";
+					+ "from LscoreView where lname = ? and semester = ? ";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -184,4 +187,78 @@ public class LectureScoreDao {
 		return result;
 	}
 
+	//관리자전체조회
+		public ArrayList<LectureScore> selectList(Connection conn) {
+			ArrayList<LectureScore> list = new ArrayList<LectureScore>();
+			Statement stmt = null;
+			ResultSet rset = null;
+
+			String query = "select semester, lcode, category, lname, sid, sname,categoryname, "
+					+ "majorname, retake, grade, pid, pname from LscoreView";
+			try {
+				stmt = conn.createStatement();
+				rset = stmt.executeQuery(query);
+				
+				while (rset.next()) {
+					LectureScore lscore = new LectureScore();
+					lscore.setSemester(rset.getString("semester"));
+					lscore.setLcode(rset.getString("lcode"));
+					lscore.setCategory(rset.getString("category"));
+					lscore.setLname(rset.getString("lname"));
+					lscore.setSid(rset.getString("sid"));
+					lscore.setSname(rset.getString("sname"));
+					lscore.setCategoryname(rset.getString("categoryname"));
+					lscore.setMajorname(rset.getString("majorname"));
+					lscore.setRetake(rset.getString("retake"));
+					lscore.setGrade(rset.getString("Grade"));
+					lscore.setPid(rset.getString("pid"));
+					lscore.setPname(rset.getString("pname"));
+					
+					list.add(lscore);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(stmt);
+			}
+			
+			return list;
+		}
+
+	//keyword 학생 평점 조회 
+		public ArrayList<Atndn> selectSearchLecture(Connection conn, String keyword) {
+		ArrayList<Atndn> list = new ArrayList<Atndn>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where lname = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, keyword);
+
+			rset = pstmt.executeQuery();
+			while (rset.next()) {
+				Atndn atndn = new Atndn();
+
+				atndn.setSemester(rset.getString("semester"));
+				atndn.setLcode(rset.getString("lcode"));
+				atndn.setCategory(rset.getString("category"));
+				atndn.setLname(rset.getString("lname"));
+				atndn.setLtime(rset.getString("ltime"));
+				atndn.setLpoint(rset.getInt("lpoint"));
+				atndn.setCapacity(rset.getInt("capacity"));
+				atndn.setPname(rset.getString("pname"));
+				list.add(atndn);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+		
+	
 }

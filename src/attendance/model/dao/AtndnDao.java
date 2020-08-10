@@ -5,12 +5,11 @@ import static common.JDBCTemp.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import attendance.model.vo.Atndn;
 import lecture.model.vo.Lecture;
-import lectureScore.model.vo.LectureScore;
-
 
 public class AtndnDao {
 
@@ -18,8 +17,6 @@ public class AtndnDao {
 		super();
 	}
 
-//select 내 강의목록(리스트-> lecture꺼 갖다쓰려면?? studentname??) 
-	// view 쓸 수 있나? //vo 만들기?? 컬럼중복 뭐지 ㅠㅠ group by dinstinct 다 안됨
 	public ArrayList<Atndn> selectMyLctr(Connection conn, String id) {
 		ArrayList<Atndn> list = new ArrayList<Atndn>();
 		PreparedStatement pstmt = null;
@@ -28,7 +25,8 @@ public class AtndnDao {
 		String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where sid = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, id);
+			pstmt.setS
+			tring(1, id);
 
 			rset = pstmt.executeQuery();
 			while (rset.next()) {
@@ -51,6 +49,7 @@ public class AtndnDao {
 		}
 		return list;
 	}
+
 
 	// select 출결현황
 	public ArrayList<Atndn> selectLctrAtndn(Connection conn, String sid, String lcode) {
@@ -308,9 +307,7 @@ public class AtndnDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String query = "select sid, category, lcode, lname, ltime, lpoint, room, pname ,absent3,"
-				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 "
-				+ "from AtndnView where sid = ? and lcode = ?";
+		String query = "select sid, category, lcode, lname, ltime, lpoint, room, pname ,absent3, thisweek, where sid = ? and lcode = ?";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -396,26 +393,44 @@ public class AtndnDao {
 
 		return list;
 	}
-
-	public ArrayList<Atndn> selectSearchLecture(Connection conn, String keyword) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public int updateAtndn(Connection conn, Atndn atndn) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query = "update Atndn set ";
-		
-		try {
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(pstmt);
-		}
-		
-		return result;
-	}
+	
+	//update Atndn 
+			public int updateAtndn(Connection conn, Atndn atndn) {
+				int result = 0;
+				PreparedStatement pstmt = null;
+				
+				String query = "update Atndn set week1 =?, week2 = ?, week3 =?, week4=?, week5=?, week6=?, week7=?, "
+						+ "week8 =?, week9 = ?, week10 =?, week11=?, week12=?, week13 =?, week14 = ?, week15 =?, week16=? "
+						+ "where sid = ? and lcode = ?";
+				
+				try {
+					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, atndn.getWeek1());
+					pstmt.setString(2, atndn.getWeek2());
+					pstmt.setString(3, atndn.getWeek3());
+					pstmt.setString(4, atndn.getWeek4());
+					pstmt.setString(5, atndn.getWeek5());
+					pstmt.setString(6, atndn.getWeek6());
+					pstmt.setString(7, atndn.getWeek7());
+					pstmt.setString(8, atndn.getWeek8());
+					pstmt.setString(9, atndn.getWeek9());
+					pstmt.setString(10, atndn.getWeek10());
+					pstmt.setString(11, atndn.getWeek11());
+					pstmt.setString(12, atndn.getWeek12());
+					pstmt.setString(13, atndn.getWeek13());
+					pstmt.setString(14, atndn.getWeek14());
+					pstmt.setString(15, atndn.getWeek15());
+					pstmt.setString(16, atndn.getWeek16());
+					pstmt.setString(17, atndn.getSid());
+					pstmt.setString(18, atndn.getLcode());
+					
+					result = pstmt.executeUpdate();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					close(pstmt);
+				}
+				return result;
+			}
 }

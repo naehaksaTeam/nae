@@ -141,4 +141,19 @@ public class LectureService {
 		
 		return list;
 	}
+	lscore.setReceptionno(String.join(",",request.getParameterValues("category"))); 
+	lscore.setReceptionno(String.join(",",request.getParameterValues("receptionno")));
+	lscore.setLcode(String.join(",",request.getParameterValues("lcode")));
+	lscore.setLname(String.join(",",request.getParameterValues("lname")));
+	lscore.setCategory(String.join(",",request.getParameterValues("category")));
+	lscore.setAtndnscore(Integer.parseInt(String.join(",",request.getParameterValues("atndnscore"))));
+	lscore.setMidscore(Integer.parseInt(String.join(",",request.getParameterValues("midscore"))));
+	lscore.setFinalscore(Integer.parseInt(String.join(",",request.getParameterValues("finalscore"))));
+	lscore.setTotalscore(Integer.parseInt(String.join(",",request.getParameterValues("totalscore"))));
+	lscore.setGrade(String.join(",",request.getParameterValues("grade"))));
+	
+	public int updateScore(reception, lcode, lname, category, atndnscore, midscore, finslscore, totalscore) {
+		Connection conn = getConnection();
+		int result = lado.updateScore(conn, reception, lcode, lname, category, atndnscore, midscore, finslscore, totalscore)
+	}
 }

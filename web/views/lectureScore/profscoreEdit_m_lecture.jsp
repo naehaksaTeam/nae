@@ -50,6 +50,7 @@
 		</tr>
 		</thead>
 		<tbody>
+		<div id="dataArea">
 		<form id="score" action="/beet/scupdate.prof">
 			<% int i = 1;for(LectureScore lscore : list) {%>
 			<tr>
@@ -80,6 +81,7 @@
 			
 		</tbody>
 	</table>
+	</div>
 		<center>
 		<p style="margin-top:30px;">
 		* 변경 후 반드시 저장을 눌러주세요 
@@ -96,7 +98,20 @@
 	<!-- jquery로 입력값 받아서 수정하기 변경하기누르면 update 취소 누르면 sendredirect -->
 <script>
 //변경저장
-
+$(document).ready(function(){
+	$.ajax({
+		type : "GET",
+		url : "ajaxData.jsp?type=1",
+		dataType : "text",
+		error : function(){
+			
+		},
+		success : function(data){
+			$("#dataArea").html(data);
+		}
+	
+	})
+})
 
 
 //수정가능 
