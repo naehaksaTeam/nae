@@ -23,13 +23,12 @@ public class SelectSsbenefitstServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String studentid = (String)request.getAttribute("studentid");
-		ArrayList<Scholarship> listss = (ArrayList<Scholarship>)request.getAttribute("list");
+		String studentid = request.getParameter("studentid");
+
 		ArrayList<Ssbenefitst> listssst = new SsbenefitstService().selectPrivateSsst(studentid);
 		RequestDispatcher view = null;
 
 			view = request.getRequestDispatcher("views/scholarship/selectScholarView.jsp");
-			request.setAttribute("listss", listss);
 			request.setAttribute("listssst", listssst);
 			view.forward(request, response);
 
