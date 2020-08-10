@@ -1,4 +1,4 @@
-package absence.controller;
+package admin.controller;
 
 public class dummy {
 

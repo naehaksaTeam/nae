@@ -1,4 +1,4 @@
-package absence.controller;
+package admin.model.dao;
 
 public class dummy {
 
