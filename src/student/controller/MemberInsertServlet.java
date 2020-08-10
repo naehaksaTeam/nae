@@ -21,7 +21,7 @@ import student.model.vo.Member;
  */
 @WebServlet("/minsert")
 public class MemberInsertServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3556656445L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -42,7 +42,7 @@ public class MemberInsertServlet extends HttpServlet {
 				String[] index = ((String)(request.getParameter("major"))).split(",");
 				
 				for(String s : index) {
-					System.out.println(s);	
+					System.out.println(s);
 				}
 				String majorno = index[0];
 				String categoryname = index[1];
@@ -60,8 +60,8 @@ public class MemberInsertServlet extends HttpServlet {
 				member.setEmail(request.getParameter("email"));
 				member.setTreasure(request.getParameter("treasure"));
 				member.setPassword(request.getParameter("password"));
-				member.setAbsencecount(Integer.parseInt(request.getParameter("absencecount")));
-				member.setAbsencewhether(request.getParameter("absencewhether"));
+				//member.setAbsencecount(Integer.parseInt(request.getParameter("absencecount")));
+				//member.setAbsencewhether(request.getParameter("absencewhether"));
 				member.setAdminhiredate(d1);
 				member.setEntrancedate(d2);
 				member.setMajorno(majorno);

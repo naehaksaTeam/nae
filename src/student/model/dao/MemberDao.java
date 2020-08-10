@@ -295,19 +295,97 @@ public int updateMember(Connection conn, Member member) {
 
 
 public int insertStudent(Connection conn, Member member) {
-	// TODO Auto-generated method stub
-	return 0;
+	int result = 0;
+    PreparedStatement pstmt = null;
+
+    String query = "insert into student values (?,?,?,?,?,?,?,?,?,?,?,DEFAULT,DEFAULT,?,?)";
+
+    try {
+       pstmt = conn.prepareStatement(query);
+       pstmt.setString(1, member.getId());
+       pstmt.setString(2, member.getName());
+       pstmt.setString(3, member.getSsn());
+       pstmt.setString(4, member.getAddress());
+       pstmt.setString(5, member.getPhone());
+       pstmt.setString(6, member.getGender());
+       pstmt.setString(7, member.getEmail());
+       pstmt.setString(8, member.getTreasure());
+       pstmt.setString(9, member.getCategoryname());
+       pstmt.setString(10, member.getMajorno());
+       pstmt.setDate(11, member.getEntrancedate());
+       pstmt.setString(12, member.getSsname());
+       pstmt.setString(13, member.getPassword());
+	
+       result = pstmt.executeUpdate();
+
+    } catch (Exception e) {
+       e.printStackTrace();
+    } finally {
+       close(pstmt);
+    }
+    return result;
 }
 
 
 public int insertProfessor(Connection conn, Member member) {
-	// TODO Auto-generated method stub
-	return 0;
+	int result = 0;
+    PreparedStatement pstmt = null;
+
+    String query = "insert into professor values (?,?,?,?,?,?,?,?,?,?,?)";
+
+    try {
+       pstmt = conn.prepareStatement(query);
+       pstmt.setString(1, member.getId());
+       pstmt.setString(2, member.getName());
+       pstmt.setString(3, member.getSsn());
+       pstmt.setString(4, member.getAddress());
+       pstmt.setString(5, member.getPhone());
+       pstmt.setString(6, member.getGender());
+       pstmt.setString(7, member.getEmail());
+       pstmt.setString(8, member.getTreasure());
+       pstmt.setString(9, member.getCategoryname());
+       pstmt.setString(10, member.getMajorno());
+       pstmt.setString(11, member.getPassword());
+	
+       result = pstmt.executeUpdate();
+
+    } catch (Exception e) {
+       e.printStackTrace();
+    } finally {
+       close(pstmt);
+    }
+
+    return result;
 }
 
 
 public int insertAdmin(Connection conn, Member member) {
-	// TODO Auto-generated method stub
-	return 0;
+	int result = 0;
+    PreparedStatement pstmt = null;
+
+    String query = "insert into member values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    try {
+       pstmt = conn.prepareStatement(query);
+       pstmt.setString(1, student.getId());
+       pstmt.setString(2, student.getPassword());
+       pstmt.setString(3, student.getName());
+       pstmt.setString(4, student.getSsn());
+       pstmt.setString(5, student.getAddress());
+       pstmt.setString(6, student.getPhone());
+       pstmt.setString(7, student.getCategoryname());
+       pstmt.setString(8, student.getGender());
+       pstmt.setString(9, student.getEmail());
+       pstmt.setString(10, student.getTreasure());
+	
+       result = pstmt.executeUpdate();
+
+    } catch (Exception e) {
+       e.printStackTrace();
+    } finally {
+       close(pstmt);
+    }
+
+    return result;
 }
 }
