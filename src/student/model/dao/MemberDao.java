@@ -279,9 +279,38 @@ public class MemberDao {
 		
 		
 	}
-
+	
+	//아이디 찾기
+	
 	public Member FindIdMember(Connection conn, String name, String treasure) {
+		Member member = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		
+		String query = "select * from member where name= ? and treasure = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, name);
+			pstmt.setString(2, treasure);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				member = new Member();
+				
+				member.setName(rset.getString("name"));
+				member.setTreasure(rset.getString("treasure"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return member;
 	}
 
 }

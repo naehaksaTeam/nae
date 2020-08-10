@@ -32,14 +32,11 @@
 	<th>암호확인</th>
 	<td><input type="password" id="userpwd2"></td>
 </tr>
-<tr>
-	<th>이름</th>
-	<td><input type="name" name="username" value="<%= member.getName() %>"></td>
-</tr>
+
 
 <tr>
 	<th>주민등록번호</th>
-	<td><input type="name" name="username" value="<%= member.getName() %>" readonly></td>
+	<td><input type="name" name="username" value="<%= member.getSsn() %>" readonly></td>
 
 
 </tr>
@@ -72,7 +69,7 @@
 
 <tr>
 	<th>나의보물1호</th>
-	<td><input type="email" name="email" value="<%= member.getTreasure() %>"></td>
+	<td><input type="treasure" name="treasure" value="<%= member.getTreasure() %>"></td>
 </tr>
 
 <tr>

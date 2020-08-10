@@ -31,6 +31,7 @@
          <button type="submit" class="btn btn-outline-secondary findbtn">찾기</button>
    </div>
  </div>
+ 
  </form>
 </body>
 </html>
