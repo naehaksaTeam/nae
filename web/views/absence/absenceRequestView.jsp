@@ -54,7 +54,7 @@
 <h1>TEST BUTTON</h1>
 <button onclick="javascript:location.href='/beet/selectaball'">ABSENCE MANAGEMENT ADMIN</button>
 <button onclick="javascript:location.href='/beet/selectca'">CATEGORY VIEW</button>
-<button onclick="javascript:location.href='/beet/views/scholarship/selectScholarView.jsp'">SCHOLARSHIP, SSBENEFITST SELECT STU</button>
+<button onclick="javascript:location.href='/beet/selectss'">SCHOLARSHIP, SSBENEFITST SELECT STU</button>
 <button onclick="javascript:location.href='/beet/views/scholarship/scholarshipManagementView.jsp'">SCHOLARSHIP MANAGEMENT ADMIN</button>
 <button onclick="javascript:location.href='/beet/views/ssbenefit/ssbenefitstManagementView.jsp'">SSBENEFIT MANAGEMENT ADMIN</button>
 </div>

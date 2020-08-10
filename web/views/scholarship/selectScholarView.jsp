@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <%@ page import="java.util.ArrayList, scholarship.model.vo.Scholarship, ssbenefitst.model.vo.Ssbenefitst,
-				  student.model.vo.Student" %>    
+				  student.model.vo.Member" %>    
 <%
 	ArrayList<Ssbenefitst> stlist = (ArrayList<Ssbenefitst>)request.getAttribute("list");
 	ArrayList<Scholarship> list = (ArrayList<Scholarship>)request.getAttribute("list");
-	
-	Student loginMember = (Student)session.getAttribute("loginMember");
-	
+	Member m = (Member)session.getAttribute("loginMember");
+
 %>
 
 <!DOCTYPE html>
@@ -20,15 +19,20 @@
 <header>
 <%@ include file="/views/common/header.jsp" %>
 </header>
-<%@ include file="/views/common/sessionChk.jsp" %>
+
 학생은 장학금만 조회
 <div align="center">
 <h1 >내가받은 장학금 조회</h1>
-<button onclick="javascript:location.href='/beet/selectbenest?studentid=<%=loginMember.getId()%>'" value="나의 장학금 조회">
+<button onclick="javascript:location.href='/beet/selectbenest?studentid=<%=m.getId()%>'" value="나의 장학금 조회">
+
 <table>
+<% if(stlist != null){ %>
 <tr><th>수혜학기</th><th>장학금명</th></tr>
 <% for(Ssbenefitst ssst : stlist){%>
 <tr><td><%=ssst.getBenefitterm()%></td><td><%=ssst.getSsname() %></td></tr>
+<% } %>
+<% }else{ %>
+<tr><td colspan="2">장학금수혜정보가 없습니다.</td></tr>
 <% } %>
 </table>
 </div>
