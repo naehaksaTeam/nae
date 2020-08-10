@@ -145,7 +145,6 @@ public class AbsenceDao {
 	public int studentAbsenceChange(Connection conn, String id) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
 		String query = "  update student set ABSENCEWHETHER = (select case ABSENCEWHETHER when 'Y' then 'N' when 'N' then 'Y' end from student where id = ?) where id = ?";
 		
 		try {
@@ -165,7 +164,6 @@ public class AbsenceDao {
 	public int studentCountPlus(Connection conn, String id) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
 		String query = "  update student set absencecount = absencecount+1 where id = ?";
 		try {
 			pstmt = conn.prepareStatement(query);

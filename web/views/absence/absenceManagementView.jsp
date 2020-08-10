@@ -24,15 +24,16 @@
 <button onclick="javascript:location.href='/beet/selectaball'">전 체 조 회</button>
 
 <% if(list != null){ %>
-<form action="/beet/updateab">
+<form action="/beet/updateab" method="get">
 <table id="select" align="center" >
 <tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
 <% for(Absence ab : list){ %>
-<tr><td><input type="radio" name="requestid" value=<%=ab.getRequestid()%> readonly><%=ab.getRequestid()%></td>
-	<td><input type="hidden" name="id" value="<%=ab.getStudentid()%>" readonly><%=ab.getStudentid() %></td>
+
+<tr><td><input type="radio" name="requestid" value="<%=ab.getRequestid()%>"><%=ab.getRequestid()%></td>
+	<td><input type="hidden" name="id" value="<%=ab.getStudentid()%>"><%=ab.getStudentid() %></td>
 	<td><%=ab.getRequestdate() %></td>
 	<td><%=ab.getLimitcanceldate() %></td>
-	<td><input type="hidden" name="approval" value="<%= ab.getApproval()%>" readonly><%=ab.getApproval()%></td>
+	<td><input type="hidden" name="approval" value="<%= ab.getApproval()%>"><%=ab.getApproval()%></td>
 <% } %>
 </tr>
 <tr><td colspan="5"><input type="submit" value="승인하기"></td></tr>
@@ -42,18 +43,19 @@
 
 
 <% if(list != null){ %>
-<form action="/beet/deleteab">
-<table id="select" align="center" >
+<form method="post" name="managerform">
+<table id="select" >
 <tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
 <% for(Absence ab : list){ %>
 <tr><td><input type="radio" name="requestid" value=<%=ab.getRequestid()%> readonly><%=ab.getRequestid()%></td>
-	<td><input type="hidden" name="id" value="<%=ab.getStudentid()%>" readonly><%=ab.getStudentid() %></td>
+	<td><%=ab.getStudentid() %></td>
 	<td><%=ab.getRequestdate() %></td>
 	<td><%=ab.getLimitcanceldate() %></td>
-	<td><input type="hidden" name="approval" value="<%= ab.getApproval()%>" readonly><%=ab.getApproval()%></td>
+	<td><%=ab.getApproval()%></td>
 <% } %>
 </tr>
-<tr><td colspan="5"><input type="submit" value="신청삭제(복구불가)"></td></tr>
+<tr><td colspan="5"><input type="submit" value="승인하기" onclick="javascript: managerform.action='/beet/updateab'"></td></tr>
+<tr><td colspan="5"><input type="submit" value="신청삭제(복구불가)" onclick="javascript: managerform.action='/beet/deleteabad'"></td></tr>
 </table>
 </form>
 <% } %>

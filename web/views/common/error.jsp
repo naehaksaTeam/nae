@@ -13,6 +13,7 @@
 <h1 align="center">준비중입니다...</h1>
 <hr>
 <center>
+<%= error %>
 <button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
 </center>
 </body>

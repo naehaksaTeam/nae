@@ -9,9 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.org.apache.xerces.internal.impl.xs.SubstitutionGroupHandler;
-
 import absence.model.service.AbsenceService;
+import absence.model.vo.Absence;
 
 @WebServlet("/updateab")
 public class UpdateAbsenceServlet extends HttpServlet {
@@ -22,29 +21,30 @@ public class UpdateAbsenceServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String requestid = request.getParameter("requestid");
-		String id = request.getParameter("id");
-		String approval = request.getParameter("approval");
+		System.out.println("requestid"+requestid);
 		String ab = requestid.substring(0, 1);
 		AbsenceService aservice = new AbsenceService();
+		Absence a = aservice.selectOneAbsence(requestid);
+
 		RequestDispatcher view = null;
-		if (approval.equals("N")) {
+		if (a.getApproval().equals("N")) {
 			int result = aservice.updateYAbsence(requestid);
 			if(result > 0) { //승인성공하면 학생테이블가서 휴학여부 바꾸어주고 휴학 카운트 +1
-				int re = aservice.studentAbsenceChange(id);
+
+				int re = aservice.studentAbsenceChange(a.getStudentid());
 				if(re > 0){
 					if(ab.equals("a")) { // 휴학신청일때
-						int r = aservice.studentCountPlus(id);
+						int r = aservice.studentCountPlus(a.getStudentid());
 						if(r > 0) {
-							response.sendRedirect("views/absence/absenceManagementView.jsp");
+							response.sendRedirect("selectaball");
 						}else {
 							view = request.getRequestDispatcher("views/common/error.jsp");
 							request.setAttribute("message", "학생정보 변경에 실패해였습니다.");
 							view.forward(request, response);
 						}
 					}else { //복학신청일때
-						response.sendRedirect("views/absence/absenceManagementView.jsp");
+						response.sendRedirect("selectaball");
 					}
 				}else {
 					view = request.getRequestDispatcher("views/common/error.jsp");
