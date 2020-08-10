@@ -17,11 +17,10 @@
 <%@ include file="/views/common/sessionChk.jsp" %>
 <br><br><br><br><br>
 <div align="center">
-
+<br>
 <button onclick="javascript:location.href='/beet/selectaba?value=a'">휴 학 조 회</button>
 <button onclick="javascript:location.href='/beet/selectaba?value=b'">복 학 조 회</button>
-<br><br><br><br>
-
+<br>
 <button onclick="javascript:location.href='/beet/selectaball'">전 체 조 회</button>
 
 <% if(list != null){ %>
@@ -37,6 +36,24 @@
 <% } %>
 </tr>
 <tr><td colspan="5"><input type="submit" value="승인하기"></td></tr>
+</table>
+</form>
+<% } %>
+
+
+<% if(list != null){ %>
+<form action="/beet/deleteab">
+<table id="select" align="center" >
+<tr><th>신청번호</th><th>학번</th><th>신청일</th><th>취소가능날짜</th><th>승인여부</th></tr>
+<% for(Absence ab : list){ %>
+<tr><td><input type="radio" name="requestid" value=<%=ab.getRequestid()%> readonly><%=ab.getRequestid()%></td>
+	<td><input type="hidden" name="id" value="<%=ab.getStudentid()%>" readonly><%=ab.getStudentid() %></td>
+	<td><%=ab.getRequestdate() %></td>
+	<td><%=ab.getLimitcanceldate() %></td>
+	<td><input type="hidden" name="approval" value="<%= ab.getApproval()%>" readonly><%=ab.getApproval()%></td>
+<% } %>
+</tr>
+<tr><td colspan="5"><input type="submit" value="신청삭제(복구불가)"></td></tr>
 </table>
 </form>
 <% } %>
