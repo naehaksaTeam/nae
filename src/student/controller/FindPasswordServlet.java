@@ -2,6 +2,7 @@ package student.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import student.model.dao.MemberDao;
+import student.model.service.MemberService;
+import student.model.vo.Member;
 
 /**
  * Servlet implementation class FindPasswordServlet
@@ -29,14 +32,28 @@ public class FindPasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		dao = new MemberDao();
-		String id = request.getParameter("id");
-		String treasure = request.getParameter("treasure");
-		String pw = dao.findPw(id, treasure);
-		request.setAttribute("pw", pw);
-		if (pw == null)
-			return "login/findpw.jsp";
-		return "login/findpwAfter.jsp";
+		// 비밀번호 찾기 컨트롤러
+
+				// 1.
+				request.setCharacterEncoding("utf-8");
+
+				// 2.
+				Member member = new Member();
+				member.setName(request.getParameter("id"));
+				member.setTreasure(request.getParameter("treasure"));
+
+				// 3.
+				int result = new MemberService().FindPasswordMember(member);
+
+				// 4.
+				if (result > 0) {
+
+					response.sendRedirect("beet/views/student/findPassword.jsp");
+				} else {
+					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+					request.setAttribute("message", "비밀번호.");
+					view.forward(request, response);
+				}
 	}
 
 	/**

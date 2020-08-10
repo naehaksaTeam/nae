@@ -3,14 +3,12 @@ package student.model.dao;
 import static common.JDBCTemp.close;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import student.model.vo.Member;
-import student.model.vo.Student;
 
 public class MemberDao {
 	public MemberDao() {
@@ -46,6 +44,39 @@ public class MemberDao {
 		}
 
 		return result;
+	}
+
+	// 아이디찾기
+	public Member FindIdMember(Connection conn, String name, String treasure) {
+		Member member = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = "select * from member where name = ? and treasure = ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, name);
+			pstmt.setString(2, treasure);
+
+			rset = pstmt.executeQuery();
+
+			if (rset.next()) {
+				member = new Member();
+
+				member.setName(rset.getString("name"));
+				member.setTreasure(rset.getString("treasure"));
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return member;
+
 	}
 
 	// 한명선택
@@ -258,7 +289,26 @@ public class MemberDao {
 		return result;
 	}
 
-	
+	public int FindPasswordMember(Connection conn, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
 
+		String query = "select * from member where id = ? and treasure = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getId());
+			pstmt.setString(2, member.getTreasure());
+
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+			close(pstmt);
+		}
+
+		return result;
+	}
 
 }

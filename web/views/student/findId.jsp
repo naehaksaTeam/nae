@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>beet</title>
-<form class="form-horizontal" role="form" method="POST" action="starters?cmd=findIdAction">
+<form class="form-horizontal" role="form" method="POST" action="findId">
 아이디찾기
 <div class="row">
    <div class="col-md-10 inputbb">

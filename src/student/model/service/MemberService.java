@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 import student.model.dao.MemberDao;
 import student.model.vo.Member;
-import student.model.vo.Student;
 
 public class MemberService {
 	private MemberDao mdao = new MemberDao();
@@ -53,6 +52,13 @@ public class MemberService {
 		ArrayList<Member> list = mdao.selectList(conn);
 		close(conn);
 		return list;
+	}
+
+	public Member FindIdMember(String name, String ) {
+		Connection conn = getConnection();
+		ResultSet rset = mdao.FindIdMember(conn, member);
+		close(conn);
+		return result;
 	}
 
 	
