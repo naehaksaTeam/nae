@@ -10,10 +10,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import lecture.model.vo.Lecture;
+import lecture.model.vo.Major;
 import lecture.model.vo.Rest;
 import lecture.model.vo.TimeTable;
+import oracle.net.aso.l;
 import student.model.vo.Member;
-import student.model.vo.Student;
 
 public class LectureDao {
 	
@@ -363,6 +364,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -494,6 +498,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -578,6 +585,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -660,6 +670,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -714,11 +727,35 @@ public class LectureDao {
 	}
 
 
-	public ArrayList<Lecture> selectCategories(Connection conn) {
-		//카테고리 목록 조회
+	public ArrayList<Major> selectCategories(Connection conn) {
+		//카테고리 목록 조회 구분명 또는 계열 이라는거
+		ArrayList<Major> list = new ArrayList<Major>();
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "select * from major";
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
+				Major m = new Major();
+				m.setCapacity(rset.getInt("capacity"));
+				m.setCategoryname(rset.getString("categoryname"));
+				m.setMajorname(rset.getString("majorname"));
+				m.setMajorno(rset.getString("majorno"));
+				m.setTuition(rset.getInt("tuition"));
+				
+				list.add(m);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
 		
-		
-		return null;
+		return list;
 	}
 
 }

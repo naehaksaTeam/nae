@@ -24,9 +24,19 @@ public class MemberService {
 		return member;
 	}
 
-	public int insertMember(Member member) {
+	public int insertMember(Member member,String who) {
 		Connection conn = getConnection();
-		int result = mdao.insertMember(conn, member);
+		
+		int result = 0;
+		
+		if(who.equals("student")) {
+			result = mdao.insertStudent(conn, member);
+		}else if(who.equals("professor")) {
+			result = mdao.insertProfessor(conn, member);
+		}else {
+			result = mdao.insertAdmin(conn, member);
+		}
+		
 		if(result > 0)
 			commit(conn);
 		else

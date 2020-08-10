@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import lecture.model.dao.LectureDao;
 import lecture.model.vo.Lecture;
+import lecture.model.vo.Major;
 import lecture.model.vo.Rest;
 import lecture.model.vo.TimeTable;
 import student.model.vo.Member;
@@ -259,10 +260,10 @@ public class LectureService {
 		return r;
 	}
 
-	public ArrayList<Lecture> selectCategories() {
+	public ArrayList<Major> selectCategories() {
 		//카테고리 조회
 		Connection conn = getConnection();
-		ArrayList<Lecture> list = ldao.selectCategories(conn);
+		ArrayList<Major> list = ldao.selectCategories(conn);
 		close(conn);
 		return list;
 	}

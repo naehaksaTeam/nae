@@ -37,7 +37,6 @@ public class requestRestServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DateFormat df=new SimpleDateFormat("yy-MM-dd");
 		Date d1 = Date.valueOf(request.getParameter("dayoff"));
 		Date d2 = Date.valueOf(request.getParameter("rday"));
 		

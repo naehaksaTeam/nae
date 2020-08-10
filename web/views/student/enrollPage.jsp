@@ -1,6 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture" errorPage="../../views/common/error.jsp" %>
-<% String who = (String)request.getAttribute("who"); %>
+<%@ 
+page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8" 
+import="java.util.ArrayList,lecture.model.vo.Lecture,lecture.model.vo.Major" 
+errorPage="../../views/common/error.jsp" 
+%>
+<% 
+String who = (String)request.getAttribute("who"); 
+ArrayList<Major> list = (ArrayList<Major>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,12 +57,14 @@ table#outer { border : 2px solid navy;  }
 	<th colspan="2">회원 정보를 입력해 주세요. (* 표시는 필수입력 항목입니다.)</th>	
 </tr>
 <tr>
-	<th>학과코드</th>
+	<th>*학과</th>
 	<td>
-		<select name="majorno">
-		<%  %>
-		<option value="<%= %>">
-		<%  %>
+		<select name="major" style="width:50%;" required>
+		<% for(Major m : list){ %>
+		<option value="<%= m.getMajorno() + "," + m.getCategoryname() + "," + who %>">
+		<%= m.getMajorname() %>
+		</option>
+		<% } %>
 		</select>
 	</td>
 </tr>
@@ -74,35 +83,54 @@ table#outer { border : 2px solid navy;  }
 </tr>
 <tr>
 	<th>*암호확인</th>
-	<td><input type="password" id="userpwd2"></td>
+	<td><input type="password" id="userpwd2" required></td>
 </tr>
 <tr>
 	<th>*주민등록번호</th>
 	<td><input type="ssn" name="userssn" id="userssn" required></td>
 </tr>
 <tr>
-	<th>주소</th>
-	<td><input type="address" name="useraddress" id="useraddress" ></td>
+	<th>*주소</th>
+	<td><input type="address" name="useraddress" id="useraddress" required></td>
 </tr>
 <tr>
 	<th>전화번호</th>
 	<td><input type="tel" name="phone"></td>
 </tr>
 <tr>
-	<th>계열이름(구분)</th>
-	<td><input type="category" name="categoryname"></td>
+	<th>*성별</th>
+	<td>
+		<input type="radio" name="gender" value="M" checked>남&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="radio" name="gender" value="F">여
+	</td>
 </tr>
 <tr>
-	<th>성별</th>
-	<td><input type="gender" name="usergender"></td>
-</tr>
-<tr>
-	<th>이메일</th>
-	<td><input type="email" name="email" ></td>
+	<th>*이메일</th>
+	<td><input type="email" name="email" required></td>
 </tr>
 <tr>
 	<th>*나의보물1호</th>
 	<td><input type="treasure" name="treasure" required></td>
+</tr>
+<tr>
+	<th width="120">임직원 입사일</th>
+	<td><input type="text" name="adminhiredate"></td>
+</tr>
+<tr>
+	<th width="120">입학날짜</th>
+	<td><input type="text" name="entrancedate"></td>
+</tr>
+<tr>
+	<th width="120">휴학여부</th>
+	<td><input type="text" name="absencewhether"></td>
+</tr>
+<tr>
+	<th width="120">휴학카운트</th>
+	<td><input type="text" name="absencecount"></td>
+</tr>
+<tr>
+	<th width="120">장학금 이름</th>
+	<td><input type="text" name="ssname"></td>
 </tr>
 <tr>
 	<th colspan="2">
@@ -113,7 +141,15 @@ table#outer { border : 2px solid navy;  }
 </tr>
 </table>
 </form>
-</center>
 
+<b style="color:red;">
+<% if(request.getAttribute("result") == null){ %>
+	
+<% }else{ %>
+회원가입 실패...
+<% } %>
+</b>
+
+</center>
 </body>
 </html>

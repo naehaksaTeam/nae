@@ -11,8 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import lecture.model.service.LectureService;
-import lecture.model.vo.Lecture;
-
+import lecture.model.vo.Major;
 /**
  * Servlet implementation class toEnrollPage
  */
@@ -35,7 +34,7 @@ public class toEnrollPage extends HttpServlet {
 		String who = request.getParameter("who");
 		request.setAttribute("who", who);
 		
-		ArrayList<Lecture> list = new LectureService().selectCategories();
+		ArrayList<Major> list = new LectureService().selectCategories();
 		request.setAttribute("list", list);
 		
 		RequestDispatcher view = request.getRequestDispatcher("/views/student/enrollPage.jsp");

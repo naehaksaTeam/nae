@@ -292,4 +292,22 @@ public int updateMember(Connection conn, Member member) {
 	return result;
 
 	}
+
+
+public int insertStudent(Connection conn, Member member) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+public int insertProfessor(Connection conn, Member member) {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+
+public int insertAdmin(Connection conn, Member member) {
+	// TODO Auto-generated method stub
+	return 0;
+}
 }
