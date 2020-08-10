@@ -104,9 +104,9 @@ public class AbsenceService {
 		return list;
 	};
 	
-	public int canceldateChk(String requestid) {
+	public float canceldateChk(String requestid) {
 		Connection conn = getConnection();
-		int date = adao.canceldateChk(conn, requestid);
+		float date = adao.canceldateChk(conn, requestid);
 		close(conn);
 		return date;
 	}

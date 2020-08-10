@@ -22,13 +22,16 @@ public class DeleteAbsenceServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestid = request.getParameter("requestid");
+		String ab = requestid.substring(0, 1);
+		
+		System.out.println("requestid : " + requestid);
+		
 		AbsenceService aservice = new AbsenceService();
 		Absence a = aservice.selectOneAbsence(requestid);
-		String ab = requestid.substring(0, 1);
 
 		RequestDispatcher view = null;
 		
-		int date = aservice.canceldateChk(requestid);
+		float date = aservice.canceldateChk(requestid);
 		if(date > 0) {
 			String approval = aservice.selectApprovalChk(requestid);
 			if(approval.equals("Y")){//승인완료, 학생테이블가서 바꿔줘야함

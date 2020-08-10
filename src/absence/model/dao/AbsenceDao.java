@@ -65,7 +65,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence where id = ?";
+		String query = "select * from absence where id = ? order by requestid";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -287,12 +287,12 @@ public class AbsenceDao {
 		return list;
 	}
 	
-	public int canceldateChk(Connection conn, String requestid) {
+	public float canceldateChk(Connection conn, String requestid) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		int date = 0;
+		float date = 0;
 
-		String query = " select to_number(sysdate - LIMITCANCELDATE)  as \"date\" from absence where requestid = ?";
+		String query = " select to_number(LIMITCANCELDATE - sysdate)  as \"date\" from absence where requestid = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -308,6 +308,7 @@ public class AbsenceDao {
 			close(rset);
 			close(pstmt);
 		}
+		System.out.println(date);
 		return date;
 	}
 }

@@ -3,7 +3,6 @@
 <%@ page import="student.model.vo.Member" %>  
 <%
 	ArrayList<Absence> list = (ArrayList<Absence>)request.getAttribute("list");
-	Member loginMember = (Member)session.getAttribute("loginMember");
 %>
     
   
@@ -13,8 +12,19 @@
 <head>
 <meta charset="UTF-8">
 <title>beet</title>
+
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: inherit;
+	text-align: left;
+	vertical-align: top;
+}
+</style>
 </head>
 <body>
+
 <header>
 <%@ include file="../common/header.jsp"%>
 </header>
@@ -29,29 +39,39 @@
 </div>
 <br><br><br><br>
 <hr>
-<div align="center">
-<button width="20" onclick="javascript:location.href='/beet/selectab?studentid=<%=loginMember.getId()%>'">조 회</button>
-</div>
+
 <h1 align="center">조회 테이블</h1>
-<h2 align="center"><%=loginMember.getName() %> 님의 신청내역 조회</h2>
+<h2 align="center"><%=m.getName() %> 님의 신청내역 조회</h2>
+<form method="post" name="requestform">
 <% if(list == null){ %>
-<table align="center" width="1000" height="100" style="font-size: 20pt; background-color: blue;"><th>신청 내역이 없습니다</th></table>
+<table class="tg"><th>신청 내역이 없습니다</th></table>
 <% }else{ %>
 	<% for(Absence aa : list){ %>
 	<table>
 	<tr><th>신청번호</th><th>신청날짜</th><th>취소가능날짜</th><th>승인여부</th> </tr>
-	<tr><td><%=aa.getRequestid() %></td><td><%=aa.getRequestdate() %></td><td><%=aa.getLimitcanceldate() %></td><td><%=aa.getApproval() %></td> </tr>
-	<tr><td align="right" colspan="4"><button name="cancel" onclick="javascript:location.href='/beet/deleteab'">신청취소</button></td></tr>
+	<tr><td><input type="radio" name="requestid" value="<%=aa.getRequestid()%>"><%=aa.getRequestid() %></td>
+		<td><%=aa.getRequestdate() %></td>
+		<td><%=aa.getLimitcanceldate() %></td>
+		<td><%=aa.getApproval() %></td> 
+	</tr>
+	<% } %>
 	</table>
-	
-<% }} %>
+	<input type="submit" value="조 회" onclick="javascript: requestform.action='/beet/selectab?studentid=<%=m.getId()%>'">
+	<input type="submit" value="신청취소" onclick="javascript: requestform.action='/beet/deleteab'">
+<% } %>
+</form>
+
+
+
+
+
 <hr>
 <h1 align="center">신청테이블</h1>
 <div>
 <table align="center" width="1000" height="550" style="font-size: 15pt; background-color: pink;">
 
-<% if(loginMember.getAbsencewhether().equals("Y") && loginMember.getAbsencecount() <= 6){ %>
-<tr><th>현재 <%=loginMember.getName() %>님은 휴학상태입니다</th></tr>
+<% if(m.getAbsencewhether().equals("Y") && m.getAbsencecount() <= 6){ %>
+<tr><th>현재 <%=m.getName() %>님은 휴학상태입니다</th></tr>
 <tr>
 	<td align="center">
 		안 내 사 항 
@@ -67,12 +87,12 @@
 	</td>
 </tr>
 <tr><td align="center">
-		<% if(loginMember.getAbsencecount() != 6){ %>
-		<button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=loginMember.getId()%>'">휴학신청</button>&nbsp;&nbsp;
+		<% if(m.getAbsencecount() != 6){ %>
+		<button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=m.getId()%>'">휴학신청</button>&nbsp;&nbsp;
 		<% } %>
-		<button name="value" value="b" onclick="javascript:href='insertab?value=a&studentid=<%=loginMember.getId()%>'">복학신청</button></td></tr>
+		<button name="value" value="b" onclick="javascript:href='insertab?value=a&studentid=<%=m.getId()%>'">복학신청</button></td></tr>
 <% }else{ %>
-<tr><th>현재 <%=loginMember.getName() %>님은 재학상태입니다</th></tr>
+<tr><th>현재 <%=m.getName() %>님은 재학상태입니다</th></tr>
 <tr>
 	<td align="center">
 		안내사항 
@@ -88,7 +108,7 @@
 	</td>
 </tr>
 
-<tr><td align="center"><button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=loginMember.getId()%>'">휴학신청</button></td></tr>
+<tr><td align="center"><button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=m.getId()%>'">휴학신청</button></td></tr>
 <% } %>
 </table>
 </div>
