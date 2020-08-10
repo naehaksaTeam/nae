@@ -42,7 +42,7 @@ ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 			<td><%=a.getMajorname() %></td>
 			<td><%=a.getSname()%></td>
 			<td>
-			<select class="at 	t" style="width:80px;height:30px">
+			<select class="atndt" style="width:80px;height:30px">
 					<option value="-" selected disabled hidden>-</option>
 					<option value="1">출석</option>
 					<option value="2">결석</option>

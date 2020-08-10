@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import attendance.model.service.AtndnService;
+import attendance.model.vo.Atndn;
 import member.model.service.MemberService;
 import member.model.vo.Member;
 
@@ -31,34 +33,25 @@ public class AtndnUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.
+	
+				request.setCharacterEncoding("utf-8");
+				
+				Atndn atndn = new Atndn();
 
+				atndn.setSid(String.join(",", request.getParameterValues("sid")));		
+				atndn.setSname(String.join(",", request.getParameterValues("sname"));	
+				atndn.setMajorname(String.join(",", request.getParameterValues("majorname"));
 		
-//				request.setCharacterEncoding("utf-8");
-//				//2. 
-//				Member member = new Member();
-//				
-//				member.setUserid(request.getParameter("userid"));
-//				member.setUserpwd(request.getParameter("userpwd"));
-//				member.setAge(Integer.parseInt(request.getParameter("age")));
-//				member.setPhone(request.getParameter("phone"));
-//				member.setEmail(request.getParameter("email"));
-//				member.setEtc(request.getParameter("etc"));
-//				member.setHobby(String.join(",", request.getParameterValues("hobby")));
-//				
-//				//3.
-//				int result = new MemberService().updateMember(member);
-//				
-//				//4.
-//				if(result > 0) {
-//					// /myinfo 서블릿을 실행해서 내 정보 보기 페이지를 내보냄 reselect해야함
-//					response.sendRedirect("/test1/myinfo?userid=" + member.getUserid());
-//				}else {
-//					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-//					request.setAttribute("message", member.getUserid()+ " 회원의 정보 수정 실패");
-//					view.forward(request, response);
-//				}
-//	}
+				int result = new AtndnService().updateAtndn(atndn);
+				
+				if(result > 0) {
+					response.sendRedirect("/beet/atnupdate?userid=" + atndn.getSid());
+				}else {
+					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+					request.setAttribute("message", atndn.getSid()+ " 출결 수정 실패");
+					view.forward(request, response);
+				}	
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

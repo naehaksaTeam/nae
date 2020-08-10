@@ -1,7 +1,9 @@
 package attendance.model.service;
 
 import static common.JDBCTemp.close;
+import static common.JDBCTemp.commit;
 import static common.JDBCTemp.getConnection;
+import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -52,6 +54,19 @@ public class AtndnService {
 		 ArrayList<Atndn>  list = adao.selectProfAtndnList(conn, pid, semester, lcode);
 		close(conn);
 		return list;
+	}
+
+	public int updateAtndn(Atndn atndn) {
+		Connection conn = getConnection();
+		int result = adao.updateAtndn(conn, atndn);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 }

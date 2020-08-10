@@ -401,4 +401,21 @@ public class AtndnDao {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public int updateAtndn(Connection conn, Atndn atndn) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update Atndn set ";
+		
+		try {
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 }

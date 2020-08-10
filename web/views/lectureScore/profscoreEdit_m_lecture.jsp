@@ -16,10 +16,12 @@
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+ input.insert{ width: 40px; height:20px; margin:0px}  
+
 </style>
 
 <h1>성적관리페이지</h1>
-	<div class="manage" style="display:block">
+	<div class="manage" style="display:block">	
 	<!-- <form action="/beet/scselect.p" method="post" style="float:right;" onclick="UpdateScore()">
 			<input type="submit" style="width:60pt;height:20pt;" value="성적 입력">
 			<input type="hidden" name="userid" value="">
@@ -57,11 +59,10 @@
 				<td><%=lscore.getSid()%></td>
 				<td><%=lscore.getSname()%></td>
 				<td><%=lscore.getRetake()%></td>
-				<td><input type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
-				<td><input type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
-				<td><input type="text" readonly="readonly" value="<%=lscore.getFinalscore()%>" /></td>
-				<td><input type="text" readonly="readonly" value="<%=lscore.getTotalscore()%>" /></td>
-				<td><input type="text" readonly="readonly" value="<%=lscore.getGrade()%>" /></td>
+				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
+				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
+				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getFinalscore()%>" /></td>
+				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getTotalscore()%>" /></td>
 				<td><select class="grade" style="width:80px" value="<%=lscore.getGrade()%>"  onClick="aa(sc)">
 					<option value="-" selected disabled hidden>-</option>
 					<option value="A+">A+</option>
@@ -83,11 +84,11 @@
 		<p style="margin-top:30px;">
 		* 변경 후 반드시 저장을 눌러주세요 
 		</p>
-		<input type="button" id="btn1" value="업데이트" onclick="goUpdate()"> 
+		<!-- <input type="button" id="btn1" value="업데이트" onclick="goUpdate()">  -->
 		<input id="save" type="submit" value="저장"> &nbsp; 
-		<input type="reset" value="수정취소"> &nbsp;
+		<input type="reset" value="취소"> &nbsp;
 		</form>
-		<a href="javascript:history.go(-1);">이전 페이지</a>
+		<input type="button" value="이전 페이지" href="javascript:history.go(-1);"></a>
 		</center>
 
 

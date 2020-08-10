@@ -84,10 +84,10 @@ SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
   </tr>
 </tbody>
 </table>
-<form action="/beet/scselect.p" method="post">
+<%-- <form action="/beet/scselect.p" method="post">
 <input type="hidden" name="userid" value="<%=loginmember.getId() %>">
 <input type="text" onchange="td_copy(lname.value)" >
 <input type="submit" class="btn-sm" value="성적수정">
- </form>
+ </form> --%>
 </body>
 </html>
