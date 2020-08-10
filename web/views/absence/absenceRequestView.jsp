@@ -39,7 +39,7 @@
 </div>
 <br><br><br><br>
 <hr>
-
+	<button type="submit"  onclick="javascript: location.href='/beet/selectab?studentid=<%=m.getId()%>'"> 조 회 </button>
 <h1 align="center">조회 테이블</h1>
 <h2 align="center"><%=m.getName() %> 님의 신청내역 조회</h2>
 <form method="post" name="requestform">

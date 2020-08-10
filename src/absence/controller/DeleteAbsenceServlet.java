@@ -42,14 +42,14 @@ public class DeleteAbsenceServlet extends HttpServlet {
 						if(ab.equals("a")) {
 							int r = aservice.studentCountMinus(a.getStudentid());
 							if(r > 0) {
-								response.sendRedirect("views/absence/absenceRequestView.jsp");
+								response.sendRedirect("selectab?studentid="+a.getStudentid());
 							}else {
 								view = request.getRequestDispatcher("views/common/error.jsp");
 								request.setAttribute("message","학생정보 변경에 실패하였습니다.");
 								view.forward(request, response);
 							}
 						}else {
-							response.sendRedirect("views/absence/absenceRequestView.jsp");
+							response.sendRedirect("selectab?studentid="+a.getStudentid());
 						}
 					}else {
 						view = request.getRequestDispatcher("views/common/error.jsp");
@@ -64,7 +64,7 @@ public class DeleteAbsenceServlet extends HttpServlet {
 			}else{ // 승인안된상황 
 				int result = aservice.deleteAbsence(requestid);
 				if(result > 0){
-					response.sendRedirect("views/absence/absenceRequestView.jsp");
+					response.sendRedirect("selectab?studentid="+a.getStudentid());
 				}else {
 					view = request.getRequestDispatcher("views/common/error.jsp");
 					request.setAttribute("message","휴학신청취소에 실패하였습니다.");

@@ -290,9 +290,9 @@ public class AbsenceDao {
 	public float canceldateChk(Connection conn, String requestid) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		float date = 0;
+		float date = 0.0f;
 
-		String query = " select to_number(LIMITCANCELDATE - sysdate)  as \"date\" from absence where requestid = ?";
+		String query = " select round(to_number(LIMITCANCELDATE - sysdate),2) as \"date\" from absence where requestid = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -300,7 +300,7 @@ public class AbsenceDao {
 			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				date  = rset.getInt("date");
+				date  = rset.getFloat("date");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
