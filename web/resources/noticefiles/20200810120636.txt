@@ -1,6 +1,0 @@
-	for(var i in json.list){
-				values += "<tr><td>" + json.list[i].no 
-				+ "</td><td><a href='/test1/ndetail?noticeno=" + json.list[i].no +"' >"		
-				+ decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
-				+ "</a></td><td>" + json.list[i].date + "</td></tr>";
-			}//for in

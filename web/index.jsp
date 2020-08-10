@@ -35,6 +35,7 @@ $(function(){
 		},
 		error:function(jqXHR, textstatus, errorthrown){
 			console.log("error : "+ jqXHR + "," + textstatus + "," + errorthrown);
+			
 		}
 	});
 });
@@ -56,6 +57,7 @@ $(function(){
 <form action="/beet/nlist" >
 <button type="submit" >공지사항</button>
 </form>
+<button onclick="javascript:location.href='views/test/testView.jsp'">테스트용 드롭바</button>
 <!-- 최근 등록 게시글  3개  조회-->
 <div style="float:left; border:5px solid blue; padding:10px; margin:5px; background-color:gray; color:blue ">
 <h4>공지사항 TOP5</h4>
