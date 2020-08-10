@@ -121,6 +121,11 @@ public class AbsenceService {
 	public int studentAbsenceChange(String id) {
 		Connection conn = getConnection();
 		int result = adao.studentAbsenceChange(conn, id);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -128,6 +133,11 @@ public class AbsenceService {
 	public int studentCountPlus(String id) {
 		Connection conn = getConnection();
 		int result = adao.studentAbsenceChange(conn, id);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}
@@ -135,6 +145,11 @@ public class AbsenceService {
 	public int studentCountMinus(String id) {
 		Connection conn = getConnection();
 		int result = adao.studentAbsenceChange(conn, id);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
 		close(conn);
 		return result;
 	}

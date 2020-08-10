@@ -18,15 +18,14 @@ public class AbsenceDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence";
+		String query = "select * from absence order by requestid";
 		
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
-				
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("id"),rset.getDate("requestdate"), rset.getDate("limitcanceldate"), rset.getString("approval"));
 				list.add(ab);
 			}
 		} catch (Exception e) {
@@ -50,7 +49,7 @@ public class AbsenceDao {
 			rset = pstmt.executeQuery();
 
 			if(rset.next()) {
-				absence = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
+				absence = new Absence(rset.getString("requestid"), rset.getString("id"),rset.getDate("requestdate"), rset.getDate("limitcanceldate"), rset.getString("approval"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -232,7 +231,7 @@ public class AbsenceDao {
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("id"),rset.getDate("requestdate"), rset.getDate("limitcanceldate"), rset.getString("approval"));
 				
 				list.add(ab);
 			}
@@ -278,7 +277,7 @@ public class AbsenceDao {
 			rset = pstmt.executeQuery();
 
 			while(rset.next()) {
-				Absence absence = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
+				Absence absence = new Absence(rset.getString("requestid"), rset.getString("id"),rset.getDate("requestdate"), rset.getDate("limitcanceldate"), rset.getString("approval"));
 
 				list.add(absence);
 			}
