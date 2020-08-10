@@ -65,4 +65,15 @@ public class MemberService {
 		
 	}
 	
+	public int deleteMember(String id) {
+		Connection conn = getConnection();
+		int result = mdao.deleteMember(conn, id);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }

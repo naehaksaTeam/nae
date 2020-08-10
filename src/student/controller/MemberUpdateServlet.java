@@ -50,7 +50,6 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setEmail(request.getParameter("email"));
 		member.setTreasure(request.getParameter("treasure"));
 		member.setPassword(request.getParameter("password"));
-		member.setTreasure(request.getParameter("treasure"));
 		member.setAdminhiredate(Date.valueOf(request.getParameter("adminhiredate")));
 		member.setPassword(request.getParameter("password"));
 		member.setEntrancedate(Date.valueOf(request.getParameter("entrancedate")));

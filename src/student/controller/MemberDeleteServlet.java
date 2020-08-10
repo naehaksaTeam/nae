@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import professor.model.service.MemberService;
+import student.model.service.MemberService;
 
 /**
  * Servlet implementation class MemberDeleteServlet
@@ -32,20 +32,21 @@ public class MemberDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 회원 탈퇴 처리용 컨트롤러 : delete 구문 적용함.
 		
-				//1.
+				
 				//2.
-				String userid = request.getParameter("userid");
+				String id = request.getParameter("id");
 				
 				//3.
-				int result = new MemberService().deleteMember(userid);
+				int result = new MemberService().deleteMember(id);
+				
 				
 				//4.
 				if(result > 0) {  //성공시
 					//탈퇴 성공시 로그아웃 처리함
-					response.sendRedirect("logout");
+					response.sendRedirect("beet/views/index.jsp");
 				}else {  //실패시
 					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", userid + " 회원님의 탈퇴 요청 실패.");
+					request.setAttribute("message", id + " 회원님의 탈퇴 요청 실패.");
 					view.forward(request, response);
 				}
 	}

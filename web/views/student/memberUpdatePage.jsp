@@ -109,12 +109,15 @@
 	<th colspan="2">
 		<a href="javascript:history.go(-1);">이전 페이지로 이동</a> &nbsp; 
 		<input type="submit" value="수정하기"> &nbsp; 
-		<input type="reset" value="수정취소"> &nbsp; 		
+		<input type="reset" value="수정취소"> &nbsp; 	
+		<input type="submit" value="회원탈퇴">	
 		<a href="/beet/index.jsp">시작 페이지로</a>
 	</th>	
 </tr>
 </table>
 </form>
+&nbsp; 
+
 <hr>
 <!-- 상대경로만 사용 가능함 -->
 

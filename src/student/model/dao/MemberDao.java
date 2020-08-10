@@ -156,7 +156,8 @@ public class MemberDao {
 		return result;
 	}
 
-	public int delete(Connection conn, String id) {
+	// 회원탈퇴
+	public int deleteMember(Connection conn, String id) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
@@ -183,7 +184,7 @@ public class MemberDao {
 		ResultSet rset = null;
 
 		String query = "select * " + "from ("
-				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null from student "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
 				+ "union "
 				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
 				+ "union "
@@ -203,11 +204,11 @@ public class MemberDao {
 				member.setId(id);
 				member.setPassword(password);
 				member.setName(rset.getString("name"));
+				member.setSsn(rset.getString("ssn"));
+				member.setAddress(rset.getString("address"));
 				member.setPhone(rset.getString("phone"));
 				member.setEmail(rset.getString("email"));
-				member.setAddress(rset.getString("address"));
 				member.setTreasure(rset.getString("treasure"));
-				member.setSsn(rset.getString("ssn"));
 				member.setAdminhiredate(rset.getDate("adminhiredate")); // 인식 안됨...(확인요청)
 				member.setCategoryname(rset.getString("categoryname"));
 				member.setMajorno(rset.getString("majorno"));
@@ -276,40 +277,39 @@ public class MemberDao {
 		}
 
 		return result;
-		
-		
+
 	}
-	
-	//아이디 찾기
-	
+
+	// 아이디 찾기
+
 	public Member FindIdMember(Connection conn, String name, String treasure) {
 		Member member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
+
 		String query = "select * from member where name= ? and treasure = ?";
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, name);
 			pstmt.setString(2, treasure);
-			
+
 			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
+
+			if (rset.next()) {
 				member = new Member();
-				
+
 				member.setName(rset.getString("name"));
 				member.setTreasure(rset.getString("treasure"));
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rset);
 			close(pstmt);
 		}
-		
+
 		return member;
 	}
 
