@@ -46,8 +46,6 @@ public class MemberDao {
 		return result;
 	}
 
-
-
 	// 한명선택
 	public Member selectOne(Connection conn, String id) {
 		Member member = null;
@@ -278,34 +276,12 @@ public class MemberDao {
 		}
 
 		return result;
+		
+		
 	}
 
-
-	public Member FindIdMember(Connection conn, Member member) {
-		Member member = null;
-		PreparedStatement pstmt = null;
-	
-
-		String query = "select * from member where name = ? and treasure = ?";
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, name);
-			pstmt.setString(2, treasure);
-
-			rset = pstmt.executeQuery();
-
-			if (rset.next()) {
-				member = new Member();
-
-				member.setName(rset.getString("name"));
-				member.setTreasure(rset.getString("treasure"));
-
+	public Member FindIdMember(Connection conn, String name, String treasure) {
+		
 	}
 
 }
-
-
-	public Member FindIdMember(Connection conn, String name, String treasure) {
-	
-	}

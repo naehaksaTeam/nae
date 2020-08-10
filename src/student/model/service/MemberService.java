@@ -55,14 +55,11 @@ public class MemberService {
 		return list;
 	}
 
-	public Member FindIdMember(String name, String treasure) {
-		Connection conn = getConnection();
-		Member member = mdao.FindIdMember(conn, name, treasure) ;
-		close(conn);
-		return member;
+
+
+	public Member FindIdMember(Member member) {
 		
 		
 	}
-
 	
 }

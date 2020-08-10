@@ -61,7 +61,7 @@ public class LoginServlet extends HttpServlet {
 
 			// 지정한 시간(초)동안 서비스 요청이 없으면,
 			// 자동 로그아웃(세션객체를 없앰) 처리 설정할 수 있음
-			// session.setMaxInactiveInterval(10 * 60); //10분 설정
+			 session.setMaxInactiveInterval(20 * 60); //20분 설정
 
 			// 로그인한 동안 여러 페이지와 서블릿들이 공유하고자 원하는 정보 저장함
 			session.setAttribute("loginMember", loginMember);

@@ -45,7 +45,7 @@ public class FindIdServlet extends HttpServlet {
 		member.setTreasure(request.getParameter("treasure"));
 
 		// 3.
-		Member result = new MemberService().FindIdMember(member);
+		member  = new MemberService().FindIdMember(member);
 
 		// 4.
 		if (result > 0) {
