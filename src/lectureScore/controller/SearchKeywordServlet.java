@@ -37,9 +37,8 @@ public class SearchKeywordServlet extends HttpServlet {
 		
 		String action = request.getParameter("action");
 		String keyword =request.getParameter("keyword");
-		String tag = request.getParameter("tag");
 		System.out.println(action);
-
+		System.out.println(keyword);
 		LectureScoreService lservice = new LectureScoreService();
 		ArrayList<LectureScore> list = null;
 		

@@ -54,38 +54,28 @@ input.insert {
 	<h1 align="center">학생조회페이지</h1>
 	<button onclick="javascript:location.href='/beet/lctrsearchall'">전체보기</button>
 	<!-- 항목별 검색 기능 추가  -->
-	<fieldset>
+<!-- 	<fieldset>
 		<input type="radio" name="item" id="uid"> 회원 아이디 &nbsp; <input
 			type="radio" name="item" id="ugen"> 성별 &nbsp; <input
 			type="radio" name="item" id="uage"> 연령대 &nbsp;
-	</fieldset>
-	<select id="field">
-		<option id="searchAll">전체검색</option>
+	</fieldset> -->
+	<fieldset>
+	<select id="field" onchange="javascript:selectfield(this);">
+		<option id="searchAll" value="all">-</option>
 		<option id="searchName" value="sname">이름</option>
 		<option id="searchLctr" value="lname">강의명</option>
 	</select>
 
 	<!-- 학생이름 검색폼  -->
 	<form action="/beet/adsearch" method="post" id="idform" class="lform">
-		<input type="hidden" name="action" value="tag">
-		<fieldset>
-			<legend>검색할 이름를 입력하세요</legend>
+		<input type="hidden" name="action" value="">
+		
+			<legend>검색명을 입력하세요</legend>
 			<input type="search" name="keyword"> &nbsp; 
 			<input type="submit" value="검색">
 		</fieldset>
 	</form>
 
-	<!-- 강의이름 검색폼 -->
-	<form action="/beet/adsearch" method="post" id="lctrform" class="lform">
-		<input type="hidden" name="action" value="tag">
-		<fieldset>
-			<legend>검색할 과목명을 입력하세요</legend>
-			<input type="search" name="keyword"> &nbsp; 
-			<input type="submit" value="검색">
-		</fieldset>
-	</form>
-
-	<!--  -->
 	<table class="tg">
 		<thead>
 			<tr>
@@ -130,20 +120,10 @@ input.insert {
 	</table>
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 	<script type="text/javascript">
-		$(function() {
-			$("input[name=item]").on("change", function() {
-				$("input[name=item]").each(function(index) {
-					if ($(this).is(":checked")) {
-						$("form.sform").eq(index).css("display", "block");
-					} else {
-						$("form.sform").eq(index).css("display", "none");
-					}
-				});
-			});
+	 function selectfield(obj) {
+		 $('input[name=action]').attr('value',obj.value);
+	    }
 
-		});
-		
-		var tag = $("#field option:selected").val();
 	</script>
 </body>
 </html>
