@@ -20,7 +20,7 @@
 
 </style>
 
-<h1>성적관리페이지</h1>
+<h1>성적관리테스트페이지</h1>
 	<div class="manage" style="display:block">	
 	<!-- <form action="/beet/scselect.p" method="post" style="float:right;" onclick="UpdateScore()">
 			<input type="submit" style="width:60pt;height:20pt;" value="성적 입력">
@@ -98,20 +98,6 @@
 	<!-- jquery로 입력값 받아서 수정하기 변경하기누르면 update 취소 누르면 sendredirect -->
 <script>
 //변경저장
-$(document).ready(function(){
-	$.ajax({
-		type : "GET",
-		url : "ajaxData.jsp?type=1",
-		dataType : "text",
-		error : function(){
-			
-		},
-		success : function(data){
-			$("#dataArea").html(data);
-		}
-	
-	})
-})
 
 
 //수정가능 
@@ -150,6 +136,47 @@ var a = document.getElementsByClassName("at");
 for(i=0;i<a.length;i++){
 	console.log(a[i]);
 }
+
+$(function()
+
+		{
+
+		$("#submit").click(function() {
+		var dataArrayToSend = [];
+		var dataArrayToSend1 = [];
+
+		$("#tg tr").each(function(){
+
+		var len = $(this).find("td").length;
+		alert(len);
+		for(var i=0; i< len; i++)
+
+		{ dataArrayToSend.push($(this).find("td").eq(i).text()); }
+		dataArrayToSend1.push(dataArrayToSend);
+			alert(dataArrayToSend1);
+		});
+		
+		​
+
+		/* $.ajax({
+
+		contentType: "application/json",
+		type: "POST",
+		data: JSON.stringify(dataArrayToSend1),
+		url: "/beet/scupdate.prof",
+		success: 
+			function(data) {
+		console.log('done');
+		},
+
+		error: function(jqXHR, textStatus, errorThrown) {
+		console.log('에러발생!');
+
+		}
+
+		}); */
+		});
+		});
 </script>
 </body>
 </html>

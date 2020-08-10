@@ -44,7 +44,7 @@ public class test_ProfScoreSelectServlet2 extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(list != null) { //조회가 성공하면 
-			view = request.getRequestDispatcher("views/lectureScore/profscoreEdit_m_lecture.jsp");
+			view = request.getRequestDispatcher("views/lectureScore/test_profscoreEdit_m_lecture2.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {
