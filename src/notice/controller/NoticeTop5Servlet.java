@@ -65,8 +65,7 @@ public class NoticeTop5Servlet extends HttpServlet {
 				PrintWriter out = response.getWriter();
 				out.write(sendJSON.toJSONString());
 				out.flush();
-				out.close();
-				
+				out.close();				
 			}
 
 	/**
