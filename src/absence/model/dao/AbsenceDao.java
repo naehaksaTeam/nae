@@ -294,7 +294,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int date = 0;
-		
+
 		String query = " select to_number(sysdate - LIMITCANCELDATE)  as \"date\" from absence where requestid = ?";
 		
 		try {
@@ -313,5 +313,4 @@ public class AbsenceDao {
 		}
 		return date;
 	}
-
 }

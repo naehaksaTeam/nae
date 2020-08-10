@@ -14,10 +14,6 @@
 <title>beet</title>
 </head>
 <body>
-<header>
-<%@ include file="../common/header.jsp"%>
-</header>
-<%@ include file="/views/common/sessionChk.jsp" %>
 <br>
 <h1>CATEGORY TEST PAGE</h1>
 <div align="center">

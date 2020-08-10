@@ -14,7 +14,6 @@
 <header>
 <%@ include file="../common/header.jsp"%>
 </header>
-<%@ include file="/views/common/sessionChk.jsp" %>
 <div align="center">
 <h1>장학금 관리 페이지</h1>
 

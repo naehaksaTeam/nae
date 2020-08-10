@@ -21,10 +21,10 @@
 <%@ include file="/views/common/sessionChk.jsp" %>
 <div align="center">
 <h1>TEST BUTTON</h1>
-<button onclick="javascript:location.href='/beet/views/absence/absenceManagementView.jsp'">ABSENCE MANAGEMENT ADMIN</button>
-<button onclick="javascript:location.href='/beet/views/categoryTest/categoryTestView.jsp'">CATEGORY VIEW</button>
-<button onclick="javascript:location.href='/beet/views/scholarship/selectScholarView.jsp'">SCHOLARSHIP, SSBENEFITST SELECT STU</button>
-<button onclick="javascript:location.href='/beet/views/scholarship/scholarshipManagementView.jsp'">SCHOLARSHIP MANAGEMENT ADMIN</button>
+<button onclick="javascript:location.href='/beet/views/absence/absenceManagementView.jsp'">ABSENCE MANAGEMENT ADMIN(미완성)</button>
+<button onclick="javascript:location.href='/beet/views/categoryTest/categoryTestView.jsp'">CATEGORY VIEW(기능완성)</button>
+<button onclick="javascript:location.href='/beet/views/scholarship/selectScholarView.jsp'">SCHOLARSHIP, SSBENEFITST SELECT STU(기능완성)</button>
+<button onclick="javascript:location.href='/beet/views/scholarship/scholarshipManagementView.jsp'">SCHOLARSHIP MANAGEMENT ADMIN(미완성)</button>
 <button onclick="javascript:location.href='/beet/views/ssbenefit/ssbenefitstManagementView.jsp'">SSBENEFIT MANAGEMENT ADMIN</button>
 </div>
 <br><br><br><br>
@@ -41,7 +41,7 @@
 	<table>
 	<tr><th>신청번호</th><th>신청날짜</th><th>취소가능날짜</th><th>승인여부</th> </tr>
 	<tr><td><%=aa.getRequestid() %></td><td><%=aa.getRequestdate() %></td><td><%=aa.getLimitcanceldate() %></td><td><%=aa.getApproval() %></td> </tr>
-	<tr><td align="right" colspan="4"><button name="cancel" onclick="javascript:location.href='/beet/deleteab?requestid=<%= aa.getRequestid()%>&id=<%=loginMember.getId()%>'">신청취소</button></td></tr>
+	<tr><td align="right" colspan="4"><button name="cancel" onclick="javascript:location.href='/beet/deleteab'">신청취소</button></td></tr>
 	</table>
 	
 <% }} %>
