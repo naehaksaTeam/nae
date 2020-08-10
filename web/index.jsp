@@ -4,6 +4,7 @@
 <%@page import="java.util.Calendar"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <% Member m = (Member)session.getAttribute("loginMember"); %>
+
 <%
     request.setCharacterEncoding("utf-8");
    
@@ -50,20 +51,25 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 } */
+#outer{
+			width: 800px;
+			margin-left: auto;
+			margin-right: auto;
+		}
 
 .quotes {
-  width: 65vw;
-  min-height: 350px;  
-  display: flex;
+   /* width: 65vw; */
+   min-height: 350px;  
+   display: flex;
   /* flex-wrap: wrap; */
   /* justify-content: space-between; */
-  z-index: 2; 
-  
+   z-index: 2; 
+   
 }
  .quotes .box {
   position: relative; 
-  width: 250px;
-  height: 250px;
+  width: 230px;
+  height: 230px;
   min-height: 0px;  
   background: #f2f2f2;
   padding: 30px;
@@ -182,9 +188,9 @@ $(function(){
 		}
 	}); 
 	
-	//시간표
-<%-- 	$.ajax({
-		url: "/beet/lecdaymain",
+/*  	//날씨
+ 	$.ajax({
+		url: "/beet/weaher",
 		type: "get", 
 		dataType: "json",
 		success: function(data){
@@ -197,15 +203,15 @@ $(function(){
 			var json = JSON.parse(jsonStr);
 			
 			var values = "";
-			for(var i in json.list){
+			 for(var i in json.list){
 				values += "<tr><td>"+ json.list[i].no 
-				+ "</td><td><a href='/beet/showTimeTable?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>' + json.list[i].no + "'>" 
+				+ "</td><td>"
 				+ decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
-				+ "</a></td><td>"+ json.list[i].date + "</td></tr>";
-			} 
+				+ "</td><td>"+ json.list[i].date + "</td></tr>"; */
+/* 			 }
 			
 			
-			$("#mainLecture").html($("#mainLecture").html() + values); //html을 적용해야 태그를 적용할 수 있다.
+			$("#mainweather").html($("#mainweather").html() + values); //html을 적용해야 태그를 적용할 수 있다.
 		
 			
 			
@@ -213,8 +219,8 @@ $(function(){
 		error: function(jqXHR, textstatus, errorthrown){
 			console.log("error : "+ jqXHR + ","+textstatus + "," + errorthrown);
 		}
-	}); 
-	 --%>
+	});   */ 
+
 });
 	
 </script>
@@ -230,11 +236,8 @@ $(function(){
 
 
 <body>
-<center>
 
 
-<h1>내학사 입장 페이지</h1>
-<hr>
 
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 <%-- <%@ include file="/views/common/sessionChk.jsp" %> --%>
@@ -245,9 +248,11 @@ $(function(){
 <br><button type="submit" value="로그인">로그인</button>
 </form>
 <% }else{ %>
+
+<div id="outer">
 <%@ include file="views/common/header.jsp" %>
 
- <button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<!--  <button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
 <button onclick="javascript:location.href='views/attendance/sub4main.jsp'">출결 목록 테스트</button>
 <button onclick="javascript:location.href='views/absence/absenceRequestView.jsp'">학생신청페이지</button>
 <button onclick="javascript:location.href='/beet/nlist'">공지사항</button>
@@ -255,9 +260,9 @@ $(function(){
 <button onclick="javascript:location.href='views/student/findId.jsp'">아이디찾기</button>
 <button onclick="javascript:location.href='views/student/findPassword.jsp'">비밀번호찾기</button>
 <button onclick="javascript:location.href='views/student/memberUpdatePage.jsp'">마이페이지</button>
+ -->
 
 
-</form>
 
 <br>
 <br>
@@ -265,12 +270,12 @@ $(function(){
   <div class="quotes">
     <div class="card">
       <div class="box box1">
-      <h1>내 학번 : <%= m.getId() %>, 
+      <h1>내 학번 : <%= m.getId() %>, <%=m.getCategoryname() %>
        <%= m.getName() %>님 내학사에 오신것을 환영합니다.</h1>
-		 <h2>오늘의 학사일정</h2>
+		 
 		  <table id="mainLecture" border="1" cellspacing="0">
       	<tr>
-      		<th> &nbsp;ㅇ&nbsp;</th><th> 일정 </th>
+      		
       	</tr>
       	
       	</table>
@@ -285,7 +290,7 @@ $(function(){
                   <table width="250" border="0" cellpadding="1" cellspacing="2">
                 <tr height="30">
                     <td align="center">
-                       <%--  <a href="calendar.jsp?year=<%=year%>&month=<%=month-1%>">◀</a> --%>
+                        <%--  <a href="calendar.jsp?year=<%=year%>&month=<%=month-1%>">◀</a>  --%>
                         <b><%=year %>년 <%=month %>월</b>
                       <%--   <a href="calendar.jsp?year=<%=year%>&month=<%=month+1%>">▶</a> --%>
                     </td>
@@ -383,6 +388,7 @@ $(function(){
     </div>
     <div class="card">
       <div class="box box3">
+       <table id="mainweather" border="1" cellspacing="0">
         <h2>날씨</h2>
       </div>
       <div class="bg"></div>
@@ -392,9 +398,10 @@ $(function(){
   
   <br>
  <% } %> 
-  
+
 <%@include file="views/common/footer.jsp" %>
-</center>
+  </div>
+
 
 </body>
 </html>

@@ -29,14 +29,13 @@ function update(){
 }
 </script>
 <%@ include file="/views/common/header.jsp" %> 
+
 </head>
 
 <body>
-
-<h1 align="center">학사일정</h1>
-
+<%@ include file="/views/common/side.jsp" %> 
 <center>
-<hr>
+<h1>학사일정</h1>
 <table align="center" width="700" border="1" cellspacing="0" >
 <tr><th width="300">날짜</th><th>상세내용</th></tr>
 <% for (Schedule s :list1){ %> 
@@ -45,7 +44,7 @@ function update(){
 <td align="center"><%=s.getSchname() %></td>
 </tr>
 <% } %>
-</table>
+</table> 
 <br>
 <br>
 <table align="center" width="700" border="1" cellspacing="0" >

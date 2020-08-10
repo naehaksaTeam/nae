@@ -25,8 +25,8 @@ height:200px;
 
 }
 header h1#logo{
-	text-decoration:none !important;
-	margin-right:30%;
+	/* text-decoration:none !important;
+	margin-right:30%; */
 	font-size: 36pt;
 	font-style: italic;
 	color : gray;
@@ -78,7 +78,7 @@ hr { clear: both; }
 <header>
 
 
-<h1 id="logo">logo</h1>
+<h1 id="logo"><a href="/beet/index.jsp">logo</a></h1>
 <br>
 		
 	
@@ -112,11 +112,11 @@ hr { clear: both; }
 
 <% }else { //학생 %> --%>
 <ul id="menubar">
-<li><a href="#">마이페이</a></li>
+<li><a href="views/student/memberUpdatePage.jsp">마이페이지</a></li>
 <li><a href="#">강의</a></li>
 <li><a href="#">성적</a></li>
 <li><a href="#">등록 / 장학</a></li>
-<li><a href="#">수강신청</a></li>
+<li><a href="views/lecture/menu.jsp">수강신청</a></li>
 <li><a href="#">휴학 / 복학</a></li>
 <li><a href="#">학교 소식</a></li>
 <li><a href="/beet/schlist">학사일정</a></li>
