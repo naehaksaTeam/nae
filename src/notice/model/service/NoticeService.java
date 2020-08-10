@@ -72,4 +72,11 @@ public class NoticeService {
 		return list;
 	}
 
+	
+	public ArrayList<Notice> selectNewTop5() {
+		Connection conn = getConnection();
+		ArrayList<Notice> list = ndao.selectNewTop5(conn);
+		
+		return list;
+	}
 }
