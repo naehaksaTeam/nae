@@ -153,7 +153,7 @@ public class NoticeDao {
 
 	public ArrayList<Notice> selectTop5(Connection conn) {
 		ArrayList<Notice> list = new ArrayList<Notice>();
-
+		System.out.println("도착");
 		Statement stmt = null;
 		ResultSet rset = null;
 		String query =  "" + 
@@ -165,6 +165,8 @@ public class NoticeDao {
 				"    FROM (SELECT * FROM NOTICE ORDER BY NOTICEREADCOUNT DESC)" +
 				"    )" + 
 				"where RNUM >=1 AND RNUM <=5";
+		
+		System.out.println("dao성공!");
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);

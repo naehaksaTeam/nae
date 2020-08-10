@@ -39,7 +39,7 @@ public class NoticeListServlet extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 공지사항 목록보기+ 페이징 처리용 컨트롤러
-		
+		System.out.println("asd");
 		
 				int currentPage = 1; 
 			

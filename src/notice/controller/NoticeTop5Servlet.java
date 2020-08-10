@@ -20,6 +20,7 @@ import notice.model.vo.Notice;
 /**
  * Servlet implementation class NoticeTop3Servlet
  */
+
 @WebServlet("/ntop5")
 public class NoticeTop5Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +38,7 @@ public class NoticeTop5Servlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// ajax 통신으로 최근 공지글 3개 조회 반환 처리용 컨트롤러
+		
 				ArrayList<Notice> list = new NoticeService().selectTop5();
 				
 				// 전송용 json 객체 만들기
@@ -64,6 +66,7 @@ public class NoticeTop5Servlet extends HttpServlet {
 				out.write(sendJSON.toJSONString());
 				out.flush();
 				out.close();
+				
 			}
 
 	/**

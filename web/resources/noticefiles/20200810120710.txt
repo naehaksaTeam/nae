@@ -1,0 +1,50 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="board.model.vo.Board, java.util.ArrayList, java.sql.Date" %>
+<%
+ArrayList<Board> list = (ArrayList<Board>)request.getAttribute("list");
+int listCount = ((Integer)request.getAttribute("listCount")).intValue();
+int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
+int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test1</title>
+<script type="text/javascript">
+function showWriterForm(){
+	location.href = "/test1/views/board/boardWriteForm.jsp";
+}
+</script>
+</head>
+<body>
+<%@ include file="../common/header.jsp" %>
+<hr>
+<h2 align="center">게시글 목록 : 총 <%=listCount %>개</h2>
+<!-- 게시글 쓰기(등록)은 로그인한 회원만 가능함 -->
+<% if(loginMember != null){  //로그인 상태라면 %>
+<div style="align:center;text-align:center;">
+	<button onclick="showWriteForm()">글쓰기</button>
+</div>
+<% } %>
+<br>
+<table align="center" border="1" cellspacing="0" width="700">
+<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th><th>첨부파일</th></tr>
+<% for(Board b : list){ %>
+<tr></tr>
+<td align="center"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+
+<% } %>
+</table>
+<hr>
+<%@ include file="../common/footer.jsp" %>
+</body>
+</html>
