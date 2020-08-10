@@ -59,29 +59,29 @@ input.insert {
 			type="radio" name="item" id="ugen"> 성별 &nbsp; <input
 			type="radio" name="item" id="uage"> 연령대 &nbsp;
 	</fieldset>
-	<select>
+	<select id="field">
 		<option id="searchAll">전체검색</option>
-		<option id="searchName">이름</option>
-		<option id="searchLctr">강의명</option>
+		<option id="searchName" value="sname">이름</option>
+		<option id="searchLctr" value="lname">강의명</option>
 	</select>
 
 	<!-- 학생이름 검색폼  -->
-	<form action="/beet/lsearch" method="post" id="idform" class="lform">
-		<input type="hidden" name="action" value="id">
+	<form action="/beet/adsearch" method="post" id="idform" class="lform">
+		<input type="hidden" name="action" value="tag">
 		<fieldset>
 			<legend>검색할 이름를 입력하세요</legend>
-			<input type="search" name="keyword"> &nbsp; <input
-				type="submit" value="검색">
+			<input type="search" name="keyword"> &nbsp; 
+			<input type="submit" value="검색">
 		</fieldset>
 	</form>
 
-	<!-- 교과목 성적 검색폼 -->
-	<form action="/beet/lsearch" method="post" id="lctrform" class="lform">
-		<input type="hidden" name="action" value="id">
+	<!-- 강의이름 검색폼 -->
+	<form action="/beet/adsearch" method="post" id="lctrform" class="lform">
+		<input type="hidden" name="action" value="tag">
 		<fieldset>
 			<legend>검색할 과목명을 입력하세요</legend>
-			<input type="search" name="keyword"> &nbsp; <input
-				type="submit" value="검색">
+			<input type="search" name="keyword"> &nbsp; 
+			<input type="submit" value="검색">
 		</fieldset>
 	</form>
 
@@ -128,8 +128,7 @@ input.insert {
 			%>
 		</tbody>
 	</table>
-	<script type="text/javascript"
-		src="/test1/resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$("input[name=item]").on("change", function() {
@@ -143,6 +142,8 @@ input.insert {
 			});
 
 		});
+		
+		var tag = $("#field option:selected").val();
 	</script>
 </body>
 </html>

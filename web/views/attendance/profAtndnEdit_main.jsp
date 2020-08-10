@@ -41,7 +41,7 @@ Iterator<String> it = set.iterator();
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 </style>
-<script type="text/javascript" src="/test1/resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 <script>
 	function validate(){
 		

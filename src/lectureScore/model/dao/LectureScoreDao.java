@@ -226,39 +226,84 @@ public class LectureScoreDao {
 			return list;
 		}
 
-	//keyword 학생 평점 조회 
-		public ArrayList<Atndn> selectSearchLecture(Connection conn, String keyword) {
-		ArrayList<Atndn> list = new ArrayList<Atndn>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
+		//학생조회 
+		public ArrayList<LectureScore> selectSearchUserid(Connection conn, String keyword) {
+			ArrayList<LectureScore> list = new ArrayList<LectureScore>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
 
-		String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where lname = ?";
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, keyword);
-
-			rset = pstmt.executeQuery();
-			while (rset.next()) {
-				Atndn atndn = new Atndn();
-
-				atndn.setSemester(rset.getString("semester"));
-				atndn.setLcode(rset.getString("lcode"));
-				atndn.setCategory(rset.getString("category"));
-				atndn.setLname(rset.getString("lname"));
-				atndn.setLtime(rset.getString("ltime"));
-				atndn.setLpoint(rset.getInt("lpoint"));
-				atndn.setCapacity(rset.getInt("capacity"));
-				atndn.setPname(rset.getString("pname"));
-				list.add(atndn);
+			String query = "select semester, lcode, category, lname, sid, sname,categoryname, "
+					+ "majorname, retake, grade, pid, pname from LscoreView where sname like ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+					
+				while (rset.next()) {
+					LectureScore lscore = new LectureScore();
+					lscore.setSemester(rset.getString("semester"));
+					lscore.setLcode(rset.getString("lcode"));
+					lscore.setCategory(rset.getString("category"));
+					lscore.setLname(rset.getString("lname"));
+					lscore.setSid(rset.getString("sid"));
+					lscore.setSname(rset.getString("sname"));
+					lscore.setCategoryname(rset.getString("categoryname"));
+					lscore.setMajorname(rset.getString("majorname"));
+					lscore.setRetake(rset.getString("retake"));
+					lscore.setGrade(rset.getString("Grade"));
+					lscore.setPid(rset.getString("pid"));
+					lscore.setPname(rset.getString("pname"));
+					
+					list.add(lscore);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
+			
+			return list;
 		}
-		return list;
-	}
+		
+		public ArrayList<LectureScore> selectSearchLname(Connection conn, String keyword) {
+			ArrayList<LectureScore> list = new ArrayList<LectureScore>();
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+
+			String query = "select semester, lcode, category, lname, sid, sname,categoryname, "
+					+ "majorname, retake, grade, pid, pname from LscoreView where lname like ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, "%" + keyword + "%");
+				rset = pstmt.executeQuery();
+				
+				while (rset.next()) {
+					LectureScore lscore = new LectureScore();
+					lscore.setSemester(rset.getString("semester"));
+					lscore.setLcode(rset.getString("lcode"));
+					lscore.setCategory(rset.getString("category"));
+					lscore.setLname(rset.getString("lname"));
+					lscore.setSid(rset.getString("sid"));
+					lscore.setSname(rset.getString("sname"));
+					lscore.setCategoryname(rset.getString("categoryname"));
+					lscore.setMajorname(rset.getString("majorname"));
+					lscore.setRetake(rset.getString("retake"));
+					lscore.setGrade(rset.getString("Grade"));
+					lscore.setPid(rset.getString("pid"));
+					lscore.setPname(rset.getString("pname"));
+					
+					list.add(lscore);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			
+			return list;
+		}
 		
 	
 }

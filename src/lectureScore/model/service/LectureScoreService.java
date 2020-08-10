@@ -54,4 +54,18 @@ public class LectureScoreService {
 		close(conn);
 		return list;
 	}
+
+	public ArrayList<LectureScore> selectSearchUserid(String keyword) {
+		Connection conn = getConnection();
+		ArrayList<LectureScore> list = ldao.selectSearchUserid(conn, keyword);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<LectureScore> selectSearchLname(String keyword) {
+		Connection conn = getConnection();
+		ArrayList<LectureScore> list = ldao.selectSearchLname(conn, keyword);
+		close(conn);
+		return list;
+	}
 }
