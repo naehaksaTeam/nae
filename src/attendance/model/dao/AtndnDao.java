@@ -25,9 +25,8 @@ public class AtndnDao {
 		String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where sid = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setS
-			tring(1, id);
-
+			pstmt.setString(1, id);
+			
 			rset = pstmt.executeQuery();
 			while (rset.next()) {
 				Atndn atndn = new Atndn();

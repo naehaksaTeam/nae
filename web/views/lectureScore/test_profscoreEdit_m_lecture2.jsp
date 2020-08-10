@@ -28,9 +28,6 @@
 			<input type="hidden" name="lname" value="">
 	</form> -->
 	<input type="button" value="성적수정" onclick="activeEle()">
-	<form action="/beet/grupdate" method="get">
-	<input type="submit" value="등급입력">
-	</form>
 
 	
 	</div>
@@ -54,7 +51,7 @@
 		</thead>
 		<tbody>
 		<div id="dataArea">
-		<form id="score" action="/beet/scupdate.prof">
+		<form id="score" action="/beet/testscupdate.prof">
 			<% int i = 1;for(LectureScore lscore : list) {%>
 			<tr>
 				<td><%= i %></td><% i+=1; %>
