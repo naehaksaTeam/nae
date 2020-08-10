@@ -28,7 +28,7 @@
 
 
 </style>
-<script type="text/javascript"src="/nea/resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript"src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
 function dis(){
@@ -65,8 +65,8 @@ function validate(){
 <td align="center"><%=s.getSchstartyear() %>년 <%=s.getSchstartmonth() %>월 <%=s.getSchstartdate() %>일 ~ <%=s.getSchendyear() %>년 <%=s.getSchendmonth() %>월 <%=s.getSchenddate() %>일 </td>
 <td align="center"><%=s.getSchname() %></td>
 <td>&nbsp;
-	<button onclick="javascript:location.href='/nea/schdetail?scheduleid=<%=s.getScheduleid() %>';">수정페이지로 이동</button>&nbsp; 
-	<button onclick="javascript:location.href='/nea/schdel?scheduleid=<%=s.getScheduleid() %>';">삭제하기</button>&nbsp;
+	<button onclick="javascript:location.href='/beet/schdetail?scheduleid=<%=s.getScheduleid() %>';">수정페이지로 이동</button>&nbsp; 
+	<button onclick="javascript:location.href='/beet/schdel?scheduleid=<%=s.getScheduleid() %>';">삭제하기</button>&nbsp;
 </tr>
 <% } %>
 </table>
@@ -75,7 +75,7 @@ function validate(){
 <% if(currentPage <= 1){ %>
 	[맨처음]&nbsp;
 <% }else{ %>
-	<a href="/nea/adsch">[맨처음]</a>
+	<a href="/beet/adsch">[맨처음]</a>
 <% } %>
 
 <!-- 현재 페이지가 속한 그룹의 숫자 출력 처리 -->
@@ -83,19 +83,19 @@ function validate(){
 	if(p == currentPage){ %>
 	<font color="1e90ff" size="4"><b>[<%= p %>]</b></font>
 	<% }else{ %>
-	<a href="/nea/adsch?page=<%= p %>"><%= p %></a>
+	<a href="/beet/adsch?page=<%= p %>"><%= p %></a>
 <% }} %>
 
 
 <% if(currentPage >= maxPage){ %>
 	[맨끝]&nbsp;
 <% }else{ %>
-	<a href="/nea/adsch?page=<%= maxPage %>">[맨끝]</a>
+	<a href="/beet/adsch?page=<%= maxPage %>">[맨끝]</a>
 <% } %>
 <button onclick="dis()">새로등록</button>
 <br>
 <br>
- <form action="/nea/newsche" method="post" class="nform" onsubmit="return validate();">
+ <form action="/beet/newsche" method="post" class="nform" onsubmit="return validate();">
 <!-- <input type="hidden" name="action" value="new"> -->
 <table id="dis" align="center" width="800" cellspacing="5" cellpadding="0">
 <tr>
@@ -125,7 +125,7 @@ function validate(){
 	<th colspan="3" >
 		<input type="submit"value="등록하기"> &nbsp;&nbsp;
 		<input type="reset"value="작성취소" onclick="disc()">&nbsp;&nbsp; &nbsp;&nbsp;
-		<a href="/nea/index.jsp">시작 페이지</a>
+		<a href="/beet/index.jsp">시작 페이지</a>
 		
 	</th>
 </tr>

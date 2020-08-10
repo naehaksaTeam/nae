@@ -1,4 +1,4 @@
-package attendance.controller;
+package lectureScore.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import attendance.model.service.AtndnService;
-import attendance.model.vo.Atndn;
+import lectureScore.model.service.LectureScoreService;
+import lectureScore.model.vo.LectureScore;
 
 /**
- * Servlet implementation class AtndnEditListServlet
+ * Servlet implementation class SearchKeywordServlet
  */
-@WebServlet("/atnedit.p")
-public class AtndnEditViewServlet extends HttpServlet {
+@WebServlet("/adsearch")
+public class SearchKeywordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AtndnEditViewServlet() {
+    public SearchKeywordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +32,30 @@ public class AtndnEditViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pid = request.getParameter("userid");
-		String semester = "202001";
-		String lcode = request.getParameter("lcode");
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8"); 
 		
-		ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester, lcode);
+		String action = request.getParameter("action");
+		String keyword =request.getParameter("keyword");
+		String tag = request.getParameter("tag");
+		System.out.println(action);
+
+		LectureScoreService lservice = new LectureScoreService();
+		ArrayList<LectureScore> list = null;
+		
+		switch(action) {
+		case "sname" 	:  list = lservice.selectSearchUserid(keyword); break;
+		case "lname" 	:  list = lservice.selectSearchLname(keyword); break;
+		}
 		
 		RequestDispatcher view = null;
-		
-		if(list != null) {
-			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
+		if(list.size() > 0 ) {
+			view = request.getRequestDispatcher("views/lectureScore/adminSearchView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", pid + "강의 출결관리페이지 조회 실패");
+			request.setAttribute("message", action + "검색에 대한" + keyword + "결과가 존재하지 않습니다");
 			view.forward(request, response);
 		}
 	}

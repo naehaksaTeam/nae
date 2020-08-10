@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>수정페이</title>
-<script type="text/javascript"src="/nea/resources/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript"src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 
 
@@ -22,7 +22,7 @@ function update(){
 <body>
 
 <h1 align="center">학사일정 수정페이지</h1>
-<form action="/nea/upsch?scheduleid=<%=schedule.getScheduleid() %>" method="post" class="upform" onsubmit="return update(); ">
+<form action="/beet/upsch?scheduleid=<%=schedule.getScheduleid() %>" method="post" class="upform" onsubmit="return update(); ">
 <input type="hidden" name="scheduleid" value="<%=schedule.getScheduleid() %>"> 
 <table id="disup" align="center" width="1000" cellspacing="5" cellpadding="0">
 <tr>
@@ -58,7 +58,7 @@ function update(){
 	<th colspan="4" >
 		<input type="submit"value="수정하기"> &nbsp;&nbsp;
 		<input type="reset"value="작성취소" onclick="javascript:history.go(-1); return false;">&nbsp;&nbsp;
-		<a href="/nea/index.jsp">시작 페이지</a>
+		<a href="/beet/index.jsp">시작 페이지</a>
 		
 	</th>
 </tr>

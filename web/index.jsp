@@ -188,9 +188,8 @@ $(function(){
 		}
 	}); 
 	
-/*  	//날씨
  	$.ajax({
-		url: "/beet/weaher",
+		url: "/beet/stusco?id=<%= m.getId() %>",
 		type: "get", 
 		dataType: "json",
 		success: function(data){
@@ -203,15 +202,13 @@ $(function(){
 			var json = JSON.parse(jsonStr);
 			
 			var values = "";
-			 for(var i in json.list){
-				values += "<tr><td>"+ json.list[i].no 
-				+ "</td><td>"
-				+ decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
-				+ "</td><td>"+ json.list[i].date + "</td></tr>"; */
-/* 			 }
+			for(var i in json.list){
+				values += "<tr><td>"+ json.list[i].SEMESTER
+				+ "</td><td>" + json.list[i].TERMGETPOINT + "</td></tr>";
+			} 
 			
 			
-			$("#mainweather").html($("#mainweather").html() + values); //html을 적용해야 태그를 적용할 수 있다.
+			$("#mainScore").html($("#mainScore").html() + values); //html을 적용해야 태그를 적용할 수 있다.
 		
 			
 			
@@ -219,7 +216,7 @@ $(function(){
 		error: function(jqXHR, textstatus, errorthrown){
 			console.log("error : "+ jqXHR + ","+textstatus + "," + errorthrown);
 		}
-	});   */ 
+	});   
 
 });
 	
@@ -250,9 +247,10 @@ $(function(){
 <% }else{ %>
 
 <div id="outer">
+
 <%@ include file="views/common/header.jsp" %>
 
-<!--  <button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
+  <button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
 <button onclick="javascript:location.href='views/attendance/sub4main.jsp'">출결 목록 테스트</button>
 <button onclick="javascript:location.href='views/absence/absenceRequestView.jsp'">학생신청페이지</button>
 <button onclick="javascript:location.href='/beet/nlist'">공지사항</button>
@@ -260,7 +258,7 @@ $(function(){
 <button onclick="javascript:location.href='views/student/findId.jsp'">아이디찾기</button>
 <button onclick="javascript:location.href='views/student/findPassword.jsp'">비밀번호찾기</button>
 <button onclick="javascript:location.href='views/student/memberUpdatePage.jsp'">마이페이지</button>
- -->
+
 
 
 
@@ -367,7 +365,12 @@ $(function(){
   <div class="quotes">
     <div class="card">
       <div class="box box1" >
-        <h2>학점 현황</h2>
+      <table id="mainScore" border="1" cellspacing="0">
+        <h2>나의 학점 현황</h2>
+        
+      		<th>학기</th><th> 취득학점 </th>
+      	
+      	</table>
       </div>
       <div class="bg"></div>
     </div>
@@ -388,7 +391,7 @@ $(function(){
     </div>
     <div class="card">
       <div class="box box3">
-       <table id="mainweather" border="1" cellspacing="0">
+       
         <h2>날씨</h2>
       </div>
       <div class="bg"></div>
@@ -398,9 +401,10 @@ $(function(){
   
   <br>
  <% } %> 
-
-<%@include file="views/common/footer.jsp" %>
   </div>
+  <footer>
+<%@include file="views/common/footer.jsp" %>
+</footer>
 
 
 </body>

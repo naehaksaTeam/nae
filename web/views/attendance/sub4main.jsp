@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="termScore.model.vo.TermScore, student.model.vo.Member " %>
+<%@ include file="/views/common/sessionChk.jsp" %>
+<%
+	Member loginmember = (Member)session.getAttribute("loginMember");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,49 +13,98 @@
 </head>
 <body>
 <style>
-.btn-group button {
+
+input[type=submit] {
     background-color: #4CAF50;
-    border: 1px solid green;
+    border: 0;
     color: white;
     padding: 10px 24px;
     cursor: pointer;
     float: left;
 }
-
-.btn-group:after {
+input[type=submit]	:after {
     content: "";
     clear: both;
     display: table;
 }
 
-.btn-group button:not(:last-child) {
+input[type=submit]:not(:last-child) {
     border-right: none;
 }
 
-.btn-group button:hover {
+input[type=submit]:hover {
     background-color: #3e8e41;
 }
 </style>
 
 <body>
-
+<script type="text/javascript">
+function twosend(){
+	document.tsForm.action="/beet/tosselect";
+	document.tsForm.submit();
+	document.tsForm.action="/beet/tesselect";
+	document.tsForm.submit();
+}
+</script>
 <h1>출결 성적 등록</h1>
+<h3>학생용</h3>
+<div class="학생 조회용">
 
-<div class="세션대신 입력폼쓰는중" style="margin-bottom:50px;">
-<form action="/beet/mylctr" method="get">
-studentid  <input type="text" name="studentid">
-<input type="submit" value="입력">
+<form action="/beet/mylctr" method="post">
+<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+<input type="submit" class="btn-sm" value="나의강의조회">
+<!-- 강의목록 join시 중복되는 문제 해결 필요 -->
+ </form>
+
+<form action="/beet/tosselect" method="post">
+<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+<input type="submit" class="btn-sm" value="전체성적조회">
+ </form>
+  
+<form action="/beet/tesselect" method="post">
+<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+<input type="submit" class="btn-sm" value="학기성적조회">
 </form>
+  
+<form action="/beet/lsselect" method="post">
+<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+<input type="submit" class="btn-sm" value="과목별성적조회">
+<!-- 학기 ajax로 selected 값 받아서 동적페이지 구현할 예정  -->
+</form>  
 </div>
 
-<div class="btn-group">
-  <button onclick="javascript:location.href='/beet/mylctr'" >강의목록</button>
-  <button onclick="javascript:location.href='/beet/atnlist'" >출결현황</button>
-  <button onclick="javascript:location.href='/beet/atnedit'" >출결입력</button>
-  <button onclick="javascript:location.href='/beet/atnlist'" >성적조회</button>
-  <button onclick="javascript:location.href='/beet/atnlist'" >성적입력</button>
-  <button>성적조회</button>
-</div>
+<br>
+<br>
+<h3>교수용</h3>
+<div class="교수 조회용">
+<form action="/beet/scmain.p" method="post">
+<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+<input type="submit" class="btn-sm" value="나의강의목록">
+ </form>
 
+<form action="/beet/scinsert.prof" method="post">
+<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+<input type="submit" class="btn-sm" value="교수성적입력">
+ </form>
+  
+<form action="/beet/tesselect" method="post">
+<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+<input type="submit" class="btn-sm" value="학기성적조회">
+</form>
+
+<h3>관리자용 </h3> 
+<% if(loginmember.getId().contains("A")){ %>
+<form action="/beet/lctrsearchall" method="post">
+<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+<input type="submit" class="btn-sm" value="과목성적조회">
+<!-- 학기 ajax로 selected 값 받아서 동적페이지 구현할 예정  -->
+</form> 
+<% }else {%>
+<script type="text/javascript">
+  alert("관리자만 접근가능!");
+</script>
+<% } %>
+
+</div>
 </body>
 </html>

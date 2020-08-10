@@ -714,8 +714,8 @@ ArrayList<Schedule> list14 =  new ArrayList<Schedule>();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(pstmt);
 			close(rset);
+			close(pstmt);
 		}
 	    return list;
 	}
