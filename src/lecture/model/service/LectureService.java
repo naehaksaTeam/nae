@@ -258,4 +258,12 @@ public class LectureService {
 		close(conn);
 		return r;
 	}
+
+	public ArrayList<Lecture> selectCategories() {
+		//카테고리 조회
+		Connection conn = getConnection();
+		ArrayList<Lecture> list = ldao.selectCategories(conn);
+		close(conn);
+		return list;
+	}
 }

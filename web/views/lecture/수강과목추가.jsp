@@ -73,7 +73,7 @@ border:1px solid red;
 &nbsp;<%= l.getLtime() %>, <%= l.getLclock() %>시&nbsp;
 </td>
 <td>
-<%= l.getProfessorid() %>
+<%= l.getName() %>
 </td>
 <td>
 <%= l.getRoom() %>
@@ -106,9 +106,8 @@ border:1px solid red;
 		<td>
 			<button type="submit" class="box" id="addbtn">강의개설</button>
 		</td>
-		<td></td>	
+	<td></td>	
 </tr>
-
 </table>
 </form>
 

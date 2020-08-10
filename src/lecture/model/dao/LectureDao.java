@@ -713,4 +713,12 @@ public class LectureDao {
 		return rst;
 	}
 
+
+	public ArrayList<Lecture> selectCategories(Connection conn) {
+		//카테고리 목록 조회
+		
+		
+		return null;
+	}
+
 }
