@@ -35,16 +35,12 @@
 	border-width: 1px;
 	font-family: Arial, sans-serif;
 	font-size: 14px;
-	font-weight: normal;
+	font-weight: border;
 	overflow: hidden;
 	padding: 10px 5px;
 	word-break: normal;
 }
-input.insert {
-	width: 40px;
-	height: 20px;
-	margin: 0px
-}
+
 </style>
 <header>
 <%@ include file="../common/header.jsp"%>
@@ -57,7 +53,6 @@ input.insert {
 <button onclick="javascript:location.href='/beet/selectaba?value=a'">휴 학 조 회</button>
 <button onclick="javascript:location.href='/beet/selectaba?value=b'">복 학 조 회</button>
 <br>
-
 
 <% if(list != null){ %>
 <form method="post" name="managerform">
@@ -76,7 +71,6 @@ input.insert {
 <input type="submit" value="신청삭제(복구불가)" onclick="javascript: managerform.action='/beet/deleteabad'">
 </form>
 <% } %>
-
 
 </div>
 </body>

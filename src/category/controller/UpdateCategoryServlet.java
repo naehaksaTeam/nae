@@ -22,12 +22,13 @@ public class UpdateCategoryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String newname = request.getParameter("newname");
 		String catename = request.getParameter("catename");
+		System.out.println("newname : "+ newname + " ,  catename : " + catename);
 		
 		int result = new CategoryService().updateCategory(catename, newname);
 		
 		RequestDispatcher view = null;
 		if(result >0) {
-			view = request.getRequestDispatcher("views/categoryTest/categoryTestView.jsp");
+			view = request.getRequestDispatcher("selectca");
 			request.setAttribute("message", catename +" 수정이 완료되었습니다.");
 			view.forward(request, response);
 		}else {

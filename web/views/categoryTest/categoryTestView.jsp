@@ -22,39 +22,24 @@
 <button onclick="javascript:location.href='/beet/selectca'">계열 조회</button>
 <br>
 <% if(list != null){ %>
-	<form action="/beet/updateca" method="post">
+	<form method="post" name="cateform">
 	<table style="border: solid 1px; background-color: teal;">
 	<tr><th>계열명</th></tr>
 	<% for(Category category : list){ %>
 		<tr><td><input type="radio" name="catename" value="<%= category.getCategoryname() %>"><%= category.getCategoryname() %></td></tr>
-	
 	<% } %>
 	</table>
+	<input type="submit" value="계열삭제" onclick="javascript: cateform.action='/beet/deleteca'">
 	<br>
-	<input type="text" name="newname">수정할 계열이름
-	<input type="submit" value="계열 수정">
+	수정할 이름<input type="text" name="newname">
+	<input type="submit" value="계열수정" onclick="javascript: cateform.action='/beet/updateca'">
 	</form>
 <% } %>
-
-
-	<button onclick="javascript:location.href='/beet/deleteca?catename='">계열 삭제</button>
-
-<select>
-<option>
-
-</option>
-</select>
-
-
-<form>
-<form action="/beet/insertca" method="post">
-<input type="text" name="catename" required>
-<input type="submit" value="계열 추가">
-</form>
-
-
-
 <br>
+<form action="/beet/insertca" method="post">
+추가할 이름<input type="text" name="catename">
+<input type="submit" value="계열추가">
+</form>
 <% if(message != null){ %>
 	<hr>
 	<%= message %>
