@@ -31,9 +31,9 @@ public class ScholarshipService {
 		return scholarship;
 	};
 	
-	public int insertScholarship(String ssname) {
+	public int insertScholarship(Scholarship ss) {
 		Connection conn = getConnection();
-		int result = ssdao.insertScholarship(conn, ssname);
+		int result = ssdao.insertScholarship(conn, ss);
 		
 		if(result > 0) {
 			commit(conn);
@@ -44,9 +44,9 @@ public class ScholarshipService {
 		return result;
 	};
 	
-	public int updateScholarship(String ssname) {
+	public int updateScholarship(Scholarship ss, String originname) {
 		Connection conn = getConnection();
-		int result = ssdao.updateScholarship(conn, ssname);
+		int result = ssdao.updateScholarship(conn, ss, originname);
 		
 		if(result > 0) {
 			commit(conn);

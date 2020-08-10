@@ -32,9 +32,16 @@ public class SsbenefitstService {
 		return ssbenefitst;
 	};
 	
-	public int insertSsbenefitst(int benefitterm, String studentid) {
+	public ArrayList<Ssbenefitst> selectPrivateSsst(String studentid) {
 		Connection conn = getConnection();
-		int result = ssstdao.insertSsbenefitst(conn, benefitterm, studentid);
+		ArrayList<Ssbenefitst> list = ssstdao.selectPrivateSsst(conn, studentid);
+		close(conn);
+		return list;
+	}
+	
+	public int insertSsbenefitst(Ssbenefitst ssst) {
+		Connection conn = getConnection();
+		int result = ssstdao.insertSsbenefitst(conn, ssst);
 		
 		if(result > 0) {
 			commit(conn);
@@ -45,9 +52,9 @@ public class SsbenefitstService {
 		return result;
 	};
 	
-	public int updateSsbenefitst(int benefitterm, String studentid) {
+	public int updateSsbenefitst(Ssbenefitst newssst, Ssbenefitst originssst) {
 		Connection conn = getConnection();
-		int result = ssstdao.updateSsbenefitst(conn, benefitterm, studentid);
+		int result = ssstdao.updateSsbenefitst(conn, newssst, originssst);
 		
 		if(result > 0) {
 			commit(conn);
