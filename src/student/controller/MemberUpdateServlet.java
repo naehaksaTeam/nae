@@ -1,6 +1,7 @@
 package student.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,15 +41,23 @@ public class MemberUpdateServlet extends HttpServlet {
 				
 				
 				member.setId(request.getParameter("id"));
-				member.setPassword(request.getParameter("password"));
 				member.setName(request.getParameter("name"));
 				member.setSsn(request.getParameter("ssn"));
 				member.setAddress(request.getParameter("address"));
 				member.setPhone(request.getParameter("phone"));
 				member.setGender(request.getParameter("gender"));
-				member.setCategoryname(request.getParameter("categoryname"));
 				member.setEmail(request.getParameter("email"));
 				member.setTreasure(request.getParameter("treasure"));
+				member.setPassword(request.getParameter("password"));
+				member.setTreasure(request.getParameter("treasure"));
+				member.setAdminhiredate(Date.valueOf(request.getParameter("adminhiredate")));
+				
+			
+			
+			
+				member.setCategoryname(request.getParameter("categoryname"));
+			
+			
 				
 				//3.
 				int result = new MemberService().updateMember(member);
