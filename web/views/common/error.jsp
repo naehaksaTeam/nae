@@ -15,6 +15,7 @@
 <center>
 <%= error %>
 <button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<button onclick="javascript:history.go(-1)">이전 화면</button>
 </center>
 </body>
 </html>

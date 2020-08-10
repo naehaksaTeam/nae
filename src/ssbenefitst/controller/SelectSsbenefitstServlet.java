@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import scholarship.model.vo.Scholarship;
 import ssbenefitst.model.service.SsbenefitstService;
 import ssbenefitst.model.vo.Ssbenefitst;
 
@@ -22,16 +23,16 @@ public class SelectSsbenefitstServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String studentid = request.getParameter("studentid");
-		
-		ArrayList<Ssbenefitst> list = new SsbenefitstService().selectPrivateSsst(studentid);
-		
+		String studentid = (String)request.getAttribute("studentid");
+		ArrayList<Scholarship> listss = (ArrayList<Scholarship>)request.getAttribute("list");
+		ArrayList<Ssbenefitst> listssst = new SsbenefitstService().selectPrivateSsst(studentid);
 		RequestDispatcher view = null;
-		if(list != null) {
+
 			view = request.getRequestDispatcher("views/scholarship/selectScholarView.jsp");
-			request.setAttribute("list", list);
+			request.setAttribute("listss", listss);
+			request.setAttribute("listssst", listssst);
 			view.forward(request, response);
-		}
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

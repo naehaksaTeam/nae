@@ -16,9 +16,9 @@ import absence.model.vo.Absence;
 public class deleteAbsenceAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public deleteAbsenceAdminServlet() {
-        super();
-    }
+	public deleteAbsenceAdminServlet() {
+		super();
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestid = request.getParameter("requestid");
@@ -27,55 +27,49 @@ public class deleteAbsenceAdminServlet extends HttpServlet {
 		String ab = requestid.substring(0, 1);
 
 		RequestDispatcher view = null;
-		
-		int date = aservice.canceldateChk(requestid);
-		if(date > 0) {
-			String approval = aservice.selectApprovalChk(requestid);
-			if(approval.equals("Y")){//승인완료, 학생테이블가서 바꿔줘야함
-				int result = aservice.deleteAbsence(requestid);
-				if(result > 0) { // 휴학 취소되면 학생테이블 가서 변경
-					int re = aservice.studentAbsenceChange(a.getStudentid());
-					if(re > 0) {
-						if(ab.equals("a")) {
-							int r = aservice.studentCountMinus(a.getStudentid());
-							if(r > 0) {
-								response.sendRedirect("views/absence/absenceRequestView.jsp");
-							}else {
-								view = request.getRequestDispatcher("views/common/error.jsp");
-								request.setAttribute("message","학생정보 변경에 실패하였습니다.");
-								view.forward(request, response);
-							}
-						}else {
-							response.sendRedirect("views/absence/absenceRequestView.jsp");
+
+		if (a.getApproval().equals("Y")) {// 승인완료, 학생테이블가서 바꿔줘야함
+			int result = aservice.deleteAbsence(requestid);
+			if (result > 0) { // 휴학 취소되면 학생테이블 가서 변경
+				int re = aservice.studentAbsenceChange(a.getStudentid());
+				if (re > 0) {
+					if (ab.equals("a")) {
+						int r = aservice.studentCountMinus(a.getStudentid());
+						if (r > 0) {
+							response.sendRedirect("selectaball");
+						} else {
+							view = request.getRequestDispatcher("views/common/error.jsp");
+							request.setAttribute("message", "학생정보 변경에 실패하였습니다.");
+							view.forward(request, response);
 						}
-					}else {
-						view = request.getRequestDispatcher("views/common/error.jsp");
-						request.setAttribute("message","학생정보 변경에 실패하였습니다.");
-						view.forward(request, response);
+					} else {
+						response.sendRedirect("selectaball");
 					}
-				}else {
+				} else {
 					view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message","휴학신청취소에 실패하였습니다.");
+					request.setAttribute("message", "학생정보 변경에 실패하였습니다.");
 					view.forward(request, response);
 				}
-			}else{ // 승인안된상황 
-				int result = aservice.deleteAbsence(requestid);
-				if(result > 0){
-					response.sendRedirect("views/absence/absenceRequestView.jsp");
-				}else {
-					view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message","휴학신청취소에 실패하였습니다.");
-					view.forward(request, response);
-				}
+			} else {
+				view = request.getRequestDispatcher("views/common/error.jsp");
+				request.setAttribute("message", "신청정보 삭제에 실패하였습니다.");
+				view.forward(request, response);
 			}
-		}else {//취소날짜가 지났음
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message","취소가능한 날짜가 지났습니다.");
-			view.forward(request, response);
+		}else {//승인이 안됬으면 그냥 삭제만 진행
+			int result = aservice.deleteAbsence(requestid);
+			if (result > 0) {
+				response.sendRedirect("selectaball");
+			} else {
+				view = request.getRequestDispatcher("views/common/error.jsp");
+				request.setAttribute("message", "신청정보 삭제에 실패하였습니다.");
+				view.forward(request, response);
+			}
+			
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
