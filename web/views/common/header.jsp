@@ -79,9 +79,7 @@ hr { clear: both; }
 
 
 <h1 id="logo"><a href="/beet/views/main/main.jsp">logo</a></h1>
-<br>
-		
-	
+
 	<TD align=right style="PADDING:3px 10px 0 0">
 		<ul id="bar">
 			<td class=""><a href="/beet/logout.cp">로그아웃 </a></td>
