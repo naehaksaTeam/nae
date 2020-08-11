@@ -50,8 +50,11 @@ public class FindIdServlet extends HttpServlet {
 
 		// 4.받은 결과에 따라 성공/실패 뷰 선택해서 내보내기
 		// if 문으로 결과처리
+		if(member.getId().equals("notanswer")) {
+			member = null;
+		}
 		if (member != null) {
-			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/student/findId.jsp");
 			request.setAttribute("message", "아이디는" + member.getId() + "입니다" );
 			view.forward(request, response);
 		} else {

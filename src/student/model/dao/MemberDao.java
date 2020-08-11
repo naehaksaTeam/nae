@@ -52,7 +52,7 @@ public class MemberDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 
-		String query = "select * from member where id=" + id;
+		String query = "select * from student where id=" + id;
 
 		try {
 			stmt = conn.createStatement();
@@ -94,7 +94,13 @@ public class MemberDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 
-		String query = "select * from member";
+		String query = "select * " + "from ("
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+				+ ") " ;
 
 		try {
 			stmt = conn.createStatement();
@@ -161,7 +167,13 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
-		String query = "delete from member where id = ?";
+		String query = "delete * " + "from ("
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+				+ ") ";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -229,7 +241,7 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
-		String query = "insert into member values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,default,default,?,?,?)";
+		String query = "insert into student values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,default,default,?,?,?)";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -257,28 +269,50 @@ public class MemberDao {
 		return result;
 	}
 
-	public int FindPasswordMember(Connection conn, Member member) {
-		int result = 0;
+	
+	//비밀번호 찾기
+	public Member FindPasswordMember(Connection conn, String id, String treasure) {
+		Member member = null;
 		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 
-		String query = "select * from member where id = ? and treasure = ?";
+		String query = "select * " + "from ("
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
+				+ ") " + "where id = ? and treasure = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getTreasure());
+			pstmt.setString(1, id);
+			pstmt.setString(2, treasure);
 
-			result = pstmt.executeUpdate();
+			rset = pstmt.executeQuery();
 
+			if (rset.next()) {
+				member = new Member();
+
+				member.setId(rset.getString("id"));
+			
+
+			}else {
+				member = new Member();
+
+				member.setId("notanswer");
+			
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-
+			close(rset);
 			close(pstmt);
 		}
 
-		return result;
-
+		return member;
 	}
+
+	
 
 	// 아이디 찾기
 
@@ -287,8 +321,13 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String query = "select * from member where name= ? and treasure = ?";
-
+		String query = "select * " + "from ("
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
+				+ ") " + "where name = ? and treasure = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, name);
@@ -299,9 +338,14 @@ public class MemberDao {
 			if (rset.next()) {
 				member = new Member();
 
-				member.setName(rset.getString("name"));
-				member.setTreasure(rset.getString("treasure"));
+				member.setId(rset.getString("id"));
+			
 
+			}else {
+				member = new Member();
+
+				member.setId("notanswer");
+			
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

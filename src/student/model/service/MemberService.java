@@ -55,10 +55,6 @@ public class MemberService {
 		return list;
 	}
 
-
-
-
-	
 	public int deleteMember(String id) {
 		Connection conn = getConnection();
 		int result = mdao.deleteMember(conn, id);
@@ -84,6 +80,8 @@ public class MemberService {
 		close(conn);
 		return member;
 	}
+	
+	
 	
 	
 }

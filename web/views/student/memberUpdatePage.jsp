@@ -111,7 +111,7 @@
 		<input type="submit" value="수정하기"> &nbsp; 
 		<input type="reset" value="수정취소"> &nbsp; 	
 		<input type="submit" value="회원탈퇴">	
-		<a href="/beet/index.jsp">시작 페이지로</a>
+		<a href="index.jsp">시작 페이지로</a>
 	</th>	
 </tr>
 </table>
