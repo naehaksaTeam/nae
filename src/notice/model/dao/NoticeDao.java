@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 import notice.model.vo.Notice;
 import static common.JDBCTemp.*;
 
@@ -18,7 +17,7 @@ public class NoticeDao {
 		ArrayList<Notice> list = new ArrayList<Notice>();
 		Statement stmt = null;
 		ResultSet rset = null;
-		
+
 		/*
 		 * 번호</th> <th>제목</th> <th>작성자</th> <th>작성날짜</th> <th>글내용</th> <th>파일첨부</th>
 		 * <th>조회수
@@ -31,11 +30,11 @@ public class NoticeDao {
 			while (rset.next()) {
 				Notice notice = new Notice();
 
-				notice.setNoticeNo(rset.getInt("notice"));
+				notice.setNoticeNo(rset.getInt("noticeno"));
 				notice.setNoticeTitle(rset.getString("noticetitle"));
-				notice.setNoticeDate(rset.getDate("noticedate"));
 				notice.setNoticeWriter(rset.getString("noticewriter"));
-				notice.setNoticeContent(rset.getString("noticecontent"));
+				notice.setNoticeDate(rset.getDate("noticedate"));
+				notice.setNoticeContent(rset.getString("noticecontent").replace("\n", " "));
 				notice.setOriginalFile(rset.getString("originalfile"));
 				notice.setNoticeReadCount(rset.getInt("noticereadcount"));
 				list.add(notice);
@@ -65,8 +64,8 @@ public class NoticeDao {
 				notice.setNoticeNo(noticeNo);
 				notice.setNoticeNo(rset.getInt("NOTICENO"));
 				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
-				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
 				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
+				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
 				notice.setNoticeContent(rset.getString("NOTICECONTENT"));
 				notice.setOriginalFile(rset.getString("ORIGINALFILE"));
 				notice.setRenameFile(rset.getString("RENAMEFILE"));
@@ -85,18 +84,19 @@ public class NoticeDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
-		String query = "insert into notice values((select max(noticeno)+1 from notice),?,sysdate,?,?,?,?)";
+		String query = "insert into notice values((select max(noticeno)+1 from notice),'A004',?,?,sysdate,?,?,?,?)";
 
 		try {
 			pstmt = conn.prepareStatement(query);
+
 			pstmt.setString(1, notice.getNoticeTitle());
 			pstmt.setString(2, notice.getNoticeWriter());
 			pstmt.setString(3, notice.getNoticeContent());
 			pstmt.setString(4, notice.getOriginalFile());
 			pstmt.setString(5, notice.getRenameFile());
-
+			pstmt.setInt(6, notice.getNoticeReadCount());
 			result = pstmt.executeUpdate();
-
+			System.out.println("dao성공!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -151,14 +151,22 @@ public class NoticeDao {
 
 	}
 
-	public ArrayList<Notice> selectTop3(Connection conn) {
+	public ArrayList<Notice> selectTop5(Connection conn) {
 		ArrayList<Notice> list = new ArrayList<Notice>();
-
+		System.out.println("도착");
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = "" + "select *" + "from (SELECT ROWNUM RNUM, " + "        NOTICENO , " + "        NOTICETITLE, "
-				+ "        NOTICEDATE" + "    FROM (SELECT * FROM NOTICE ORDER BY NOTICENO DESC)" + "    )"
-				+ "where RNUM >=1 AND RNUM <=3";
+		String query =  "" + 
+				"select *" + 
+				"from (SELECT ROWNUM RNUM, " + 
+				"        NOTICENO , " + 
+				"        NOTICETITLE, " + 
+				"        NOTICEREADCOUNT" + 
+				"    FROM (SELECT * FROM NOTICE ORDER BY NOTICEREADCOUNT DESC)" +
+				"    )" + 
+				"where RNUM >=1 AND RNUM <=5";
+		
+		System.out.println("dao성공!");
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
@@ -168,7 +176,7 @@ public class NoticeDao {
 
 				notice.setNoticeNo(rset.getInt("NOTICENO"));
 				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
-				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
+				notice.setNoticeReadCount(rset.getInt("NOTICEREADCOUNT"));
 
 				list.add(notice);
 			}
@@ -181,5 +189,95 @@ public class NoticeDao {
 		}
 		return list;
 	}
-	
+
+	public int getListCount(Connection conn) {
+		int listCount = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+
+		String query = "SELECT COUNT(*) FROM Notice";
+
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+
+			if (rset.next()) {
+				listCount = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
+
+		return listCount;
+	}
+
+	public ArrayList<Notice> selectList(Connection conn, int currentPage, int limit) {
+		ArrayList<Notice> list = new ArrayList<Notice>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String query = "SELECT * FROM (SELECT ROWNUM RNUM, noticeno, noticetitle, noticewriter, noticedate, noticecontent, originalfile, "
+				+ "                        renamefile, noticereadcount "
+				+ "                        FROM (SELECT * FROM notice ORDER BY noticedate desc)) "
+				+ "WHERE RNUM >= ? AND RNUM <= ?";
+
+		int startRow = (currentPage - 1) * limit + 1;
+		int endRow = startRow + limit - 1;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
+
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				Notice notice = new Notice();
+
+				notice.setNoticeNo(rset.getInt("noticeno"));
+				notice.setNoticeTitle(rset.getString("noticetitle"));
+				notice.setNoticeWriter(rset.getString("noticewriter"));
+				notice.setNoticeDate(rset.getDate("noticedate"));
+				notice.setNoticeContent(rset.getString("noticecontent"));
+				notice.setOriginalFile(rset.getString("originalfile"));
+				notice.setRenameFile(rset.getString("renamefile"));
+				notice.setNoticeReadCount(rset.getInt("noticereadcount"));
+
+				list.add(notice);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
+
+	public int addReadCount(Connection conn, int noticeno) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		String query = "update notice set noticereadcount = noticereadcount + 1 where noticeno = ?";
+		System.out.println("조회수증가");
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, noticeno);
+
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+
+	}
 }

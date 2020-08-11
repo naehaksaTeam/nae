@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class NoticePageServlet
+ * Servlet implementation class NoticeSearchServlet
  */
-@WebServlet("/nplist")
-public class NoticePageServlet extends HttpServlet {
+@WebServlet("/nsearch")
+public class NoticeSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticePageServlet() {
+    public NoticeSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

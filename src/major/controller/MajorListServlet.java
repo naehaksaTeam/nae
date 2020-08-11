@@ -1,4 +1,4 @@
-package notice.controller;
+package major.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class NoticeTop3Servlet
+ * Servlet implementation class MajorListServlet
  */
-@WebServlet("/ntop3")
-public class NoticeTop3Servlet extends HttpServlet {
+@WebServlet("/mlist")
+public class MajorListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeTop3Servlet() {
+    public MajorListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
