@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import attendance.model.vo.Atndn;
 import lecture.model.vo.Lecture;
@@ -431,5 +432,10 @@ public class AtndnDao {
 					close(pstmt);
 				}
 				return result;
+			}
+
+			public int updateWeekAll(Connection conn, HashMap map) {
+				// TODO Auto-generated method stub
+				return 0;
 			}
 }

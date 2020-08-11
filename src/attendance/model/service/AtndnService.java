@@ -7,6 +7,7 @@ import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import attendance.model.dao.AtndnDao;
 import attendance.model.vo.Atndn;
@@ -55,6 +56,19 @@ public class AtndnService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public int updateWeekAll(HashMap map) {
+		//출결 여러개 업데이트
+		Connection conn = getConnection();
+		int r = adao.updateWeekAll(conn,map);
+		if(r > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return r;
 	}
 
 }

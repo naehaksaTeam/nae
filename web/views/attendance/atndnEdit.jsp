@@ -42,7 +42,7 @@ java.util.Date, java.text.SimpleDateFormat"%>
 			<tr>
 				<td><%= i %></td>
 				<td><%=a.getSid()%><input type="text" name="who<%= i %>" value="<%= a.getSid() %>" style="display:none;"></td>
-				<td><%=a.getMajorname()%></td>
+				<td><%=a.getMajorname()%><input type="text" name="lcode" value="<%= a.getLcode() %>" style="display:none;"></td>
 				<td><%=a.getSname()%></td>
 				<td><select class="atndt" name="selectfour<%= i %>" style="width: 80px; height: 30px">
 						<option value="-" selected disabled hidden>-</option>
