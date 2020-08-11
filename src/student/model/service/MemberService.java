@@ -71,7 +71,7 @@ public class MemberService {
 		return result;
 	}
 
-	public Member FindIdMember(Member member) {
+	public Member FindIdMember(String name, String treasure) {
 		Connection conn = getConnection();
 		Member member = mdao.FindIdMember(conn, name, treasure);
 		close(conn);

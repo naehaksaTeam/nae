@@ -1,6 +1,7 @@
 package student.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,16 +40,25 @@ public class MemberInsertServlet extends HttpServlet {
 		
 				//2.
 				Member member = new Member();
-				
 				member.setId(request.getParameter("id"));
 				member.setName(request.getParameter("name"));
 				member.setSsn(request.getParameter("ssn"));
 				member.setAddress(request.getParameter("address"));
 				member.setPhone(request.getParameter("phone"));
-				member.setCategoryname(request.getParameter("categoryname"));
 				member.setGender(request.getParameter("gender"));
 				member.setEmail(request.getParameter("email"));
 				member.setTreasure(request.getParameter("treasure"));
+				member.setPassword(request.getParameter("password"));
+				member.setAdminhiredate(Date.valueOf(request.getParameter("adminhiredate")));
+				member.setPassword(request.getParameter("password"));
+				member.setEntrancedate(Date.valueOf(request.getParameter("entrancedate")));
+				member.setAbsencewhether(request.getParameter("absencewhether"));
+				member.setAbsencecount(Integer.parseInt(request.getParameter("absenececount")));
+				member.setSsname(request.getParameter("ssname"));
+				member.setCategoryname(request.getParameter("categoryname"));
+				member.setMajorno(request.getParameter("majorno"));
+				
+				
 				member.setPassword(request.getParameter("password"));
 				//3.
 				int result = new MemberService().insertMember(member);
@@ -59,7 +69,7 @@ public class MemberInsertServlet extends HttpServlet {
 					response.sendRedirect("/beet/web/index.jsp");
 					}else {  
 					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message",  "회원가입 실패.");
+					request.setAttribute("message",  "회원추가 실패.");
 					view.forward(request, response);
 				}
 	}

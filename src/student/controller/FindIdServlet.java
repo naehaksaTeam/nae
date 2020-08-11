@@ -36,23 +36,29 @@ public class FindIdServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 아이디 찾기 컨트롤러
 
-		// 1.
+		// 1.전송온 값에 한글이 있다면 인코딩 처리함
 		request.setCharacterEncoding("utf-8");
 
-		// 2.
-		Member member = new Member();
-		member.setName(request.getParameter("name"));
-		member.setTreasure(request.getParameter("treasure"));
+		// 2.전송온 값 꺼내서, 변수 또는 객체에 기록 저장 처리함
+		String name = request.getParameter("name");
+		String treasure = request.getParameter("treasure");
 
-		// 3.
-		
-		 String result  = new MemberService().FindIdMember(member);
+		// 3.서비스 객체 생성하고, 서비스 메소드를 이용해서 객체 전달하고처리 결과받기
 
-		// 4.
-		
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "아이디찾기실패.");
+		MemberService service = new MemberService();
+		Member member = service.FindIdMember(name, treasure);
+
+		// 4.받은 결과에 따라 성공/실패 뷰 선택해서 내보내기
+		// if 문으로 결과처리
+		if (member != null) {
+			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+			request.setAttribute("message", "아이디는" + member.getId() + "입니다" );
 			view.forward(request, response);
+		} else {
+			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", "해당하는 아이디가 없습니다");
+			view.forward(request, response);
+		}
 	}
 
 	/**
