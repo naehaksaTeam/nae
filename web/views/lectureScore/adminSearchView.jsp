@@ -47,7 +47,7 @@
 
 input.insert {
 	width: 40px;
-	height: 20px;
+	height: 20px;`
 	margin: 0px
 }
 </style>
@@ -66,7 +66,7 @@ input.insert {
 		<option id="searchLctr" value="lname">강의명</option>
 	</select>
 
-	<!-- 학생이름 검색폼  -->
+	<!-- 검색폼  -->
 	<form action="/beet/adsearch" method="post" id="idform" class="lform">
 		<input type="hidden" name="action" value="">
 		
