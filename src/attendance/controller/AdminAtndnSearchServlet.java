@@ -42,10 +42,11 @@ public class AdminAtndnSearchServlet extends HttpServlet {
 		AtndnService aservice = new AtndnService();
 		ArrayList<Atndn> list = null;
 		
-//		switch(action) {
-//		case "id" :		list = aservice.selectSearchUserid(keyword); break;
-//		case "lecture" :	list = aservice.selectSearchLecture(keyword); break;
-//		}
+		switch(action) {
+		case "id" :		list = aservice.selectSearchUserid(keyword); break;
+		case "lecture" :	list = aservice.selectSearchLecture(keyword); break;
+	
+		}
 		
 		RequestDispatcher view = null;
 		if(list.size() > 0) {

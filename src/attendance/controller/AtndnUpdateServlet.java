@@ -32,32 +32,32 @@ public class AtndnUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Atndn atndn = new Atndn();
-		
-		atndn.setSid(request.getParameter(""));
-		
-//		  atndn.setSid(String.join(",", request.getParameterValues("sid")));
-//		  atndn.setSname(String.join(",", request.getParameterValues("sname")));
-//		  atndn.setMajorname(String.join(",",
-//		  request.getParameterValues("majorname"))); atndn.setWeek1(String.join(",",
-//		  request.getParameterValues("week1"))); atndn.setWeek2(String.join(",",
-//		  request.getParameterValues("week2"))); atndn.setWeek3(String.join(",",
-//		  request.getParameterValues("week3"))); atndn.setWeek4(String.join(",",
-//		  request.getParameterValues("week4"))); atndn.setWeek5(String.join(",",
-//		  request.getParameterValues("week5"))); atndn.setWeek6(String.join(",",
-//		  request.getParameterValues("week6"))); atndn.setWeek7(String.join(",",
-//		  request.getParameterValues("week7"))); atndn.setWeek8(String.join(",",
-//		  request.getParameterValues("week8"))); atndn.setWeek9(String.join(",",
-//		  request.getParameterValues("week9"))); atndn.setWeek10(String.join(",",
-//		  request.getParameterValues("week10"))); atndn.setWeek11(String.join(",",
-//		  request.getParameterValues("week11"))); atndn.setWeek12(String.join(",",
-//		  request.getParameterValues("week12"))); atndn.setWeek13(String.join(",",
-//		  request.getParameterValues("week13"))); atndn.setWeek14(String.join(",",
-//		  request.getParameterValues("week14"))); atndn.setWeek15(String.join(",",
-//		  request.getParameterValues("week15"))); atndn.setWeek16(String.join(",",
-//		  request.getParameterValues("week16")));
-		 
+	
+				request.setCharacterEncoding("utf-8");
+				
+				Atndn atndn = new Atndn();
+		/*
+		 * atndn.setSid(String.join(",", request.getParameterValues("sid")));
+		 * atndn.setSname(String.join(",", request.getParameterValues("sname")));
+		 * atndn.setMajorname(String.join(",",
+		 * request.getParameterValues("majorname"))); atndn.setWeek1(String.join(",",
+		 * request.getParameterValues("week1"))); atndn.setWeek2(String.join(",",
+		 * request.getParameterValues("week2"))); atndn.setWeek3(String.join(",",
+		 * request.getParameterValues("week3"))); atndn.setWeek4(String.join(",",
+		 * request.getParameterValues("week4"))); atndn.setWeek5(String.join(",",
+		 * request.getParameterValues("week5"))); atndn.setWeek6(String.join(",",
+		 * request.getParameterValues("week6"))); atndn.setWeek7(String.join(",",
+		 * request.getParameterValues("week7"))); atndn.setWeek8(String.join(",",
+		 * request.getParameterValues("week8"))); atndn.setWeek9(String.join(",",
+		 * request.getParameterValues("week9"))); atndn.setWeek10(String.join(",",
+		 * request.getParameterValues("week10"))); atndn.setWeek11(String.join(",",
+		 * request.getParameterValues("week11"))); atndn.setWeek12(String.join(",",
+		 * request.getParameterValues("week12"))); atndn.setWeek13(String.join(",",
+		 * request.getParameterValues("week13"))); atndn.setWeek14(String.join(",",
+		 * request.getParameterValues("week14"))); atndn.setWeek15(String.join(",",
+		 * request.getParameterValues("week15"))); atndn.setWeek16(String.join(",",
+		 * request.getParameterValues("week16")));
+		 */
 				
 				int result = new AtndnService().updateAtndn(atndn);
 				
