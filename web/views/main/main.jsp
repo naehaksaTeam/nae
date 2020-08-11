@@ -450,11 +450,15 @@ $(function(){
  
   </div>
   <br>
+  <footer>
+
+
+
+<%@include file="../common/footer.jsp" %>
+</footer>
 
 
 </body>
-  <footer>
-<%@include file="../common/footer.jsp" %>
-</footer>
+
 
 </html>

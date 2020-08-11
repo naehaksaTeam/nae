@@ -16,10 +16,10 @@ footer{
 </style>
 </head>
 <body>
-
-</body>
 <footer>
 copyright@kh 한글한글 2020-07-27<br>
 TEL : 02-1234-5678, FAX : 02-1234-5679
 </footer>
+</body>
+
 </html>
