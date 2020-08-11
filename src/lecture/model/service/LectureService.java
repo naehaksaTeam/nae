@@ -197,6 +197,8 @@ public class LectureService {
 		//수강신청버튼구현
 		int r = 0;
 		Connection conn = getConnection();
+//		r = rdao.preapplyLecture
+		
 		r = ldao.applyLecture(conn,lname,name);
 		if(r > 0) {
 			commit(conn);

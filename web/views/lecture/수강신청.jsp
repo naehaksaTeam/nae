@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture,student.model.vo.Member"  %>
-<% if((request.getAttribute("result")).equals("ok") || (request.getAttribute("result")).equals("already")){
+    pageEncoding="UTF-8" 
+    import="java.util.ArrayList,lecture.model.vo.Lecture,student.model.vo.Member
+    ,lecture.model.vo.ApplyReception"  
+%>
+<% 
+if((request.getAttribute("result")).equals("ok") || (request.getAttribute("result")).equals("already")){
 		session.setAttribute( (String)request.getAttribute("resultForSession") , "ok" );
-   } else if((request.getAttribute("result")).equals("no") ){
+} else if((request.getAttribute("result")).equals("no") ){
 	   session.setAttribute( (String)request.getAttribute("resultForSession") , "no" );
-   }else{}%>
+}else{}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,6 +90,7 @@ display:none;
 <%= l.getRoom() %>
 </td>
 <td>
+
 <% if((session.getAttribute(l.getLname())) == null ){ %>
 <form action="/beet/lapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
 <button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn">수강신청</button>
