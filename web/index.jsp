@@ -13,7 +13,7 @@
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 <%-- <%@ include file="/views/common/sessionChk.jsp" %> --%>
 <% if(m == null){ %>
-<form action="/beet/login.cp">
+<form action="/beet/login.cp" method="post">
 아이디:<input type="text" name="userid">
 비밀번호:<input type="password" name="userpwd">
 <br><button type="submit" value="로그인">로그인</button>

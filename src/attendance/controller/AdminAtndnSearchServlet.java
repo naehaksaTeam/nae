@@ -33,8 +33,6 @@ public class AdminAtndnSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8"); 
-		response.setContentType("text/html; charset=utf-8"); 
 		String action = request.getParameter("action");
 		String keyword = null;
 		keyword = request.getParameter("keyword");
