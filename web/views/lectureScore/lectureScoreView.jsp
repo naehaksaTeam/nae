@@ -17,6 +17,12 @@
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 </style>
+
+<select id="field" onchange="javascript:selectfield(this);">
+		<option id="searchAll" value="all">-</option>
+		<option id="searchName" value="sname">이름</option>
+		<option id="searchLctr" value="lname">강의명</option>
+	</select>
 <table class="tg">
 <thead>
 <tr>
@@ -41,5 +47,11 @@
 <% } %>
 </tbody>
 </table>
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+	<script type="text/javascript">
+	 function selectfield(obj) {
+		 $('input[name=action]').attr('value',obj.value);
+	    }
+	 </script>
 </body>
 </html>

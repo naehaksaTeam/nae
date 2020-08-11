@@ -33,7 +33,7 @@ public class LectureScoreSelectServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String sid = request.getParameter("userid");
-		String semester = "202001";
+		String semester = request.getParameter("semester");
 		
 		ArrayList<LectureScore> list = new LectureScoreService().selectLectureScore(sid, semester);
 		

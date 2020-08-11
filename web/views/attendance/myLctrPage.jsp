@@ -141,7 +141,6 @@ long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
 	 $('#selectSemester').change(function(){
 		 var test = $("#selectSemester option:selected").val();
 		 document.querySelectorAll('tr').value = test;	
-		 alert(test);
 	 });
  });
 

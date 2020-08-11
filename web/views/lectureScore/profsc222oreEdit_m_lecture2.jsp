@@ -59,11 +59,11 @@
 			<p id="p_<%= i %>">
 			<tr>
 				<td class="nr"><%= i %></td><% i+=1; %>
-				<td class="nr"><%= lscore.getCategoryname() %></td>
-				<td class="nr"><%=lscore.getMajorname()%></td>
-				<td class="nr"><%=lscore.getSid()%></td>
-				<td class="nr"><%=lscore.getSname()%></td>
-				<td class="nr"><%=lscore.getRetake()%></td>
+				<td><%= lscore.getCategoryname() %></td>
+				<td><%=lscore.getMajorname()%></td>
+				<td><%=lscore.getSid()%></td>
+				<td><%=lscore.getSname()%></td>
+				<td><%=lscore.getRetake()%></td>
 
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
@@ -82,12 +82,12 @@
 					<option value="F" <%= (lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
 					</select></td>
 					<td><input class="checkBtn" type="button" value="테스트"> &nbsp;</td>
-					<td><input class="abc" type="button" value="행테스트"></td>
+					<td><input class="abc" type="button" value="행테스트"> &nbsp;</td>
 			</tr>
 			</p>
 			<% } %>
 			<tr>
-			<input id="scsave" type="submit" value="저장" onclick="scupdate"> &nbsp;
+			<input type="button"  onclick="saveFunction()" id="save" name="save" value="저장하기"/>
 			<input id="sccancle" type="reset" value="취소"> &nbsp;
 			</tr>
 		</tbody>
@@ -98,7 +98,7 @@
 		* 변경 후 반드시 저장을 눌러주세요 
 		</p>
 		<!-- <input type="button" id="btn1" value="업데이트" onclick="goUpdate()">  -->
-		<input id="save" type="submit" value="저장"> &nbsp; 
+		<input id="save" type="submit" value="저장" onclick="saveFunction()"> &nbsp; 
 		 
 		<input type="reset" value="취소"> &nbsp;
 		</form>
@@ -108,96 +108,149 @@
 	
 	<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 	<!-- jquery로 입력값 받아서 수정하기 변경하기누르면 update 취소 누르면 sendredirect -->
-	
 <script>
-var dataArray = null;
-var jsonArray = null;
 
+//오브젝트 담기
+
+/*  $(".checkBtn").click(function(){ 
+	var get_input = $("#p_1 input[type=text]");
+	var text = null;
+	$("#p_1 input[type=text]").val() = text;
+	console.log(text);
+	document.getElementsByName("user_name2")[0].value;
+	$.each(get_input, function (value) {
+		console.log('id =' + $(value).attr("value"));
+		console.log('name =' + $(value).attr("name"));
+		console.log('value =' + $(value).val());
+		});
+
+ }); */
+ 
+//user 객체가 들어갈 배열
+ var users= [];
+ //user 정보가 들어갈 빈객체
+ var user = {};
+ var keys = ['순번','계열','학과','학번','성명','재수강여부','출석점수', '중간점수', '기말점수', '총점', '등급'];
+ 
+ 
  $(".checkBtn").click(function(){ 
 	//배열에 저장 
 				var str = ""
 				var tdArr = new Array();	// 배열 선언
 				var checkBtn = $(this);
-				var tbl = document.getElementById('sctable'); 
 				
-				var trlength = tbl.getElementsByTagName('tr').length;
+				var tr = checkBtn.parent().parent();
+				alert(tr);
+				var td = tr.children();
 				
-				var tr = checkBtn.parent().parent().siblings();
-				var td = null;
-				for(var i = 0; i<trlength-1;i++){
-					$(".nr").next();
-					
-					var categoryname = td.eq(1).text();
-					var majorname = td.eq(2).text();
-					var sid = td.eq(3).text(); 
-					var sname = td.eq(4).text();
-					var retake = td.eq(5).text();
-					var atndnScore = td.eq(6).find('input[type="text"]').val();
-					var midScore = td.eq(7).find('input[type="text"]').val();
-					var finalScore = td.eq(8).find('input[type="text"]').val();
-					var totalScore = td.eq(9).find('input[type="text"]').val();
-					var grade = td.eq(10).find('select[name="selectg"] option:selected').val();
-					
-					tr.next();
-				dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
+				var categoryname = td.eq(1).text();
+				var majorname = td.eq(2).text();
+				var sid = td.eq(3).text(); 
+				var sname = td.eq(4).text();
+				var retake = td.eq(5).text();
+				var atndnScore = td.eq(6).find('input[type="text"]').val();
+				var midScore = td.eq(7).find('input[type="text"]').val();
+				var finalScore = td.eq(8).find('input[type="text"]').val();
+				var totalScore = td.eq(9).find('input[type="text"]').val();
+				var grade = td.eq(10).find('select[name="selectg"] option:selected').val();
+
+				var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
 					totalScore, grade];
-				jsonArray = JSON.parse(JSON.stringify(dataArray));
-				alert(dataArray);
-				
-			}
- });
-
- var keys = ['순번','계열','학과','학번','성명','재수강여부','출석점수', '중간점수', '기말점수', '총점수', '등급'];
+				var aa = JSON.stringify(dataArray)
+				var jsonArray = JSON.parse(JSON.stringify(dataArray));
+				alert(aa);
+			});
  
- 
-
- 
- 
- 
- 
-/*  $(".abc").click(function(){ 
+ function saveFunction(){
 		//배열에 있는 객체 값 확인
-		alert(dataArray);
-		alert(JSON.stringify(dataArray)); 
+		alert(JSON.stringify(dataArray));
 	   //테이블 요소 구하기
-	     
-
+	   var tbl = document.getElementById('tg');   
 	   //테이블 요소의 제일 마지막 <tr> 구하기 즉, 추가한 행 구하기
-	                        
-
-	   
-	   //alert("값있는 행은 총몇줄?="+(trlangth-1));
-	     alert("users 객체 개수는?="+ dataArray.length);
+	   var trlangth=tbl.getElementsByTagName('tr').length;                     	
+	      alert("값있는 행은 총몇줄?="+(trlangth-1));
+	      alert("users 객체 개수는?="+users.length);
 	      
-	 	
+	    
+	      for(var i = 0; i<trlangth-1;i++){
 			//값이 있는 첫번째 행의 tr 요소를 가져 온다. 
 	         var selecttrs = tbl.getElementsByTagName('tr')[i+1];
 			 
 			 //위의 요소에 속한 td 값들을 가져온다.
 	         var selecttds = selecttrs.getElementsByTagName('td');
 	            
+				
 				//칸이 총 7칸
-	            for(var a = 0 ; a < 10;a++){
+	            for(var a = 0 ; a<7;a++){
 	         
-	              // alert(selecttds[a].firstChild.value);
+	               //alert(selecttds[a].firstChild.value);
 	               
 	               var key = keys[a];           //값 '번호', '이름' ...등 칼럼 이름
 				   
-	             //  alert("dataArray["+i+"]:value="+selecttds[a].firstChild.value)
+	               alert("users["+i+"]:vlaue="+selecttds[a].firstChild.value)
 	               
 					// users 객체 0 번방 '번호' = 1 이런식으로 테이블 전체의 값을 읽어 저장
-	               dataArray[i][key]=selecttds[a].firstChild.value;   
+	               users[i][key]=selecttds[a].firstChild.value;   
 	            
 	            }
 				
 	      }
-				return dataArray;
+				return users;
 				//배열에 있는 객체 값 확인
-	            alert(JSON.stringify(dataArray));
+	            alert(JSON.stringify(users));
 	         
-	} ); */
+	}
+
+/*  
+ $(".checkBtn").click(function(){ 
+//배열에 저장 
+			var str = ""
+			var tdArr = new Array();	// 배열 선언
+			var checkBtn = $(this);
+			
+			// checkBtn.parent() : checkBtn의 부모는 <td>이다.
+			// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
+			var tr = checkBtn.parent().parent();
+			alert(tr);
+			var td = tr.children();
+			console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+			
+			var categoryname = td.eq(1).text();
+			var majorname = td.eq(2).text();
+			var sid = td.eq(3).text(); 
+			var sname = td.eq(4).text();
+			var retake = td.eq(5).text();
+			var atndnScore = td.eq(6).find('input[type="text"]').val();
+			var midScore = td.eq(7).find('input[type="text"]').val();
+			var finalScore = td.eq(8).find('input[type="text"]').val();
+			var totalScore = td.eq(9).find('input[type="text"]').val();
+			var grade = td.eq(10).find('select[name="selectg"] option:selected').val();
+
+			var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
+				totalScore, grade];
+			var aa = JSON.stringify(dataArray)
+			var jsonArray = JSON.parse(JSON.stringify(dataArray));
+			alert(aa);
+		});
+	  
+//행번호구하기
+$(".abc").click(function(){ 
+	var ttable = document.getElementById("sctable");
+	var trows = ttable.find('tr');
+	alert(trows.length);
+	for(var i=1; i < trows.length; i++){
+		var trow = trows[i]
+		var tr = trow.parent().parent();
+		var td = tr.children();
+		var sid = td.eq(3).text(); 
+		alert(sid);
+		  	
+	}
+});
+ */
+
 //최근글 3개 
-/* $(function(){
+$(function(){
 	$("#tg").click(function(){
 		$.getJSON("beet/scupdate.prof", {
 			categoryname : td.eq(1).text();
@@ -217,7 +270,15 @@ var jsonArray = null;
 					decodeURIComponent(data.sname) + data.retake + data.atndnScore + data.midScore
 					+ data.finalScore + data.totlaScore + data.grade);
 		});
- */
+		
+		$.ajax({
+			url : "beet/scupdate.prof",
+			data : {oo}
+		})
+	})
+})
+
+
 //수정가능 
 $.ajax({
 	url : '/beet/profscoreEdit_m_l_grade',
@@ -226,7 +287,7 @@ $.ajax({
 		
 	}
 	
-}) 
+})
  
 //숫자 0~100사이만 입력
 var replaceNotInt = /[^0-9]/gi;
@@ -249,7 +310,9 @@ $(document).ready(function(){
         $(this).val($(this).val().replace(replaceNotInt, ""));
         
     });
-});
+   
+    
+}); 
 
 </script>
 </body>

@@ -78,6 +78,7 @@ Iterator<String> it = set.iterator();
 			<input type="submit" style="width:60pt;height:20pt;" value="성적관리">
 			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
 			<input type="hidden" name="lname" value="<%=atndn.getLname() %>">
+			<input type="hidden" name="semester">
 		</form>
 	</td>
 	<td><%=format1.format(lastmodified) %></td>
@@ -101,6 +102,8 @@ Iterator<String> it = set.iterator();
 		 alert(test);
 	 });
  });
+ 
+ 
  </script>
 </body>
 </html>

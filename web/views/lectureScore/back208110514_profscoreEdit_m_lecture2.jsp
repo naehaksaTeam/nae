@@ -59,11 +59,11 @@
 			<p id="p_<%= i %>">
 			<tr>
 				<td class="nr"><%= i %></td><% i+=1; %>
-				<td class="nr"><%= lscore.getCategoryname() %></td>
-				<td class="nr"><%=lscore.getMajorname()%></td>
-				<td class="nr"><%=lscore.getSid()%></td>
-				<td class="nr"><%=lscore.getSname()%></td>
-				<td class="nr"><%=lscore.getRetake()%></td>
+				<td><%= lscore.getCategoryname() %></td>
+				<td><%=lscore.getMajorname()%></td>
+				<td><%=lscore.getSid()%></td>
+				<td><%=lscore.getSname()%></td>
+				<td><%=lscore.getRetake()%></td>
 
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
@@ -119,13 +119,11 @@ var jsonArray = null;
 				var tdArr = new Array();	// 배열 선언
 				var checkBtn = $(this);
 				var tbl = document.getElementById('sctable'); 
-				
+				var tr = checkBtn.parent().parent();
 				var trlength = tbl.getElementsByTagName('tr').length;
-				
-				var tr = checkBtn.parent().parent().siblings();
-				var td = null;
+				var td = tr.children();
+			
 				for(var i = 0; i<trlength-1;i++){
-					$(".nr").next();
 					
 					var categoryname = td.eq(1).text();
 					var majorname = td.eq(2).text();
@@ -138,7 +136,7 @@ var jsonArray = null;
 					var totalScore = td.eq(9).find('input[type="text"]').val();
 					var grade = td.eq(10).find('select[name="selectg"] option:selected').val();
 					
-					tr.next();
+					
 				dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
 					totalScore, grade];
 				jsonArray = JSON.parse(JSON.stringify(dataArray));

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page
 	import="java.util.ArrayList, student.model.vo.Member, lectureScore.model.vo.LectureScore"%>
@@ -59,11 +59,11 @@
 			<p id="p_<%= i %>">
 			<tr>
 				<td class="nr"><%= i %></td><% i+=1; %>
-				<td class="nr"><%= lscore.getCategoryname() %></td>
-				<td class="nr"><%=lscore.getMajorname()%></td>
-				<td class="nr"><%=lscore.getSid()%></td>
-				<td class="nr"><%=lscore.getSname()%></td>
-				<td class="nr"><%=lscore.getRetake()%></td>
+				<td><%= lscore.getCategoryname() %></td>
+				<td><%=lscore.getMajorname()%></td>
+				<td><%=lscore.getSid()%></td>
+				<td><%=lscore.getSname()%></td>
+				<td><%=lscore.getRetake()%></td>
 
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
@@ -110,6 +110,28 @@
 	<!-- jquery로 입력값 받아서 수정하기 변경하기누르면 update 취소 누르면 sendredirect -->
 	
 <script>
+
+js : var dataList = [];
+for(i=0; i<5; i++) {
+	dataList .push(i);
+}
+
+$.ajax({
+	url : goUrl,
+	type : 'post',
+	data : {'dataList ' : dataList },
+	traditional : true,
+	success : function(data){
+		alert(data.header.message);
+	}
+});
+
+
+출처: https://toxin0201.tistory.com/12 [I am technology.]
+
+
+
+
 var dataArray = null;
 var jsonArray = null;
 
@@ -118,58 +140,43 @@ var jsonArray = null;
 				var str = ""
 				var tdArr = new Array();	// 배열 선언
 				var checkBtn = $(this);
-				var tbl = document.getElementById('sctable'); 
 				
-				var trlength = tbl.getElementsByTagName('tr').length;
-				
-				var tr = checkBtn.parent().parent().siblings();
-				var td = null;
-				for(var i = 0; i<trlength-1;i++){
-					$(".nr").next();
-					
-					var categoryname = td.eq(1).text();
-					var majorname = td.eq(2).text();
-					var sid = td.eq(3).text(); 
-					var sname = td.eq(4).text();
-					var retake = td.eq(5).text();
-					var atndnScore = td.eq(6).find('input[type="text"]').val();
-					var midScore = td.eq(7).find('input[type="text"]').val();
-					var finalScore = td.eq(8).find('input[type="text"]').val();
-					var totalScore = td.eq(9).find('input[type="text"]').val();
-					var grade = td.eq(10).find('select[name="selectg"] option:selected').val();
-					
-					tr.next();
+				var tr = checkBtn.parent().parent();
+				var td = tr.children();
+
+				var categoryname = td.eq(1).text();
+				var majorname = td.eq(2).text();
+				var sid = td.eq(3).text(); 
+				var sname = td.eq(4).text();
+				var retake = td.eq(5).text();
+				var atndnScore = td.eq(6).find('input[type="text"]').val();
+				var midScore = td.eq(7).find('input[type="text"]').val();
+				var finalScore = td.eq(8).find('input[type="text"]').val();
+				var totalScore = td.eq(9).find('input[type="text"]').val();
+				var grade = td.eq(10).find('select[name="selectg"] option:selected').val();
+
 				dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
 					totalScore, grade];
 				jsonArray = JSON.parse(JSON.stringify(dataArray));
 				alert(dataArray);
-				
-			}
- });
+			});
 
  var keys = ['순번','계열','학과','학번','성명','재수강여부','출석점수', '중간점수', '기말점수', '총점수', '등급'];
- 
- 
-
- 
- 
- 
- 
-/*  $(".abc").click(function(){ 
+ $(".abc").click(function(){ 
 		//배열에 있는 객체 값 확인
 		alert(dataArray);
 		alert(JSON.stringify(dataArray)); 
 	   //테이블 요소 구하기
-	     
+	   var tbl = document.getElementById('sctable');   
 
 	   //테이블 요소의 제일 마지막 <tr> 구하기 즉, 추가한 행 구하기
-	                        
+	   var trlangth=tbl.getElementsByTagName('tr').length;                     
 
 	   
 	   //alert("값있는 행은 총몇줄?="+(trlangth-1));
 	     alert("users 객체 개수는?="+ dataArray.length);
 	      
-	 	
+	 	for(var i = 0; i<trlangth-1;i++){
 			//값이 있는 첫번째 행의 tr 요소를 가져 온다. 
 	         var selecttrs = tbl.getElementsByTagName('tr')[i+1];
 			 
@@ -195,7 +202,7 @@ var jsonArray = null;
 				//배열에 있는 객체 값 확인
 	            alert(JSON.stringify(dataArray));
 	         
-	} ); */
+	} );
 //최근글 3개 
 /* $(function(){
 	$("#tg").click(function(){

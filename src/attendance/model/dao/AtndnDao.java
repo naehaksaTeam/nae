@@ -217,7 +217,7 @@ public class AtndnDao {
 
 		// this week 를 날짜로 구하는게 더 나을거같기두
 		String query = "update attendance set ? = ? where lcode = ? and studentid in (" + params + ") ";
-
+		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, thisweek);
