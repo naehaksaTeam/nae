@@ -78,7 +78,7 @@ hr { clear: both; }
 <header>
 
 
-<h1 id="logo"><a href="/beet/index.jsp">logo</a></h1>
+<h1 id="logo"><a href="../main/main.jsp">logo</a></h1>
 <br>
 		
 	

@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);
 
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("views/main/main.jsp");
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "로그인 실패 또는 로그인 제한상태입니다!");
