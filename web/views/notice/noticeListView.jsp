@@ -21,7 +21,7 @@
 <title>test1</title>
 <script type="text/javascript">
 	function noticeInsertForm() {
-		location.href = "/beet/views/major/majorInsertView.jsp";
+		location.href = "/beet/views/notice/noticeInsertView.jsp";
 	}
 </script>
 </head>
