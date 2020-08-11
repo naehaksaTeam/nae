@@ -36,7 +36,6 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String userid = request.getParameter("userid");
 		String userpwd = request.getParameter("userpwd");
-		System.out.println(userid + ", " + userpwd);
 
 		MemberService mservice = new MemberService();
 		Member loginMember = mservice.loginCheck(userid, userpwd);
@@ -45,8 +44,7 @@ public class LoginServlet extends HttpServlet {
 		if (loginMember != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);
-
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("views/main/main.jsp");
 		} else {
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "로그인 실패 또는 로그인 제한상태입니다!");

@@ -45,7 +45,7 @@
 <header>
 <%@ include file="../common/header.jsp"%>
 </header>
-<%@ include file="/views/common/sessionChk.jsp" %>
+<%@ include file="../common/side.jsp"%>
 <br><br><br><br><br>
 <div align="center">
 <button onclick="javascript:location.href='/beet/selectaball'">전 체 조 회</button>

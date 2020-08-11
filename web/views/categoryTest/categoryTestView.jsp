@@ -44,6 +44,9 @@
 </style>
 </head>
 <body>
+<%@ include file="../common/header.jsp"%>
+</header>
+<%@ include file="../common/side.jsp"%>
 <br>
 <h1>CATEGORY TEST PAGE</h1>
 <div align="center">

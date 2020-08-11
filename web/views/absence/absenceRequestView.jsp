@@ -3,7 +3,6 @@
 <%@ page import="student.model.vo.Member" %>  
 <%
 	ArrayList<Absence> list = (ArrayList<Absence>)request.getAttribute("list");
-	Member m = (Member)session.getAttribute("loginMember");
 %>
     
   
@@ -50,19 +49,20 @@
 <header>
 <%@ include file="../common/header.jsp"%>
 </header>
+<%@ include file="../common/side.jsp"%>
 <div align="center">
 <h1>TEST BUTTON</h1>
 <button onclick="javascript:location.href='/beet/selectaball'">ABSENCE MANAGEMENT ADMIN</button>
 <button onclick="javascript:location.href='/beet/selectca'">CATEGORY VIEW</button>
-<button onclick="javascript:location.href='/beet/selectbenest?studentid<%=m.getId() %>'">SCHOLARSHIP, SSBENEFITST SELECT STU</button>
+<button onclick="javascript:location.href='/beet/selectbenest?studentid<%=mm.getId() %>'">SCHOLARSHIP, SSBENEFITST SELECT STU</button>
 <button onclick="javascript:location.href='/beet/selectss'">SCHOLARSHIP MANAGEMENT ADMIN</button>
 <button onclick="javascript:location.href='/beet/views/ssbenefit/ssbenefitstManagementView.jsp'">SSBENEFIT MANAGEMENT ADMIN</button>
 </div>
 <br><br><br><br>
 <hr>
-	<button type="submit"  onclick="javascript: location.href='/beet/selectab?studentid=<%=m.getId()%>'"> 조 회 </button>
+	<button type="submit"  onclick="javascript: location.href='/beet/selectab?studentid=<%=mm.getId()%>'"> 조 회 </button>
 <h1 align="center">조회 테이블</h1>
-<h2 align="center"><%=m.getName() %> 님의 신청내역 조회</h2>
+<h2 align="center"><%=mm.getName() %> 님의 신청내역 조회</h2>
 <form method="post" name="requestform">
 <% if(list == null){ %>
 <table class="tg"><th>신청 내역이 없습니다</th></table>
@@ -77,7 +77,7 @@
 	</tr>
 	<% } %>
 	</table>
-	<input type="submit" value="조 회" onclick="javascript: requestform.action='/beet/selectab?studentid=<%=m.getId()%>'">
+	<input type="submit" value="조 회" onclick="javascript: requestform.action='/beet/selectab?studentid=<%=mm.getId()%>'">
 	<input type="submit" value="신청취소" onclick="javascript: requestform.action='/beet/deleteab'">
 <% } %>
 </form>
@@ -91,8 +91,8 @@
 <div>
 <table align="center" width="1000" height="550" style="font-size: 15pt; background-color: pink;">
 
-<% if(m.getAbsencewhether().equals("Y") && m.getAbsencecount() <= 6){ %>
-<tr><th>현재 <%=m.getName() %>님은 휴학상태입니다</th></tr>
+<% if(mm.getAbsencewhether().equals("Y") && mm.getAbsencecount() <= 6){ %>
+<tr><th>현재 <%=mm.getName() %>님은 휴학상태입니다</th></tr>
 <tr>
 	<td align="center">
 		안 내 사 항 
@@ -108,12 +108,12 @@
 	</td>
 </tr>
 <tr><td align="center">
-		<% if(m.getAbsencecount() != 6){ %>
-		<button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=m.getId()%>'">휴학신청</button>&nbsp;&nbsp;
+		<% if(mm.getAbsencecount() != 6){ %>
+		<button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=mm.getId()%>'">휴학신청</button>&nbsp;&nbsp;
 		<% } %>
-		<button name="value" value="b" onclick="javascript:href='insertab?value=a&studentid=<%=m.getId()%>'">복학신청</button></td></tr>
+		<button name="value" value="b" onclick="javascript:href='insertab?value=a&studentid=<%=mm.getId()%>'">복학신청</button></td></tr>
 <% }else{ %>
-<tr><th>현재 <%=m.getName() %>님은 재학상태입니다</th></tr>
+<tr><th>현재 <%=mm.getName() %>님은 재학상태입니다</th></tr>
 <tr>
 	<td align="center">
 		안내사항 
@@ -129,7 +129,7 @@
 	</td>
 </tr>
 
-<tr><td align="center"><button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=m.getId()%>'">휴학신청</button></td></tr>
+<tr><td align="center"><button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=mm.getId()%>'">휴학신청</button></td></tr>
 <% } %>
 </table>
 </div>

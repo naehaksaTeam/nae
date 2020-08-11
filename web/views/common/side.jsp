@@ -1,67 +1,89 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title> 세로 메뉴</title>
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
 <style>
-    body {
-        margin:opx auto;
-        padding: 0;
-        font-style: italic;
-        font-size:0.9em;
+body {
+    font-family: "Lato", sans-serif;
 }
-    ul#sidebar {
-        width: 200px;
-        text-indent: 10px;
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 }
-    ul#sidebar , ul#sidebar ul {
-        margin:0;
-        padding:0;
-        list-style:none;
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
-    li.group {
-        margin-bottom: 3px;
+
+.sidenav a:hover {
+    color: #f1f1f1;
 }
-    li.group div.title {
-        height: 35px;
-        line-height: 35px;
-        background:gray;
-        cursor:pointer;
-        color:white;
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
-    ul.sub li {
-        margin-bottom: 2px;
-        height:35px;
-        line-height:35px;
-        background:#f4f4f4;
-        cursor:pointer;
-}
-    ul.sub li a {
-        display: block;
-        width: 100%;
-        height:100%;
-        text-decoration:none;
-        color:#000;
-}
-    ul.sub li:hover {
-        background:#4d4d4d;
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 </style>
+
+
+
+</head>
 <body>
+
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
+</div>
+
+<h2>Animated Sidenav Example</h2>
+<p>Click on the element below to open the side navigation menu.</p>
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+ 
+
+
+
+<script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+
+
     
-    <ul id="sidebar">
-        <li class="group">
-            <div class="title">title 1</div>
-            <ul class="sub">
-                <li><a href="#">sub1</a></li>
-                <li><a href="#">sub1</a></li>
-                <li><a href="#">sub1</a></li>
-            </ul>
-        </li>      
-    </ul>
 </body>
 </html>

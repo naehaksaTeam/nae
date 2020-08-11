@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="student.model.vo.Member"%>
 <%
-	Member m = (Member)session.getAttribute("loginMember"); 
+	Member mm = (Member)session.getAttribute("loginMember");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,22 +77,22 @@ header ul#menubar li a:hover{
 hr { clear: both; }
 </style>
 
-<% if(m != null){ %>
 <header>
 
 
-<h1 id="logo"><a href="/beet/index.jsp">logo</a></h1>
+<h1 id="logo"><a href="/beet/views/main/main.jsp">logo</a></h1>
 <br>
 		
-	
-	<TD align=right style="PADDING:3px 10px 0 0">
-		<ul id="bar">
-			<td class=""><a href="/beet/logout.cp">로그아웃 </a></td>
-			<td class="time" id="sessionTimer" style="color:#8f8f8f;">--:--:-- </td>
+	<% if(mm != null){ %>
+	<table align=right style="PADDING:3px 10px 0 0">
+		<tr id="bar">
+			<td ><%=mm.getName() %> 님 환영합니다 &nbsp;</td>
+			<td class=""><a href="/beet/logout.cp">로그아웃 &nbsp;</a></td>
+			<td class="time" id="sessionTimer" style="color:#8f8f8f;">--:--:-- &nbsp;</td>
         	<td class="refresh" onclick="javascript:sessionTimeRefresh();"><a href="#skipnavi"> 연장 </a></td>     			
-		</ul>	
-	</TD>
-	
+		</tr>	
+	</table>
+	<% } %>
 	
 <br>
 <%-- <% if() {  //관리자 %>
@@ -126,7 +127,6 @@ hr { clear: both; }
 <%-- <% } %> --%>
 
 </header>
-<% } %>
 
 </body>
 </html>

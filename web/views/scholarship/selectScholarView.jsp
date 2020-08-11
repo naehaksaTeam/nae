@@ -43,19 +43,14 @@ display:inline-block;
 	padding: 10px 5px;
 	word-break: normal;
 }
-aside,section{float:rignt;height:300px;padding:100px;}
-
 </style>
 </head>
 <body>
 <header>
 <%@ include file="/views/common/header.jsp" %>
 </header>
-<aside>
 <%@ include file="/views/common/side.jsp" %>
-</aside>
 
-<section>
 <div align="center" >
 <%-- <button onclick="javascript:location.href='/beet/selectbenest?studentid=<%=m.getId()%>'">나의 장학금 조회</button> --%>
 <h1 ><%=m.getName()%>님의 장학금 조회</h1>
@@ -85,7 +80,7 @@ aside,section{float:rignt;height:300px;padding:100px;}
 </table>
 <br><br><br>
 </div>
-</section>
+
 <footer>
 <%@ include file="/views/common/footer.jsp" %>
 </footer>
