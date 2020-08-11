@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import lecture.model.vo.ApplyReception;
 import lecture.model.vo.Lecture;
 import lecture.model.vo.Major;
 import lecture.model.vo.Rest;
@@ -756,6 +757,30 @@ public class LectureDao {
 		}
 		
 		return list;
+	}
+
+
+	public int preapplyLecture(Connection conn, ApplyReception ar) {
+		// 수강신청버튼 lapply테이블에 추가
+		int rst = 0;
+		PreparedStatement pstmt = null;
+		String query = "insert into lapplication values ('r1234','1001','3221232','222222','15','101',default)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, ar.getReceptionno());
+			pstmt.setString(2, ar.getLcode());
+			pstmt.setString(3, ar.getId());
+			pstmt.setString(4, ar.getSemester());
+			pstmt.setString(5, ar.getLpersonnel());
+			pstmt.setString(6, ar.getRoom());
+			
+			rst = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rst;
 	}
 
 }

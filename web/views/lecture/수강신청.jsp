@@ -94,6 +94,9 @@ display:none;
 <% if((session.getAttribute(l.getLname())) == null ){ %>
 <form action="/beet/lapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
 <button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn">수강신청</button>
+<input type="text" style="display:none;" name="room" value="<%= l.getRoom() %>">
+<input type="text" style="display:none;" name="lcode" value="<%= l.getLcode() %>">
+<input type="text" style="display:none;" name="lpersonnel" value="<%= l.getCapacity() %>">
 </form>
 <% }else if((session.getAttribute(l.getLname())).equals("no")){ %>
 <b>마감</b>

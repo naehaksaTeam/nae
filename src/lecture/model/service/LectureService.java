@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import lecture.model.dao.LectureDao;
+import lecture.model.vo.ApplyReception;
 import lecture.model.vo.Lecture;
 import lecture.model.vo.Major;
 import lecture.model.vo.Rest;
@@ -193,19 +194,27 @@ public class LectureService {
 		return list;
 	}
 
-	public int applyLecture(String lname, String name) {
+	public int applyLecture(String lname, String name,ApplyReception ar) {
 		//수강신청버튼구현
 		int r = 0;
 		Connection conn = getConnection();
-//		r = rdao.preapplyLecture
-		
-		r = ldao.applyLecture(conn,lname,name);
+		r = ldao.preapplyLecture(conn,ar);
 		if(r > 0) {
 			commit(conn);
+			close(conn);
+			conn = getConnection();
+			r = ldao.applyLecture(conn,lname,name);
+			if(r > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
 		}else {
 			rollback(conn);
+			close(conn);
 		}
-		close(conn);
+		
 		return r;
 	}
 

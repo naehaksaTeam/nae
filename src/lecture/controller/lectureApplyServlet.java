@@ -1,7 +1,9 @@
 package lecture.controller;
 //수강신청
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,7 +21,7 @@ import lecture.model.vo.Lecture;
  */
 @WebServlet("/lapply")
 public class lectureApplyServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3433454344L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,16 +41,32 @@ public class lectureApplyServlet extends HttpServlet {
 		String lname = request.getParameter("lname");
 		String name = request.getParameter("who");
 		
-//		ApplyReception ar = new ApplyReception();
-//		ar.setId(name);
-//		ar.setLcode(list.get);
-//		ar.setLpersonnel(lpersonnel);
-//		ar.setReceptionno(receptionno);
-//		ar.setRetake(retake);
-//		ar.setRoom(room);
-//		ar.setSemester(semester);
+		SimpleDateFormat yyyy = new SimpleDateFormat ("yyyy");
+		SimpleDateFormat mm = new SimpleDateFormat ("MM");
+		String year = ("" + yyyy).substring(2,4); 
+		String month;
+		if(Integer.parseInt("" + mm) <  6) {
+			month = "01";
+		}else {
+			month = "02";
+		}
+		Random ran = new Random();
+		String serial = "" + (ran.nextInt(998) + 1);
 		
-		int r = new LectureService().applyLecture(lname,name);//수강신청버튼
+		String receptionno = "r" + year + month + serial;
+				
+//		java.util.Date time = new java.util.Date();		
+//		String time1 = format1.format(time);
+		
+		ApplyReception ar = new ApplyReception();
+		ar.setId(name);
+		ar.setLcode(request.getParameter("lcode"));
+		ar.setLpersonnel(request.getParameter("lpersonnel"));
+		ar.setReceptionno(receptionno);
+		ar.setRoom(request.getParameter("room"));
+		ar.setSemester(yyyy + month);
+		
+		int r = new LectureService().applyLecture(lname,name,ar);//수강신청버튼
 		request.setAttribute("resultForSession", lname);//신청여부 구분하기
 		
 		RequestDispatcher view = null;
