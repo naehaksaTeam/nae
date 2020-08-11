@@ -44,9 +44,9 @@ public class ScholarshipService {
 		return result;
 	};
 	
-	public int updateScholarship(Scholarship ss, String originname) {
+	public int updateScholarship(Scholarship ss) {
 		Connection conn = getConnection();
-		int result = ssdao.updateScholarship(conn, ss, originname);
+		int result = ssdao.updateScholarship(conn, ss);
 		
 		if(result > 0) {
 			commit(conn);

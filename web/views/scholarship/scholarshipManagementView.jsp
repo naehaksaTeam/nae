@@ -45,63 +45,63 @@
 <header>
 <%@ include file="../common/header.jsp"%>
 </header>
+<%@ include file="../common/side.jsp"%>
 <div align="center">
 <h1>장학금 관리 페이지</h1>
 <% if(message != null){ %>
-	message
+	<%=message %>
 <% } %>
 <button onclick="javascript:location.href='/beet/selectss'">장학금 조회</button>
-<form>
+<form method="post" name="ssselectform">
 <table class="tg">
-<tr><th colspan="3">장학금 조회</th></tr>
+
 <% if(list != null){ %>
+	<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th>
 	<% for(Scholarship ss : list){ %>
-	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname()%>">장학금명</th><td>수혜조건</td><td>장학금액</td>
-	<tr><th><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
+	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname()%>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
 	<% } %>
 <% } %>
 </table>
-	<input type="submit" value="삭제하기" onclick="javascript: ssform.action='/beet/deletess'">
-	<input type="submit" value="수정하기" onclick="javascript: ssform.action='/beet'">
+	<input type="submit" value="삭제하기" onclick="javascript: ssselectform.action='/beet/deletess'">
+	<input type="submit" value="수정하기" onclick="javascript: ssselectform.action='/beet'">
 </form>
 
 <br><br><br><br>
 
-<form method="post" name="ssform">
+<form method="post" action="/beet/updatess">
+
 <table class="tg">
-<tr><th colspan="3">수정테이블</th> </tr>
 <% if(list != null){ %>
+<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th><tr>
 	<% for(Scholarship ss : list){ %>
 	<tr>
-		<th><input type="radio" name="originname" value="<%=ss.getSsname() %>">
-			<input type="text" name="ssname"><%=ss.getSsname() %>
+		<th><input type="radio" name="ssname" value="<%=ss.getSsname() %>">
+			<%=ss.getSsname() %>
 		</th>
-		<td><%=ss.getBenefitcon() %></td>
-		<td><input type="number" name="value"><%=ss.getValue() %></td>
+		<td><input type="text" name="benefitcon"></td>
+		<td><input type="number" name="value"></td>
 	</tr>
 	<% } %>
-	<tr><td colspan="3"><input type="submit" value="장학금 수정"></td></tr>
 <% } %>
 </table>
-	<input type="submit" value="삭제하기" onclick="javascript: ssform.action='/beet'">
-	<input type="submit" value="삭제하기" onclick="javascript: ssform.action='/beet'">
+	<input type="submit" id="update" value="수정하기">
 </form>
 
 <br><br><br><br>
 
-<!-- <form action="javascript:location.href='/beet/insertss'" method="post">
-<table>
-<tr><th colspan="2">추가테이블</th></tr>
+<form action="javascript:location.href='/beet/insertss'" method="post">
+<table class="tg">
 <tr><th>장학금명</th><td><input type="text" name="ssname"></td></tr>
 <tr><th>수혜조건</th><td><input type="text" name="benefitcon"></td></tr>
 <tr><th>장학금액</th><td><input type="number" name="value"></td></tr>
 <tr><td colspan="2" align="center"><input type="submit" value="장학금 추가"></td></tr>
 </table>
-</form> -->
+</form>
 
 </div>
 <footer>
 <%@ include file="../common/footer.jsp"%>
 </footer>
+
 </body>
 </html>

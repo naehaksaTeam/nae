@@ -21,18 +21,26 @@ public class UpdateScholarshipServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Scholarship ss = new Scholarship();
-		String originname = request.getParameter("originname");
+		String ssname = request.getParameter("ssname");
 		
-		ss.setSsname(request.getParameter("ssname"));
+		System.out.println(ssname);
+		System.out.println(request.getParameter("benefitcon"));
+		System.out.println(request.getParameter("value"));
+		
+
+		ss.setSsname(ssname);
+		ss.setBenefitcon(request.getParameter("benefitcon"));
 		ss.setValue(Integer.parseInt(request.getParameter("value")));
-		
-		int result = new ScholarshipService().updateScholarship(ss, originname);
-		
+
+		int result = new ScholarshipService().updateScholarship(ss);
+		RequestDispatcher view = null;
 		if(result > 0) {
-			response.sendRedirect("views/scholarship/scholarshipManagementView.jsp");
+			view = request.getRequestDispatcher("selectss");
+			request.setAttribute("message", ssname + "수정에 성공하였습니다");
+			view.forward(request, response);
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", originname + "수정에 실패하였습니다");
+			view = request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", ssname + "수정에 실패하였습니다");
 			view.forward(request, response);
 		}
 		

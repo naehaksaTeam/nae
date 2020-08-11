@@ -78,16 +78,16 @@ public class ScholarshipDao {
 		return result;
 	}
 
-	public int updateScholarship(Connection conn, Scholarship ss, String originname) {
+	public int updateScholarship(Connection conn, Scholarship ss) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query="update scholarship set ssname= ?, value= ? where ssname = ?";
+		String query="update scholarship set benefitcon= ?, value= ? where ssname = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, ss.getSsname());
+			pstmt.setString(1, ss.getBenefitcon());
 			pstmt.setInt(2, ss.getValue());
-			pstmt.setString(3, originname);
+			pstmt.setString(3, ss.getSsname());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {

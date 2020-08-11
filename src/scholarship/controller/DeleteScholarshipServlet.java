@@ -27,7 +27,7 @@ public class DeleteScholarshipServlet extends HttpServlet {
 		int result = new ScholarshipService().deleteScholarship(ssname);
 		RequestDispatcher view = null;
 		if(result > 0) {
-			view = request.getRequestDispatcher("/beet/selectss");
+			view = request.getRequestDispatcher("selectss");
 			request.setAttribute("message", ssname + "삭제에 성공하였습니다");
 			view.forward(request, response);
 		}else {
