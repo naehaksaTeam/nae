@@ -182,4 +182,39 @@ public class NoticeDao {
 		return list;
 	}
 	
+	public ArrayList<Notice> selectNewTop5(Connection conn) {
+		ArrayList<Notice> list = new ArrayList<Notice>();
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query="SELECT * FROM (SELECT ROWNUM RNUM, NOTICENO, NOTICETITLE, NOTICEDATE FROM (SELECT * FROM NOTICE ORDER BY NOTICEDATE DESC)) WHERE RNUM >= 1 AND RNUM <= 5";  
+				
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			while(rset.next()) {
+				
+				Notice notice = new Notice();
+				
+				notice.setNoticeNo(rset.getInt("NOTICENO"));
+				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
+				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
+				
+				
+				list.add(notice);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+			close(rset);
+		}
+		System.out.println("dao"+ list);
+		return list;
+	}
+	
+	
 }
