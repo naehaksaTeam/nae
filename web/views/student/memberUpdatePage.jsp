@@ -108,9 +108,9 @@
 <tr>
 	<th colspan="2">
 		<a href="javascript:history.go(-1);">이전 페이지로 이동</a> &nbsp; 
-		<input type="submit" value="수정하기"> &nbsp; 
+		<button onclick="moveUpdateView();">확인</button> &nbsp;
 		<input type="reset" value="수정취소"> &nbsp; 	
-		<input type="submit" value="회원탈퇴">	
+		<button onclick="sendDelete();">탈퇴하기</button> &nbsp; 
 		<a href="index.jsp">시작 페이지로</a>
 	</th>	
 </tr>

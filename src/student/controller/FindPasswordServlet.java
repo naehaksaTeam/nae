@@ -52,6 +52,7 @@ public class FindPasswordServlet extends HttpServlet {
 					member = null;
 				}
 				if (member != null) {
+					
 					response.sendRedirect("views/student/afterfindPassword.jsp");
 					
 				} else {
