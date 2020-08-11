@@ -518,6 +518,7 @@ public class LectureDao {
 		String query2 = "select count(*) c from " + tc + lname;
 		String query3 = "insert into " + tc + lname + " values ('" + name + "')";
 		String chk = "select * from " + tc + lname;
+		
 		int n1 = 0;
 		int n2 = 0;
 		try {
@@ -764,7 +765,7 @@ public class LectureDao {
 		// 수강신청버튼 lapply테이블에 추가
 		int rst = 0;
 		PreparedStatement pstmt = null;
-		String query = "insert into lapplication values ('r1234','1001','3221232','222222','15','101',default)";
+		String query = "insert into lapplication values (?,?,?,?,?,?,default)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, ar.getReceptionno());

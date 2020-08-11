@@ -9,7 +9,7 @@
 </head>
 <body>
 <% if(m == null){ %>
-<form action="/beet/login.cp">
+<form action="/beet/login.cp" method="post">
 아이디:<input type="text" name="userid">
 비밀번호:<input type="password" name="userpwd">
 <br><button type="submit" value="로그인">로그인</button>

@@ -198,12 +198,12 @@ public class LectureService {
 		//수강신청버튼구현
 		int r = 0;
 		Connection conn = getConnection();
-		r = ldao.preapplyLecture(conn,ar);
+		r = ldao.applyLecture(conn,lname,name);
 		if(r > 0) {
 			commit(conn);
 			close(conn);
 			conn = getConnection();
-			r = ldao.applyLecture(conn,lname,name);
+			r = ldao.preapplyLecture(conn,ar);
 			if(r > 0) {
 				commit(conn);
 			}else {
@@ -214,8 +214,10 @@ public class LectureService {
 			rollback(conn);
 			close(conn);
 		}
-		
+	
 		return r;
+	
+		
 	}
 
 	public ArrayList<Rest> selectRest() {
