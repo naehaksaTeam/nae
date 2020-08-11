@@ -4,7 +4,6 @@
 <%@page import="java.util.Calendar"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <% Member m = (Member)session.getAttribute("loginMember"); %>
-
 <%
     request.setCharacterEncoding("utf-8");
    
@@ -236,8 +235,6 @@ $(function(){
 
 <body>
 
-
-
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 <%-- <%@ include file="/views/common/sessionChk.jsp" %> --%>
 <% if(m == null){ %>
@@ -254,7 +251,7 @@ $(function(){
 
   <button onclick="javascript:location.href='views/lecture/menu.jsp'">수강신청 메뉴테스트</button>
 <button onclick="javascript:location.href='views/attendance/sub4main.jsp'">출결 목록 테스트</button>
-<button onclick="javascript:location.href='views/absence/absenceRequestView.jsp'">학생신청페이지</button>
+<button onclick="javascript:location.href='/beet/selectab?studentid=<%=m.getId()%>'">학생신청페이지</button>
 <button onclick="javascript:location.href='/beet/nlist'">공지사항</button>
 <button onclick="javascript:location.href='views/student/enrollPage.html'">회원가입</button>
 <button onclick="javascript:location.href='views/student/findId.jsp'">아이디찾기</button>

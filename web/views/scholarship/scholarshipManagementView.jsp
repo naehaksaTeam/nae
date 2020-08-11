@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="scholarship.model.vo.Scholarship, java.util.ArrayList"%>
 <%
 	ArrayList<Scholarship> list = (ArrayList<Scholarship>)request.getAttribute("list");
+	String message = (String)request.getAttribute("message");
 %>   
  
 <!DOCTYPE html>
@@ -9,6 +10,36 @@
 <head>
 <meta charset="UTF-8">
 <title>beet</title>
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: inherit;
+	text-align: left;
+	vertical-align: top;
+}
+.tg td {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+.tg th {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: bolder;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+</style>
 </head>
 <body>
 <header>
@@ -16,42 +47,35 @@
 </header>
 <div align="center">
 <h1>장학금 관리 페이지</h1>
-
+<% if(message != null){ %>
+	message
+<% } %>
 <button onclick="javascript:location.href='/beet/selectss'">장학금 조회</button>
-<table>
+<form>
+<table class="tg">
 <tr><th colspan="3">장학금 조회</th></tr>
 <% if(list != null){ %>
 	<% for(Scholarship ss : list){ %>
+	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname()%>">장학금명</th><td>수혜조건</td><td>장학금액</td>
 	<tr><th><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
 	<% } %>
 <% } %>
 </table>
-
-
-<br><br><br><br>
-
-<form action="/beet/deletess" method="post">
-<table>
-<tr><th colspan="3">삭제테이블</th></tr>
-<% if(list != null){ %>
-	<% for(Scholarship ss : list){ %>
-	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname() %>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
-	<% } %>
-	<tr><td colspan="3"><input type="submit" value="장학금 삭제"></td></tr>
-<% } %>
-</table>
+	<input type="submit" value="삭제하기" onclick="javascript: ssform.action='/beet/deletess'">
+	<input type="submit" value="수정하기" onclick="javascript: ssform.action='/beet'">
 </form>
 
 <br><br><br><br>
 
-<form action="/beet/updatess" method="post">
-
-<table>
+<form method="post" name="ssform">
+<table class="tg">
 <tr><th colspan="3">수정테이블</th> </tr>
 <% if(list != null){ %>
 	<% for(Scholarship ss : list){ %>
 	<tr>
-		<th><input type="radio" name="originname" value="<%=ss.getSsname() %>"><input type="text" name="ssname"><%=ss.getSsname() %></th>
+		<th><input type="radio" name="originname" value="<%=ss.getSsname() %>">
+			<input type="text" name="ssname"><%=ss.getSsname() %>
+		</th>
 		<td><%=ss.getBenefitcon() %></td>
 		<td><input type="number" name="value"><%=ss.getValue() %></td>
 	</tr>
@@ -59,7 +83,8 @@
 	<tr><td colspan="3"><input type="submit" value="장학금 수정"></td></tr>
 <% } %>
 </table>
-
+	<input type="submit" value="삭제하기" onclick="javascript: ssform.action='/beet'">
+	<input type="submit" value="삭제하기" onclick="javascript: ssform.action='/beet'">
 </form>
 
 <br><br><br><br>

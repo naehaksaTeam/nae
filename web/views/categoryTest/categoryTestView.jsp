@@ -12,7 +12,36 @@
 <head>
 <meta charset="UTF-8">
 <title>beet</title>
-
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: inherit;
+	text-align: left;
+	vertical-align: top;
+}
+.tg td {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+.tg th {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: bolder;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+</style>
 </head>
 <body>
 <br>
@@ -23,7 +52,7 @@
 <br>
 <% if(list != null){ %>
 	<form method="post" name="cateform">
-	<table style="border: solid 1px; background-color: teal;">
+	<table style="border: solid 1px; background-color: teal; width: 150px;"  class="tg">
 	<tr><th>계열명</th></tr>
 	<% for(Category category : list){ %>
 		<tr><td><input type="radio" name="catename" value="<%= category.getCategoryname() %>"><%= category.getCategoryname() %></td></tr>

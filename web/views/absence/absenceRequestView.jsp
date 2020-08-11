@@ -3,6 +3,7 @@
 <%@ page import="student.model.vo.Member" %>  
 <%
 	ArrayList<Absence> list = (ArrayList<Absence>)request.getAttribute("list");
+	Member m = (Member)session.getAttribute("loginMember");
 %>
     
   
@@ -49,13 +50,12 @@
 <header>
 <%@ include file="../common/header.jsp"%>
 </header>
-<%@ include file="/views/common/sessionChk.jsp" %>
 <div align="center">
 <h1>TEST BUTTON</h1>
 <button onclick="javascript:location.href='/beet/selectaball'">ABSENCE MANAGEMENT ADMIN</button>
 <button onclick="javascript:location.href='/beet/selectca'">CATEGORY VIEW</button>
-<button onclick="javascript:location.href='/beet/selectss'">SCHOLARSHIP, SSBENEFITST SELECT STU</button>
-<button onclick="javascript:location.href='/beet/views/scholarship/scholarshipManagementView.jsp'">SCHOLARSHIP MANAGEMENT ADMIN</button>
+<button onclick="javascript:location.href='/beet/selectbenest?studentid<%=m.getId() %>'">SCHOLARSHIP, SSBENEFITST SELECT STU</button>
+<button onclick="javascript:location.href='/beet/selectss'">SCHOLARSHIP MANAGEMENT ADMIN</button>
 <button onclick="javascript:location.href='/beet/views/ssbenefit/ssbenefitstManagementView.jsp'">SSBENEFIT MANAGEMENT ADMIN</button>
 </div>
 <br><br><br><br>

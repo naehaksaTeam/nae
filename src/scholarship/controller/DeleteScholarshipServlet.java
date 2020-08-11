@@ -25,11 +25,13 @@ public class DeleteScholarshipServlet extends HttpServlet {
 		String ssname = request.getParameter("ssname");
 
 		int result = new ScholarshipService().deleteScholarship(ssname);
-		
+		RequestDispatcher view = null;
 		if(result > 0) {
-			response.sendRedirect("views/scholarship/scholarshipManagementView.jsp");
+			view = request.getRequestDispatcher("/beet/selectss");
+			request.setAttribute("message", ssname + "삭제에 성공하였습니다");
+			view.forward(request, response);
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", ssname + "삭제에 실패하였습니다");
 			view.forward(request, response);
 		}

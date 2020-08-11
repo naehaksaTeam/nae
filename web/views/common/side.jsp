@@ -9,7 +9,7 @@
 </head>
 <style>
     body {
-        margin:20px auto;
+        margin:opx auto;
         padding: 0;
         font-style: italic;
         font-size:0.9em;

@@ -15,6 +15,36 @@
         }
     }
 </script>
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: inherit;
+	text-align: left;
+	vertical-align: top;
+}
+.tg td {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+.tg th {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: bolder;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+</style>
 </head>
 <body>
 <header>
@@ -24,7 +54,7 @@
 <h1>장학금수혜학생 관리 페이지</h1>
 
 <button onclick="javascript:location.href='/beet/selectbenest'">장학금수혜학생 조회</button>
-<table>
+<table class="tg">
 <tr><th colspan="3">조회테이블</th></tr>
 <% if(list != null){ %>
 	<% for(Ssbenefitst ssst : list){ %>
@@ -38,7 +68,7 @@
 <br><br><br><br>
 
 <form action="javascript:location.href='/beet/deletebenest'" method="post">
-<table>
+<table class="tg">
 <tr><th colspan="3">삭제테이블</th></tr>
 <% if(list != null){ %>
 	<% for(Ssbenefitst ssst : list){ %>
@@ -54,7 +84,7 @@
 <br><br><br><br>
 
 <form action="javascript:location.href='/beet/updatebenest'" method="post">
-<table>
+<table class="tg">
 <tr><th colspan="3">수정테이블</th> </tr>
 <% if(list != null){ %>
 	<% for(Ssbenefitst ssst : list){ %>
@@ -75,7 +105,7 @@
 <br><br><br><br>
 
 <form action="javascript:location.href='/beet/insertbenest'" method="post">
-<table>
+<table class="tg">
 <tr><th colspan="2">추가테이블</th></tr>
 
 <tr><th>수혜학기</th><td><input class="form-control" type="number" placeholder="ex)202001" 
