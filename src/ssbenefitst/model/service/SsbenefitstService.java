@@ -77,4 +77,33 @@ public class SsbenefitstService {
 		close(conn);
 		return result;
 	};
+	
+	public ArrayList<String> selectRank(int term, int startrank, int endrank) {
+		Connection conn = getConnection();
+		ArrayList<String> studentlist = ssstdao.selectRank(conn, term, startrank, endrank);
+		close(conn);
+		return studentlist; 
+	};
+	
+	public int termPlus(int term){
+		Connection conn = getConnection();
+		int plusterm = ssstdao.termPlus(conn, term);
+		close(conn);
+		return plusterm;
+	};
+	
+	public int insertScoreRank(int plusterm, ArrayList<String> studentlist, String ssname) {
+		Connection conn = getConnection();
+		int result = 0;
+		for (String sid : studentlist) {
+			result = ssstdao.insertScoreRank(conn, plusterm, sid, ssname);
+		if (result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		}
+		return result;
+	};
+	
 }

@@ -5,7 +5,6 @@
 <%
 	ArrayList<Ssbenefitst> stlist = (ArrayList<Ssbenefitst>)request.getAttribute("listssst");
 	ArrayList<Scholarship> list = (ArrayList<Scholarship>)request.getAttribute("list");
-	Member m = (Member)session.getAttribute("loginMember");
 %>
 
 <!DOCTYPE html>
@@ -53,10 +52,10 @@ display:inline-block;
 
 <div align="center" >
 <%-- <button onclick="javascript:location.href='/beet/selectbenest?studentid=<%=m.getId()%>'">나의 장학금 조회</button> --%>
-<h1 ><%=m.getName()%>님의 장학금 조회</h1>
+<h1 ><%=mm.getName()%>님의 장학금 조회</h1>
 <table class="tg">
 
-<% if(stlist != null){ %>
+<% if(stlist.size() != 0){ %>
 	<tr><th>수혜학기</th><th>장학금명</th></tr>
 	<% for(Ssbenefitst ssst : stlist){%>
 	<tr><td><%=ssst.getBenefitterm()%></td><td><%=ssst.getSsname() %></td></tr>

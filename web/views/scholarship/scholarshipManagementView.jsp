@@ -62,10 +62,12 @@
 	<% } %>
 </table>
 	<input type="submit" value="삭제하기" onclick="javascript: ssselectform.action='/beet/deletess'">
+	<br>
+	<% if(s == null){ %>
 	<input type="submit" value="수정하기" onclick="javascript: ssselectform.action='/beet/selectoness'">
+	<% } %>
 </form>
 <br>
-
 
 <% if(s != null){ %>
 <form action="/beet/updatess">

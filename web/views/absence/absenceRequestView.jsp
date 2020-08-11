@@ -56,7 +56,7 @@
 <button onclick="javascript:location.href='/beet/selectca'">CATEGORY VIEW</button>
 <button onclick="javascript:location.href='/beet/selectbenest?studentid<%=mm.getId() %>'">SCHOLARSHIP, SSBENEFITST SELECT STU</button>
 <button onclick="javascript:location.href='/beet/selectss'">SCHOLARSHIP MANAGEMENT ADMIN</button>
-<button onclick="javascript:location.href='/beet/views/ssbenefit/ssbenefitstManagementView.jsp'">SSBENEFIT MANAGEMENT ADMIN</button>
+<button onclick="javascript:location.href='/beet/selectbeneall'">SSBENEFIT MANAGEMENT ADMIN</button>
 </div>
 <br><br><br><br>
 <hr>

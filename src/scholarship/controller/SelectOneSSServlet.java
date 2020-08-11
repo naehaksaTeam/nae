@@ -18,12 +18,10 @@ public class SelectOneSSServlet extends HttpServlet {
 
     public SelectOneSSServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String ssname = request.getParameter("ssname");
-		System.out.println("selectone 들어옴"+ssname);
 		Scholarship ss = new ScholarshipService().selectOneScholarship(ssname);
 		
 		RequestDispatcher view = null;
@@ -39,7 +37,6 @@ public class SelectOneSSServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
