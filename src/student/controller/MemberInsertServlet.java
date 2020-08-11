@@ -33,9 +33,7 @@ public class MemberInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 회원 정보 추가 처리용 컨트롤러
 		
-				
-				
-
+			
 		//1.
 		request.setCharacterEncoding("utf-8");
 		

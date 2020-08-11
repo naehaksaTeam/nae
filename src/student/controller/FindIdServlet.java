@@ -45,17 +45,14 @@ public class FindIdServlet extends HttpServlet {
 		member.setTreasure(request.getParameter("treasure"));
 
 		// 3.
-		String result  = new MemberService().FindIdMember(String name, String treasure);
+		
+		 String result  = new MemberService().FindIdMember(member);
 
 		// 4.
-		if (result > 0) {
-
-			response.sendRedirect("beet/views/student/findId.jsp");
-		} else {
+		
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "아이디찾기실패.");
 			view.forward(request, response);
-		}
 	}
 
 	/**

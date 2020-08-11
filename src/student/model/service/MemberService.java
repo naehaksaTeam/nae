@@ -57,13 +57,7 @@ public class MemberService {
 
 
 
-	public Member FindIdMember(String name, String treasure) {
-		Connection conn = getConnection();
-		Member member = mdao.FindIdMember(conn, name, treasure);
-		close(conn);
-		return member;
-		
-	}
+
 	
 	public int deleteMember(String id) {
 		Connection conn = getConnection();
@@ -75,5 +69,12 @@ public class MemberService {
 		}
 		close(conn);
 		return result;
+	}
+
+	public Member FindIdMember(Member member) {
+		Connection conn = getConnection();
+		Member member = mdao.FindIdMember(conn, name, treasure);
+		close(conn);
+		return member;
 	}
 }
