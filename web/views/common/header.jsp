@@ -46,7 +46,7 @@ header ul#menubar {
     width: 850px; 
                     
 	
-	
+
  }
 
 header ul#menubar li {
@@ -93,7 +93,6 @@ hr { clear: both; }
 		</tr>	
 	</table>
 	<% } %>
-	
 <br>
 <%-- <% if() {  //관리자 %>
 <ul id="menubar">

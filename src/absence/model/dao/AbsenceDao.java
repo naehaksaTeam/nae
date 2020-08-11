@@ -88,13 +88,13 @@ public class AbsenceDao {
 	public int insertAbsence(Connection conn, String value, String studentid) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "insert into absence values(concat( ?, (select max(to_number(substr(requestid,2)))+1 from absence where substr(requsetid,1,1) = ?)), ?, default, default, default)";
+		String query = "insert into absence values(concat( ?, (select max(to_number(substr(requestid,2)))+1 from absence where substr(requestid,1,1) = ?)), ?, default, default, default)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, value);
-			pstmt.setString(2, studentid);
-			pstmt.setString(3, value);
+			pstmt.setString(2, value);
+			pstmt.setString(3, studentid);
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {

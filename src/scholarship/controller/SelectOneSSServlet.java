@@ -12,43 +12,34 @@ import javax.servlet.http.HttpServletResponse;
 import scholarship.model.service.ScholarshipService;
 import scholarship.model.vo.Scholarship;
 
-@WebServlet("/updatess")
-public class UpdateScholarshipServlet extends HttpServlet {
+@WebServlet("/selectoness")
+public class SelectOneSSServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public UpdateScholarshipServlet() {
+    public SelectOneSSServlet() {
+        super();
+        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Scholarship ss = new Scholarship();
 		String ssname = request.getParameter("ssname");
-		String originname = request.getParameter("originname");
+		System.out.println("selectone 들어옴"+ssname);
+		Scholarship ss = new ScholarshipService().selectOneScholarship(ssname);
 		
-		System.out.println(ssname);
-		System.out.println(request.getParameter("benefitcon"));
-		System.out.println(request.getParameter("value"));
-		
-
-		ss.setSsname(ssname);
-		ss.setBenefitcon(request.getParameter("benefitcon"));
-		ss.setValue(Integer.parseInt(request.getParameter("value")));
-
-		int result = new ScholarshipService().updateScholarship(ss, originname);
 		RequestDispatcher view = null;
-		if(result > 0) {
+		if(ss != null) {
 			view = request.getRequestDispatcher("selectss");
-			request.setAttribute("message", ssname + "수정에 성공하였습니다");
+			request.setAttribute("ss", ss);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", ssname + "수정에 실패하였습니다");
+			request.setAttribute("message", "장학금 조회에 실패하였습니다");
 			view.forward(request, response);
 		}
-		
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

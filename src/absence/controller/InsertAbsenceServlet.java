@@ -26,13 +26,19 @@ public class InsertAbsenceServlet extends HttpServlet {
 		String value = request.getParameter("value");
 		String studentid = request.getParameter("studentid");
 		
+		System.out.println(value);
+		System.out.println(studentid);
+		
 		int result = new AbsenceService().insertAbsence(value, studentid); 
 
-		if(result >0) { //성공한다면 absenceRequestView.jsp }else {
-			response.sendRedirect("/beet/views/absence/absenceSelectView.jsp");
+		RequestDispatcher view = null;
+		if(result >0) { //성공한다면 		
+			view = request.getRequestDispatcher("selectab?studentid="+studentid);
+			request.setAttribute("message", " 신청되었습니다.");
+			view.forward(request, response);
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("error", "신청에러입니다");
+			view = request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", "신청에러입니다");
 			view.forward(request, response);
 		}
 	}

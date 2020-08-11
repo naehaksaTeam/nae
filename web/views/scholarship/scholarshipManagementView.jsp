@@ -3,6 +3,7 @@
 <%
 	ArrayList<Scholarship> list = (ArrayList<Scholarship>)request.getAttribute("list");
 	String message = (String)request.getAttribute("message");
+	Scholarship s = (Scholarship)request.getAttribute("ss");
 %>   
  
 <!DOCTYPE html>
@@ -52,19 +53,31 @@
 	<%=message %>
 <% } %>
 <button onclick="javascript:location.href='/beet/selectss'">장학금 조회</button>
+<% if(list != null){ %>
 <form method="post" name="ssselectform">
 <table class="tg">
-
-<% if(list != null){ %>
 	<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th>
 	<% for(Scholarship ss : list){ %>
 	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname()%>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
 	<% } %>
-<% } %>
 </table>
 	<input type="submit" value="삭제하기" onclick="javascript: ssselectform.action='/beet/deletess'">
-	<input type="submit" value="수정하기" onclick="javascript: ssselectform.action='/beet'">
+	<input type="submit" value="수정하기" onclick="javascript: ssselectform.action='/beet/selectoness'">
 </form>
+<br>
+
+
+<% if(s != null){ %>
+<form action="/beet/updatess">
+<input type="hidden" name="originname" value="<%=s.getSsname()%>">
+<input type="text" name="ssname" value="<%=s.getSsname()%>">
+<input type="text" name="benefitcon" value="<%=s.getBenefitcon()%>">
+<input type="number" name="value" value="<%=s.getValue()%>">
+<input type="submit" value="수정하기">
+</form>
+<% } %>
+<% } %>
+
 
 <br><br><br><br>
 
@@ -94,8 +107,8 @@
 <tr><th>장학금명</th><td><input type="text" name="ssname"></td></tr>
 <tr><th>수혜조건</th><td><input type="text" name="benefitcon"></td></tr>
 <tr><th>장학금액</th><td><input type="number" name="value"></td></tr>
-<tr><td colspan="2" align="center"><input type="submit" value="장학금 추가"></td></tr>
 </table>
+<input type="submit" value="장학금 추가">
 </form>
 
 </div>

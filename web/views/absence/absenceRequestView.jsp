@@ -109,9 +109,9 @@
 </tr>
 <tr><td align="center">
 		<% if(mm.getAbsencecount() != 6){ %>
-		<button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=mm.getId()%>'">휴학신청</button>&nbsp;&nbsp;
+		<button name="value" value="a" onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=mm.getId()%>'">휴학신청</button>&nbsp;&nbsp;
 		<% } %>
-		<button name="value" value="b" onclick="javascript:href='insertab?value=a&studentid=<%=mm.getId()%>'">복학신청</button></td></tr>
+		<button name="value" value="b" onclick="javascript:location.href='/beet/insertab?value=b&studentid=<%=mm.getId()%>'">복학신청</button></td></tr>
 <% }else{ %>
 <tr><th>현재 <%=mm.getName() %>님은 재학상태입니다</th></tr>
 <tr>
@@ -129,7 +129,7 @@
 	</td>
 </tr>
 
-<tr><td align="center"><button name="value" value="a" onclick="javascript:href='insertab?value=a&studentid=<%=mm.getId()%>'">휴학신청</button></td></tr>
+<tr><td align="center"><button name="value" value="a" onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=mm.getId()%>'">휴학신청</button></td></tr>
 <% } %>
 </table>
 </div>
