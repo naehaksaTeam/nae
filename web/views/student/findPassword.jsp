@@ -21,11 +21,10 @@
    <div class="col-md-10 inputbb">
          <button type="submit" class="btn btn-outline-secondary findbtn">찾기</button>
    </div>
-		</div>
+ </div>
 		<div class="row">
 			<div class="col-md-10 inputbb">
-				
-
+			
 			</div>
 		</div>
 	</form>

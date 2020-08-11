@@ -58,14 +58,6 @@ public class EnrollPageServlet extends HttpServlet {
 			
 				
 				
-				
-			
-			
-				
-				
-			
-
-				
 				//3. 서비스 객체 생성하고, 서비스 메소드를 이용해서 객체 전달하고
 				//처리 결과받기
 				

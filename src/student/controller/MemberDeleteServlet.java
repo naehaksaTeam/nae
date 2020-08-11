@@ -43,7 +43,7 @@ public class MemberDeleteServlet extends HttpServlet {
 				//4.
 				if(result > 0) {  //성공시
 					//탈퇴 성공시 로그아웃 처리함
-					response.sendRedirect("beet/views/index.jsp");
+					response.sendRedirect("index.jsp");
 				}else {  //실패시
 					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 					request.setAttribute("message", id + " 회원님의 탈퇴 요청 실패.");

@@ -77,4 +77,13 @@ public class MemberService {
 		close(conn);
 		return member;
 	}
+	
+	public Member FindPasswordMember(String id, String treasure) {
+		Connection conn = getConnection();
+		Member member = mdao.FindIdMember(conn, id, treasure);
+		close(conn);
+		return member;
+	}
+	
+	
 }
