@@ -26,7 +26,18 @@
 	<h1 align="center">전공조회</h1>
 	<br>
 
-	
+	<form action="/beet/msearch">
+		<select name="searchoption">
+
+			<option value="writer">학과코드</option>
+			<option value="date">학과명</option>
+			<option value="content">정원</option>
+			<option value="content">등록금</option>
+			<option value="content">구분명</option>
+		</select> <input type="text" name="search">
+		<button type="submit" value="로그인">검색</button>
+
+	</form>
 
 
 
@@ -54,6 +65,8 @@
 			<td><%=m.getCapacity()%></td>
 			<td><%=m.getTuition()%></td>
 			<td><%=m.getCategoryname()%></td>
+			
+			<% } %>
 	</tr>
 	</table>
 	<div style="text-align: center;">
@@ -126,10 +139,12 @@
 		<%
 			} else {
 		%>
-		<a href="/beet/mlist.ad?page=<%=maxPage%>">마지막</a>
-		<%
-			}
-		%>
+			<a href="/beet/mlist.ad?page=<%=maxPage%>">마지막</a>
+		<% } %>
+		
+		
+			
+		
 	</div>
 	<!--  만일 관리자라면 글쓰기가 보여야함 ! 지금은 누구나다보임 -->
 	<div style align="right" text-align:center>

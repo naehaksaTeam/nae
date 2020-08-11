@@ -96,6 +96,19 @@ public class NoticeService {
 	         rollback(conn);
 	      close(conn);
 	   }
+
+	
+
+	public ArrayList<Notice> searchList(String keyword, String searchOption) {
+		Connection conn = getConnection();
+		ArrayList<Notice> list = ndao.searchList(conn,keyword,searchOption);
+		close(conn);
+		return list;
+	}
+
+	
+
+	
 	
 
 }

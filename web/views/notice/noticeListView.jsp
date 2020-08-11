@@ -37,11 +37,12 @@
 
 	<form action="/beet/nsearch">
 		<select name="searchoption">
-
+			<option value="no">글번호</option>
 			<option value="writer">작성자</option>
-			<option value="date">작성날짜</option>
+			
 			<option value="content">글내용</option>
-		</select> <input type="text" name="search">
+		</select>
+		<input type="text" name="search">
 		<button type="submit" value="로그인">검색</button>
 
 	</form>

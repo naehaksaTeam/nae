@@ -221,7 +221,7 @@ public class NoticeDao {
 
 		String query = "SELECT * FROM (SELECT ROWNUM RNUM, noticeno, noticetitle, noticewriter, noticedate, noticecontent, originalfile, "
 				+ "                        renamefile, noticereadcount "
-				+ "                        FROM (SELECT * FROM notice ORDER BY noticedate desc)) "
+				+ "                        FROM (SELECT * FROM notice ORDER BY noticeno desc)) "
 				+ "WHERE RNUM >= ? AND RNUM <= ?";
 
 		int startRow = (currentPage - 1) * limit + 1;
@@ -280,4 +280,55 @@ public class NoticeDao {
 		return result;
 
 	}
+
+	public ArrayList<Notice> searchList(Connection conn, String keyword, String searchOption) {
+		ArrayList<Notice> list = new ArrayList<Notice>();
+		System.out.println("searchList dao접속성공!");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = null;
+		if(keyword.equals("no")){
+			
+			 query = "select * from notice where noticeno like  ?";
+		
+		}else if(keyword.equals("writer")){
+		
+			 query = "select * from notice where noticewriter like  ?";
+		
+		}else{
+		
+			 query = "select * from notice where noticecontent like  ?";
+		}
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, "%"+keyword+"%");
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
+				Notice notice = new Notice();
+				
+				notice.setNoticeNo(rset.getInt("NOTICENO"));
+				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
+				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
+				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
+				notice.setNoticeContent(rset.getString("NOTICECONTENT"));
+				notice.setOriginalFile(rset.getString("ORIGINALFILE"));
+				notice.setRenameFile(rset.getString("RENAMEFILE"));
+				
+				list.add(notice);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rset);
+		}
+		return list;
+	}
+
+	
+
+	
 }
