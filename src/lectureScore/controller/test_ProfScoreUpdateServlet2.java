@@ -15,7 +15,7 @@ import lectureScore.model.vo.LectureScore;
 /**
  * Servlet implementation class ScoreUpdateServlet
  */
-@WebServlet("/testscupdate.prof")
+@WebServlet("/scupdate.prof")
 public class ProfScoreUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 428L;
        

@@ -79,6 +79,12 @@ SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 		</form>
 	</td>
 	<td ><%=format1.format(lastmodified) %></td>
+	 <td><form action="/beet/test_scselect.p" method="post">
+			<input type="submit" style="width:60pt;height:20pt;" value="ajax테스트">
+			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
+			<input type="hidden" name="lname" value="<%=lscore.getLname() %>">
+		</form>
+	</td>
 	<% } %>
   
   </tr>
@@ -89,5 +95,6 @@ SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
 <input type="text" onchange="td_copy(lname.value)" >
 <input type="submit" class="btn-sm" value="성적수정">
  </form> --%>
+
 </body>
 </html>
