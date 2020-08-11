@@ -72,7 +72,7 @@ public class NoticeListServlet extends HttpServlet {
 				
 				RequestDispatcher view = null;
 				if(list.size() >0) {
-					view = request.getRequestDispatcher("views/notice/noticeListView.jsp");
+					view = request.getRequestDispatcher("views/notice/NoticeListView.jsp");
 					
 					request.setAttribute("list", list);
 					request.setAttribute("currentPage", currentPage);
