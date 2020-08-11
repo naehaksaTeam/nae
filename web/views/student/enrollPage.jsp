@@ -123,7 +123,7 @@ function check1() { //중복체크
 <tr>
 	<th width="120">임직원 입사일</th>
 	<td>
-	<input type="date" name="adminhiredate">
+	<input type="date" name="adminhiredate" required>
 	</td>
 </tr>
 </tr>
@@ -133,8 +133,7 @@ function check1() { //중복체크
 <tr>
 	<th colspan="2">
 		<input type="submit" value="가입하기"> &nbsp; 
-		<input type="reset" value="작성취소"> &nbsp; 
-		<a href="/beet/index.jsp">시작 페이지로</a>
+		<button onclick="javascript:location.href='/beet/index.jsp'">작성취소</button> 
 	</th>	
 </tr>
 </table>
@@ -199,10 +198,6 @@ function check1() { //중복체크
 	<th>*나의보물1호</th>
 	<td><input type="treasure" name="treasure" value="<%= treasure %>" required></td>
 </tr>
-<tr class="pp" class="aa">
-	<th width="120">장학금 이름</th>
-	<td><input type="text" name="ssname"></td>
-</tr>
 </tr>
 <tr Style="display:none;">
 <th></th><td><input type="radio" name="who" value="<%= who %>" checked></td>
@@ -210,8 +205,7 @@ function check1() { //중복체크
 <tr class="">
 	<th colspan="2">
 		<input type="submit" value="가입하기"> &nbsp; 
-		<input type="reset" value="작성취소"> &nbsp; 
-		<a href="/beet/index.jsp">시작 페이지로</a>
+		<button onclick="javascript:location.href='/beet/index.jsp'">작성취소</button> 
 	</th>	
 </tr>
 </table>
@@ -293,8 +287,7 @@ function check1() { //중복체크
 <tr class="">
 	<th colspan="2">
 		<input type="submit"> &nbsp; 
-		<input type="reset" value="작성취소"> &nbsp; 
-		<a href="/beet/index.jsp">시작 페이지로</a>
+		<button onclick="javascript:location.href='/beet/index.jsp'">작성취소</button> 
 	</th>	
 </tr>
 </table>

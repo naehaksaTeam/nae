@@ -1,84 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%
-
- String name = request.getParameter("name");
- String domain = request.getParameter("domain");
- String e_domain = request.getParameter("e_domain");
- String email = request.getParameter("email");
- System.out.println("이름:" + name);
-
- if (domain.equals("0")) {
-  email = email + "@" + e_domain;
- } else {
-  email = email + "@" + domain;
- }
-
- System.out.println("이메일:" + email);
- String id = "";//id(name, email); //아이디를 디비에서 가져옴..실패시 널
- if (id != null) { //아이디 찾기 성공시
-
- }
-%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style>
-tr,td {
- border: 0px solid none;
-}
-
+<title>beet</title>
+<form class="form-horizontal" role="form" method="POST" action="findId">
+아이디찾기
+<div class="row">
+   <div class="col-md-10 inputbb">
+       <div class="form-group has-danger">
+           <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+               <input type="text" name="name" class="form-control" id="name" placeholder="이름" required autofocus>
+           </div>
+       </div>
+   </div>
+</div>
+<div class="row">
+   <div class="col-md-10 inputbb">
+       <div class="form-group">
+           <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+             <input type="treasure" name="treasure" class="form-control" id="treasure" placeholder="나의보물1호" required>
+           </div>
+       </div>
+   </div>
+ </div>
  
-
-k:hover {
- text-decoration: none;
- color: #9354ED
-}
-</style>
-
-
-</script>
-</head>
-<body>
-<body>
- <font face="Yang Rounded">
-  <form name="idsearch" method="post">
-
-   <table width="1330px" height="530px" align="center">
-    <tr>
-     <td>
-      <%
-       if (id != null) {
-      %>
-      <table width="550px" align=center border="0"
-       style="color: black; font-size: 30px;">
-       <tr align=center>
-        <td style="height: 170px">* 회원님의 아이디를 찾았습니다! *</td>
-       </tr>
-       <tr align=center>
-        <td style="font-size: 20px"><%=id%></td>
-       </tr>
-      </table> <%
-  } else {
- %>
-      <table width="550px" align=center border="0"
-       style="color: black; font-size: 30px;">
-       <tr align=center>
-        <td style="height: 170px">* 아이디 찾기를 실패하셨습니다. *</td>
-       </tr>
-       <tr align=center>
-        <td><input type="button" value="돌아가기"
-         onClick="history.back()"></td>
-       </tr>
-      </table> <%
-  }
- %> </font>
-      </form>
-
-</font>
-</body>
-
+ <div class="row">
+   <div class="col-md-10 inputbb">
+         <button type="submit" class="btn btn-outline-secondary findbtn">찾기</button>
+   </div>
+ </div>
+ 
+ </form>
 </body>
 </html>

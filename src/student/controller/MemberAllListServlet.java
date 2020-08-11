@@ -1,4 +1,4 @@
-package attendance.controller;
+package student.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import attendance.model.service.AtndnService;
-import attendance.model.vo.Atndn;
+import student.model.service.MemberService;
+import student.model.vo.Member;
 
 /**
- * Servlet implementation class AtndnEditListServlet
+ * Servlet implementation class MemberAllListServlet
  */
-@WebServlet("/atnedit.p")
-public class AtndnEditViewServlet extends HttpServlet {
+@WebServlet("/alllist")
+public class MemberAllListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AtndnEditViewServlet() {
+    public MemberAllListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +32,19 @@ public class AtndnEditViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pid = request.getParameter("userid");
-		String semester = "202001";
-		String lcode = request.getParameter("lcode");
-		
-		ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester, lcode);
-		
-		RequestDispatcher view = null;
-		
-		if(list != null) {
-			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", pid + "강의 출결관리페이지 조회 실패");
-			view.forward(request, response);
-		}
+		//회원 전체 조회용 컨트롤러 
+				ArrayList<Member> list = new MemberService().selectList();
+				RequestDispatcher view = null;
+				if(list.size()>0) { //전체조회 (사이즈크기 0보다크면 성공 )
+					view = request.getRequestDispatcher("views/student/memberAllListView.jsp");
+					request.setAttribute("list", list);
+					view.forward(request, response);
+					
+				}else { //실패 
+					view = request.getRequestDispatcher("views/common/error.jsp");
+					request.setAttribute("message", "회원 전체 조회 실패");
+					view.forward(request, response);
+				}
 	}
 
 	/**

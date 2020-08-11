@@ -1,7 +1,7 @@
 package attendance.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -15,42 +15,49 @@ import attendance.model.service.AtndnService;
 import attendance.model.vo.Atndn;
 
 /**
- * Servlet implementation class MyLctrServlet
+ * Servlet implementation class AdminAtndnSearchServlet
  */
-@WebServlet("/mylctr")
-public class MyLctrServlet extends HttpServlet {
-	private static final long serialVersionUID = 417L;
+@WebServlet("/atnsearch")
+public class AdminAtndnSearchServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyLctrServlet() {
+    public AdminAtndnSearchServlet() {
         super();
-       
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8"); 
+		response.setContentType("text/html; charset=utf-8"); 
+		String action = request.getParameter("action");
+		String keyword = null;
+		keyword = request.getParameter("keyword");
+
+		AtndnService aservice = new AtndnService();
+		ArrayList<Atndn> list = null;
 		
-		String sid = request.getParameter("userid");
+		switch(action) {
+		case "id" :		list = aservice.selectSearchUserid(keyword); break;
+		case "lecture" :	list = aservice.selectSearchLecture(keyword); break;
+	
+		}
 		
-		ArrayList<Atndn> list = new AtndnService().selectMyLctr(sid);
 		RequestDispatcher view = null;
-		
 		if(list.size() > 0) {
-			view = request.getRequestDispatcher("/views/attendance/myLctrPage.jsp");
+			view = request.getRequestDispatcher("beet/attendance/AtndnListView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "나의 강의목록 조회 실패");
+			request.setAttribute("message", action + " 검색에 대한 " + keyword +" 결과가 존재하지 않습니다.");
 			view.forward(request, response);
 		}
-		
-		
 	}
 
 	/**

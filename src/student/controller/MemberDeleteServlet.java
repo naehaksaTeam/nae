@@ -1,7 +1,6 @@
-package attendance.controller;
+package student.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import attendance.model.service.AtndnService;
-import attendance.model.vo.Atndn;
+import student.model.service.MemberService;
 
 /**
- * Servlet implementation class AtndnEditListServlet
+ * Servlet implementation class MemberDeleteServlet
  */
-@WebServlet("/atnedit.p")
-public class AtndnEditViewServlet extends HttpServlet {
+@WebServlet("/mdelete")
+public class MemberDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AtndnEditViewServlet() {
+    public MemberDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +30,25 @@ public class AtndnEditViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pid = request.getParameter("userid");
-		String semester = "202001";
-		String lcode = request.getParameter("lcode");
+		// 회원 탈퇴 처리용 컨트롤러 : delete 구문 적용함.
 		
-		ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester, lcode);
-		
-		RequestDispatcher view = null;
-		
-		if(list != null) {
-			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", pid + "강의 출결관리페이지 조회 실패");
-			view.forward(request, response);
-		}
+				
+				//2.
+				String id = request.getParameter("id");
+				
+				//3.
+				int result = new MemberService().deleteMember(id);
+				
+				
+				//4.
+				if(result > 0) {  //성공시
+					//탈퇴 성공시 로그아웃 처리함
+					response.sendRedirect("beet/views/index.jsp");
+				}else {  //실패시
+					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+					request.setAttribute("message", id + " 회원님의 탈퇴 요청 실패.");
+					view.forward(request, response);
+				}
 	}
 
 	/**
