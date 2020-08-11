@@ -435,7 +435,8 @@ public class AtndnDao {
 			}
 
 			public int updateWeekAll(Connection conn, HashMap map) {
-				// TODO Auto-generated method stub
-				return 0;
+				int r = 0;
+				String query ="insert into attendance values ('','','','','','','','','','','','','','','','','','','','')";
+				return r;
 			}
 }

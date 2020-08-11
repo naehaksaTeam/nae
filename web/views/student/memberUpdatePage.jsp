@@ -2,7 +2,6 @@
     pageEncoding="UTF-8" import="student.model.vo.Member" %>
 <%
 	Member member = (Member)session.getAttribute("loginMember");
-	
 %>    
 <!DOCTYPE html>
 <html>
@@ -11,6 +10,11 @@
 <title>beet</title>
 </head>
 <body>
+<% if(member == null){ %>
+<h1>마이페이지는 회원만 이용가능!</h1>
+<hr>
+<button onclick="javascript:location.href='/beet/index.jsp'">첫페이지로 </button>
+<% }else{ %>
 <hr>
 <h1 align="center">마이페이지</h1>
 <br>
@@ -121,5 +125,6 @@
 <hr>
 <!-- 상대경로만 사용 가능함 -->
 
+<% } %>
 </body>
 </html>
