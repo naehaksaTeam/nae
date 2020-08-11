@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Date, java.text.SimpleDateFormat, java.util.ArrayList,
+				attendance.model.vo.Atndn, student.model.vo.Member" %> 
+<% ArrayList<Atndn> list = (ArrayList<Atndn>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,32 +51,32 @@
   </tr>
 </thead>
 <tbody>
-  <% %>
+  <% for (Atndn atndn : list){ %>
   <tr>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
-    <td ></td>
+  	<td><input type="checkbox" name="checked"></td>
+    <td><%= atndn.getLcode() %></td>
+    <td ><%= atndn.getLname() %></td>
+    <td ><%= atndn.getLtime() %></td>
+    <td></td>
+    <td ><%= atndn.getAbsent3() %></td>
+    <td ><%= atndn.getWeek1() %></td>
+    <td ><%= atndn.getWeek2() %></td>
+    <td ><%= atndn.getWeek3() %></td>
+    <td ><%= atndn.getWeek4() %></td>
+    <td ><%= atndn.getWeek5() %></td>
+    <td ><%= atndn.getWeek6() %></td>
+    <td ><%= atndn.getWeek7() %></td>
+    <td ><%= atndn.getWeek8() %></td>
+    <td ><%= atndn.getWeek9() %></td>
+    <td ><%= atndn.getWeek10() %></td>
+    <td ><%= atndn.getWeek11() %></td>
+    <td ><%= atndn.getWeek12() %></td>
+    <td ><%= atndn.getWeek13() %></td>
+    <td ><%= atndn.getWeek14() %></td>
+    <td ><%= atndn.getWeek15() %></td>
+    <td ><%= atndn.getWeek16() %></td>   
   </tr>
-  <% %>
+  <% } %>
 </tbody>
 </table>
 </body>

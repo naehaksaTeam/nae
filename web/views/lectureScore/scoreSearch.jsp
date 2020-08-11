@@ -5,9 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<h1>성적검색 - 관리자용 (학생, 교과목, 학기 )</h1>
+
 </head>
 <body>
-
+<h1>성적검색 - 관리자용 (학생, 교과목, 학기 )</h1>
 </body>
 </html>

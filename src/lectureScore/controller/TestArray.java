@@ -1,29 +1,27 @@
-package attendance.controller;
+package lectureScore.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import attendance.model.service.AtndnService;
-import attendance.model.vo.Atndn;
-
+import lecture.model.service.LectureService;
+import lectureScore.model.vo.LectureScore;
 
 /**
- * Servlet implementation class AtndnUpdateServlet
+ * Servlet implementation class TestArray
  */
-@WebServlet("/atnupdate")
-public class AtndnUpdateServlet extends HttpServlet {
-	private static final long serialVersionUID = 414L;
+@WebServlet("/testarray")
+public class TestArray extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AtndnUpdateServlet() {
+    public TestArray() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,10 +30,34 @@ public class AtndnUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-				request.setCharacterEncoding("utf-8");
+		
+		request.setCharacterEncoding("utf-8");
+		int len =  request.getParameterValues("category").length;
+		LectureScore lscore= new LectureScore();
+		
+		lscore.setCategory(String.join(",", request.getParameterValues("category")));
+		lscore.setReceptionno(String.join(",",request.getParameterValues("receptionno")));
+		lscore.setLcode(String.join(",",request.getParameterValues("lcode")));
+		lscore.setLname(String.join(",",request.getParameterValues("lname")));
+		lscore.setCategory(String.join(",",request.getParameterValues("category")));
+		lscore.setAtndnscore(Integer.parseInt(String.join(",",request.getParameterValues("atndnscore"))));
+		lscore.setMidscore(Integer.parseInt(String.join(",",request.getParameterValues("midscore"))));
+		lscore.setFinalscore(Integer.parseInt(String.join(",",request.getParameterValues("finalscore"))));
+		lscore.setTotalscore(Integer.parseInt(String.join(",",request.getParameterValues("totalscore"))));
+		lscore.setGrade(String.join(",",request.getParameterValues("grade")));
+		
+		int result = new LectureService().updateScore();
+		
+		if(result > 0) {
+			response.sendRedirect(arg0);
+		}
+		
 				
-				Atndn atndn = new Atndn();
+				
+				
+				
+				
+				
 		/*
 		 * atndn.setSid(String.join(",", request.getParameterValues("sid")));
 		 * atndn.setSname(String.join(",", request.getParameterValues("sname")));
@@ -57,18 +79,7 @@ public class AtndnUpdateServlet extends HttpServlet {
 		 * request.getParameterValues("week14"))); atndn.setWeek15(String.join(",",
 		 * request.getParameterValues("week15"))); atndn.setWeek16(String.join(",",
 		 * request.getParameterValues("week16")));
-		 */
-				
-				int result = new AtndnService().updateAtndn(atndn);
-				
-				if(result > 0) {
-					response.sendRedirect("/beet/atnupdate?userid=" + atndn.getSid());
-				}else {
-					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", atndn.getSid()+ " 출결 수정 실패");
-					view.forward(request, response);
-				}	
-	}
+		 */	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
