@@ -15,14 +15,6 @@ public class MemberService {
 	private MemberDao mdao = new MemberDao();
 	
 	public MemberService() {}
-	
-	public Member loginCheck(String userid, String userpwd) {
-			
-		Connection conn = getConnection();
-		Member member = mdao.loginCheck(conn, userid, userpwd);
-		close(conn);
-		return member;
-	}
 
 	public int insertMember(Member member,String who) {
 		Connection conn = getConnection();
@@ -49,6 +41,13 @@ public class MemberService {
 
 ////////////////////////////
 
+	public Member loginCheck(String userid, String userpwd) {
+		
+		Connection conn = getConnection();
+		Member member = mdao.loginCheck(conn, userid, userpwd);
+		close(conn);
+		return member;
+	}
 
 	public int insertMember(Member member) {
 		Connection conn = getConnection();
@@ -80,16 +79,6 @@ public class MemberService {
 		return list;
 	}
 
-
-
-	public Member FindIdMember(String name, String treasure) {
-		Connection conn = getConnection();
-		Member member = mdao.FindIdMember(conn, name, treasure);
-		close(conn);
-		return member;
-		
-	}
-	
 	public int deleteMember(String id) {
 		Connection conn = getConnection();
 		int result = mdao.deleteMember(conn, id);
@@ -102,5 +91,19 @@ public class MemberService {
 		return result;
 	}
 
-///////////////////////	
+	public Member FindIdMember(String name, String treasure) {
+		Connection conn = getConnection();
+		Member member = mdao.FindIdMember(conn, name, treasure);
+		close(conn);
+		return member;
+	}
+	
+	public Member FindPasswordMember(String id, String treasure) {
+		Connection conn = getConnection();
+		Member member = mdao.FindIdMember(conn, id, treasure);
+		close(conn);
+		return member;
+	}	
+	
+/////////////////////
 }

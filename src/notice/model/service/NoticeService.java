@@ -8,6 +8,7 @@ import static common.JDBCTemp.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+
 import notice.model.dao.NoticeDao;
 import notice.model.vo.Notice;
 
@@ -65,6 +66,39 @@ public class NoticeService {
 		return result;
 	}
 
+	public ArrayList<Notice> selectTop5() {
+		Connection conn = getConnection();
+		ArrayList<Notice> list = ndao.selectTop5(conn);
+		close(conn);
+		return list;
+	}
+
+	public int getListCount() {
+      Connection conn = getConnection();
+      int listCount = ndao.getListCount(conn);
+      close(conn);
+      return listCount;
+   }
+
+	public ArrayList<Notice> selectList(int currentPage, int limit) {
+      Connection conn = getConnection();
+      ArrayList<Notice> list = ndao.selectList(conn, currentPage, limit);
+      close(conn);
+      return list;
+   }
+
+	public void addReadCount(int noticeno) {
+		Connection conn = getConnection();
+	      int result = ndao.addReadCount(conn, noticeno);
+	      if( result > 0) 
+	         commit(conn);
+	      else 
+	         rollback(conn);
+	      close(conn);
+	   }
+/////////////	
+
+
 	public ArrayList<Notice> selectTop3() {
 		Connection conn = getConnection();
 		ArrayList<Notice> list = ndao.selectTop3(conn);
@@ -72,4 +106,13 @@ public class NoticeService {
 		return list;
 	}
 
+	
+	public ArrayList<Notice> selectNewTop5() {
+		Connection conn = getConnection();
+		ArrayList<Notice> list = ndao.selectNewTop5(conn);
+		
+		return list;
+	}
+	
+///////////////
 }

@@ -1,4 +1,4 @@
-package notice.controller;
+package student.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class NoticeTop3Servlet
+ * Servlet implementation class AfterFindPasswordServlet
  */
-@WebServlet("/ntop3")
-public class NoticeTop3Servlet extends HttpServlet {
+@WebServlet("/afindpwd")
+public class AfterFindPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeTop3Servlet() {
+    public AfterFindPasswordServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

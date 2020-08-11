@@ -16,13 +16,13 @@ import lectureScore.model.vo.LectureScore;
  * Servlet implementation class ScoreUpdateServlet
  */
 @WebServlet("/scupdate.prof")
-public class ProfScoreUpdateServlet extends HttpServlet {
+public class test_ProfScoreUpdateServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 428L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProfScoreUpdateServlet() {
+    public test_ProfScoreUpdateServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }

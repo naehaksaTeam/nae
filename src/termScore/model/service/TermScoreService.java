@@ -25,4 +25,13 @@ public class TermScoreService {
 		close(conn);
 		return(list);
 	}
+//////by kyu////
+	public ArrayList<TermScore> selectMain(String id) {
+		Connection conn = getConnection();
+		ArrayList<TermScore> list = tdao.selectMain(conn, id);
+		close(conn);
+		System.out.println("service"+ list);
+		return list;
+	}	
+////
 }
