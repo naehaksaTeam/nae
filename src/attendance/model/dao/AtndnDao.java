@@ -56,14 +56,17 @@ public class AtndnDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String query = "select sid, category, lcode, lname, ltime, lpoint, room, pname ,absent3,"
+		String query = "select sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3,"
 				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 "
 				+ "from AtndnView where sid = ? and lcode = ?";
-
+		System.out.println(sid);
+		System.out.println(lcode);
+		System.out.println("^^^^^^");
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, sid);
 			pstmt.setString(2, lcode);
+			
 			rset = pstmt.executeQuery();
 			while (rset.next()) {
 				Atndn atndn = new Atndn();
@@ -95,6 +98,7 @@ public class AtndnDao {
 				atndn.setWeek16((rset.getString("week16").equals("1"))? "○" : ((rset.getString("week16").equals("2"))? "Ⅹ" : "△" ));
 
 				list.add(atndn);
+			
 			}
 
 		} catch (Exception e) {

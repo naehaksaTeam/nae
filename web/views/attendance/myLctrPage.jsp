@@ -13,6 +13,19 @@ java.util.Date, java.text.SimpleDateFormat"%>
 	}
 	Iterator<String> it = set.iterator();
 
+/*  	String[] arr = null;
+	int i = 0;
+	/*	do {
+		arr[i]=it.next();
+			i++;
+		}while(it.hasNext());  */
+		
+/* 		while (it.hasNext()) {
+			arr[i] = it.next();
+			i++;
+		}
+	 */ 
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("E");
 	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 	Date today = new Date();
@@ -21,6 +34,9 @@ java.util.Date, java.text.SimpleDateFormat"%>
 
 	long diff = today.getTime() - enter.getTime();
 	long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
+	
+
+					
 %>
 
 <!DOCTYPE html>
@@ -67,10 +83,11 @@ java.util.Date, java.text.SimpleDateFormat"%>
 <body>
 
 	<h1 align="center">강의목록</h1>
+	<div style="border:1px solid">
 	<table>
 		<%
 			for (Atndn a : list) {
-				if (a.getLtime().equals(day)) {
+				if (a.getLtime().equals(day) && a.getSemester().equals("202001")) {
 		%>
 		<tr>
 			<td class="title" colspan="4"><%=a.getLname()%></td>
@@ -92,11 +109,10 @@ java.util.Date, java.text.SimpleDateFormat"%>
 
 		</tr>
 		<%
-			}
-			}
+			}}
 		%>
 	</table>
-
+ </div>
 	<table id="stable" cellpadding="10px">
 		<tr>
 			<form action="/beet/mylctrSeme" method="post">
@@ -107,11 +123,12 @@ java.util.Date, java.text.SimpleDateFormat"%>
 					while (it.hasNext()) {
 				%>
 				<option><%=it.next()%></option>
-				<%
+				<% 
 					}
 				%>
-			</select>
 
+			</select>
+			</form>
 		</tr>
 		<tr>
 			<th>과목번호</th>
@@ -136,10 +153,9 @@ java.util.Date, java.text.SimpleDateFormat"%>
 			<td><%=a.getCapacity()%></td>
 			<td><%=a.getPname()%></td>
 			<td>
-				<form action="/beet/atnlist" method="post">
-					<input type="hidden" name="userid"
-						value="<%=loginmember.getId()%>"> <input type="hidden"
-						name="lcode" value="<%=a.getLcode()%>"> 
+				<form id="hi" action="/beet/atnlist" method="post">
+					<input type="hidden" name="userid" value="<%=loginmember.getId()%>"> 
+						<input type="hidden" name="lcode" value="<%=a.getLcode()%>"> 
 						<input type="submit" class="btn-sm" value="출결조회">
 					<!-- 강의목록 join시 중복되는 문제 해결 필요 -->
 				</form>
@@ -153,6 +169,13 @@ java.util.Date, java.text.SimpleDateFormat"%>
 
 	<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 	<script type="text/javascript">
+	$( '#hi' ).click( function() {
+		  alert("hi");
+		} );
+
+
+	
+	
 		function selectfield(obj) {
 			$('input[name=semester]').attr('value', obj.value);
 			
@@ -161,7 +184,18 @@ java.util.Date, java.text.SimpleDateFormat"%>
 			});
 
 		}
-
+		
+	/* 	$(function() {
+		    $('#field').click(function() {
+		        localStorage.setItem('savelist', this.value);
+		    });
+		    
+		   if(localStorage.getItem('savelist')){
+		    	 $('#field').val(localStorage.getItem('todoData'));
+		    }
+		}); 
+		 */
+		
 	</script>
 	
 

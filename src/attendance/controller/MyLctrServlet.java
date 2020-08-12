@@ -39,7 +39,7 @@ public class MyLctrServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String sid = request.getParameter("userid");
-
+		
 		ArrayList<Atndn> list = new AtndnService().selectMyLctr(sid);
 		RequestDispatcher view = null;
 		
