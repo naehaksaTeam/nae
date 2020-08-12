@@ -99,8 +99,10 @@ java.util.Date, java.text.SimpleDateFormat"%>
 
 	<table id="stable" cellpadding="10px">
 		<tr>
-			<form action="" method="post">
-			<select id="field" onchange="javascript:selectfield(this);chnSemester() " style="width: 80px">
+			<form action="/beet/mylctrSeme" method="post">
+			<input type="hidden" name="userid" value="<%=loginmember.getId()%>"> 
+			<input type="hidden" name="semester" value=""> 
+			<select id="field" onchange="javascript:selectfield(this);" style="width: 80px">
 				<%
 					while (it.hasNext()) {
 				%>
@@ -153,11 +155,9 @@ java.util.Date, java.text.SimpleDateFormat"%>
 	<script type="text/javascript">
 		function selectfield(obj) {
 			$('input[name=semester]').attr('value', obj.value);
+			$("#field").form.submit();
+			});
 
-		}
-		
-		function chnSemester(){
-			this.form.submit();
 		}
 
 	</script>

@@ -16,9 +16,9 @@ public class AtndnService {
 	private AtndnDao adao = new AtndnDao(); 
 	public AtndnService() {}
 	
-	public ArrayList<Atndn> selectMyLctr(String studentid) {
+	public ArrayList<Atndn> selectMyLctr(String sid) {
 		Connection conn = getConnection();
-		 ArrayList<Atndn>  list = adao.selectMyLctr(conn, studentid);
+		 ArrayList<Atndn>  list = adao.selectMyLctr(conn, sid);
 		close(conn);
 		return list;
 	}
@@ -69,6 +69,13 @@ public class AtndnService {
 		}
 		close(conn);
 		return r;
+	}
+
+	public ArrayList<Atndn> selectMyLctrSemstr(String sid, String semester) {
+		Connection conn = getConnection();
+		 ArrayList<Atndn>  list = adao.selectMyLctrSemstr(conn, sid, semester);
+		close(conn);
+		return list;
 	}
 
 }

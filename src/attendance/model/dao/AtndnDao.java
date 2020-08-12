@@ -23,7 +23,7 @@ public class AtndnDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where sid = ? and semester = ?";
+		String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where sid = ? ";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
@@ -437,5 +437,37 @@ public class AtndnDao {
 				int r = 0;
 				String query ="insert into attendance values ('','','','','','','','','','','','','','','','','','','','')";
 				return r;
+			}
+
+			public ArrayList<Atndn> selectMyLctrSemstr(Connection conn, String sid, String semester) {
+				ArrayList<Atndn> list = new ArrayList<Atndn>();
+				PreparedStatement pstmt = null;
+				ResultSet rset = null;
+
+				String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where sid = ? and semester = ? ";
+				try {
+					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, sid);
+					pstmt.setString(2, semester);
+					rset = pstmt.executeQuery();
+					while (rset.next()) {
+						Atndn atndn = new Atndn();
+
+						atndn.setSemester(rset.getString("semester"));
+						atndn.setLcode(rset.getString("lcode"));
+						atndn.setCategory(rset.getString("category"));
+						atndn.setLname(rset.getString("lname"));
+						atndn.setLtime(rset.getString("ltime"));
+						atndn.setLpoint(rset.getInt("lpoint"));
+						atndn.setCapacity(rset.getInt("capacity"));
+						atndn.setPname(rset.getString("pname"));
+						list.add(atndn);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				} finally {
+					close(pstmt);
+				}
+				return list;
 			}
 }

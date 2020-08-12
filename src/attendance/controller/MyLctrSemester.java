@@ -20,14 +20,14 @@ import attendance.model.vo.Atndn;
 /**
  * Servlet implementation class MyLctrServlet
  */
-@WebServlet("/mylctr")
-public class MyLctrServlet extends HttpServlet {
-	private static final long serialVersionUID = 417L;
+@WebServlet("/mylctrSeme")
+public class MyLctrSemester extends HttpServlet {
+	private static final long serialVersionUID = 417543L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyLctrServlet() {
+    public MyLctrSemester() {
         super();
        
     }
@@ -39,8 +39,9 @@ public class MyLctrServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String sid = request.getParameter("userid");
+		String semester = request.getParameter("semester");
 
-		ArrayList<Atndn> list = new AtndnService().selectMyLctr(sid);
+		ArrayList<Atndn> list = new AtndnService().selectMyLctrSemstr(sid, semester);
 		RequestDispatcher view = null;
 		
 		if(list.size() > 0) {
