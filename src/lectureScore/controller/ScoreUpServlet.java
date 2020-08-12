@@ -31,14 +31,16 @@ public class ScoreUpServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("넘어옴");
+		String a = request.getParameter("ggg");
+		String[] c = request.getParameterValues("ggg");
+		Object[] b = request.getParameterValues("toSrvl");
+		String d = request.getParameter("toSrvl");
 		
-		ArrayList<HashMap<String, LectureScore>> lmap = new ArrayList<>();
-		
-		for(int i=0;i<20;i++) {
-			HashMap<String, LectureScore> hmap = new HashMap<>();
-			
-			
-		}
+		System.out.println(a);
+		System.out.println(c);
+		System.out.println(d);
+		System.out.println(b);
 	
 	}
 

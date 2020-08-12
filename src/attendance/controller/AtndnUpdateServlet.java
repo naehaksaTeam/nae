@@ -34,39 +34,40 @@ public class AtndnUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*
-		 * String pid = request.getParameter("userid"); String semester = "202001";
-		 * String lcode = request.getParameter("lcode");
-		 * 
-		 * ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester,
-		 * lcode);
-		 * 
-		 * if(list != null) { request.setAttribute("list", list); }
-		 */
+		String pid = request.getParameter("userid");
+		String semester = "202001";
+		String lcode = request.getParameter("lcode");
 		
-		int whoCount = 0;
+		ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester, lcode);
 		
-		String week = request.getParameter("selectweek");
-		
-		HashMap map = new HashMap();
-		while(request.getParameter("who" + ++whoCount) != null ) {
-			Atndn atndn = new Atndn();
-			atndn.setLcode(request.getParameter("lcode"));
-			atndn.setSid(request.getParameter("who" + whoCount));
-			atndn.setThisweek(request.getParameter("selectfour" + whoCount));
-			
-			map.put(request.getParameter("list" + whoCount) , atndn);
+		if(list != null) {
+			request.setAttribute("list", list);
 		}
 		
 		
+		int whoCount = 0;
+		String week = request.getParameter("selectweek");
 		
-		int result = new AtndnService().updateWeekAll(map);
+		ArrayList<Atndn> list2 = new ArrayList<Atndn>();
+		while(request.getParameter("who" + ++whoCount) != null ) {
+	
+			Atndn atndn = new Atndn();
+			atndn.setLcode(request.getParameter("lcode"));
+			atndn.setSid(request.getParameter("who" + whoCount));
+			atndn.setWeek1(week);
+			atndn.setThisweek(request.getParameter("selectfour" + whoCount));
+			
+			list2.add(atndn);
+		}
+
+		
+		int result = new AtndnService().updateWeekAll(list2);
 		
 		RequestDispatcher view = null;
 		
 		if(result > 0) {
 			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
-			request.setAttribute("result", "no");
+			request.setAttribute("result", "yes");
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");

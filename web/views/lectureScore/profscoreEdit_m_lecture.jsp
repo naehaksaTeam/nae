@@ -103,9 +103,9 @@
 	
 	
 	<div class="test" id="ttest" ></div> 
-	<form id="updateArr" action="/beet/scoreup" method="post">
-	<input type="text" value="tdArr">
-	<input id="abc" type="submit" value="전송">
+	<form id="updateArr" action="/beet/scoreup" method="post">	
+	<input name="ggg" id="ggg" type="text" value="hi">
+ 	<input id="abc" type="submit" value="전송">
 	</form> 
 	
 	
@@ -174,18 +174,17 @@ $(".chk").click(function(){
 		alert('a');
         var rowData = new Array(); 
         var tdArr = new Array();
+       
       	var chk = $(this);
         //var checkbox = $("input[name=user_CheckBox]:checked");
 });
-
-
+var tdArr = new Array();
 $("#abc").click(function(){ 
         var rowData = new Array(); 
-        var tdArr = new Array();
         var checkbox = $("input:checkbox[name=chk]:checked");	
      	
    checkbox.each(function(i) {
-
+	
 	var tr = checkbox.parent().parent().eq(i);
 	var td = tr.children();
 	
@@ -203,6 +202,7 @@ $("#abc").click(function(){
 
    
      //배열 
+    
 	 tdArr.push(categoryname);
      tdArr.push(majorname);
      tdArr.push(sid);
@@ -213,10 +213,53 @@ $("#abc").click(function(){
      tdArr.push(finalScore); 
      tdArr.push(totalScore);
      tdArr.push(grade);
-
+     
+     
+/* 
+    $('input[name=ggg]').attr('value',categoryname);
+     $('input[name=ggg]').attr('value',majorname);
+     $('input[name=ggg]').attr('value',sid);
+     $('input[name=ggg]').attr('value',sname);
+     $('input[name=ggg]').attr('value',retake);
+     $('input[name=ggg]').attr('value',atndnScore);
+     $('input[name=ggg]').attr('value',midScore);
+     $('input[name=ggg]').attr('value',finalScore);
+     $('input[name=ggg]').attr('value',totalScore);
+     $('input[name=ggg]').append('value',grade); */
+		
    });
 	
 	$("#ttest").html(tdArr);	
+	 //$("input[name=arrin]").attr('value',tdArr);
+ var toSrvl
+ 
+
+ 
+	$("#abc").click(function(){
+		
+		  alert("성공");
+		  var a;
+		  if(tdArr != null){
+			 a += 1;
+			 
+		  }
+		  
+		 /*  alert(a);
+		  
+		  objectToJSON = JSON.stringify(tdArr);
+		  console.log(Object.values(objectToJSON)); */
+		  /* for(var i=0;i<tdArr.length;i++){
+			 toSrvl = document.createElement("input");
+			 toSrvl.type="text";
+			 toSrvl.name="SrvlArr";
+			 toSrvl.value = tdArr[i];
+			 document.getelementbyid("updateArr").appendchild(toSrvl);
+		 } 
+		 $('#updateArr').submit();	 */
+	});
+
+	 
+	
 });
 
 </script>

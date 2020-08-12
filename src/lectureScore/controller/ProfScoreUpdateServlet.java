@@ -15,8 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import board.model.service.BoardService;
-import board.model.vo.Board;
+
 import lectureScore.model.service.LectureScoreService;
 import lectureScore.model.vo.LectureScore;
 
