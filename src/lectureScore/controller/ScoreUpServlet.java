@@ -1,6 +1,7 @@
 package lectureScore.controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import lectureScore.model.vo.LectureScore;
+import notice.model.vo.Notice;
 
 /**
  * Servlet implementation class ScoreUpServlet
@@ -31,17 +36,10 @@ public class ScoreUpServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("넘어옴");
-		String a = request.getParameter("ggg");
-		String[] c = request.getParameterValues("ggg");
-		Object[] b = request.getParameterValues("toSrvl");
-		String d = request.getParameter("toSrvl");
-		
-		System.out.println(a);
-		System.out.println(c);
-		System.out.println(d);
-		System.out.println(b);
-	
+
+		request.setCharacterEncoding("utf-8");
+		String no = request.getParameter("categoryname");
+		System.out.println("no : " + no);
 	}
 
 	/**

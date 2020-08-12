@@ -195,7 +195,7 @@ $("#abc").click(function(){
 	var td = tr.children();
 	
 	//rowData.push(tr.text());
-	var categoryname= '{"categoryname" : "' + td.eq(3).text(); + '\"'
+	var categoryname= "{categoryname : " + td.eq(3).text(); + ","
 	alert(categoryname);
 	var majorname = "majorname : "  +td.eq(4).text() + "}"; 
 	var sid = td.eq(5).text();
@@ -207,10 +207,9 @@ $("#abc").click(function(){
 	var totalScore = td.eq(11).find('input[type="text"]').val();
 	var grade = td.eq(12).find('select[name="selectg"] option:selected').val();
 
-	var a;
-	  
+	
 	var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
-		totalScore, grade];
+		totalScore, grade] ;
 	var aa = JSON.stringify(dataArray);
 	var jsonArray = JSON.parse(JSON.stringify(dataArray));
 	alert(jsonArray); 
@@ -229,7 +228,7 @@ $("#abc").click(function(){
 		});
      //배열  
      
- /*	 tdArr.push(categoryname);
+/*	 tdArr.push(categoryname);
      tdArr.push(majorname);
      tdArr.push(sid);
      tdArr.push(sname);
@@ -240,7 +239,7 @@ $("#abc").click(function(){
      tdArr.push(totalScore);
      tdArr.push(grade);
     
-      $('input[name=ggg]').attr('value',categoryname);
+    $('input[name=ggg]').attr('value',categoryname);
      $('input[name=ggg]').attr('value',majorname);
      $('input[name=ggg]').attr('value',sid);
      $('input[name=ggg]').attr('value',sname);
@@ -249,17 +248,89 @@ $("#abc").click(function(){
      $('input[name=ggg]').attr('value',midScore);
      $('input[name=ggg]').attr('value',finalScore);
      $('input[name=ggg]').attr('value',totalScore);
-     $('input[name=ggg]').append('value',grade);
+     $('input[name=ggg]').append('value',grade); */
 		
    });
 	
-	$("#ttest").html(tdArr);	 */
+	$("#ttest").html(tdArr);	
 	 //$("input[name=arrin]").attr('value',tdArr);
+ var toSrvl
+ 
 
-   });
+ 
+	$("#abc").click(function(){
+		
+		  alert("성공");
+		  var a;
+		  if(tdArr != null){
+			 a += 1;
+			 
+		  }
+
+	});
+
+	 
+	
 });
 
-
+$(function(){
+	$("#test5").click(function(){
+		//$.getJSON(), $.ajax() 중 선택 
+		
+		//$.getJSON() 
+		$.getJSON("/beet/scoreup", dataArray, function(data){
+			//반환받은 data의 type 확인 
+			console.log("data : " + data);
+			
+			//배열을 담은 객체일 경우
+			//object ==> String으로 바뀜
+			var jsonStr = JSON.stringify(data);
+			
+			//string ==> json 배열객체로 바꿈 그래야 , , , 이케 쓸 수 있음
+			var json = JSON.parse(jsonStr); //파싱처리해야 배열이 된다~ =json이 sendjson이라 생각
+			
+			//자바스크립트에서는 for in문 사용할 수 있음
+			//인덱스 0부터하라고 지정해줘야했는데 여기서 i만 지정하면 지가 0부터 알아서 1씩 증가하면서 움직인다 
+			for(var i in json.list){
+				$("#p5").html($("#p5").html() + "<br>" + json.list[i].no + ", " 
+						+ decodeURIComponent(json.list[i].title).replace(/\+/gi," ") 
+						+ ", " + json.list[i].write + ", "
+						+ decodeURIComponent(json.list[i].content).replace(/\+/gi," ") 
+						+ ", " + json.list[i].date); // p5를 선택해서 html()를 이요앻서 (새로운값 + 기존값) 값을 출력해라 
+			}
+		});//success callback
+		//$.ajax(셋팅블럭) post로 전송하기 
+		$.ajax({
+			url: "/testa/test5.do",
+			data: dataArray,
+			type: "post",
+			dataType: "json", //반환자료형
+			success: function(data){
+				//배열을 담은 객체일 경우
+				//object ==> String으로 바뀜
+				var jsonStr = JSON.stringify(data);
+				
+				//string ==> json 배열객체로 바꿈 그래야 , , , 이케 쓸 수 있음
+				var json = JSON.parse(jsonStr); //파싱처리해야 배열이 된다~ =json이 sendjson이라 생각
+				
+				//자바스크립트에서는 for in문 사용할 수 있음
+				//인덱스 0부터하라고 지정해줘야했는데 여기서 i만 지정하면 지가 0부터 알아서 1씩 증가하면서 움직인다 
+				for(var i in json.list){
+					$("#p5").html($("#p5").html() + "<br>" + json.list[i].no + ", " 
+							+ decodeURIComponent(json.list[i].title).replace(/\+/gi," ") 
+							+ ", " + json.list[i].write + ", "
+							+ decodeURIComponent(json.list[i].content).replace(/\+/gi," ") 
+							+ ", " + json.list[i].date); // p5를 선택해서 html()를 이요앻서 (새로운값 + 기존값) 값을 출력해라 
+				}	
+			}, //success function callback
+			error: function(jqXHR, textStatus, errorThrown){
+				console.log("error : " + textStatus);
+			}//error
+		});//ajax 셋팅? 닫기
+		
+		
+	}); //click callback 
+});//document ready callback
 </script>
 
 
