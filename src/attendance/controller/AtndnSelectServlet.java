@@ -37,12 +37,7 @@ public class AtndnSelectServlet extends HttpServlet {
 		String lcode = request.getParameter("lcode");
 		ArrayList<Atndn> list = new AtndnService().selectLctrAtndn(sid, lcode);
 		RequestDispatcher view = null;
-		
-		System.out.println("********************************");
-		System.out.println(list);
-		System.out.println(sid);
-		System.out.println(lcode);
-		
+
 		if(list.size() > 0) {
 			view = request.getRequestDispatcher("/views/attendance/lctrAtndnView.jsp");
 			request.setAttribute("list", list);

@@ -58,6 +58,7 @@
 			<% int i = 1;for(LectureScore lscore : list) {%>
 			<p id="p_<%= i %>">
 			<tr>
+				<td ><input name="chk" type="checkbox" style="height:20px;"></button></td>
 				<td class="nr"><%= i %></td><% i+=1; %>
 				<input type="hidden" value="<%= lscore.getReceptionno() %>">
 				<td><%= lscore.getCategoryname() %></td>
@@ -82,13 +83,15 @@
 					<option value="F" <%= (lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
 					</select></td>
 					<td><input class="checkBtn" type="button" value="테스트"> &nbsp;</td>
-					<td><input class="abc" type="button" value="행테스트"> &nbsp;</td>
+					<td><inputtype="button" value="행테스트"> &nbsp;</td>
+				
 			</tr>
 			</p>
 			<% } %>
 			<tr>
-			<input id="scsave" type="submit" value="저장" > &nbsp;
-			<input id="sccancle" type="reset" value="취소"> &nbsp;
+			<input id="abc" type="button" value="와테스트">
+			<input id="scsave" type="submit" value="저장"> &nbsp;
+			<input id="sccancle" type="button" value="취소"> &nbsp;
 			</tr>
 			</form>
 			
@@ -96,6 +99,14 @@
 			
 		</tbody>
 	</table>
+	
+	
+	
+	<div class="test" id="ttest" ></div> 
+	
+	
+	
+	
 	</div>
 		<center>
 		<p style="margin-top:30px;">
@@ -105,156 +116,104 @@
 		
 		 
 		<input type="reset" value="취소"> &nbsp;
-		
 		<input type="button" value="이전 페이지" href="javascript:history.go(-1);"></a>
-		<input type="button" value="테스트" onclick="qwqw"></a>
 		</center>
-	
-	<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
-	<!-- jquery로 입력값 받아서 수정하기 변경하기누르면 update 취소 누르면 sendredirect -->
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 <script>
 
-//아이구
-function change(){
-	var selectedValue = $('#yourDropdown option:selected').val();
-	   $("a").attr('href','#'+selectedValue); // just Append # tag before value
+//수정가능 
+function activeEle() {
+	$("input[type=text]").removeAttr('readonly');
 }
 
-//오브젝트 담기
-
-/*  $(".checkBtn").click(function(){ 
-	var get_input = $("#p_1 input[type=text]");
-	var text = null;
-	$("#p_1 input[type=text]").val() = text;
-	console.log(text);
-	document.getElementsByName("user_name2")[0].value;
-	$.each(get_input, function (value) {
-		console.log('id =' + $(value).attr("value"));
-		console.log('name =' + $(value).attr("name"));
-		console.log('value =' + $(value).val());
-		});
-
- }); */
-
- $(".checkBtn").click(function(){ 
-//배열에 저장 
-			var str = ""
-			var tdArr = new Array();	// 배열 선언
-			var checkBtn = $(this);
-			
-			var tr = checkBtn.parent().parent();
-			var td = tr.children();
-		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-			var categoryname = td.eq(1).text();
-			var majorname = td.eq(2).text();
-			var sid = td.eq(3).text(); 
-			var sname = td.eq(4).text();
-			var retake = td.eq(5).text();
-			var atndnScore = td.eq(6).find('input[type="text"]').val();
-			var midScore = td.eq(7).find('input[type="text"]').val();
-			var finalScore = td.eq(8).find('input[type="text"]').val();
-			var totalScore = td.eq(9).find('input[type="text"]').val();
-			var grade = td.eq(10).find('select[name="selectg"] option:selected').val();
-
-			var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
-				totalScore, grade];
-			var aa = JSON.stringify(dataArray);
-			var jsonArray = JSON.parse(JSON.stringify(dataArray));
-			alert(aa);
-		
-			 /* $.ajax({
-				 url:"/beet/scupdate.p",
-                type:"POST",
-                dataType : "json",
-                 data:{
-                    categoryname : categoryname,
-                    majorname : majorname,
-                    sid : sid,
-                    sname : sname,
-                    retake : retake,
-                    atndnScore : atndnScore,
-                    midScore : midScore,
-                    finalScore : finalScore,
-                    totalScore : totalScore,
-                    grade : grade
-                }, 
-                success: function(data){
-                	console.log(data);
-                }
-            });  */
-		});
-	  
-/* //행번호구하기
-$(".abc").click(function(){ 
-	var ttable = document.getElementById("sctable");
-	var trows = ttable.find('tr');
-	alert(trows.length);
-	for(var i=1; i < trows.length; i++){
-		var trow = trows[i]
-		var tr = trow.parent().parent();
-		var td = tr.children();
-		var sid = td.eq(3).text(); 
-		alert(sid);
-		  	
-	}
-});
- */
-
-//최근글 3개 
-/* $(function(){
-	$("#tg").click(function(){
-		$.getJSON("beet/scupdate.prof", {
-			categoryname = td.eq(1).text()
-			majorname = td.eq(2).text()
-			sid = td.eq(3).text(); 
-			sname = td.eq(4).text();
-			retake = td.eq(5).text();
-			atndnScore = td.eq(6).find('input[type="text"]').val();
-			midScore = td.eq(7).find('input[type="text"]').val();
-			finalScore = td.eq(8).find('input[type="text"]').val();
-			totalScore = td.eq(9).find('input[type="text"]').val();
-			grade = td.eq(10).find('select[name="selectg"] option:selected').val();
-
-		})
-	})
-})
- */
-
-//수정가능 
-$.ajax({
-	url : '/beet/profscoreEdit_m_l_grade',
-	type : 'post',
-	data : {
-		
-	}
-	
-})
- 
 //숫자 0~100사이만 입력
 var replaceNotInt = /[^0-9]/gi;
 
 $(document).ready(function(){
-    $("input[type=text]").on("focusout", function() { 
-        var x = $(this).val();
-        if (x.length > 0) {
-            if (x.match(replaceNotInt)) {
-               x = x.replace(replaceNotInt, "");
-            }
-            $(this).val(x);
-            
-            if(x > 100) {
-            	$(this).val('100');
-            }
+  $("input[type=text]").on("focusout", function() { 
+      var x = $(this).val();
+      if (x.length > 0) {
+          if (x.match(replaceNotInt)) {
+             x = x.replace(replaceNotInt, "");
+          }
+          $(this).val(x);
+          
+          if(x > 100) {
+          	$(this).val('100');
+          }
 
-        }
-    }).on("keyup", function() {
-        $(this).val($(this).val().replace(replaceNotInt, ""));
-        
-    });
-   
-    
+      }
+  }).on("keyup", function() {
+      $(this).val($(this).val().replace(replaceNotInt, ""));  
+  }); 
 }); 
 
+//테스트
+$(document).ready(function(){
+    $("input:checkbox[name=chk]").change(function(){
+        if($("input:checkbox[name=chk]").is(":checked")){
+            alert("체크박스 체크했음!");
+        }else{
+            alert("체크박스 체크 해제!");
+        }
+    });
+});
+
+
+$(".chk").click(function(){ 	
+		alert('a');
+        var rowData = new Array(); 
+        var tdArr = new Array();
+      	var chk = $(this);
+        //var checkbox = $("input[name=user_CheckBox]:checked");
+});
+
+
+$("#abc").click(function(){ 
+        var rowData = new Array(); 
+        var tdArr = new Array();
+        var checkbox = $("input:checkbox[name=chk]:checked");	
+     	
+   checkbox.each(function(i) {
+
+	var tr = checkbox.parent().parent().eq(i);
+	var td = tr.children();
+
+
+	//rowData.push(tr.text());
+	var categoryname= td.eq(3).text()+", "; 
+	var majorname = td.eq(4).text()+", "; 
+	var sid = td.eq(5).text()+", ";
+	var sname = td.eq(6).text()+", ";
+	var retake = td.eq(7).text()+", ";
+	var atndnScore = td.eq(8).find('input[type="text"]').val()+", ";
+	var midScore = td.eq(9).find('input[type="text"]').val()+", ";
+	var finalScore = td.eq(10).find('input[type="text"]').val()+", ";
+	var totalScore = td.eq(11).find('input[type="text"]').val()+", ";
+	var grade = td.eq(12).find('select[name="selectg"] option:selected').val()+", ";
+
+   
+     // 가져온 값을 배열에 담는다.
+	tdArr.push(categoryname);
+     tdArr.push(majorname);
+     tdArr.push(sid);
+     tdArr.push(sname);
+     tdArr.push(retake);
+     tdArr.push(atndnScore);
+     tdArr.push(midScore);
+     tdArr.push(finalScore); 
+     tdArr.push(totalScore);
+     tdArr.push(grade);
+
+
+   });
+	
+	$("#ttest").html(tdArr);	
+});
+
 </script>
+
+
+
 </body>
 </html>
