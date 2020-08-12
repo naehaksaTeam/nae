@@ -150,15 +150,22 @@ $(document).ready(function(){
 
 //테스트
 $(document).ready(function(){
-    $("input:checkbox[name=chk]").change(function(){
+    $("input:checkbox[name=chk]").keyup(function(){
         if($("input:checkbox[name=chk]").is(":checked")){
             alert("체크박스 체크했음!");
         }else{
             alert("체크박스 체크 해제!");
         }
-    });
+    });	
 });
+$("input[type=text]").keyup(function()  {
+	var chk = $(this)
+	var tr = chk.parent().parent();
+	 var checkbox = tr.find('td:first-child :checkbox');
+     //checkbox.prop('checked', !checkbox.is(':checked'));
+     checkbox.prop("checked", true);
 
+});
 
 $(".chk").click(function(){ 	
 		alert('a');
@@ -178,8 +185,7 @@ $("#abc").click(function(){
 
 	var tr = checkbox.parent().parent().eq(i);
 	var td = tr.children();
-
-
+	
 	//rowData.push(tr.text());
 	var categoryname= td.eq(3).text()+", "; 
 	var majorname = td.eq(4).text()+", "; 
