@@ -343,7 +343,7 @@ public class NoticeDao {
 			close(stmt);
 			close(rset);
 		}
-		System.out.println("dao"+ list);
+		System.out.println("멘인의 탑 5dao"+ list);
 		return list;
 	}	
 	

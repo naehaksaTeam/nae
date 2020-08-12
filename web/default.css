@@ -5,7 +5,7 @@
 body {
 	margin: 0px;
 	padding: 0px;
-	background: #F8F8F8 url(images/overlay.png) repeat;
+	background: #F8F8F8 ;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 12pt;
 	font-weight: 400;

@@ -31,7 +31,7 @@ public class TermScoreService {
 		ArrayList<TermScore> list = tdao.selectMain(conn, id);
 		close(conn);
 		System.out.println("service"+ list);
-		return list;
+		return (list);
 	}	
 ////
 }

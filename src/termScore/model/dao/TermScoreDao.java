@@ -112,7 +112,7 @@ public class TermScoreDao {
 			
 			
 		}
-		System.out.println("dao"+ list);
+	
 		return list;
 	}	
 /////////////////////////

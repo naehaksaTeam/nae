@@ -15,7 +15,7 @@
 <meta name="description" content="" />
 <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900|Varela+Round" rel="stylesheet" />
 <!-- <link href="../default.css" rel="stylesheet" type="text/css" media="all" /> -->
-<link href="/beet/views/common/fonts.css" rel="stylesheet" type="text/css" media="all" />
+<!-- <link href="/beet/views/common/fonts.css" rel="stylesheet" type="text/css" media="all" /> -->
 <style type="text/css">
 
  html, body {
