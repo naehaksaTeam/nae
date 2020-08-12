@@ -19,7 +19,7 @@ body{
 min-height:100%;}
 header{
 padding:0px;
-margin-left: 20%;
+margin-left: 0%;
 margin-bottom: 0;
 height:200px; 
 
@@ -34,7 +34,7 @@ header h1#logo{
 
 }
 #bar  {
- 	position: absolute;  
+ 	position: relatve;  
   	text-align: center; 
  }
 header ul#menubar {
@@ -112,7 +112,7 @@ hr { clear: both; }
 
 <% }else { //학생 %> --%>
 <ul id="menubar">
-<li><a href="views/student/memberUpdatePage.jsp">마이페이지</a></li>
+<li><a href="../student/memberUpdatePage.jsp">마이페이지</a></li>
 <li><a href="#">강의</a></li>
 <li><a href="#">성적</a></li>
 <li><a href="#">등록 / 장학</a></li>
