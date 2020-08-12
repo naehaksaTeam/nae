@@ -29,7 +29,7 @@
 	</form> -->
 	<input type="button" value="성적수정" onclick="activeEle()">
 	<form action="/beet/grupdate" method="get">
-	<input type="submit" value="등급입력">
+	<input type="button" value="등급입력">
 	</form>
 
 	
@@ -54,17 +54,17 @@
 		</thead>
 		<tbody>
 		<div id="dataArea">
-		<form id="score" action="/beet/scupdate.prof">
+		<form id="score" action="/beet/scupdate.p">
 			<% int i = 1;for(LectureScore lscore : list) {%>
 			<p id="p_<%= i %>">
 			<tr>
 				<td class="nr"><%= i %></td><% i+=1; %>
+				<input type="hidden" value="<%= lscore.getReceptionno() %>">
 				<td><%= lscore.getCategoryname() %></td>
 				<td><%=lscore.getMajorname()%></td>
 				<td><%=lscore.getSid()%></td>
 				<td><%=lscore.getSname()%></td>
 				<td><%=lscore.getRetake()%></td>
-
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getFinalscore()%>" /></td>
@@ -87,9 +87,13 @@
 			</p>
 			<% } %>
 			<tr>
-			<input id="scsave" type="submit" value="저장" onclick="scupdate"> &nbsp;
+			<input id="scsave" type="submit" value="저장" > &nbsp;
 			<input id="sccancle" type="reset" value="취소"> &nbsp;
 			</tr>
+			</form>
+			
+			
+			
 		</tbody>
 	</table>
 	</div>
@@ -97,11 +101,11 @@
 		<p style="margin-top:30px;">
 		* 변경 후 반드시 저장을 눌러주세요 
 		</p>
-		<!-- <input type="button" id="btn1" value="업데이트" onclick="goUpdate()">  -->
-		<input id="save" type="submit" value="저장"> &nbsp; 
+		<!-- <input id="save" type="submit" value="저장"> &nbsp;  <input type="button" id="btn1" value="업데이트" onclick="goUpdate()">  -->
+		
 		 
 		<input type="reset" value="취소"> &nbsp;
-		</form>
+		
 		<input type="button" value="이전 페이지" href="javascript:history.go(-1);"></a>
 		<input type="button" value="테스트" onclick="qwqw"></a>
 		</center>
@@ -141,10 +145,8 @@ function change(){
 			// checkBtn.parent() : checkBtn의 부모는 <td>이다.
 			// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
 			var tr = checkBtn.parent().parent();
-			alert(tr);
 			var td = tr.children();
-			console.log("클릭한 Row의 모든 데이터 : "+tr.text());
-			
+		//	console.log("클릭한 Row의 모든 데이터 : "+tr.text());
 			var categoryname = td.eq(1).text();
 			var majorname = td.eq(2).text();
 			var sid = td.eq(3).text(); 
@@ -161,9 +163,30 @@ function change(){
 			var aa = JSON.stringify(dataArray)
 			var jsonArray = JSON.parse(JSON.stringify(dataArray));
 			alert(aa);
+		
+			 $.ajax({
+				 url:"/beet/scupdate.p",
+                type:"POST",
+                dataType : "json",
+                 data:{
+                    categoryname : categoryname,
+                    majorname : majorname,
+                    sid : sid,
+                    sname : sname,
+                    retake : retake,
+                    atndnScore : atndnScore,
+                    midScore : midScore,
+                    finalScore : finalScore,
+                    totalScore : totalScore,
+                    grade : grade
+                }, 
+                success: function(data){
+                	console.log(data);
+                }
+            }); 
 		});
 	  
-//행번호구하기
+/* //행번호구하기
 $(".abc").click(function(){ 
 	var ttable = document.getElementById("sctable");
 	var trows = ttable.find('tr');
@@ -177,14 +200,14 @@ $(".abc").click(function(){
 		  	
 	}
 });
-
+ */
 
 //최근글 3개 
-$(function(){
+/* $(function(){
 	$("#tg").click(function(){
 		$.getJSON("beet/scupdate.prof", {
-			categoryname = td.eq(1).text();
-			majorname = td.eq(2).text();
+			categoryname = td.eq(1).text()
+			majorname = td.eq(2).text()
 			sid = td.eq(3).text(); 
 			sname = td.eq(4).text();
 			retake = td.eq(5).text();
@@ -197,7 +220,7 @@ $(function(){
 		})
 	})
 })
-
+ */
 
 //수정가능 
 $.ajax({

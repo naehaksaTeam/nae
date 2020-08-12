@@ -34,16 +34,15 @@ public class AtndnUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pid = request.getParameter("userid");
-		String semester = "202001";
-		String lcode = request.getParameter("lcode");
-		
-		ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester, lcode);
-		
-		if(list != null) {
-			request.setAttribute("list", list);
-		}
-		
+		/*
+		 * String pid = request.getParameter("userid"); String semester = "202001";
+		 * String lcode = request.getParameter("lcode");
+		 * 
+		 * ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester,
+		 * lcode);
+		 * 
+		 * if(list != null) { request.setAttribute("list", list); }
+		 */
 		
 		int whoCount = 0;
 		

@@ -33,7 +33,9 @@ public class TestArray extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		int len =  request.getParameterValues("category").length;
+		System.out.println(len);
 		LectureScore lscore= new LectureScore();
+		
 		
 		lscore.setCategory(String.join(",", request.getParameterValues("category")));
 		lscore.setReceptionno(String.join(",",request.getParameterValues("receptionno")));
@@ -46,11 +48,11 @@ public class TestArray extends HttpServlet {
 		lscore.setTotalscore(Integer.parseInt(String.join(",",request.getParameterValues("totalscore"))));
 		lscore.setGrade(String.join(",",request.getParameterValues("grade")));
 		
-		int result = new LectureService().updateScore();
+		//int result = new LectureService().updateScore();
 		
-		if(result > 0) {
-			response.sendRedirect(arg0);
-		}
+		//if(result > 0) {
+		///	response.sendRedirect(arg0);
+		//}
 		
 				
 				

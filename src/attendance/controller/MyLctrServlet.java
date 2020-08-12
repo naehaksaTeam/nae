@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import attendance.model.service.AtndnService;
 import attendance.model.vo.Atndn;
 
@@ -36,7 +39,8 @@ public class MyLctrServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String sid = request.getParameter("userid");
-		
+		JSONObject sendJSON = new JSONObject();
+		JSONArray jarr = new JSONArray();
 		ArrayList<Atndn> list = new AtndnService().selectMyLctr(sid);
 		RequestDispatcher view = null;
 		

@@ -35,6 +35,7 @@ public class AtndnSelectServlet extends HttpServlet {
 
 		String sid = request.getParameter("userid");
 		String lcode = request.getParameter("lcode");
+		String semester = request.getParameter("semester");
 		ArrayList<Atndn> list = new AtndnService().selectLctrAtndn(sid, lcode);
 		RequestDispatcher view = null;
 		

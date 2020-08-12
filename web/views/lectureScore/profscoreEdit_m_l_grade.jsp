@@ -95,10 +95,10 @@
 	var n9 = parseInt(document.getElementById("F").value);
 	
 	
-document.getElementById("plus").onclick= function(){
-}
+/* document.getElementById("plus").onclick= function(){
+} */
 
-$("#layer")
+/* $("#layer")
 
 
 focusout(function() {
@@ -108,15 +108,15 @@ focusout(function() {
 
 	  $("#tot_price").val(tot_price);
 
-	});
+	}); */
 
-$("#test").addEventListner('onKeyup', function(){
+/* $("#test").addEventListner('onKeyup', function(){
 	alert("작동!")
 })
 
 function calc(){
 	test.t1.value = n1 + n2;
-}
+} */
 </script>
 </body>
 </html>
