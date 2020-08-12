@@ -12,7 +12,9 @@
 <title>Insert title here</title>
 </head>
 <style type="text/css">
-
+header{
+	position: fixed;
+}
 input[type=submit] {
     background-color: #4CAF50;
     border: 0;
@@ -36,31 +38,44 @@ input[type=submit]:hover {
 }
 div#sideLeft{
 	width: 20%;
-	height: 100%;
+	height: 78%;
 	background-color: red;
 	float: left;
 }
 div#contents{
 	width: 60%;
-	height: 100%;
+	height: 78%;
 	background-color: yellow;
 	float: left;
 }
 div#sideRight{
 	width: 20%;
-	height: 100%;
-	background-color: green;
+	height: 78%;
+	background-color: blue;
 	float: left;
 }
-body {
-	padding-top: 140px;
-}
+/* div#header{
+	width: 100%;
+	height: 22%;
+	background-color: green;
+
+} */
+
+
 </style>
+
 <header>
 <%@ include file="../common/header.jsp" %>
 </header>
-<%@ include file="../common/side.jsp" %>
+
 <body>
+<%-- <div id="header">
+<header>
+<%@ include file="../common/header.jsp" %>
+</header>
+</div> --%>
+
+<div id="sideLeft" class="ui"><%@ include file="../common/sidekyu.jsp" %></div>
 <script type="text/javascript">
 function twosend(){
 	document.tsForm.action="/beet/tosselect";
@@ -69,69 +84,65 @@ function twosend(){
 	document.tsForm.submit();
 }
 </script>
-<h1>출결 성적 등록</h1>
-<h3>학생용</h3>
-<div id="sideLeft"></div>
-<div id="contents">
-
-<div class="학생 조회용">
-
-<form action="/beet/mylctr" method="post">
-<input type="hidden" name="userid" value="<%=m1.getId() %>">
-<input type="submit" class="btn-sm" value="나의강의조회">
-<!-- 강의목록 join시 중복되는 문제 해결 필요 -->
- </form>
-
-<form action="/beet/tosselect" method="post">
-<input type="hidden" name="userid" value="<%=m1.getId() %>">
-<input type="submit" class="btn-sm" value="전체성적조회">
- </form>
-  
-<form action="/beet/tesselect" method="post">
-<input type="hidden" name="userid" value="<%=m1.getId() %>">
-<input type="submit" class="btn-sm" value="학기성적조회">
-</form>
-  
-<form action="/beet/lsselect" method="post">
-<input type="hidden" name="userid" value="<%=m1.getId() %>">
-<input type="submit" class="btn-sm" value="과목별성적조회">
-<!-- 학기 ajax로 selected 값 받아서 동적페이지 구현할 예정  -->
-</form>  
+<div id="contents" class="ui">
+	<h1>출결 성적 등록</h1>
+	<h3>학생용</h3>
+	
+	<div class="학생 조회용">
+	
+	<form action="/beet/mylctr" method="post">
+	<input type="hidden" name="userid" value="<%=m1.getId() %>">
+	<input type="submit" class="btn-sm" value="나의강의조회">
+	<!-- 강의목록 join시 중복되는 문제 해결 필요 -->
+	 </form>
+	
+	<form action="/beet/tosselect" method="post">
+	<input type="hidden" name="userid" value="<%=m1.getId() %>">
+	<input type="submit" class="btn-sm" value="전체성적조회">
+	 </form>
+	  
+	<form action="/beet/tesselect" method="post">
+	<input type="hidden" name="userid" value="<%=m1.getId() %>">
+	<input type="submit" class="btn-sm" value="학기성적조회">
+	</form>
+	  
+	<form action="/beet/lsselect" method="post">
+	<input type="hidden" name="userid" value="<%=m1.getId() %>">
+	<input type="submit" class="btn-sm" value="과목별성적조회">
+	<!-- 학기 ajax로 selected 값 받아서 동적페이지 구현할 예정  -->
+	</form>  
+	</div>
+	
+	<br>
+	<br>
+	<h3>교수용</h3>
+	<div id="test" class="교수 조회용" >
+	<form action="/beet/scmain.p" method="post">
+	<input type="hidden" name="userid" value="<%=m1.getId() %>">
+	<input type="submit" class="btn-sm" value="나의강의목록">
+	 </form>
+	
+	<form action="/beet/scinsert.prof" method="post">
+	<input type="hidden" name="userid" value="<%=m1.getId() %>">
+	<input type="submit" class="btn-sm" value="교수성적입력">
+	 </form>
+	  
+	<form action="/beet/tesselect" method="post">
+	<input type="hidden" name="userid" value="<%=m1.getId() %>">
+	<input type="submit" class="btn-sm" value="학기성적조회">
+	</form>
+	
+	<h3>관리자용 </h3> 
+	
+	<form action="/beet/lctrsearchall" method="post">
+	<input type="hidden" name="userid" value="<%=m1.getId() %>">
+	<input type="submit" class="btn-sm" value="과목성적조회">
+	<!-- 학기 ajax로 selected 값 받아서 동적페이지 구현할 예정  -->
+	</form> 
+	</div>
 </div>
 
-<br>
-<br>
-<h3>교수용</h3>
-<div class="교수 조회용">
-<form action="/beet/scmain.p" method="post">
-<input type="hidden" name="userid" value="<%=m1.getId() %>">
-<input type="submit" class="btn-sm" value="나의강의목록">
- </form>
+<div id="sideRight" class="ui"></div>
 
-<form action="/beet/scinsert.prof" method="post">
-<input type="hidden" name="userid" value="<%=m1.getId() %>">
-<input type="submit" class="btn-sm" value="교수성적입력">
- </form>
-  
-<form action="/beet/tesselect" method="post">
-<input type="hidden" name="userid" value="<%=m1.getId() %>">
-<input type="submit" class="btn-sm" value="학기성적조회">
-</form>
-
-<h3>관리자용 </h3> 
-
-<form action="/beet/lctrsearchall" method="post">
-<input type="hidden" name="userid" value="<%=m1.getId() %>">
-<input type="submit" class="btn-sm" value="과목성적조회">
-<!-- 학기 ajax로 selected 값 받아서 동적페이지 구현할 예정  -->
-</form> 
-
-</div>
-
-<div id="sideRight"></div>
-
-
-
-</div>
 </body>
 </html>
