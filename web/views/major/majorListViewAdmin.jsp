@@ -50,7 +50,9 @@
 		%>
 		<tr>
 			<td><%=m.getMajorno()%></td>
-			<td><%=m.getMajorname()%></td>
+			<td><a href="/beet/mdetail?majorno=<%=m.getMajorno()%>"><%=m.getMajorname()%></a></td>
+			
+		<%-- 	<td><%=m.getMajorname()%></td> --%>
 
 
 			<td><%=m.getCapacity()%></td>
@@ -143,6 +145,7 @@
 	</div>
 	<!--  만일 관리자라면 글쓰기가 보여야함 ! 지금은 누구나다보임 -->
 	<div style align="right" text-align:center>
+	
 		<button onclick="majorInsertForm();">글쓰기</button>
 		<button onclick="javascript:history.go(-1);">뒤로</button>
 	</div>

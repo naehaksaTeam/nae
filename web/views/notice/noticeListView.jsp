@@ -34,14 +34,12 @@
 	<hr>
 	<h1 align="center">공지사항</h1>
 	<br>
-
+	
 	<form action="/beet/nsearch">
-		<%
-			Notice notice = new Notice();
-		%>
+	<% Notice notice = new Notice(); %>
 		<select name="searchoption">
-
-			<option value="no=<%=notice.getNoticeNo()%>">글번호</option>
+	
+			<option value="no=<%=notice.getNoticeNo() %>">글번호</option>
 			<option value="writer">작성자</option>
 
 			<option value="content">글내용</option>
@@ -86,7 +84,7 @@
 			<td><%=n.getNoticeDate()%></td>
 			<td>
 				<%
-					if (n.getNoticeContent().length() > 15) {
+					if (n.getNoticeContent().length() > 20) {
 				%> <a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent().substring(0, 15)%></a>
 				<%
 					} else {

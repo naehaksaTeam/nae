@@ -15,16 +15,16 @@ import major.model.vo.Major;
 
 
 /**
- * Servlet implementation class MajorInsertServlet
+ * Servlet implementation class MajorDetailSerlvet
  */
-@WebServlet("/minsert.ad")
-public class MajorInsertServlet extends HttpServlet {
+@WebServlet("/mdetail")
+public class MajorDetailSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MajorInsertServlet() {
+    public MajorDetailSerlvet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,36 +33,31 @@ public class MajorInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/* request.setCharacterEncoding("utf-8"); */
-		Major major = new Major();
-		
-		major.setMajorno(request.getParameter("no"));
-		major.setMajorname(request.getParameter("name"));
-		major.setCapacity((Integer.parseInt(request.getParameter("capacity"))));
-		major.setTuition((Integer.parseInt(request.getParameter("tuition"))));
-		major.setCategoryname(request.getParameter("category"));
-
+		// 전공 상세보기 처리용 컨트롤러 
+		String majorno = request.getParameter("majorno");
 		
 		
 		
-	
 		
-		//3. 서비스 객체 생성하고, 서비스 메소드를 이용해서 객체 전달하고
-		//처리 결과받기
-		int result = new MajorService().insertMajor(major);
 		
-		//4. 받은 결과에 따라 성공/실패 뷰 선택해서 내보내기
-		if(result > 0) {
-			response.sendRedirect("/beet/views/major/majorListView.jsp");
+		
+		Major major = new MajorService().selectMajor(majorno);
+		
+		
+		RequestDispatcher view = null;
+		if(major != null) {
+			view = request.getRequestDispatcher("views/major/majorDetailView.jsp");
+			System.out.println("성공");
+			request.setAttribute("major", major);
+			view.forward(request, response);
 		}else {
-			//response.sendRedirect("/test1/views/common/error.jsp");
-			
-			RequestDispatcher view = request
-					.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "회원 가입 실패!");
+			view= request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", majorno +"번 글에 대한 상세보기 요청 실패!");
 			view.forward(request, response);
 		}
 	}
+
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
