@@ -9,6 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title>beet</title>
+<script type="text/javascript">
+
+function sendDelete(){
+	
+	//회원 탈퇴처리 서블릿 요청함.
+	location.href = "/beet/mdelete?id=<%= member.getId() %>";
+}
+</script>
 </head>
 <body>
 <hr>
