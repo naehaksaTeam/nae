@@ -23,6 +23,8 @@
 body {
 	margin: 0px;
 	padding: 0px;
+/* 	 display: flex; 
+  flex-direction: column; */
 	background: #F8F8F8 url(images/overlay.png) repeat;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 12pt;
@@ -246,7 +248,7 @@ body {
 	<div id="header-wrapper">
 		<div id="header" class="container">
 			<div id="logo">
-				<h1><a href="/beet/main.jsp">logo</a></h1>
+				<h1><a href="/beet/views/main/main.jsp">logo</a></h1>
 				
 			</div>
 			<div id="social">

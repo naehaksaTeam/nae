@@ -182,8 +182,9 @@ function update(){
 <br>
 <button onclick="javascript:location.href='/beet/adsch'">관리 페이지</button>
 
-
+<%@include file="../../common/footer.jsp" %>
 <br>
+
 <br>
 </center>
 </body>
