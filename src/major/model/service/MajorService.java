@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import major.model.dao.MajorDao;
 import major.model.vo.Major;
+import major.model.vo.Major1;
 
 
 
@@ -54,11 +55,13 @@ public class MajorService {
 		Connection conn = getConnection();
 		int result = mdao.deleteMajor(conn, majorNo);
 		System.out.println("service "+ result);
-		if (result > 0)
+		if (result > 0) {
 			commit(conn);
-		else
+		}else {
 			rollback(conn);
-		close(conn);
+		}
+			close(conn);
+		
 		return result;
 	}
 
@@ -81,9 +84,13 @@ public class MajorService {
 		return result;
 	}
 
-	public ArrayList<Major> selectOneTuition() {
-		// TODO Auto-generated method stub
-		return null;
+	public Major1 selectOneTuition(String id) {
+		Connection conn = getConnection();
+		Major1 major1 = mdao.selectOneTuition(conn, id);
+		
+		close(conn);
+		
+		return major1;
 	}
 
 	

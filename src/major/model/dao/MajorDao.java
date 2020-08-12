@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import major.model.vo.Major;
+import major.model.vo.Major1;
 
 
 
@@ -136,8 +137,9 @@ public class MajorDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rset);
+			close(pstmt);
+			
 		}
 		return major;
 		
@@ -190,8 +192,9 @@ public class MajorDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rset);
+			close(pstmt);
+			
 		}
 		return major;
 	}
@@ -223,9 +226,46 @@ public class MajorDao {
 		return result;
 	}
 
-	public Major selectOneTuition(Connection conn, Major major) {
-		// TODO Auto-generated method stub
-		return null;
+	public Major1 selectOneTuition(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		Major1 major1 = null;
+		ResultSet rset = null;
+		String query = "select a.categoryname as \"categoryname\" , b.majorname as \"majorname\" , a.id as \"id\" , a.name as \"name\" , b.tuition as \"tuition\"" + 
+				"from student a " + 
+				"join major b on a.majorno=b.majorno " + 
+				"where id = ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, id);
+			
+			
+			
+		rset = 	pstmt.executeQuery();
+			if(rset.next()) {
+				major1 = new Major1();
+				
+				major1.setCategoryname(rset.getString("categoryname"));
+				major1.setMajorname(rset.getString("majorname"));
+				major1.setId(rset.getString("id"));
+				major1.setName(rset.getString("name"));
+				major1.setTuition(rset.getInt("tuition"));
+				
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return major1;
 	}
 
 	

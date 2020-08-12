@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="major.model.vo.Major1"%>
+<% 
+	Major1 major1 = (Major1)request.getAttribute("major1");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,22 +19,29 @@
 		<tr>
 			<th>학부</th>
 			<th>학과</th>
+			<th>년도</th>
+			<th>학기</th>
 			<th>이름</th>
+			<th>학번</th>
 			<th>등록금</th>
 			<th>장학금</th>
 			<th>납부액</th>
 			<th>납입시간</th>
 		</tr>
-		
+		<%if(major1 != null){ %>
 		<tr>
-			<td>1</td>
-			<td>2</td>
-			<td>3</td>
-			<td>4</td>
-			<td>5</td>
-			<td>6</td>
-			<td>7</td>
+			<td><%= major1.getCategoryname() %></td>
+			<td><%= major1.getMajorname() %></td>
+			<th>년도</th>
+			<th>학기</th>
+			<td><%= major1.getName() %></td>
+			<td><%= major1.getId() %></td>
+			<td><%= major1.getTuition() %></td>
+			<td>장학금</td>
+			<td>납부액</td>
+			<td>납입시간</td>
 		</tr>
+		<% } %>
 	</table>
 </body>
 </html>

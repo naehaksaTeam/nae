@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import major.model.service.MajorService;
 import major.model.vo.Major;
+import major.model.vo.Major1;
 
 /**
  * Servlet implementation class MajorStudentListServlet
@@ -37,12 +38,16 @@ public class MajorStudentListServlet extends HttpServlet {
 		String id = request.getParameter("who");
 		
 		
-		ArrayList<Major> list = new MajorService().selectOneTuition();
+		Major1 major1 = new MajorService().selectOneTuition(id);
 		
 		RequestDispatcher view = null;
-		if(list.size() > 0) {
+		if(major1 != null) {
 			view = request.getRequestDispatcher("views/major/majortuition.jsp");
-			request.setAttribute("list", list);
+			request.setAttribute("major1", major1);
+			view.forward(request,response);
+		}else {
+			view = request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", "등록금 고지서 조회실패 !");
 			view.forward(request,response);
 		}
 		
