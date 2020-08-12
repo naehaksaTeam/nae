@@ -7,7 +7,8 @@ import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import attendance.model.dao.AtndnDao;
 import attendance.model.vo.Atndn;
@@ -39,10 +40,12 @@ public class AtndnService {
 
  //성적이랑 합침 
 	public ArrayList<Atndn> selectProfAtndnList(String pid, String semester, String lcode) {
+		
 		Connection conn = getConnection();
-		 ArrayList<Atndn>  list = adao.selectProfAtndnList(conn, pid, semester, lcode);
+		ArrayList<Atndn>  list = adao.selectProfAtndnList(conn, pid, semester, lcode);
 		close(conn);
 		return list;
+		
 	}
 
 	public int updateAtndn(Atndn atndn) {
@@ -58,16 +61,26 @@ public class AtndnService {
 		return result;
 	}
 
-	public int updateWeekAll(HashMap map) {
+	public int updateWeekAll(ArrayList<Atndn> list) {
 		//출결 여러개 업데이트
 		Connection conn = getConnection();
-		int r = adao.updateWeekAll(conn,map);
-		if(r > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
 		close(conn);
+		int r = 0;
+		for(Atndn a : list) {
+			String who = a.getSid();
+			System.out.println(who);
+			conn = getConnection();
+			r = adao.updateWeekAll(conn,who,a);
+			if(r > 0) {
+				commit(conn);
+				close(conn);
+			}else {
+				System.out.println("업데이트 실패 : " + who);
+				rollback(conn);
+				close(conn);
+				break;
+			}
+		}
 		return r;
 	}
 

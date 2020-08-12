@@ -434,9 +434,23 @@ public class AtndnDao {
 				return result;
 			}
 
-			public int updateWeekAll(Connection conn, HashMap map) {
+			public int updateWeekAll(Connection conn,String who,Atndn a) {
 				int r = 0;
-				String query ="insert into attendance values ('','','','','','','','','','','','','','','','','','','','')";
+				String query ="update attendance set " + a.getWeek1() + " = ? where id = ?";
+				PreparedStatement pstmt = null;
+				try {
+					pstmt = conn.prepareStatement(query);
+					pstmt.setString(1, a.getThisweek());
+					pstmt.setString(2, a.getSid());
+					
+					r = pstmt.executeUpdate();
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					close(pstmt);
+				}
+				
 				return r;
 			}
 }

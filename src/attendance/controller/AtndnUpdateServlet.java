@@ -46,28 +46,29 @@ public class AtndnUpdateServlet extends HttpServlet {
 		
 		
 		int whoCount = 0;
-		
 		String week = request.getParameter("selectweek");
 		
-		HashMap map = new HashMap();
+		ArrayList<Atndn> list2 = new ArrayList<Atndn>();
 		while(request.getParameter("who" + ++whoCount) != null ) {
+	
 			Atndn atndn = new Atndn();
 			atndn.setLcode(request.getParameter("lcode"));
 			atndn.setSid(request.getParameter("who" + whoCount));
+			atndn.setWeek1(week);
 			atndn.setThisweek(request.getParameter("selectfour" + whoCount));
 			
-			map.put(request.getParameter("list" + whoCount) , atndn);
+			list2.add(atndn);
 		}
 		
 		
 		
-		int result = new AtndnService().updateWeekAll(map);
+		int result = new AtndnService().updateWeekAll(list2);
 		
 		RequestDispatcher view = null;
 		
 		if(result > 0) {
 			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
-			request.setAttribute("result", "no");
+			request.setAttribute("result", "yes");
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
