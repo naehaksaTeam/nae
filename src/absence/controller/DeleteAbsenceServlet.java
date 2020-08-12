@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import absence.model.service.AbsenceService;
-import absence.model.vo.Absence;
 
 @WebServlet("/deleteab")
 public class DeleteAbsenceServlet extends HttpServlet {
@@ -21,61 +20,22 @@ public class DeleteAbsenceServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//승인 상태일때 신청취소 요청오면 delete해서 result >0 이면 학생테이블에 가서 휴학여부 바꾸어준다.
+		//미승인 상태일 때는 delete만 진행
+		
+		request.setCharacterEncoding("utf-8");
+		
 		String requestid = request.getParameter("requestid");
-		String ab = requestid.substring(0, 1);
 		
-		System.out.println("requestid : " + requestid);
+		int result = new AbsenceService().deleteAbsence(requestid);
 		
-		AbsenceService aservice = new AbsenceService();
-		Absence a = aservice.selectOneAbsence(requestid);
-
 		RequestDispatcher view = null;
-		
-		float date = aservice.canceldateChk(requestid);
-		if(date > 0) {
-			String approval = aservice.selectApprovalChk(requestid);
-			if(approval.equals("Y")){//승인완료, 학생테이블가서 바꿔줘야함
-				int result = aservice.deleteAbsence(requestid);
-				if(result > 0) { // 휴학 취소되면 학생테이블 가서 변경
-					int re = aservice.studentAbsenceChange(a.getStudentid());
-					if(re > 0) {
-						if(ab.equals("a")) {
-							int r = aservice.studentCountMinus(a.getStudentid());
-							if(r > 0) {
-								response.sendRedirect("selectab?studentid="+a.getStudentid());
-							}else {
-								view = request.getRequestDispatcher("views/common/error.jsp");
-								request.setAttribute("message","학생정보 변경에 실패하였습니다.");
-								view.forward(request, response);
-							}
-						}else {
-							response.sendRedirect("selectab?studentid="+a.getStudentid());
-						}
-					}else {
-						view = request.getRequestDispatcher("views/common/error.jsp");
-						request.setAttribute("message","학생정보 변경에 실패하였습니다.");
-						view.forward(request, response);
-					}
-				}else {
-					view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message","휴학신청취소에 실패하였습니다.");
-					view.forward(request, response);
-				}
-			}else{ // 승인안된상황 
-				int result = aservice.deleteAbsence(requestid);
-				if(result > 0){
-					response.sendRedirect("selectab?studentid="+a.getStudentid());
-				}else {
-					view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message","휴학신청취소에 실패하였습니다.");
-					view.forward(request, response);
-				}
-			}
-		}else {//취소날짜가 지났음
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message","취소가능한 날짜가 지났습니다.");
-			view.forward(request, response);
+		if(result > 0) {
+			response.sendRedirect("");
+		}else {
+			
 		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

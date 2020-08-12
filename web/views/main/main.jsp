@@ -36,26 +36,25 @@
 </head>
 
 
-<!-- 
+
 <style type="text/css">
-/*   body {
+/* body {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  display: flex; 
+  display: flex;
   flex-direction: column;
- /*  justify-content: center; */
-/*   align-items: center;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}   */ 
-
-/* #outer{
+} */
+#outer{
 			width: 800px;
 			margin-left: auto;
 			margin-right: auto;
-		} */
+		}
 
 .quotes {
    /* width: 65vw; */
@@ -78,8 +77,6 @@
 
 
 
-
-
 .quotes .box::after {
   content: '\201D';
   position: absolute;
@@ -99,14 +96,13 @@
 }
 
 .quotes .box h2 {
-   position: absolute; 
-   margin: 0;
+  /* position: absolute; */
+  margin: 0;
   padding: 0;
   bottom: 10%;
   right: 10%;
   font-size: 1.5rem;
 }
-
 .quotes .bg {
   position: absolute;
   top: 0;
@@ -118,67 +114,11 @@
   width: 100%;
   height: 200%;
   overflow: hidden;
-} 
-</style>  -->
-<style>
-.box{
-    width: 55%;
-    min-height: 300px;  
-    margin: 10px auto;
-    display: flex;
-    
-
 }
-.a{
-    border: 1px solid ;
-    flex:1;
-    width:25%;
-    box-sizing: border-box;
-    font-size: 0.5rem;
-}
-
-.b{
-    border: 1px solid ;
-    flex:1;
-    margin: 0px 7%;
-    width:25%;
-    box-sizing: border-box;
-}
-
-.c{
-    border: 1px solid ;
-    flex:1;
-    width:25%;
-    box-sizing: border-box;
-}
-.d{
-    border: 1px solid ;
-    flex:1;
-    width:25%;
-    box-sizing: border-box;
-}
-
-.e{
-    border: 1px solid ;
-    flex:1;
-    margin: 0px 7%;
-    width:25%;
-    box-sizing: border-box;
-}
-
-.f{
-    border: 1px solid ;
-    flex:1;
-    width:25%;
-    box-sizing: border-box;
-}
-
-
-
 </style>
 <script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 
 $(function(){
 
@@ -317,10 +257,7 @@ $(function(){
 	
 	
 </script>
-
-
-
-  <!--       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <style type="text/css">
             *{padding: 0px; margin: 0px;}  /* 브라우저별 기본 여백 차이가 있기에 작성한다. */
@@ -328,7 +265,7 @@ $(function(){
             td{font-size: 9pt;}
             a{cusor: pointer; color: #000000; text-decoration: none; font-size: 9pt; line-height: 150%;}
             a:HOVER, a:ACTIVE{font-size: 9pt; color: #F28011; text-decoration: underline;}
-        </style> -->
+        </style>
 
 
 <body>
@@ -348,145 +285,24 @@ $(function(){
 <div id="outer">
 <header>
 <%@ include file="../common/header.jsp" %>
-<%@ include file="../common/side.jsp" %>
+
+<button onclick="javascript:location.href='../lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='../attendance/sub4main.jsp'">출결 목록 테스트</button>
+<button onclick="javascript:location.href='../absence/absenceRequestView.jsp'">학생신청페이지</button>
+<button onclick="javascript:location.href='/beet/nlist'">공지사항</button>
+<button onclick="javascript:location.href='../student/회원가입선택.jsp'">회원가입</button>
+<button onclick="javascript:location.href='../student/findId.jsp'">아이디찾기</button>
+<button onclick="javascript:location.href='../student/findPassword.jsp'">비밀번호찾기</button>
+<button onclick="javascript:location.href='../student/memberUpdatePage.jsp'">마이페이지</button>
+
 </header>
 
 
 
 <br>
 <br>
- <div class="box">
-        <div class="a">first
-        		<%if(m1.getId().substring(0, 1).equals("P")){ %>
-					 <h1> 코드 : <%= m.getId() %><br>
-					 	 <%=m.getCategoryname() %><br>
-      					 <%= m.getName() %>교수님 <br>
-      					   내학사에 오신것을 환영합니다.</h1>
-      					 
-				<% }else if(m1.getId().substring(0, 1).equals("A")){ %>
-					 <h1>관리자 코드 : <%= m.getId() %><br>
-      					 <%= m.getName() %>관리자님 <br>
-      					 내학사에 오신것을 환영합니다.</h1>
-      					 
-				<% }else{ %>
-					 <h1>내 학번 : <%= m.getId() %><br>
-					  <%=m.getCategoryname() %><br>
-      					 <%= m.getName() %>님 <br>
-      					 내학사에 오신것을 환영합니다.</h1>
-				<%} %>
-        	 
-        </div>
-        
-        <div class="b">second
-        	<h2 >캘린더</h2>
-                  <table width="250" border="0" cellpadding="1" cellspacing="2">
-                <tr height="30">
-                    <td align="center">
-                        <%--  <a href="calendar.jsp?year=<%=year%>&month=<%=month-1%>">◀</a>  --%>
-                        <b><%=year %>년 <%=month %>월</b>
-                      <%--   <a href="calendar.jsp?year=<%=year%>&month=<%=month+1%>">▶</a> --%>
-                    </td>
-                </tr>
-            </table>
-           
-            <table width="210" border="0" cellpadding="2" cellspacing="1" bgcolor="#cccccc">
-                <tr height="25">
-                    <td align="center" bgcolor="#e6e4e6"><font color="red">일</font></td>
-                    <td align="center" bgcolor="#e6e4e6">월</td>
-                    <td align="center" bgcolor="#e6e4e6">화</td>
-                    <td align="center" bgcolor="#e6e4e6">수</td>
-                    <td align="center" bgcolor="#e6e4e6">목</td>
-                    <td align="center" bgcolor="#e6e4e6">금</td>
-                    <td align="center" bgcolor="#e6e4e6"><font color="blue">토</font></td>
-                </tr>
-                <%
-                    int newLine = 0;
-                    //1일이 어느 요일에서 시작하느냐에 따른 빈칸 삽입
-                    out.println("<tr height='25'>");
-                    for(int i=1; i<w; i++)
-                    {
-                        out.println("<td bgcolor='#ffffff'>&nbsp;</td>");
-                        newLine++;
-                    }
-                   
-                    String fc, bg;
-                    for(int i=1; i<=end; i++)
-                    {
-                       
-                        fc = (newLine == 0)?"red":(newLine==6?"blue":"#000000");
-                        bg = "#ffffff";
-                        out.println("<td align='center' bgcolor=" + bg + "><font color=" + fc + ">"
-                                + i + "</font></td>");
-                        newLine++;
-                        if(newLine == 7 && i != end)
-                        {
-                            out.println("</tr>");
-                            out.println("<tr height='25'>");
-                            newLine = 0;
-                        }
-                    }
-                   
-                    while(newLine>0 && newLine<7)
-                    {
-                        out.println("<td bgcolor='ffffff'>&nbsp;</td>");
-                        newLine++;   
-                    }
-                    out.println("</tr>");
-                %>
-                
-            </table>
-        </div>
-        
-        <div class="c">third
-         <table id="mainSchedule" border="1" cellspacing="0">
-        <h2> <%=month %>월 학사일정</h2>
-      	<tr>
-      		<th> &nbsp;일&nbsp;</th><th> 일정 </th>
-      	</tr>
-      	
-      	</table>
-        </div>
- </div>
- <br>
- <br>
- 
-  <div class="box">
-        <div class="d">first
-        	 <table id="mainScore" border="1" cellspacing="0">
-      		  <h2>나의 학점 현황</h2>
-        
-      			<th>학기</th><th> 취득학점 </th>
-      	
-      	</table>
-        </div>
-        <div class="e">second
-        		<h2>최신 공지글</h2>
-      	<section>
-      	<table id="mainNotice" border="1" cellspacing="0">
-      	<tr>
-      		<th>번호<th>제목</th><th>날짜</th>
-      	</tr>
-      	</table>
-      	</section>
-        </div>
-        <div class="f">third
-        	    <h2>날씨</h2>
-       	
-      
-       	<table id="mainWeather" border="1" cellspacing="0">
-        <ul>
-          
-            <li class="강수량"></li>
-            <li class="기온"></li>
-            <li class="습도"></li>
-            
-        </ul>
-        </table>
-        </div>
- </div>
-<br>
-<br>
- <%--  <div class="quotes">
+
+  <div class="quotes">
     <div class="card">
       <div class="box box1">
       <h1>내 학번 : <%= m.getId() %>, <%=m.getCategoryname() %>
@@ -498,8 +314,9 @@ $(function(){
       	</tr>
       	
       	</table>
+      	
+		
       </div>
-      
       <div class="bg"></div>
     </div>
     <div class="card">
@@ -508,9 +325,9 @@ $(function(){
                   <table width="250" border="0" cellpadding="1" cellspacing="2">
                 <tr height="30">
                     <td align="center">
-                         <a href="calendar.jsp?year=<%=year%>&month=<%=month-1%>">◀</a> 
+                        <%--  <a href="calendar.jsp?year=<%=year%>&month=<%=month-1%>">◀</a>  --%>
                         <b><%=year %>년 <%=month %>월</b>
-                        <a href="calendar.jsp?year=<%=year%>&month=<%=month+1%>">▶</a>
+                      <%--   <a href="calendar.jsp?year=<%=year%>&month=<%=month+1%>">▶</a> --%>
                     </td>
                 </tr>
             </table>
@@ -622,7 +439,6 @@ $(function(){
             <li class="습도"></li>
             
         </ul>
-        </table>
     </div>
  
       </div>
@@ -634,12 +450,8 @@ $(function(){
   <br>
  
   </div>
-  <br> --%>
-<br>
-<br>
-<br>
-<br>
-<br>
+  <br>
+
 
 </body>
   <footer>

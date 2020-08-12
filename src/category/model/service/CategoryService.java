@@ -19,6 +19,13 @@ public class CategoryService {
 		return list;
 	};
 	
+	public Category selectOneCategory(String catename) {
+		Connection conn = getConnection();
+		Category category = cdao.selectOneCategory(conn, catename);
+		close(conn);
+		return category;
+	};
+	
 	public int insertCategory(String catename) {
 		Connection conn = getConnection();
 		int result = cdao.insertCategory(conn, catename);
@@ -29,13 +36,12 @@ public class CategoryService {
 			rollback(conn);
 		}
 		close(conn);
-		System.out.println("서비스의 result : " + result);
 		return result;
 	};
 	
-	public int updateCategory(String catename, String newname) {
+	public int updateCategory(String catename) {
 		Connection conn = getConnection();
-		int result = cdao.updateCategory(conn, catename, newname);
+		int result = cdao.updateCategory(conn, catename);
 		
 		if(result > 0) {
 			commit(conn);

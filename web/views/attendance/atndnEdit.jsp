@@ -44,7 +44,7 @@ java.util.Date, java.text.SimpleDateFormat"%>
 				<td><%=a.getSid()%><input type="text" name="who<%= i %>" value="<%= a.getSid() %>" style="display:none;"></td>
 				<td><%=a.getMajorname()%><input type="text" name="lcode" value="<%= a.getLcode() %>" style="display:none;"></td>
 				<td><%=a.getSname()%></td>
-				<td><select class="atndt" name="selectfour<%= i %>" style="width: 80px; height: 30px" required>
+				<td><select class="atndt" name="selectfour<%= i %>" style="width: 80px; height: 30px">
 						<option value="-" selected disabled hidden>-</option>
 						<option value="1">출석</option>
 						<option value="2">결석</option>
@@ -59,19 +59,6 @@ java.util.Date, java.text.SimpleDateFormat"%>
 			%>
 		
 	</table>
-	
-<b style="color:red;">	
-<% if(request.getAttribute("result") != null ){ %>
-	<% if(request.getAttribute("result").equals("yes") ){ %>
-		업데이트 성공!
-	<% }else if(request.getAttribute("result").equals("no") ){ %>
-		업데이트 실패...
-	<% }else{ %>
-		알수없는 값...
-	<% } %>
-<% } %>
-</b>
-
 	<p style="position:relative;float:center;" align="center">
 		<input type="submit" value="저장"> &nbsp;
 	</p>
