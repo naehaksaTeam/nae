@@ -34,12 +34,14 @@
 	<hr>
 	<h1 align="center">공지사항</h1>
 	<br>
-	
+
 	<form action="/beet/nsearch">
-	<% Notice notice = new Notice(); %>
+		<%
+			Notice notice = new Notice();
+		%>
 		<select name="searchoption">
-	
-			<option value="no=<%=notice.getNoticeNo() %>">글번호</option>
+
+			<option value="no=<%=notice.getNoticeNo()%>">글번호</option>
 			<option value="writer">작성자</option>
 
 			<option value="content">글내용</option>
