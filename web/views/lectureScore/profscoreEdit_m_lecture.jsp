@@ -83,13 +83,13 @@
 					<option value="F" <%= (lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
 					</select></td>
 					<td><input class="checkBtn" type="button" value="테스트"> &nbsp;</td>
-					<td><inputtype="button" value="행테스트"> &nbsp;</td>
+					<td><input type="button" value="행테스트"> &nbsp;</td>
 				
 			</tr>
 			</p>
 			<% } %>
 			<tr>
-			<input id="abc" type="button" value="와테스트">
+			<input  type="button" value="와테스트">
 			<input id="scsave" type="submit" value="저장"> &nbsp;
 			<input id="sccancle" type="button" value="취소"> &nbsp;
 			</tr>
@@ -103,9 +103,9 @@
 	
 	
 	<div class="test" id="ttest" ></div> 
-	<form id="updateArr">
+	<form id="updateArr" action="/beet/scoreup" method="post">
 	<input type="text" value="tdArr">
-	<input type="submit" value="전송">
+	<input id="abc" type="submit" value="전송">
 	</form> 
 	
 	
@@ -216,7 +216,7 @@ $("#abc").click(function(){
 
    });
 	
-	//$("#ttest").html(tdArr);	
+	$("#ttest").html(tdArr);	
 });
 
 </script>
