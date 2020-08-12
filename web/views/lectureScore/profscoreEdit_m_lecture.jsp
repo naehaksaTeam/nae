@@ -103,7 +103,10 @@
 	
 	
 	<div class="test" id="ttest" ></div> 
-	
+	<form id="updateArr">
+	<input type="text" value="tdArr">
+	<input type="submit" value="전송">
+	</form> 
 	
 	
 	
@@ -199,8 +202,8 @@ $("#abc").click(function(){
 	var grade = td.eq(12).find('select[name="selectg"] option:selected').val()+", ";
 
    
-     // 가져온 값을 배열에 담는다.
-	tdArr.push(categoryname);
+     //배열 
+	 tdArr.push(categoryname);
      tdArr.push(majorname);
      tdArr.push(sid);
      tdArr.push(sname);
@@ -211,10 +214,9 @@ $("#abc").click(function(){
      tdArr.push(totalScore);
      tdArr.push(grade);
 
-
    });
 	
-	$("#ttest").html(tdArr);	
+	//$("#ttest").html(tdArr);	
 });
 
 </script>
