@@ -16,7 +16,7 @@ public class StudentDao {
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
 
-	      String query = "select * from a student where id = ? and treasure = ? ";
+	      String query = "select * from student where id = ? and treasure = ? ";
 					
 					
 	      try {

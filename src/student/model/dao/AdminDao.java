@@ -15,7 +15,7 @@ public class AdminDao {
 	      PreparedStatement pstmt = null;
 	      ResultSet rset = null;
 
-	      String query = "select * from a administrator where id = ? and treasure = ? ";
+	      String query = "select * from administrator where id = ? and treasure = ? ";
 					
 					
 	      try {

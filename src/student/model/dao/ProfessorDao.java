@@ -20,7 +20,7 @@ public class ProfessorDao {
       int result = 0;
       PreparedStatement pstmt = null;
 
-      String query = "insert into student values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,defalut,defalut,?)";
+      String query = "insert into professor values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,defalut,defalut,?)";
 
       try {
          pstmt = conn.prepareStatement(query);
