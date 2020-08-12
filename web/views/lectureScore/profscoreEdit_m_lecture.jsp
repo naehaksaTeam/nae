@@ -69,7 +69,7 @@
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getFinalscore()%>" /></td>
 				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getTotalscore()%>" /></td>
-				<td><select name="selectg">
+				<td><select name="selectg"> 
 				<option value="-" selected disabled hidden>-</option>
 					<option value="A+" <%= (lscore.getGrade().trim().equals("A+"))?"selected":"" %>>A+</option>
 					<option value="A" <%= (lscore.getGrade().trim().equals("A"))?"selected":"" %>>A</option>
@@ -81,6 +81,7 @@
 					<option value="D" <%= (lscore.getGrade().trim().equals("D"))?"selected":"" %>>D</option>
 					<option value="F" <%= (lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
 					</select></td>
+					
 					<td><input class="checkBtn" type="button" value="테스트"> &nbsp;</td>
 					<td><input class="abc" type="button" value="행테스트"> &nbsp;</td>
 			</tr>
@@ -141,10 +142,8 @@ function change(){
 					
 					var trlength = tbl.getElementsByTagName('tr').length;
 					
-					var tr = checkBtn.parent().parent().siblings();
-					var td = null;
-					for(var i = 0; i<trlength-1;i++){
-						$(".nr").next();
+					var tr = checkBtn.parent().parent();
+					var td = tr.children();
 						
 						var categoryname = td.eq(1).text();
 						var majorname = td.eq(2).text();
@@ -157,12 +156,35 @@ function change(){
 						var totalScore = td.eq(9).find('input[type="text"]').val();
 						var grade = td.eq(10).find('select[name="selectg"] option:selected').val();
 						
-						tr.next();
-					dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
-						totalScore, grade];
-					jsonArray = JSON.parse(JSON.stringify(dataArray));
-					alert(dataArray);
+						dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
+							totalScore, grade];
+						
+						 $.ajax({
+								 url:"/beet/scupdate.p",
+			                    type:"POST",
+			                    dataType : "json",
+			                    data:{
+			                        categoryname : categoryname,
+			                        majorname : majorname,
+			                        sid : sid,
+			                        sname : sname,
+			                        retake : retake,
+			                        atndnScore : atndnScore,
+			                        midScore : midScore,
+			                        finalScore : finalScore,
+			                        totalScore : totalScore,
+			                        grade : grade
+			                    },
+			                    success: function(data){
+			                    	var jsonStr = JSON.stringify(data);
+			                    	var json = JSON.parse(jsonStr);
+			                    }
+			                });
+						 
 					
+					jsonArray = JSON.parse(JSON.stringify(dataArray));
+
+					document.form.submit();
 				}
 	 });
 
@@ -170,14 +192,9 @@ function change(){
 	 
 
 //수정가능 
-$.ajax({
-	url : '/beet/profscoreEdit_m_l_grade',
-	type : 'post',
-	data : {
-		
-	}
-	
-})
+function activeEle() {
+	$("input[type=text]").removeAttr('readonly');
+}
  
 //숫자 0~100사이만 입력
 var replaceNotInt = /[^0-9]/gi;
