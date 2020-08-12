@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
-import student.model.service.MemberService;
-import student.model.vo.Member;
+
 
 
 /**
@@ -37,9 +36,9 @@ public class NoticeSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("NoticeSearchSelvet 접속 성공 !");
-		request.setCharacterEncoding("utf-8");
+		/* request.setCharacterEncoding("utf-8"); */
 		
-		Notice notice = new Notice();
+		/* Notice notice = new Notice(); */
 		
 		String searchOption = request.getParameter("searchoption");
 		String keyword = request.getParameter("search");

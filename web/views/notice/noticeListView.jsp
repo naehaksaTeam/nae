@@ -34,15 +34,16 @@
 	<hr>
 	<h1 align="center">공지사항</h1>
 	<br>
-
+	
 	<form action="/beet/nsearch">
+	<% Notice notice = new Notice(); %>
 		<select name="searchoption">
-			<option value="no">글번호</option>
+	
+			<option value="no=<%=notice.getNoticeNo() %>">글번호</option>
 			<option value="writer">작성자</option>
-			
+
 			<option value="content">글내용</option>
-		</select>
-		<input type="text" name="search">
+		</select> <input type="text" name="search">
 		<button type="submit" value="로그인">검색</button>
 
 	</form>
@@ -70,10 +71,9 @@
 			<td>
 				<%
 					if (n.getNoticeTitle().length() > 10) {
-				%> <%=n.getNoticeTitle().substring(0, 10)%></a>
-				<%
-					} else {
-				%> <%=n.getNoticeTitle()%></a> <%
+				%> <%=n.getNoticeTitle().substring(0, 10)%></a> <%
+ 	} else {
+ %> <%=n.getNoticeTitle()%></a> <%
  	}
  %>
 
@@ -85,8 +85,7 @@
 			<td>
 				<%
 					if (n.getNoticeContent().length() > 15) {
-				%> <a
-				href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent().substring(0, 15)%></a>
+				%> <a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent().substring(0, 15)%></a>
 				<%
 					} else {
 				%> <a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent()%></a>
@@ -100,8 +99,7 @@
 					if (n.getOriginalFile() != null) {
 				%> <%=n.getOriginalFile()%> <%
  	} else { //첨부파일 없을때
- %>
-				x <%
+ %> x <%
  	}
  %>
 			</td>

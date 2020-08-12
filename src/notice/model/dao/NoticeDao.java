@@ -287,11 +287,11 @@ public class NoticeDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = null;
-		if(keyword.equals("no")){
+		if(searchOption.equals("no")){
 			
 			 query = "select * from notice where noticeno like  ?";
 		
-		}else if(keyword.equals("writer")){
+		}else if(searchOption.equals("writer")){
 		
 			 query = "select * from notice where noticewriter like  ?";
 		
@@ -305,7 +305,7 @@ public class NoticeDao {
 			
 			pstmt.setString(1, "%"+keyword+"%");
 			rset = pstmt.executeQuery();
-			if (rset.next()) {
+			while (rset.next()) {
 				Notice notice = new Notice();
 				
 				notice.setNoticeNo(rset.getInt("NOTICENO"));
