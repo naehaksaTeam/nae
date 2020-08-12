@@ -8,147 +8,150 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
 import student.model.vo.Professor;
 import student.model.vo.Student;
+
 public class ProfessorDao {
-   public  ProfessorDao() {
-   }
-   
-   
-   public int insert(Connection conn, Student student) {
-      int result = 0;
-      PreparedStatement pstmt = null;
+	public ProfessorDao() {
+	}
 
-      String query = "insert into professor values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,defalut,defalut,?)";
+	public int insert(Connection conn, Student student) {
+		int result = 0;
+		PreparedStatement pstmt = null;
 
-      try {
-         pstmt = conn.prepareStatement(query);
-        
+		String query = "insert into professor values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,defalut,defalut,?)";
 
-         result = pstmt.executeUpdate();
+		try {
+			pstmt = conn.prepareStatement(query);
 
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         close(pstmt);
-      }
+			result = pstmt.executeUpdate();
 
-      return result;
-   }
-   
-   
-   // 한명선택
-   
-   public Professor selectOne(Connection conn, String id, String treasure ) {
-	   Professor professor = null;
-      PreparedStatement pstmt = null;
-      ResultSet rset = null;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 
-      String query = "select * from professor where id = ? and treasure = ? ";
-				
-				
-      try {
-         pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, id);
-         pstmt.setString(2, treasure);
-         rset = pstmt.executeQuery(); //쿼리를 디비로 보냄
+		return result;
+	}
 
-         if (rset.next()) {
-        	 professor = new Professor();
+	// 한명선택
 
-        	 professor.setId(rset.getString("id"));
-        	 professor.setTreasure(rset.getString("treasure"));
-           
-         }
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         close(rset);
-         close(pstmt);
-      }
+	public Professor selectOne(Connection conn, String id, String treasure) {
+		Professor professor = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 
-      return professor;
-   }
+		String query = "select * from professor where id = ? and treasure = ? ";
 
-   
-   //전체조회
-   public ArrayList<Student> selectList(Connection conn) {
-      ArrayList<Student> list = new ArrayList<Student>();
-      Statement stmt = null;
-      ResultSet rset = null;
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, treasure);
+			rset = pstmt.executeQuery(); // 쿼리를 디비로 보냄
 
-      String query = "select * from student";
+			if (rset.next()) {
+				professor = new Professor();
 
-      try {
-         stmt = conn.createStatement();
+				professor.setId(rset.getString("id"));
+				professor.setTreasure(rset.getString("treasure"));
 
-         rset = stmt.executeQuery(query);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
 
-         while (rset.next()) {
-            Student student = new Student();
-            
-           
+		return professor;
+	}
 
-            list.add(student);
-         }
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         close(rset);
-         close(stmt);
-      }
+	// 전체조회
+	public ArrayList<Student> selectList(Connection conn) {
+		ArrayList<Student> list = new ArrayList<Student>();
+		Statement stmt = null;
+		ResultSet rset = null;
 
-      return list;
-   }
+		String query = "select * from student";
 
-   public int update(Connection conn, Student student) {
-      int result = 0;
-      PreparedStatement pstmt = null;
+		try {
+			stmt = conn.createStatement();
 
-      String query = "update student set studentid = ? where majorno = ?";
+			rset = stmt.executeQuery(query);
 
-      try {
-         pstmt = conn.prepareStatement(query);
-       
+			while (rset.next()) {
+				Student student = new Student();
 
-         result = pstmt.executeUpdate();
+				list.add(student);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(stmt);
+		}
 
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         close(pstmt);
-      }
+		return list;
+	}
 
-      return result;
-   }
+	public int update(Connection conn, Student student) {
+		int result = 0;
+		PreparedStatement pstmt = null;
 
-   public int delete(Connection conn, String studentid) {
-      int result = 0;
-      PreparedStatement pstmt = null;
+		String query = "update student set studentid = ? where majorno = ?";
 
-      String query = "delete from student where studentid = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
 
-      try {
-         pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, studentid);
+			result = pstmt.executeUpdate();
 
-         result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         close(pstmt);
-      }
+		return result;
+	}
 
-      return result;
-   }
+	public int delete(Connection conn, String studentid) {
+		int result = 0;
+		PreparedStatement pstmt = null;
 
+		String query = "delete from student where studentid = ?";
 
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, studentid);
 
+			result = pstmt.executeUpdate();
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
 
+		return result;
+	}
 
+	public int updateprofessorpassword(Connection conn, String cryptoPwd, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "update student set password =? where id = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, cryptoPwd);
+			pstmt.setString(2, id);
+			result = pstmt.executeUpdate(); // result 값을 실행을함
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 
+	}
 
 }

@@ -1,6 +1,6 @@
 package student.model.service;
 
-import static common.JDBCTemp.close;
+import static common.JDBCTemp.*;
 import static common.JDBCTemp.getConnection;
 
 import java.sql.Connection;
@@ -20,5 +20,16 @@ public class ProfessorService {
 			Professor professor = pdao.selectOne(conn, id, treasure);
 			close(conn);
 			return professor;
+		}
+
+		public int updateprofessorpassword(String cryptoPwd, String id) {
+			Connection conn = getConnection();
+			int result  = pdao.updateprofessorpassword(conn, cryptoPwd , id);
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			return result;
 		}
 }
