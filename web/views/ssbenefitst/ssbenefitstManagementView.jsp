@@ -20,34 +20,17 @@
     }
 </script>
 <style type="text/css">
-.tg {
-	border-collapse: collapse;
-	border-spacing: 0;
-	border-color: inherit;
-	text-align: left;
-	vertical-align: top;
-}
-.tg td {
-	border-color: black;
-	border-style: solid;
-	border-width: 1px;
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	overflow: hidden;
-	padding: 10px 5px;
-	word-break: normal;
-}
-.tg th {
-	border-color: black;
-	border-style: solid;
-	border-width: 1px;
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	font-weight: bolder;
-	overflow: hidden;
-	padding: 10px 5px;
-	word-break: normal;
-}
+
+  table {
+    width: 50%;
+    border-top: 1px solid #444444;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #444444;
+    padding: 10px;
+  }
+
 </style>
 </head>
 <body>
@@ -62,6 +45,8 @@
 <% if(list != null){ %>
 <table class="tg">
 <tr><th colspan="3">조회테이블</th></tr>
+<tr><th>수혜학기</th><th>학 번</th><th>장학금명</th></tr>
+
 	<% for(Ssbenefitst ssst : list){ %>
 	<tr><th><input type="radio" name="benefitterm" value="<%=ssst.getBenefitterm() %>" readonly><%=ssst.getBenefitterm() %></th>
 		<td><%=ssst.getStudentid() %></td>
