@@ -48,14 +48,13 @@ public class SessionCheckFilter implements Filter, java.io.Serializable{
 		Member loginMember = (Member)hrequest.getSession(false).getAttribute("loginMember");
 		// 세션객체를 꺼내서 그 안에 저장된 getAttribute 를 가져옴
 		if (loginMember == null) {
-			RequestDispatcher view = hrequest.getRequestDispatcher("views/common/error.jsp");
+			RequestDispatcher view = hrequest.getRequestDispatcher("index.jsp");
 			request.setAttribute("message", "필터 : 로그인해야 이용할 수 있습니다.");
 			view.forward(hrequest, response);
 
 		} else {
 			// 요청한 서블리으로 넘ㄱㄱ로그인하면 얘가 실행
 			chain.doFilter(request, response);
-
 		}
 
 		

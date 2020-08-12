@@ -97,7 +97,6 @@ public class AtndnDao {
 
 				list.add(atndn);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
