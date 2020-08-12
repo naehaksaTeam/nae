@@ -52,11 +52,12 @@
 <%@ include file="../common/side.jsp"%>
 <div align="center">
 <h1>TEST BUTTON</h1>
-<button onclick="javascript:location.href='/beet/selectaball'">ABSENCE MANAGEMENT ADMIN</button>
-<button onclick="javascript:location.href='/beet/selectca'">CATEGORY VIEW</button>
-<button onclick="javascript:location.href='/beet/selectbenest?studentid<%=mm.getId() %>'">SCHOLARSHIP, SSBENEFITST SELECT STU</button>
-<button onclick="javascript:location.href='/beet/selectss'">SCHOLARSHIP MANAGEMENT ADMIN</button>
-<button onclick="javascript:location.href='/beet/selectbeneall'">SSBENEFIT MANAGEMENT ADMIN</button>
+
+<button onclick="javascript:location.href='/beet/selectaball'">[관리자] ABSENCE 휴학/복학 </button>
+<button onclick="javascript:location.href='/beet/selectca'">[관리자] CATEGORY VIEW 카테고리관리</button>
+<button onclick="javascript:location.href='/beet/selectbenest?studentid<%=mm.getId() %>'">[학 생] SCHOLARSHIP 장학조회 </button>
+<button onclick="javascript:location.href='/beet/selectss'">[관리자] SCHOLARSHIP 장학관리</button>
+<button onclick="javascript:location.href='/beet/selectbeneall'">[관리자] SSBENEFIT 장학금수혜학생관리</button>
 </div>
 <br><br><br><br>
 <hr>
