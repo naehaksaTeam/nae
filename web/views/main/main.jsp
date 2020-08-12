@@ -286,14 +286,15 @@ $(function(){
 <header>
 <%@ include file="../common/header.jsp" %>
 
-  <button onclick="javascript:location.href='../lecture/menu.jsp'">수강신청 메뉴테스트</button>
+<button onclick="javascript:location.href='../lecture/menu.jsp'">수강신청 메뉴테스트</button>
 <button onclick="javascript:location.href='../attendance/sub4main.jsp'">출결 목록 테스트</button>
 <button onclick="javascript:location.href='../absence/absenceRequestView.jsp'">학생신청페이지</button>
 <button onclick="javascript:location.href='/beet/nlist'">공지사항</button>
-<button onclick="javascript:location.href='../student/enrollPage.html'">회원가입</button>
+<button onclick="javascript:location.href='../student/회원가입선택.jsp'">회원가입</button>
 <button onclick="javascript:location.href='../student/findId.jsp'">아이디찾기</button>
 <button onclick="javascript:location.href='../student/findPassword.jsp'">비밀번호찾기</button>
 <button onclick="javascript:location.href='../student/memberUpdatePage.jsp'">마이페이지</button>
+
 </header>
 
 
