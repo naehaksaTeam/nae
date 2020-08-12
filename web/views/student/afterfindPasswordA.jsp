@@ -30,6 +30,7 @@ function validate(){
 </head>
 <body>
 <form class="form-horizontal" role="form" method="POST" action="/beet/adminfindpwd.cp">
+<input type ="hidden" name="id" value="<%=admin.getId() %>">
 		새비밀번호 만들기
 		<div class="row">
 			<div class="col-md-10 inputbb">
