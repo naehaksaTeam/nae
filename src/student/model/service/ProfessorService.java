@@ -1,4 +1,4 @@
-package professor.model.service;
+package student.model.service;
 
 import static common.JDBCTemp.close;
 import static common.JDBCTemp.getConnection;
@@ -6,7 +6,7 @@ import static common.JDBCTemp.getConnection;
 import java.sql.Connection;
 
 
-import professor.model.dao.ProfessorDao;
+import student.model.dao.ProfessorDao;
 import student.model.vo.Professor;
 
 public class ProfessorService {

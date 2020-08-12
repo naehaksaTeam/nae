@@ -8,20 +8,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import professor.model.service.ProfessorService;
+import student.model.service.AdminService;
+import student.model.service.ProfessorService;
+import student.model.service.StudentService;
+import student.model.vo.Admin;
 import student.model.vo.Professor;
+import student.model.vo.Student;
 
 /**
  * Servlet implementation class FindPasswordServlet
  */
-@WebServlet("/findspwd")
-public class FindPasswordStudentServlet extends HttpServlet {
+@WebServlet("/findpwd")
+public class FindPasswordServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public FindPasswordStudentServlet() {
+	public FindPasswordServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -44,7 +48,7 @@ public class FindPasswordStudentServlet extends HttpServlet {
 			ProfessorService pservice = new ProfessorService();
 			Professor professor = pservice.selectOne(id, treasure);
 			if(professor != null) {
-				
+				//새비밀번호를 입력할수 있는 창으로 이동하기
 				
 				
 				
@@ -52,14 +56,34 @@ public class FindPasswordStudentServlet extends HttpServlet {
 			}else {
 				response.sendRedirect("/views/common/error.jsp");
 			}
+		
 		}else if(firstword.equals("A")) {
-			
+			AdminService aservice = new AdminService();
+			Admin admin =  aservice.selectOne(id, treasure);
+			if(admin != null) {
+				//새비밀번호를 입력할수 있는 창으로 이동하기
+				
+				
+				
+				
+			}else {
+				response.sendRedirect("/views/common/error.jsp");
+			}
 			
 			
 			
 		}else {
-			
-			
+			StudentService sservice = new StudentService();
+			Student student = sservice.selectOne(id, treasure);
+			if(student != null) {
+				//새비밀번호를 입력할수 있는 창으로 이동하기
+				
+				
+				
+				
+			}else {
+				response.sendRedirect("/views/common/error.jsp");
+			}
 			
 			
 			

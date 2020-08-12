@@ -1,4 +1,4 @@
-package professor.model.dao;
+package student.model.dao;
 
 import static common.JDBCTemp.close;
 
@@ -37,7 +37,8 @@ public class ProfessorDao {
       return result;
    }
    
-   //학생 한명선택
+   
+   // 한명선택
    
    public Professor selectOne(Connection conn, String id, String treasure ) {
 	   Professor professor = null;
