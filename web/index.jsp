@@ -8,8 +8,9 @@
 
 <body>
 
-
-
+<% if(m != null){ %>	
+<meta http-equiv="refresh" content="0;url=/beet/views/main/main.jsp">
+<% } %>
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 <%-- <%@ include file="/views/common/sessionChk.jsp" %> --%>
 <% if(m == null){ %>
