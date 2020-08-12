@@ -2,6 +2,7 @@ package student.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,7 +49,9 @@ public class FindPasswordServlet extends HttpServlet {
 			ProfessorService pservice = new ProfessorService();
 			Professor professor = pservice.selectOne(id, treasure);
 			if(professor != null) {
-				//새비밀번호를 입력할수 있는 창으로 이동하기
+				RequestDispatcher view = request.getRequestDispatcher("/views/students/afterfindPasswordP.jsp");
+				request.setAttribute("professor", professor);
+				view.forward(request, response);
 				
 				
 				
@@ -62,8 +65,9 @@ public class FindPasswordServlet extends HttpServlet {
 			Admin admin =  aservice.selectOne(id, treasure);
 			if(admin != null) {
 				//새비밀번호를 입력할수 있는 창으로 이동하기
-				
-				
+				RequestDispatcher view = request.getRequestDispatcher("/views/students/afterfindPasswordA.jsp");
+				request.setAttribute("admin", admin);
+				view.forward(request, response);
 				
 				
 			}else {
@@ -77,7 +81,9 @@ public class FindPasswordServlet extends HttpServlet {
 			Student student = sservice.selectOne(id, treasure);
 			if(student != null) {
 				//새비밀번호를 입력할수 있는 창으로 이동하기
-				
+				RequestDispatcher view = request.getRequestDispatcher("/views/students/afterfindPasswordS.jsp");
+				request.setAttribute("student", student);
+				view.forward(request, response);
 				
 				
 				
