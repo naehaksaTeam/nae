@@ -38,7 +38,7 @@ public class InsertScoreSSServlet extends HttpServlet {
 		SsbenefitstService stservice = new SsbenefitstService();
 		ArrayList<String> studentlist = stservice.selectRank(term, startrank, endrank);
 		int plusterm = stservice.termPlus(term);
-		
+		System.out.println(studentlist);
 		System.out.println("plusterm : " + plusterm);
 		
 		int result = stservice.insertScoreRank(plusterm, studentlist, ssname);

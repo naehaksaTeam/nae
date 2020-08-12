@@ -227,9 +227,10 @@ public class SsbenefitstDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into ssbenefit values (?, ?, ?);";
+		String query = "insert into ssbenefitst values (?, ?, ?)";
 		
 		try {
+				pstmt = conn.prepareStatement(query);
 				pstmt.setInt(1, plusterm);
 				pstmt.setString(2, sid);
 				pstmt.setString(3, ssname);

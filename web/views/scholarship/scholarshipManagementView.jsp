@@ -52,6 +52,7 @@
 <% if(message != null){ %>
 	<%=message %>
 <% } %>
+<br>
 <button onclick="javascript:location.href='/beet/selectss'">장학금 조회</button>
 <% if(list != null){ %>
 <form method="post" name="ssselectform">
@@ -80,29 +81,7 @@
 <% } %>
 <% } %>
 
-
-<br><br><br><br>
-
-<form method="post" action="/beet/updatess">
-
-<table class="tg">
-<% if(list != null){ %>
-<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th><tr>
-	<% for(Scholarship ss : list){ %>
-	<tr>
-		<th><input type="radio" name="ssname" value="<%=ss.getSsname() %>">
-			<%=ss.getSsname() %>
-		</th>
-		<td><input type="text" name="benefitcon"></td>
-		<td><input type="number" name="value"></td>
-	</tr>
-	<% } %>
-<% } %>
-</table>
-	<input type="submit" id="update" value="수정하기">
-</form>
-
-<br><br><br><br>
+<br><br>
 
 <form action="javascript:location.href='/beet/insertss'" method="post">
 <table class="tg">
@@ -112,6 +91,8 @@
 </table>
 <input type="submit" value="장학금 추가">
 </form>
+
+<br><br>
 
 </div>
 <footer>

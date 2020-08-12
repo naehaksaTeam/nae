@@ -95,13 +95,16 @@ public class SsbenefitstService {
 	public int insertScoreRank(int plusterm, ArrayList<String> studentlist, String ssname) {
 		Connection conn = getConnection();
 		int result = 0;
-		for (String sid : studentlist) {
-			result = ssstdao.insertScoreRank(conn, plusterm, sid, ssname);
-		if (result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
+		for (int i = 0 ; i < studentlist.size() ; i++) {
+			System.out.println(plusterm +"//" + studentlist.get(i) +"//"+ ssname);
+			
+			result = ssstdao.insertScoreRank(conn, plusterm, studentlist.get(i), ssname);
+
+			if (result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
 		}
 		return result;
 	};
