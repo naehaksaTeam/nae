@@ -155,7 +155,9 @@ java.util.Date, java.text.SimpleDateFormat"%>
 	<script type="text/javascript">
 		function selectfield(obj) {
 			$('input[name=semester]').attr('value', obj.value);
-			$("#field").form.submit();
+			
+			$("#field").click(function() {
+			     this.form.submit();
 			});
 
 		}
