@@ -142,11 +142,9 @@ function change(){
 			var tdArr = new Array();	// 배열 선언
 			var checkBtn = $(this);
 			
-			// checkBtn.parent() : checkBtn의 부모는 <td>이다.
-			// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
 			var tr = checkBtn.parent().parent();
 			var td = tr.children();
-		//	console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+		console.log("클릭한 Row의 모든 데이터 : "+tr.text());
 			var categoryname = td.eq(1).text();
 			var majorname = td.eq(2).text();
 			var sid = td.eq(3).text(); 
@@ -160,11 +158,11 @@ function change(){
 
 			var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
 				totalScore, grade];
-			var aa = JSON.stringify(dataArray)
+			var aa = JSON.stringify(dataArray);
 			var jsonArray = JSON.parse(JSON.stringify(dataArray));
 			alert(aa);
 		
-			 $.ajax({
+			 /* $.ajax({
 				 url:"/beet/scupdate.p",
                 type:"POST",
                 dataType : "json",
@@ -183,7 +181,7 @@ function change(){
                 success: function(data){
                 	console.log(data);
                 }
-            }); 
+            });  */
 		});
 	  
 /* //행번호구하기
