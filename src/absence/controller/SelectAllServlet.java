@@ -12,39 +12,33 @@ import javax.servlet.http.HttpServletResponse;
 
 import absence.model.service.AbsenceService;
 import absence.model.vo.Absence;
-import ssbenefitst.model.service.SsbenefitstService;
-import ssbenefitst.model.vo.Ssbenefitst;
 
-
-@WebServlet("/selectab")
-public class SelectSTUAbsenceServlet extends HttpServlet {
+@WebServlet("/selectaball")
+public class SelectAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public SelectSTUAbsenceServlet() {
+    public SelectAllServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//학번을 가져옴 . 
-		String studentid = request.getParameter("studentid");
-
-		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(studentid);
+		ArrayList<Absence> list = new AbsenceService().selectAbsence();
 		
 		RequestDispatcher view = null;
-
-		if( list != null) {
-			view = request.getRequestDispatcher("views/absence/absenceRequestView.jsp");
+		if(list != null) {
+			view = request.getRequestDispatcher("views/absence/absenceManagementView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
-		}else {
+		}else{
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "학번 : " +studentid +"\n 신청내역이 없습니다.");
+			request.setAttribute("message", "휴학, 복학 신청 내역이 없거나 조회에 실패하였습니다.");
 			view.forward(request, response);
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

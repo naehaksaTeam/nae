@@ -7,7 +7,8 @@ import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 import attendance.model.dao.AtndnDao;
 import attendance.model.vo.Atndn;
@@ -58,16 +59,26 @@ public class AtndnService {
 		return result;
 	}
 
-	public int updateWeekAll(HashMap map) {
+	public int updateWeekAll(Map<String,Atndn> map) {
 		//출결 여러개 업데이트
 		Connection conn = getConnection();
-		int r = adao.updateWeekAll(conn,map);
-		if(r > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
 		close(conn);
+		int r = 0;
+		Iterator<String> it = map.keySet().iterator();
+		while(it.hasNext()) {
+			String who = it.next();
+			conn = getConnection();
+			r = adao.updateWeekAll(conn,who,map.get(who));
+			if(r > 0) {
+				commit(conn);
+				close(conn);
+			}else {
+				System.out.println("업데이트 실패 : " + who);
+				rollback(conn);
+				close(conn);
+				break;
+			}
+		}
 		return r;
 	}
 

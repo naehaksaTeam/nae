@@ -32,9 +32,16 @@ public class SsbenefitstService {
 		return ssbenefitst;
 	};
 	
-	public int insertSsbenefitst(int benefitterm, String studentid) {
+	public ArrayList<Ssbenefitst> selectPrivateSsst(String studentid) {
 		Connection conn = getConnection();
-		int result = ssstdao.insertSsbenefitst(conn, benefitterm, studentid);
+		ArrayList<Ssbenefitst> list = ssstdao.selectPrivateSsst(conn, studentid);
+		close(conn);
+		return list;
+	}
+	
+	public int insertSsbenefitst(Ssbenefitst ssst) {
+		Connection conn = getConnection();
+		int result = ssstdao.insertSsbenefitst(conn, ssst);
 		
 		if(result > 0) {
 			commit(conn);
@@ -45,9 +52,9 @@ public class SsbenefitstService {
 		return result;
 	};
 	
-	public int updateSsbenefitst(int benefitterm, String studentid) {
+	public int updateSsbenefitst(Ssbenefitst newssst, Ssbenefitst originssst) {
 		Connection conn = getConnection();
-		int result = ssstdao.updateSsbenefitst(conn, benefitterm, studentid);
+		int result = ssstdao.updateSsbenefitst(conn, newssst, originssst);
 		
 		if(result > 0) {
 			commit(conn);
@@ -70,4 +77,36 @@ public class SsbenefitstService {
 		close(conn);
 		return result;
 	};
+	
+	public ArrayList<String> selectRank(int term, int startrank, int endrank) {
+		Connection conn = getConnection();
+		ArrayList<String> studentlist = ssstdao.selectRank(conn, term, startrank, endrank);
+		close(conn);
+		return studentlist; 
+	};
+	
+	public int termPlus(int term){
+		Connection conn = getConnection();
+		int plusterm = ssstdao.termPlus(conn, term);
+		close(conn);
+		return plusterm;
+	};
+	
+	public int insertScoreRank(int plusterm, ArrayList<String> studentlist, String ssname) {
+		Connection conn = getConnection();
+		int result = 0;
+		for (int i = 0 ; i < studentlist.size() ; i++) {
+			System.out.println(plusterm +"//" + studentlist.get(i) +"//"+ ssname);
+			
+			result = ssstdao.insertScoreRank(conn, plusterm, studentlist.get(i), ssname);
+
+			if (result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+		}
+		return result;
+	};
+	
 }

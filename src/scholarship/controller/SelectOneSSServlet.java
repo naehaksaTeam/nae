@@ -1,7 +1,6 @@
-package absence.controller;
+package scholarship.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,38 +9,31 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import absence.model.service.AbsenceService;
-import absence.model.vo.Absence;
-import ssbenefitst.model.service.SsbenefitstService;
-import ssbenefitst.model.vo.Ssbenefitst;
+import scholarship.model.service.ScholarshipService;
+import scholarship.model.vo.Scholarship;
 
-
-@WebServlet("/selectab")
-public class SelectSTUAbsenceServlet extends HttpServlet {
+@WebServlet("/selectoness")
+public class SelectOneSSServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public SelectSTUAbsenceServlet() {
-        // TODO Auto-generated constructor stub
+    public SelectOneSSServlet() {
+        super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//학번을 가져옴 . 
-		String studentid = request.getParameter("studentid");
-
-		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(studentid);
+		String ssname = request.getParameter("ssname");
+		Scholarship ss = new ScholarshipService().selectOneScholarship(ssname);
 		
 		RequestDispatcher view = null;
-
-		if( list != null) {
-			view = request.getRequestDispatcher("views/absence/absenceRequestView.jsp");
-			request.setAttribute("list", list);
+		if(ss != null) {
+			view = request.getRequestDispatcher("selectss");
+			request.setAttribute("ss", ss);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "학번 : " +studentid +"\n 신청내역이 없습니다.");
+			request.setAttribute("message", "장학금 조회에 실패하였습니다");
 			view.forward(request, response);
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

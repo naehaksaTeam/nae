@@ -3,6 +3,7 @@ package attendance.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ import attendance.model.vo.Atndn;
  */
 @WebServlet("/atnupdate")
 public class AtndnUpdateServlet extends HttpServlet {
-	private static final long serialVersionUID = 414L;
+	private static final long serialVersionUID = 3333434344L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -49,14 +50,14 @@ public class AtndnUpdateServlet extends HttpServlet {
 		
 		String week = request.getParameter("selectweek");
 		
-		HashMap map = new HashMap();
+		Map<String,Atndn> map = new HashMap();
 		while(request.getParameter("who" + ++whoCount) != null ) {
 			Atndn atndn = new Atndn();
 			atndn.setLcode(request.getParameter("lcode"));
-			atndn.setSid(request.getParameter("who" + whoCount));
 			atndn.setThisweek(request.getParameter("selectfour" + whoCount));
+			atndn.setWeek1(week);
 			
-			map.put(request.getParameter("list" + whoCount) , atndn);
+			map.put(request.getParameter("who") , atndn);
 		}
 		
 		
@@ -67,7 +68,7 @@ public class AtndnUpdateServlet extends HttpServlet {
 		
 		if(result > 0) {
 			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
-			request.setAttribute("result", "no");
+			request.setAttribute("result", "yes");
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");

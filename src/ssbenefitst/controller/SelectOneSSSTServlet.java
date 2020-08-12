@@ -1,7 +1,6 @@
-package absence.controller;
+package ssbenefitst.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,41 +9,50 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import absence.model.service.AbsenceService;
-import absence.model.vo.Absence;
 import ssbenefitst.model.service.SsbenefitstService;
 import ssbenefitst.model.vo.Ssbenefitst;
 
-
-@WebServlet("/selectab")
-public class SelectSTUAbsenceServlet extends HttpServlet {
+/**
+ * Servlet implementation class SelectOneSSSTServlet
+ */
+@WebServlet("/selectonessst")
+public class SelectOneSSSTServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public SelectSTUAbsenceServlet() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public SelectOneSSSTServlet() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//학번을 가져옴 . 
 		String studentid = request.getParameter("studentid");
-
-		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(studentid);
+		int benefitterm = Integer.parseInt(request.getParameter("benefitterm"));
+		
+		Ssbenefitst ssst = new SsbenefitstService().selectOneSsbenefitst(benefitterm, studentid);
 		
 		RequestDispatcher view = null;
-
-		if( list != null) {
-			view = request.getRequestDispatcher("views/absence/absenceRequestView.jsp");
-			request.setAttribute("list", list);
+		if(ssst != null) {
+			view = request.getRequestDispatcher("views/ssbenefitst/ssbenefitstManagementView.jsp");
+			request.setAttribute("ssst", ssst);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "학번 : " +studentid +"\n 신청내역이 없습니다.");
+			request.setAttribute("message", "요청하신 검색결과가 없거나 검색에 실패하였습니다.");
 			view.forward(request, response);
 		}
-		
 	}
 
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
