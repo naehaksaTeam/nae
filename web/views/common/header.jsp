@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8" import="student.model.vo.Member"  %>
 
 <!DOCTYPE html>
 <html>
@@ -115,7 +115,7 @@ hr { clear: both; }
 <li><a href="views/student/memberUpdatePage.jsp">마이페이지</a></li>
 <li><a href="#">강의</a></li>
 <li><a href="#">성적</a></li>
-<li><a href="#">등록 / 장학</a></li>
+<li><a href="/beet/s.t.list?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>">등록 / 장학</a></li>
 <li><a href="views/lecture/menu.jsp">수강신청</a></li>
 <li><a href="#">휴학 / 복학</a></li>
 <li><a href="#">학교 소식</a></li>

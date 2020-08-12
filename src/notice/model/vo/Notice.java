@@ -1,6 +1,7 @@
 package notice.model.vo;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 public class Notice implements java.io.Serializable {
 	private static final long serialVersionUID = 2222L;
@@ -114,5 +115,7 @@ public class Notice implements java.io.Serializable {
 				+ noticeWriter + ", noticeDate=" + noticeDate + ", noticeContent=" + noticeContent + ", originalFile="
 				+ originalFile + ", renameFile=" + renameFile + ", noticeReadCount=" + noticeReadCount + "]";
 	}
+
+	
 
 }

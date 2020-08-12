@@ -1,4 +1,4 @@
-package notice.controller;
+package major.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,23 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
-
-
+import major.model.service.MajorService;
+import major.model.vo.Major;
 
 /**
- * Servlet implementation class NoticeSearchServlet
+ * Servlet implementation class MajorStudentListServlet
  */
-@WebServlet("/nsearch")
-public class NoticeSearchServlet extends HttpServlet {
+@WebServlet("/s.t.list")
+public class MajorStudentListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeSearchServlet() {
+    public MajorStudentListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,27 +32,20 @@ public class NoticeSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("NoticeSearchSelvet 접속 성공 !");
-		/* request.setCharacterEncoding("utf-8"); */
+		System.out.println("학생 등록/장학 서블릿 접속");
+		// 학생 pk ID 
+		String id = request.getParameter("who");
 		
-		/* Notice notice = new Notice(); */
 		
-		String searchOption = request.getParameter("searchoption");
-		String keyword = request.getParameter("search");
+		ArrayList<Major> list = new MajorService().selectOneTuition();
 		
-		ArrayList<Notice> list = new NoticeService().searchList(keyword,searchOption);
 		RequestDispatcher view = null;
-		if(list.size()>0) { //전체조회 (사이즈크기 0보다크면 성공 )
-			view = request.getRequestDispatcher("views/notice/noticeSearchListView.jsp");
+		if(list.size() > 0) {
+			view = request.getRequestDispatcher("views/major/majortuition.jsp");
 			request.setAttribute("list", list);
-			
-			view.forward(request, response);
-			System.out.println("nsearch성공!");
-		}else { //실패 
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "선택조회실패 !");
-			view.forward(request, response);
+			view.forward(request,response);
 		}
+		
 	}
 
 	/**

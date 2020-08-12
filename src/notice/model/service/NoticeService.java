@@ -96,23 +96,19 @@ public class NoticeService {
 	         rollback(conn);
 	      close(conn);
 	   }
-/////////////	
 
+	
 
-	public ArrayList<Notice> selectTop3() {
+	public ArrayList<Notice> searchList(String keyword, String searchOption) {
 		Connection conn = getConnection();
-		ArrayList<Notice> list = ndao.selectTop3(conn);
+		ArrayList<Notice> list = ndao.searchList(conn,keyword,searchOption);
 		close(conn);
 		return list;
 	}
 
 	
-	public ArrayList<Notice> selectNewTop5() {
-		Connection conn = getConnection();
-		ArrayList<Notice> list = ndao.selectNewTop5(conn);
-		
-		return list;
-	}
+
 	
-///////////////
+	
+
 }

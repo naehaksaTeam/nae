@@ -1,7 +1,6 @@
-package notice.controller;
+package major.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,23 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
-
+import major.model.service.MajorService;
+import major.model.vo.Major;
 
 
 /**
- * Servlet implementation class NoticeSearchServlet
+ * Servlet implementation class MajorUpdateServlet
  */
-@WebServlet("/nsearch")
-public class NoticeSearchServlet extends HttpServlet {
+@WebServlet("/majorupdate.ad")
+public class MajorUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeSearchServlet() {
+    public MajorUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,29 +32,23 @@ public class NoticeSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("NoticeSearchSelvet 접속 성공 !");
-		/* request.setCharacterEncoding("utf-8"); */
+		// 관리자용 공지사항 수정페이지로 이동 처리용 컨트롤러
 		
-		/* Notice notice = new Notice(); */
+		int majorNo = Integer.parseInt(request.getParameter("majorno"));
+		System.out.println(majorNo);
+		Major major = new MajorService().selectMajor(majorNo);
 		
-		String searchOption = request.getParameter("searchoption");
-		String keyword = request.getParameter("search");
-		
-		ArrayList<Notice> list = new NoticeService().searchList(keyword,searchOption);
 		RequestDispatcher view = null;
-		if(list.size()>0) { //전체조회 (사이즈크기 0보다크면 성공 )
-			view = request.getRequestDispatcher("views/notice/noticeSearchListView.jsp");
-			request.setAttribute("list", list);
-			
+		if (major != null) {
+			view = request.getRequestDispatcher("views/major/majorUpdateView.jsp");
+			request.setAttribute("major", major);
 			view.forward(request, response);
-			System.out.println("nsearch성공!");
-		}else { //실패 
+		} else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "선택조회실패 !");
+			request.setAttribute("message", majorNo + "번 글에 대한 수정페이지 요청 실패");
 			view.forward(request, response);
 		}
 	}
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

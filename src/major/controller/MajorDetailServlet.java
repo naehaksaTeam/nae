@@ -1,7 +1,6 @@
-package notice.controller;
+package major.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,23 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-import notice.model.service.NoticeService;
-import notice.model.vo.Notice;
+import major.model.service.MajorService;
+import major.model.vo.Major;
 
 
 
 /**
- * Servlet implementation class NoticeSearchServlet
+ * Servlet implementation class MajorDetailSerlvet
  */
-@WebServlet("/nsearch")
-public class NoticeSearchServlet extends HttpServlet {
+@WebServlet("/mdetail")
+public class MajorDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeSearchServlet() {
+    public MajorDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,28 +33,30 @@ public class NoticeSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("NoticeSearchSelvet 접속 성공 !");
-		/* request.setCharacterEncoding("utf-8"); */
+		// 전공 상세보기 처리용 컨트롤러 
+		String majorno = request.getParameter("majorno");
 		
-		/* Notice notice = new Notice(); */
 		
-		String searchOption = request.getParameter("searchoption");
-		String keyword = request.getParameter("search");
 		
-		ArrayList<Notice> list = new NoticeService().searchList(keyword,searchOption);
+		
+		
+		
+		Major major = new MajorService().selectMajor(majorno);
+		
+		
 		RequestDispatcher view = null;
-		if(list.size()>0) { //전체조회 (사이즈크기 0보다크면 성공 )
-			view = request.getRequestDispatcher("views/notice/noticeSearchListView.jsp");
-			request.setAttribute("list", list);
-			
+		if(major != null) {
+			view = request.getRequestDispatcher("views/major/majorDetailView.jsp");
+			System.out.println("성공");
+			request.setAttribute("major", major);
 			view.forward(request, response);
-			System.out.println("nsearch성공!");
-		}else { //실패 
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "선택조회실패 !");
+		}else {
+			view= request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", majorno +"번 글에 대한 상세보기 요청 실패!");
 			view.forward(request, response);
 		}
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
