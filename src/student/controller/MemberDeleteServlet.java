@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import student.model.service.MemberService;
 
@@ -16,7 +17,7 @@ import student.model.service.MemberService;
  */
 @WebServlet("/mdelete")
 public class MemberDeleteServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6578568L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -43,7 +44,13 @@ public class MemberDeleteServlet extends HttpServlet {
 				//4.
 				if(result > 0) {  //성공시
 					//탈퇴 성공시 로그아웃 처리함
-					response.sendRedirect("index.jsp"); 
+					HttpSession session = request.getSession(false);
+					if(session != null) {  //로그인한 상태라면 (세션객체가 있다면)
+						//세션 객체를 없앰
+						session.invalidate();
+						response.sendRedirect("index.jsp");
+					
+					}
 				}else {  //실패시
 					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
 					request.setAttribute("message", id + " 회원님의 탈퇴 요청 실패.");

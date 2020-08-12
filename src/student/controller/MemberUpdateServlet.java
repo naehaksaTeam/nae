@@ -52,7 +52,6 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setPassword(request.getParameter("password"));
 		member.setAdminhiredate(Date.valueOf(request.getParameter("adminhiredate")));
 		member.setPassword(request.getParameter("password"));
-		member.setEntrancedate(Date.valueOf(request.getParameter("entrancedate")));
 		member.setAbsencewhether(request.getParameter("absencewhether"));
 		member.setAbsencecount(Integer.parseInt(request.getParameter("absenececount")));
 		member.setSsname(request.getParameter("ssname"));

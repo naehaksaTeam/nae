@@ -10,11 +10,16 @@
 <meta charset="UTF-8">
 <title>beet</title>
 <script type="text/javascript">
-
+function moveUpdateView(){
+	//요청한 회원의 정보 수정페이지를 내보내는 servlet을 요청함
+	//다시 요청한 회원의 아이디를 전송해서 처리함
+	location.href = "/beet/mupdate?id=<%= member.getId() %>";
+}
 function sendDelete(){
 	
 	//회원 탈퇴처리 서블릿 요청함.
 	location.href = "/beet/mdelete?id=<%= member.getId() %>";
+	return false;
 }
 </script>
 </head>
@@ -118,12 +123,13 @@ function sendDelete(){
 		<a href="javascript:history.go(-1);">이전 페이지로 이동</a> &nbsp; 
 		<button onclick="moveUpdateView();">확인</button> &nbsp;
 		<input type="reset" value="수정취소"> &nbsp; 	
-		<button onclick="sendDelete();">탈퇴하기</button> &nbsp; 
+	
 		<a href="index.jsp">시작 페이지로</a>
 	</th>	
 </tr>
 </table>
 </form>
+	<center><button onclick="sendDelete();">탈퇴하기</button>  </center>
 &nbsp; 
 
 <hr>

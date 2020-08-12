@@ -58,7 +58,17 @@ public class MemberService {
 
 	public int deleteMember(String id) {
 		Connection conn = getConnection();
-		int result = mdao.deleteMember(conn, id);
+		int result = 0;
+		if(id.substring(0,1).equals("A")  ){ 
+		result = mdao.deleteAdmin(conn, id);
+		}else if(id.substring(0,1).equals("P")){ 
+			 result = mdao.deleteProfessor(conn, id);	 
+		}else{ 
+			result = mdao.deleteStudent(conn, id);	 
+		 } 
+
+		
+		
 		if (result > 0) {
 			commit(conn);
 		} else {
@@ -81,7 +91,5 @@ public class MemberService {
 		close(conn);
 		return member;
 	}
-	
-	
 
 }
