@@ -132,6 +132,7 @@
     flex:1;
     width:25%;
     box-sizing: border-box;
+    font-size: 0.5rem;
 }
 
 .b{
@@ -314,6 +315,9 @@ $(function(){
 	
 	
 </script>
+
+
+
   <!--       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <style type="text/css">
@@ -351,8 +355,24 @@ $(function(){
 <br>
  <div class="box">
         <div class="a">first
-        	 <h1>내 학번 : <%= m.getId() %>, <%=m.getCategoryname() %>
-      					 <%= m.getName() %>님 내학사에 오신것을 환영합니다.</h1>
+        		<%if(m1.getId().substring(0, 1).equals("P")){ %>
+					 <h1> 코드 : <%= m.getId() %><br>
+					 	 <%=m.getCategoryname() %><br>
+      					 <%= m.getName() %>교수님 <br>
+      					   내학사에 오신것을 환영합니다.</h1>
+      					 
+				<% }else if(m1.getId().substring(0, 1).equals("A")){ %>
+					 <h1>관리자 코드 : <%= m.getId() %><br>
+      					 <%= m.getName() %>관리자님 <br>
+      					 내학사에 오신것을 환영합니다.</h1>
+      					 
+				<% }else{ %>
+					 <h1>내 학번 : <%= m.getId() %><br>
+					  <%=m.getCategoryname() %><br>
+      					 <%= m.getName() %>님 <br>
+      					 내학사에 오신것을 환영합니다.</h1>
+				<%} %>
+        	 
         </div>
         
         <div class="b">second

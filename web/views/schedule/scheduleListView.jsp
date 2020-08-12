@@ -180,9 +180,12 @@ function update(){
 </table> 
 <br>
 <br>
+<%if(m1.getId().substring(0, 1).equals("A")) {%>
 <button onclick="javascript:location.href='/beet/adsch'">관리 페이지</button>
 
-<%@include file="../../common/footer.jsp" %>
+<% } %>
+
+
 <br>
 
 <br>

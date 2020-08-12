@@ -18,6 +18,10 @@
 비밀번호:<input type="password" name="userpwd">
 <br><button type="submit" value="로그인">로그인</button>
 </form>
+<button onclick="javascript:location.href='views/student/회원가입선택.jsp'">회원가입</button>
+<button onclick="javascript:location.href='views/student/findId.jsp'">아이디찾기</button>
+<button onclick="javascript:location.href='views/student/findPassword.jsp'">비밀번호찾기</button>
+
 <% }else{ %>
 <div>
 <%=m.getName() %> 님 로그인 상태입니다

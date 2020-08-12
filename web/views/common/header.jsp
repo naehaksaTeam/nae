@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+    pageEncoding="UTF-8" import="student.model.vo.Member" %>
+ <% Member m1 = (Member)session.getAttribute("loginMember"); %>   
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -143,8 +145,8 @@ body {
 
 #menu a {
 	display: block;
-	padding: 0px 40px 0px 40px;
-	line-height: 70px;
+	padding: 0px 20px 0px 20px;
+	line-height: 60px;
 	letter-spacing: 2px;
 	text-decoration: none;
 	text-transform: uppercase;
@@ -255,27 +257,74 @@ body {
 				<ul class="contact">
 					<li><a href="/beet/logout.cp" >로그아웃</a> | </li>
 					<li><a href="#" >연장</a> | </li>
-					<li>이름</li>
+						<%if(m1.getId().substring(0, 1).equals("P")){ %>
+							<li><%= m1.getName() %>교수님</li>
+						<% }else if(m1.getId().substring(0, 1).equals("A")){ %>
+							<li><%= m1.getName() %>관리자님</li>
+						<% }else{ %>
+							<li><%= m1.getName() %>님</li>
+						<%} %>
 
 				</ul>
 			</div>
 		</div>
+		<%if(m1.getId().substring(0, 1).equals("P")){ //교수%>
 		<div id="menu" class="container">
 			<ul>
-				<li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li>
-				<li><a href="#" accesskey="1" title="">마이페이지</a></li>
-				<li><a href="#" accesskey="2" title="">강의 / 성적</a></li>
-				<li><a href="#" accesskey="4" title="">등록 / 장학</a></li>
-				<!-- <li><a href="#" accesskey="5" title="">수강신청</a></li>
-				<li><a href="#" accesskey="5" title="">휴학 / 복학</a></li> -->
-				<li><a href="#" accesskey="5" title="">학교 소식</a></li>
+				<!-- <li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li> -->
+				<li><a href="../student/memberUpdatePage.jsp" accesskey="1" title="">마이페이지</a></li>
+				<li><a href="../attendance/sub4main.jsp" accesskey="2" title=""> 출결 </a></li>
+				 <li><a href="/beet/showplan.ss" accesskey="5" title="">강의계획서</a></li>
+				<li><a href="/beet/nlist" accesskey="5" title="">공지 사항</a></li> 
 				<li><a href="/beet/schlist" accesskey="5" title="">학사일정</a></li>
 				
 			</ul>
 		</div>
+		<%}else if(m1.getId().substring(0, 1).equals("A")){//관리자 %>
+		<div id="menu" class="container">
+			<ul>
+				<!-- <li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li> -->
+				<li><a href="../student/memberUpdatePage.jsp" accesskey="1" title="">마이페이지</a></li>
+				<li><a href="../attendance/sub4main.jsp" accesskey="2" title=""> 출결</a></li>
+				<li><a href="/beet/selectss" accesskey="4" title="">등록 / 장학</a></li>
+				 <li><a href="/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" accesskey="5" title="">수강신청</a></li>
+				<li><a href="/beet/selectaball" accesskey="5" title="">휴학 / 복학</a></li> 
+				<li><a href="/beet/nlist" accesskey="5" title="">공지 사항</a></li> 
+				<li><a href="/beet/schlist" accesskey="5" title="">학사일정</a></li>
+				
+			</ul>
+		</div>
+		<%}else{ //학생 %>
+		<div id="menu" class="container">
+			<ul>
+				<!-- <li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li> -->
+				<li><a href="../student/memberUpdatePage.jsp" accesskey="1" title="">마이페이지</a></li>
+				<li><a href="../attendance/sub4main.jsp" accesskey="2" title=""> 출결</a></li>
+				<li><a href="/beet/s.t.list" accesskey="4" title="">등록 / 장학</a></li>
+				 <li><a href="/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" accesskey="5" title="">수강신청</a></li>
+				<li><a href="/beet/selectab?studentid=<%=m1.getId()%>" accesskey="5" title="">휴학 / 복학</a></li> 
+				<li><a href="/beet/nlist" accesskey="5" title="">공지 사항</a></li> 
+				<li><a href="/beet/schlist" accesskey="5" title="">학사일정</a></li>
+				
+			</ul>
+		</div>
+		<%} %>
 	</div>
 </body>
-</
+
+<%-- <button onclick="javascript:location.href='/beet/showplan.ss'" >강의 계획서</button>
+<button onclick="javascript:location.href='/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>'" >수강신청</button>
+<button onclick="javascript:location.href='/beet/showTimeTable?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>'" >시간표 조회</button>
+<button onclick="javascript:location.href='/beet/torest?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>'" >휴보강신청</button>
+<button onclick="javascript:location.href='/beet/toapl'" >수강과목추가 [관리자]</button>
+
+
+
+<button onclick="javascript:location.href='../lecture/menu.jsp'">수강신청 메뉴테스트</button> 
+<button onclick="javascript:location.href='../attendance/sub4main.jsp'">출결 목록 테스트</button>
+<button onclick="javascript:location.href='/beet/selectaball'">학생신청페이지</button>
+<button onclick="javascript:location.href='/beet/nlist'">공지사항</button>
+<button onclick="javascript:location.href='../student/memberUpdatePage.jsp'">마이페이지</button> --%>
 <%-- <!DOCTYPE html>
 <html>
 <head>
