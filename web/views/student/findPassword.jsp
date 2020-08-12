@@ -32,7 +32,8 @@
 
 		<div class="row">
 			<div class="col-md-10 inputbb">
-				<button type="submit" class="btn btn-outline-secondary findbtn">찾기</button>
+				<input type="submit" class="btn btn-outline-secondary findbtn">찾기 
+				
 			</div>
 		</div>
 		

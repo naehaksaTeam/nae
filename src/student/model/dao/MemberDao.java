@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import student.model.vo.Member;
+import student.model.vo.Student;
 
 public class MemberDao {
 	public MemberDao() {
@@ -52,7 +53,13 @@ public class MemberDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 
-		String query = "select * from student where id=" + id;
+		String query = "select * " + "from ("
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
+				+ ") " + "where id = ? and treasure = ?";
 
 		try {
 			stmt = conn.createStatement();
@@ -271,8 +278,8 @@ public class MemberDao {
 
 	
 	//비밀번호 찾기
-	public Member FindPasswordMember(Connection conn, String id, String treasure) {
-		Member member = null;
+	public Member FindPasswordStudent(Connection conn, String id, String treasure) {
+		Student student = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
@@ -291,15 +298,15 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				member = new Member();
+				student = new Student();
 
-				member.setId(rset.getString("id"));
+				student.setId(rset.getString("id"));
 			
 
 			}else {
-				member = new Member();
+				student = new Student();
 
-				member.setId("notanswer");
+				student.setId("notanswer");
 			
 			}
 		} catch (Exception e) {
@@ -309,7 +316,7 @@ public class MemberDao {
 			close(pstmt);
 		}
 
-		return member;
+		return student;
 	}
 
 	
