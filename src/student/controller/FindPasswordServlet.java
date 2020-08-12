@@ -49,6 +49,7 @@ public class FindPasswordServlet extends HttpServlet {
 			ProfessorService pservice = new ProfessorService();
 			Professor professor = pservice.selectOne(id, treasure);
 			if(professor != null) {
+				
 				RequestDispatcher view = request.getRequestDispatcher("views/student/afterfindPasswordP.jsp");
 				request.setAttribute("professor", professor);
 				view.forward(request, response);
@@ -57,7 +58,7 @@ public class FindPasswordServlet extends HttpServlet {
 				
 				
 			}else {
-				response.sendRedirect("/views/common/error.jsp");
+				response.sendRedirect("views/common/error.jsp");
 			}
 		
 		}else if(firstword.equals("A")) {
@@ -71,7 +72,7 @@ public class FindPasswordServlet extends HttpServlet {
 				
 				
 			}else {
-				response.sendRedirect("/views/common/error.jsp");
+				response.sendRedirect("views/common/error.jsp");
 			}
 			
 			
@@ -88,7 +89,7 @@ public class FindPasswordServlet extends HttpServlet {
 				
 				
 			}else {
-				response.sendRedirect("/views/common/error.jsp");
+				response.sendRedirect("views/common/error.jsp");
 			}
 			
 			

@@ -1,6 +1,6 @@
 package student.model.service;
 
-import static common.JDBCTemp.close;
+import static common.JDBCTemp.*;
 import static common.JDBCTemp.getConnection;
 
 import java.sql.Connection;
@@ -20,5 +20,16 @@ public class AdminService {
 		Admin admin = adao.selectOne(conn, id, treasure);
 		close(conn);
 		return admin;
+	}
+
+	public int updateadminpassword(String cryptoPwd, String id) {
+		Connection conn = getConnection();
+		int result = adao.updateadminpassword(conn, cryptoPwd, id);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
 	}
 }

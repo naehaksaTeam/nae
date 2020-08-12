@@ -1,7 +1,6 @@
 package student.model.service;
 
-import static common.JDBCTemp.close;
-import static common.JDBCTemp.getConnection;
+import static common.JDBCTemp.*;
 
 import java.sql.Connection;
 
@@ -26,4 +25,19 @@ private StudentDao sdao = new  StudentDao();
 		close(conn);
 		return student;
 	}
+
+
+
+	public int updatestudentpassword(String cryptoPwd, String id) {
+		Connection conn = getConnection();
+		int result = sdao.updatestudentpassword(conn, cryptoPwd, id);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+
+
 }

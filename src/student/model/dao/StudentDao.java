@@ -41,4 +41,24 @@ public class StudentDao {
 
 	      return student;
 	   }
+
+	public int updatestudentpassword(Connection conn, String cryptoPwd, String id) {
+		int result =0;
+		PreparedStatement pstmt = null;
+		
+		String query = "update student set password =? where id = ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, cryptoPwd);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
