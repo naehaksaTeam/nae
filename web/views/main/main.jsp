@@ -4,36 +4,18 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <% Member m = (Member)session.getAttribute("loginMember"); %>
 
-<%
-    request.setCharacterEncoding("utf-8");
-   
-    Calendar now = Calendar.getInstance();
-    int year = now.get(Calendar.YEAR);
-    int month = now.get(Calendar.MONTH)+1;
-   
-    String _year = request.getParameter("year");
-    String _month = request.getParameter("month");
-   
-    if(_year != null)
-        year = Integer.parseInt(_year);
-   
-    if(_month != null)
-        month = Integer.parseInt(_month);
-   
-    now.set(year, month-1, 1);    //출력할 년도, 월로 설정
-   
-    year = now.get(Calendar.YEAR);    //변화된 년, 월
-    month = now.get(Calendar.MONTH) + 1;
-   
-    int end = now.getActualMaximum(Calendar.DAY_OF_MONTH);    //해당월의 마지막 날짜
-    int w = now.get(Calendar.DAY_OF_WEEK);    //1~7(일~토)
-%>
+<%	request.setCharacterEncoding("utf-8");
+	Calendar now = Calendar.getInstance();
+	int month = now.get(Calendar.MONTH)+1;%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>beet</title>
 </head>
+
+
 
 
 <!-- 
@@ -121,11 +103,16 @@
 } 
 </style>  -->
 <style>
+
+
+
 .box{
     width: 55%;
     min-height: 300px;  
     margin: 10px auto;
     display: flex;
+    
+
 }
 .a{
     border: 1px solid ;
@@ -172,8 +159,121 @@
 }
 
 
+table.cal_calendar{
+	padding:0px;margin:0 auto;
+
+}
+table.cal_calendar th{
+	border:1px solid #c0c0c0;
+	background-color:#e0e0e0;
+	width:36px;
+	font-family:돋움;
+	font-size:11px;padding:3px;
+
+}
+table.cal_calendar td{
+	border:1px solid #e0e0e0;
+	background-color:#ffffff;
+	text-align:center;
+	width:20px;
+	height:25px;
+	font-family:tahoma;
+	font-size:11px;padding:3px;
+}
+.cal_today{
+	color:#ff0000;
+	font-weight:bold;
+}
+.cal_days_bef_aft{
+	color:#5a779e;
+}
+
 
 </style>
+
+<script type="text/javascript">
+function setStyle(id,style,value)
+{
+    id.style[style] = value;
+}
+function opacity(el,opacity)
+{
+        setStyle(el,"filter:","alpha(opacity="+opacity+")");
+        setStyle(el,"-moz-opacity",opacity/100);
+        setStyle(el,"-khtml-opacity",opacity/100);
+        setStyle(el,"opacity",opacity/100);
+}
+function calendar()
+{
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth();
+        var year = date.getYear();
+        if(year<=200)
+        {
+                year += 1900;
+        }
+        months = new Array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12');
+        days_in_month = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+        if(year%4 == 0 && year!=1900)
+        {
+                days_in_month[1]=29;
+        }
+        total = days_in_month[month];
+        var date_today = year+'년'+months[month]+'월 '+day+'일';
+        beg_j = date;
+        beg_j.setDate(1);
+        if(beg_j.getDate()==2)
+        {
+                beg_j=setDate(0);
+        }
+        beg_j = beg_j.getDay();
+        document.write('<table class="cal_calendar" onload="opacity(document.getElementById(\'cal_body\'),20);"><tbody id="cal_body"><tr><th colspan="7">'+date_today+'</th></tr>');
+        document.write('<tr class="cal_d_weeks"><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr><tr>');
+        week = 0;
+        for(i=1;i<=beg_j;i++)
+        {
+                document.write('<td class="cal_days_bef_aft">'+(days_in_month[month-1]-beg_j+i)+'</td>');
+                week++;
+        }
+        for(i=1;i<=total;i++)
+        {
+                if(week==0)
+                {
+                        document.write('<tr>');
+                }
+                if(day==i)
+                {
+                        document.write('<td class="cal_today">'+i+'</td>');
+                }
+                else
+                {
+                        document.write('<td>'+i+'</td>');
+                }
+                week++;
+                if(week==7)
+                {
+                        document.write('</tr>');
+                        week=0;
+                }
+        }
+        for(i=1;week!=0;i++)
+        {
+                document.write('<td class="cal_days_bef_aft">'+i+'</td>');
+                week++;
+                if(week==7)
+                {
+                        document.write('</tr>');
+                        week=0;
+                }
+        }
+        document.write('</tbody></table>');
+        opacity(document.getElementById('cal_body'),70);
+        return true;
+}
+</script>
+
+
 <script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript"> 
@@ -317,39 +417,15 @@ $(function(){
 </script>
 
 
-
-  <!--       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <style type="text/css">
-            *{padding: 0px; margin: 0px;}  /* 브라우저별 기본 여백 차이가 있기에 작성한다. */
-            body{font-size: 9pt;}
-            td{font-size: 9pt;}
-            a{cusor: pointer; color: #000000; text-decoration: none; font-size: 9pt; line-height: 150%;}
-            a:HOVER, a:ACTIVE{font-size: 9pt; color: #F28011; text-decoration: underline;}
-        </style> -->
-
-
 <body>
 
 
-
-<!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
-<%-- <%@ include file="/views/common/sessionChk.jsp" %> --%>
-<%-- <% if(m == null){ %>
-<form action="/beet/login.cp">
-아이디:<input type="text" name="userid">
-비밀번호:<input type="password" name="userpwd">
-<br><button type="submit" value="로그인">로그인</button>
-</form>
-<% }else{ %> --%>
-
-<div id="outer">
 <header>
 <%@ include file="../common/header.jsp" %>
 
 </header>
 
-
+<div id="outer">
 
 <br>
 <br>
@@ -376,63 +452,10 @@ $(function(){
         </div>
         
         <div class="b">second
-        	<h2 >캘린더</h2>
-                  <table width="250" border="0" cellpadding="1" cellspacing="2">
-                <tr height="30">
-                    <td align="center">
-                        <%--  <a href="calendar.jsp?year=<%=year%>&month=<%=month-1%>">◀</a>  --%>
-                        <b><%=year %>년 <%=month %>월</b>
-                      <%--   <a href="calendar.jsp?year=<%=year%>&month=<%=month+1%>">▶</a> --%>
-                    </td>
-                </tr>
-            </table>
-           
-            <table width="210" border="0" cellpadding="2" cellspacing="1" bgcolor="#cccccc">
-                <tr height="25">
-                    <td align="center" bgcolor="#e6e4e6"><font color="red">일</font></td>
-                    <td align="center" bgcolor="#e6e4e6">월</td>
-                    <td align="center" bgcolor="#e6e4e6">화</td>
-                    <td align="center" bgcolor="#e6e4e6">수</td>
-                    <td align="center" bgcolor="#e6e4e6">목</td>
-                    <td align="center" bgcolor="#e6e4e6">금</td>
-                    <td align="center" bgcolor="#e6e4e6"><font color="blue">토</font></td>
-                </tr>
-                <%
-                    int newLine = 0;
-                    //1일이 어느 요일에서 시작하느냐에 따른 빈칸 삽입
-                    out.println("<tr height='25'>");
-                    for(int i=1; i<w; i++)
-                    {
-                        out.println("<td bgcolor='#ffffff'>&nbsp;</td>");
-                        newLine++;
-                    }
-                   
-                    String fc, bg;
-                    for(int i=1; i<=end; i++)
-                    {
-                       
-                        fc = (newLine == 0)?"red":(newLine==6?"blue":"#000000");
-                        bg = "#ffffff";
-                        out.println("<td align='center' bgcolor=" + bg + "><font color=" + fc + ">"
-                                + i + "</font></td>");
-                        newLine++;
-                        if(newLine == 7 && i != end)
-                        {
-                            out.println("</tr>");
-                            out.println("<tr height='25'>");
-                            newLine = 0;
-                        }
-                    }
-                   
-                    while(newLine>0 && newLine<7)
-                    {
-                        out.println("<td bgcolor='ffffff'>&nbsp;</td>");
-                        newLine++;   
-                    }
-                    out.println("</tr>");
-                %>
-                
-            </table>
+       	 <h2 >캘린더</h2>
+        	<script type="text/javascript">
+				calendar();
+			</script>
         </div>
         
         <div class="c">third

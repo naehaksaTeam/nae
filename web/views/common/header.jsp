@@ -19,7 +19,9 @@
 <style type="text/css">
 
  html, body {
+ 	
 	height: 100%;
+	
 }
 
 body {
@@ -35,8 +37,11 @@ body {
 } 
 
 #wrapper {
+	
 	background: #FFF;
 	margin: 0px 0px;
+	
+	
 }
 
 .container {
@@ -59,6 +64,7 @@ body {
 }
 
 #header {
+	
 	position: relative;
 	overflow: hidden;
 	height: 200px;
@@ -244,6 +250,12 @@ body {
 	}
 	 
 </style>
+<script type="text/javascript">
+
+
+
+</script>
+
 </head>
 <body>
 <div id="wrapper">
@@ -310,6 +322,7 @@ body {
 		</div>
 		<%} %>
 	</div>
+</div>
 </body>
 
 <%-- <button onclick="javascript:location.href='/beet/showplan.ss'" >강의 계획서</button>
