@@ -1,5 +1,5 @@
 package student.controller;
-//우리것
+
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;

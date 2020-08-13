@@ -49,13 +49,10 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setAddress(request.getParameter("address"));
 		member.setPhone(request.getParameter("phone"));
 		member.setEmail(request.getParameter("email"));
-		member.setTreasure(request.getParameter("treasure"));
 		member.setAdminhiredate(Date.valueOf(request.getParameter("adminhiredate").trim()));
-		member.setAbsencewhether(request.getParameter("absencewhether"));
 		member.setAbsencecount(Integer.parseInt(request.getParameter("absencecount").trim()));
-		member.setSsname(request.getParameter("ssname"));
-		member.setCategoryname(request.getParameter("categoryname"));
-		member.setMajorno(request.getParameter("majorno"));
+		
+	
 		
 		System.out.println("맴버성공");
 
@@ -65,7 +62,7 @@ public class MemberUpdateServlet extends HttpServlet {
 		// 4.
 		if (result > 0) { // 수정 성공시
 			// 서블릿을 실행해서, 로그인페이지 내보냄
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/index.jsp");
 			System.out.println("마이페이지성공");
 		} else { // 수정 실패시
 			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");

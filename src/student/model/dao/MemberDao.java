@@ -162,7 +162,13 @@ public class MemberDao {
 		try {
 			pstmt = conn.prepareStatement(query0 + query);
 			pstmt.setString(1, member.getId());
-	
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getSsn());
+			pstmt.setString(4, member.getAddress());
+			pstmt.setString(5, member.getPhone());
+			pstmt.setString(6, member.getEmail());
+			pstmt.setDate(7, member.getAdminhiredate());
+			pstmt.setInt(8, member.getAbsencecount());
 
 			result = pstmt.executeUpdate();
 
