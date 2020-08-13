@@ -54,10 +54,9 @@
 		</thead>
 		<tbody>
 		<div id="dataArea">
-		<form id="score" action="/beet/scupdate.p">
 			<% int i = 1;for(LectureScore lscore : list) {%>
 			<p id="p_<%= i %>">
-			<tr>
+			<tr>	
 				<td ><input name="chk" type="checkbox" style="height:20px;"></button></td>
 				<td class="nr"><%= i %></td><% i+=1; %>
 				<input type="hidden" value="<%= lscore.getReceptionno() %>">
@@ -93,19 +92,13 @@
 			<input id="scsave" type="submit" value="저장"> &nbsp;
 			<input id="sccancle" type="button" value="취소"> &nbsp;
 			</tr>
-			</form>
+
 			
 			
 			
 		</tbody>
 	</table>
-	
-	<h2>5 서버로 값 전송하고 결과로 list나 map을 json 배열로 받아서 출력처리하는 방법 </h2>
-	<p id="p5" style="width: 700px; height: 700px; border: 1px solid red;"></p>
-	<button id="test5">테스트</button><br>
-	<textarea id="no2" value=dataArray></textarea>
-	
-	
+
 	
 	<div class="test" id="ttest" ></div> 
 	<form id="updateArr" action="/beet/scoreup" method="post">	
@@ -125,7 +118,7 @@
 		<input type="reset" value="취소"> &nbsp;
 		<input type="button" value="이전 페이지" href="javascript:history.go(-1);"></a>
 		</center>
-<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 <script>
 
 //수정가능 
@@ -193,11 +186,10 @@ $("#abc").click(function(){
 	
 	var tr = checkbox.parent().parent().eq(i);
 	var td = tr.children();
-	
+	var dataObj = new Object;
 	//rowData.push(tr.text());
-	var categoryname= '{"categoryname" : "' + td.eq(3).text(); + '\"'
-	alert(categoryname);
-	var majorname = "majorname : "  +td.eq(4).text() + "}"; 
+	dataObj.categoryname= td.eq(3).text();
+	dataObj.majorname = td.eq(4).text();
 	var sid = td.eq(5).text();
 	var sname = td.eq(6).text();
 	var retake = td.eq(7).text();
@@ -207,19 +199,16 @@ $("#abc").click(function(){
 	var totalScore = td.eq(11).find('input[type="text"]').val();
 	var grade = td.eq(12).find('select[name="selectg"] option:selected').val();
 
-	var a;
-	  
 	var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
 		totalScore, grade];
 	var aa = JSON.stringify(dataArray);
 	var jsonArray = JSON.parse(JSON.stringify(dataArray));
-	alert(jsonArray); 
-	
+	alert(aa);
 	$.ajax({
 		url : "/beet/scoreup",
 		contentType : 'application/json',
 		method : 'post',
-		data : JSON.stringify(dataArray),
+		data : {jsondata : JSON.stringify(dataArray)}
 		success : function(data){
 			alert(data);
 		},

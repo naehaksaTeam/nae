@@ -37,8 +37,7 @@ public class ScoreUpServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("utf-8");
-		String no = request.getParameter("categoryname");
+		String no = request.getParameter("jsondata");
 		System.out.println("no : " + no);
 	}
 

@@ -82,7 +82,7 @@
 </table>
 <input type="button" id="chnsave" value="저장" />
 <input type="button" id="chncancel" value="취소" />
-<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 <script>
 	var n1 = parseInt(document.getElementById("A+").value);
 	var n2 = parseInt(document.getElementById("A").value);

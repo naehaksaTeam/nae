@@ -167,7 +167,7 @@ java.util.Date, java.text.SimpleDateFormat"%>
 	</table>
 
 
-	<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+	<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
 	$( '#hi' ).click( function() {
 		  alert("hi");
