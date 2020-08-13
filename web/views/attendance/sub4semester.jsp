@@ -15,7 +15,6 @@
 
  <form action="/beet/lsselect" method="post">
  <input type="hidden" name="userid" value="<%=loginmember.getId() %>">
- <input type ="text" name="semester" value="<%=  %>>">
   <input type="submit" value="과목성적조회">
   </form> 
   

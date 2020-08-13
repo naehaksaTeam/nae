@@ -10,39 +10,16 @@ import java.util.ArrayList;
 
 import student.model.dao.MemberDao;
 import student.model.vo.Member;
+import student.model.vo.Student;
 
 public class MemberService {
 	private MemberDao mdao = new MemberDao();
-	
-	public MemberService() {}
 
-	public int insertMember(Member member,String who) {
-		Connection conn = getConnection();
-		
-		int result = 0;
-		
-		if(who.equals("student")) {
-			result = mdao.insertStudent(conn, member);
-		}else if(who.equals("professor")) {
-			result = mdao.insertProfessor(conn, member);
-		}else {
-			result = mdao.insertAdmin(conn, member);
-		}
-		
-		if(result > 0)
-			commit(conn);
-		else
-			rollback(conn);
-		close(conn);
-		return result;
-		
+	public MemberService() {
 	}
 
-
-////////////////////////////
-
 	public Member loginCheck(String userid, String userpwd) {
-		
+
 		Connection conn = getConnection();
 		Member member = mdao.loginCheck(conn, userid, userpwd);
 		close(conn);
@@ -52,23 +29,24 @@ public class MemberService {
 	public int insertMember(Member member) {
 		Connection conn = getConnection();
 		int result = mdao.insertMember(conn, member);
-		if(result > 0)
+		if (result > 0)
 			commit(conn);
 		else
 			rollback(conn);
 		close(conn);
 		return result;
-		
+
 	}
 
 	public int updateMember(Member member) {
 		Connection conn = getConnection();
 		int result = mdao.updateMember(conn, member);
-		if(result > 0)
+		if (result > 0)
 			commit(conn);
 		else
 			rollback(conn);
 		close(conn);
+		System.out.println("업데이트서비스");
 		return result;
 	}
 
@@ -81,10 +59,18 @@ public class MemberService {
 
 	public int deleteMember(String id) {
 		Connection conn = getConnection();
-		int result = mdao.deleteMember(conn, id);
-		if(result > 0) {
+		int result = 0;
+		if (id.substring(0, 1).equals("A")) {
+			result = mdao.deleteAdmin(conn, id);
+		} else if (id.substring(0, 1).equals("P")) {
+			result = mdao.deleteProfessor(conn, id);
+		} else {
+			result = mdao.deleteStudent(conn, id);
+		}
+
+		if (result > 0) {
 			commit(conn);
-		}else {
+		} else {
 			rollback(conn);
 		}
 		close(conn);
@@ -97,13 +83,12 @@ public class MemberService {
 		close(conn);
 		return member;
 	}
-	
-	public Member FindPasswordMember(String id, String treasure) {
+
+	public Member FindPasswordStudent(String id, String treasure) {
 		Connection conn = getConnection();
-		Member member = mdao.FindIdMember(conn, id, treasure);
+		Member member = mdao.FindPasswordStudent(conn, id, treasure);
 		close(conn);
 		return member;
-	}	
-	
-/////////////////////
+	}
+
 }

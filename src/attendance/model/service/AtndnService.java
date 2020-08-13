@@ -7,8 +7,7 @@ import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.HashMap;
 
 import attendance.model.dao.AtndnDao;
 import attendance.model.vo.Atndn;
@@ -17,9 +16,9 @@ public class AtndnService {
 	private AtndnDao adao = new AtndnDao(); 
 	public AtndnService() {}
 	
-	public ArrayList<Atndn> selectMyLctr(String studentid) {
+	public ArrayList<Atndn> selectMyLctr(String sid) {
 		Connection conn = getConnection();
-		 ArrayList<Atndn>  list = adao.selectMyLctr(conn, studentid);
+		 ArrayList<Atndn>  list = adao.selectMyLctr(conn, sid);
 		close(conn);
 		return list;
 	}
@@ -40,12 +39,10 @@ public class AtndnService {
 
  //성적이랑 합침 
 	public ArrayList<Atndn> selectProfAtndnList(String pid, String semester, String lcode) {
-		
 		Connection conn = getConnection();
-		ArrayList<Atndn>  list = adao.selectProfAtndnList(conn, pid, semester, lcode);
+		 ArrayList<Atndn>  list = adao.selectProfAtndnList(conn, pid, semester, lcode);
 		close(conn);
 		return list;
-		
 	}
 
 	public int updateAtndn(Atndn atndn) {
@@ -61,27 +58,24 @@ public class AtndnService {
 		return result;
 	}
 
-	public int updateWeekAll(ArrayList<Atndn> list) {
+	public int updateWeekAll(HashMap map) {
 		//출결 여러개 업데이트
 		Connection conn = getConnection();
-		close(conn);
-		int r = 0;
-		for(Atndn a : list) {
-			String who = a.getSid();
-			System.out.println(who);
-			conn = getConnection();
-			r = adao.updateWeekAll(conn,who,a);
-			if(r > 0) {
-				commit(conn);
-				close(conn);
-			}else {
-				System.out.println("업데이트 실패 : " + who);
-				rollback(conn);
-				close(conn);
-				break;
-			}
+		int r = adao.updateWeekAll(conn,map);
+		if(r > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
 		}
+		close(conn);
 		return r;
+	}
+
+	public ArrayList<Atndn> selectMyLctrSemstr(String sid, String semester) {
+		Connection conn = getConnection();
+		 ArrayList<Atndn>  list = adao.selectMyLctrSemstr(conn, sid, semester);
+		close(conn);
+		return list;
 	}
 
 }

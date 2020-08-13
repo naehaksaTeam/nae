@@ -118,7 +118,7 @@ input.insert {
 			%>
 		</tbody>
 	</table>
-<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
 	 function selectfield(obj) {
 		 $('input[name=action]').attr('value',obj.value);

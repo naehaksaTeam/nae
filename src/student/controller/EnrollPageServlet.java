@@ -18,7 +18,7 @@ import student.model.vo.Member;
  */
 @WebServlet("/epage.cp")
 public class EnrollPageServlet extends HttpServlet {
-	private static final long serialVersionUID = 356576L;
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,23 +40,22 @@ public class EnrollPageServlet extends HttpServlet {
 				Member member = new Member();
 				
 				member.setId(request.getParameter("id"));
-				member.setPassword(request.getParameter("password"));
 				member.setName(request.getParameter("name"));
 				member.setSsn(request.getParameter("ssn"));
 				member.setAddress(request.getParameter("address"));
 				member.setPhone(request.getParameter("phone"));
 				member.setGender(request.getParameter("gender"));
-				member.setCategoryname(request.getParameter("categoryname"));
 				member.setEmail(request.getParameter("email"));
 				member.setTreasure(request.getParameter("treasure"));
+				//member.setAdminhiredate(request.getParameter("adminhirdate"));
+				member.setPassword(request.getParameter("password"));
+				//member.setEntrancedate(request.getParameter("entrancedate"));
+				member.setAbsencewhether(request.getParameter("absencewhether"));
+				member.setAbsencecount(Integer.parseInt(request.getParameter("absencecount")));
+				member.setSsname(request.getParameter("ssname"));
+				member.setCategoryname(request.getParameter("categoryname"));
+				member.setMajorno(request.getParameter("majorno"));
 			
-		
-			
-				
-				
-			
-			
-				 
 				
 				
 				//3. 서비스 객체 생성하고, 서비스 메소드를 이용해서 객체 전달하고

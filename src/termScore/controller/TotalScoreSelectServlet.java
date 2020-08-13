@@ -1,7 +1,6 @@
-package lectureScore.controller;
+package termScore.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,21 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import lectureScore.model.service.LectureScoreService;
-import lectureScore.model.vo.LectureScore;
+import termScore.model.service.TermScoreService;
+import termScore.model.vo.TermScore;
 
 /**
- * Servlet implementation class ProfScoreUpdateServlet
+ * Servlet implementation class TermScoreSelectServlet
  */
-@WebServlet("/test_scselect.p")
-public class test_ProfScoreSelectServlet2 extends HttpServlet {
+@WebServlet("/tosselect")
+public class TotalScoreSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public test_ProfScoreSelectServlet2() {
+    public TotalScoreSelectServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,27 +32,23 @@ public class test_ProfScoreSelectServlet2 extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("utf-8");
+		//학생의 전체성적 조회처리 
+		
+		
+		String sid = request.getParameter("userid");
 		response.setContentType("text/html; charset=utf-8");
-		
-		String lname = request.getParameter("lname");
-		System.out.println(lname);
-		String semester = "202001";
-		
-		ArrayList<LectureScore> list = new LectureScoreService().selectProfLectureScore(lname, semester);
-		
+		//3
+		TermScore tscore = new TermScoreService().selectTotalScore(sid);
 		RequestDispatcher view = null;
-		if(list != null) { //조회가 성공하면 
-			view = request.getRequestDispatcher("views/lectureScore/profscoreEdit_m_lecture.jsp");
-			request.setAttribute("list", list);
+		if(tscore != null) {
+			view = request.getRequestDispatcher("views/termScore/totalScoreView.jsp");
+			request.setAttribute("tscore",  tscore);
 			view.forward(request, response);
 		}else {
-			view =request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", lname + "성적관리페이지로 이동실패");
+			view = request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", sid + "전체성적 조회 실패!");
 			view.forward(request, response);
 		}
-		
 	}
 
 	/**

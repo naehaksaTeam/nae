@@ -7,216 +7,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import student.model.vo.Member;
 import student.model.vo.Student;
+
 public class MemberDao {
-   public  MemberDao() {
-   }
-   
-   
-   public int insert(Connection conn, Student student) {
-      int result = 0;
-      PreparedStatement pstmt = null;
-
-      String query = "insert into member values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-      try {
-         pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, student.getId());
-         pstmt.setString(2, student.getPassword());
-         pstmt.setString(3, student.getName());
-         pstmt.setString(4, student.getSsn());
-         pstmt.setString(5, student.getAddress());
-         pstmt.setString(6, student.getPhone());
-         pstmt.setString(7, student.getCategoryname());
-         pstmt.setString(8, student.getGender());
-         pstmt.setString(9, student.getEmail());
-         pstmt.setString(10, student.getTreasure());
-         
-      
-         
-     	
-	
-
-
-         result = pstmt.executeUpdate();
-
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         close(pstmt);
-      }
-
-      return result;
-   }
-
-
-
-   	//정보수정
-   public int update(Connection conn, Student student) {
-      int result = 0;
-      PreparedStatement pstmt = null;
-
-      String query = "update student set id = ? where majorno = ?";
-
-      try {
-         pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, student.getId());
-         pstmt.setString(2, student.getMajorno());
-
-         result = pstmt.executeUpdate();
-
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         close(pstmt);
-      }
-
-      return result;
-   }
-
-   public int delete(Connection conn, String studentid) {
-      int result = 0;
-      PreparedStatement pstmt = null;
-
-      String query = "delete from student where id = ?";
-
-      try {
-         pstmt = conn.prepareStatement(query);
-         pstmt.setString(1, studentid);
-
-         result = pstmt.executeUpdate();
-
-      } catch (Exception e) {
-         e.printStackTrace();
-      } finally {
-         close(pstmt);
-      }
-
-      return result;
-   }
-
-
-
-public int insertStudent(Connection conn, Member member) {
-	int result = 0;
-    PreparedStatement pstmt = null;
-
-    String query = "insert into student values (?,?,?,?,?,?,?,?,?,?,?,DEFAULT,DEFAULT,?,?)";
-
-    try {
-       pstmt = conn.prepareStatement(query);
-       pstmt.setString(1, member.getId());
-       pstmt.setString(2, member.getName());
-       pstmt.setString(3, member.getSsn());
-       pstmt.setString(4, member.getAddress());
-       pstmt.setString(5, member.getPhone());
-       pstmt.setString(6, member.getGender());
-       pstmt.setString(7, member.getEmail());
-       pstmt.setString(8, member.getTreasure());
-       pstmt.setString(9, member.getCategoryname());
-       pstmt.setString(10, member.getMajorno());
-       pstmt.setDate(11, member.getEntrancedate());
-       pstmt.setString(12, member.getSsname());
-       pstmt.setString(13, member.getPassword());
-	
-       result = pstmt.executeUpdate();
-
-    } catch (Exception e) {
-       e.printStackTrace();
-    } finally {
-       close(pstmt);
-    }
-    return result;
-}
-
-
-public int insertProfessor(Connection conn, Member member) {
-	int result = 0;
-    PreparedStatement pstmt = null;
-
-    String query = "insert into professor values (?,?,?,?,?,?,?,?,?,?,?)";
-
-    try {
-       pstmt = conn.prepareStatement(query);
-       pstmt.setString(1, member.getId());
-       pstmt.setString(2, member.getName());
-       pstmt.setString(3, member.getSsn());
-       pstmt.setString(4, member.getAddress());
-       pstmt.setString(5, member.getPhone());
-       pstmt.setString(6, member.getGender());
-       pstmt.setString(7, member.getEmail());
-       pstmt.setString(8, member.getTreasure());
-       pstmt.setString(9, member.getCategoryname());
-       pstmt.setString(10, member.getMajorno());
-       pstmt.setString(11, member.getPassword());
-	
-       result = pstmt.executeUpdate();
-
-    } catch (Exception e) {
-       e.printStackTrace();
-    } finally {
-       close(pstmt);
-    }
-
-    return result;
-}
-
-
-public int insertAdmin(Connection conn, Member member) {
-	int result = 0;
-    PreparedStatement pstmt = null;
-    String query = "insert into administrator values (?,?,?,?,?,?,?,?,?,?)";
-
-    try {
-       pstmt = conn.prepareStatement(query);
-       pstmt.setString(1, member.getId());
-       pstmt.setString(2, member.getName());
-       pstmt.setString(3, member.getSsn());
-       pstmt.setString(4, member.getAddress());
-       pstmt.setString(5, member.getPhone());
-       pstmt.setString(6, member.getGender());
-       pstmt.setString(7, member.getEmail());
-       pstmt.setString(8, member.getTreasure());
-       pstmt.setDate(9, member.getAdminhiredate());
-       pstmt.setString(10, member.getPassword());
-	
-       result = pstmt.executeUpdate();
-
-    } catch (Exception e) {
-       e.printStackTrace();
-    } finally {
-       close(pstmt);
-    }
-
-    return result;
-}
-/////////////////////
-
-	public int FindPasswordMember(Connection conn, Member member) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-
-		String query = "select * from member where id = ? and treasure = ?";
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getTreasure());
-
-			result = pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-
-			close(pstmt);
-		}
-
-		return result;
-
+	public MemberDao() {
 	}
 
-/////////////////////
 	public int insert(Connection conn, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -255,7 +53,13 @@ public int insertAdmin(Connection conn, Member member) {
 		Statement stmt = null;
 		ResultSet rset = null;
 
-		String query = "select * from student where id=" + id;
+		String query = "select * " + "from ("
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
+				+ "union "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
+				+ ") " + "where id = ? and treasure = ?";
 
 		try {
 			stmt = conn.createStatement();
@@ -287,7 +91,7 @@ public int insertAdmin(Connection conn, Member member) {
 			close(rset);
 			close(stmt);
 		}
-
+System.out.println("member" + member);
 		return member;
 	}
 
@@ -347,12 +151,18 @@ public int insertAdmin(Connection conn, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
-		String query = "update member set id = ? where majorno = ?";
-
+		String query0 = "update member set  = ? where id = ?";
+		String query = " (select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate " 
+				         + "from student "  
+				         + "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
+						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator " 
+						+ ") " 
+					    + "where id = ?)";
+				
 		try {
-			pstmt = conn.prepareStatement(query);
+			pstmt = conn.prepareStatement(query0 + query);
 			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getMajorno());
+	
 
 			result = pstmt.executeUpdate();
 
@@ -366,20 +176,25 @@ public int insertAdmin(Connection conn, Member member) {
 	}
 
 	// 회원탈퇴
-	public int deleteMember(Connection conn, String id) {
+	public int deleteStudent(Connection conn, String id) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
-		String query = "delete * " + "from ("
-				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
-				+ "union "
-				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
-				+ "union "
-				+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
-				+ ") ";
+		
+		String query0 = "delete from student where id = ";
+		
+		String query = "(select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate "
+				        + "from student " 
+						+ "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
+						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+						+ ") "
+						+ "where id = ?)";
+
+		
 
 		try {
-			pstmt = conn.prepareStatement(query);
+			
+			pstmt = conn.prepareStatement(query0 + query);
 			pstmt.setString(1, id);
 
 			result = pstmt.executeUpdate();
@@ -403,7 +218,7 @@ public int insertAdmin(Connection conn, Member member) {
 				+ "union "
 				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
 				+ "union "
-				+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
 				+ ") " + "where id = ? and password = ?";
 
 		try {
@@ -427,8 +242,9 @@ public int insertAdmin(Connection conn, Member member) {
 				member.setAdminhiredate(rset.getDate("adminhiredate")); // 인식 안됨...(확인요청)
 				member.setCategoryname(rset.getString("categoryname"));
 				member.setMajorno(rset.getString("majorno"));
-				member.setSsname(rset.getString("ssname"));
-
+				member.setAbsencewhether(rset.getString("absencewhether"));
+				member.setAbsencecount(rset.getInt("absencecount"));
+				member.setEntrancedate(rset.getDate("entrancedate"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -474,8 +290,8 @@ public int insertAdmin(Connection conn, Member member) {
 
 	
 	//비밀번호 찾기
-	public Member FindPasswordMember(Connection conn, String id, String treasure) {
-		Member member = null;
+	public Member FindPasswordStudent(Connection conn, String id, String treasure) {
+		Student student = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
@@ -494,15 +310,15 @@ public int insertAdmin(Connection conn, Member member) {
 			rset = pstmt.executeQuery();
 
 			if (rset.next()) {
-				member = new Member();
+				student = new Student();
 
-				member.setId(rset.getString("id"));
+				student.setId(rset.getString("id"));
 			
 
 			}else {
-				member = new Member();
+				student = new Student();
 
-				member.setId("notanswer");
+				student.setId("notanswer");
 			
 			}
 		} catch (Exception e) {
@@ -512,7 +328,7 @@ public int insertAdmin(Connection conn, Member member) {
 			close(pstmt);
 		}
 
-		return member;
+		return student;
 	}
 
 	
@@ -558,8 +374,70 @@ public int insertAdmin(Connection conn, Member member) {
 		}
 
 		return member;
-	}	
-	
-	
-/////////////
+	}
+
+	public int deleteAdmin(Connection conn, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		
+		String query0 = "delete from administrator where id = ";
+		
+		String query = "(select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate "
+				+ "		from student " 
+						+ "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
+						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+						+ ") "
+						+ "where id = ?)";
+
+		
+
+		try {
+			
+			pstmt = conn.prepareStatement(query0 + query);
+			pstmt.setString(1, id);
+
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	public int deleteProfessor(Connection conn, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+
+		
+		String query0 = "delete from professor where id = ";
+		
+		String query = "(select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate "
+				+ "		from student " 
+						+ "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
+						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+						+ ") "
+						+ "where id = ?)";
+
+		
+
+		try {
+			
+			pstmt = conn.prepareStatement(query0 + query);
+			pstmt.setString(1, id);
+
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }

@@ -29,6 +29,8 @@ public class SelectSsbenefitstServlet extends HttpServlet {
 		ArrayList<Ssbenefitst> listssst = new SsbenefitstService().selectPrivateSsst(studentid);
 		ArrayList<Scholarship> list = new ScholarshipService().selectScholarship();
 		
+		
+		
 		RequestDispatcher view = null;
 
 		view = request.getRequestDispatcher("views/scholarship/selectScholarView.jsp");

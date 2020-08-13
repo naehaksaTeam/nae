@@ -59,8 +59,7 @@ public class AtndnUpdateServlet extends HttpServlet {
 			
 			list2.add(atndn);
 		}
-		
-		
+
 		
 		int result = new AtndnService().updateWeekAll(list2);
 		

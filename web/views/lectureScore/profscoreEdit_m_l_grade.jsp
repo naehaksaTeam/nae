@@ -82,7 +82,7 @@
 </table>
 <input type="button" id="chnsave" value="저장" />
 <input type="button" id="chncancel" value="취소" />
-<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 <script>
 	var n1 = parseInt(document.getElementById("A+").value);
 	var n2 = parseInt(document.getElementById("A").value);
@@ -95,10 +95,10 @@
 	var n9 = parseInt(document.getElementById("F").value);
 	
 	
-document.getElementById("plus").onclick= function(){
-}
+/* document.getElementById("plus").onclick= function(){
+} */
 
-$("#layer")
+/* $("#layer")
 
 
 focusout(function() {
@@ -108,15 +108,15 @@ focusout(function() {
 
 	  $("#tot_price").val(tot_price);
 
-	});
+	}); */
 
-$("#test").addEventListner('onKeyup', function(){
+/* $("#test").addEventListner('onKeyup', function(){
 	alert("작동!")
 })
 
 function calc(){
 	test.t1.value = n1 + n2;
-}
+} */
 </script>
 </body>
 </html>

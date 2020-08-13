@@ -280,72 +280,55 @@ public class NoticeDao {
 		return result;
 
 	}
-////////
 
-
-	public ArrayList<Notice> selectTop3(Connection conn) {
+	public ArrayList<Notice> searchList(Connection conn, String keyword, String searchOption) {
 		ArrayList<Notice> list = new ArrayList<Notice>();
-
-		Statement stmt = null;
+		System.out.println("searchList dao접속성공!");
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "" + "select *" + "from (SELECT ROWNUM RNUM, " + "        NOTICENO , " + "        NOTICETITLE, "
-				+ "        NOTICEDATE" + "    FROM (SELECT * FROM NOTICE ORDER BY NOTICENO DESC)" + "    )"
-				+ "where RNUM >=1 AND RNUM <=3";
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
+		String query = null;
+		if(searchOption.equals("no")){
+			
+			 query = "select * from notice where noticeno like  ? ORDER BY noticedate desc";
+		
+		}else if(searchOption.equals("writer")){
+		
+			 query = "select * from notice where noticewriter like  ? ORDER BY noticedate desc";
+		
+		}else{
+		
+			 query = "select * from notice where noticecontent like  ? ORDER BY noticedate desc";
+		}
 
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, "%"+keyword+"%");
+			rset = pstmt.executeQuery();
 			while (rset.next()) {
 				Notice notice = new Notice();
-
+				
 				notice.setNoticeNo(rset.getInt("NOTICENO"));
 				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
+				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
 				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
-
+				notice.setNoticeContent(rset.getString("NOTICECONTENT"));
+				notice.setOriginalFile(rset.getString("ORIGINALFILE"));
+				notice.setRenameFile(rset.getString("RENAMEFILE"));
+				
 				list.add(notice);
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(stmt);
+			close(pstmt);
 			close(rset);
-			close(conn);
 		}
 		return list;
 	}
-	public ArrayList<Notice> selectNewTop5(Connection conn) {
-		ArrayList<Notice> list = new ArrayList<Notice>();
-		
-		Statement stmt = null;
-		ResultSet rset = null;
-		
-		String query="SELECT * FROM (SELECT ROWNUM RNUM, NOTICENO, NOTICETITLE, NOTICEDATE FROM (SELECT * FROM NOTICE ORDER BY NOTICEDATE DESC)) WHERE RNUM >= 1 AND RNUM <= 5";  
-				
-		
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-			while(rset.next()) {
-				
-				Notice notice = new Notice();
-				
-				notice.setNoticeNo(rset.getInt("NOTICENO"));
-				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
-				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
-				
-				
-				list.add(notice);
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(stmt);
-			close(rset);
-		}
-		System.out.println("dao"+ list);
-		return list;
-	}	
+
 	
-///////
+
+	
 }

@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ page import="termScore.model.vo.TermScore, student.model.vo.Member " %>
 <%@ include file="/views/common/sessionChk.jsp" %>
-<%-- <%
-	Member loginmember = (Member)session.getAttribute("loginMember");
-%> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,6 +69,14 @@ function twosend(){
 <input type="submit" class="btn-sm" value="과목별성적조회">
 <!-- 학기 ajax로 selected 값 받아서 동적페이지 구현할 예정  -->
 </form>  
+</div>
+<form action="/beet/myScore" method="post">
+<input type="hidden" name="userid" value="<%=m.getId() %>">
+<input type="submit" class="btn-sm" value="나의성적조회">
+<!-- 강의목록 join시 중복되는 문제 해결 필요 -->
+ </form>
+<div>
+
 </div>
 
 <br>

@@ -69,7 +69,7 @@ function check1() { //중복체크
 <center>
 <h1 align="center">회원 가입 페이지</h1>
 <br>
-<form method="post" action="/beet/minsert.cp" onsubmit="return validate();">
+<form method="post" action="/minsert.cp" onsubmit="return validate();">
 
 <% if(who.equals("admin")){ %>
 <table id="outer" align="center" width="500" cellspacing="5" cellpadding="0">
@@ -287,7 +287,7 @@ function check1() { //중복체크
 <tr class="">
 	<th colspan="2">
 		<input type="submit"> &nbsp; 
-		<button onclick="javascript:location.href='/beet/index.jsp'">작성취소</button> 
+		<button onclick="javascript:location.href='/index.jsp'">작성취소</button> 
 	</th>	
 </tr>
 </table>

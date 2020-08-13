@@ -1,8 +1,6 @@
-package attendance.controller;
+package major.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import attendance.model.service.AtndnService;
-import attendance.model.vo.Atndn;
+import major.model.service.MajorService;
+import major.model.vo.Major;
+
+
 
 /**
- * Servlet implementation class AdminAtndnSearchServlet
+ * Servlet implementation class MajorDetailSerlvet
  */
-@WebServlet("/atnsearch")
-public class AdminAtndnSearchServlet extends HttpServlet {
+@WebServlet("/mdetail")
+public class MajorDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminAtndnSearchServlet() {
+    public MajorDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,30 +33,30 @@ public class AdminAtndnSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String action = request.getParameter("action");
-		String keyword = null;
-		keyword = request.getParameter("keyword");
-
-		AtndnService aservice = new AtndnService();
-		ArrayList<Atndn> list = null;
+		// 전공 상세보기 처리용 컨트롤러 
+		String majorno = request.getParameter("majorno");
 		
-		switch(action) {
-		case "id" :		list = aservice.selectSearchUserid(keyword); break;
-		case "lecture" :	list = aservice.selectSearchLecture(keyword); break;
-	
-		}
+		
+		
+		
+		
+		
+		Major major = new MajorService().selectMajor(majorno);
+		
 		
 		RequestDispatcher view = null;
-		if(list.size() > 0) {
-			view = request.getRequestDispatcher("beet/attendance/AtndnListView.jsp");
-			request.setAttribute("list", list);
+		if(major != null) {
+			view = request.getRequestDispatcher("views/major/majorDetailView.jsp");
+			System.out.println("성공");
+			request.setAttribute("major", major);
 			view.forward(request, response);
 		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", action + " 검색에 대한 " + keyword +" 결과가 존재하지 않습니다.");
+			view= request.getRequestDispatcher("views/common/error.jsp");
+			request.setAttribute("message", majorno +"번 글에 대한 상세보기 요청 실패!");
 			view.forward(request, response);
 		}
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

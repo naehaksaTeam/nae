@@ -57,10 +57,16 @@
 	<div style align="center">
 		<button onclick="javascript:history.go(-1);">뒤로</button>
 		<!--  관리자일때 아닐때 구분해서 표기해야함 관리자면 보이고 아니면 안보임  -->
-		<button
+		<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
+			<button
 			onclick="javascript:location.href='/beet/nupdate.ad1?noticeno=<%=notice.getNoticeNo()%>';">수정</button>
 		<button
 			onclick="javascript:location.href='/beet/ndelete.ad?noticeno=<%=notice.getNoticeNo()%>';">삭제하기</button>
+	<% }else{ %>
+		
+	<% } %>
+		
+		
 	</div>
 	<%@include file="/views/common/footer.jsp"%>
 </body>

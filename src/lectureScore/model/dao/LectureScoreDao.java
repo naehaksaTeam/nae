@@ -152,7 +152,7 @@ public class LectureScoreDao {
 			pstmt.setInt(4, (lscore.getAtndnscore()+lscore.getMidscore()+lscore.getFinalscore()));
 			pstmt.setString(5, lscore.getGrade());
 			pstmt.setString(6, lscore.getReceptionno());
-			result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate();	
 			
 		} catch (Exception e) {
 			e.printStackTrace();

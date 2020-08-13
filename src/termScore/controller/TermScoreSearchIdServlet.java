@@ -1,4 +1,4 @@
-package attendance.controller;
+package termScore.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ChangeCancleServlet
+ * Servlet implementation class TermScoreSearchIdServlet
  */
-@WebServlet("/chncancle")
-public class ChangeCancleServlet extends HttpServlet {
-	private static final long serialVersionUID = 415L;
+@WebServlet("/tsid")
+public class TermScoreSearchIdServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ChangeCancleServlet() {
+    public TermScoreSearchIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
