@@ -4,10 +4,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+ 
+       
 <meta charset="UTF-8">
 <title>beet</title>
 </head>
 <body>
+
+  </body>
+</html>
 
 <h1>내학사 입장 페이지</h1>
 <hr>
