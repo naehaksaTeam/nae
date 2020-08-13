@@ -1,0 +1,239 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page
+	import="java.util.ArrayList, student.model.vo.Member, lectureScore.model.vo.LectureScore"%>
+<% ArrayList<LectureScore> list = (ArrayList<LectureScore>)request.getAttribute("list"); %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:inherit;text-align:left;vertical-align:top}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+ input.insert{ width: 40px; height:20px; margin:0px}  
+
+</style>
+
+<h1>성적관리페이지</h1>
+	<div class="manage" style="display:block">	
+	<!-- <form action="/beet/scselect.p" method="post" style="float:right;" onclick="UpdateScore()">
+			<input type="submit" style="width:60pt;height:20pt;" value="성적 입력">
+			<input type="hidden" name="userid" value="">
+			<input type="hidden" name="lname" value="">
+	</form> -->
+	<input type="button" value="성적수정" onclick="activeEle()">
+	<form action="/beet/grupdate" method="get">
+	<input type="submit" value="등급입력">
+	</form>
+
+	
+	</div>
+	
+
+<table class="tg" id="sctable">
+		<thead>
+		<tr>
+			<th>순번</th>
+			<th>계열</th>
+			<th>학과</th>
+			<th>학번</th>
+			<th>성명</th>
+			<th>재수강여부</th>
+			<th>출석점수</th>
+			<th>중간점수</th>
+			<th>기말점수</th>
+			<th>총점수</th>
+			<th>등급</th>
+		</tr>
+		</thead>
+		<tbody>
+		<div id="dataArea">
+		<form id="score" action="/beet/scupdate.prof">
+			<% int i = 1;for(LectureScore lscore : list) {%>
+			<p id="p_<%= i %>">
+			<tr>
+				<td class="nr"><%= i %></td><% i+=1; %>
+				<td><%= lscore.getCategoryname() %></td>
+				<td><%=lscore.getMajorname()%></td>
+				<td><%=lscore.getSid()%></td>
+				<td><%=lscore.getSname()%></td>
+				<td><%=lscore.getRetake()%></td>
+
+				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
+				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
+				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getFinalscore()%>" /></td>
+				<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getTotalscore()%>" /></td>
+				<td><select name="selectg">
+				<option value="-" selected disabled hidden>-</option>
+					<option value="A+" <%= (lscore.getGrade().trim().equals("A+"))?"selected":"" %>>A+</option>
+					<option value="A" <%= (lscore.getGrade().trim().equals("A"))?"selected":"" %>>A</option>
+					<option value="B+" <%= (lscore.getGrade().trim().equals("B+"))?"selected":"" %>>B+</option>
+					<option value="B" <%= (lscore.getGrade().trim().equals("B"))?"selected":"" %>>B</option>
+					<option value="C+" <%= (lscore.getGrade().trim().equals("C+"))?"selected":"" %>>C+</option>
+					<option value="C" <%= (lscore.getGrade().trim().equals("C"))?"selected":"" %>>C</option>
+					<option value="D+" <%= (lscore.getGrade().trim().equals("D+"))?"selected":"" %>>D+</option>
+					<option value="D" <%= (lscore.getGrade().trim().equals("D"))?"selected":"" %>>D</option>
+					<option value="F" <%= (lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
+					</select></td>
+					<td><input class="checkBtn" type="button" value="테스트"> &nbsp;</td>
+					<td><input class="abc" type="button" value="행테스트"> &nbsp;</td>
+			</tr>
+			</p>
+			<% } %>
+			<tr>
+			<input id="scsave" type="submit" value="저장" onclick="scupdate"> &nbsp;
+			<input id="sccancle" type="reset" value="취소"> &nbsp;
+			</tr>
+		</tbody>
+	</table>
+	</div>
+		<center>
+		<p style="margin-top:30px;">
+		* 변경 후 반드시 저장을 눌러주세요 
+		</p>
+		<!-- <input type="button" id="btn1" value="업데이트" onclick="goUpdate()">  -->
+		<input id="save" type="submit" value="저장"> &nbsp; 
+		 
+		<input type="reset" value="취소"> &nbsp;
+		</form>
+		<input type="button" value="이전 페이지" href="javascript:history.go(-1);"></a>
+		<input type="button" value="테스트" onclick="qwqw"></a>
+		</center>
+	
+	<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+	<!-- jquery로 입력값 받아서 수정하기 변경하기누르면 update 취소 누르면 sendredirect -->
+<script>
+
+//아이구
+function change(){
+	var selectedValue = $('#yourDropdown option:selected').val();
+	   $("a").attr('href','#'+selectedValue); // just Append # tag before value
+}
+
+//오브젝트 담기
+
+/*  $(".checkBtn").click(function(){ 
+	var get_input = $("#p_1 input[type=text]");
+	var text = null;
+	$("#p_1 input[type=text]").val() = text;
+	console.log(text);
+	document.getElementsByName("user_name2")[0].value;
+	$.each(get_input, function (value) {
+		console.log('id =' + $(value).attr("value"));
+		console.log('name =' + $(value).attr("name"));
+		console.log('value =' + $(value).val());
+		});
+
+ }); */
+
+ $(".checkBtn").click(function(){ 
+//배열에 저장 
+			var str = ""
+			var tdArr = new Array();	// 배열 선언
+			var checkBtn = $(this);
+			
+			// checkBtn.parent() : checkBtn의 부모는 <td>이다.
+			// checkBtn.parent().parent() : <td>의 부모이므로 <tr>이다.
+			var tr = checkBtn.parent().parent();
+			alert(tr);
+			var td = tr.children();
+			console.log("클릭한 Row의 모든 데이터 : "+tr.text());
+			
+			var categoryname = td.eq(1).text();
+			var majorname = td.eq(2).text();
+			var sid = td.eq(3).text(); 
+			var sname = td.eq(4).text();
+			var retake = td.eq(5).text();
+			var atndnScore = td.eq(6).find('input[type="text"]').val();
+			var midScore = td.eq(7).find('input[type="text"]').val();
+			var finalScore = td.eq(8).find('input[type="text"]').val();
+			var totalScore = td.eq(9).find('input[type="text"]').val();
+			var grade = td.eq(10).find('select[name="selectg"] option:selected').val();
+
+			var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
+				totalScore, grade];
+			var aa = JSON.stringify(dataArray)
+			var jsonArray = JSON.parse(JSON.stringify(dataArray));
+			alert(aa);
+		});
+	  
+//행번호구하기
+$(".abc").click(function(){ 
+	var ttable = document.getElementById("sctable");
+	var trows = ttable.find('tr');
+	alert(trows.length);
+	for(var i=1; i < trows.length; i++){
+		var trow = trows[i]
+		var tr = trow.parent().parent();
+		var td = tr.children();
+		var sid = td.eq(3).text(); 
+		alert(sid);
+		  	
+	}
+});
+
+
+//최근글 3개 
+$(function(){
+	$("#tg").click(function(){
+		$.getJSON("beet/scupdate.prof", {
+			categoryname = td.eq(1).text();
+			majorname = td.eq(2).text();
+			sid = td.eq(3).text(); 
+			sname = td.eq(4).text();
+			retake = td.eq(5).text();
+			atndnScore = td.eq(6).find('input[type="text"]').val();
+			midScore = td.eq(7).find('input[type="text"]').val();
+			finalScore = td.eq(8).find('input[type="text"]').val();
+			totalScore = td.eq(9).find('input[type="text"]').val();
+			grade = td.eq(10).find('select[name="selectg"] option:selected').val();
+
+		})
+	})
+})
+
+
+//수정가능 
+$.ajax({
+	url : '/beet/profscoreEdit_m_l_grade',
+	type : 'post',
+	data : {
+		
+	}
+	
+})
+ 
+//숫자 0~100사이만 입력
+var replaceNotInt = /[^0-9]/gi;
+
+$(document).ready(function(){
+    $("input[type=text]").on("focusout", function() { 
+        var x = $(this).val();
+        if (x.length > 0) {
+            if (x.match(replaceNotInt)) {
+               x = x.replace(replaceNotInt, "");
+            }
+            $(this).val(x);
+            
+            if(x > 100) {
+            	$(this).val('100');
+            }
+
+        }
+    }).on("keyup", function() {
+        $(this).val($(this).val().replace(replaceNotInt, ""));
+        
+    });
+   
+    
+}); 
+
+</script>
+</body>
+</html>
