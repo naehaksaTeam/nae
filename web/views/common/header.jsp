@@ -278,7 +278,7 @@ body {
 				</ul>
 			</div>
 		</div>
-		<%if(m1.getId().substring(0, 1).equals("P")){ //교수%>
+		<%if(((Member)session.getAttribute("loginMember")).getId().substring(0, 1).equals("P")){ //교수%>
 		<div id="menu" class="container">
 			<ul>
 				<!-- <li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li> -->
@@ -290,7 +290,7 @@ body {
 				
 			</ul>
 		</div>
-		<%}else if(m1.getId().substring(0, 1).equals("A")){//관리자 %>
+		<%}else if(((Member)session.getAttribute("loginMember")).getId().substring(0, 1).equals("A")){//관리자 %>
 		<div id="menu" class="container">
 			<ul>
 				<!-- <li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li> -->
