@@ -7,7 +7,7 @@
 <title>beet</title>
 </head>
 <body>
-	<form class="form-horizontal" role="form" method="POST" action="/beet/findid">
+	<form class="form-horizontal" role="form" method="POST" action="/findid">
 		아이디찾기
 		<div class="row">
 			<div class="col-md-10 inputbb">

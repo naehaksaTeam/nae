@@ -7,7 +7,7 @@
 <title>beet</title>
 </head>
 <body>
-<form class="form-horizontal" role="form" method="POST" action="/beet/findpwd">
+<form class="form-horizontal" role="form" method="POST" action="/findpwd">
 		비밀번호찾기
 		<div class="row">
 			<div class="col-md-10 inputbb">

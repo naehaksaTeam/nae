@@ -50,9 +50,9 @@ public class MemberUpdateServlet extends HttpServlet {
 		member.setPhone(request.getParameter("phone"));
 		member.setEmail(request.getParameter("email"));
 		member.setTreasure(request.getParameter("treasure"));
-		member.setAdminhiredate(Date.valueOf(request.getParameter("adminhiredate")));
+		member.setAdminhiredate(Date.valueOf(request.getParameter("adminhiredate").trim()));
 		member.setAbsencewhether(request.getParameter("absencewhether"));
-		member.setAbsencecount(Integer.parseInt(request.getParameter("absenececount")));
+		member.setAbsencecount(Integer.parseInt(request.getParameter("absencecount").trim()));
 		member.setSsname(request.getParameter("ssname"));
 		member.setCategoryname(request.getParameter("categoryname"));
 		member.setMajorno(request.getParameter("majorno"));

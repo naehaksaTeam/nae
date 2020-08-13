@@ -27,7 +27,7 @@ function sendDelete(){
 <hr>
 <h1 align="center">마이페이지</h1>
 <br>
-<form method="post" action="/beet/mupdate">
+<form method="post" action="/mupdate">
 <table id="outer" align="center" width="500" cellspacing="5" cellpadding="0">
 
 <tr>
