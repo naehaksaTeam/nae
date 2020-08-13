@@ -18,25 +18,7 @@ public class MemberService {
 	public MemberService() {
 	}
 
-	public Member loginCheck(String userid, String userpwd) {
 
-		Connection conn = getConnection();
-		Member member = mdao.loginCheck(conn, userid, userpwd);
-		close(conn);
-		return member;
-	}
-
-	public int insertMember(Member member) {
-		Connection conn = getConnection();
-		int result = mdao.insertMember(conn, member);
-		if (result > 0)
-			commit(conn);
-		else
-			rollback(conn);
-		close(conn);
-		return result;
-
-	}
 
 	public int updateMember(Member member) {
 		Connection conn = getConnection();
@@ -90,5 +72,53 @@ public class MemberService {
 		close(conn);
 		return member;
 	}
+/////////////	
+	public int insertMember(Member member,String who) {
+		Connection conn = getConnection();
+		
+		int result = 0;
+		
+		if(who.equals("student")) {
+			result = mdao.insertStudent(conn, member);
+		}else if(who.equals("professor")) {
+			result = mdao.insertProfessor(conn, member);
+		}else {
+			result = mdao.insertAdmin(conn, member);
+		}
+		
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+		
+	}
+
+
+////////////////////////////
+
+	public Member loginCheck(String userid, String userpwd) {
+		
+		Connection conn = getConnection();
+		Member member = mdao.loginCheck(conn, userid, userpwd);
+		close(conn);
+		return member;
+	}
+
+	public int insertMember(Member member) {
+		Connection conn = getConnection();
+		int result = mdao.insertMember(conn, member);
+		if(result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+		
+	}
+
+	
+/////////////////////
 
 }

@@ -10,7 +10,7 @@ import static common.JDBCTemp.*;
 public class TermScoreService {
 	TermScoreDao tdao = new TermScoreDao();
 
-	}
+	
 //////by kyu////
 	public ArrayList<TermScore> selectMain(String id) {
 		Connection conn = getConnection();

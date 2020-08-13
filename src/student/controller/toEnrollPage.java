@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import student.model.service.MemberService;
-import student.model.vo.Member;
-
+import lecture.model.service.LectureService;
+import lecture.model.vo.Major;
 /**
- * Servlet implementation class MemberAllListServlet
+ * Servlet implementation class toEnrollPage
  */
-@WebServlet("/alllist")
-public class MemberAllListServlet extends HttpServlet {
-	private static final long serialVersionUID = 8989988989L;
+@WebServlet("/toenroll")
+public class toEnrollPage extends HttpServlet {
+	private static final long serialVersionUID = 3333222L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberAllListServlet() {
+    public toEnrollPage() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,19 +31,14 @@ public class MemberAllListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//회원 전체 조회용 컨트롤러 
-				ArrayList<Member> list = new MemberService().selectList();
-				RequestDispatcher view = null;
-				if(list.size()>0) { //전체조회 (사이즈크기 0보다크면 성공 )
-					view = request.getRequestDispatcher("views/student/memberAllListView.jsp");
-					request.setAttribute("list", list);
-					view.forward(request, response);
-					
-				}else { //실패 
-					view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", "회원 전체 조회 실패");
-					view.forward(request, response);
-				}
+		String who = request.getParameter("who");
+		request.setAttribute("who", who);
+		
+		ArrayList<Major> list = new LectureService().selectCategories();
+		request.setAttribute("list", list);
+		
+		RequestDispatcher view = request.getRequestDispatcher("/views/student/enrollPage.jsp");
+		view.forward(request, response);
 	}
 
 	/**

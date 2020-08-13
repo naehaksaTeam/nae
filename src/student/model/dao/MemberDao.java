@@ -207,87 +207,6 @@ System.out.println("member" + member);
 
 		return result;
 	}
-
-	public Member loginCheck(Connection conn, String id, String password) {
-		Member member = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-
-		String query = "select * " + "from ("
-				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
-				+ "union "
-				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
-				+ "union "
-				+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
-				+ ") " + "where id = ? and password = ?";
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, id);
-			pstmt.setString(2, password);
-
-			rset = pstmt.executeQuery();
-
-			if (rset.next()) {
-				member = new Member();
-
-				member.setId(id);
-				member.setPassword(password);
-				member.setName(rset.getString("name"));
-				member.setSsn(rset.getString("ssn"));
-				member.setAddress(rset.getString("address"));
-				member.setPhone(rset.getString("phone"));
-				member.setEmail(rset.getString("email"));
-				member.setTreasure(rset.getString("treasure"));
-				member.setAdminhiredate(rset.getDate("adminhiredate")); // 인식 안됨...(확인요청)
-				member.setCategoryname(rset.getString("categoryname"));
-				member.setMajorno(rset.getString("majorno"));
-				member.setAbsencewhether(rset.getString("absencewhether"));
-				member.setAbsencecount(rset.getInt("absencecount"));
-				member.setEntrancedate(rset.getDate("entrancedate"));
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return member;
-	}
-
-//정보추가
-	public int insertMember(Connection conn, Member member) {
-		int result = 0;
-		PreparedStatement pstmt = null;
-
-		String query = "insert into student values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,default,default,?,?,?)";
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getName());
-			pstmt.setString(3, member.getSsn());
-			pstmt.setString(4, member.getAddress());
-			pstmt.setString(5, member.getPhone());
-			pstmt.setString(6, member.getEmail());
-			pstmt.setString(7, member.getTreasure());
-			pstmt.setDate(8, member.getAdminhiredate());
-			pstmt.setString(9, member.getPassword());
-			pstmt.setString(10, member.getSsname());
-			pstmt.setString(11, member.getCategoryname());
-			pstmt.setString(12, member.getMajorno());
-
-			result = pstmt.executeUpdate();
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-
-		return result;
-	}
-
 	
 	//비밀번호 찾기
 	public Member FindPasswordStudent(Connection conn, String id, String treasure) {
@@ -439,5 +358,366 @@ System.out.println("member" + member);
 
 		return result;
 	}
+//////////////////////
+	public int insert(Connection conn, Student student) {
+	      int result = 0;
+	      PreparedStatement pstmt = null;
 
+	      String query = "insert into member values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setString(1, student.getId());
+	         pstmt.setString(2, student.getPassword());
+	         pstmt.setString(3, student.getName());
+	         pstmt.setString(4, student.getSsn());
+	         pstmt.setString(5, student.getAddress());
+	         pstmt.setString(6, student.getPhone());
+	         pstmt.setString(7, student.getCategoryname());
+	         pstmt.setString(8, student.getGender());
+	         pstmt.setString(9, student.getEmail());
+	         pstmt.setString(10, student.getTreasure());
+	         
+	      
+	         
+	     	
+		
+
+
+	         result = pstmt.executeUpdate();
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	      }
+
+	      return result;
+	   }
+
+
+
+	   	//정보수정
+	   public int update(Connection conn, Student student) {
+	      int result = 0;
+	      PreparedStatement pstmt = null;
+
+	      String query = "update student set id = ? where majorno = ?";
+
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setString(1, student.getId());
+	         pstmt.setString(2, student.getMajorno());
+
+	         result = pstmt.executeUpdate();
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	      }
+
+	      return result;
+	   }
+
+	   public int delete(Connection conn, String studentid) {
+	      int result = 0;
+	      PreparedStatement pstmt = null;
+
+	      String query = "delete from student where id = ?";
+
+	      try {
+	         pstmt = conn.prepareStatement(query);
+	         pstmt.setString(1, studentid);
+
+	         result = pstmt.executeUpdate();
+
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(pstmt);
+	      }
+
+	      return result;
+	   }
+
+
+
+	public int insertStudent(Connection conn, Member member) {
+		int result = 0;
+	    PreparedStatement pstmt = null;
+
+	    String query = "insert into student values (?,?,?,?,?,?,?,?,?,?,?,DEFAULT,DEFAULT,?,?)";
+
+	    try {
+	       pstmt = conn.prepareStatement(query);
+	       pstmt.setString(1, member.getId());
+	       pstmt.setString(2, member.getName());
+	       pstmt.setString(3, member.getSsn());
+	       pstmt.setString(4, member.getAddress());
+	       pstmt.setString(5, member.getPhone());
+	       pstmt.setString(6, member.getGender());
+	       pstmt.setString(7, member.getEmail());
+	       pstmt.setString(8, member.getTreasure());
+	       pstmt.setString(9, member.getCategoryname());
+	       pstmt.setString(10, member.getMajorno());
+	       pstmt.setDate(11, member.getEntrancedate());
+	       pstmt.setString(12, member.getSsname());
+	       pstmt.setString(13, member.getPassword());
+		
+	       result = pstmt.executeUpdate();
+
+	    } catch (Exception e) {
+	       e.printStackTrace();
+	    } finally {
+	       close(pstmt);
+	    }
+	    return result;
+	}
+
+
+	public int insertProfessor(Connection conn, Member member) {
+		int result = 0;
+	    PreparedStatement pstmt = null;
+
+	    String query = "insert into professor values (?,?,?,?,?,?,?,?,?,?,?)";
+
+	    try {
+	       pstmt = conn.prepareStatement(query);
+	       pstmt.setString(1, member.getId());
+	       pstmt.setString(2, member.getName());
+	       pstmt.setString(3, member.getSsn());
+	       pstmt.setString(4, member.getAddress());
+	       pstmt.setString(5, member.getPhone());
+	       pstmt.setString(6, member.getGender());
+	       pstmt.setString(7, member.getEmail());
+	       pstmt.setString(8, member.getTreasure());
+	       pstmt.setString(9, member.getCategoryname());
+	       pstmt.setString(10, member.getMajorno());
+	       pstmt.setString(11, member.getPassword());
+		
+	       result = pstmt.executeUpdate();
+
+	    } catch (Exception e) {
+	       e.printStackTrace();
+	    } finally {
+	       close(pstmt);
+	    }
+
+	    return result;
+	}
+
+
+	public int insertAdmin(Connection conn, Member member) {
+		int result = 0;
+	    PreparedStatement pstmt = null;
+	    String query = "insert into administrator values (?,?,?,?,?,?,?,?,?,?)";
+
+	    try {
+	       pstmt = conn.prepareStatement(query);
+	       pstmt.setString(1, member.getId());
+	       pstmt.setString(2, member.getName());
+	       pstmt.setString(3, member.getSsn());
+	       pstmt.setString(4, member.getAddress());
+	       pstmt.setString(5, member.getPhone());
+	       pstmt.setString(6, member.getGender());
+	       pstmt.setString(7, member.getEmail());
+	       pstmt.setString(8, member.getTreasure());
+	       pstmt.setDate(9, member.getAdminhiredate());
+	       pstmt.setString(10, member.getPassword());
+		
+	       result = pstmt.executeUpdate();
+
+	    } catch (Exception e) {
+	       e.printStackTrace();
+	    } finally {
+	       close(pstmt);
+	    }
+
+	    return result;
+	}
+	/////////////////////
+
+		public int FindPasswordMember(Connection conn, Member member) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+
+			String query = "select * from member where id = ? and treasure = ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, member.getId());
+				pstmt.setString(2, member.getTreasure());
+
+				result = pstmt.executeUpdate();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+
+				close(pstmt);
+			}
+
+			return result;
+
+		}
+
+	/////////////////////
+
+
+
+
+		// 회원탈퇴
+		public int deleteMember(Connection conn, String id) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+
+			String query = "delete * " + "from ("
+					+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
+					+ "union "
+					+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
+					+ "union "
+					+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+					+ ") ";
+
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, id);
+
+				result = pstmt.executeUpdate();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			return result;
+		}
+
+		public Member loginCheck(Connection conn, String id, String password) {
+			Member member = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+
+			String query = "select * " + "from ("
+					+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
+					+ "union "
+					+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
+					+ "union "
+					+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+					+ ") " + "where id = ? and password = ?";
+
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, id);
+				pstmt.setString(2, password);
+
+				rset = pstmt.executeQuery();
+
+				if (rset.next()) {
+					member = new Member();
+
+					member.setId(id);
+					member.setPassword(password);
+					member.setName(rset.getString("name"));
+					member.setSsn(rset.getString("ssn"));
+					member.setAddress(rset.getString("address"));
+					member.setPhone(rset.getString("phone"));
+					member.setEmail(rset.getString("email"));
+					member.setTreasure(rset.getString("treasure"));
+					member.setAdminhiredate(rset.getDate("adminhiredate")); // 인식 안됨...(확인요청)
+					member.setCategoryname(rset.getString("categoryname"));
+					member.setMajorno(rset.getString("majorno"));
+					member.setSsname(rset.getString("ssname"));
+
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+			return member;
+		}
+
+	//정보추가
+		public int insertMember(Connection conn, Member member) {
+			int result = 0;
+			PreparedStatement pstmt = null;
+
+			String query = "insert into student values (?, ?, ?, ?, ?, default, ?, ?, ?, ?,sysdate,default,default,?,?,?)";
+
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, member.getId());
+				pstmt.setString(2, member.getName());
+				pstmt.setString(3, member.getSsn());
+				pstmt.setString(4, member.getAddress());
+				pstmt.setString(5, member.getPhone());
+				pstmt.setString(6, member.getEmail());
+				pstmt.setString(7, member.getTreasure());
+				pstmt.setDate(8, member.getAdminhiredate());
+				pstmt.setString(9, member.getPassword());
+				pstmt.setString(10, member.getSsname());
+				pstmt.setString(11, member.getCategoryname());
+				pstmt.setString(12, member.getMajorno());
+
+				result = pstmt.executeUpdate();
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+
+			return result;
+		}
+
+		
+		//비밀번호 찾기
+		public Member FindPasswordMember(Connection conn, String id, String treasure) {
+			Member member = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+
+			String query = "select * " + "from ("
+					+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate from student "
+					+ "union "
+					+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
+					+ "union "
+					+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
+					+ ") " + "where id = ? and treasure = ?";
+			try {
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, id);
+				pstmt.setString(2, treasure);
+
+				rset = pstmt.executeQuery();
+
+				if (rset.next()) {
+					member = new Member();
+
+					member.setId(rset.getString("id"));
+				
+
+				}else {
+					member = new Member();
+
+					member.setId("notanswer");
+				
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			}
+
+			return member;
+		}
+
+	
+		
+		
+	/////////////
 }
