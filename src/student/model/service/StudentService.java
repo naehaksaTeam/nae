@@ -37,6 +37,21 @@ private StudentDao sdao = new  StudentDao();
 		}else {
 			rollback(conn);
 		}
+		close(conn);
+		return result;
+	}
+
+
+
+	public int updateStudent(Student student) {
+		Connection conn = getConnection();
+		int result = sdao.updateStudent(conn, student);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
 		return result;
 	}
 	

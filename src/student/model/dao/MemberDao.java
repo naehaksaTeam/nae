@@ -91,7 +91,7 @@ public class MemberDao {
 			close(rset);
 			close(stmt);
 		}
-
+System.out.println("member" + member);
 		return member;
 	}
 
@@ -218,7 +218,7 @@ public class MemberDao {
 				+ "union "
 				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
 				+ "union "
-				+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
 				+ ") " + "where id = ? and password = ?";
 
 		try {
@@ -242,8 +242,9 @@ public class MemberDao {
 				member.setAdminhiredate(rset.getDate("adminhiredate")); // 인식 안됨...(확인요청)
 				member.setCategoryname(rset.getString("categoryname"));
 				member.setMajorno(rset.getString("majorno"));
-				member.setSsname(rset.getString("ssname"));
-
+				member.setAbsencewhether(rset.getString("absencewhether"));
+				member.setAbsencecount(rset.getInt("absencecount"));
+				member.setEntrancedate(rset.getDate("entrancedate"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

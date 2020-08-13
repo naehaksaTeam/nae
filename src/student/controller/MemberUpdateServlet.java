@@ -10,13 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import student.model.service.AdminService;
 import student.model.service.MemberService;
+import student.model.service.ProfessorService;
+import student.model.service.StudentService;
+import student.model.vo.Admin;
 import student.model.vo.Member;
+import student.model.vo.Professor;
+import student.model.vo.Student;
 
 /**
  * Servlet implementation class MemberUpdateServlet
  */
-@WebServlet("/mupdate")
+@WebServlet("/mupdate.cp")
 public class MemberUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,44 +40,84 @@ public class MemberUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String id = request.getParameter("id");
+		String firstword = id.substring(0, 1);
 
-		// 1.
-		request.setCharacterEncoding("utf-8");
+		String password = request.getParameter("userpwd");
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+		String email = request.getParameter("email");
+		String treasure = request.getParameter("treasure");
+		System.out.println("sdf" + id + password + phone + email + treasure);
 		
-		System.out.println("인코딩성공");
+		if (firstword.equals("A")) { // 관리자
+			Admin admin = new Admin();
+			admin.setId(id);
+			admin.setPassword(password);
+			admin.setAddress(address);
+			admin.setPhone(phone);
+			admin.setEmail(email);
+			admin.setTreasure(treasure);
+			System.out.println("admin" + admin);
+			int result = new AdminService().updateAdmin(admin);
 
-		// 2.
-		Member member = new Member();
+			if (result > 0) {
+				RequestDispatcher view = request.getRequestDispatcher("views/student/memberUpdatePage.jsp");
+				request.setAttribute("message", "정보수정성공");
+				view.forward(request, response);
+			} else {
+				RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+				request.setAttribute("message", "정보수정실패");
+				view.forward(request, response);
+			}
 
-		member.setId(request.getParameter("id"));
-		member.setName(request.getParameter("name"));
-		member.setSsn(request.getParameter("ssn"));
-		member.setAddress(request.getParameter("address"));
-		member.setPhone(request.getParameter("phone"));
-		member.setEmail(request.getParameter("email"));
-		member.setTreasure(request.getParameter("treasure"));
-		member.setAdminhiredate(Date.valueOf(request.getParameter("adminhiredate").trim()));
-		member.setAbsencewhether(request.getParameter("absencewhether"));
-		member.setAbsencecount(Integer.parseInt(request.getParameter("absencecount").trim()));
-		member.setSsname(request.getParameter("ssname"));
-		member.setCategoryname(request.getParameter("categoryname"));
-		member.setMajorno(request.getParameter("majorno"));
-		
-		System.out.println("맴버성공");
-
-		// 3.
-		int result = new MemberService().updateMember(member);
-
-		// 4.
-		if (result > 0) { // 수정 성공시
-			// 서블릿을 실행해서, 로그인페이지 내보냄
-			response.sendRedirect("index.jsp");
-			System.out.println("마이페이지성공");
-		} else { // 수정 실패시
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", member.getId() + " 회원의 정보 수정 실패.");
-			view.forward(request, response);
 		}
+		
+		if (firstword.equals("P")) { // 교수
+			Professor professor = new Professor();
+			professor.setId(id);
+			professor.setPassword(password);
+			professor.setAddress(address);
+			professor.setPhone(phone);
+			professor.setEmail(email);
+			professor.setTreasure(treasure);
+			System.out.println("professor" + professor);
+			int result = new ProfessorService().updateProfessor(professor);
+
+			if (result > 0) {
+				RequestDispatcher view = request.getRequestDispatcher("views/student/memberUpdatePage.jsp");
+				request.setAttribute("message", "정보수정성공");
+				view.forward(request, response);
+			} else {
+				RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+				request.setAttribute("message", "정보수정실패");
+				view.forward(request, response);
+			}
+
+		}
+		
+		if (!firstword.equals("P") && !firstword.equals("A")) { // 학생
+			Student student = new Student();
+			student.setId(id);
+			student.setPassword(password);
+			student.setAddress(address);
+			student.setPhone(phone);
+			student.setEmail(email);
+			student.setTreasure(treasure);
+
+			int result = new StudentService().updateStudent(student);
+			System.out.println("student" + result);
+			if (result > 0) {
+				RequestDispatcher view = request.getRequestDispatcher("views/student/memberUpdatePage.jsp");
+				request.setAttribute("message", "정보수정성공");
+				view.forward(request, response);
+			} else {
+				RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+				request.setAttribute("message", "정보수정실패");
+				view.forward(request, response);
+			}
+		}
+
 	}
 
 	/**

@@ -49,9 +49,11 @@ public class AdminDao {
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+			
 			pstmt.setString(1, cryptoPwd);
 			pstmt.setString(2, id);
-			result = pstmt.executeUpdate();
+			
+			result = pstmt.executeUpdate(); //담은 쿼리문을 db에서 실행해서 결과를 result에 넣는다.
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -59,4 +61,42 @@ public class AdminDao {
 		}
 		return result;
 	}
+
+	public int updateAdmin(Connection conn, Admin admin) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "update administrator set password = ?, address = ?, phone = ?, email = ?, treasure= ? where id = ? ";
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, admin.getPassword());
+			pstmt.setString(2, admin.getAddress());
+			pstmt.setString(3, admin.getPhone());
+			pstmt.setString(4, admin.getEmail());
+			pstmt.setString(5, admin.getTreasure());
+			pstmt.setString(6, admin.getId());
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("result adao" + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -154,4 +154,32 @@ public class ProfessorDao {
 
 	}
 
+	public int updateProfessor(Connection conn, Professor professor) {
+		int result = 0;
+		// 대문자로시작(클래스)자료형 변수명
+		PreparedStatement pstmt = null;
+		String query = "update professor set password = ?, address = ?, phone = ?, email = ?, treasure = ? where id = ? ";
+		try {
+
+			pstmt = conn.prepareStatement(query);
+
+			pstmt.setString(1, professor.getPassword());
+			pstmt.setString(2, professor.getAddress());
+			pstmt.setString(3, professor.getPhone());
+			pstmt.setString(4, professor.getEmail());
+			pstmt.setString(5, professor.getTreasure());
+			pstmt.setString(6, professor.getId());
+
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+
+		}
+
+		return result;
+	}
+
 }

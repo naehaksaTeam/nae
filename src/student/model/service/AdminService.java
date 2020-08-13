@@ -30,6 +30,19 @@ public class AdminService {
 		}else {
 			rollback(conn);
 		}
+		close(conn);
+		return result;
+	}
+
+	public int updateAdmin(Admin admin) {
+		Connection conn = getConnection();
+		int result = adao.updateAdmin(conn, admin);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
 		return result;
 	}
 }

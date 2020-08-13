@@ -1,7 +1,6 @@
 package student.model.service;
 
 import static common.JDBCTemp.*;
-import static common.JDBCTemp.getConnection;
 
 import java.sql.Connection;
 
@@ -30,6 +29,19 @@ public class ProfessorService {
 			}else {
 				rollback(conn);
 			}
+			close(conn);
+			return result;
+		}
+
+		public int updateProfessor(Professor professor) {
+			Connection conn = getConnection();
+			int result = pdao.updateProfessor(conn, professor);
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
 			return result;
 		}
 }
