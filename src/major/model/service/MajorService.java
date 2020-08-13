@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import major.model.dao.MajorDao;
 import major.model.vo.Major;
 import major.model.vo.Major1;
+import scholarship.model.vo.Scholarship;
+import ssbenefitst.model.vo.Ssbenefitst;
 
 
 
@@ -119,6 +121,13 @@ public class MajorService {
 		}
 		close(conn);
 		return thisterm;
+	}
+
+	public Ssbenefitst selectSsbenefitst(String id, String term) {
+		Connection conn = getConnection();
+		Ssbenefitst ssst = mdao.selectSsbenefitst(conn, id, term);
+		close(conn);
+		return ssst;
 	}
 
 	

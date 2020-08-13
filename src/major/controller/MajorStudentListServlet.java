@@ -1,7 +1,6 @@
 package major.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import major.model.service.MajorService;
-import major.model.vo.Major;
 import major.model.vo.Major1;
+import ssbenefitst.model.vo.Ssbenefitst;
 
 /**
  * Servlet implementation class MajorStudentListServlet
@@ -40,6 +39,9 @@ public class MajorStudentListServlet extends HttpServlet {
 		
 		Major1 major1 = new MajorService().selectOneTuition(id);
 		String thisterm = new MajorService().termCheck();
+		String term = thisterm.substring(0, 1);
+		Ssbenefitst ssst = new MajorService().selectSsbenefitst(id, term);
+		
 		System.out.println(major1);
 		System.out.println(thisterm);
 		RequestDispatcher view = null;
@@ -47,6 +49,7 @@ public class MajorStudentListServlet extends HttpServlet {
 			view = request.getRequestDispatcher("views/major/majortuition.jsp");
 			request.setAttribute("major1", major1);
 			request.setAttribute("thisterm", thisterm);
+			request.setAttribute("ssts", ssst);
 			view.forward(request,response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");

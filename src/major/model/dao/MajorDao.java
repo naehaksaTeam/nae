@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 import major.model.vo.Major;
 import major.model.vo.Major1;
+import scholarship.model.vo.Scholarship;
+import ssbenefitst.model.vo.Ssbenefitst;
 
 
 
@@ -352,6 +354,13 @@ public class MajorDao {
 		}
 		return termcheck;
 	}
+
+	public Ssbenefitst selectSsbenefitst(Connection conn, String id, String term) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 
