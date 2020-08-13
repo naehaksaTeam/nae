@@ -151,12 +151,18 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 
-		String query = "update member set id = ? where majorno = ?";
-
+		String query0 = "update member set  = ? where id = ?";
+		String query = " (select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate " 
+				         + "from student "  
+				         + "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
+						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator " 
+						+ ") " 
+					    + "where id = ?)";
+				
 		try {
-			pstmt = conn.prepareStatement(query);
+			pstmt = conn.prepareStatement(query0 + query);
 			pstmt.setString(1, member.getId());
-			pstmt.setString(2, member.getMajorno());
+	
 
 			result = pstmt.executeUpdate();
 
@@ -178,7 +184,7 @@ public class MemberDao {
 		String query0 = "delete from student where id = ";
 		
 		String query = "(select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate "
-				+ "		from student " 
+				        + "from student " 
 						+ "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
 						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
 						+ ") "

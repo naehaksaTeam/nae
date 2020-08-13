@@ -139,7 +139,7 @@ public class ProfessorDao {
 	public int updateprofessorpassword(Connection conn, String cryptoPwd, String id) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "update student set password =? where id = ?";
+		String query = "update professor set password =? where id = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, cryptoPwd);

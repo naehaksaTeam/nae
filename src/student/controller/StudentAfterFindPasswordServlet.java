@@ -13,7 +13,7 @@ import student.model.service.StudentService;
 
 @WebServlet("/studentfindpwd.cp")
 public class StudentAfterFindPasswordServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 435345345L;
 
     public StudentAfterFindPasswordServlet() {
         super();
@@ -21,8 +21,13 @@ public class StudentAfterFindPasswordServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cryptoPwd = request.getParameter("userpwd");
 		String id = request.getParameter("id");
+		System.out.println(cryptoPwd+":"+id);
 		int result = new StudentService().updatestudentpassword(cryptoPwd, id);
 		if(result > 0) {
 			response.sendRedirect("index.jsp");
@@ -31,11 +36,6 @@ public class StudentAfterFindPasswordServlet extends HttpServlet {
 			request.setAttribute("message", "비밀번호 변경실패");
 			view.forward(request, response);
 		}
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

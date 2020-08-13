@@ -32,6 +32,7 @@ public class AdminAfterFindPasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cryptoPwd = request.getParameter("userpwd");
 		String id = request.getParameter("id");
+		System.out.println(cryptoPwd+":"+id);
 		//서비스 객체를 생성
 		int result = new AdminService().updateadminpassword (cryptoPwd, id);
 		if(result > 0) {

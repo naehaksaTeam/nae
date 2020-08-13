@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="student.model.vo.Professor"%>
 <%
 	Professor professor = (Professor)request.getAttribute("professor");
+	System.out.println(professor.getId()+"888888888888888888");
 %>
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,7 @@ function validate(){
 </script>
 </head>
 <body>
-<form class="form-horizontal" role="form" method="POST" action="/beet/findpwd">
+<form class="form-horizontal" role="form" method="POST" action="/beet/professorfindpwd.cp" onsubmit="return validate()">
 	<input type="hidden" name="id" value="<%=professor.getId() %>">
 		새비밀번호 만들기
 		<div class="row">

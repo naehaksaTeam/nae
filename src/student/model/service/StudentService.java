@@ -5,6 +5,7 @@ import static common.JDBCTemp.*;
 import java.sql.Connection;
 
 import student.model.dao.StudentDao;
+import student.model.vo.Member;
 import student.model.vo.Student;
 
 
@@ -38,6 +39,7 @@ private StudentDao sdao = new  StudentDao();
 		}
 		return result;
 	}
-
+	
+	
 
 }

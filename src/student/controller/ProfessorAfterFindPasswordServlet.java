@@ -32,6 +32,7 @@ public class ProfessorAfterFindPasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cryptoPwd = request.getParameter("userpwd");
 		String id = request.getParameter("id");
+		System.out.println(cryptoPwd+"$$$$$$$$$$$$$:"+id);
 		int result = new ProfessorService().updateprofessorpassword(cryptoPwd, id);
 		if(result > 0) {
 			response.sendRedirect("index.jsp");

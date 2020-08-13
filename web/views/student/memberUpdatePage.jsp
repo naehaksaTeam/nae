@@ -45,17 +45,6 @@ function sendDelete(){
 	<td><input type="name" name="username" value="<%= member.getSsn() %>" readonly></td>
 </tr>
 
-<tr>
-	<th>암 호</th>
-	<td><input type="password" name="userpwd" id="userpwd" value="<%= member.getPassword() %>"></td>
-</tr>
-
-<tr>
-	<th>암호확인</th>
-	<td><input type="password" id="userpwd2"></td>
-</tr>
-
-
 
 <tr>
 	<th>주소</th>
@@ -67,10 +56,6 @@ function sendDelete(){
 	<td><input type="tel" name="phone" value="<%= member.getPhone() %>"></td>
 </tr>
 
-<tr>
-	<th>성별</th>
-	<td><input type="gender" name="usergender" value="<%= member.getGender() %>"></td>
-</tr>
 
 <tr>
 	<th>이메일</th>
@@ -120,11 +105,11 @@ function sendDelete(){
 
 <tr>
 	<th colspan="2">
-		<a href="javascript:history.go(-1);">이전 페이지로 이동</a> &nbsp; 
+	 
 		<button onclick="moveUpdateView();">확인</button> &nbsp;
 		<input type="reset" value="수정취소"> &nbsp; 	
 	
-		<a href="index.jsp">시작 페이지로</a>
+		
 	</th>	
 </tr>
 </table>

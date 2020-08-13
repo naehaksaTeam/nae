@@ -46,6 +46,7 @@ public class MemberService {
 		else
 			rollback(conn);
 		close(conn);
+		System.out.println("업데이트서비스");
 		return result;
 	}
 
