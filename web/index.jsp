@@ -4,7 +4,7 @@
 <%@page import="java.util.Calendar"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <% Member m = (Member)session.getAttribute("loginMember"); %>
-
+<% Member mm = (Member)session.getAttribute("loginMember"); %>
 
 <body>
 

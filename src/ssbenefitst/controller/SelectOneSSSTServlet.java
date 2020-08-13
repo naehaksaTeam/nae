@@ -1,7 +1,6 @@
-package termScore.controller;
+package ssbenefitst.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import termScore.model.service.TermScoreService;
-import termScore.model.vo.TermScore;
+import ssbenefitst.model.service.SsbenefitstService;
+import ssbenefitst.model.vo.Ssbenefitst;
 
 /**
- * Servlet implementation class TermScoreSelectServlet
+ * Servlet implementation class SelectOneSSSTServlet
  */
-@WebServlet("/tesselect")
-public class TermScoreSelectServlet extends HttpServlet {
+@WebServlet("/selectonessst")
+public class SelectOneSSSTServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TermScoreSelectServlet() {
+    public SelectOneSSSTServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +31,19 @@ public class TermScoreSelectServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//학생의 전체성적 조회처리 
+		String studentid = request.getParameter("studentid");
+		int benefitterm = Integer.parseInt(request.getParameter("benefitterm"));
 		
+		Ssbenefitst ssst = new SsbenefitstService().selectOneSsbenefitst(benefitterm, studentid);
 		
-		String sid = request.getParameter("userid");
-		response.setContentType("text/html; charset=utf-8");
-		//3
-		ArrayList<TermScore> list = new TermScoreService().selectTermScore(sid);
 		RequestDispatcher view = null;
-		
-		if(list != null) {
-			view = request.getRequestDispatcher("views/termScore/termScoreView.jsp");
-			request.setAttribute("list",  list);
+		if(ssst != null) {
+			view = request.getRequestDispatcher("views/ssbenefitst/ssbenefitstManagementView.jsp");
+			request.setAttribute("ssst", ssst);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", sid + "학기성적 조회 실패!");
+			request.setAttribute("message", "요청하신 검색결과가 없거나 검색에 실패하였습니다.");
 			view.forward(request, response);
 		}
 	}

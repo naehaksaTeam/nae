@@ -70,7 +70,7 @@ display:none;
 <tr>
 <td>과목 선택</td><td colspan="3">
 <select name="lcode" class="inputbox" style="width:90%;" required>
-<option value="TEST">TEST</option>
+<option value="TEST">교수만 신청가능합니다</option>
 <% for(Lecture l : list3){ %>
 <option value="<%= l.getLcode() %>"><%= l.getLname() %></option>
 <% } %>

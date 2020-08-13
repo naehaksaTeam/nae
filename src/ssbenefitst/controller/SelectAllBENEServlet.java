@@ -1,6 +1,7 @@
-package termScore.controller;
+package ssbenefitst.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,22 +9,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import termScore.model.service.TermScoreService;
-import termScore.model.vo.TermScore;
+import scholarship.model.service.ScholarshipService;
+import scholarship.model.vo.Scholarship;
+import ssbenefitst.model.service.SsbenefitstService;
+import ssbenefitst.model.vo.Ssbenefitst;
 
 /**
- * Servlet implementation class TermScoreSelectServlet
+ * Servlet implementation class SelectAllBENEServlet
  */
-@WebServlet("/tosselect")
-public class TotalScoreSelectServlet extends HttpServlet {
+@WebServlet("/selectbeneall")
+public class SelectAllBENEServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TotalScoreSelectServlet() {
+    public SelectAllBENEServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +34,20 @@ public class TotalScoreSelectServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//학생의 전체성적 조회처리 
 		
+		ArrayList<Ssbenefitst> list = new SsbenefitstService().selectSsbenefitst();
+		ArrayList<Scholarship> sslist = new ScholarshipService().selectScholarship();
 		
-		String sid = request.getParameter("userid");
-		response.setContentType("text/html; charset=utf-8");
-		//3
-		TermScore tscore = new TermScoreService().selectTotalScore(sid);
 		RequestDispatcher view = null;
-		if(tscore != null) {
-			view = request.getRequestDispatcher("views/termScore/totalScoreView.jsp");
-			request.setAttribute("tscore",  tscore);
+		if(list != null) {
+			view = request.getRequestDispatcher("views/ssbenefitst/ssbenefitstManagementView.jsp");
+			request.setAttribute("list", list);
+			request.setAttribute("sslist", sslist);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", sid + "전체성적 조회 실패!");
-			view.forward(request, response);
+			request.setAttribute("message", "장학금수혜학생 조회에 실패하였습니다.");
+			view.forward(request, response);			
 		}
 	}
 
