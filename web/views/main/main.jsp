@@ -104,7 +104,7 @@
   opacity: 0;
   transition: all 0.5s ease-in;
   pointer-events: none;
-  width: 100%;
+  25dth: 100%;
   height: 200%;
   overflow: hidden;
 } 
@@ -119,7 +119,17 @@
     margin: 10px auto;
     display: flex;
     
+    
 
+}
+
+
+.box h2{
+	font-size: 15px;
+	
+	 color: #e0e0e0;
+    line-height: 25px;
+    margin: 0;
 }
 .a{
     border: 1px solid ;
@@ -127,6 +137,7 @@
     width:25%;
     box-sizing: border-box;
     font-size: 0.5rem;
+    
 }
 
 .b{
@@ -343,8 +354,7 @@ $(function(){
 			
 			var values = "";
 			for(var i in json.list){
-				values += "<tr><td>"+ json.list[i].no 
-				+ "</td><td><a href='/beet/ndetail?noticeno=" + json.list[i].no + "'>" 
+				values += "<tr><td><a href='/beet/ndetail?noticeno=" + json.list[i].no + "'>" 
 				+ decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
 				+ "</a></td><td>"+ json.list[i].date + "</td></tr>";
 			} 
@@ -592,8 +602,10 @@ function calendar()
       	<section>
       	<table id="mainNotice" border="1" cellspacing="0">
       
+   
+      
       	<tr>
-      		<th>번호<th>제목</th><th>날짜</th>
+      		<th></th><th></th>
       		
       	</tr>
   
