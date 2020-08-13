@@ -56,7 +56,7 @@ function validate(){
 		<div class="row">
 			<div class="col-md-10 inputbb">
 				<button type="submit">확인</button>
-				<button onclick="javascript:location.href='/index.jsp'">취소</button>
+				<button onclick="javascript:location.href='/beet/index.jsp'">취소</button>
 				
 			</div>
 		</div>

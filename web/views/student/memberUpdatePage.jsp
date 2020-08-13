@@ -13,12 +13,12 @@
 function moveUpdateView(){
 	//요청한 회원의 정보 수정페이지를 내보내는 servlet을 요청함
 	//다시 요청한 회원의 아이디를 전송해서 처리함
-	location.href = "/mupdate?id=<%= member.getId() %>";
+	location.href = "/beet/mupdate?id=<%= member.getId() %>";
 }
 function sendDelete(){
 	
 	//회원 탈퇴처리 서블릿 요청함.
-	location.href = "/mdelete?id=<%= member.getId() %>";
+	location.href = "/beet/mdelete?id=<%= member.getId() %>";
 	return false;
 }
 </script>
