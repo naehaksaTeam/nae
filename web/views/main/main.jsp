@@ -419,6 +419,8 @@ $(function(){
 
 
 <body>
+<button onclick="javascript:location.href='../sample/sample2.jsp'">샘플페이지 테스트</button>
+
 <h2>테스트 메뉴 버튼</h2>
 <button onclick="javascript:location.href='../lecture/menu.jsp'">수강신청 메뉴테스트</button>
 <button onclick="javascript:location.href='../attendance/sub4main.jsp'">출결 목록 테스트</button>
