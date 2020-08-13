@@ -22,8 +22,9 @@
 <div>
 <%=m.getName() %> 님 로그인 상태입니다
 <br>
-<button onclick="javascript: location.href='/beet/views/main/main.jsp'">메인페이지</button>
-<button onclick="javascript: location.href='/beet/views/attendance/main1.jsp'">메인페이지</button>
+<button onclick="javascript: location.href='/views/main/main.jsp'">메인페이지</button>
+<button onclick="javascript: location.href='views/lectureScore/NewFile1.jsp'">메인페이지</button>
+<button onclick="javascript: location.href='views/lectureScore/NewFile2.jsp'">메인페이지</button>
 </div>
 <% } %>
 </body>
