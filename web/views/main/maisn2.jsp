@@ -1,0 +1,1156 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+        <%@page import="java.util.Calendar"%>
+    <%@ page contentType="text/html; charset=UTF-8"%>
+    <%	request.setCharacterEncoding("utf-8");
+	Calendar now = Calendar.getInstance();
+	int month = now.get(Calendar.MONTH)+1;%>
+<!DOCTYPE html>
+<html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
+  <meta name="google-site-verification" content="x1AIKCh2ubCAV_2p2-8ieT3xX-UaZwwUb2-uctC0GOM">
+	<meta charset="UTF-8">
+	
+	<title>CHA University |   증명서발급</title>
+
+	
+			
+						<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		
+	<link rel="profile" href="https://gmpg.org/xfn/11">
+	<link rel="pingback" href="https://www.cha.ac.kr/xmlrpc.php">
+	<link rel="shortcut icon" type="image/x-icon" href="https://www.cha.ac.kr/wp-content/uploads/2017/06/cha_favi.png">
+	<link rel="apple-touch-icon" href="https://www.cha.ac.kr/wp-content/uploads/2017/06/cha_favi.png">
+	<link href="//fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900,300italic,400italic" rel="stylesheet" type="text/css">
+<div class="fit-vids-style" id="fit-vids-style" style="display: none;">&shy;<style>                 .fluid-width-video-wrapper {                   width: 100%;                                position: relative;                         padding: 0;                      					 min-height: 1px;                         }                                                                                       .fluid-width-video-wrapper iframe,          .fluid-width-video-wrapper object,          .fluid-width-video-wrapper embed {             position: absolute;                         top: 0;                                     left: 0;                                    width: 100%;                                height: 100%;                            }                                         </style></div><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="application/javascript">var QodeAjaxUrl = "https://www.cha.ac.kr/wp-admin/admin-ajax.php"</script><link rel="alternate" hreflang="ko-kr" href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/">
+
+<!-- WordPress KBoard plugin 5.3.3 - http://www.cosmosfarm.com/products/kboard -->
+<link rel="alternate" href="https://www.cha.ac.kr/wp-content/plugins/kboard/rss.php" type="application/rss+xml" title="CHA University » KBoard 통합 피드">
+<!-- WordPress KBoard plugin 5.3.3 - http://www.cosmosfarm.com/products/kboard -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+<link rel="alternate" type="application/rss+xml" title="CHA University » 피드" href="https://www.cha.ac.kr/feed/">
+<link rel="alternate" type="application/rss+xml" title="CHA University » 댓글 피드" href="https://www.cha.ac.kr/comments/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.cha.ac.kr\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.18"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="https://www.cha.ac.kr/wp-includes/js/wp-emoji-release.min.js?ver=4.7.18" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="layerslider-css" href="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.5.1" type="text/css" media="all">
+<link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
+<link rel="stylesheet" id="bbse-popup-view-css" href="https://www.cha.ac.kr/wp-content/plugins/bbs-e-popup/css/bbse-popup-style.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="default_style-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/style.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="qode_font_awesome-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/font-awesome/css/font-awesome.min.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="qode_font_elegant-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/elegant-icons/style.min.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="qode_linea_icons-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/linea-icons/style.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="stylesheet-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/stylesheet.min.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="qode_print-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/print.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="webkit-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/webkit_stylesheet.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="style_dynamic-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/style_dynamic.css?ver=1579137436" type="text/css" media="all">
+<link rel="stylesheet" id="responsive-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/responsive.min.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="style_dynamic_responsive-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/style_dynamic_responsive.css?ver=1579137436" type="text/css" media="all">
+<link rel="stylesheet" id="js_composer_front-css" href="https://www.cha.ac.kr/wp-content/plugins/js_composer/assets/css/js_composer.min.css?ver=5.1.1" type="text/css" media="all">
+<link rel="stylesheet" id="custom_css-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/custom_css.css?ver=1579137436" type="text/css" media="all">
+<link rel="stylesheet" id="childstyle-css" href="https://www.cha.ac.kr/wp-content/themes/bridge-child/style.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="main-style-css" href="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/main.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="common-style-css" href="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/css/common.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="animated-style-css" href="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/css/animated.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="bsf-Defaults-css" href="https://www.cha.ac.kr/wp-content/uploads/smile_fonts/Defaults/Defaults.css?ver=4.7.18" type="text/css" media="all">
+<link rel="stylesheet" id="kboard-comments-skin-default-css" href="https://www.cha.ac.kr/wp-content/plugins/kboard-comments/skin/default/style.css?ver=4.4.2" type="text/css" media="all">
+<link rel="stylesheet" id="kboard-editor-media-css" href="https://www.cha.ac.kr/wp-content/plugins/kboard/template/css/editor_media.css?ver=5.3.3" type="text/css" media="all">
+<link rel="stylesheet" id="kboard-skin-default-css" href="https://www.cha.ac.kr/wp-content/plugins/kboard/skin/default/style.css?ver=5.3.3" type="text/css" media="all">
+<link rel="stylesheet" id="kboard-skin-avatar-css" href="https://www.cha.ac.kr/wp-content/plugins/kboard/skin/avatar/style.css?ver=5.3.3" type="text/css" media="all">
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/jquery.js?ver=1.12.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/jquery-vertical-accordion-menu/js/jquery.hoverIntent.minified.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/jquery-vertical-accordion-menu/js/jquery.cookie.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/jquery-vertical-accordion-menu/js/jquery.dcjqaccordion.2.9.js?ver=4.7.18"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var LS_Meta = {"v":"6.5.1"};
+/* ]]> */
+</script>
+<script type="text/javascript" data-cfasync="false" src="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/js/greensock.js?ver=1.19.0"></script>
+<script type="text/javascript" data-cfasync="false" src="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/js/layerslider.kreaturamedia.jquery.js?ver=6.5.1"></script>
+<script type="text/javascript" data-cfasync="false" src="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/js/layerslider.transitions.js?ver=6.5.1"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/bbs-e-popup/js/bbse-popup-common.js?ver=4.7.18"></script>
+<meta name="generator" content="Powered by LayerSlider 6.5.1 - Multi-Purpose, Responsive, Parallax, Mobile-Friendly Slider Plugin for WordPress.">
+<!-- LayerSlider updates and docs at: https://layerslider.kreaturamedia.com -->
+<link rel="https://api.w.org/" href="https://www.cha.ac.kr/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.cha.ac.kr/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.cha.ac.kr/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.7.18">
+<link rel="canonical" href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/">
+<link rel="shortlink" href="https://www.cha.ac.kr/?p=980">
+<link rel="alternate" type="application/json+oembed" href="https://www.cha.ac.kr/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.cha.ac.kr%2F%25ed%2596%2589%25ec%25a0%2595%2F%25ec%25a6%259d%25eb%25aa%2585%25ec%2584%259c%25eb%25b0%259c%25ea%25b8%2589%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.cha.ac.kr/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.cha.ac.kr%2F%25ed%2596%2589%25ec%25a0%2595%2F%25ec%25a6%259d%25eb%25aa%2585%25ec%2584%259c%25eb%25b0%259c%25ea%25b8%2589%2F&amp;format=xml">
+<meta name="generator" content="WPML ver:3.8.3 stt:1,29;">
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<meta name="generator" content="Powered by Visual Composer - drag and drop page builder for WordPress.">
+<!--[if lte IE 9]><link rel="stylesheet" type="text/css" href="https://www.cha.ac.kr/wp-content/plugins/js_composer/assets/css/vc_lte_ie9.min.css" media="screen"><![endif]-->		<style type="text/css" id="wp-custom-css">
+			/*
+여기에 자신의 CSS를 추가할 수 있습니다.
+
+도움 아이콘을 클릭하면 더 알아볼 수 있습니다.
+*/
+
+
+
+.major_info_text botton{
+border: 2px solid #13436B;
+background: #13436B;
+color: #fff;
+font-size: 16px;
+padding: 5px 15px;
+font-weight: 600;
+cursor: pointer;
+}		
+
+
+</style>
+
+<style>
+
+.demo
+{
+	padding: 25px 0;
+}
+/* .heading-title
+{
+	margin-bottom: 100px;
+} */
+.serviceBox{
+    padding: 60px 60px 60px 90px;
+    background: #f8f8f8;
+    color: #333;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.serviceBox:hover{
+    background: #645e9d;
+    color: #fff;
+}
+
+.serviceBox:after{
+    content: "";
+    display: block;
+    border-top: 500px solid #fff;
+    border-left: 500px solid transparent;
+    margin-top: -55%;
+    margin-left: 100%;
+    opacity: 0;
+    position: absolute;
+    transform: scale(2);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.serviceBox:hover:after{
+    margin-left: 0;
+    opacity: 0.1;
+}
+
+
+
+
+
+
+/* 
+
+.serviceBox2{
+    padding: 30px 30px 30px 30px;
+    background: #f8f8f8;
+    color: #333;
+    overflow: hidden; 
+    position: relative;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.serviceBox2:hover{
+    background: #645e9d;
+    color: #fff;
+}
+
+ .serviceBox2:after{
+    content: "";
+    display: block;
+    border-top: 500px solid #fff;
+    border-left: 500px solid transparent;
+    margin-top: -55%;
+    margin-left: 100%;
+    opacity: 0;
+    position: absolute;
+    transform: scale(2);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.serviceBox2:hover:after{
+    margin-left: 0;
+    opacity: 0.1;
+}  
+
+ */
+
+
+
+
+
+
+
+.serviceBox .service-icon{
+    font-size: 50px;
+    color: #645e9d;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    transition:all 0.3s ease-in-out 0s;
+}
+
+.serviceBox:hover .service-icon{
+    color: #fff;
+}
+
+.serviceBox .title{
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    text-transform: capitalize;
+}
+
+.serviceBox .description{
+    font-size: 15px;
+    color: #a3a3a3;
+    line-height: 25px;
+    margin: 0;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.serviceBox:hover .description{
+    color: #fff;
+}
+
+@media only screen and (max-width: 990px){
+    .serviceBox{ margin-bottom: 15px; }
+}
+
+
+table.cal_calendar{
+	padding:0px;margin:0 auto;
+
+}
+table.cal_calendar th{
+	border:1px solid #c0c0c0;
+	background-color:#e0e0e0;
+	width:36px;
+	font-family:돋움;
+	font-size:13px;padding:10px;
+
+}
+table.cal_calendar td{
+	border:1px solid #e0e0e0;
+	background-color:#ffffff;
+	text-align:center;
+	width:60px;
+	height:25px;
+	font-family:tahoma;
+	font-size:13px;padding:10px;
+}
+.cal_today{
+	color:#ff0000;
+	font-weight:bold;
+}
+.cal_days_bef_aft{
+	color:#5a779e;
+}
+
+
+</style>
+<!--  <style>
+
+
+
+.box{
+    width: 55%;
+    min-height: 300px;  
+    margin: 10px auto;
+    display: flex;
+    
+
+}
+.a{
+    border: 1px solid ;
+    flex:1;
+    width:25%;
+    box-sizing: border-box;
+    font-size: 0.5rem;
+}
+
+.b{
+    border: 1px solid ;
+    flex:1;
+    margin: 0px 7%;
+    width:25%;
+    box-sizing: border-box;
+}
+
+.c{
+    border: 1px solid ;
+    flex:1;
+    width:25%;
+    box-sizing: border-box;
+}
+.d{
+    border: 1px solid ;
+    flex:1;
+    width:25%;
+    box-sizing: border-box;
+}
+
+.e{
+    border: 1px solid ;
+    flex:1;
+    margin: 0px 7%;
+    width:25%;
+    box-sizing: border-box;
+}
+
+.f{
+    border: 1px solid ;
+    flex:1;
+    width:25%;
+    box-sizing: border-box;
+}
+
+
+table.cal_calendar{
+	padding:0px;margin:0 auto;
+
+}
+table.cal_calendar th{
+	border:1px solid #c0c0c0;
+	background-color:#e0e0e0;
+	width:36px;
+	font-family:돋움;
+	font-size:11px;padding:3px;
+
+}
+table.cal_calendar td{
+	border:1px solid #e0e0e0;
+	background-color:#ffffff;
+	text-align:center;
+	width:20px;
+	height:25px;
+	font-family:tahoma;
+	font-size:11px;padding:3px;
+}
+.cal_today{
+	color:#ff0000;
+	font-weight:bold;
+}
+.cal_days_bef_aft{
+	color:#5a779e;
+}
+
+
+</style> -->
+
+<script type="text/javascript">
+function setStyle(id,style,value)
+{
+    id.style[style] = value;
+}
+function opacity(el,opacity)
+{
+        setStyle(el,"filter:","alpha(opacity="+opacity+")");
+        setStyle(el,"-moz-opacity",opacity/100);
+        setStyle(el,"-khtml-opacity",opacity/100);
+        setStyle(el,"opacity",opacity/100);
+}
+function calendar()
+{
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth();
+        var year = date.getYear();
+        if(year<=200)
+        {
+                year += 1900;
+        }
+        months = new Array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12');
+        days_in_month = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
+        if(year%4 == 0 && year!=1900)
+        {
+                days_in_month[1]=29;
+        }
+        total = days_in_month[month];
+        var date_today = year+'년'+months[month]+'월 '+day+'일';
+        beg_j = date;
+        beg_j.setDate(1);
+        if(beg_j.getDate()==2)
+        {
+                beg_j=setDate(0);
+        }
+        beg_j = beg_j.getDay();
+        document.write('<table class="cal_calendar" onload="opacity(document.getElementById(\'cal_body\'),20);"><tbody id="cal_body"><tr><th colspan="7">'+date_today+'</th></tr>');
+        document.write('<tr class="cal_d_weeks"><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr><tr>');
+        week = 0;
+        for(i=1;i<=beg_j;i++)
+        {
+                document.write('<td class="cal_days_bef_aft">'+(days_in_month[month-1]-beg_j+i)+'</td>');
+                week++;
+        }
+        for(i=1;i<=total;i++)
+        {
+                if(week==0)
+                {
+                        document.write('<tr>');
+                }
+                if(day==i)
+                {
+                        document.write('<td class="cal_today">'+i+'</td>');
+                }
+                else
+                {
+                        document.write('<td>'+i+'</td>');
+                }
+                week++;
+                if(week==7)
+                {
+                        document.write('</tr>');
+                        week=0;
+                }
+        }
+        for(i=1;week!=0;i++)
+        {
+                document.write('<td class="cal_days_bef_aft">'+i+'</td>');
+                week++;
+                if(week==7)
+                {
+                        document.write('</tr>');
+                        week=0;
+                }
+        }
+        document.write('</tbody></table>');
+        opacity(document.getElementById('cal_body'),70);
+        return true;
+}
+</script> 
+
+
+	<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/wp-embed.min.js?ver=4.7.18"></script>
+<noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+	<link href="https://fonts.googleapis.com/earlyaccess/notosanskr" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
+
+</head>
+
+<body data-rsssl="1" class="page-template-default page page-id-980 page-child parent-pageid-1429  qode_grid_1300 side_menu_slide_with_content width_370 footer_responsive_adv qode-child-theme-ver-1.0.0 qode-theme-ver-11.1 qode-theme-bridge wpb-js-composer js-comp-ver-5.1.1 vc_responsive" itemscope="" itemtype="http://schema.org/WebPage" style="height: auto; overflow: auto;">
+
+<a href="test/test/test.html">누르기</a>
+						<section class="side_menu right light" tabindex="5000" style="overflow-y: hidden; outline: none;">
+                        <a href="#" target="_self" class="close_side_menu"></a>
+			<div id="text-30" class="widget widget_text posts_holder">			<div class="textwidget"><br></div>
+		</div><div id="text-36" class="widget widget_text posts_holder">			<div class="textwidget"><ul class="footer__sns">
+<li><a href="https://www.facebook.com/chauniversity/" target="_blank"></a></li>
+
+<li><a href="https://www.instagram.com/chauniversity/" target="_blank"></a></li>
+
+<li><a href="https://blog.naver.com/chauniversity" target="_blank"></a></li>
+
+<li><a href="https://www.youtube.com/c/chauniversity" target="_blank"></a></li>
+</ul></div>
+		</div><div id="nav_menu-8" class="widget widget_nav_menu posts_holder"><div class="menu-right_menu-container"><ul id="menu-right_menu" class="menu"><li id="menu-item-12926" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12926"><a target="_blank" href="https://eduin.cha.ac.kr">교육혁신원</a></li>
+<li id="menu-item-432" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-432"><a target="_blank" href="https://admission.cha.ac.kr">입학처</a></li>
+<li id="menu-item-5834" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5834"><a href="https://www.cha.ac.kr/재학생/">재학생</a></li>
+<li id="menu-item-197" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-197"><a href="#">대학</a>
+<ul class="sub-menu">
+	<li id="menu-item-198" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-198"><a href="https://www.cha.ac.kr/교육/대학/간호대학/">간호대학</a></li>
+	<li id="menu-item-199" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-199"><a href="https://www.cha.ac.kr/교육/대학/건강과학대학/">건강과학대학</a></li>
+	<li id="menu-item-200" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-200"><a href="https://www.cha.ac.kr/교육/대학/생명과학대학/">생명과학대학</a></li>
+	<li id="menu-item-201" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-201"><a href="https://www.cha.ac.kr/교육/대학/약학대학/">약학대학</a></li>
+	<li id="menu-item-202" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-202"><a href="https://www.cha.ac.kr/교육/대학/융합과학대학/">융합과학대학</a></li>
+</ul>
+</li>
+<li id="menu-item-203" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-203"><a href="#">대학원</a>
+<ul class="sub-menu">
+	<li id="menu-item-204" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-204"><a target="_blank" href="https://grad.cha.ac.kr">일반대학원</a></li>
+	<li id="menu-item-205" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-205"><a target="_blank" href="https://gs.cha.ac.kr">보건산업대학원</a></li>
+	<li id="menu-item-206" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-206"><a target="_blank" href="https://gam.cha.ac.kr">통합의학대학원</a></li>
+	<li id="menu-item-207" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-207"><a target="_blank" href="https://gat.cha.ac.kr">미술치료대학원</a></li>
+	<li id="menu-item-208" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-208"><a target="_blank" href="https://gcp.cha.ac.kr">임상약학대학원</a></li>
+	<li id="menu-item-209" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-209"><a target="_blank" href="https://cbs.cha.ac.kr">경영대학원</a></li>
+	<li id="menu-item-210" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-210"><a target="_blank" href="https://gsports.cha.ac.kr">스포츠의학대학원</a></li>
+	<li id="menu-item-4042" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4042"><a target="_blank" href="https://psy.cha.ac.kr">임상상담심리대학원</a></li>
+</ul>
+</li>
+<li id="menu-item-211" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-211"><a href="#">전문대학원</a>
+<ul class="sub-menu">
+	<li id="menu-item-212" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-212"><a target="_blank" href="https://medicine.cha.ac.kr">의학전문대학원</a></li>
+</ul>
+</li>
+<li id="menu-item-213" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-213"><a href="#">특별과정</a>
+<ul class="sub-menu">
+	<li id="menu-item-215" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-215"><a target="_blank" href="https://ice.cha.ac.kr">글로벌미래교육원</a></li>
+	<li id="menu-item-217" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-217"><a href="https://champ.cha.ac.kr">CHAMP</a></li>
+	<li id="menu-item-218" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-218"><a href="https://hamp.cha.ac.kr">CHA-HAMP</a></li>
+</ul>
+</li>
+<li id="menu-item-4688" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4688"><a href="#">센터</a>
+<ul class="sub-menu">
+	<li id="menu-item-12848" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12848"><a target="_blank" href="https://eduin.cha.ac.kr">교육혁신센터</a></li>
+	<li id="menu-item-4689" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4689"><a target="_blank" href="https://ctl.cha.ac.kr">교수학습지원센터</a></li>
+	<li id="menu-item-4690" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4690"><a target="_blank" href="https://happy.cha.ac.kr">사회공헌센터</a></li>
+	<li id="menu-item-4691" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4691"><a target="_blank" href="http://counseling.cha.ac.kr">학생행복센터</a></li>
+	<li id="menu-item-4692" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4692"><a target="_blank" href="http://job.cha.ac.kr">취‧창업지원센터</a></li>
+	<li id="menu-item-14487" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14487"><a href="https://gec.cha.ac.kr/">글로벌교류센터</a></li>
+</ul>
+</li>
+<li id="menu-item-4797" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-4797"><a href="#">부속기관</a>
+<ul class="sub-menu">
+	<li id="menu-item-4798" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4798"><a target="_blank" href="https://lib.cha.ac.kr">도서관</a></li>
+	<li id="menu-item-4799" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4799"><a target="_blank" href="https://chaul.cha.ac.kr">생활관</a></li>
+	<li id="menu-item-4800" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-4800"><a target="_blank" href="https://generaledu.cha.ac.kr">행복교육원</a></li>
+</ul>
+</li>
+<!---->
+<li id="menu-item-5548" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-5548"><a href="#">뉴스</a>
+<ul class="sub-menu">
+	<li id="menu-item-5549" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5549"><a target="_blank" href="https://newsroom.cha.ac.kr/">차러브레터(뉴스룸)</a></li>
+	<li id="menu-item-5551" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5551"><a href="https://www.cha.ac.kr/%ED%95%99%EA%B5%90%EC%86%8C%EC%8B%9D/%EC%96%B8%EB%A1%A0%EB%B3%B4%EB%8F%84/">언론보도</a></li>
+	<li id="menu-item-5550" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-5550"><a href="https://www.cha.ac.kr/%EB%89%B4%EC%8A%A4/%EC%95%84%EB%A6%84%EB%8B%A4%EC%9A%B4-%EB%8F%99%ED%96%89/%EB%B0%9C%EC%A0%84%EA%B8%B0%EA%B8%88-%EC%95%88%EB%82%B4/">아름다운 동행</a></li>
+</ul>
+</li>
+<li id="menu-item-5826" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-ancestor current-menu-parent menu-item-has-children menu-item-5826"><a href="#">행정사항</a>
+<ul class="sub-menu">
+	<li id="menu-item-101" class="menu101"><a href="http://127.0.0.1:8765/beet/views/lecture/menu.jsp">강의계획서</a></li>
+  <li id="menu-item-102" class="menu102"><a href="http://127.0.0.1:8765/beet/views/lecture/menu.jsp">수강신청</a></li>
+  <li id="menu-item-103" class="menu103"><a href="http://127.0.0.1:8765/beet/views/lecture/menu.jsp">시간표조회</a></li>
+  <li id="menu-item-104" class="menu104"><a href="http://127.0.0.1:8765/beet/views/lecture/menu.jsp">휴보강신청</a></li>
+  <li id="menu-item-105" class="menu105"><a href="http://127.0.0.1:8765/beet/views/lecture/menu.jsp">수강과목추가</a></li>
+  <li id="menu-item-105" class="menu105"><a href="http://127.0.0.1:8765/beet/views/lecture/menu.jsp">첫화면으로</a></li>
+</ul>
+</li>
+</ul></div></div>		</section>
+		
+			<div class="wrapper">
+	<div class="wrapper_inner">
+	<!-- Google Analytics start -->
+		<!-- Google Analytics end -->
+
+	
+
+<header class="has_top has_header_fixed_right scroll_header_top_area dark stick scrolled_not_transparent page_header">
+    <div class="header_inner clearfix">
+
+		<div class="header_top_bottom_holder">
+			<div class="header_top clearfix" style="background-color:rgba(19, 67, 107, 1);">
+							<div class="container">
+					<div class="container_inner clearfix">
+                    								<div class="left">
+						<div class="inner">
+						<div class="header-widget widget_nav_menu header-left-widget"><div id="nav_menu-4"><div class="menu-top_left_menu-container"><ul id="menu-top_left_menu" class="menu"><li id="menu-item-1160" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1160"><a target="_blank" href="https://newsroom.cha.ac.kr">CHA Loveletter</a></li>
+<li id="menu-item-495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-495"><a href="https://www.cha.ac.kr/%ec%9e%ac%ed%95%99%ec%83%9d/">재학생</a></li>
+<li id="menu-item-12423" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12423"><a target="_blank" href="https://my.cha.ac.kr/">학사관리시스템</a></li>
+</ul></div></div></div>						</div>
+					</div>
+					<div class="right">
+						<div class="inner">
+						<div class="header-widget widget_nav_menu header-right-widget"><div id="nav_menu-14"><div class="menu-top_right_menu-container"><ul id="menu-top_right_menu" class="menu"><li id="menu-item-1161" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1161"><a href="/en/">English</a></li>
+<li id="menu-item-4430" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4430"><a href="https://www.cha.ac.kr/%ec%82%ac%ec%9d%b4%ed%8a%b8%eb%a7%b5-2/">Site map</a></li>
+</ul></div></div></div><div class="header-widget widget_text header-right-widget"><div id="text-35">			<div class="textwidget"><ul class="footer_sns">
+<li><a href="https://www.facebook.com/chauniversity/" target="_blank"><img src="/wp-content/uploads/2018/05/cha_facebook.png"></a></li>
+<li><a href="https://www.instagram.com/chauniversity/
+" target="_blank"><img src="/wp-content/uploads/2018/05/cha_instagram.png"></a></li>
+<li><a href="https://blog.naver.com/chauniversity" target="_blank"><img src="/wp-content/uploads/2018/05/cha_blog.png"></a></li>
+<li><a href="https://www.youtube.com/c/chauniversity" target="_blank"><img src="/wp-content/uploads/2018/05/cha_youtube.png"></a></li>
+</ul></div>
+		</div></div>						</div>
+					</div>
+				                    					</div>
+				</div>
+					</div>
+		<div class="header_bottom clearfix" style=" background-color:rgba(255, 255, 255, 1);">
+		    				<div class="container">
+					<div class="container_inner clearfix">
+                    			                					<div class="header_inner_left">
+                        													<div class="mobile_menu_button">
+                                <span>
+                                    <span aria-hidden="true" class="qode_icon_font_elegant icon_menu "></span>                                </span>
+                            </div>
+												<div class="logo_wrapper">
+                            							<div class="q_logo">
+								<a itemprop="url" href="https://www.cha.ac.kr/" style="height: 47px; visibility: visible;">
+									<img itemprop="image" class="normal" src="https://www.cha.ac.kr/wp-content/uploads/2017/08/akorengchalogo.png" alt="Logo" style="height: 100%;">
+									<img itemprop="image" class="light" src="https://www.cha.ac.kr/wp-content/uploads/2017/08/akorengchalogo.png" alt="Logo" style="height: 100%;">
+									<img itemprop="image" class="dark" src="https://www.cha.ac.kr/wp-content/uploads/2017/08/akorengchalogo.png" alt="Logo" style="height: 100%;">
+									<img itemprop="image" class="sticky" src="https://www.cha.ac.kr/wp-content/uploads/2017/08/akorengchalogo.png" alt="Logo" style="height: 100%;">
+									<img itemprop="image" class="mobile" src="https://www.cha.ac.kr/wp-content/uploads/2017/08/akorengchalogo.png" alt="Logo" style="height: 100%;">
+																	</a>
+							</div>
+                            						</div>
+                                                					</div>
+                    					                                                							<div class="header_inner_right">
+                                <div class="side_menu_button_wrapper right">
+																		                                    <div class="side_menu_button">
+
+										                                                                                                                            <a class="side_menu_button_link normal" href="javascript:void(0)">
+                                                <span aria-hidden="true" class="qode_icon_font_elegant arrow_carrot-2right "></span>                                            </a>
+										                                    </div>
+                                </div>
+							</div>
+						
+						
+						<nav class="main_menu drop_down right">
+						<ul id="menu-new-main-menu" class="">
+              <li id="nav-menu-item-58753" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active narrow"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><i class="menu_icon blank fa"></i><span>마이페이지</span><span class="plus"></span></a></li>
+
+              <li id="nav-menu-item-2753" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="http://127.0.0.1:8765/beet/views/student/memberUpdatePage.jsp/" class=""><i class="menu_icon blank fa"></i><span>강의</span><span class="plus"></span></a></li>
+<li id="nav-menu-item-2369" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="https://www.cha.ac.kr/%ea%b5%90%ec%9c%a1/%eb%8c%80%ed%95%99/" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a></li>
+<li id="nav-menu-item-2492" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="https://www.cha.ac.kr/%ec%97%b0%ea%b5%ac/%ec%b0%a8%eb%b3%91%ec%9b%90-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac/" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a></li>
+<li id="nav-menu-item-13721" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="https://www.cha.ac.kr/%eb%8c%80%ed%95%99%ec%83%9d%ed%99%9c/%ed%95%99%ec%82%ac%ec%9d%bc%ec%a0%95-2020%ed%95%99%eb%85%84%eb%8f%84/" class=""><i class="menu_icon blank fa"></i><span>수강신청</span><span class="plus"></span></a></li>
+<li id="nav-menu-item-2368" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="https://www.cha.ac.kr/%ed%95%99%ea%b5%90%ec%86%8c%ea%b0%9c/%ec%b4%9d%ec%9e%a5%ec%8b%a4/%ec%b4%9d%ec%9e%a5-%ec%9d%b8%ec%82%ac%eb%a7%90/" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a></li>
+<li id="nav-menu-item-2045" class="menu-item menu-item-type-custom menu-item-object-custom  narrow"><a target="_blank" href="https://admission.cha.ac.kr/" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a></li>
+<li id="nav-menu-item-5823" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active narrow"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a></li>
+
+</ul>						</nav>
+						                        										<nav class="mobile_menu">
+                        <ul id="menu-new-main-menu-1" class="">
+                          
+                          <li id="mobile-menu-item-58753" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><span>마이페이지</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
+                          
+                          
+                          
+                          <li id="mobile-menu-item-2753" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%eb%89%b4%ec%8a%a4/%ed%95%99%ea%b5%90%eb%8f%99%ec%a0%95/" class=""><span>강의</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
+<li id="mobile-menu-item-2369" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%ea%b5%90%ec%9c%a1/%eb%8c%80%ed%95%99/" class=""><span>출결/성적</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
+<li id="mobile-menu-item-2492" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%ec%97%b0%ea%b5%ac/%ec%b0%a8%eb%b3%91%ec%9b%90-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac/" class=""><span>등록/장학</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
+<li id="mobile-menu-item-13721" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%eb%8c%80%ed%95%99%ec%83%9d%ed%99%9c/%ed%95%99%ec%82%ac%ec%9d%bc%ec%a0%95-2020%ed%95%99%eb%85%84%eb%8f%84/" class=""><span>수강신청</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
+<li id="mobile-menu-item-2368" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%ed%95%99%ea%b5%90%ec%86%8c%ea%b0%9c/%ec%b4%9d%ec%9e%a5%ec%8b%a4/%ec%b4%9d%ec%9e%a5-%ec%9d%b8%ec%82%ac%eb%a7%90/" class=""><span>휴학/복학</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
+<li id="mobile-menu-item-2045" class="menu-item menu-item-type-custom menu-item-object-custom "><a target="_blank" href="https://admission.cha.ac.kr/" class=""><span>학교소식</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
+<li id="mobile-menu-item-5823" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><span>학사일정</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
+
+
+</ul>					</nav>
+			                    					</div>
+				</div>
+				</div>
+	</div>
+	</div>
+
+</header>
+	
+
+    		<a id="back_to_top" href="#" class="off">
+			<span class="fa-stack">
+				<i class="fa fa-arrow-up" style=""></i>
+			</span>
+		</a>
+	    	
+    
+	
+
+    
+<div class="content " style="min-height: 544px; padding-top: 0px;">
+						<div class="content_inner  ">
+									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 6.37px;">
+			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
+					<div class="container">
+						<div class="container_inner clearfix">
+								<div class="title_subtitle_holder">
+                                                                									<div class="title_subtitle_holder_inner">
+																										<h1><span>증명서발급</span></h1>
+																	
+																												<div class="breadcrumb"> <div class="breadcrumbs"><div itemprop="breadcrumb" class="breadcrumbs_inner"><a href="https://www.cha.ac.kr">Home</a><span class="delimiter">&nbsp;&gt;&nbsp;</span><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/">행정</a><span class="delimiter">&nbsp;&gt;&nbsp;</span><span class="current">증명서발급</span></div></div></div>
+																										</div>
+								                                                            </div>
+						</div>
+					</div>
+				</div>
+								</div>
+			</div>
+				<div class="container">
+            			<div class="container_inner default_template_holder clearfix page_container_inner">
+						
+					
+						<!-- 찾기 -->
+					
+					
+					
+					
+					
+					
+				<div class="demo">
+        <div class="container">
+       
+
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="serviceBox">
+                        <div class="service-icon">
+                            <i class="fa fa-globe"></i>
+                        </div>
+                        <h3 class="title">내학사</h3>
+                        <p class="description">
+                           	님 내학사 방문을 환영합니다
+                        </p>
+                    </div>
+                </div>
+
+
+				
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="serviceBox2">
+                        <!-- <div class="service-icon">
+                            <i class="fa fa-rocket"></i>
+                        </div> -->
+                       <!--  <h3 class="title">캘린더</h3> -->
+                        <p class="description">
+                        <script type="text/javascript">
+				calendar();
+			</script>
+                        
+                         </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="serviceBox">
+                      <!--   <div class="service-icon">
+                            <i class="fa fa-briefcase"></i>
+                        </div> -->
+                        <h3 class="title"><%=month %>월학사일정</h3>
+                        <p class="description">
+                           <table id="mainSchedule" border="1" cellspacing="0">
+       						 
+      							<tr>
+      								<th> &nbsp;일&nbsp;</th><th> 일정 </th>
+      							</tr>
+      	
+      	</table>
+                            </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+ <div class="demo">
+        <div class="container">
+      
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="serviceBox">
+                    <!--     <div class="service-icon">
+                            <i class="fa fa-globe"></i>
+                        </div> -->
+                        <h3 class="title">취득학점</h3>
+                        <p class="description">
+                        	 <table id="mainScore" border="1" cellspacing="0">
+      						 
+        
+      						<th>학기</th><th> 취득학점 </th>
+      	
+      						</table>
+                           </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="serviceBox">
+                     <!--    <div class="service-icon">
+                            <i class="fa fa-rocket"></i>
+                        </div> -->
+                        <h3 class="title">공지사항</h3>
+                        <p class="description">
+                        	<table id="mainNotice" border="1" cellspacing="0">
+      							<tr>
+      								<th>번호<th>제목</th><th>날짜</th>
+      							</tr>
+      						</table>
+                           </p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="serviceBox">
+                     <!--    <div class="service-icon">
+                        	<i class="fas fa-temperature-high"></i>
+               
+                        </div> -->
+                        <h3 class="title">날씨</h3>
+                        <p class="description">
+                            <table id="mainWeather" border="1" cellspacing="0">
+      							 <ul>
+          
+           							 <li class="강수량"></li>
+            						<li class="기온"></li>
+           							 <li class="습도"></li>
+            
+       							 </ul>
+       						 </table>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+			
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+						
+								
+		</div>
+        	</div>
+				
+	</div>
+</div>
+
+
+
+	<footer>
+		<div class="footer_inner clearfix">
+				<div class="footer_top_holder">
+            			<div class="footer_top">
+								<div class="container">
+					<div class="container_inner">
+
+																	<div class="two_columns_50_50 clearfix">
+								<div class="column1 footer_col1">
+									<div class="column_inner">
+										<div id="text-2" class="widget widget_text">			<div class="textwidget"><img src="https://www.cha.ac.kr/wp-content/uploads/2017/08/cha_newwwwwww_footer.png" alt="logo"></div>
+		</div><div id="text-17" class="widget widget_text">			<div class="textwidget"><ul class="footer__sns">
+<li><a href="https://www.facebook.com/chauniversity/" target="_blank"></a></li>
+
+<li><a href="https://www.instagram.com/chauniversity/" target="_blank"></a></li>
+
+<li><a href="https://blog.naver.com/chauniversity" target="_blank"></a></li>
+
+<li><a href="https://www.youtube.com/c/chauniversity" target="_blank"></a></li>
+</ul></div>
+		</div><div id="text-6" class="widget widget_text">			<div class="textwidget"><p style="    font-size: 11px;
+    line-height: 15px;
+    margin-top: 20px;">COPYRIGHT @ 2018 BY 차 의과학대학교.<br> ALL RIGHTS RESERVED.</p></div>
+		</div>									</div>
+								</div>
+								<div class="column2 footer_col2">
+									<div class="column_inner">
+										<div id="search-11" class="widget widget_search"><form action="https://www.cha.ac.kr/search_gcse/" class="search-form" method="get" role="search">
+	<label>
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" title="Search for:" name="q" value="" placeholder="Search ..." class="search-field">
+	</label>
+	<input type="submit" value="" class="search-submit">
+</form></div><div id="text-32" class="widget widget_text">			<div class="textwidget"><div class="footer_under">
+
+</div></div>
+		</div>									</div>
+								</div>
+							</div>
+															</div>
+				</div>
+							</div>
+					</div>
+							<div class="footer_bottom_holder">
+                								<div class="container">
+					<div class="container_inner">
+									<div class="footer_bottom">
+				<div id="text-27">			<div class="textwidget"><ul class="footer_info">
+ 	<li><a href="http://www.academyinfo.go.kr/popup/pubinfo1690/list.do?schlId=0000187" target="_blank" rel="noopener">대학정보공시</a></li>
+        <li><a href="https://support.kasfo.or.kr/" target="_blank" rel="noopener">대학재정회계센터</a></li>
+ 	<li><a href="/?page_id=739">위치안내</a></li>
+ 	<li><a href="/전화번호안내">전화번호안내</a></li>
+ 	<li><a href="#">CONTACT US</a></li>
+ 	<li><a href="/?page_id=11996"><strong><font style="background-color: #ff7f50;">개인정보처리방침</font></strong></a></li>
+ 	<li><a href="/이메일무단수집거부">이메일무단수집거부</a></li>
+</ul></div>
+		</div>			</div>
+									</div>
+			</div>
+						</div>
+				</div>
+	</footer>
+		
+</div>
+</div>
+<div id="text-13" class="widget-container widget_text">			<div class="textwidget"></div>
+		</div><style type="text/css">
+    p {
+        margin: 0 0 1em;
+    }
+
+</style>
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-4-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-4',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-5-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: false,
+						cookie: 'dc_jqaccordion_widget-5',
+						speed: 'slow'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-6-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-6',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-7-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-7',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-8-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-8',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-9-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: true,
+						autoClose: true,
+						saveState: false,
+						autoExpand: false,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-9',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-10-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: true,
+						autoClose: true,
+						saveState: false,
+						autoExpand: false,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-10',
+						speed: 'slow'
+					});
+				});
+			</script>
+		
+			<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/jquery.form.min.js?ver=3.37.0"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var qodeLike = {"ajaxurl":"https:\/\/www.cha.ac.kr\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/qode-like.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/widget.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/accordion.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/position.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/menu.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/wp-a11y.min.js?ver=4.7.18"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var uiAutocompleteL10n = {"noResults":"\uacb0\uacfc \uc5c6\uc74c.","oneResult":"1\uacb0\uacfc \ucc3e\uc74c. \uc704\uc544\ub798\ub85c \uc774\ub3d9\ud558\ub824\uba74 \ud654\uc0b4\ud45c \ud0a4\ub97c \uc0ac\uc6a9\ud558\uc138\uc694.","manyResults":"%d \uacb0\uacfc \ucc3e\uc74c. \uc704 \uc544\ub798\ub85c \uc774\ub3d9\ud558\ub824\uba74 \ud654\uc0b4\ud45c \ud0a4\ub97c \uc0ac\uc6a9\ud558\uc138\uc694.","itemSelected":"\uc544\uc774\ud15c \uc120\ud0dd\ub428."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/autocomplete.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/button.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/datepicker.min.js?ver=1.11.4"></script>
+<script type="text/javascript">
+jQuery(document).ready(function(jQuery){jQuery.datepicker.setDefaults({"closeText":"\ub2eb\uae30","currentText":"\uc624\ub298","monthNames":["1\uc6d4","2\uc6d4","3\uc6d4","4\uc6d4","5\uc6d4","6\uc6d4","7\uc6d4","8\uc6d4","9\uc6d4","10\uc6d4","11\uc6d4","12\uc6d4"],"monthNamesShort":["1\uc6d4","2\uc6d4","3\uc6d4","4\uc6d4","5\uc6d4","6\uc6d4","7\uc6d4","8\uc6d4","9\uc6d4","10\uc6d4","11\uc6d4","12\uc6d4"],"nextText":"\ub2e4\uc74c","prevText":"\uc774\uc804","dayNames":["\uc77c\uc694\uc77c","\uc6d4\uc694\uc77c","\ud654\uc694\uc77c","\uc218\uc694\uc77c","\ubaa9\uc694\uc77c","\uae08\uc694\uc77c","\ud1a0\uc694\uc77c"],"dayNamesShort":["\uc77c","\uc6d4","\ud654","\uc218","\ubaa9","\uae08","\ud1a0"],"dayNamesMin":["\uc77c","\uc6d4","\ud654","\uc218","\ubaa9","\uae08","\ud1a0"],"dateFormat":"yy\ub144 MM d\uc77c","firstDay":0,"isRTL":false});});
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/mouse.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/resizable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/draggable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/dialog.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/droppable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/progressbar.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/selectable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/sortable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/slider.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/spinner.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/tooltip.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/tabs.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-blind.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-bounce.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-clip.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-drop.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-explode.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-fade.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-fold.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-highlight.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-pulsate.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-size.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-scale.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-shake.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-slide.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-transfer.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/plugins.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.carouFredSel-6.2.1.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/lemmon-slider.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.fullPage.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.mousewheel.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.touchSwipe.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/js_composer/assets/lib/bower/isotope/dist/isotope.pkgd.min.js?ver=5.1.1"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.stretch.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/default_dynamic.js?ver=1579137436"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var QodeAdminAjax = {"ajaxurl":"https:\/\/www.cha.ac.kr\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/default.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/custom_js.js?ver=1579137436"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/comment-reply.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js?ver=5.1.1"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/custom.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/waypoint.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/jquery.hoverdir.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/modernizr.custom.97074.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/tween.js"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/greensock-js/minified/TweenMax.min.js"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/greensock-js/minified/TimelineMax.min.js?ver=20161110"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/menu.min.js?ver=20161110"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/scrollmagic/minified/ScrollMagic.min.js?ver=20161110"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/scrollmagic/minified/plugins/debug.addIndicators.min.js?ver=20161110"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/scrollmagic/minified/plugins/animation.gsap.min.js?ver=20161110"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var kboard_settings = {"version":"5.3.3","home_url":"\/","site_url":"\/","post_url":"https:\/\/www.cha.ac.kr\/wp-admin\/admin-post.php","alax_url":"https:\/\/www.cha.ac.kr\/wp-admin\/admin-ajax.php","plugin_url":"https:\/\/www.cha.ac.kr\/wp-content\/plugins\/kboard","media_group":"5f349dea5008a","ajax_security":"b5fe8b3aaf"};
+var kboard_localize_strings = {"kboard_add_media":"KBoard \ubbf8\ub514\uc5b4 \ucd94\uac00","next":"\ub2e4\uc74c","prev":"\uc774\uc804","please_enter_the_title":"\uc81c\ubaa9\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_author":"\uc791\uc131\uc790\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_password":"\ube44\ubc00\ubc88\ud638\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_CAPTCHA":"\uc606\uc5d0 \ubcf4\uc774\ub294 \ubcf4\uc548\ucf54\ub4dc\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_name":"\uc774\ub984\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_email":"\uc774\uba54\uc77c\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","you_have_already_voted":"\uc774\ubbf8 \ud22c\ud45c\ud588\uc2b5\ub2c8\ub2e4.","please_wait":"\uc7a0\uc2dc\ub9cc \uae30\ub2e4\ub824\uc8fc\uc138\uc694.","newest":"\ucd5c\uc2e0\uc21c","best":"\ucd94\ucc9c\uc21c","updated":"\uc5c5\ub370\uc774\ud2b8\uc21c","viewed":"\uc870\ud68c\uc21c","yes":"\uc608","no":"\uc544\ub2c8\uc694","did_it_help":"\ub3c4\uc6c0\uc774 \ub418\uc5c8\ub098\uc694?","hashtag":"\ud574\uc2dc\ud0dc\uadf8","tag":"\ud0dc\uadf8","add_a_tag":"\ud0dc\uadf8 \ucd94\uac00","removing_tag":"\ud0dc\uadf8 \uc0ad\uc81c","changes_you_made_may_not_be_saved":"\ubcc0\uacbd\uc0ac\ud56d\uc774 \uc800\uc7a5\ub418\uc9c0 \uc54a\uc744 \uc218 \uc788\uc2b5\ub2c8\ub2e4.","email":"\uc774\uba54\uc77c","address":"\uc8fc\uc18c","postcode":"\uc6b0\ud3b8\ubc88\ud638","phone_number":"\ud734\ub300\ud3f0\ubc88\ud638","mobile_phone":"\ud734\ub300\ud3f0\ubc88\ud638","phone":"\ud734\ub300\ud3f0\ubc88\ud638","company_name":"\ud68c\uc0ac\uba85","vat_number":"\uc0ac\uc5c5\uc790\ub4f1\ub85d\ubc88\ud638","bank_account":"\uc740\ud589\uacc4\uc88c","name_of_deposit":"\uc785\uae08\uc790\uba85","find":"\ucc3e\uae30","rate":"\ub4f1\uae09","ratings":"\ub4f1\uae09","waiting":"\ub300\uae30","complete":"\uc644\ub8cc","question":"\uc9c8\ubb38","answer":"\ub2f5\ubcc0","notify_me_of_new_comments_via_email":"\uc774\uba54\uc77c\ub85c \uc0c8\ub85c\uc6b4 \ub313\uae00 \uc54c\ub9bc \ubc1b\uae30","ask_question":"\uc9c8\ubb38\ud558\uae30","categories":"\uce74\ud14c\uace0\ub9ac","pages":"\ud398\uc774\uc9c0","all_products":"\uc804\uccb4\uc0c1\ud488","your_orders":"\uc8fc\ubb38\uc870\ud68c","your_sales":"\ud310\ub9e4\uc870\ud68c","my_orders":"\uc8fc\ubb38\uc870\ud68c","my_sales":"\ud310\ub9e4\uc870\ud68c","new_product":"\uc0c1\ud488\ub4f1\ub85d","edit_product":"\uc0c1\ud488\uc218\uc815","delete_product":"\uc0c1\ud488\uc0ad\uc81c","seller":"\ud310\ub9e4\uc790","period":"\uae30\uac04","period_of_use":"\uc0ac\uc6a9\uae30\uac04","last_updated":"\uc5c5\ub370\uc774\ud2b8 \ub0a0\uc9dc","list_price":"\uc815\uc0c1\uac00\uaca9","price":"\ud310\ub9e4\uac00\uaca9","total_price":"\ucd1d \uac00\uaca9","amount":"\uacb0\uc81c\uae08\uc561","quantity":"\uc218\ub7c9","use_points":"\ud3ec\uc778\ud2b8 \uc0ac\uc6a9","my_points":"\ub0b4 \ud3ec\uc778\ud2b8","available_points":"\uc0ac\uc6a9 \uac00\ub2a5 \ud3ec\uc778\ud2b8","apply_points":"\uc801\uc6a9\ub41c \ud3ec\uc778\ud2b8","buy_it_now":"\uad6c\ub9e4\ud558\uae30","sold_out":"\ud488\uc808","for_free":"\ubb34\ub8cc","pay_s":"%s \uacb0\uc81c","payment_method":"\uacb0\uc81c\uc218\ub2e8","credit_card":"\uc2e0\uc6a9\uce74\ub4dc","make_a_deposit":"\ubb34\ud1b5\uc7a5\uc785\uae08","reward_point":"\uc801\ub9bd \ud3ec\uc778\ud2b8","download_expiry":"\ub2e4\uc6b4\ub85c\ub4dc \uae30\uac04","checkout":"\uc8fc\ubb38\uc815\ubcf4\ud655\uc778","buyer_information":"\uc8fc\ubb38\uc790","applying_cash_receipts":"\ud604\uae08\uc601\uc218\uc99d \uc2e0\uccad","privacy_policy":"\uac1c\uc778 \uc815\ubcf4 \uc815\ucc45","i_agree_to_the_privacy_policy":"\uac1c\uc778 \uc815\ubcf4 \uc815\ucc45\uc5d0 \ub3d9\uc758\ud569\ub2c8\ub2e4.","i_confirm_the_terms_of_the_transaction_and_agree_to_the_payment_process.":"\uac70\ub798\uc870\uac74\uc744 \ud655\uc778\ud588\uc73c\uba70 \uacb0\uc81c\uc9c4\ud589\uc5d0 \ub3d9\uc758\ud569\ub2c8\ub2e4."};
+var kboard_comments_localize_strings = {"reply":"\ub2f5\uae00","cancel":"\ucde8\uc18c","please_enter_the_author":"\uc791\uc131\uc790\uba85\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_password":"\ube44\ubc00\ubc88\ud638\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_CAPTCHA":"\ubcf4\uc548\ucf54\ub4dc\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_content":"\ub0b4\uc6a9\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","are_you_sure_you_want_to_delete":"\uc0ad\uc81c \ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c?","please_wait":"\uc7a0\uc2dc\ub9cc \uae30\ub2e4\ub824\uc8fc\uc138\uc694.","email":"\uc774\uba54\uc77c","address":"\uc8fc\uc18c","postcode":"\uc6b0\ud3b8\ubc88\ud638","phone_number":"\uc5f0\ub77d\ucc98","find":"\ucc3e\uae30","rate":"\ub4f1\uae09","ratings":"\ub4f1\uae09","waiting":"\ub300\uae30","complete":"\uc644\ub8cc","question":"\uc9c8\ubb38","answer":"\ub2f5\ubcc0","notify_me_of_new_comments_via_email":"\uc774\uba54\uc77c\ub85c \uc0c8\ub85c\uc6b4 \ub313\uae00 \uc54c\ub9bc \ubc1b\uae30"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/kboard/template/js/script.js?ver=5.3.3"></script>
+<!-- We need this for debugging themes using Speed Booster Pack Plugin v3.5 -->
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-104925667-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-104925667-1');
+</script>
+
+<!-- Naver Analytics -->
+<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "4ee24a9a806764";
+wcs_do();
+</script>
+
+
+<div id="wp-a11y-speak-polite" aria-live="polite" aria-relevant="additions text" aria-atomic="true" class="screen-reader-text wp-a11y-speak-region"></div><div id="wp-a11y-speak-assertive" aria-live="assertive" aria-relevant="additions text" aria-atomic="true" class="screen-reader-text wp-a11y-speak-region"></div><div id="ascrail2000" class="nicescroll-rails" style="width: 0px; z-index: 9999; cursor: default; position: fixed; top: 0px; left: 1387px; height: 888px; opacity: 1;"><div style="position: relative; top: 0px; float: right; width: 0px; height: 353px; background-color: transparent; border: 0px; background-clip: padding-box; border-radius: 0px;"></div></div></body></html>

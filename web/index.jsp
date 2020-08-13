@@ -21,6 +21,7 @@
 <button onclick="javascript:location.href='views/student/회원가입선택.jsp'">회원가입</button>
 <button onclick="javascript:location.href='views/student/findId.jsp'">아이디찾기</button>
 <button onclick="javascript:location.href='views/student/findPassword.jsp'">비밀번호찾기</button>
+<button onclick="javascript: location.href='/beet/views/main/main3.jsp'">메인페이지</button>
 
 <% }else{ %>
 <div>

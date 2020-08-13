@@ -107,13 +107,67 @@
 
 
 .box{
-    width: 55%;
+ border: 1px solid ;
+    flex:1;
+    width:60%;
+    box-sizing: border-box;
+    font-size: 0.5rem;
+   
     min-height: 300px;  
     margin: 10px auto;
     display: flex;
+ 
     
 
+} 
+ .serviceBox{
+    padding: 60px 60px 60px 90px;
+    background: #f8f8f8;
+    color: #333;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease-in-out 0s;
 }
+
+.serviceBox:hover{
+    background: #645e9d;
+    color: #fff;
+}
+
+.serviceBox:after{
+    content: "";
+    display: block;
+    border-top: 500px solid #fff;
+    border-left: 500px solid transparent;
+    margin-top: -55%;
+    margin-left: 100%;
+    opacity: 0;
+    position: absolute;
+    transform: scale(2);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.serviceBox:hover:after{
+    margin-left: 0;
+    opacity: 0.1;
+} 
+
+.a{
+border: 1px solid ;
+    flex:1;
+    margin: 0px 7%;
+    width:25%;
+    box-sizing: border-box
+	/* z-index: 99999999;
+     border: 1px solid ;
+    flex:1;
+    width: 25%;
+    box-sizing: border-box;
+    font-size: 0.5rem */; 
+}
+
+ 
+
 .a{
     border: 1px solid ;
     flex:1;
@@ -157,7 +211,7 @@
     width:25%;
     box-sizing: border-box;
 }
-
+ 
 
 table.cal_calendar{
 	padding:0px;margin:0 auto;
@@ -330,9 +384,15 @@ $(function(){
 			var values = "";
 			for(var i in json.list){
 				values += "<tr><td>"+ json.list[i].no 
-				+ "</td><td><a href='/beet/ndetail?noticeno=" + json.list[i].no + "'>" 
+				/* + "</td><td><a href='/beet/ndetail?noticeno=" + json.list[i].no + "'>" 
 				+ decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
-				+ "</a></td><td>"+ json.list[i].date + "</td></tr>";
+				+ "</a></td><td>"+ json.list[i].date + "</td></tr>"; */
+				 + "</td><td><span id='notidata"+i+"'>" 
+					+ decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
+					+ "</span></td><td>"+ json.list[i].date + "</td></tr>";
+				$(document).on("click","#notidata"+i,function(){
+					alert(json.list[i].no);
+				})
 			} 
 			
 			
@@ -430,6 +490,7 @@ $(function(){
 <br>
 <br>
  <div class="box">
+  <div class="serviceBox">
         <div class="a">first
         		<%if(m1.getId().substring(0, 1).equals("P")){ %>
 					 <h1> 코드 : <%= m.getId() %><br>
@@ -450,15 +511,19 @@ $(function(){
 				<%} %>
         	 
         </div>
+        </div>
         
-        <div class="b">second
+         <div class="serviceBox">
+        <div class="a">second
        	 <h2 >캘린더</h2>
         	<script type="text/javascript">
 				calendar();
 			</script>
         </div>
+        </div>
         
-        <div class="c">third
+         <div class="serviceBox">
+        <div class="a">third
          <table id="mainSchedule" border="1" cellspacing="0">
         <h2> <%=month %>월 학사일정</h2>
       	<tr>
@@ -467,11 +532,15 @@ $(function(){
       	
       	</table>
         </div>
+        
+        </div>
  </div>
  <br>
  <br>
  
+
   <div class="box">
+    <div class="serviceBox">
         <div class="d">first
         	 <table id="mainScore" border="1" cellspacing="0">
       		  <h2>나의 학점 현황</h2>
@@ -480,16 +549,22 @@ $(function(){
       	
       	</table>
         </div>
-        <div class="e">second
-        		<h2>최신 공지글</h2>
-      	<section>
-      	<table id="mainNotice" border="1" cellspacing="0">
-      	<tr>
-      		<th>번호<th>제목</th><th>날짜</th>
-      	</tr>
-      	</table>
-      	</section>
         </div>
+        
+         <div class="serviceBox">
+	        <div class="e">second
+	        		<h2>최신 공지글</h2>
+		      	<section>
+			      	<table id="mainNotice" border="1" cellspacing="0">
+			      	<tr>
+			      		<th>번호<th>제목</th><th>날짜</th>
+			      	</tr>
+			      	</table>
+		      	</section>
+	        </div>
+        </div>
+        
+         <div class="serviceBox">
         <div class="f">third
         	    <h2>날씨</h2>
        	
@@ -503,6 +578,7 @@ $(function(){
             
         </ul>
         </table>
+        </div>
         </div>
  </div>
 <br>
