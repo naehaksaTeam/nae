@@ -311,7 +311,7 @@ body {
 				<!-- <li class="current_page_item"><a href="#" accesskey="1" title="">Homepage</a></li> -->
 				<li><a href="../student/memberUpdatePage.jsp" accesskey="1" title="">마이페이지</a></li>
 				<li><a href="../attendance/sub4main.jsp" accesskey="2" title=""> 출결</a></li>
-				<li><a href="/beet/s.t.list" accesskey="4" title="">등록 / 장학</a></li>
+				<li><a href="/beet/s.t.list?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" accesskey="4" title="">등록 / 장학</a></li>
 				 <li><a href="/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" accesskey="5" title="">수강신청</a></li>
 				<li><a href="/beet/selectab?studentid=<%=m1.getId()%>" accesskey="5" title="">휴학 / 복학</a></li> 
 				<li><a href="/beet/nlist" accesskey="5" title="">공지 사항</a></li> 
