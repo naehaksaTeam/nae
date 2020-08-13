@@ -32,7 +32,8 @@
 			</tr>
 			<tr>
 				<th>구분명</th>
-				<td><input type="text"  name="category"></td>
+				 <td><input type="text" name="category">ㄱ</td> 
+				
 			</tr>
 			<tr>
 				<th colspan="2"><input type="submit" value="등록하기">

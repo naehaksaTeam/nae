@@ -3,6 +3,7 @@ package major.model.dao;
 import static common.JDBCTemp.close;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 
 import major.model.vo.Major;
 import major.model.vo.Major1;
+import major.model.vo.Major2;
 
 
 
@@ -267,6 +269,193 @@ public class MajorDao {
 		
 		return major1;
 	}
+
+	public Date firstTermCheck(Connection conn) {
+		Date term = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query ="  select sysdate from dual where sysdate between (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
+								"  from schedule " + 
+								"  where schname like '%1학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate)) " + 
+								"  and (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
+								"  from schedule " + 
+								"  where schname like '%2학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate))";
+		
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				term = rset.getDate("sysdate");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+		}
+		return term;
+	}
+
+	public Date secondCheck(Connection conn) {
+		Date termcheck = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query =" select sysdate from dual where sysdate between (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
+								" from schedule " + 
+								" where schname like '%1학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate)) " + 
+								" and (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
+								" from schedule " + 
+								" where schname like '%1학기%' and schname like '%종강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate))";
+		
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				termcheck = rset.getDate("sysdate");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+		}
+		return termcheck;
+	}
+
+	public Date second2Check(Connection conn) {
+		Date termcheck = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query =" select sysdate from dual where sysdate between (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
+								" from schedule " + 
+								" where schname like '%2학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate)) " + 
+								" and (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
+								" from schedule " + 
+								" where schname like '%2학기%' and schname like '%종강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate))";
+		
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				termcheck = rset.getDate("sysdate");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+		}
+		return termcheck;
+	}
+
+	
+	
+
+	public Major2 OneValueAndBene(Connection conn, String id) {
+		PreparedStatement pstmt = null;
+		Major2 major2 = null;
+		ResultSet rset = null;
+		String query = "select value, lpad(benefitterm,4) " + 
+				"from ssbenefitst a " + 
+				"left join scholarship b  " + 
+				"on a.ssname = b.ssname " + 
+				"where id= ?";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, id);
+			
+			
+			
+		rset = 	pstmt.executeQuery();
+			if(rset.next()) {
+				major2 = new Major2();
+				
+				major2.setValue(rset.getInt("value"));
+				major2.setBenefitterm(rset.getInt("lpad(benefitterm,4)"));
+				
+				
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return major2;
+	}
+
+	public int paymentCheck(Connection conn) {
+		int paymentCheck = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query ="select to_number(extract(month from sysdate)) from dual";
+
+		
+		System.out.println("쿼리성공!");
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				paymentCheck = rset.getInt("to_number(extract(month from sysdate))");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+		}
+		return paymentCheck;
+	}
+
+	public Date paymentCheck1(Connection conn) {
+		Date payment = null;
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query ="  select schstartyear , schstartmonth , schstartdate " + 
+				"            from schedule " + 
+				"            where to_number(schstartmonth) < 7 and schname like '%학기%' and schname like '%등록%' and schstartyear = extract(year from sysdate) ";
+		
+		try {
+			stmt = conn.createStatement();
+			
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				payment = rset.getDate("sysdate");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+		}
+		return payment;
+	}
+
+	public Date paymentCheck2(Connection conn) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
+
 
 	
 
