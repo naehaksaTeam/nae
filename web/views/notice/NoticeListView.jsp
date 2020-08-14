@@ -39,7 +39,7 @@
 	
 
 <div align="center">
-	<table>
+	<table style="border:1px solid ; ">
 		<tr>
 			<th>번호</th>
 			
