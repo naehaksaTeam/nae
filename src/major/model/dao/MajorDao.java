@@ -232,11 +232,11 @@ public class MajorDao {
 		PreparedStatement pstmt = null;
 		Major1 major1 = null;
 		ResultSet rset = null;
-		String query = "select a.categoryname as \"categoryname\" , b.majorname as \"majorname\" , a.id as \"id\" , a.name as \"name\" , b.tuition as \"tuition\"" + 
+		String query = "select a.categoryname  , b.majorname   , a.id  , a.name  , b.tuition " + 
 				"from student a " + 
 				"join major b on a.majorno=b.majorno " + 
 				"where id = ?";
-		
+		System.out.println("select tuition 도착");
 		try {
 			
 			pstmt = conn.prepareStatement(query);
@@ -380,7 +380,7 @@ public class MajorDao {
 				major2 = new Major2();
 				
 				major2.setValue(rset.getInt("value"));
-				major2.setBenefitterm(rset.getInt("lpad(benefitterm,4)"));
+				major2.setBenefitterm(rset.getInt("c"));
 				
 				
 				
@@ -398,60 +398,39 @@ public class MajorDao {
 		return major2;
 	}
 
-	public int paymentCheck(Connection conn) {
-		int paymentCheck = 0;
-		Statement stmt = null;
-		ResultSet rset = null;
-		
-		String query ="select to_number(extract(month from sysdate)) from dual";
-
-		
-		System.out.println("쿼리성공!");
-		try {
-			stmt = conn.createStatement();
-			
-			rset = stmt.executeQuery(query);
-			
-			if(rset.next()) {
-				paymentCheck = rset.getInt("to_number(extract(month from sysdate))");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(stmt);
-		}
-		return paymentCheck;
-	}
-
-	public Date paymentCheck1(Connection conn) {
-		Date payment = null;
-		Statement stmt = null;
-		ResultSet rset = null;
-		
-		String query ="  select schstartyear , schstartmonth , schstartdate " + 
-				"            from schedule " + 
-				"            where to_number(schstartmonth) < 7 and schname like '%학기%' and schname like '%등록%' and schstartyear = extract(year from sysdate) ";
-		
-		try {
-			stmt = conn.createStatement();
-			
-			rset = stmt.executeQuery(query);
-			
-			if(rset.next()) {
-				payment = rset.getDate("sysdate");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(stmt);
-		}
-		return payment;
-	}
-
-	public Date paymentCheck2(Connection conn) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/*
+	 * public int paymentCheck(Connection conn) { int paymentCheck = 0; Statement
+	 * stmt = null; ResultSet rset = null;
+	 * 
+	 * String query ="select to_number(extract(month from sysdate)) from dual";
+	 * 
+	 * 
+	 * System.out.println("쿼리성공!"); try { stmt = conn.createStatement();
+	 * 
+	 * rset = stmt.executeQuery(query);
+	 * 
+	 * if(rset.next()) { paymentCheck =
+	 * rset.getInt("to_number(extract(month from sysdate))"); } } catch (Exception
+	 * e) { e.printStackTrace(); }finally { close(stmt); } return paymentCheck; }
+	 * 
+	 * public Date paymentCheck1(Connection conn) { Date payment = null; Statement
+	 * stmt = null; ResultSet rset = null;
+	 * 
+	 * String query ="  select schstartyear , schstartmonth , schstartdate " +
+	 * "            from schedule " +
+	 * "            where to_number(schstartmonth) < 7 and schname like '%학기%' and schname like '%등록%' and schstartyear = extract(year from sysdate) "
+	 * ;
+	 * 
+	 * try { stmt = conn.createStatement();
+	 * 
+	 * rset = stmt.executeQuery(query);
+	 * 
+	 * if(rset.next()) { payment = rset.getDate("sysdate"); } } catch (Exception e)
+	 * { e.printStackTrace(); }finally { close(stmt); } return payment; }
+	 * 
+	 * public Date paymentCheck2(Connection conn) { // TODO Auto-generated method
+	 * stub return null; }
+	 */
 
 
 	
