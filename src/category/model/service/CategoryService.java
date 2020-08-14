@@ -29,7 +29,6 @@ public class CategoryService {
 			rollback(conn);
 		}
 		close(conn);
-		System.out.println("서비스의 result : " + result);
 		return result;
 	};
 	

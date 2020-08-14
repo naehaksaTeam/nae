@@ -86,9 +86,9 @@ public class CategoryDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}finally {
 		close(pstmt);
-		System.out.println("DAO의 result : " + result);
+		}
 		return result;
 	};
 }

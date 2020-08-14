@@ -18,7 +18,7 @@ public class AbsenceDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence order by requestid";
+		String query = "select * from absence order by requestdate desc";
 		
 		try {
 			stmt = conn.createStatement();
@@ -31,7 +31,8 @@ public class AbsenceDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-		close(stmt);
+			close(rset);
+			close(stmt);
 		}
 		return list;
 	};
@@ -54,7 +55,8 @@ public class AbsenceDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-		close(pstmt);
+			close(rset);
+			close(pstmt);
 		}
 		return absence;
 	};
@@ -65,7 +67,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence where id = ? order by requestid";
+		String query = "select * from absence where id = ?  order by requestdate desc";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -80,7 +82,8 @@ public class AbsenceDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-		close(pstmt);
+			close(rset);
+			close(pstmt);
 		}
 		return list;
 	};
@@ -221,7 +224,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence where appoval = ?";
+		String query = "select * from absence where appoval = ?  order by requestdate desc";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -235,8 +238,10 @@ public class AbsenceDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
-		close(pstmt);
 		return list;
 	}
 	
@@ -245,7 +250,7 @@ public class AbsenceDao {
 		ResultSet rset = null;
 		String approval = null;
 		
-		String query = "select approval from absence where requestid = ?";
+		String query = "select approval from absence where requestid = ? ";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -257,8 +262,10 @@ public class AbsenceDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
-		close(pstmt);
 		return approval;
 	}
 
@@ -267,7 +274,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence where substr(requestid,1,1) = ?";
+		String query = "select * from absence where substr(requestid,1,1) = ?  order by requestdate desc";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -282,7 +289,8 @@ public class AbsenceDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-		close(pstmt);
+			close(rset);
+			close(pstmt);
 		}
 		return list;
 	}
@@ -308,7 +316,6 @@ public class AbsenceDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println(date);
 		return date;
 	}
 }
