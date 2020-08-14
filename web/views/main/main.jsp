@@ -605,34 +605,30 @@ function calendar()
  <br>
  
   <div class="box">
-        <div class="d" style="padding-top: 50px; padding-left: 30px;">
-           <%if((!(m.getId().substring(0, 1).equals("P")) && !(m.getId().substring(0, 1).equals("A")))){ %>
+        <div class="d" style="padding-top: 30px; padding-left: 50px;" >
+          <h2 align="center";>최신 공지글</h2>
+         <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
+         <tr>
+            <th>제목</th><th>작성 날짜</th>
+            
+         </tr>
+         </table>
+  
+        </div>
+        <div class="e" style="padding-top: 50px; padding-left: 50px;">
+  			 <%if((!(m.getId().substring(0, 1).equals("P")) && !(m.getId().substring(0, 1).equals("A")))){ %>
             <table style="width:20; margin:auto; padding-top:10px;" id="mainScore" cellspacing="0">
               <h2 align="center";>나의 학점 현황</h2>
         
                <th>학기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th> 취득학점 </th>
          
-         </table>
-         <%}else{ %>
-         없음
-         <%} %>
+        	 </table>
+        	 <%}else{ %>
+        
+       		 <%} %>
         </div>
-        <div class="e" style="padding-top: 30px; ">
-              <h2 align="center";>최신 공지글</h2>
-         <section>
-         <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
-      
-   
-      
-         <tr>
-            <th>제목</th><th>작성 날짜</th>
-            
-         </tr>
-  
-         
-         </table>
-         </section>
-        </div>
+        
+        
         <div class="f" style="padding-top: 30px; padding-left: 50px;">
                <h2 align="center";>날씨</h2>
           
@@ -658,9 +654,6 @@ function calendar()
 
 
 
-
-=======
->>>>>>> 0b137335e730fd0402cba1d489f2b6be8f803e32:web/views/common/mainSample.jsp
 
 </div>
 

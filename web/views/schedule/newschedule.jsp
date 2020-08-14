@@ -206,7 +206,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>학사 일정</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -220,7 +220,7 @@ cursor: pointer;
 						
 					
 						
-						<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
+						<div class="two_columns_75_25 background_color_sidebar grid2 clearfix"> 
 							<div class="column1">
 																				<div class="column_inner">
 								
@@ -235,6 +235,7 @@ cursor: pointer;
 <p class="page_tt">관리 페이지</p>
 
 <table class="main_default">
+
   <tr>
   		<td colspan="4">전체 학사일정</td>
     </tr>
@@ -252,10 +253,11 @@ cursor: pointer;
 	<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/schdel?scheduleid=<%=s.getScheduleid() %>';">삭제</button>&nbsp;
 	</tr>
 <% } %>
-    </table>
+</table>
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
 <br>
+<table class="main_default">
  <div style="text-align:center;">
 <% if(currentPage <= 1){ %>
 	[맨처음]&nbsp;
@@ -321,7 +323,7 @@ cursor: pointer;
 </tr>
 </table>
 </form>
-
+</table>
 
 <!-- 버튼예시 
 <p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">버튼</a></strong></p>
@@ -396,7 +398,14 @@ cursor: pointer;
 -->
 
 <!-- ------------------------------------------ -->
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 </div> 
 	</div> </div></div></div></div></div>
@@ -405,10 +414,17 @@ cursor: pointer;
 																	
 									
 							</div>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
- <div class="column2">	
+<div class="column2">	
 <%@ include file = "/views/schedule/side.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
@@ -428,11 +444,11 @@ cursor: pointer;
 		</div>
 		</div></div>		</aside>
 	</div>-->
-</div> 
+</div>  
 <!-- 서브메뉴 끝 -->
 						</div>
 								
-		</div>
+	</div> 
         	</div>
 				
 	</div>
