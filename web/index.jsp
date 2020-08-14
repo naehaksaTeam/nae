@@ -21,6 +21,7 @@
 
 </form>
 <button onclick="javascript: location.href='/beet/views/student/findId.jsp'">아이디찾기</button>
+<button onclick="javascript: location.href='/beet/views/student/findPassword.jsp'">비밀번호찾기</button>
 <% }else{ %>
 <div>
 <%=m.getName() %> 님 로그인 상태입니다
