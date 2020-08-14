@@ -79,6 +79,7 @@ public class AdminDao {
 			result = pstmt.executeUpdate();
 			
 			System.out.println("result adao" + result);
+			System.out.println(admin + "수정성공" );
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
