@@ -416,9 +416,16 @@ $(function(){
 
 
 <body>
+<<<<<<< HEAD
 <button onclick="javascript:location.href='mainSample.jsp'">메인테스트</button>
 <button onclick="javascript:location.href='../common/sample5.jsp'">샘플5</button>
 <button onclick="javascript:location.href='../common/main2123.jsp'">메인ㅇ</button>
+=======
+<button onclick="javascript:location.href='../main/mainSample.jsp'">메인테스트</button>
+<button onclick="javascript:location.href='../common/contentSample.jsp'">컨텐츠샘플</button>
+<button onclick="javascript:location.href='../common/side.jsp'">사이드메뉴</button>
+<button onclick="javascript:location.href='../common/header.jsp'">헤더메뉴</button>
+>>>>>>> 0b137335e730fd0402cba1d489f2b6be8f803e32
 <button onclick="javascript:location.href='../common/sample3.jsp'">샘플페이지</button>
 <button onclick="javascript:location.href='../common/sample2.jsp'">샘플페이지</button>
 <h2>테스트 메뉴 버튼</h2>

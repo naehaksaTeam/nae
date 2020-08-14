@@ -540,26 +540,14 @@ function calendar()
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-
-
-
-
-
-
-
-						
-		
+	
 			<div class="wrapper">
 	<div class="wrapper_inner">
 <%@ include file = "/views/common/header.jsp" %>
 <a id="back_to_top" href="#" class="off">
 			
 		</a>
-	    	
-    
-	
 
-    
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 <!-- 메인페이지작성 -->
 
@@ -568,6 +556,7 @@ function calendar()
 
 
 
+<<<<<<< HEAD:web/views/main/mainSample.jsp
 <div id="outer">
 
 <br>
@@ -670,6 +659,8 @@ function calendar()
 
 
 
+=======
+>>>>>>> 0b137335e730fd0402cba1d489f2b6be8f803e32:web/views/common/mainSample.jsp
 
 </div>
 
