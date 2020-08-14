@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<%@ include file="../common/header.jsp"%>
 <!--  학부 학과 이름 등록금 장학금 납부액 납입시간 일주일인데 -8-->
 <!--  밑에 우와같이 납부하여 주시기 바랍니다. -->
 <!--  납입장소  -->
@@ -50,5 +50,6 @@
 		<% } %>
 	</table>
 	</div>
+	
 </body>
 </html>

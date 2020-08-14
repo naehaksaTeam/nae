@@ -624,7 +624,7 @@ function calendar()
  <br>
  
   <div class="box">
-        <div class="d" style="padding-top: 30px; padding-left: 10px;" >
+        <div class="d" style="padding-top: 30px; padding-left: 0px;" >
           <h2 align="center";>최신 공지글</h2>
          <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
          <tr>
