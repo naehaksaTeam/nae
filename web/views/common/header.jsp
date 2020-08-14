@@ -4,8 +4,6 @@
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
 <head>
-<html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
- <meta charset="UTF-8">
 	<!-- ★★★★★★★★title -->
 	<title> </title>
 
@@ -171,22 +169,7 @@ cursor: pointer;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="header-widget widget_text header-right-widget">
-                                                <div id="text-35">
-                                                    <div class="textwidget">
-                                                        <ul class="footer_sns">
-                                                            <li><a href="https://www.facebook.com/chauniversity/" target="_blank"></a>
-                                                            </li>
-                                                            <li><a href="https://www.instagram.com/chauniversity/
-" target="_blank"></a></li>
-                                                            <li><a href="https://blog.naver.com/chauniversity" target="_blank"></a>
-                                                            </li>
-                                                            <li><a href="https://www.youtube.com/c/chauniversity" target="_blank"></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                   
                                         </div>
                                     </div>
                                 </div>
@@ -253,9 +236,9 @@ cursor: pointer;
 
                                         </ul>
                                     </nav>
-                                    <nav class="mobile_menu">
+                                  <!--   <nav class="mobile_menu">
                                         <ul id="menu-new-main-menu-1" class="" style="display: none;">
-                                            <!--서브메뉴 두번써야해요 여기에도 써야해요 -->
+                                            서브메뉴 두번써야해요 여기에도 써야해요
                                             <li id="mobile-menu-item-58753" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active">
                                                 <a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><span>마이페이지</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span>
                                             </li>
@@ -286,7 +269,7 @@ cursor: pointer;
 
 
                                         </ul>
-                                    </nav>
+                                    </nav> -->
                                 </div>
                             </div>
                         </div>

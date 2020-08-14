@@ -47,13 +47,19 @@ function twosend(){
 <h1>출결 성적 등록</h1>
 <h3>학생용</h3>
 <div class="학생 조회용">
+<button onclick="javascript:location.href='../attendance/side.jsp'">메인</button>
 
 <form action="/beet/mylctr" method="post">
 <input type="hidden" name="userid" value="<%=m.getId() %>">
 <input type="submit" class="btn-sm" value="나의강의조회">
 <!-- 강의목록 join시 중복되는 문제 해결 필요 -->
  </form>
-
+<form action="/beet/myScore" method="post">
+<input type="hidden" name="userid" value="<%=m.getId() %>">
+<input type="submit" class="btn-sm" value="나의성적조회">
+<!-- 강의목록 join시 중복되는 문제 해결 필요 -->
+ </form>
+ 
 <form action="/beet/tosselect" method="post">
 <input type="hidden" name="userid" value="<%=m.getId() %>">
 <input type="submit" class="btn-sm" value="전체성적조회">
