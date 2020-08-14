@@ -17,7 +17,12 @@ function update(){
 	return true;
 }
 </script> 
+<%@ include file="/views/common/header.jsp" %> 
 
+</head>
+
+<body>
+<%@ include file="/views/common/side.jsp" %> 
 </head>
 <body>
 
@@ -49,7 +54,7 @@ function update(){
 </tr>
 <tr>
 	<th>작성자</th>
-	<td style="text-align: left;"><input type="text" name="adno" value="<%=schedule.getAdno() %>"></td>
+	<td style="text-align: left;"><input type="text" name="adno" value="<%=m1.getId() %>"></td>
 </tr>
 <tr>
 	<th>일정 내용</th>
