@@ -40,7 +40,7 @@ public class MajorStudentListServlet extends HttpServlet {
 		String id = request.getParameter("who");
 		
 		Major1 major1 = new MajorService().selectOneTuition(id);
-		Date payment = new MajorService().paymentCheck();
+		/* Date payment = new MajorService().paymentCheck(); */
 		String thisterm = new MajorService().termCheck();
 		Major2 major2 = new MajorService().selectOneValueAndBene(id);
 		

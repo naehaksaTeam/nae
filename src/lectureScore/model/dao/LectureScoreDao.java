@@ -160,6 +160,7 @@ public class LectureScoreDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
+			
 			close(pstmt);
 			close(conn);
 		}

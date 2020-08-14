@@ -35,7 +35,7 @@
 
 
 
-	<table align="center" width="500" border="1" cellspacing="0"
+	<table align="center" width="1000" border="5" cellspacing="0"
 		cellpadding="1">
 		<tr>
 			<th>번호</th>
@@ -103,6 +103,6 @@
 		<button onclick="javascript:history.go(-1);">뒤로</button>
 	</div>
 	<hr>
-	<%@include file="/views/common/footer.jsp"%>
+	
 </body>
 </html>
