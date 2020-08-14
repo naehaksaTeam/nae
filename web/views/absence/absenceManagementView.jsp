@@ -7,6 +7,11 @@
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- ★★★★★★★★title -->
 	<title> </title>
 
@@ -187,10 +192,10 @@ cursor: pointer;
 <p class="page_tt">휴학/복학 관리</p>
 
 <p style="text-align: center;"><strong><a class="down_default" href="/beet/selectaball" target="_blank">전 체 조 회</a></strong></p>
-<button onclick="javascript:location.href='/beet/selectaball'">전 체 조 회</button>
+<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaball'">전 체 조 회</button>
 <br>
-<button onclick="javascript:location.href='/beet/selectaba?value=a'">휴 학 조 회</button>
-<button onclick="javascript:location.href='/beet/selectaba?value=b'">복 학 조 회</button>
+<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaba?value=a'">휴 학 조 회</button>
+<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaba?value=b'">복 학 조 회</button>
 <br>
 
 <p>≫ 가로테이블 명</p>
@@ -199,9 +204,10 @@ cursor: pointer;
 <table class="main_default">
 <colgroup>
 <col style="width: 10%;">
-<col style="width: 20%;"> 
-<col style="width: 30%;"> 
-<col style="width: 40%;"> 
+<col style="width: 16%;"> 
+<col style="width: 22%;"> 
+<col style="width: 22%;"> 
+<col style="width: 10%;"> 
 </colgroup>
 <thead>
 <tr>
@@ -224,15 +230,30 @@ cursor: pointer;
 </tr>
 </tbody>
 </table>
-<input type="submit" value="승인하기" onclick="javascript: managerform.action='/beet/updateab'">
-<input type="submit" value="신청삭제(복구불가)" onclick="javascript: managerform.action='/beet/deleteabad'">
+<button class="btn btn-outline-secondary" type="submit" value="승인하기" onclick="javascript: managerform.action='/beet/updateab'"></button>
+<button class="btn btn-outline-secondary" type="submit" value="신청삭제(복구불가)" onclick="javascript: managerform.action='/beet/deleteabad'"></button>
 </form>
 <% } %>
 
 <% if(list != null){ %>
 <form method="post" name="managerform">
-<table id="select" class="tg">
-<tr><th style="font-weight: bold;">신청번호</th><th style="font-weight: bold;">학번</th><th style="font-weight: bold;">신청일</th><th style="font-weight: bold;">취소가능날짜</th><th style="font-weight: bold;">승인여부</th></tr>
+<table id="select" class="main_default">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 16%;"> 
+<col style="width: 22%;"> 
+<col style="width: 22%;"> 
+<col style="width: 10%;"> 
+</colgroup>
+<thead>
+<tr>
+<th>신청번호</th>
+<th> 학 번 </th>
+<th>신청날짜</th>
+<th>취소제한날짜</th>
+<th>승인여부</th>
+</tr>
+</thead>
 <% for(Absence ab : list){ %>
 <tr>
 	<td><input type="radio" name="requestid" value=<%=ab.getRequestid()%> readonly><%=ab.getRequestid()%></td>
@@ -243,8 +264,8 @@ cursor: pointer;
 <% } %>
 </tr>
 </table>
-<input type="submit" value="승인하기" onclick="javascript: managerform.action='/beet/updateab'">
-<input type="submit" value="신청삭제(복구불가)" onclick="javascript: managerform.action='/beet/deleteabad'">
+<button class="btn btn-outline-secondary" type="submit" value="승인하기" onclick="javascript: managerform.action='/beet/updateab'"></button>
+<button class="btn btn-outline-secondary" type="submit" value="신청삭제(복구불가)" onclick="javascript: managerform.action='/beet/deleteabad'"></button>
 </form>
 <% } %>
 

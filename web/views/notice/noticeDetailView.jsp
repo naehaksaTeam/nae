@@ -47,10 +47,10 @@
 			</td>
 		</tr>
 
-		<div style align="center" width="1000" border="1" cellspacing="2">
+		<tr>
 			<th>내 용</th>
 			<td><%=notice.getNoticeContent().replace("\n", " ")%></td>
-		</div>
+		<tr>
 
 	</table>
 
