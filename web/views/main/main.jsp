@@ -150,6 +150,7 @@ cursor: pointer;
 .box h2{
    align: center;
    font-size: 18px;
+   font-family: cursive;
 /*     line-height: 25px;
     margin: 0; */
     
@@ -206,6 +207,9 @@ cursor: pointer;
     background-size: cover
    
 }
+.d td{
+	text-align: left;"
+}
 
 .e #mainNotice{
    
@@ -220,7 +224,7 @@ cursor: pointer;
 .e{
     border: 2px solid #dfe4ea;
     flex:1;
-    margin: 0px 7%;
+    margin: 0px 6%;
      width:30%;
     box-sizing: border-box;
     background-image: url("/beet/resources/images/a.jpg");
@@ -357,7 +361,7 @@ $(function(){
             values += "<tr><td><a href='/beet/ndetail?noticeno=" + json.list[i].no + "'>" 
             + decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
             + "</a></td><td>"+ json.list[i].date + "</td></tr>";
-         } 
+         }  
          
          
          $("#mainNotice").html($("#mainNotice").html() + values); //html을 적용해야 태그를 적용할 수 있다.
@@ -394,7 +398,7 @@ $(function(){
          var values = "";
          for(var i in json.list){
             values += "<tr><td>"+ json.list[i].SEMESTER
-            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>" + json.list[i].TERMGETPOINT + "</td></tr>";
+            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>" + json.list[i].TERMGETPOINT + "</td></tr>";
             
          } 
          
@@ -606,11 +610,11 @@ function calendar()
          </script>
         </div>
         
-        <div class="c" style="padding-top: 30px; padding-left: 50px;">
+        <div class="c" style="padding-top: 30px; padding-left: 0px;">
          <table style="width:20; margin:auto; padding-top:10px;" id="mainSchedule" cellspacing="0">
         <h2 align="center";> <%=month %>월 학사일정</h2>
          <tr>
-            <th>일</th><th> 일정 </th>
+            <th style="color: #4682B4">일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th><th style="color: #4682B4"> 일정 </th>
          </tr>
          
          </table>
@@ -620,22 +624,22 @@ function calendar()
  <br>
  
   <div class="box">
-        <div class="d" style="padding-top: 30px; padding-left: 50px;" >
+        <div class="d" style="padding-top: 30px; padding-left: 10px;" >
           <h2 align="center";>최신 공지글</h2>
          <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
          <tr>
-            <th>제목</th><th>작성 날짜</th>
+            <th style="color: #4682B4; text-align: left;">제목</th><th style="color: #4682B4">작성 날짜</th>
             
          </tr>
          </table>
   
         </div>
-        <div class="e" style="padding-top: 50px; padding-left: 50px;">
+        <div class="e" style="padding-top: 30px; padding-left: 0px;">
   			 <%if((!(m.getId().substring(0, 1).equals("P")) && !(m.getId().substring(0, 1).equals("A")))){ %>
             <table style="width:20; margin:auto; padding-top:10px;" id="mainScore" cellspacing="0">
               <h2 align="center";>나의 학점 현황</h2>
         
-               <th>학기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th> 취득학점 </th>
+               <th style="color: #4682B4; text-align: left;">학기&nbsp;&nbsp;</th><th style="color: #4682B4"> 취득학점 </th>
          
         	 </table>
         	 <%}else{ %>
@@ -644,7 +648,7 @@ function calendar()
         </div>
         
         
-        <div class="f" style="padding-top: 30px; padding-left: 50px;">
+        <div class="f" style="padding-top: 30px; padding-left: 0px;">
                <h2 align="center";>날씨</h2>
           
       
