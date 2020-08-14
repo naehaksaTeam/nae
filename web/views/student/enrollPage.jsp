@@ -28,44 +28,12 @@ if(request.getAttribute("saved") != null){
 }
 %>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>test1</title>
-<style type="text/css">
-table#outer { border : 2px solid navy;  }
-</style>
-<script>
-function validate(){
-//유효성 검사 코드 작성함
-//서버 컨트롤러로 전송할 값들이 요구한 조건을 모두 만족하였는지 검사함
+<html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
+ <meta charset="UTF-8">
+	<!-- ★★★★★★★★title -->
+	<title> </title>
 
-//암호와 암호 확인이 일치하지 않는지 확인함
-	var pwdValue = document.getElementById("userpwd").value;
-	var pwdValue2 = document.getElementById("userpwd2").value;
-	
-	if(pwdValue !== pwdValue2){
-		alert("암호와 암호 확인의 값이 일치하지 않습니다.");
-		document.getElementById("userpwd").select();
-		return false;  //전송 취소함
-	}
-
-	return true;  //전송함
-}
-	 
-function check1() { //중복체크
-	 var frm = document.joinscreen;
-
-	 if (frm.id.value.length < 3) {
-		  alert("아이디는 3자 이상 입력해주세요");
-	 } else {
-	  window.open("./joinid.jsp?id=" + frm.id.value, "","width=10px,height=10px");
-	 }
-}	  
-</script>
-</head>
-
-<style>
+<!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 
 
 <div class="fit-vids-style" id="fit-vids-style" style="display: none;">&shy;<style>                 .fluid-width-video-wrapper {                   width: 100%;                                position: relative;                         padding: 0;                      					 min-height: 1px;                         }                                                                                       .fluid-width-video-wrapper iframe,          .fluid-width-video-wrapper object,          .fluid-width-video-wrapper embed {             position: absolute;                         top: 0;                                     left: 0;                                    width: 100%;                                height: 100%;                            }                                         </style></div><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://www.cha.ac.kr/wp-includes/js/wp-emoji-release.min.js?ver=4.7.18" type="text/javascript" defer=""></script></head><body data-rsssl="1" class="page-template-default page page-id-980 page-child parent-pageid-1429  qode_grid_1300 side_menu_slide_with_content width_370 footer_responsive_adv qode-child-theme-ver-1.0.0 qode-theme-ver-11.1 qode-theme-bridge wpb-js-composer js-comp-ver-5.1.1 vc_responsive" itemscope="" itemtype="http://schema.org/WebPage" style="height: auto; overflow: auto;">
@@ -93,6 +61,11 @@ function check1() { //중복체크
 			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.cha.ac.kr\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.18"}};
 			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
 		</script>
+<style type="text/css">
+table#outer { border : 2px solid navy;  }
+</style>
+
+<script>
 		<style type="text/css">
 img.wp-smiley,
 img.emoji {
@@ -140,6 +113,33 @@ img.emoji {
 /* <![CDATA[ */
 var LS_Meta = {"v":"6.5.1"};
 /* ]]> */
+ */
+ function validate(){
+	//유효성 검사 코드 작성함
+	//서버 컨트롤러로 전송할 값들이 요구한 조건을 모두 만족하였는지 검사함
+
+	//암호와 암호 확인이 일치하지 않는지 확인함
+		var pwdValue = document.getElementById("userpwd").value;
+		var pwdValue2 = document.getElementById("userpwd2").value;
+		
+		if(pwdValue !== pwdValue2){
+			alert("암호와 암호 확인의 값이 일치하지 않습니다.");
+			document.getElementById("userpwd").select();
+			return false;  //전송 취소함
+		}
+
+		return true;  //전송함
+	}
+		 
+	function check1() { //중복체크
+		 var frm = document.joinscreen;
+
+		 if (frm.id.value.length < 3) {
+			  alert("아이디는 3자 이상 입력해주세요");
+		 } else {
+		  window.open("./joinid.jsp?id=" + frm.id.value, "","width=10px,height=10px");
+		 }
+	}	
 </script>
 <script type="text/javascript" data-cfasync="false" src="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/js/greensock.js?ver=1.19.0"></script>
 <script type="text/javascript" data-cfasync="false" src="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/js/layerslider.kreaturamedia.jquery.js?ver=6.5.1"></script>
@@ -212,7 +212,11 @@ cursor: pointer;
 					<div class="container">
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
-                                                                					
+                                                                									<div class="title_subtitle_holder_inner">
+																										<h1><span>강의 h1이름자리</span></h1>
+
+																										</div>
+								                                                            </div>
 						</div>
 					</div>
 				</div>
@@ -230,14 +234,13 @@ cursor: pointer;
 								<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;"><div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element ">
 		<div class="wpb_wrapper">
-
-</style>
-<body>
-<center><%= who %>
+		
+<!-- --------------------------------------------------------------------------- -->		
+<%= who %>
 <center>
 <h1 align="center">회원 가입 페이지</h1>
 <br>
-<form method="post" action="/beet/minsert.cp" onsubmit="return validate();">
+<form method="post" action="/minsert.cp" onsubmit="return validate();">
 
 <% if(who.equals("admin")){ %>
 <table id="outer" align="center" width="500" cellspacing="5" cellpadding="0">
@@ -455,7 +458,7 @@ cursor: pointer;
 <tr class="">
 	<th colspan="2">
 		<input type="submit"> &nbsp; 
-		<button onclick="javascript:location.href='/beet/index.jsp'">작성취소</button> 
+		<button onclick="javascript:location.href='/index.jsp'">작성취소</button> 
 	</th>	
 </tr>
 </table>
@@ -473,7 +476,406 @@ cursor: pointer;
 <% } %>
 </b>
 
-</center>
-</center>
-</body>
-</html>
+</center>		
+      <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
+
+<p class="page_tt">컬럼명여따쓰세요</p>
+
+<table class="main_default">
+  <tr>
+    <td>테스트</td>
+    </tr>
+    </table>
+<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
+
+
+
+
+<!-- 버튼예시 
+<p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">버튼</a></strong></p>
+<p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">글자에 맞춰 버튼크기변경</a></strong></p>
+<p style="text-align: center;display: flex;justify-content: center;"><strong><a class="down_default" href="#" target="_blank">버튼여러개는</a>&nbsp;&nbsp;&nbsp;<a class="down_default" href="#" target="_blank">p태그안에</a></strong></p>
+-->
+
+<!-- 본문작성예시 
+<p>&nbsp;</p>
+<p><strong>글쓰기</strong><br>
+≫ 글내용을 여기에 써보세요<br>
+≫ 그냥 글 써보는중 <br>
+≫ 게시판에 대한 설명이 필요하면 여기에 쓰세요<br></p>-->
+
+<!-- 가로테이블예시 
+<p>≫ 가로테이블 명</p>
+<table class="main_default">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 20%;"> 
+<col style="width: 30%;"> 
+<col style="width: 40%;"> 
+</colgroup>
+<thead>
+<tr>
+<th>컬럼명1</th>
+<th>컬럼명2</th>
+<th>컬럼명3</th>
+<th>컬럼명4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>td 1</td>
+<td>td 2</td>
+<td>td 3</td>
+<td>td 4</td>
+</tr>
+<tr>
+<td>td 5</td>
+<td>td 6</td>
+<td>td 7</td>
+<td>td 8</td>
+</tr>
+</tbody>
+</table>-->
+
+
+<!-- 세로테이블예시 
+<p> ≫ 세로테이블명</p>
+<table class="main_default">
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 85%;"> </colgroup>
+<thead>
+<tr>
+<th>컬럼1</th>
+<th>컬럼2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>서브컬럼1</th>
+<td>서브1값</td>
+</tr>
+<tr>
+<th>서브컬럼2</th>
+<td>서브2값</td>
+</tr>
+</tbody>
+</table>
+-->
+
+<!-- ------------------------------------------ -->
+
+
+</div> 
+	</div> </div></div></div></div></div>
+																 
+								</div>
+																	
+									
+							</div>
+
+<!-- 서브메뉴★★★ 여기에 써주세요 -->
+<!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
+<div class="column2">	
+<%@ include file = "/views/common/side.jsp" %>
+<!-- <div class="column_inner">
+<aside class="sidebar">
+							
+		<div class="widget "><div id="dc_jqaccordion_widget-8">		
+		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
+
+<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
+  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
+  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
+  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
+  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
+  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
+</ul>		
+
+
+		</div>
+		</div></div>		</aside>
+	</div>-->
+</div> 
+<!-- 서브메뉴 끝 -->
+						</div>
+								
+		</div>
+        	</div>
+				
+	</div>
+</div>
+
+
+
+	<footer>
+		<div class="footer_inner clearfix">
+				<div class="footer_top_holder">
+            			
+					</div>
+							<div class="footer_bottom_holder">
+                								<div class="container">
+					<div class="container_inner">
+									<div class="footer_bottom">
+				<div id="text-27">			<div class="textwidget">
+				<div>NAEHAKSA ©202008 KH Information Educational Semi Project 6DDUKE </div></div>
+		</div>			</div>
+									</div>
+			</div>
+						</div>
+				</div>
+	</footer>
+		
+</div>
+</div>
+<div id="text-13" class="widget-container widget_text">			<div class="textwidget"></div>
+		</div><style type="text/css">
+    p {
+        margin: 0 0 1em;
+    }
+
+</style>
+			<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-4-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-4',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-5-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: false,
+						cookie: 'dc_jqaccordion_widget-5',
+						speed: 'slow'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-6-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-6',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-7-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-7',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-8-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: false,
+						autoClose: true,
+						saveState: false,
+						autoExpand: true,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-8',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-9-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: true,
+						autoClose: true,
+						saveState: false,
+						autoExpand: false,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-9',
+						speed: 'normal'
+					});
+				});
+			</script>
+		
+						<script type="text/javascript">
+				jQuery(document).ready(function($) {
+					jQuery('#dc_jqaccordion_widget-10-item .menu').dcAccordion({
+						eventType: 'click',
+						hoverDelay: 0,
+						menuClose: true,
+						autoClose: true,
+						saveState: false,
+						autoExpand: false,
+						classExpand: 'current-menu-item',
+						classDisable: '',
+						showCount: false,
+						disableLink: true,
+						cookie: 'dc_jqaccordion_widget-10',
+						speed: 'slow'
+					});
+				});
+			</script>
+		
+			<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/jquery.form.min.js?ver=3.37.0"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var qodeLike = {"ajaxurl":"https:\/\/www.cha.ac.kr\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/qode-like.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/core.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/widget.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/accordion.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/position.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/menu.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/wp-a11y.min.js?ver=4.7.18"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var uiAutocompleteL10n = {"noResults":"\uacb0\uacfc \uc5c6\uc74c.","oneResult":"1\uacb0\uacfc \ucc3e\uc74c. \uc704\uc544\ub798\ub85c \uc774\ub3d9\ud558\ub824\uba74 \ud654\uc0b4\ud45c \ud0a4\ub97c \uc0ac\uc6a9\ud558\uc138\uc694.","manyResults":"%d \uacb0\uacfc \ucc3e\uc74c. \uc704 \uc544\ub798\ub85c \uc774\ub3d9\ud558\ub824\uba74 \ud654\uc0b4\ud45c \ud0a4\ub97c \uc0ac\uc6a9\ud558\uc138\uc694.","itemSelected":"\uc544\uc774\ud15c \uc120\ud0dd\ub428."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/autocomplete.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/button.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/datepicker.min.js?ver=1.11.4"></script>
+<script type="text/javascript">
+jQuery(document).ready(function(jQuery){jQuery.datepicker.setDefaults({"closeText":"\ub2eb\uae30","currentText":"\uc624\ub298","monthNames":["1\uc6d4","2\uc6d4","3\uc6d4","4\uc6d4","5\uc6d4","6\uc6d4","7\uc6d4","8\uc6d4","9\uc6d4","10\uc6d4","11\uc6d4","12\uc6d4"],"monthNamesShort":["1\uc6d4","2\uc6d4","3\uc6d4","4\uc6d4","5\uc6d4","6\uc6d4","7\uc6d4","8\uc6d4","9\uc6d4","10\uc6d4","11\uc6d4","12\uc6d4"],"nextText":"\ub2e4\uc74c","prevText":"\uc774\uc804","dayNames":["\uc77c\uc694\uc77c","\uc6d4\uc694\uc77c","\ud654\uc694\uc77c","\uc218\uc694\uc77c","\ubaa9\uc694\uc77c","\uae08\uc694\uc77c","\ud1a0\uc694\uc77c"],"dayNamesShort":["\uc77c","\uc6d4","\ud654","\uc218","\ubaa9","\uae08","\ud1a0"],"dayNamesMin":["\uc77c","\uc6d4","\ud654","\uc218","\ubaa9","\uae08","\ud1a0"],"dateFormat":"yy\ub144 MM d\uc77c","firstDay":0,"isRTL":false});});
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/mouse.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/resizable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/draggable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/dialog.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/droppable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/progressbar.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/selectable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/sortable.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/slider.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/spinner.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/tooltip.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/tabs.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-blind.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-bounce.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-clip.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-drop.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-explode.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-fade.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-fold.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-highlight.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-pulsate.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-size.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-scale.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-shake.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-slide.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/jquery/ui/effect-transfer.min.js?ver=1.11.4"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/plugins.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.carouFredSel-6.2.1.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/lemmon-slider.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.fullPage.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.mousewheel.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.touchSwipe.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/js_composer/assets/lib/bower/isotope/dist/isotope.pkgd.min.js?ver=5.1.1"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/jquery.stretch.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/default_dynamic.js?ver=1579137436"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var QodeAdminAjax = {"ajaxurl":"https:\/\/www.cha.ac.kr\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/default.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge/js/custom_js.js?ver=1579137436"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/comment-reply.min.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/js_composer/assets/js/dist/js_composer_front.min.js?ver=5.1.1"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/custom.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/waypoint.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/jquery.hoverdir.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/modernizr.custom.97074.js?ver=4.7.18"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/tween.js"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/greensock-js/minified/TweenMax.min.js"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/greensock-js/minified/TimelineMax.min.js?ver=20161110"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/menu.min.js?ver=20161110"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/scrollmagic/minified/ScrollMagic.min.js?ver=20161110"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/scrollmagic/minified/plugins/debug.addIndicators.min.js?ver=20161110"></script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/themes/bridge-child/assets/js/scrollmagic/minified/plugins/animation.gsap.min.js?ver=20161110"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var kboard_settings = {"version":"5.3.3","home_url":"\/","site_url":"\/","post_url":"https:\/\/www.cha.ac.kr\/wp-admin\/admin-post.php","alax_url":"https:\/\/www.cha.ac.kr\/wp-admin\/admin-ajax.php","plugin_url":"https:\/\/www.cha.ac.kr\/wp-content\/plugins\/kboard","media_group":"5f349dea5008a","ajax_security":"b5fe8b3aaf"};
+var kboard_localize_strings = {"kboard_add_media":"KBoard \ubbf8\ub514\uc5b4 \ucd94\uac00","next":"\ub2e4\uc74c","prev":"\uc774\uc804","please_enter_the_title":"\uc81c\ubaa9\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_author":"\uc791\uc131\uc790\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_password":"\ube44\ubc00\ubc88\ud638\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_CAPTCHA":"\uc606\uc5d0 \ubcf4\uc774\ub294 \ubcf4\uc548\ucf54\ub4dc\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_name":"\uc774\ub984\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_email":"\uc774\uba54\uc77c\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","you_have_already_voted":"\uc774\ubbf8 \ud22c\ud45c\ud588\uc2b5\ub2c8\ub2e4.","please_wait":"\uc7a0\uc2dc\ub9cc \uae30\ub2e4\ub824\uc8fc\uc138\uc694.","newest":"\ucd5c\uc2e0\uc21c","best":"\ucd94\ucc9c\uc21c","updated":"\uc5c5\ub370\uc774\ud2b8\uc21c","viewed":"\uc870\ud68c\uc21c","yes":"\uc608","no":"\uc544\ub2c8\uc694","did_it_help":"\ub3c4\uc6c0\uc774 \ub418\uc5c8\ub098\uc694?","hashtag":"\ud574\uc2dc\ud0dc\uadf8","tag":"\ud0dc\uadf8","add_a_tag":"\ud0dc\uadf8 \ucd94\uac00","removing_tag":"\ud0dc\uadf8 \uc0ad\uc81c","changes_you_made_may_not_be_saved":"\ubcc0\uacbd\uc0ac\ud56d\uc774 \uc800\uc7a5\ub418\uc9c0 \uc54a\uc744 \uc218 \uc788\uc2b5\ub2c8\ub2e4.","email":"\uc774\uba54\uc77c","address":"\uc8fc\uc18c","postcode":"\uc6b0\ud3b8\ubc88\ud638","phone_number":"\ud734\ub300\ud3f0\ubc88\ud638","mobile_phone":"\ud734\ub300\ud3f0\ubc88\ud638","phone":"\ud734\ub300\ud3f0\ubc88\ud638","company_name":"\ud68c\uc0ac\uba85","vat_number":"\uc0ac\uc5c5\uc790\ub4f1\ub85d\ubc88\ud638","bank_account":"\uc740\ud589\uacc4\uc88c","name_of_deposit":"\uc785\uae08\uc790\uba85","find":"\ucc3e\uae30","rate":"\ub4f1\uae09","ratings":"\ub4f1\uae09","waiting":"\ub300\uae30","complete":"\uc644\ub8cc","question":"\uc9c8\ubb38","answer":"\ub2f5\ubcc0","notify_me_of_new_comments_via_email":"\uc774\uba54\uc77c\ub85c \uc0c8\ub85c\uc6b4 \ub313\uae00 \uc54c\ub9bc \ubc1b\uae30","ask_question":"\uc9c8\ubb38\ud558\uae30","categories":"\uce74\ud14c\uace0\ub9ac","pages":"\ud398\uc774\uc9c0","all_products":"\uc804\uccb4\uc0c1\ud488","your_orders":"\uc8fc\ubb38\uc870\ud68c","your_sales":"\ud310\ub9e4\uc870\ud68c","my_orders":"\uc8fc\ubb38\uc870\ud68c","my_sales":"\ud310\ub9e4\uc870\ud68c","new_product":"\uc0c1\ud488\ub4f1\ub85d","edit_product":"\uc0c1\ud488\uc218\uc815","delete_product":"\uc0c1\ud488\uc0ad\uc81c","seller":"\ud310\ub9e4\uc790","period":"\uae30\uac04","period_of_use":"\uc0ac\uc6a9\uae30\uac04","last_updated":"\uc5c5\ub370\uc774\ud2b8 \ub0a0\uc9dc","list_price":"\uc815\uc0c1\uac00\uaca9","price":"\ud310\ub9e4\uac00\uaca9","total_price":"\ucd1d \uac00\uaca9","amount":"\uacb0\uc81c\uae08\uc561","quantity":"\uc218\ub7c9","use_points":"\ud3ec\uc778\ud2b8 \uc0ac\uc6a9","my_points":"\ub0b4 \ud3ec\uc778\ud2b8","available_points":"\uc0ac\uc6a9 \uac00\ub2a5 \ud3ec\uc778\ud2b8","apply_points":"\uc801\uc6a9\ub41c \ud3ec\uc778\ud2b8","buy_it_now":"\uad6c\ub9e4\ud558\uae30","sold_out":"\ud488\uc808","for_free":"\ubb34\ub8cc","pay_s":"%s \uacb0\uc81c","payment_method":"\uacb0\uc81c\uc218\ub2e8","credit_card":"\uc2e0\uc6a9\uce74\ub4dc","make_a_deposit":"\ubb34\ud1b5\uc7a5\uc785\uae08","reward_point":"\uc801\ub9bd \ud3ec\uc778\ud2b8","download_expiry":"\ub2e4\uc6b4\ub85c\ub4dc \uae30\uac04","checkout":"\uc8fc\ubb38\uc815\ubcf4\ud655\uc778","buyer_information":"\uc8fc\ubb38\uc790","applying_cash_receipts":"\ud604\uae08\uc601\uc218\uc99d \uc2e0\uccad","privacy_policy":"\uac1c\uc778 \uc815\ubcf4 \uc815\ucc45","i_agree_to_the_privacy_policy":"\uac1c\uc778 \uc815\ubcf4 \uc815\ucc45\uc5d0 \ub3d9\uc758\ud569\ub2c8\ub2e4.","i_confirm_the_terms_of_the_transaction_and_agree_to_the_payment_process.":"\uac70\ub798\uc870\uac74\uc744 \ud655\uc778\ud588\uc73c\uba70 \uacb0\uc81c\uc9c4\ud589\uc5d0 \ub3d9\uc758\ud569\ub2c8\ub2e4."};
+var kboard_comments_localize_strings = {"reply":"\ub2f5\uae00","cancel":"\ucde8\uc18c","please_enter_the_author":"\uc791\uc131\uc790\uba85\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_password":"\ube44\ubc00\ubc88\ud638\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_CAPTCHA":"\ubcf4\uc548\ucf54\ub4dc\ub97c \uc785\ub825\ud574\uc8fc\uc138\uc694.","please_enter_the_content":"\ub0b4\uc6a9\uc744 \uc785\ub825\ud574\uc8fc\uc138\uc694.","are_you_sure_you_want_to_delete":"\uc0ad\uc81c \ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c?","please_wait":"\uc7a0\uc2dc\ub9cc \uae30\ub2e4\ub824\uc8fc\uc138\uc694.","email":"\uc774\uba54\uc77c","address":"\uc8fc\uc18c","postcode":"\uc6b0\ud3b8\ubc88\ud638","phone_number":"\uc5f0\ub77d\ucc98","find":"\ucc3e\uae30","rate":"\ub4f1\uae09","ratings":"\ub4f1\uae09","waiting":"\ub300\uae30","complete":"\uc644\ub8cc","question":"\uc9c8\ubb38","answer":"\ub2f5\ubcc0","notify_me_of_new_comments_via_email":"\uc774\uba54\uc77c\ub85c \uc0c8\ub85c\uc6b4 \ub313\uae00 \uc54c\ub9bc \ubc1b\uae30"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="https://www.cha.ac.kr/wp-content/plugins/kboard/template/js/script.js?ver=5.3.3"></script>
+<!-- We need this for debugging themes using Speed Booster Pack Plugin v3.5 -->
+
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-104925667-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-104925667-1');
+</script>
+
+<!-- Naver Analytics -->
+<script type="text/javascript" src="https://wcs.naver.net/wcslog.js"></script>
+<script type="text/javascript">
+if(!wcs_add) var wcs_add = {};
+wcs_add["wa"] = "4ee24a9a806764";
+wcs_do();
+</script>
+
+
+<div id="wp-a11y-speak-polite" aria-live="polite" aria-relevant="additions text" aria-atomic="true" class="screen-reader-text wp-a11y-speak-region"></div><div id="wp-a11y-speak-assertive" aria-live="assertive" aria-relevant="additions text" aria-atomic="true" class="screen-reader-text wp-a11y-speak-region"></div></body></html></html>
