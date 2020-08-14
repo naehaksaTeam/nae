@@ -169,7 +169,9 @@ java.util.Date, java.text.SimpleDateFormat"%>
 			});
 
 		}
-		
+
+	
+			
 	/* 	$(function() {
 		    $('#field').click(function() {
 		        localStorage.setItem('savelist', this.value);
@@ -181,9 +183,7 @@ java.util.Date, java.text.SimpleDateFormat"%>
 		}); 
 		 */
 		
-	</script>
-	
-
+			</script>
 
 
 </body>

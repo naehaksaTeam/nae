@@ -20,7 +20,6 @@
   <li id="menu-item-9101" class="menu001-9101">
   <form action="/beet/mylctr" method="post">
 <input type="hidden" name="userid" value="<%=((Member)session.getAttribute("loginMember")).getId() %>">
-<input type="submit" class="btn-sm" value="나의강의조회">
 <!-- 강의목록 join시 중복되는 문제 해결 필요 -->
  </form>
 </li>

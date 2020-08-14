@@ -13,6 +13,7 @@ java.util.Date, java.text.SimpleDateFormat"%>
 	}
 	Iterator<String> it = set.iterator();
 	
+	
 	SimpleDateFormat sdf = new SimpleDateFormat("E");
 	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 	Date today = new Date();
@@ -225,42 +226,132 @@ cursor: pointer;
 ≫ 게시판에 대한 설명이 필요하면 여기에 쓰세요<br></p>-->
 
 
-<p>≫ 가로테이블 명</p>
+<p>≫ 오늘의 강의</p>
 <table class="main_default">
+
 <tbody>
 <% for (Atndn a : list) {
-	if (a.getLtime().equals("월") && a.getSemester().equals("202001")) {
+	if (a.getLtime().equals("수") && a.getSemester().equals("202001")) {
 		%>
-<tr>
-	<td class="title" colspan="4"><%=a.getLname()%></td>
-	<td rowspan="3">
-	<button class=button>강의실로 이동</button>
-	</td>
-</tr>
 <colgroup>
-<col style="width: 10%;">
-<col style="width: 20%;"> 
-<col style="width: 30%;"> 
-<col style="width: 40%;"> 
+  <col width="40%" />
+ <col width="20%" />
+ <col width="20%" />
+  <col width="10%" />
 </colgroup>
 <tr>
-	<td><%=a.getLcode()%></td>
-	<td><%=a.getCategory()%></td>
-	<td><%=a.getLtime()%></td>
-	<td><%=a.getCapacity()%>명</td>
+	<td colspan="3" style="width=70%;"><%=a.getLname()%></td>
+	<td style="width=30%"><button class=button>강의실로 이동</button></td>
+</tr>
+
+<tr>
+	<td ><%=a.getLcode()%></td>
+	<td ><%=a.getCategory()%></td>
+	<td ><%=a.getLtime()%></td>
+	<td ><%=a.getCapacity()%>명</td>
 </tr>
 <tr>
 	<td colspan="3" style="color: green;"><progress id="prog"
 		value="<%=diffWeeks%>" max="100"></td>
-	<td id="progress">진도율: <%=diffWeeks%>%
+	<td id="progress" style="width:100%">진도율: <%=diffWeeks%>%
 	</td>
 </tr>
-	<%
-			}}
-		%>
+	<% }}%>
 </tbody>
 </table>
+<br>
+<br>
 
+<p>≫ 나의 강의목록</p>
+<table class="main_default" cellpadding="10px">
+		<tr>
+			<form action="/beet/mylctrSeme" method="post">
+			<input type="hidden" name="userid" value="<%=loginmember.getId()%>"> 
+			<input type="hidden" name="semester" value=""> 
+			<select id="field" onchange="javascript:selectfield(this);" style="width: 80px">
+				<%
+					while (it.hasNext()) {
+				%>
+				<option><%=it.next()%></option>
+				<% 
+					}
+				%>
+
+			</select>
+			</form>
+		</tr>
+		<tr>
+			<th>과목번호</th>
+			<th>이수구분</th>
+			<th>과목명</th>
+			<th>강의시간</th>
+			<th>학점</th>
+			<th>수강인원</th>
+			<th>담당교수</th>
+			<th>출결</th>
+
+		</tr>
+		<%
+			for (Atndn a : list) {
+		%>
+		<tr>
+
+			<td><%=a.getLcode()%></td>
+			<td><%=a.getCategory()%></td>
+			<td><%=a.getLname()%></td>
+			<td><%=a.getLtime()%></td>
+			<td><%=a.getLpoint()%></td>
+			<td><%=a.getCapacity()%></td>
+			<td><%=a.getPname()%></td>
+			<td>
+				<form id="hi" action="/beet/atnlist" method="post">
+					<input class="down_default" type="hidden" name="userid" value="<%=loginmember.getId()%>"> 
+						<input type="hidden" name="lcode" value="<%=a.getLcode()%>"> 
+						<input type="submit" style="    display: inline-block;
+    padding: 5px 10px;
+    color: #555 !important;
+    background: #FFBA15;
+    transition: all 200ms; " class="btn-sm" value="출결조회">
+    
+    
+				</form>
+			</td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+
+
+	<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+	jQuery( '#hi' ).click( function() {
+		  alert("hi");
+		} );
+
+		function selectfield(obj) {
+			jQuery('input[name=semester]').attr('value', obj.value);
+			
+			jQuery("#field").click(function() {
+			     this.form.submit();
+			});
+
+		}
+
+	
+			
+	/* 	$(function() {
+		    $('#field').click(function() {
+		        localStorage.setItem('savelist', this.value);
+		    });
+		    
+		   if(localStorage.getItem('savelist')){
+		    	 $('#field').val(localStorage.getItem('todoData'));
+		    }
+		}); 
+		 */
+		
+</script>
 
 <!-- 세로테이블예시 
 <p> ≫ 세로테이블명</p>
@@ -301,7 +392,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<%@ include file = "/views/common/side.jsp" %>
+<%@ include file = "/views/attendance/side.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							
