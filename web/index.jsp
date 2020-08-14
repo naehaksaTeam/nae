@@ -17,12 +17,16 @@
 아이디:<input type="text" name="userid">
 비밀번호:<input type="password" name="userpwd">
 <br><button type="submit" value="로그인">로그인</button>
+
+
 </form>
+<button onclick="javascript: location.href='/beet/views/student/findId.jsp'">아이디찾기</button>
 <% }else{ %>
 <div>
 <%=m.getName() %> 님 로그인 상태입니다
 <br>
 <button onclick="javascript: location.href='/beet/views/main/main.jsp'">메인페이지</button>
+
 </div>
 <% } %>
 </body>
