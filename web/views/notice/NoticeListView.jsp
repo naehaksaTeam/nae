@@ -199,6 +199,6 @@
 		<button onclick="javascript:history.go(-1);">뒤로</button>
 	</div>
 	<hr>
-	<%@include file="/views/common/footer.jsp"%>
+	
 </body>
 </html>
