@@ -1,10 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="student.model.vo.Member, absence.model.vo.Absence, java.util.ArrayList" %>  
-<%
-	ArrayList<Absence> list = (ArrayList<Absence>)request.getAttribute("list");
-	Member membermm = (Member)session.getAttribute("loginMember");
-%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
@@ -159,7 +154,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>휴학/복학 신청 및 조회</span></h1>
+																										<h1><span>강의 h1이름자리</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -185,126 +180,18 @@ cursor: pointer;
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">휴학/복학 신청 및 조회</p>
+<p class="page_tt">컬럼명여따쓰세요</p>
 
+<table class="main_default">
+  <tr>
+    <td>테스트</td>
+    </tr>
+    </table>
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
-<h1>TEST BUTTON</h1>
-<button onclick="javascript:location.href='/beet/selectaball'">[관리자] ABSENCE 휴학/복학 </button>
-<button onclick="javascript:location.href='/beet/selectca'">[관리자] CATEGORY VIEW 카테고리관리</button>
-<button onclick="javascript:location.href='/beet/selectbenest?studentid<%=membermm.getId() %>'">[학 생] SCHOLARSHIP 장학조회 </button>
-<button onclick="javascript:location.href='/beet/selectss'">[관리자] SCHOLARSHIP 장학관리</button>
-<button onclick="javascript:location.href='/beet/selectbeneall'">[관리자] SSBENEFIT 장학금수혜학생관리</button>
-
-<br><br>
-<hr>
-<br><br>
-
-
-<h2 align="center"><%=membermm.getName() %> 님의 신청내역 조회</h1>
-<br>
-<form method="post" name="requestform">
-<% if(list == null){ %>
-	
-	<table class="main_default">
-		<th>신청 내역이 없습니다</th>
-	</table>
-
-<% }else{ %>
-
-	<table  class = "main_default">
-		<colgroup>
-			<col style="width: 20%;">
-			<col style="width: 30%;"> 
-			<col style="width: 30%;"> 
-			<col style="width: 20%;"> 
-		</colgroup>
-		<thead>
-			<tr>
-				<th>신청유형</th>
-				<th>신청날짜</th>
-				<th>취소가능날짜</th>
-				<th>승인여부</th>
-			</tr>
-		</thead>
-		
-		<% for(Absence aa : list){ %>
-		<tr><td><input type="radio" name="requestid" value="<%=aa.getRequestid()%>">
-			<% if(aa.getRequestid().substring(0, 1).equals("a")){ %>
-				휴 학 신 청
-			<% }else{ %>
-				복 학 신 청
-			<% } %>
-			</td>
-			<td><%=aa.getRequestdate() %></td>
-			<td><%=aa.getLimitcanceldate() %></td>
-			<td><%=aa.getApproval() %></td> 
-		</tr>
-		<% } %>
-		
-	</table>
-	
-	<p style="text-align: center;display: flex;justify-content: center;"><strong>
-		<input class="down_default" target="_blank" type="submit" value=" 조 회 " 
-		onclick="javascript: requestform.action='/beet/selectab?studentid=<%=membermm.getId()%>'">
-		<input class="down_default" target="_blank" type="submit" value="신청취소" 
-		onclick="javascript: requestform.action='/beet/deleteab'">
-	</strong></p>
-	
-<% } %>
-</form>
 
 
 
-
-<%-- 
-<hr>
-<h1 align="center">신청테이블</h1>
-
-<table  class = "main_default">
-
-<% if(membermm.getAbsencewhether().equals("Y") && membermm.getAbsencecount() <= 6){ %>
-<tr><th>현재 <%=membermm.getName() %>님은 휴학상태입니다</th></tr>
-<tr>
-	<td align="center">
-		안 내 사 항 
-		<br>
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-	</td>
-</tr>
-<tr>
-	<td align="center">
-		재학 신청 취소는 내일까지 가능합니다.<br> 취소가능 날짜가 지나면 신청 취소는 불가능합니다
-	</td>
-</tr>
-<tr><td align="center">
-		<% if(membermm.getAbsencecount() != 6){ %>
-		<button name="value" value="a" onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=membermm.getId()%>'">휴학신청</button>&nbsp;&nbsp;
-		<% } %>
-		<button name="value" value="b" onclick="javascript:location.href='/beet/insertab?value=b&studentid=<%=membermm.getId()%>'">복학신청</button></td></tr>
-<% }else{ %>
-<tr><th>현재 <%=membermm.getName() %>님은 재학상태입니다</th></tr>
-<tr>
-	<td align="center">
-		안내사항 
-		<br>
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-	</td>
-</tr>
-<tr>
-	<td align="center">
-		휴학 신청 취소는 내일까지 가능합니다.<br> 취소가능 날짜가 지나면 신청 취소는 불가능합니다
-	</td>
-</tr>
-
-<tr><td align="center"><button name="value" value="a" onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=membermm.getId()%>'">휴학신청</button></td></tr>
-<% } %>
-</table>
- --%>
 <!-- 버튼예시 
 <p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">버튼</a></strong></p>
 <p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">글자에 맞춰 버튼크기변경</a></strong></p>
@@ -391,7 +278,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-
+<%@ include file = "/views/common/side.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							

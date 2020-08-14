@@ -192,20 +192,20 @@ cursor: pointer;
 
 
 
-<!-- 버튼예시 
+버튼예시 
 <p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">버튼</a></strong></p>
 <p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">글자에 맞춰 버튼크기변경</a></strong></p>
 <p style="text-align: center;display: flex;justify-content: center;"><strong><a class="down_default" href="#" target="_blank">버튼여러개는</a>&nbsp;&nbsp;&nbsp;<a class="down_default" href="#" target="_blank">p태그안에</a></strong></p>
--->
 
-<!-- 본문작성예시 
+
+본문작성예시 
 <p>&nbsp;</p>
 <p><strong>글쓰기</strong><br>
 ≫ 글내용을 여기에 써보세요<br>
 ≫ 그냥 글 써보는중 <br>
-≫ 게시판에 대한 설명이 필요하면 여기에 쓰세요<br></p>-->
+≫ 게시판에 대한 설명이 필요하면 여기에 쓰세요<br></p>
 
-<!-- 가로테이블예시 
+가로테이블예시 
 <p>≫ 가로테이블 명</p>
 <table class="main_default">
 <colgroup>
@@ -236,10 +236,10 @@ cursor: pointer;
 <td>td 8</td>
 </tr>
 </tbody>
-</table>-->
+</table>
 
 
-<!-- 세로테이블예시 
+세로테이블예시 
 <p> ≫ 세로테이블명</p>
 <table class="main_default">
 <colgroup>
@@ -262,7 +262,7 @@ cursor: pointer;
 </tr>
 </tbody>
 </table>
--->
+
 
 <!-- ------------------------------------------ -->
 

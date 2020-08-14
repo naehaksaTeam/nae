@@ -65,7 +65,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence where id = ? order by requestid";
+		String query = "select * from absence where id = ? order by requestdate desc";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
