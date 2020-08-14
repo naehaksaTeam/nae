@@ -18,6 +18,7 @@
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
 </style>
+
 <table >
 <thead>
   <th>
@@ -51,9 +52,9 @@
   </tr>
 </thead>
 <tbody>
-  <% for (Atndn atndn : list){ %>
+  <% for (Atndn atndn : list){%>
   <tr>
-  	<td><input type="checkbox" name="checked"></td>
+  	<th><input type="checkbox" name="checked"></th>
     <td><%= atndn.getLcode() %></td>
     <td ><%= atndn.getLname() %></td>
     <td ><%= atndn.getLtime() %></td>

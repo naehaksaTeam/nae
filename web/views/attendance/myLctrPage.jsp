@@ -29,7 +29,10 @@ java.util.Date, java.text.SimpleDateFormat"%>
  <meta charset="UTF-8">
 	<!-- ★★★★★★★★title -->
 	<title> </title>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 
 
@@ -226,42 +229,39 @@ cursor: pointer;
 ≫ 게시판에 대한 설명이 필요하면 여기에 쓰세요<br></p>-->
 
 
-<p>≫ 오늘의 강의</p>
+
 <table class="main_default">
 
 <tbody>
 <% for (Atndn a : list) {
 	if (a.getLtime().equals("수") && a.getSemester().equals("202001")) {
 		%>
+		<p>≫ 오늘의 강의</p>
 <colgroup>
-  <col width="40%" />
- <col width="20%" />
- <col width="20%" />
-  <col width="10%" />
+<col style="width:20%">
+<col style="width:20%">
+<col style="width:20%">
+<col style="width:10%">
+<col style="width:30%">
 </colgroup>
-<tr>
-	<td colspan="3" style="width=70%;"><%=a.getLname()%></td>
-	<td style="width=30%"><button class=button>강의실로 이동</button></td>
-</tr>
-
-<tr>
-	<td ><%=a.getLcode()%></td>
-	<td ><%=a.getCategory()%></td>
-	<td ><%=a.getLtime()%></td>
-	<td ><%=a.getCapacity()%>명</td>
+<tr >
+	<td colspan="4" style="">
+	<div style="float:center;font-size:2.0em"><%=a.getLname()%></div></td>
+	<!-- <td style="width=30%"><button class=button>강의실로 이동</button></td> -->
+	<td><div style="float:left;margin-left:15px;margin-top:20px;font-size:0.9em"><%=a.getLcode()%> / <%=a.getCategory()%> / <%=a.getLtime()%> / <%=a.getCapacity()%>명</div></td>
 </tr>
 <tr>
-	<td colspan="3" style="color: green;"><progress id="prog"
+	<td colspan="4" style="color: green;"><progress id="prog"
 		value="<%=diffWeeks%>" max="100"></td>
-	<td id="progress" style="width:100%">진도율: <%=diffWeeks%>%
+	<td id="progress">진도율: <%=diffWeeks%>%
 	</td>
 </tr>
 	<% }}%>
 </tbody>
 </table>
-<br>
-<br>
 
+<br>
+<br>
 <p>≫ 나의 강의목록</p>
 <table class="main_default" cellpadding="10px">
 		<tr>
@@ -269,18 +269,21 @@ cursor: pointer;
 			<input type="hidden" name="userid" value="<%=loginmember.getId()%>"> 
 			<input type="hidden" name="semester" value=""> 
 			<select id="field" onchange="javascript:selectfield(this);" style="width: 80px">
-				<%
+				<%-- <%
 					while (it.hasNext()) {
 				%>
 				<option><%=it.next()%></option>
 				<% 
 					}
 				%>
-
+ --%>
+ 				<option>202001</option>
+ 				<option>201902</option>
+ 				<option>201901</option>
 			</select>
 			</form>
 		</tr>
-		<tr>
+		<tr style="font-size:15px">
 			<th>과목번호</th>
 			<th>이수구분</th>
 			<th>과목명</th>
@@ -307,11 +310,7 @@ cursor: pointer;
 				<form id="hi" action="/beet/atnlist" method="post">
 					<input class="down_default" type="hidden" name="userid" value="<%=loginmember.getId()%>"> 
 						<input type="hidden" name="lcode" value="<%=a.getLcode()%>"> 
-						<input type="submit" style="    display: inline-block;
-    padding: 5px 10px;
-    color: #555 !important;
-    background: #FFBA15;
-    transition: all 200ms; " class="btn-sm" value="출결조회">
+						<input type="submit" class="btn-sm btn btn-outline-secondary" value="출결조회">
     
     
 				</form>

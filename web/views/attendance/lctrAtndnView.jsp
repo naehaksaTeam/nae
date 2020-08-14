@@ -157,7 +157,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>출결현황</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -172,18 +172,14 @@ cursor: pointer;
 					
 						
 						<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
-							<div class="column1">
-																				<div class="column_inner">
-								
-								<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;"><div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element ">
-		<div class="wpb_wrapper">
+						
+
 		
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">출결</p>
+<p class="page_tt">과목별 출결조회</p>
   
  <table class="main_default" >
 <thead>
@@ -324,18 +320,11 @@ cursor: pointer;
 <!-- ------------------------------------------ -->
 
 
-</div> 
-	</div> </div></div></div></div></div>
-																 
-								</div>
-																	
-									
-							</div>
+
 
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
-<div class="column2">	
-<%@ include file = "/views/common/side.jsp" %>
+
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							
@@ -354,7 +343,7 @@ cursor: pointer;
 		</div>
 		</div></div>		</aside>
 	</div>-->
-</div> 
+
 <!-- 서브메뉴 끝 -->
 						</div>
 								
