@@ -9,10 +9,8 @@
    Calendar now = Calendar.getInstance();
    int month = now.get(Calendar.MONTH)+1;
    ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
-   
-   
-   
-   %>
+
+%>
 
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
@@ -550,7 +548,24 @@ function calendar()
 
 <div class="content " style="min-height: 755px; padding-top: 0px; margin-top:45px;">
 <!-- 메인페이지작성 -->
+						<div class="content_inner  ">
+									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
+					<div class="container">
+						<div class="container_inner clearfix">
+								<div class="title_subtitle_holder">
+                                                                									<div class="title_subtitle_holder_inner">
+																										<h1><span>학사관리 포털</span></h1>
 
+																										</div>
+								                                                            </div>
+						</div>
+					</div>
+				</div>
+								</div>
+			</div>
 
 
 

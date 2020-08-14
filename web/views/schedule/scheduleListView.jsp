@@ -178,7 +178,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>학사 일정</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -204,7 +204,7 @@ cursor: pointer;
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">학사일정</p>
+<p class="page_tt">올해 일정 보기</p>
 
 <table class="main_default"  align="center" width="700" border="1" cellspacing="0">
 
@@ -385,138 +385,7 @@ cursor: pointer;
 
 <br>
 <br>
-<%-- <table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s2 :list2){ %> 
-<tr>
-<td align="center"><%=s2.getSchstartyear() %>년 <%=s2.getSchstartmonth() %>월 <%=s2.getSchstartdate() %>일 ~ <%=s2.getSchendyear() %>년 <%=s2.getSchendmonth() %>월 <%=s2.getSchenddate() %>일 </td>
-<td align="center"><%=s2.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s3 :list3){ %> 
-<tr>
-<td align="center"><%=s3.getSchstartyear() %>년 <%=s3.getSchstartmonth() %>월 <%=s3.getSchstartdate() %>일 ~ <%=s3.getSchendyear() %>년 <%=s3.getSchendmonth() %>월 <%=s3.getSchenddate() %>일 </td>
-<td align="center"><%=s3.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s4 :list4){ %> 
-<tr>
-<td align="center"><%=s4.getSchstartyear() %>년 <%=s4.getSchstartmonth() %>월 <%=s4.getSchstartdate() %>일 ~ <%=s4.getSchendyear() %>년 <%=s4.getSchendmonth() %>월 <%=s4.getSchenddate() %>일 </td>
-<td align="center"><%=s4.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s5 :list5){ %> 
-<tr>
-<td align="center"><%=s5.getSchstartyear() %>년 <%=s5.getSchstartmonth() %>월 <%=s5.getSchstartdate() %>일 ~ <%=s5.getSchendyear() %>년 <%=s5.getSchendmonth() %>월 <%=s5.getSchenddate() %>일 </td>
-<td align="center"><%=s5.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s6 :list6){ %> 
-<tr>
-<td align="center"><%=s6.getSchstartyear() %>년 <%=s6.getSchstartmonth() %>월 <%=s6.getSchstartdate() %>일 ~ <%=s6.getSchendyear() %>년 <%=s6.getSchendmonth() %>월 <%=s6.getSchenddate() %>일 </td>
-<td align="center"><%=s6.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s7 :list7){ %> 
-<tr>
-<td align="center"><%=s7.getSchstartyear() %>년 <%=s7.getSchstartmonth() %>월 <%=s7.getSchstartdate() %>일 ~ <%=s7.getSchendyear() %>년 <%=s7.getSchendmonth() %>월 <%=s7.getSchenddate() %>일 </td>
-<td align="center"><%=s7.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s8 :list8){ %> 
-<tr>
-<td align="center"><%=s8.getSchstartyear() %>년 <%=s8.getSchstartmonth() %>월 <%=s8.getSchstartdate() %>일 ~ <%=s8.getSchendyear() %>년 <%=s8.getSchendmonth() %>월 <%=s8.getSchenddate() %>일 </td>
-<td align="center"><%=s8.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s9 :list9){ %> 
-<tr>
-<td align="center"><%=s9.getSchstartyear() %>년 <%=s9.getSchstartmonth() %>월 <%=s9.getSchstartdate() %>일 ~ <%=s9.getSchendyear() %>년 <%=s9.getSchendmonth() %>월 <%=s9.getSchenddate() %>일 </td>
-<td align="center"><%=s9.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s10 :list10){ %> 
-<tr>
-<td align="center"><%=s10.getSchstartyear() %>년 <%=s10.getSchstartmonth() %>월 <%=s10.getSchstartdate() %>일 ~ <%=s10.getSchendyear() %>년 <%=s10.getSchendmonth() %>월 <%=s10.getSchenddate() %>일 </td>
-<td align="center"><%=s10.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s11 :list11){ %> 
-<tr>
-<td align="center"><%=s11.getSchstartyear() %>년 <%=s11.getSchstartmonth() %>월 <%=s11.getSchstartdate() %>일 ~ <%=s11.getSchendyear() %>년 <%=s11.getSchendmonth() %>월 <%=s11.getSchenddate() %>일 </td>
-<td align="center"><%=s11.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s12 :list12){ %> 
-<tr>
-<td align="center"><%=s12.getSchstartyear() %>년 <%=s12.getSchstartmonth() %>월 <%=s12.getSchstartdate() %>일 ~ <%=s12.getSchendyear() %>년 <%=s12.getSchendmonth() %>월 <%=s12.getSchenddate() %>일 </td>
-<td align="center"><%=s12.getSchname() %></td>
-</tr>
-<% } %>
-</table>
-<br>
-<br>
-<table align="center" width="700" border="1" cellspacing="0" >
-<tr><th width="300">날짜</th><th>상세내용</th></tr>
-<% for (Schedule s13 :list13){ %> 
-<tr>
-<td align="center"><%=s13.getSchstartyear() %>년 <%=s13.getSchstartmonth() %>월 <%=s13.getSchstartdate() %>일 ~ <%=s13.getSchendyear() %>년 <%=s13.getSchendmonth() %>월 <%=s13.getSchenddate() %>일 </td>
-<td align="center"><%=s13.getSchname() %></td>
-</tr>
-<% } %>
-    </table>
-<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
- --%>
+
 
 <br>
 <%if(m1.getId().substring(0, 1).equals("A")) {%>

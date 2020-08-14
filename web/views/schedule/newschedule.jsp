@@ -206,7 +206,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>학사 일정</span></h1>
+																										<h1><span>일정 관리</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -283,9 +283,10 @@ cursor: pointer;
 <button class="btn btn-outline-secondary" onclick="dis()">새로등록</button>
 <br>
 <br>
+
  <form action="/beet/newsche" method="post" class="nform" onsubmit="return validate();">
 <!-- <input type="hidden" name="action" value="new"> -->
-<table id="dis" align="center" width="800" cellspacing="5" cellpadding="0">
+<table class="main_default" id="dis" align="center" width="800" cellspacing="5" cellpadding="0">
 <tr>
 <th >시작날짜</th>
 	<td style="text-align: left;">
@@ -323,6 +324,7 @@ cursor: pointer;
 </tr>
 </table>
 </form>
+
 </table>
 
 <!-- 버튼예시 
