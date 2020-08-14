@@ -32,7 +32,7 @@ public class NoticeTop5Servlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Notice> list = new NoticeService().selectTop5();
+		ArrayList<Notice> list = new NoticeService().selectNewTop5();
 		
 	
 		JSONObject sendJSON = new JSONObject();

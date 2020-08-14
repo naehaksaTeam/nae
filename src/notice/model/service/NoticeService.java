@@ -66,12 +66,6 @@ public class NoticeService {
 		return result;
 	}
 
-	public ArrayList<Notice> selectTop5() {
-		Connection conn = getConnection();
-		ArrayList<Notice> list = ndao.selectTop5(conn);
-		close(conn);
-		return list;
-	}
 
 	public int getListCount() {
       Connection conn = getConnection();
@@ -106,6 +100,13 @@ public class NoticeService {
 		return list;
 	}
 
+	public ArrayList<Notice> selectNewTop5() {
+		Connection conn = getConnection();
+		ArrayList<Notice> list = ndao.selectNewTop5(conn);
+		close(conn);
+		System.out.println("간당");
+		return list;
+	}
 	
 
 	
