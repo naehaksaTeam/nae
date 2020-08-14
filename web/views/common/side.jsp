@@ -1,67 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title> 세로 메뉴</title>
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
-<style>
-    body {
-        margin:20px auto;
-        padding: 0;
-        font-style: italic;
-        font-size:0.9em;
-}
-    ul#sidebar {
-        width: 200px;
-        text-indent: 10px;
-}
-    ul#sidebar , ul#sidebar ul {
-        margin:0;
-        padding:0;
-        list-style:none;
-}
-    li.group {
-        margin-bottom: 3px;
-}
-    li.group div.title {
-        height: 35px;
-        line-height: 35px;
-        background:gray;
-        cursor:pointer;
-        color:white;
-}
-    ul.sub li {
-        margin-bottom: 2px;
-        height:35px;
-        line-height:35px;
-        background:#f4f4f4;
-        cursor:pointer;
-}
-    ul.sub li a {
-        display: block;
-        width: 100%;
-        height:100%;
-        text-decoration:none;
-        color:#000;
-}
-    ul.sub li:hover {
-        background:#4d4d4d;
-}
-</style>
 <body>
-    
-    <ul id="sidebar">
-        <li class="group">
-            <div class="title">title 1</div>
-            <ul class="sub">
-                <li><a href="#">sub1</a></li>
-                <li><a href="#">sub1</a></li>
-                <li><a href="#">sub1</a></li>
-            </ul>
-        </li>      
-    </ul>
+
+<div class="column_inner">
+<aside class="sidebar">
+							
+		<div class="widget "><div id="dc_jqaccordion_widget-8">		
+		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
+
+<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
+  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
+  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
+  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
+  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
+  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
+</ul>		
+
+		</div>
+		</div></div>		</aside>
+	</div>
 </body>
 </html>

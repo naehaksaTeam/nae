@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
- <meta name="google-site-verification" content="x1AIKCh2ubCAV_2p2-8ieT3xX-UaZwwUb2-uctC0GOM">
  <meta charset="UTF-8">
 	<!-- ★★★★★★★★title -->
 	<title> </title>
@@ -136,11 +135,12 @@ cursor: pointer;
 		
 			<div class="wrapper">
 	<div class="wrapper_inner">
+<%@ include file = "/views/common/sample5.jsp" %>
 	<!-- Google Analytics start -->
 		<!-- Google Analytics end -->
 
 	
-
+<!-- 
 <header class="has_top has_header_fixed_right scroll_header_top_area dark stick scrolled_not_transparent page_header">
     <div class="header_inner clearfix">
 
@@ -178,7 +178,7 @@ cursor: pointer;
                         													<div class="mobile_menu_button">
                                 <span>
                                     <span aria-hidden="true" class="qode_icon_font_elegant icon_menu "></span>                                </span>
-                            </div>
+                            </div>이ㅓㄱㄴ가
 												<div class="logo_wrapper"> 
                             							<div class="q_logo">
 								<a itemprop="url" href="https://www.cha.ac.kr/" style="height: 47px; visibility: visible;">
@@ -200,7 +200,7 @@ cursor: pointer;
                                 </div>
 							</div>
 						
-						<!--헤더메뉴 ★★★★★★ 두번씩 써야해요 반응형떄문에 -->
+						헤더메뉴 ★★★★★★ 두번씩 써야해요 반응형떄문에
 						<nav class="main_menu drop_down right">
 						<ul id="menu-new-main-menu" class="">
               <li id="nav-menu-item-58753" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active narrow"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><i class="menu_icon blank fa"></i><span>마이페이지</span><span class="plus"></span></a></li>
@@ -216,7 +216,7 @@ cursor: pointer;
 </ul>						</nav>
 						                        										<nav class="mobile_menu">
                         <ul id="menu-new-main-menu-1" class="" style="display: none;">
-                          <!--서브메뉴 두번써야해요 여기에도 써야해요 -->
+                          서브메뉴 두번써야해요 여기에도 써야해요
                           <li id="mobile-menu-item-58753" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><span>마이페이지</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
                           
                           
@@ -237,7 +237,7 @@ cursor: pointer;
 	</div>
 	</div>
 
-</header>
+</header> -->
 	
 
     		<a id="back_to_top" href="#" class="off">
