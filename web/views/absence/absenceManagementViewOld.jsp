@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="absence.model.vo.Absence, java.util.ArrayList"%>
+    pageEncoding="UTF-8" %>
+<%@ page import="absence.model.vo.Absence, java.util.ArrayList"%>
 <%
 	ArrayList<Absence> list = (ArrayList<Absence>)request.getAttribute("list");
 %>
