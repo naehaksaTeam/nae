@@ -160,7 +160,7 @@ cursor: pointer;
                                                             <li><a href="/beet/logout.cp" >로그아웃</a>  | </li>
                                                             
                                                             <li id="menu-item-12423" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12423">
-                                                                <a target="_blank" href="https://my.cha.ac.kr/">나의학사관리시스템</a>
+                                                                <a target="_blank" href="/beet/views/main/main.jsp">나의학사관리시스템</a>
                                                             </li>
                                                         </ul>
                                                     </div>
