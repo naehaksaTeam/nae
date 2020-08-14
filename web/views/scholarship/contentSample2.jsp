@@ -1,9 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" import="absence.model.vo.Absence, java.util.ArrayList"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	ArrayList<Absence> list = (ArrayList<Absence>)request.getAttribute("list");
-%>    
-
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
@@ -184,69 +180,15 @@ cursor: pointer;
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">휴학/복학 관리</p>
+<p class="page_tt">컬럼명여따쓰세요</p>
 
-<p style="text-align: center;"><strong><a class="down_default" href="/beet/selectaball" target="_blank">전 체 조 회</a></strong></p>
-<button onclick="javascript:location.href='/beet/selectaball'">전 체 조 회</button>
-<br>
-<button onclick="javascript:location.href='/beet/selectaba?value=a'">휴 학 조 회</button>
-<button onclick="javascript:location.href='/beet/selectaba?value=b'">복 학 조 회</button>
-<br>
-
-<p>≫ 가로테이블 명</p>
-<% if(list != null){ %>
-<form method="post" name="managerform">
 <table class="main_default">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 20%;"> 
-<col style="width: 30%;"> 
-<col style="width: 40%;"> 
-</colgroup>
-<thead>
-<tr>
-<th>신청번호</th>
-<th> 학 번 </th>
-<th>신청날짜</th>
-<th>취소제한날짜</th>
-<th>승인여부</th>
-</tr>
-</thead>
-<tbody>
-<% for(Absence ab : list){ %>
-<tr>
-	<td><input type="radio" name="requestid" value=<%=ab.getRequestid()%> readonly><%=ab.getRequestid()%></td>
-	<td><%=ab.getStudentid() %></td>
-	<td><%=ab.getRequestdate() %></td>
-	<td><%=ab.getLimitcanceldate() %></td>
-	<td><%=ab.getApproval()%></td>
-<% } %>
-</tr>
-</tbody>
-</table>
-<input type="submit" value="승인하기" onclick="javascript: managerform.action='/beet/updateab'">
-<input type="submit" value="신청삭제(복구불가)" onclick="javascript: managerform.action='/beet/deleteabad'">
-</form>
-<% } %>
+  <tr>
+    <td>테스트</td>
+    </tr>
+    </table>
+<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
-<% if(list != null){ %>
-<form method="post" name="managerform">
-<table id="select" class="tg">
-<tr><th style="font-weight: bold;">신청번호</th><th style="font-weight: bold;">학번</th><th style="font-weight: bold;">신청일</th><th style="font-weight: bold;">취소가능날짜</th><th style="font-weight: bold;">승인여부</th></tr>
-<% for(Absence ab : list){ %>
-<tr>
-	<td><input type="radio" name="requestid" value=<%=ab.getRequestid()%> readonly><%=ab.getRequestid()%></td>
-	<td><%=ab.getStudentid() %></td>
-	<td><%=ab.getRequestdate() %></td>
-	<td><%=ab.getLimitcanceldate() %></td>
-	<td><%=ab.getApproval()%></td>
-<% } %>
-</tr>
-</table>
-<input type="submit" value="승인하기" onclick="javascript: managerform.action='/beet/updateab'">
-<input type="submit" value="신청삭제(복구불가)" onclick="javascript: managerform.action='/beet/deleteabad'">
-</form>
-<% } %>
 
 
 
@@ -336,7 +278,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-
+<%@ include file = "/views/common/side.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							
