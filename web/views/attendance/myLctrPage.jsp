@@ -181,6 +181,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
+                                                                									<br><br><br>
 																										<h1><span>나의 강의조회</span></h1>
 
 																										</div>
