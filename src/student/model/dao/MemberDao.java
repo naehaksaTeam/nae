@@ -618,17 +618,21 @@ System.out.println("member" + member);
 					member = new Member();
 
 					member.setId(id);
-					member.setPassword(password);
 					member.setName(rset.getString("name"));
 					member.setSsn(rset.getString("ssn"));
 					member.setAddress(rset.getString("address"));
 					member.setPhone(rset.getString("phone"));
+					member.setGender(rset.getString("gender"));
 					member.setEmail(rset.getString("email"));
 					member.setTreasure(rset.getString("treasure"));
-					member.setAdminhiredate(rset.getDate("adminhiredate")); // 인식 안됨...(확인요청)
+					member.setAdminhiredate(rset.getDate("adminhiredate"));
+					member.setPassword(rset.getString("password"));
+					member.setEntrancedate(rset.getDate("entrancedate"));
+					member.setAbsencewhether(rset.getString("absencewhether"));
+					member.setAbsencecount(rset.getInt("absencecount"));
+					member.setSsname(rset.getString("ssname"));
 					member.setCategoryname(rset.getString("categoryname"));
 					member.setMajorno(rset.getString("majorno"));
-					member.setSsname(rset.getString("ssname"));
 
 				}
 			} catch (Exception e) {
