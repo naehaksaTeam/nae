@@ -278,7 +278,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<%@ include file = "/views/common/sample6.jsp" %>
+<%@ include file = "/views/common/side.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							
