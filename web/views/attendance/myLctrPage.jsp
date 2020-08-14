@@ -234,7 +234,7 @@ cursor: pointer;
 
 <tbody>
 <% for (Atndn a : list) {
-	if (a.getLtime().equals("수") && a.getSemester().equals("202001")) {
+	if (a.getLtime().equals(day) && a.getSemester().equals("202001")) {
 		%>
 		<p>≫ 오늘의 강의</p>
 <colgroup>
@@ -308,7 +308,7 @@ cursor: pointer;
 			<td><%=a.getPname()%></td>
 			<td>
 				<form id="hi" action="/beet/atnlist" method="post">
-					<input class="down_default" type="hidden" name="userid" value="<%=loginmember.getId()%>"> 
+					<input class="down_default" type="hidden" name="userid" value="<%=(Member)session.getAttribute("loginMember")%>"> 
 						<input type="hidden" name="lcode" value="<%=a.getLcode()%>"> 
 						<input type="submit" class="btn-sm btn btn-outline-secondary" value="출결조회">
     
@@ -325,7 +325,11 @@ cursor: pointer;
 	<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript">
 	jQuery( '#hi' ).click( function() {
-		  alert("hi");
+		 var str = ""
+	            var tdArr = new Array();    // 배열 선언
+	            var checkBtn = $(this);
+		
+	            var no = td.eq(0).text();
 		} );
 
 		function selectfield(obj) {

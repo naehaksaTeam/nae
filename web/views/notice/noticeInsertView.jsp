@@ -10,12 +10,12 @@
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
-	<h1 align="center">새 공지글 등록 페이지</h1>
+	<h1 align="center">등록</h1>
 	<!-- from에서 입력값들과 파일을 같이 전송하려면 반드시 enctype="multipart/form-data" 속성을 추가해야함 -->
 	<form action="/beet/ninsert.ad" method="post"
 		enctype="multipart/form-data">
-		<table align="center" width="500" border="1" cellspacing="0"
-			cellpadding="5">
+		<div align="center" width="500" border="3" cellspacing="0" cellpading="5">
+ 		<table>
 			<tr>
 				<th>제목</th>
 				<td><input type="text" name="title" size="50"></td>
@@ -40,6 +40,7 @@
 					onclick="javascript:history.go(-1); return false;"></th>
 			</tr>
 		</table>
+		</div>
 	</form>
 </body>
 </html>
