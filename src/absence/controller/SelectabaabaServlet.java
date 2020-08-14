@@ -1,6 +1,7 @@
 package absence.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -27,19 +28,28 @@ public class SelectabaabaServlet extends HttpServlet {
 
 		ArrayList<Absence> list = new AbsenceService().selectABA(value);
 		
+		PrintWriter out = response.getWriter();
+		
 		RequestDispatcher view = null;
 		if(list != null) {
 			view = request.getRequestDispatcher("views/absence/absenceManagementView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
+			
 		}else if(list == null && value.equals("a")) {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "휴학 신청 내역이 없거나 조회에 실패하였습니다.");
-			view.forward(request, response);
+			
+			 out.print("<script>");
+			  out.print("alert('휴학 신청 내역이 없거나 조회에 실패하였습니다.');");
+			  out.print("location.href = '/selectaball'");
+			  out.print("</script>");
+			  out.close();
+			
 		}else if (list == null && value.equals("b")) {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "복학 신청 내역이 없거나 조회에 실패하였습니다.");
-			view.forward(request, response);
+			 out.print("<script>");
+			  out.print("alert('복학 신청 내역이 없거나 조회에 실패하였습니다.');");
+			  out.print("location.href = '/selectaball'");
+			  out.print("</script>");
+			  out.close();
 		}
 	}
 

@@ -31,6 +31,7 @@ public class SelectAllServlet extends HttpServlet {
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else{
+			
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "휴학, 복학 신청 내역이 없거나 조회에 실패하였습니다.");
 			view.forward(request, response);

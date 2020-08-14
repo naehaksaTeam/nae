@@ -1,6 +1,7 @@
 package absence.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -27,11 +28,17 @@ public class SelectAdminSearchSerlvet extends HttpServlet {
 		
 		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(id);
 		
+		PrintWriter out = response.getWriter(); 
+		
 		if(list != null) {
 			response.sendRedirect("selectaball");
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "검색하신 학번으로 신청된 내역이 없습니다.");
+			 out.print("<script>");
+			  out.print("alert('검색하신 학번으로 신청된 내역이 없습니다.');");
+			  out.print("location.href = '/selectaball'");
+			  out.print("</script>");
+			  out.close();
+
 		}
 	}
 
