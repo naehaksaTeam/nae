@@ -46,8 +46,8 @@ margin-right:10%;
 <div class="container">
 <form action="/beet/login.cp" method="post">
 <div class="form-group">
-<h1>ID<span style="color:white;">&nbsp;</span></h1><input type="text" name="userid" class="form-control" id="usr">
-<h1 style="color:white;">PASSWORD<span style="color:black;">&nbsp;</span></h1><input type="password" name="userpwd" class="form-control" id="pwd">
+<h1>ID<span style="color:white;">&nbsp;</span></h1><input type="text" name="userid" class="form-control" id="usr" required>
+<h1 style="color:white;">PASSWORD<span style="color:black;">&nbsp;</span></h1><input type="password" name="userpwd" class="form-control" id="pwd" required>
 <br><button type="submit" value="로그인" class="btn btn-dark">로그인</button>
 
 </div>
