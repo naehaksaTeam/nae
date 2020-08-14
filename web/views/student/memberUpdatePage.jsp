@@ -74,6 +74,9 @@ img.emoji {
 	background: none !important;
 	padding: 0 !important;
 }
+.column1{
+margin-left: 10%;
+}
 </style>
 <link rel="stylesheet" id="layerslider-css" href="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.5.1" type="text/css" media="all">
 <link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
@@ -151,14 +154,7 @@ cursor: pointer;
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-
-
-
-
-
-
-
-						
+			
 		
 			<div class="wrapper">
 	<div class="wrapper_inner">
@@ -167,24 +163,15 @@ cursor: pointer;
 			
 		</a>
 	    	
-    
-	
-
-    
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
 		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
-					<div class="container">
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
-                                                                									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
-
-																										</div>
-								                                                            </div>
+                                                                							
 						</div>
 					</div>
 				</div>
@@ -202,20 +189,10 @@ cursor: pointer;
 								<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;"><div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element ">
 		<div class="wpb_wrapper">
-#selecttable td{
-width:300px;
-height:300px;
-background-color:#dff9fb;
-color:black;
-text-align:center;
-font-size:300%
-}
-a:link {text-decoration: none; color: black;}
-a:visited {text-decoration: none; color: black;}
-a:active {text-decoration: none; color: black;}
-a:hover {text-decoration: none; color: black; font-size:200%;}
+
 </style>
 <body>
+<center>
 <hr>
 <h1 align="center">마이페이지</h1>
 <br>
@@ -223,7 +200,7 @@ a:hover {text-decoration: none; color: black; font-size:200%;}
 <% if(message != null){ %>
 	<%=message %>
 <% } %>
-<form method="post" action="/mupdate.cp?id=<%= member1111.getId()%>" onsubmit="return validate()">
+<form method="post" action="/beet/mupdate.cp?id=<%= member1111.getId()%>" onsubmit="return validate()">
 <table id="outer" align="center" width="500" cellspacing="5" cellpadding="0">
 
 <tr>
@@ -334,6 +311,6 @@ a:hover {text-decoration: none; color: black; font-size:200%;}
 
 <hr>
 <!-- 상대경로만 사용 가능함 -->
-
+</center>
 </body>
 </html>

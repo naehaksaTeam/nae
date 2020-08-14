@@ -47,7 +47,23 @@ img.emoji {
 	background: none !important;
 	padding: 0 !important;
 }
+#selecttable td{
+width:300px;
+height:300px;
+background-color:#dff9fb;
+color:black;
+text-align:center;
+font-size:300%
+}
+a:link {text-decoration: none; color: black;}
+a:visited {text-decoration: none; color: black;}
+a:active {text-decoration: none; color: black;}
+a:hover {text-decoration: none; color: black; font-size:200%;}
+.column1{
+margin-left:40%;
+}
 </style>
+
 <link rel="stylesheet" id="layerslider-css" href="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.5.1" type="text/css" media="all">
 <link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
 <link rel="stylesheet" id="bbse-popup-view-css" href="https://www.cha.ac.kr/wp-content/plugins/bbs-e-popup/css/bbse-popup-style.css?ver=4.7.18" type="text/css" media="all">
@@ -153,11 +169,7 @@ cursor: pointer;
 					<div class="container">
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
-                                                                									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
-
-																										</div>
-								                                                            </div>
+                                                                						
 						</div>
 					</div>
 				</div>
@@ -175,18 +187,7 @@ cursor: pointer;
 								<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;"><div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element ">
 		<div class="wpb_wrapper">
-#selecttable td{
-width:300px;
-height:300px;
-background-color:#dff9fb;
-color:black;
-text-align:center;
-font-size:300%
-}
-a:link {text-decoration: none; color: black;}
-a:visited {text-decoration: none; color: black;}
-a:active {text-decoration: none; color: black;}
-a:hover {text-decoration: none; color: black; font-size:200%;}
+
 </style>
 
 <body>
