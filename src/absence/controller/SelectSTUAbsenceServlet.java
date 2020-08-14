@@ -29,7 +29,7 @@ public class SelectSTUAbsenceServlet extends HttpServlet {
 		String studentid = request.getParameter("studentid");
 
 		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(studentid);
-		
+		System.out.println(list);
 		RequestDispatcher view = null;
 
 		if( list != null) {
