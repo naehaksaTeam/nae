@@ -6,7 +6,7 @@
 <% Member m = (Member)session.getAttribute("loginMember"); %>
 
 <body>
-
+<img src="/beet/resources/images/image.jpg">
 <% if(m != null){ %>	
 <meta http-equiv="refresh" content="0;url=/beet/views/main/main.jsp">
 <% } %>
@@ -22,6 +22,7 @@
 </form>
 <button onclick="javascript: location.href='/beet/views/student/findId.jsp'">아이디찾기</button>
 <button onclick="javascript: location.href='/beet/views/student/findPassword.jsp'">비밀번호찾기</button>
+<button onclick="javascript: location.href='/beet/views/student/enrollPage.jsp'">회원가입</button>
 <% }else{ %>
 <div>
 <%=m.getName() %> 님 로그인 상태입니다
