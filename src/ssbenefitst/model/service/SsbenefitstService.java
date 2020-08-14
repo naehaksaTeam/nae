@@ -106,6 +106,7 @@ public class SsbenefitstService {
 				rollback(conn);
 			}
 		}
+		close(conn);
 		return result;
 	};
 	

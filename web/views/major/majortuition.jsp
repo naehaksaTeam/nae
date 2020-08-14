@@ -33,19 +33,19 @@
 		</tr>
 		<%if(major1 != null){ %>
 		<tr>
-			<td><%= major1.getCategoryname() %></td>
-			<td><%= major1.getMajorname() %></td>
+			<th><%= major1.getCategoryname() %></th>
+			<th><%= major1.getMajorname() %></th>
 			<th><%= major2.getBenefitterm() %></th>
 			<th><% if(thisterm != null){ %>
 					<%=thisterm%>
 				<% } %>
 			</th>
-			<td><%= major1.getName() %></td>
-			<td><%= major1.getId() %></td>
-			<td><%= major1.getTuition() %>원</td>
-			<td><%= major2.getValue() %>원</td>
-			<td><%= major1.getTuition()- major2.getValue() %>원</td>
-			<td>납입시간</td>
+			<th><%= major1.getName() %></th>
+			<th><%= major1.getId() %></th>
+			<th><%= major1.getTuition() %>원</th>
+			<th><%= major2.getValue() %>원</th>
+			<th><%= major1.getTuition()- major2.getValue() %>원</th>
+			<th>2020.08.12</th>
 		</tr>
 		<% } %>
 	</table>

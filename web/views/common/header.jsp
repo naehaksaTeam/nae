@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
+ 
+ 
 <head>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
@@ -158,7 +160,7 @@ cursor: pointer;
                                                             <li><a href="/beet/logout.cp" >로그아웃</a>  | </li>
                                                             
                                                             <li id="menu-item-12423" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12423">
-                                                                <a target="_blank" href="https://my.cha.ac.kr/">나의학사관리시스템</a>
+                                                                <a target="_blank" href="/beet/views/main/main.jsp">나의학사관리시스템</a>
                                                             </li>
                                                         </ul>
                                                     </div>
