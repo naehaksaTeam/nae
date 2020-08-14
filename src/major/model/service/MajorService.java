@@ -88,6 +88,7 @@ public class MajorService {
 
 	public Major1 selectOneTuition(String id) {
 		Connection conn = getConnection();
+		System.out.println("======================"+id);
 		Major1 major1 = mdao.selectOneTuition(conn, id);
 		
 		close(conn);

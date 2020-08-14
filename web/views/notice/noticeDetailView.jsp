@@ -16,10 +16,11 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<hr>
-
+	<h1 align="center">상세보기</h1>
 
 	<br>
-	<table align="center" width="500" border="1" cellspacing="0">
+	<div align="center">
+	<table>
 		<tr>
 			<th>제 목</th>
 			<td><%=notice.getNoticeTitle()%></td>
@@ -33,7 +34,7 @@
 			<td><%=notice.getNoticeDate()%></td>
 		</tr>
 		<tr>
-			<th>첨부파일</th>
+			<th>첨부파일 : </th>
 			<td>
 				<%
 					if (notice.getOriginalFile() != null) {
@@ -53,8 +54,8 @@
 		<tr>
 
 	</table>
-
-	<div style align="center">
+ </div>
+	<div  align="center">
 		<button onclick="javascript:history.go(-1);">뒤로</button>
 		<!--  관리자일때 아닐때 구분해서 표기해야함 관리자면 보이고 아니면 안보임  -->
 		<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
