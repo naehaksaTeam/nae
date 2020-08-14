@@ -129,41 +129,28 @@ public class MajorService {
 	public Major2 selectOneValueAndBene(String id) {
 		Connection conn = getConnection();
 		Major2 major2 = mdao.OneValueAndBene(conn, id);
-		
+		System.out.println(major2);
 		close(conn);
 		
 		return major2;
 	}
 
-	public Date paymentCheck() {
-		Connection conn = getConnection();
-		//달만 뽑아오기 paymentCheck
-		int paymentCheck = mdao.paymentCheck(conn);
-		System.out.println("payment =" +paymentCheck);
-		Date payment = null;
-		//number로 치환한 현재날짜에 달만 추출하여 비교 
-		// 7월밑이면 1학기 7월 위면 2학기 로 구분 
-		if(paymentCheck < 7) {
-			//1학기일떄 !
-			//payCheck1 메서드에서 스케쥴 start year,month,day를 가져옴
-			// 쿼리문에서 조건에 
-			payment = mdao.paymentCheck1(conn);
-			if(payment != null) {
-				//값이있을때 
-				
-			}else {
-				
-			}
-		}else {
-			payment = mdao.paymentCheck2(conn);
-		}
-		close(conn);
-		return payment;
-	}
-
-	
-
-	
+	/*
+	 * public Date paymentCheck() { Connection conn = getConnection(); //달만 뽑아오기
+	 * paymentCheck int paymentCheck = mdao.paymentCheck(conn);
+	 * System.out.println("payment =" +paymentCheck); Date payment = null; //number로
+	 * 치환한 현재날짜에 달만 추출하여 비교 // 7월밑이면 1학기 7월 위면 2학기 로 구분 if(paymentCheck < 7) {
+	 * //1학기일떄 ! //payCheck1 메서드에서 스케쥴 start year,month,day를 가져옴 // 쿼리문에서 조건에
+	 * payment = mdao.paymentCheck1(conn); if(payment != null) { //값이있을때
+	 * 
+	 * }else {
+	 * 
+	 * } }else { payment = mdao.paymentCheck2(conn); } close(conn); return payment;
+	 * }
+	 * 
+	 * 
+	 * 
+	 */
 
 	
 	
