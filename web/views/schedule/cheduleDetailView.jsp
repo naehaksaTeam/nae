@@ -152,6 +152,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
+                                                                									<br><br><br>
 																										<h1><span>강의 h1이름자리</span></h1>
 
 																										</div>

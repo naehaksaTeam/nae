@@ -25,34 +25,25 @@
 	}
 </script>
 </head>
+<style></style>
 <body>
 	<%@ include file="../common/header.jsp"%>
+	
+	<hr>
+	<h1 align="center">학교소식</h1>
 	<h2 align="center">
-		게시글 목록 : 총
+		전체 : 
 		<%=listCount%>개
 	</h2>
-	<hr>
-	<h1 align="center">공지사항</h1>
 	<br>
+	
 
-	<form action="/beet/nsearch">
-		<select name="searchoption">
-
-			<option value="writer">작성자</option>
-			<option value="date">작성날짜</option>
-			<option value="content">글내용</option>
-		</select> <input type="text" name="search">
-		<button type="submit" value="로그인">검색</button>
-
-	</form>
-
-
-
-	<table align="center" width="500" border="1" cellspacing="0"
-		cellpadding="1">
+<div align="center">
+	<table>
 		<tr>
 			<th>번호</th>
-			<th>제목</th>
+			
+			<th>글제목</th>
 
 			<th>작성자</th>
 			<th>작성날짜</th>
@@ -66,13 +57,14 @@
 		%>
 		<tr>
 			<td><%=n.getNoticeNo()%></td>
+			
 			<td>
 				<%
 					if (n.getNoticeTitle().length() > 10) {
-				%> <%=n.getNoticeTitle().substring(0, 10)%></a>
+				%> <%=n.getNoticeTitle().substring(0, 10)%>
 				<%
 					} else {
-				%> <%=n.getNoticeTitle()%></a> <%
+				%> <%=n.getNoticeTitle()%> <%
  	}
  %>
 
@@ -113,6 +105,8 @@
 			%>
 		</tr>
 	</table>
+	<br>
+	</div>
 	<div style="text-align: center;">
 		<%
 			if (currentPage == 1) {
@@ -188,17 +182,31 @@
 			}
 		%>
 	</div>
+	<br>
 	<!--  만일 관리자라면 글쓰기가 보여야함 ! 지금은 누구나다보임 -->
-	<div style align="right" text-align:center>
+	<div align="center">
 		<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
 		<button onclick="noticeInsertForm();">글쓰기</button>
 	<% }else{ %>
 		
 	<% } %>
 		
-		<button onclick="javascript:history.go(-1);">뒤로</button>
+		<button onclick="javascript:location.href='views/main/main.jsp'">뒤로</button>
 	</div>
 	<hr>
+	<br>
+	<div align="center">
+	<form action="/beet/nsearch">
+		<select name="searchoption">
+
+			<option value="writer">작성자</option>
+			<option value="date">작성날짜</option>
+			<option value="content">글내용</option>
+		</select> <input type="text" name="search">
+		<button type="submit" value="로그인">검색</button>
+
+	</form>
+</div>
 	
 </body>
 </html>

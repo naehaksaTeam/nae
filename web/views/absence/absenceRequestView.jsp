@@ -260,51 +260,73 @@ cursor: pointer;
 	
 <% } %>
 
-<br><br><br>
+<br><br>
 
-<table class="main_default">
+<div style="padding-left: 25%">
+
 <% if(membermm.getAbsencewhether().equals("Y") && membermm.getAbsencecount() < 7){ %>
-<tr><th><h4>현재 <%=membermm.getName() %>님은 휴학상태입니다.</h4></th></tr>
-<tr>
-	<td align="center">
-		안 내 사 항 
-		<br>
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-	</td>
-</tr>
-<tr>
-	<td align="center">
-		신청 취소는 내일까지 가능합니다.<br>취소 가능한 날짜가 지나면 신청 취소는 불가능합니다.
-	</td>
-</tr>
-<tr><td align="center">
-		<% if(membermm.getAbsencecount() != 6){ %>
-		<button class="btn btn-outline-secondary" name="value" value="a" onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=membermm.getId()%>'">휴학신청</button>&nbsp;&nbsp;
-		<% } %>
-		&nbsp;
-		<button class="btn btn-outline-secondary" name="value" value="b" onclick="javascript:location.href='/beet/insertab?value=b&studentid=<%=membermm.getId()%>'">복학신청</button></td></tr>
-<% }else{ %>
-<tr><th><h4>현재 <%=membermm.getName() %>님은 재학상태입니다.</h4></th></tr>
-<tr>
-	<td align="center">
-		안내사항 
-		<br>
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-		영민씨 기능 완성되면 공지사항에 휴학, 복학 안내사항 글 하나 등록해서 뽑아온다.
-	</td>
-</tr>
-<tr>
-	<td align="center">
-		휴학 신청 취소는 내일까지 가능합니다.<br> 취소가능 날짜가 지나면 신청 취소는 불가능합니다
-	</td>
-</tr>
+<h3>현재 <%=membermm.getName() %>님은 휴학상태입니다.</h3>
 
-<tr><td align="center"><button class="btn btn-outline-secondary"  name="value" value="a" onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=membermm.getId()%>'">휴학신청</button></td></tr>
+<br><br>
+
+<p><strong>[ 안 내 사 항 ]</strong><br>
+		<br>
+		※ 휴학<br>
+		  - 휴학 신청은 정해진 기간 내에만 가능합니다.<br>
+		  - 휴학 신청은 졸업 전까지 6번 가능합니다.<br>
+		  - 신청 후에 관리자의 승인은 며칠이 소요될 수 있습니다<br>
+		  - 승인 후에 신청 취소시 마이페이지에서 휴학여부를 확인해주세요.<br> 
+		  &nbsp;&nbsp;확인이 어려울 시 학과 사무실로 문의 바랍니다.<br>
+		<br>
+		※ 복학<br>
+		  - 복학신청은 정해진 기간 내에만 가능합니다.<br>
+		  - 신청 후에 관리자의 승인은 며칠이 소요될 수 있습니다<br>		  
+		  - 승인 후에 신청 취소시 마이페이지에서 휴학여부를 확인해주세요.<br> 
+		  &nbsp;&nbsp;확인이 어려울 시 학과 사무실로 문의 바랍니다.<br>
+		<br>
+		</p>
+	
+		<div align="center" style="margin-top: 10px; padding-right: 35%;">
+			<% if(membermm.getAbsencecount() != 6){ %>
+			<button class="btn btn-outline-secondary" name="value" value="a" 
+			onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=membermm.getId()%>'">휴학신청
+			</button>&nbsp;&nbsp;
+			<% } %>
+			&nbsp;
+			<button class="btn btn-outline-secondary" name="value" value="b" 
+			onclick="javascript:location.href='/beet/insertab?value=b&studentid=<%=membermm.getId()%>'">복학신청
+			</button>
+		</div>
+<% }else{ %>
+<h3>현재 <%=membermm.getName() %>님은 재학상태입니다.</h3>	
+<br><br>
+
+<p><strong>[ 안 내 사 항 ]</strong><br>
+		<br>
+		※ 휴학<br>
+		  - 휴학 신청은 정해진 기간 내에만 가능합니다.<br>
+		  - 휴학 신청은 졸업 전까지 6번 가능합니다.<br>
+		  - 신청 후에 관리자의 승인은 며칠이 소요될 수 있습니다<br>
+		  - 승인 후에 신청 취소시 마이페이지에서 휴학여부를 확인해주세요.<br> 
+		  &nbsp;&nbsp;확인이 어려울 시 학과 사무실로 문의 바랍니다.<br>
+		<br>
+		※ 복학<br>
+		  - 복학신청은 정해진 기간 내에만 가능합니다.<br>
+		  - 신청 후에 관리자의 승인은 며칠이 소요될 수 있습니다<br>		  
+		  - 승인 후에 신청 취소시 마이페이지에서 휴학여부를 확인해주세요.<br> 
+		  &nbsp;&nbsp;확인이 어려울 시 학과 사무실로 문의 바랍니다.<br>
+		<br>
+		</p>
+		
+		<div align="center" style="margin-top: 10px; padding-right: 35%;">
+			<button class="btn btn-outline-secondary"  name="value" value="a" 
+			onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=membermm.getId()%>'">휴학신청
+			</button>
+		</div>
 <% } %>
-</table>
+</div>
+		
+
 
 
 <!-- 버튼예시 

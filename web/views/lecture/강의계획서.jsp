@@ -154,7 +154,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>강의계획서</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -181,7 +181,7 @@ cursor: pointer;
 <h1>비회원 상태입니다.</h1>
 <br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
 <% }else{ %>
-<h1>강의계획서 페이지</h1>
+<h1>강의계획서</h1>
 <hr>
 <table style="border:2px solid black;">
 <tr>
@@ -244,13 +244,7 @@ cursor: pointer;
 <% } %>
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">컬럼명여따쓰세요</p>
 
-<table class="main_default">
-  <tr>
-    <td>테스트</td>
-    </tr>
-    </table>
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
 

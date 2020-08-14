@@ -173,7 +173,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>휴보강신청</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -314,13 +314,6 @@ cursor: pointer;
 
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">컬럼명여따쓰세요</p>
-
-<table class="main_default">
-  <tr>
-    <td>테스트</td>
-    </tr>
-    </table>
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
 

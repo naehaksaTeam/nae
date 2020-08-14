@@ -21,22 +21,10 @@
 	<hr>
 	<h1 align="center">공지사항</h1>
 	<br>
+	
 
-	<form action="/beet/nsearch">
-		<select name="searchoption">
-			<option value="no">글번호</option>
-			<option value="writer">작성자</option>
-
-			<option value="content">글내용</option>
-		</select> <input type="text" name="search">
-		<button type="submit" value="로그인">검색</button>
-
-	</form>
-
-
-
-	<table align="center" width="1000" border="5" cellspacing="0"
-		cellpadding="1">
+	<div align="center">
+	<table>
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -57,9 +45,9 @@
 				<%
 					if (n.getNoticeTitle().length() > 10) {
 				%> 
-				<%=n.getNoticeTitle().substring(0, 10)%></a> <%
+				<%=n.getNoticeTitle().substring(0, 10)%> <%
  	} else {
- %> <%=n.getNoticeTitle()%></a> <%
+ %> <%=n.getNoticeTitle()%> <%
  	}
  %>
 
@@ -98,11 +86,26 @@
 			%>
 		</tr>
 	</table>
-	<div style align="right" text-align:center>
+	<br>
+	</div>
+	<div  align="center" >
 		<button onclick="noticeInsertForm();">글쓰기</button>
 		<button onclick="javascript:history.go(-1);">뒤로</button>
 	</div>
 	<hr>
+	<br>
+	<div align="center">
+	<form action="/beet/nsearch">
+		<select name="searchoption">
+			<option value="no">글번호</option>
+			<option value="writer">작성자</option>
+
+			<option value="content">글내용</option>
+		</select> <input type="text" name="search">
+		<button type="submit" value="로그인">검색</button>
+
+	</form>
+</div>
 	
 </body>
 </html>
