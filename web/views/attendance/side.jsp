@@ -48,13 +48,13 @@ padding: 14px 0px 14px 20px;
 		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
 
 <ul id="menu-%ed%96%89%ec%a0%95" class="menu">
-<form action="/beet/mylctr" method="post">
+<form action="/beet/mylctr" method="get">
 <input type="hidden" name="userid" value="<%=((Member)session.getAttribute("loginMember")).getId() %>">
 <li><input type="submit" class="btn-sm subui" value="강의조회"></li>
 
  </form>
  
- <form action="/beet/myScore" method="post">
+ <form action="/beet/myScore" method="get">
 <input type="hidden" name="userid" value="<%=((Member)session.getAttribute("loginMember")).getId() %>">
 <li><input type="submit" class="btn-sm subui" value="성적조회"></li>
  </form>

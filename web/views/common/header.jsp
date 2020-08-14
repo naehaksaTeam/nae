@@ -234,7 +234,7 @@ cursor: pointer;
                                                 <a href="/beet/showplan.ss" class=""><i class="menu_icon blank fa"></i><span>강의</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2369" class="">
-                                                <a href="/beet/views/attendance/sub4main.jsp" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
+                                                <a href="/beet/scmain.p?userid=<%= ((Member)session.getAttribute("loginMember")).getId() %>" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
                                             </li>
                                             
                                             <li id="nav-menu-item-2045" class="">
@@ -291,7 +291,8 @@ cursor: pointer;
                                             </li>
 
                                             <li id="nav-menu-item-2369" class="">
-                                                <a href="/beet/views/attendance/sub4main.jsp" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
+                                         
+                                                <a href="/beet/mylctr?userid=<%= ((Member)session.getAttribute("loginMember")).getId() %>" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2492" class="">
                                                 <a href="/beet/s.t.list" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
