@@ -6,6 +6,10 @@
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- ★★★★★★★★title -->
 	<title>beet</title>
 
@@ -179,8 +183,9 @@ cursor: pointer;
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">과목별 출결조회</p>
-  
+<p class="page_tt">과목별 출결조회
+  <input type="button" class="btn btn-outline-secondary" value="이전페이지로 이동" onclick="javascript:history.go(-1); return false;" style="float:right;">
+	</p>				
  <table class="main_default" >
 <thead>
   <th>

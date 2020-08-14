@@ -164,6 +164,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
+																										<br><br><br>
 																										<h1><span>휴학/복학 신청 및 조회</span></h1>
 
 																										</div>
@@ -231,9 +232,9 @@ cursor: pointer;
 		<tr><td>
 				<input type="radio" name="requestid" value="<%=aa.getRequestid()%>">
 				<% if(aa.getRequestid().substring(0, 1).equals("a")){ %>
-					휴 학 신 청
+					휴학 신청
 				<% }else{ %>
-					복 학 신 청
+					복학 신청
 				<% } %>
 			</td>
 			<td><%=aa.getRequestdate() %></td>

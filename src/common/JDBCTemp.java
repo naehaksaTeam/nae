@@ -11,7 +11,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 public class JDBCTemp {
-	
 //	public static Connection getConnection() {
 //		Connection conn = null;
 //		Properties p = new Properties();
