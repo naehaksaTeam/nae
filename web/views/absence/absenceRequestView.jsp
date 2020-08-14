@@ -246,6 +246,14 @@ cursor: pointer;
 		
 	</table>
 	
+	<button class="btn btn-outline-secondary" target="_blank" type="submit" value=" 조 회 " 
+		onclick="javascript: requestform.action='/beet/selectab?studentid=<%=membermm.getId()%>'"> >조회</button>
+	
+	
+	
+	
+	
+	
 	<p style="text-align: center;display: flex;justify-content: center;"><strong>
 		<input class="down_default" target="_blank" type="submit" value=" 조 회 " 
 		onclick="javascript: requestform.action='/beet/selectab?studentid=<%=membermm.getId()%>'">
