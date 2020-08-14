@@ -97,12 +97,12 @@ function twosend(){
 <br>
 <h3>교수용</h3>
 <div class="교수 조회용">
-<form action="/beet/scmain.p" method="post">
+<form action="/beet/scmain.p" method="get">
 <input type="hidden" name="userid" value="<%=m.getId() %>">
 <input type="submit" class="btn-sm" value="나의강의목록">
  </form>
 
-<form action="/beet/scinsert.prof" method="post">
+<form action="/beet/scinsert.prof" method="get">
 <input type="hidden" name="userid" value="<%=m.getId() %>">
 <input type="submit" class="btn-sm" value="교수성적입력">
  </form>
