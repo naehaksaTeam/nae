@@ -197,7 +197,7 @@ cursor: pointer;
 	<%=message %>
 <% } %>
 <br>
-<button onclick="javascript:location.href='/beet/selectss'">장학금 조회</button>
+<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectss'">장학금 조회</button>
 <% if(list != null){ %>
 <form method="post" name="ssselectform">
 <table class="tg">
@@ -206,6 +206,7 @@ cursor: pointer;
 	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname()%>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
 	<% } %>
 </table>
+	<button class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectss'">장학금 조회</button>
 	<input type="submit" value="삭제하기" onclick="javascript: ssselectform.action='/beet/deletess'">
 	<br>
 	<% if(s == null){ %>
