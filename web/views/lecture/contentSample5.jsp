@@ -1,19 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="student.model.vo.Member" isErrorPage="false" %>
-<%@page import="java.util.Calendar, java.util.ArrayList, notice.model.vo.Notice"%>
-
-<%@ page contentType="text/html; charset=UTF-8"%>
-<% Member m = (Member)session.getAttribute("loginMember"); %>
-
-<%   request.setCharacterEncoding("utf-8");
-   Calendar now = Calendar.getInstance();
-   int month = now.get(Calendar.MONTH)+1;
-   ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
-   
-   
-   
-   %>
-
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
@@ -131,408 +117,6 @@ padding: 5px 15px;
 font-weight: 600;
 cursor: pointer;
 }		</style>
-
-
-
-
-<style>
-
-
-
-.box{
-    width: 1200px;
-    min-height: 300px;  
-    margin: 10px auto;
-    display: flex;
-
-
-}
-
-
-.box h2{
-   align: center;
-   font-size: 18px;
-/*     line-height: 25px;
-    margin: 0; */
-    
-}
-.a{
- 
-    border: 2px solid #dfe4ea;
-    flex:1;
-    width: 30%;
-    box-sizing: border-box;
-    font-size: 0.5rem;
-    background-image: url("/beet/resources/images/a.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-    
-}
-
-
-
-.b{
-    border: 2px solid #dfe4ea;
-    flex:1;
-    margin: 0px 7%;
-    width:30%;
-    box-sizing: border-box;
-     background-image: url("/beet/resources/images/a.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-}
-
-.c{
-     border: 2px solid #dfe4ea;
-     flex:1;
-     width:30%;
-     box-sizing: border-box;
-      background-image: url("/beet/resources/images/a.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-}
-.d{
-    border: 2px solid #dfe4ea;
-    flex:1;
-     width:30%;
-    box-sizing: border-box;
-    background-image: url("/beet/resources/images/a.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-}
-
-.e #mainNotice{
-   
-
-   font-family:돋움;
-   font-size:17px;
-   padding:50px;
-
-}
-
-
-.e{
-    border: 2px solid #dfe4ea;
-    flex:1;
-    margin: 0px 7%;
-     width:30%;
-    box-sizing: border-box;
-    background-image: url("/beet/resources/images/a.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-}
-
-.f ul{
-   
-
-   font-family:돋움;
-   font-size:17px;
-   padding:50px;
-
-}
-
-.f{
-    border: 2px solid #dfe4ea;
-    flex:1;
-     width:30%;
-    box-sizing: border-box;
-     background-image: url("/beet/resources/images/a.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-}
-
-
-table.cal_calendar{
-   padding:0px;margin:0 auto;
-
-}
-table.cal_calendar th{
-   border:1px solid #c0c0c0;
-   background-color:#e0e0e0;
-   width:36px;
-   font-family:돋움;
-   font-size:11px;padding:3px;
-
-}
-table.cal_calendar td{
-   border:1px solid #e0e0e0;
-   background-color:#ffffff;
-   text-align:center;
-   width:20px;
-   height:25px;
-   font-family:tahoma;
-   font-size:11px;padding:3px;
-}
-.cal_today{
-   color:#ff0000;
-   font-weight:bold;
-}
-.cal_days_bef_aft{
-   color:#5a779e;
-}
-
-a:link {text-decoration: none; color: black;}
-a:visited {text-decoration: none; color: black;}
-a:active {text-decoration: none; color: black;}
-a:hover {text-decoration: none; color: red;}
-
-
-
-</style>
-
-
-
-<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
-
-<script type="text/javascript"> 
-
-
-
-
-$(function(){
-
-   
-
-   //스케줄
-   $.ajax({
-      url: "/beet/smonth",
-      type: "get", 
-
-      dataType: "json",
-
-      success: function(data){
-         
-         console.log("success : "+ data);
-         
-         
-         var jsonStr = JSON.stringify(data);
-      
-         var json = JSON.parse(jsonStr);
-         
-         var values = "";
-         for(var i in json.list){
-            values += "<tr><td>"+ json.list[i].schstartdate
-            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a href='/beet/schlist" +"'>" 
-             + decodeURIComponent(json.list[i].schname).replace(/\+/gi, " ")+ "</td></tr>";
-         } 
-
-         $("#mainSchedule").html($("#mainSchedule").html() + values); 
-         
-         
-         
-      },
-      error: function(jqXHR, textstatus, errorthrown){
-         console.log("error : "+ jqXHR + ","+textstatus + "," + errorthrown);
-      }
-      
-   }); 
-   
-   
-    //공지사항 
-   $.ajax({
-      url: "/beet/ntop5",
-      type: "get",
-      dataType: "json",
-      success: function(data){
-         
-         console.log("success : "+ data);
-         
-      
-         var jsonStr = JSON.stringify(data);
-         
-         var json = JSON.parse(jsonStr);
-         
-         var values = "";
-         for(var i in json.list){
-            values += "<tr><td><a href='/beet/ndetail?noticeno=" + json.list[i].no + "'>" 
-            + decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
-            + "</a></td><td>"+ json.list[i].date + "</td></tr>";
-         } 
-         
-         
-         $("#mainNotice").html($("#mainNotice").html() + values); //html을 적용해야 태그를 적용할 수 있다.
-      
-         
-         
-      },
-      error: function(jqXHR, textstatus, errorthrown){
-         console.log("error : "+ jqXHR + ","+textstatus + "," + errorthrown);
-      
-      
-      }
-      
-      
-   });  
-    
-   
-   //학점
-    $.ajax({
-      url: "/beet/stusco?id=<%= m.getId() %>",
-      type: "get", 
-
-      dataType: "json",
-
-      success: function(data){
-         
-         console.log("success : "+ data);
-         
-      
-         var jsonStr = JSON.stringify(data);
-         
-         var json = JSON.parse(jsonStr);
-         
-         var values = "";
-         for(var i in json.list){
-            values += "<tr><td>"+ json.list[i].SEMESTER
-            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>" + json.list[i].TERMGETPOINT + "</td></tr>";
-            
-         } 
-         
-         
-         $("#mainScore").html($("#mainScore").html() + values); //html을 적용해야 태그를 적용할 수 있다.
-      
-   
-      },
-      error: function(jqXHR, textstatus, errorthrown){
-         console.log("error : "+ jqXHR + ","+textstatus + "," + errorthrown);
-      }
-       
-   });   
-     
-
-
-   //날씨
-   $.ajax({
-      url: "/beet/weather",
-      type: "get", 
-   
-      dataType: "json",
-   
-      success: function(msg){
-         
-         console.log("success : "+ msg);
-         
-   
-         
-         var REH = msg.response.body.items.item[1].obsrValue;
-          var RN1 = msg.response.body.items.item[2].obsrValue;
-          var T1H = msg.response.body.items.item[3].obsrValue;
-           
-          
-        
-       
-        
-           $('.습도').html("습도 : "+ msg.response.body.items.item[1].obsrValue +"%"); 
-          
-         $('.강수량').html("강수량 : "+ msg.response.body.items.item[2].obsrValue +"mm"); 
-          
-          $('.기온').html("기온 : "+ T1H + " ℃");
-        
-      
-      },
-      error: function(jqXHR, textstatus, errorthrown){
-         console.log("error : "+ jqXHR + ","+textstatus + "," + errorthrown);
-      }
-      
-     });    
-
-});
-   
-function setStyle(id,style,value)
-{
-    id.style[style] = value;
-}
-function opacity(el,opacity)
-{
-        setStyle(el,"filter:","alpha(opacity="+opacity+")");
-        setStyle(el,"-moz-opacity",opacity/100);
-        setStyle(el,"-khtml-opacity",opacity/100);
-        setStyle(el,"opacity",opacity/100);
-}
-function calendar()
-{
-        var date = new Date();
-        var day = date.getDate();
-        var month = date.getMonth();
-        var year = date.getYear();
-        if(year<=200)
-        {
-                year += 1900;
-        }
-        months = new Array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12');
-        days_in_month = new Array(31,28,31,30,31,30,31,31,30,31,30,31);
-        if(year%4 == 0 && year!=1900)
-        {
-                days_in_month[1]=29;
-        }
-        total = days_in_month[month];
-        var date_today = year+'년'+months[month]+'월 '+day+'일';
-        beg_j = date;
-        beg_j.setDate(1);
-        if(beg_j.getDate()==2)
-        {
-                beg_j=setDate(0);
-        }
-        beg_j = beg_j.getDay();
-        document.write('<table class="cal_calendar" onload="opacity(document.getElementById(\'cal_body\'),20);"><tbody id="cal_body"><tr><th colspan="7">'+date_today+'</th></tr>');
-        document.write('<tr class="cal_d_weeks"><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr><tr>');
-        week = 0;
-        for(i=1;i<=beg_j;i++)
-        {
-                document.write('<td class="cal_days_bef_aft">'+(days_in_month[month-1]-beg_j+i)+'</td>');
-                week++;
-        }
-        for(i=1;i<=total;i++)
-        {
-                if(week==0)
-                {
-                        document.write('<tr>');
-                }
-                if(day==i)
-                {
-                        document.write('<td class="cal_today">'+i+'</td>');
-                }
-                else
-                {
-                        document.write('<td>'+i+'</td>');
-                }
-                week++;
-                if(week==7)
-                {
-                        document.write('</tr>');
-                        week=0;
-                }
-        }
-        for(i=1;week!=0;i++)
-        {
-                document.write('<td class="cal_days_bef_aft">'+i+'</td>');
-                week++;
-                if(week==7)
-                {
-                        document.write('</tr>');
-                        week=0;
-                }
-        }
-        document.write('</tbody></table>');
-        opacity(document.getElementById('cal_body'),70);
-        return true;
-}   
-</script>
-
-
-
 	<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/wp-embed.min.js?ver=4.7.18"></script>
 <noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
 	<link href="https://fonts.googleapis.com/earlyaccess/notosanskr" rel="stylesheet" type="text/css">
@@ -540,134 +124,193 @@ function calendar()
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
 	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
 	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
-	
+
+
+
+
+
+
+
+						
+		
 			<div class="wrapper">
 	<div class="wrapper_inner">
 <%@ include file = "/views/common/header.jsp" %>
 <a id="back_to_top" href="#" class="off">
 			
 		</a>
+	    	
+    
+	
 
-<div class="content " style="min-height: 755px; padding-top: 0px; margin-top:45px;">
-<!-- 메인페이지작성 -->
+    
+<div class="content " style="min-height: 755px; padding-top: 0px;">
+						<div class="content_inner  ">
+									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
+					<div class="container">
+						<div class="container_inner clearfix">
+								<div class="title_subtitle_holder">
+                                                                									<div class="title_subtitle_holder_inner">
+																										<h1><span>강의 h1이름자리</span></h1>
 
+																										</div>
+								                                                            </div>
+						</div>
+					</div>
+				</div>
+								</div>
+			</div>
+				<div class="container">
+            			<div class="container_inner default_template_holder clearfix page_container_inner">
+						
+					
+						
+						<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
+							<div class="column1">
+																				<div class="column_inner">
+								
+								<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;"><div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+		
+<!-- --------------------------------------------------------------------------- -->		
+		
+      <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
+<p class="page_tt">컬럼명여따쓰세요</p>
 
-
-
-
-<!-- <<<<<<< HEAD:web/views/main/mainSample.jsp -->
-<div id="outer">
-
-<br>
-<br>
- <div class="box">
-
-        <div class="a"  style="padding-top: 60px; padding-left: 50px;" >
-              <%if(m.getId().substring(0, 1).equals("P")){ %>
-                <h2> 코드 : <%= m.getId() %><br>
-                    <%=m.getCategoryname() %><br>
-                      <%= m.getName() %>교수님 <br>
-                        내학사에 오신것을 환영합니다.</h2>
-                      
-            <% }else if(m.getId().substring(0, 1).equals("A")){ %>
-                <h2>관리자 코드 : <%= m.getId() %><br>
-                      <%= m.getName() %>관리자님 <br>
-                      내학사에 오신것을 환영합니다.</h2>
-                      
-            <% }else{ %>
-                <h2>내 학번 : <%= m.getId() %><br>
-                 <%=m.getCategoryname() %><br>
-                      <%= m.getName() %>님 <br>
-                      내학사에 오신것을 환영합니다.</h2>
-            <%} %>
-            
-        </div>
-        
-        <div class="b" >
-           <h2 align="center"; >캘린더</h2>
-           <script type="text/javascript">
-            calendar();
-         </script>
-        </div>
-        
-        <div class="c" style="padding-top: 30px; padding-left: 50px;">
-         <table style="width:20; margin:auto; padding-top:10px;" id="mainSchedule" cellspacing="0">
-        <h2 align="center";> <%=month %>월 학사일정</h2>
-         <tr>
-            <th>일</th><th> 일정 </th>
-         </tr>
-         
-         </table>
-        </div>
- </div>
- <br>
- <br>
- 
-  <div class="box">
-        <div class="d" style="padding-top: 50px; padding-left: 30px;">
-           <%if((!(m.getId().substring(0, 1).equals("P")) && !(m.getId().substring(0, 1).equals("A")))){ %>
-            <table style="width:20; margin:auto; padding-top:10px;" id="mainScore" cellspacing="0">
-              <h2 align="center";>나의 학점 현황</h2>
-        
-               <th>학기&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th> 취득학점 </th>
-         
-         </table>
-         <%}else{ %>
-         없음
-         <%} %>
-        </div>
-        <div class="e" style="padding-top: 30px; ">
-              <h2 align="center";>최신 공지글</h2>
-         <section>
-         <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
-      
-   
-      
-         <tr>
-            <th>제목</th><th>작성 날짜</th>
-            
-         </tr>
-  
-         
-         </table>
-         </section>
-        </div>
-        <div class="f" style="padding-top: 30px; padding-left: 50px;">
-               <h2 align="center";>날씨</h2>
-          
-      
-          <table style="width:20; margin:auto; padding-top:10px;" id="mainWeather" cellspacing="0">
-        <ul>
-          
-            <li class="강수량"></li>
-            <li class="기온"></li>
-            <li class="습도"></li>
-            
-        </ul>
-        </table>
-        </div>
- </div>
-
-
-
- </div>
+<table class="main_default">
+  <tr>
+    <td>테스트</td>
+    </tr>
+    </table>
+<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
 
 
 
+<!-- 버튼예시 
+<p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">버튼</a></strong></p>
+<p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">글자에 맞춰 버튼크기변경</a></strong></p>
+<p style="text-align: center;display: flex;justify-content: center;"><strong><a class="down_default" href="#" target="_blank">버튼여러개는</a>&nbsp;&nbsp;&nbsp;<a class="down_default" href="#" target="_blank">p태그안에</a></strong></p>
+-->
+
+<!-- 본문작성예시 
+<p>&nbsp;</p>
+<p><strong>글쓰기</strong><br>
+≫ 글내용을 여기에 써보세요<br>
+≫ 그냥 글 써보는중 <br>
+≫ 게시판에 대한 설명이 필요하면 여기에 쓰세요<br></p>-->
+
+<!-- 가로테이블예시 
+<p>≫ 가로테이블 명</p>
+<table class="main_default">
+<colgroup>
+<col style="width: 10%;">
+<col style="width: 20%;"> 
+<col style="width: 30%;"> 
+<col style="width: 40%;"> 
+</colgroup>
+<thead>
+<tr>
+<th>컬럼명1</th>
+<th>컬럼명2</th>
+<th>컬럼명3</th>
+<th>컬럼명4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>td 1</td>
+<td>td 2</td>
+<td>td 3</td>
+<td>td 4</td>
+</tr>
+<tr>
+<td>td 5</td>
+<td>td 6</td>
+<td>td 7</td>
+<td>td 8</td>
+</tr>
+</tbody>
+</table>-->
 
 
+<!-- 세로테이블예시 
+<p> ≫ 세로테이블명</p>
+<table class="main_default">
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 85%;"> </colgroup>
+<thead>
+<tr>
+<th>컬럼1</th>
+<th>컬럼2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th>서브컬럼1</th>
+<td>서브1값</td>
+</tr>
+<tr>
+<th>서브컬럼2</th>
+<td>서브2값</td>
+</tr>
+</tbody>
+</table>
+-->
 
-=======
->>>>>>> 0b137335e730fd0402cba1d489f2b6be8f803e32:web/views/common/mainSample.jsp
+<!-- ------------------------------------------ -->
 
+
+</div> 
+	</div> </div></div></div></div></div>
+																 
+								</div>
+																	
+									
+							</div>
+
+<!-- 서브메뉴★★★ 여기에 써주세요 -->
+<!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
+<div class="column2">	
+<%@ include file = "/views/common/side.jsp" %>
+<!-- <div class="column_inner">
+<aside class="sidebar">
+							
+		<div class="widget "><div id="dc_jqaccordion_widget-8">		
+		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
+
+<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
+  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
+  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
+  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
+  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
+  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
+</ul>		
+
+
+		</div>
+		</div></div>		</aside>
+	</div>-->
+</div> 
+<!-- 서브메뉴 끝 -->
+						</div>
+								
+		</div>
+        	</div>
+				
+	</div>
 </div>
 
 
 
 	<footer>
-		<div class="footer_inner clearfix " style="margin-top:45px;">
+		<div class="footer_inner clearfix">
 				<div class="footer_top_holder">
             			
 					</div>
@@ -937,5 +580,3 @@ wcs_do();
 
 
 <div id="wp-a11y-speak-polite" aria-live="polite" aria-relevant="additions text" aria-atomic="true" class="screen-reader-text wp-a11y-speak-region"></div><div id="wp-a11y-speak-assertive" aria-live="assertive" aria-relevant="additions text" aria-atomic="true" class="screen-reader-text wp-a11y-speak-region"></div></body></html></html>
-
-

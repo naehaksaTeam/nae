@@ -151,45 +151,27 @@ public class NoticeDao {
 
 	}
 
-	public ArrayList<Notice> selectTop5(Connection conn) {
-		ArrayList<Notice> list = new ArrayList<Notice>();
-		System.out.println("도착");
-		Statement stmt = null;
-		ResultSet rset = null;
-		String query =  "" + 
-				"select *" + 
-				"from (SELECT ROWNUM RNUM, " + 
-				"        NOTICENO , " + 
-				"        NOTICETITLE, " + 
-				"        NOTICEREADCOUNT" + 
-				"    FROM (SELECT * FROM NOTICE ORDER BY NOTICEREADCOUNT DESC)" +
-				"    )" + 
-				"where RNUM >=1 AND RNUM <=5";
-		
-		System.out.println("dao성공!");
-		try {
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
-
-			while (rset.next()) {
-				Notice notice = new Notice();
-
-				notice.setNoticeNo(rset.getInt("NOTICENO"));
-				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
-				notice.setNoticeReadCount(rset.getInt("NOTICEREADCOUNT"));
-
-				list.add(notice);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			close(stmt);
-			close(rset);
-			close(conn);
-		}
-		return list;
-	}
-
+	/*
+	 * public ArrayList<Notice> selectTop5(Connection conn) { ArrayList<Notice> list
+	 * = new ArrayList<Notice>(); System.out.println("도착"); Statement stmt = null;
+	 * ResultSet rset = null; String query = "" + "select *" +
+	 * "from (SELECT ROWNUM RNUM, " + "        NOTICENO , " +
+	 * "        NOTICETITLE, " + "        NOTICEREADCOUNT" +
+	 * "    FROM (SELECT * FROM NOTICE ORDER BY NOTICEREADCOUNT DESC)" + "    )" +
+	 * "where RNUM >=1 AND RNUM <=5";
+	 * 
+	 * System.out.println("dao성공!"); try { stmt = conn.createStatement(); rset =
+	 * stmt.executeQuery(query);
+	 * 
+	 * while (rset.next()) { Notice notice = new Notice();
+	 * 
+	 * notice.setNoticeNo(rset.getInt("NOTICENO"));
+	 * notice.setNoticeTitle(rset.getString("NOTICETITLE"));
+	 * notice.setNoticeReadCount(rset.getInt("NOTICEREADCOUNT"));
+	 * 
+	 * list.add(notice); } } catch (Exception e) { e.printStackTrace(); } finally {
+	 * close(stmt); close(rset); close(conn); } return list; }
+	 */
 	public int getListCount(Connection conn) {
 		int listCount = 0;
 		Statement stmt = null;
@@ -327,6 +309,40 @@ public class NoticeDao {
 		}
 		return list;
 	}
+
+	public ArrayList<Notice> selectNewTop5(Connection conn) {
+		ArrayList<Notice> list = new ArrayList<Notice>();
+		
+		Statement stmt = null;
+		ResultSet rset = null;
+		
+		String query="SELECT * FROM (SELECT ROWNUM RNUM, NOTICENO, NOTICETITLE, NOTICEDATE FROM (SELECT * FROM NOTICE ORDER BY NOTICEDATE DESC)) WHERE RNUM >= 1 AND RNUM <= 5";  
+				
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			while(rset.next()) {
+				
+				Notice notice = new Notice();
+				
+				notice.setNoticeNo(rset.getInt("NOTICENO"));
+				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
+				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
+				
+				
+				list.add(notice);
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(stmt);
+			close(rset);
+		}
+		System.out.println("멘인의 탑 5dao"+ list);
+		return list;
+	}	
 
 	
 
