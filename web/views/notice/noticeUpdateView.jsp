@@ -23,7 +23,8 @@
 		<input type="hidden" name="ofile"
 			value="<%=notice.getOriginalFile()%>"> <input type="hidden"
 			name="rfile" value="<%=notice.getRenameFile()%>">
-		<table align="center" width="500" border="1" cellspacing="0">
+	<div  align="center" width="500" border="1" cellspacing="0">
+		<table>
 			<tr>
 				<th>제 목</th>
 				<td><input type="text" name="title"
@@ -56,16 +57,17 @@
 			</tr>
 			<tr>
 				<th>내 용</th>
-				<td><textarea rows="30" clos="30" name="content"><%=notice.getNoticeContent()%></textarea></td>
+				<td><textarea rows="30" clospan="30" name="content"><%=notice.getNoticeContent()%></textarea></td>
 			</tr>
 			<tr>
 				<th colspan="2"><input type="submit" value="수정하기">
-					&nbsp; <input type="reset" value="수정취소"> &nbsp; <input
+					&nbsp; <input type="reset" value="초기화"> &nbsp; <input
 					type="button" value="이전 페이지로"
 					onclick="javascript:history.go(-1); return false;"></th>
 			</tr>
 		</table>
 	</form>
-	<%@include file="../common/footer.jsp"%>
+	</div>
+	
 </body>
 </html>

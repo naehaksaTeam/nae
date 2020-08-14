@@ -9,14 +9,14 @@
 <body>
 <%@ include file="../common/header.jsp"%>
 	<h1 align="center"> 등록 페이지</h1>
-	<!-- from에서 입력값들과 파일을 같이 전송하려면 반드시 enctype="multipart/form-data" 속성을 추가해야함 -->
+	
+	
 	<form action="/beet/minsert.ad" method="post">
-		
-		<table align="center" width="500" border="1" cellspacing="0"
-			cellpadding="5">
+		<div align="center">
+		<table>
 			<tr>
 				<th>학과코드</th>
-				<td><input type="text" name="no" size="50"></td>
+				<td><input type="text" name="no" ></td>
 			</tr>
 			<tr>
 				<th>학과명</th>
@@ -32,7 +32,7 @@
 			</tr>
 			<tr>
 				<th>구분명</th>
-				 <td><input type="text" name="category">ㄱ</td> 
+				 <td><input type="text" name="category"></td> 
 				
 			</tr>
 			<tr>
@@ -42,7 +42,9 @@
 					onclick="javascript:history.go(-1); return false;"></th>
 			</tr>
 		</table>
+		</div>
 	</form>
-	<%@ include file="../common/footer.jsp"%>
+	
+	
 </body>
 </html>

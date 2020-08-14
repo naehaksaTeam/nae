@@ -361,7 +361,7 @@ public class MajorDao {
 		PreparedStatement pstmt = null;
 		Major2 major2 = null;
 		ResultSet rset = null;
-		String query = "select value, lpad(benefitterm,4) " + 
+		String query = "select value, lpad(benefitterm,4) c " + 
 				"from ssbenefitst a " + 
 				"left join scholarship b  " + 
 				"on a.ssname = b.ssname " + 
