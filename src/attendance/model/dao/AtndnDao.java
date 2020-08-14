@@ -44,6 +44,7 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
 			close(conn);
 		}
@@ -102,6 +103,7 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
 			close(conn);
 		}
@@ -169,6 +171,7 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
 			close(conn);
 		}
@@ -197,6 +200,7 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+		
 			close(pstmt);
 			close(conn);
 		}
@@ -354,6 +358,7 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
 			close(conn);
 		}
@@ -476,6 +481,7 @@ public class AtndnDao {
 				} catch (Exception e) {
 					e.printStackTrace();
 				} finally {
+					close(rset);
 					close(pstmt);
 					close(conn);
 				}
