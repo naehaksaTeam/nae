@@ -416,7 +416,7 @@ $(function(){
 
 
 <body>
-<button onclick="javascript:location.href='../common/maintest.jsp'">메인테스트</button>
+<button onclick="javascript:location.href='mainSample.jsp'">메인테스트</button>
 <button onclick="javascript:location.href='../common/sample5.jsp'">샘플5</button>
 <button onclick="javascript:location.href='../common/main2123.jsp'">메인ㅇ</button>
 <button onclick="javascript:location.href='../common/sample3.jsp'">샘플페이지</button>
