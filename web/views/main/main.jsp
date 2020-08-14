@@ -16,9 +16,6 @@
 <title>beet</title>
 </head>
 
-
-
-
 <!-- 
 <style type="text/css">
 /*   body {
@@ -419,6 +416,7 @@ $(function(){
 
 
 <body>
+<button onclick="javascript:location.href='../common/main2123.jsp'">메인ㅇ</button>
 <button onclick="javascript:location.href='../common/sample3.jsp'">샘플페이지</button>
 <button onclick="javascript:location.href='../common/sample2.jsp'">샘플페이지</button>
 <h2>테스트 메뉴 버튼</h2>
@@ -676,7 +674,7 @@ $(function(){
 
 </body>
   <footer>
-<%@include file="../common/footer.jsp" %>
+
 </footer>
 
 </html>
