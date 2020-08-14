@@ -69,6 +69,12 @@ public class NoticeListServlet extends HttpServlet {
 				if(maxPage< endPage) {
 					endPage = maxPage;
 				}
+				System.out.println(currentPage);
+				System.out.println(listCount);
+				System.out.println(list);
+				System.out.println(maxPage);
+				System.out.println(startPage);
+				System.out.println(endPage);
 				
 				RequestDispatcher view = null;
 				if(list.size() >0) {
