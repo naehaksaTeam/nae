@@ -8,6 +8,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!--추가된것 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!--추가된것 -->
+
 <meta charset="UTF-8">
 <title>beet</title>
 <script type="text/javascript">
@@ -193,7 +200,7 @@ cursor: pointer;
 </style>
 <body>
 <center>
-<hr>
+
 <h1 align="center">마이페이지</h1>
 <br>
 
@@ -201,7 +208,7 @@ cursor: pointer;
 	<%=message %>
 <% } %>
 <form method="post" action="/beet/mupdate.cp?id=<%= member1111.getId()%>" onsubmit="return validate()">
-<table id="outer" align="center" width="500" cellspacing="5" cellpadding="0">
+<table class="main_default" id="outer" align="center" cellspacing="5" cellpadding="0">
 
 <tr>
 	<th>아이디</th>
@@ -294,23 +301,34 @@ cursor: pointer;
 	<td><%= member1111.getAbsencecount() %></td>
 </tr>
 <% } %>
-
-<tr>
-	<th colspan="2">
-	 
-		<input type="submit" value="수정하기"> &nbsp;
-		<input type="reset" value="수정취소"> &nbsp; 	
-	
-		
-	</th>	
-</tr>
 </table>
+
+	 	<p style="text-align: center;"><strong>
+	 		<input type="submit"  class="down_default" target="_blank" value="수정하기"> 
+	 		&nbsp; 
+	 		<input type="reset" class="down_default" target="_blank" value="수정취소"> 
+	 	</strong></p>
+	 	<p style="text-align: center;"><strong>
+	 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	 		&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	 			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	 				&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	 					&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+	 					 
+	 			<button onclick="sendDelete();" class="btn btn-outline-secondary" >탈퇴하기</button> 
+	 			
+	 	</strong></p>
+
 </form>
-	<center><button onclick="sendDelete();">탈퇴하기</button>  </center>
+
 &nbsp; 
 
 <hr>
 <!-- 상대경로만 사용 가능함 -->
 </center>
+
 </body>
+
+
 </html>

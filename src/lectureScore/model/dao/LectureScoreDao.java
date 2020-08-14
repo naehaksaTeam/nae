@@ -48,6 +48,7 @@ public class LectureScoreDao {
 		} finally {
 			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 
 		return list;
@@ -86,6 +87,7 @@ public class LectureScoreDao {
 		} finally {
 			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 
 		return list;
@@ -131,6 +133,7 @@ public class LectureScoreDao {
 		}finally {
 			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 		return list;
 	}
@@ -157,7 +160,9 @@ public class LectureScoreDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
+			
 			close(pstmt);
+			close(conn);
 		}
 		return result;
 	}
@@ -183,6 +188,7 @@ public class LectureScoreDao {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
+			close(conn);
 		}
 		return result;
 	}
@@ -221,6 +227,7 @@ public class LectureScoreDao {
 			} finally {
 				close(rset);
 				close(stmt);
+				close(conn);
 			}
 			
 			return list;
@@ -261,6 +268,7 @@ public class LectureScoreDao {
 			} finally {
 				close(rset);
 				close(pstmt);
+				close(conn);
 			}
 			
 			return list;
@@ -300,6 +308,7 @@ public class LectureScoreDao {
 			} finally {
 				close(rset);
 				close(pstmt);
+				close(conn);
 			}
 			
 			return list;

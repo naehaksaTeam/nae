@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
- <meta name="google-site-verification" content="x1AIKCh2ubCAV_2p2-8ieT3xX-UaZwwUb2-uctC0GOM">
  <meta charset="UTF-8">
 	<!-- ★★★★★★★★title -->
 	<title> </title>
@@ -136,111 +135,8 @@ cursor: pointer;
 		
 			<div class="wrapper">
 	<div class="wrapper_inner">
-	<!-- Google Analytics start -->
-		<!-- Google Analytics end -->
-
-	
-
-<header class="has_top has_header_fixed_right scroll_header_top_area dark stick scrolled_not_transparent page_header">
-    <div class="header_inner clearfix">
-
-		<div class="header_top_bottom_holder">
-			<div class="header_top clearfix" style="background-color:rgba(19, 67, 107, 1);">
-							<div class="container">
-					<div class="container_inner clearfix">
-                    								<div class="left">
-						<div class="inner">
-						<div class="header-widget widget_nav_menu header-left-widget"><div id="nav_menu-4"><div class="menu-top_left_menu-container"><ul id="menu-top_left_menu" class="menu"><li id="menu-item-1160" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1160"></li>
-<li id="menu-item-495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-495"><a href="https://www.cha.ac.kr/%ec%9e%ac%ed%95%99%ec%83%9d/">재학생</a></li>
-<li id="menu-item-12423" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12423"><a target="_blank" href="https://my.cha.ac.kr/">나의학사관리시스템</a></li>
-</ul></div></div></div>						</div>
-					</div>
-					<div class="right">
-						<div class="inner">
-						<div class="header-widget widget_nav_menu header-right-widget"><div id="nav_menu-14"><div class="menu-top_right_menu-container"><ul id="menu-top_right_menu" class="menu"><li id="menu-item-1161" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1161"></li>
-<li id="menu-item-4430" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-4430"></li>
-</ul></div></div></div><div class="header-widget widget_text header-right-widget"><div id="text-35">			<div class="textwidget"><ul class="footer_sns">
-<li><a href="https://www.facebook.com/chauniversity/" target="_blank"></a></li>
-<li><a href="https://www.instagram.com/chauniversity/
-" target="_blank"></a></li>
-<li><a href="https://blog.naver.com/chauniversity" target="_blank"></a></li>
-<li><a href="https://www.youtube.com/c/chauniversity" target="_blank"></a></li>
-</ul></div>
-		</div></div>						</div>
-					</div>
-				                    					</div>
-				</div>
-					</div>
-		<div class="header_bottom clearfix" style=" background-color:rgba(255, 255, 255, 1);">
-		    				<div class="container">
-					<div class="container_inner clearfix">
-                    			                					<div class="header_inner_left">
-                        													<div class="mobile_menu_button">
-                                <span>
-                                    <span aria-hidden="true" class="qode_icon_font_elegant icon_menu "></span>                                </span>
-                            </div>
-												<div class="logo_wrapper"> 
-                            							<div class="q_logo">
-								<a itemprop="url" href="https://www.cha.ac.kr/" style="height: 47px; visibility: visible;">
-									
-									
-									
-									
-									
-																	</a>
-							</div>
-                            						</div>
-                                                					</div>
-                    					                                                							<div class="header_inner_right">
-                                <div class="side_menu_button_wrapper right">
-																		                                    <div class="side_menu_button">
-
-										                                                                                                                            
-										                                    </div>
-                                </div>
-							</div>
-						
-						<!--헤더메뉴 ★★★★★★ 두번씩 써야해요 반응형떄문에 -->
-						<nav class="main_menu drop_down right">
-						<ul id="menu-new-main-menu" class="">
-              <li id="nav-menu-item-58753" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active narrow"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><i class="menu_icon blank fa"></i><span>마이페이지</span><span class="plus"></span></a></li>
-
-              <li id="nav-menu-item-2753" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="http://127.0.0.1:8765/beet/views/student/memberUpdatePage.jsp/" class=""><i class="menu_icon blank fa"></i><span>강의</span><span class="plus"></span></a></li>
-<li id="nav-menu-item-2369" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="https://www.cha.ac.kr/%ea%b5%90%ec%9c%a1/%eb%8c%80%ed%95%99/" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a></li>
-<li id="nav-menu-item-2492" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="https://www.cha.ac.kr/%ec%97%b0%ea%b5%ac/%ec%b0%a8%eb%b3%91%ec%9b%90-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac/" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a></li>
-<li id="nav-menu-item-13721" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="https://www.cha.ac.kr/%eb%8c%80%ed%95%99%ec%83%9d%ed%99%9c/%ed%95%99%ec%82%ac%ec%9d%bc%ec%a0%95-2020%ed%95%99%eb%85%84%eb%8f%84/" class=""><i class="menu_icon blank fa"></i><span>수강신청</span><span class="plus"></span></a></li>
-<li id="nav-menu-item-2368" class="menu-item menu-item-type-post_type menu-item-object-page  narrow"><a href="https://www.cha.ac.kr/%ed%95%99%ea%b5%90%ec%86%8c%ea%b0%9c/%ec%b4%9d%ec%9e%a5%ec%8b%a4/%ec%b4%9d%ec%9e%a5-%ec%9d%b8%ec%82%ac%eb%a7%90/" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a></li>
-<li id="nav-menu-item-2045" class="menu-item menu-item-type-custom menu-item-object-custom  narrow"><a target="_blank" href="https://admission.cha.ac.kr/" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a></li>
-<li id="nav-menu-item-5823" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active narrow"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a></li>
-
-</ul>						</nav>
-						                        										<nav class="mobile_menu">
-                        <ul id="menu-new-main-menu-1" class="" style="display: none;">
-                          <!--서브메뉴 두번써야해요 여기에도 써야해요 -->
-                          <li id="mobile-menu-item-58753" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><span>마이페이지</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
-                          
-                          
-                          
-                          <li id="mobile-menu-item-2753" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%eb%89%b4%ec%8a%a4/%ed%95%99%ea%b5%90%eb%8f%99%ec%a0%95/" class=""><span>강의</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
-<li id="mobile-menu-item-2369" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%ea%b5%90%ec%9c%a1/%eb%8c%80%ed%95%99/" class=""><span>출결/성적</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
-<li id="mobile-menu-item-2492" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%ec%97%b0%ea%b5%ac/%ec%b0%a8%eb%b3%91%ec%9b%90-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac/" class=""><span>등록/장학</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
-<li id="mobile-menu-item-13721" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%eb%8c%80%ed%95%99%ec%83%9d%ed%99%9c/%ed%95%99%ec%82%ac%ec%9d%bc%ec%a0%95-2020%ed%95%99%eb%85%84%eb%8f%84/" class=""><span>수강신청</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
-<li id="mobile-menu-item-2368" class="menu-item menu-item-type-post_type menu-item-object-page "><a href="https://www.cha.ac.kr/%ed%95%99%ea%b5%90%ec%86%8c%ea%b0%9c/%ec%b4%9d%ec%9e%a5%ec%8b%a4/%ec%b4%9d%ec%9e%a5-%ec%9d%b8%ec%82%ac%eb%a7%90/" class=""><span>휴학/복학</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
-<li id="mobile-menu-item-2045" class="menu-item menu-item-type-custom menu-item-object-custom "><a target="_blank" href="https://admission.cha.ac.kr/" class=""><span>학교소식</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
-<li id="mobile-menu-item-5823" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active"><a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><span>학사일정</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span></li>
-
-
-</ul>					</nav>
-			                    					</div>
-				</div>
-				</div>
-	</div>
-	</div>
-
-</header>
-	
-
-    		<a id="back_to_top" href="#" class="off">
+<%@ include file = "/views/common/header.jsp" %>
+<a id="back_to_top" href="#" class="off">
 			
 		</a>
 	    	
@@ -284,7 +180,7 @@ cursor: pointer;
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">컬럼명여따쓰세요</p>
+<p class="page_tt">나의 강의 조회</p>
 
 <table class="main_default">
   <tr>
@@ -382,7 +278,8 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<div class="column_inner">
+<%@ include file = "/views/common/side.jsp" %>
+<!-- <div class="column_inner">
 <aside class="sidebar">
 							
 		<div class="widget "><div id="dc_jqaccordion_widget-8">		
@@ -399,8 +296,8 @@ cursor: pointer;
 
 		</div>
 		</div></div>		</aside>
-	</div>
-</div>
+	</div>-->
+</div> 
 <!-- 서브메뉴 끝 -->
 						</div>
 								

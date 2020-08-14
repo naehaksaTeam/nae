@@ -44,7 +44,9 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 		return list;
 	}
@@ -59,9 +61,6 @@ public class AtndnDao {
 		String query = "select sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3,"
 				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 "
 				+ "from AtndnView where sid = ? and lcode = ?";
-		System.out.println(sid);
-		System.out.println(lcode);
-		System.out.println("^^^^^^");
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, sid);
@@ -104,7 +103,9 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 
 		return list;
@@ -170,7 +171,9 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 
 		return list;
@@ -197,7 +200,9 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+		
 			close(pstmt);
+			close(conn);
 		}
 
 		return result;
@@ -237,6 +242,7 @@ public class AtndnDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(conn);
 		}
 
 		return result;
@@ -300,6 +306,7 @@ public class AtndnDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
+			close(conn);
 		}
 
 		return list;
@@ -351,7 +358,9 @@ public class AtndnDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
+			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 		return list;
 	}
@@ -392,6 +401,7 @@ public class AtndnDao {
 		} finally {
 			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 
 		return list;
@@ -433,6 +443,7 @@ public class AtndnDao {
 					e.printStackTrace();
 				}finally {
 					close(pstmt);
+					close(conn);
 				}
 				return result;
 			}
@@ -470,7 +481,9 @@ public class AtndnDao {
 				} catch (Exception e) {
 					e.printStackTrace();
 				} finally {
+					close(rset);
 					close(pstmt);
+					close(conn);
 				}
 				return list;
 			}
