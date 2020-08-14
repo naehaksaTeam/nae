@@ -1,4 +1,4 @@
-package termScore.controㄹer;
+package termScore.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
