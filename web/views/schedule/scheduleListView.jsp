@@ -35,6 +35,11 @@ function update(){
 <body>
 <%@ include file="/views/common/side.jsp" %> 
 <center>
+
+
+
+
+
 <h1>학사일정</h1>
 <table align="center" width="700" border="1" cellspacing="0" >
 <tr><th width="300">날짜</th><th>상세내용</th></tr>
