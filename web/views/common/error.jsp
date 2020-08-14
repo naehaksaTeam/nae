@@ -18,7 +18,8 @@
 	<%= error %>
 <% } %>
 </h2>
-<button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<button onclick="javascript:location.href='/beet/'">메인 페이지</button> &nbsp;&nbsp;
+<button onclick="javascript:history.go(-1)">이전 페이지</button>
 </center>
 </body>
 </html>
