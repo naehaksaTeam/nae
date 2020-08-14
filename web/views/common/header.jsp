@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="student.model.vo.Member" %>
+<% Member m1 = (Member)session.getAttribute("loginMember"); %>    
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
@@ -146,8 +147,16 @@ cursor: pointer;
                                                             <li id="menu-item-1160" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1160">
                                                             </li>
                                                             <li id="menu-item-495" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-495">
-                                                                <a href="https://www.cha.ac.kr/%ec%9e%ac%ed%95%99%ec%83%9d/">재학생</a>
-                                                            </li>
+                                                              	<%if(m1.getId().substring(0, 1).equals("P")){ %>
+																	<li><%= m1.getName() %>교수님   | </li>
+																<% }else if(m1.getId().substring(0, 1).equals("A")){ %>
+																		<li><%= m1.getName() %>관리자님   | </li>
+																<% }else{ %>
+																<li><%= m1.getName() %>님   | </li>
+																	<%} %> 
+                                                                </li>
+                                                            <li><a href="/beet/logout.cp" >로그아웃</a>  | </li>
+                                                            
                                                             <li id="menu-item-12423" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-12423">
                                                                 <a target="_blank" href="https://my.cha.ac.kr/">나의학사관리시스템</a>
                                                             </li>
@@ -171,22 +180,7 @@ cursor: pointer;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="header-widget widget_text header-right-widget">
-                                                <div id="text-35">
-                                                    <div class="textwidget">
-                                                        <ul class="footer_sns">
-                                                            <li><a href="https://www.facebook.com/chauniversity/" target="_blank"></a>
-                                                            </li>
-                                                            <li><a href="https://www.instagram.com/chauniversity/
-" target="_blank"></a></li>
-                                                            <li><a href="https://blog.naver.com/chauniversity" target="_blank"></a>
-                                                            </li>
-                                                            <li><a href="https://www.youtube.com/c/chauniversity" target="_blank"></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                         
                                         </div>
                                     </div>
                                 </div>
@@ -223,39 +217,102 @@ cursor: pointer;
                                     </div>
 
                                     <!--헤더메뉴 ★★★★★★ 두번씩 써야해요 반응형떄문에 -->
-                                    <nav class="main_menu drop_down right">
+                                    
+
+                                    
+                                <%if(m1.getId().substring(0, 1).equals("P")){ //교수%>     
+                                    
+                                       <nav class="main_menu drop_down right">
                                         <ul id="menu-new-main-menu" class="">
-                                            <li id="nav-menu-item-58753" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active narrow">
-                                                <a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><i class="menu_icon blank fa"></i><span>마이페이지</span><span class="plus"></span></a>
+                                            <li id="nav-menu-item-58753" class="">
+                                                <a href="/beet/views/student/memberUpdatePage.jsp" class="current  active"><i class="menu_icon blank fa"></i><span>마이페이지</span><span class="plus"></span></a>
                                             </li>
 
-                                            <li id="nav-menu-item-2753" class="menu-item menu-item-type-post_type menu-item-object-page  narrow">
-                                                <a href="http://127.0.0.1:8765/beet/views/student/memberUpdatePage.jsp/" class=""><i class="menu_icon blank fa"></i><span>강의</span><span class="plus"></span></a>
+                                            <li id="nav-menu-item-2753" class="">
+                                                <a href="/beet/showplan.ss" class=""><i class="menu_icon blank fa"></i><span>강의</span><span class="plus"></span></a>
                                             </li>
-                                            <li id="nav-menu-item-2369" class="menu-item menu-item-type-post_type menu-item-object-page  narrow">
-                                                <a href="https://www.cha.ac.kr/%ea%b5%90%ec%9c%a1/%eb%8c%80%ed%95%99/" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
+                                            <li id="nav-menu-item-2369" class="">
+                                                <a href="/beet/views/attendance/sub4main.jsp" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
                                             </li>
-                                            <li id="nav-menu-item-2492" class="menu-item menu-item-type-post_type menu-item-object-page  narrow">
-                                                <a href="https://www.cha.ac.kr/%ec%97%b0%ea%b5%ac/%ec%b0%a8%eb%b3%91%ec%9b%90-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac/" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
+                                            
+                                            <li id="nav-menu-item-2045" class="">
+                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
-                                            <li id="nav-menu-item-13721" class="menu-item menu-item-type-post_type menu-item-object-page  narrow">
-                                                <a href="https://www.cha.ac.kr/%eb%8c%80%ed%95%99%ec%83%9d%ed%99%9c/%ed%95%99%ec%82%ac%ec%9d%bc%ec%a0%95-2020%ed%95%99%eb%85%84%eb%8f%84/" class=""><i class="menu_icon blank fa"></i><span>수강신청</span><span class="plus"></span></a>
-                                            </li>
-                                            <li id="nav-menu-item-2368" class="menu-item menu-item-type-post_type menu-item-object-page  narrow">
-                                                <a href="https://www.cha.ac.kr/%ed%95%99%ea%b5%90%ec%86%8c%ea%b0%9c/%ec%b4%9d%ec%9e%a5%ec%8b%a4/%ec%b4%9d%ec%9e%a5-%ec%9d%b8%ec%82%ac%eb%a7%90/" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a>
-                                            </li>
-                                            <li id="nav-menu-item-2045" class="menu-item menu-item-type-custom menu-item-object-custom  narrow">
-                                                <a target="_blank" href="https://admission.cha.ac.kr/" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
-                                            </li>
-                                            <li id="nav-menu-item-5823" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active narrow">
-                                                <a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
+                                            <li id="nav-menu-item-5823" class="">
+                                                <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
                                             </li>
 
                                         </ul>
                                     </nav>
-                                    <nav class="mobile_menu">
+                                    
+                                    
+                                   <%}else if(m1.getId().substring(0, 1).equals("A")){//관리자 %> 
+                                   
+                                    
+                                    
+                                    <nav class="main_menu drop_down right">
+                                        <ul id="menu-new-main-menu" class="">
+                                            <li id="nav-menu-item-58753" class="">
+                                                <a href="/beet/views/student/memberUpdatePage.jsp" class="current  active"><i class="menu_icon blank fa"></i><span>마이페이지</span><span class="plus"></span></a>
+                                            </li>
+
+                                            <li id="nav-menu-item-2369" class="">
+                                                <a href="/beet/views/attendance/sub4main.jsp" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-2492" class="">
+                                                <a href="" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-13721" class="">
+                                                <a href="/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" class=""><i class="menu_icon blank fa"></i><span>수강신청</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-2368" class="">
+                                                <a href="/beet/selectaball" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-2045" class="">
+                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-5823" class="">
+                                                <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
+                                            </li>
+
+                                        </ul>
+                                    </nav>
+                                    
+                                    	<%}else{ //학생 %>
+                                    
+ 
+                                    
+                                      <nav class="main_menu drop_down right">
+                                        <ul id="menu-new-main-menu" class="">
+                                            <li id="nav-menu-item-58753" class="">
+                                                <a href="/beet/views/student/memberUpdatePage.jsp" class="current  active"><i class="menu_icon blank fa"></i><span>마이페이지</span><span class="plus"></span></a>
+                                            </li>
+
+                                            <li id="nav-menu-item-2369" class="">
+                                                <a href="/beet/views/attendance/sub4main.jsp" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-2492" class="">
+                                                <a href="/beet/s.t.list" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-13721" class="">
+                                                <a href="/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" class=""><i class="menu_icon blank fa"></i><span>수강신청</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-2368" class="">
+                                                <a href="/beet/selectab?studentid=<%=m1.getId()%>" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-2045" class="">
+                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                            </li>
+                                            <li id="nav-menu-item-5823" class="">
+                                                <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
+                                            </li>
+
+                                        </ul>
+                                    </nav>
+                                   <%} %> 
+                                    <!-- <nav class="mobile_menu">
                                         <ul id="menu-new-main-menu-1" class="" style="display: none;">
-                                            <!--서브메뉴 두번써야해요 여기에도 써야해요 -->
+                                            서브메뉴 두번써야해요 여기에도 써야해요
                                             <li id="mobile-menu-item-58753" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-980 current_page_item active">
                                                 <a href="https://www.cha.ac.kr/%ed%96%89%ec%a0%95/%ec%a6%9d%eb%aa%85%ec%84%9c%eb%b0%9c%ea%b8%89/" class="current  active"><span>마이페이지</span></a><span class="mobile_arrow"><i class="fa fa-angle-right"></i><i class="fa fa-angle-down"></i></span>
                                             </li>
@@ -286,7 +343,7 @@ cursor: pointer;
 
 
                                         </ul>
-                                    </nav>
+                                    </nav> -->
                                 </div>
                             </div>
                         </div>
