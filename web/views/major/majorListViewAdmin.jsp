@@ -33,10 +33,9 @@
 
 
 
-
-
-	<table align="center" width="500" border="1" cellspacing="0"
-		cellpadding="1">
+	<div align="center">
+	
+	<table>
 		<tr>
 			<th>학과코드</th>
 			<th>학과명</th>
@@ -144,7 +143,7 @@
 
 	</div>
 	<!--  만일 관리자라면 글쓰기가 보여야함 ! 지금은 누구나다보임 -->
-	<div style align="right" text-align:center>
+	<div  align="center" >
 	
 	<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
 		<button onclick="majorInsertForm();">글쓰기</button>
@@ -154,7 +153,7 @@
 		<button onclick="javascript:history.go(-1);">뒤로</button>
 	</div>
 	<hr>
-	<%@include file="/views/common/footer.jsp"%>
+	
 
 	</form>
 </body>

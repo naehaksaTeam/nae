@@ -262,7 +262,7 @@ cursor: pointer;
                                                 <a href="/beet/views/attendance/sub4main.jsp" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2492" class="">
-                                                <a href="" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
+                                                <a href="/beet/mlist.ad" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-13721" class="">
                                                 <a href="/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" class=""><i class="menu_icon blank fa"></i><span>수강신청</span><span class="plus"></span></a>
@@ -294,7 +294,7 @@ cursor: pointer;
                                                 <a href="/beet/views/attendance/sub4main.jsp" class=""><i class="menu_icon blank fa"></i><span>출결/성적</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2492" class="">
-                                                <a href="/beet/s.t.list" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
+                                                <a href="/beet/s.t.list?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-13721" class="">
                                                 <a href="/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" class=""><i class="menu_icon blank fa"></i><span>수강신청</span><span class="plus"></span></a>
