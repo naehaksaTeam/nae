@@ -106,7 +106,7 @@ System.out.println("member" + member);
 				+ "union "
 				+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
 				+ "union "
-				+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+				+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
 				+ ") " ;
 
 		try {
@@ -155,7 +155,7 @@ System.out.println("member" + member);
 		String query = " (select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate " 
 				         + "from student "  
 				         + "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
-						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator " 
+						+ "union select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator " 
 						+ ") " 
 					    + "where id = ?)";
 				
@@ -186,7 +186,7 @@ System.out.println("member" + member);
 		String query = "(select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate "
 				        + "from student " 
 						+ "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
-						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+						+ "union select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
 						+ ") "
 						+ "where id = ?)";
 
@@ -305,7 +305,7 @@ System.out.println("member" + member);
 		String query = "(select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate "
 				+ "		from student " 
 						+ "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
-						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+						+ "union select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
 						+ ") "
 						+ "where id = ?)";
 
@@ -337,7 +337,7 @@ System.out.println("member" + member);
 		String query = "(select id from (select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,entrancedate,absencewhether,absencecount,ssname,password,null adminhiredate "
 				+ "		from student " 
 						+ "union select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor " 
-						+ "union select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+						+ "union select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
 						+ ") "
 						+ "where id = ?)";
 
@@ -576,7 +576,7 @@ System.out.println("member" + member);
 					+ "union "
 					+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
 					+ "union "
-					+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+					+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
 					+ ") ";
 
 			try {
@@ -604,7 +604,7 @@ System.out.println("member" + member);
 					+ "union "
 					+ "select id,name,ssn,address,phone,gender,email,treasure,categoryname,majorno,null,null,null,null,password,null from professor "
 					+ "union "
-					+ "select id,name,ssn,address,phone,gender,email,null,null,null,null,null,null,null,password,adminhiredate from administrator "
+					+ "select id,name,ssn,address,phone,gender,email,treasure,null,null,null,null,null,null,password,adminhiredate from administrator "
 					+ ") " + "where id = ? and password = ?";
 
 			try {
@@ -718,6 +718,5 @@ System.out.println("member" + member);
 
 	
 		
-		
-	/////////////
+	
 }
