@@ -22,11 +22,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-<body class="responsive" itemscope="" itemtype="http://schema.org/WebPage" style="height: auto; overflow: auto;">
-	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
-
+<body class="responsive" style="height: auto; overflow: auto;">
+	
 <style type="text/css" id="wp-custom-css">
 
 .major_info_text botton{
@@ -65,10 +62,10 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="content_inner ">
 		<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
 			<!-- ★배경 이미지 (변경시 backgroud-image, src 두군데 수정해야해요 --------------->
-		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(https://files.slack.com/files-tmb/T01724B8QMC-F018N11KBT8-fe8f03f57c/____________3_480.jpg); 
+		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/test.jpg); 
 			height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 		<div class="image not_responsive">
-			<img itemprop="image" src="https://files.slack.com/files-tmb/T01724B8QMC-F018N11KBT8-fe8f03f57c/____________3_480.jpg" alt="&nbsp;">
+			<img itemprop="image" src="/beet/resources/images/test.jpg" alt="&nbsp;">
 		</div>
 		<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					
@@ -77,8 +74,8 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="container_inner clearfix">
 		<div class="title_subtitle_holder">
 		<div class="title_subtitle_holder_inner">
-		
-		<h1><span>출결/성적</span></h1> <!-- ★h1 이름 (메뉴이름 여기에 써주세요) ------------------------------------------>
+
+		<h1 style="margin-top:75px"><span >출결/성적</span></h1> <!-- ★h1 이름 (메뉴이름 여기에 써주세요) ------------------------------------------>
 		</div> </div> </div> </div> </div> </div> </div>
 				
 		<div class="container">
@@ -202,35 +199,35 @@ select {width: 40px; height:20px; margin:0px}
 									
 									
 									
-<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
-<!-- 스크립트 쓰는곳 : $() 대신 jQuery() 로 써주세요  -->
-<script>
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 
+<script>
+<!-- 스크립트 쓰는곳   -->
 //수정가능 
 function activeEle() {
-	jQuery("input[type=text]").removeAttr('readonly');
+	$("input[type=text]").removeAttr('readonly');
 }
 //숫자 0~100사이만 입력
 var replaceNotInt = /[^0-9]/gi;
-jQuery(document).ready(function(){
-	jQuery("input[type=text]").on("focusout", function() { 
-      var x = jQuery(this).val();
+$(document).ready(function(){
+	$("input[type=text]").on("focusout", function() { 
+      var x = $(this).val();
       if (x.length > 0) {
           if (x.match(replaceNotInt)) {
              x = x.replace(replaceNotInt, "");
           }
-          jQuery(this).val(x);
+          $(this).val(x);
           if(x > 100) {
         	  jQuery(this).val('100');
           }
       }
   }).on("keyup", function() {
-	  jQuery(this).val(jQuery(this).val().replace(replaceNotInt, ""));  
+	  $(this).val(jQuery(this).val().replace(replaceNotInt, ""));  
   }); 
 }); 
 //테스트
-jQuery(document).ready(function(){
-	jQuery("input:checkbox[name=chk]").keyup(function(){
+$(document).ready(function(){
+	$("input:checkbox[name=chk]").keyup(function(){
         if(jQuery("input:checkbox[name=chk]").is(":checked")){
             alert("체크박스 체크했음!");
         }else{
@@ -238,21 +235,21 @@ jQuery(document).ready(function(){
         }
     });	
 });
-jQuery("input[type=text]").keyup(function()  {
+$("input[type=text]").keyup(function()  {
 	var chk = $(this)
 	var tr = chk.parent().parent();
 	 var checkbox = tr.find('td:first-child :checkbox');
      //checkbox.prop('checked', !checkbox.is(':checked'));
      checkbox.prop("checked", true);
 });
-jQuery(".chk").click(function(){ 	
+$(".chk").click(function(){ 	
 		alert('a');
         var rowData = new Array(); 
         var tdArr = new Array();
       	var chk = $(this);
         //var checkbox = $("input[name=user_CheckBox]:checked");
 });
-jQuery("#abc").click(function(){ 
+$("#abc").click(function(){ 
         var rowData = new Array(); 
         var checkbox = $("input:checkbox[name=chk]:checked");	
    checkbox.each(function(i) {
@@ -265,6 +262,7 @@ jQuery("#abc").click(function(){
 	var sid = td.eq(5).text();
 	var sname = td.eq(6).text();
 	var retake = td.eq(7).text();
+	
 	var atndnScore = td.eq(8).find('input[type="text"]').val();
 	var midScore = td.eq(9).find('input[type="text"]').val();
 	var finalScore = td.eq(10).find('input[type="text"]').val();
@@ -312,7 +310,7 @@ jQuery("#abc").click(function(){
 			
 
 <!-- 여기는 수정금지! -->
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 				jQuery(document).ready(function($) {
 					jQuery('#dc_jqaccordion_widget-4-item .menu').dcAccordion({
 						eventType: 'click',
@@ -443,7 +441,7 @@ jQuery("#abc").click(function(){
 						speed: 'slow'
 					});
 				});
-			</script>
+			</script> -->
 		
 
 
