@@ -50,7 +50,7 @@
 
 		<tr>
 			<th>내 용</th>
-			<td><%=notice.getNoticeContent().replace("\n", " ")%></td>
+			<td><%=notice.getNoticeContent().replaceAll("\r\n", "<br>")%></td>
 		<tr>
 
 	</table>

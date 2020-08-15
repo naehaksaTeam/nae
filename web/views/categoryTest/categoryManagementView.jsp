@@ -191,9 +191,9 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		<div style="width: 60%;">
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
-<h3 style="float: left; margin-bottom: 8px;">전체 조회</h3>
+<h3>전체 조회</h3>
 
-<div align="right" style="margin-bottom: 0;" >
+<div align="right" style="margin-bottom: 8px;" >
 <button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectca'" style="height: 34px; margin-bottom: 0px;"> 조 회 </button>
 </div>
 

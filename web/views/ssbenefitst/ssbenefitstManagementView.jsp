@@ -173,7 +173,8 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<br><br><br>
+																										<h1><span>장학금수혜학생 관리</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -199,29 +200,30 @@ cursor: pointer;
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">장학금수혜학생 관리</p>
 
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
-<h1>장학금수혜학생 관리 페이지</h1>
+<h3>장학금수혜학생 전체 조회</h3>
+<div align="right" style="margin-bottom: 8px;">
+<button style="margin-bottom: 5px;" onclick="javascript:location.href='/beet/selectbeneall'" class="btn btn-outline-secondary"> &nbsp;조 &nbsp;회&nbsp; </button>
 
-<button onclick="javascript:location.href='/beet/selectbeneall'">전체 조회</button>
+	<form action="/beet/selectonessst" method="post">
+	학기 입력<input class="number" type="number" placeholder="ex)202001" 
+						name="benefitterm" maxlength="6" oninput="numberMaxLength(this);"/>&nbsp;&nbsp;
+	학번 입력<input type="text"  placeholder="학번 입력란" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
+	<button class="btn btn-outline-secondary" type="submit" style="height: 32px;"> 검 색 </button>
+	</form>
+</div>
 <% if(list != null){ %>
 <table class = "main_default">
-<tr><th colspan="3">조회테이블</th></tr>
 <tr><th>수혜학기</th><th>학 번</th><th>장학금명</th></tr>
 
 	<% for(Ssbenefitst ssst : list){ %>
-	<tr><th><input type="radio" name="benefitterm" value="<%=ssst.getBenefitterm() %>" readonly><%=ssst.getBenefitterm() %></th>
+	<tr><th><%=ssst.getBenefitterm() %></th>
 		<td><%=ssst.getStudentid() %></td>
 		<td><%=ssst.getSsname() %></td> </tr>
 	<% } %>
 </table>	
-	<form action="/beet/selectonessst" method="post">
-	학기입력<input class="form-control" type="number" placeholder="ex)202001" 
-						name="benefitterm" maxlength="6" oninput="numberMaxLength(this);"/>
-	학번입력<input type="text"  placeholder="학번 입력란" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
-	<input type="submit" value="검 색">
-	</form>
+	
 <% } %>
 
 <% if(stst != null){ %>
@@ -229,22 +231,24 @@ cursor: pointer;
 <input type="hidden" name="benefitterm" value="<%=stst.getBenefitterm() %>">
 <input type="hidden" name="studentid" value="<%=stst.getStudentid() %>">
 	<% if(stst.getStudentid() != null){ %>
+	<h3 style="margin-bottom: 8px;">조회하신 결과입니다</h3>
 	<table class = "main_default">
-		<tr><th colspan="3">조회하신 결과입니다</th></tr>
 		<tr><th>수혜학기</th><th>학 번</th><th>장학금명</th></tr>
 		<tr><th><%=stst.getBenefitterm() %></th>
 			<td><%=stst.getStudentid() %></td>
 			<td><%=stst.getSsname() %></td>
 		</tr>
 	</table>
-	<input type="submit" value="삭제하기">
+	<div align="center" style="margin-top: 8px;">
+	<button class="btn btn-outline-secondary" type="submit"> 삭 제 </button>
+	</div>
 	<% }else{ %>
-	조회하신 조건에 맞는 결과가 없습니다.
+	<h3 style="margin-bottom: 8px;">조회하신 조건에 맞는 결과가 없습니다.</h3>
 	<% } %>
 </form>
 <% }%>
 
-<br><br><br><br>
+<br><br>
 
 <%-- <form action="javascript:location.href='/beet/updatebenest'" method="post">
 <table class="tg">
@@ -266,6 +270,7 @@ cursor: pointer;
 </form> --%>
 
 <% if(sslist != null){ %>
+<h3 style="margin-bottom: 8px;">장학금 조회</h3>
 <table class = "main_default">
 <tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th></tr>
 	<% for(Scholarship ss : sslist){ %>
@@ -273,19 +278,28 @@ cursor: pointer;
 	<% } %>
 </table>
 <% } %>
-<button onclick="javascript:location.href='/beet/selectss'">장학금 관리페이지로 이동</button>
+<div align="right" style="margin-top: 8px;">
+<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectss'">장학금 관리페이지로 이동</button>
+</div>
 <br><br>
 
+<h3 style="margin-bottom: 8px;">성적장학금 입력</h3>
 <form action="/beet/insertscoress" method="post">
 <table class = "main_default">
-<tr><th colspan="2">성적장학금 입력</th></tr>
-<tr><th>성적검색할 학기</th><td><input class="form-control" type="number" placeholder="ex)202001" 
+<tr><th>성적검색할 학기</th><td><input style="outline: none; width: 98%; border: 0;" class="number" type="number" placeholder="ex)202001" 
 						name="term1" maxlength="6" oninput="numberMaxLength(this);"/></td></tr>
-<tr><th>성적등수입력</th><td>시작등수<input type="number" name="startrank" maxlength="4" oninput="numberMaxLength(this);">
-						 끝등수<input type="number" name="endrank" maxlength="4" oninput="numberMaxLength(this);"></td></tr>
-<tr><th>장학금명</th><td><input type="text" name="ssname1"></td></tr>
-<tr><td colspan="2" align="center"><input type="submit" value="장학금수혜학생 추가"></td></tr>
+<tr><th>성적등수입력</th><td>시작등수 :<input style="outline: none; width: 40%; border: 0;" type="number" name="startrank" maxlength="4" oninput="numberMaxLength(this);"> &nbsp;
+						 끝등수 :<input style="outline: none; width: 40%; border: 0;" type="number" name="endrank" maxlength="4" oninput="numberMaxLength(this);"></td></tr>
+<tr><th>장학금명</th><td><input placeholder="장학금명을 입력하세요. 위에서 조회된 장학금명만 입력가능합니다." style="outline: none; width: 98%; border: 0;" type="text" name="ssname1"></td></tr>
 </table>
+<br>
+<div align="center">
+<p><strong>< 안 내 ></strong><br>
+추가 버튼을 누르면 입력하신 등수에 따라서 장학금이 지급될 예정이며<br>장학금 수혜학기는 입력하신 학기의 다음 학기로 저장됩니다.
+</p>
+<br>
+<button class="btn btn-outline-secondary" type="submit">장학금수혜학생 추가</button>
+</div>
 </form>
 
 

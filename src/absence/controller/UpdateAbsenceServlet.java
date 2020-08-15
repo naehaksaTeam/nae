@@ -42,27 +42,27 @@ public class UpdateAbsenceServlet extends HttpServlet {
 						if(r > 0) {
 							 out.print("<script>");
 							  out.print("alert('승인처리가  완료되었습니다.');");
-							  out.print("location.href = '/beet/selectaball'");
+							  out.print("location.href = 'selectaball'");
 							  out.print("</script>");
 							  out.close();
 						}else {
 							 out.print("<script>");
 							  out.print("alert('학생정보 변경에 실패하였습니다.');");
-							  out.print("location.href = '/selectaball'");
+							  out.print("location.href = 'selectaball'");
 							  out.print("</script>");
 							  out.close();
 						}
 					}else { //복학신청일때
 						 out.print("<script>");
 						  out.print("alert('승인처리가  완료되었습니다.');");
-						  out.print("location.href = '/selectaball'");
+						  out.print("location.href = 'selectaball'");
 						  out.print("</script>");
 						  out.close();
 					}
 				}else {
 					 out.print("<script>");
 					  out.print("alert('학생정보 변경에 실패하였습니다.');");
-					  out.print("location.href = '/selectaball'");
+					  out.print("location.href = 'selectaball'");
 					  out.print("</script>");
 					  out.close();
 
@@ -70,7 +70,7 @@ public class UpdateAbsenceServlet extends HttpServlet {
 			}else {
 				 out.print("<script>");
 				  out.print("alert('승인에 실패하였습니다.');");
-				  out.print("location.href = '/selectaball'");
+				  out.print("location.href = 'selectaball'");
 				  out.print("</script>");
 				  out.close();
 
@@ -78,7 +78,7 @@ public class UpdateAbsenceServlet extends HttpServlet {
 		}else {	//approval이 Y면 되돌려보낸다
 			 out.print("<script>");
 			  out.print("alert('이미 승인 완료된 신청입니다.');");
-			  out.print("location.href = '/selectaball'");
+			  out.print("location.href = 'selectaball'");
 			  out.print("</script>");
 			  out.close();
 
