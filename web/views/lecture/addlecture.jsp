@@ -4,6 +4,7 @@
 <% ArrayList<Lecture> list2 = (ArrayList<Lecture>)request.getAttribute("list2");  %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
+
  <meta charset="UTF-8">
 	<!-- ★★★★★★★★title -->
 	<title> </title>
@@ -16,6 +17,12 @@
 	
 			
 						<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<!-- button css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- button css -->
 		
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="pingback" href="https://www.cha.ac.kr/xmlrpc.php">
@@ -49,9 +56,9 @@ img.emoji {
 	background: none !important;
 	padding: 0 !important;
 }
-table tr{
+.index td{
+text-align:center;
 border:1px solid black;
-
 }
 
 </style>
@@ -186,22 +193,22 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 <% if(session.getAttribute("loginMember") == null ){ %>
 <h1>비회원 상태입니다.</h1>
-<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<br><button onclick="javascript:location.href='/beet/'" class="btn btn-outline-secondary">첫 화면으로!</button>
 <% }else if(!((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
 <h1>관리자 전용페이지입니다.</h1>
 <hr>
 <h2>이유 : 관리자계정아님</h2>
-<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<br><button onclick="javascript:location.href='/beet/'" class="btn btn-outline-secondary">첫 화면으로!</button>
 <% }else{ %>
 <h1>수강과목추가(관리자전용)</h1>
 <hr>
 <form action="/beet/addlecture" method="post">
 <br>
-<table style="border:2px solid black;z-index:;width:95%;">
+<table style="border:2px solid black;z-index:;width:107%;">
 <!-- -->	
 <tr>
 <th>
-&nbsp;강의코드&nbsp;
+강의코드
 </th>
 <th>
 &nbsp;강의명&nbsp;
@@ -227,10 +234,10 @@ cursor: pointer;
 </tr>
 <% for(Lecture l : list2){ %>
 <tr class="index">
-<td>
+<td style="border:1px solid black;">
 <%= l.getLcode() %>
 </td>
-<td>
+<td style="width:20%;">
 &nbsp;<%= l.getLname() %>&nbsp;
 </td>
 <td>
@@ -239,26 +246,24 @@ cursor: pointer;
 <td>
 <%= l.getCapacity() %>
 </td>
-<td>
+<td style="width:20%;">
 &nbsp;<%= l.getLtime() %>, <%= l.getLclock() %>시&nbsp;
 </td>
 <td>
 <%= l.getName() %>
 </td>
-<td>
+<td  style="width:13%;">
 <%= l.getRoom() %>
 </td>
-<td>
-<button onclick="javascript:location.href='/beet/ldel?lname=<%= l.getLname() %>'" >강의내리기</button>
+<td style="width:12%;">
+<button onclick="javascript:location.href='/beet/ldel?lname=<%= l.getLname() %>'" class="btn btn-outline-secondary">내리기</button>
 </td>
 </tr>
 <% } %>
 <!-- -->
-<tr></tr>
 <tr>
-<tr>
-<td><b>강의개설은</b></td><td><b>오른쪽 버튼을</b></td><td><b>눌러주세요</b></td>
-		<td><span class="texts" style="position:relative;float:right;">과목 선택 :</span></td>
+<td></td><td></td><td style="text-align:right;">개설과목</td>
+		<td style="text-align:left;"><span class="texts">선택 :</span></td>
 		<td>
 			<select name="lecture" class="inputbox" style="width:70%;" required>
 				<% for(Lecture l : list){ %>
@@ -268,13 +273,13 @@ cursor: pointer;
 		</td>
 	
 		<td>
-			<span class="texts" style="position:relative;float:right;">수강인원 설정 : </span>
+			<span class="texts">인원 : </span>
 		</td>
 		<td>
 			<input type="number" name="roommax" min="1" max="15" placeholder="1~15" class="inputbox" style="width:70%;" required>
 		</td>
 		<td>
-			<button type="submit" class="box" id="addbtn">강의개설</button>
+			<button type="submit" class="btn btn-outline-secondary box" id="addbtn">개설</button>
 		</td>
 		
 </tr>

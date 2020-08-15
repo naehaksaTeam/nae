@@ -26,50 +26,45 @@ img{
 }
 .other{
 position:relative;
-/*left:40%;*/
-width:15%;
-height:5%;
-background-color:#2f3640;
+float:right;
+margin-right:5px;
 }
-.btns{
-padding:10%;
-font-size:300%;
-background-color:#2f3640;
+.otherid{
+margin-right:10%;
 }
-.one{
-position:relative;
-/*left:6%;
-right:2%;
-margin-right:1%;*/
-}
-.btns:hover{
-padding:7%;
-font-size:600%;
-}
- a:link { color: red; text-decoration: none;}
- a:visited { color: black; text-decoration: none;}
- a:hover { color: blue; text-decoration: underline;}
 </style>
 <body>
 <img src="/beet/resources/images/school.jpg">
-<center>
 <br><br><br><br><br><br><br><br><br>
-<div>
-<span class="one">
-<button onclick="javascrip:location.href='/beet/toenroll?who=student'" class="btn btn-outline-light btns">학 생</button>
-</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span class="one">
-<button onclick="javascrip:location.href='/beet/toenroll?who=professor'" class="btn btn-outline-light btns">교 수</button>
-</span>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<span class="one">
-<button onclick="javascrip:location.href='/beet/toenroll?who=admin'" class="btn btn-outline-light btns">임직원</button>
-</span>
-</div>
-<br>
-<button onclick="javascript: location.href='/beet/'" class="btn btn-outline-danger other">돌아가기</button>
+<% if(m != null){ %>	
+<meta http-equiv="refresh" content="0;url=/beet/views/main/main.jsp">
+<% } %>
+<!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
+<%-- <%@ include file="/views/common/sessionChk.jsp" %> --%>
+<% if(m == null){ %>
 
-</center>
+<div class="container">
+<form action="/beet/login.cp" method="post">
+<div class="form-group">
+<h1>ID<span style="color:white;">&nbsp;</span></h1><input type="text" name="userid" class="form-control" id="usr" required>
+<h1 style="color:white;">PASSWORD<span style="color:black;">&nbsp;</span></h1><input type="password" name="userpwd" class="form-control" id="pwd" required>
+<br><button type="submit" value="로그인" class="btn btn-dark">로그인</button>
+
+</div>
+</form>
+</div>
+
+<button onclick="javascript: location.href='/beet/views/student/findId.jsp'" class="btn btn-dark other otherid">아이디찾기</button>
+<button onclick="javascript: location.href='/beet/views/student/findPassword.jsp'" class="btn btn-dark other">비밀번호찾기</button>
+<button onclick="javascript: location.href='/beet/views/student/회원가입선택.jsp'" class="btn btn-dark other">회원가입</button>
+<% }else{ %>
+<div>
+<%=m.getName() %> 님 로그인 상태입니다
+<br>
+<button onclick="javascript: location.href='/beet/views/main/main.jsp'">메인페이지</button>
+
+</div>
+<% } %>
+
 </body>
 </html>

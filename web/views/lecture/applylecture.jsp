@@ -16,6 +16,13 @@
 	
 			
 						<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+<!-- button css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- button css -->
 		
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="pingback" href="https://www.cha.ac.kr/xmlrpc.php">
@@ -189,7 +196,7 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 <% if(session.getAttribute("loginMember") == null ){ %>
 <h1>비회원 상태입니다.</h1>
-<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<br><button onclick="javascript:location.href='/beet/'" class="btn btn-outline-secondary">첫 화면으로!</button>
 <% }else{ %>
 
 
@@ -249,7 +256,7 @@ cursor: pointer;
 
 <% if((session.getAttribute(l.getLname())) == null ){ %>
 <form action="/beet/lapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
-<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn">수강신청</button>
+<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn" class="btn btn-outline-secondary">수강신청</button>
 <input type="text" style="display:none;" name="room" value="<%= l.getRoom() %>">
 <input type="text" style="display:none;" name="lcode" value="<%= l.getLcode() %>">
 <input type="text" style="display:none;" name="lpersonnel" value="<%= l.getCapacity() %>">
