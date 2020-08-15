@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, scholarship.model.vo.Scholarship, ssbenefitst.model.vo.Ssbenefitst,
-				  student.model.vo.Member" %>  
+    pageEncoding="UTF-8" import="scholarship.model.vo.Scholarship, java.util.ArrayList"%>
+    
 <%
-	ArrayList<Ssbenefitst> stlist = (ArrayList<Ssbenefitst>)request.getAttribute("listssst");
 	ArrayList<Scholarship> list = (ArrayList<Scholarship>)request.getAttribute("list");
-%>
+	String message = (String)request.getAttribute("message");
+	Scholarship s = (Scholarship)request.getAttribute("ss");
+%>  
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
@@ -165,7 +165,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>등록/장학</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -190,39 +190,64 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
+<p class="page_tt">장학금 관리</p>
 
-<p class="page_tt">컬럼명여따쓰세요</p>
-
-<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
-<div align="center" >
-<%-- <button onclick="javascript:location.href='/beet/selectbenest?studentid=<%=m.getId()%>'">나의 장학금 조회</button> --%>
-<h1 ><%=((Member)session.getAttribute("loginMember")).getName()%>님의 장학금 조회</h1>
-<table class="tg">
-
-<% if(stlist.size() != 0){ %>
-	<tr><th>수혜학기</th><th>장학금명</th></tr>
-	<% for(Ssbenefitst ssst : stlist){%>
-	<tr><td><%=ssst.getBenefitterm()%></td><td><%=ssst.getSsname() %></td></tr>
-	<% } %>
-	
-<% }else{ %>
-<tr><td colspan="2">장학금수혜정보가 없습니다.</td></tr>
+<% if(message != null){ %>
+	<%=message %>
 <% } %>
-</table>
-</div>
-
-<div align="center">
-<h1>장학금 전체 조회</h1>
-<table class="tg">
-<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th></tr>
+<br>
+<h3 style="float: left; margin-bottom: 8px; ">장학금 관리</h3>
 <% if(list != null){ %>
+<form method="post" name="ssselectform">
+	<div align="right" >
+		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectss'">전체 조회</button>
+		&nbsp;&nbsp;
+		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/deletess'"> 삭 제 </button>
+		<% if(s == null){ %>
+		&nbsp;
+		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectoness'"> 수 정 </button>
+		<% } %>
+	</div>
+<table style="clear: both" class = "main_default">
+	<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th>
 	<% for(Scholarship ss : list){ %>
-	<tr><th><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
+	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname()%>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
 	<% } %>
-<% } %>
 </table>
-<br><br><br>
+</form>
+<br>
+
+<% if(s != null){ %>
+<form action="/beet/updatess">
+<input type="hidden" name="originname" value="<%=s.getSsname()%>">
+<input type="text" name="ssname" value="<%=s.getSsname()%>">
+<input type="text" name="benefitcon" value="<%=s.getBenefitcon()%>">
+<input type="number" name="value" value="<%=s.getValue()%>">
+<button class="btn btn-outline-secondary" type="submit"> 수 정 </button>
+</form>
+<% } %>
+<% } %>
+
+<br><br>
+
+<h3 style="float: left; margin-bottom: 8px; ">장학금 등록</h3>
+
+<form action="javascript:location.href='/beet/insertss'" method="post">
+<div align="right">
+<button class="btn btn-outline-secondary" type="submit"> 추 가 </button>
 </div>
+<table class = "main_default">
+<tr><th>장학금명</th><td><input type="text" placeholder="등록하실 장학금의 이름을 입력해주세요" name="ssname" style="outline: none; width: 98%; border: 0;" ></td></tr>
+<tr><th>수혜조건</th><td><input type="text" placeholder="등록하실 장학금의 수혜조건을 입력해주세요" style="outline: none; width: 98%; border: 0;" name="benefitcon"></td></tr>
+<tr><th>장학금액</th><td><input type="number" placeholder="등록하실 장학금의 금액을 입력해주세요" style="outline: none; width: 98%; border: 0;" name="value"></td></tr>
+</table>
+
+</form>
+<br><br>
+
+
+</div>
+<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
 
 
@@ -304,39 +329,17 @@ cursor: pointer;
 
 </div> 
 	</div> </div></div></div></div></div>
-																 
+																	 
 								</div>
-																	
-									
+<div class="column2">														
+<%@ include file = "sideADMIN.jsp" %>	
+</div>	
 							</div>
 
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
-<div class="column2">	
-<%@ include file = "/views/common/side.jsp" %>
-<!-- <div class="column_inner">
-<aside class="sidebar">
-							
-		<div class="widget "><div id="dc_jqaccordion_widget-8">		
-		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
 
-<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
-  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
-  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
-  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
-  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
-  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
-</ul>		
-
-
-		</div>
-		</div></div>		</aside>
-	</div>-->
-</div> 
 <!-- 서브메뉴 끝 -->
-<div class="column2">														
-<%@ include file = "sideADMIN.jsp" %>	
-</div>	
 						</div>
 								
 		</div>

@@ -174,7 +174,9 @@ cursor: pointer;
 
 </style>
 <body>
+
 <form class="form-horizontal" role="form" method="POST" action="/beet/findpwd">
+<strong>		
 		비밀번호찾기
 		<div class="row">
 			<div class="col-md-10 inputbb">
@@ -199,11 +201,12 @@ cursor: pointer;
 
 		<div class="row">
 			<div class="col-md-10 inputbb">
-				<input type="submit" class="btn btn-outline-secondary findbtn">찾기 
+				<input type="submit" class="btn btn-outline-secondary findbtn"> 
 				
 			</div>
 		</div>
-		
+	
 	</form>
+
 </body>
 </html>
