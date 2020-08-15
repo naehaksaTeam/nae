@@ -165,7 +165,8 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<br><br><br>
+																										<h1><span>장학금 관리</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -190,20 +191,17 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
-
-<p class="page_tt">장학금 관리</p>
-
 <% if(message != null){ %>
 	<%=message %>
 <% } %>
 <br>
-<h3 style="float: left; margin-bottom: 8px; ">장학금 관리</h3>
+<h3>장학금 관리</h3>
 <% if(list != null){ %>
 <form method="post" name="ssselectform">
-	<div align="right" >
+	<div align="right" style="margin-bottom: 8px;" >
 		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectss'">전체 조회</button>
 		&nbsp;&nbsp;
-		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/deletess'"> 삭 제 </button>
+		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/deletesshh'"> 삭 제 </button>
 		<% if(s == null){ %>
 		&nbsp;
 		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectoness'"> 수 정 </button>
@@ -231,10 +229,10 @@ cursor: pointer;
 
 <br><br>
 
-<h3 style="float: left; margin-bottom: 8px; ">장학금 등록</h3>
+<h3>장학금 등록</h3>
 
 <form action="javascript:location.href='/beet/insertss'" method="post">
-<div align="right">
+<div align="right" style="margin-bottom: 8px;">
 <button class="btn btn-outline-secondary" type="submit"> 추 가 </button>
 </div>
 <table class = "main_default">

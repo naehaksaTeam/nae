@@ -38,7 +38,7 @@ public class SelectAdminSearchSerlvet extends HttpServlet {
 		}else {
 			 out.print("<script>");
 			  out.print("alert('입력하신 학번으로 신청된 내역이 없습니다.');");
-			  out.print("location.href = '/selectaball'");
+			  out.print("location.href = 'selectaball'");
 			  out.print("</script>");
 			  out.close();
 

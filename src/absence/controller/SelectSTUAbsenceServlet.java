@@ -42,7 +42,7 @@ public class SelectSTUAbsenceServlet extends HttpServlet {
 		}else {
 			 out.print("<script>");
 			  out.print("alert('학번 : " +studentid +"신청내역이 없습니다.');");
-			  out.print("location.href = '/selectaball'");
+			  out.print("location.href = 'selectaball'");
 			  out.print("</script>");
 			  out.close();
 		}

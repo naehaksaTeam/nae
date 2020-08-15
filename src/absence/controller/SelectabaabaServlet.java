@@ -40,14 +40,14 @@ public class SelectabaabaServlet extends HttpServlet {
 			
 			 out.print("<script>");
 			  out.print("alert('휴학 신청 내역이 없거나 조회에 실패하였습니다.');");
-			  out.print("location.href = '/selectaball'");
+			  out.print("location.href = 'selectaball'");
 			  out.print("</script>");
 			  out.close();
 			
 		}else if (list == null && value.equals("b")) {
 			 out.print("<script>");
 			  out.print("alert('복학 신청 내역이 없거나 조회에 실패하였습니다.');");
-			  out.print("location.href = '/selectaball'");
+			  out.print("location.href = 'selectaball'");
 			  out.print("</script>");
 			  out.close();
 		}
