@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import absence.model.service.AbsenceService;
 import absence.model.vo.Absence;
 
-@WebServlet("/SelectabSearch")
+@WebServlet("/selectabSearch")
 public class SelectAdminSearchSerlvet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,17 +24,20 @@ public class SelectAdminSearchSerlvet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("id");
+		String id = request.getParameter("studentid");
 		
 		ArrayList<Absence> list = new AbsenceService().selectPrivateAbsence(id);
 		
 		PrintWriter out = response.getWriter(); 
 		
 		if(list != null) {
-			response.sendRedirect("selectaball");
+			RequestDispatcher view = request.getRequestDispatcher("views/absence/absenceManagementView.jsp");
+			request.setAttribute("list", list);
+			view.forward(request, response);
+			
 		}else {
 			 out.print("<script>");
-			  out.print("alert('검색하신 학번으로 신청된 내역이 없습니다.');");
+			  out.print("alert('입력하신 학번으로 신청된 내역이 없습니다.');");
 			  out.print("location.href = '/selectaball'");
 			  out.print("</script>");
 			  out.close();

@@ -56,7 +56,7 @@
 	<form action="/beet/selectonessst" method="post">
 	학기입력<input class="form-control" type="number" placeholder="ex)202001" 
 						name="benefitterm" maxlength="6" oninput="numberMaxLength(this);"/>
-	학번입력<input type="text"  placeholder="9자리" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
+	학번입력<input type="text"  placeholder="학번 입력란" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
 	<input type="submit" value="검 색">
 	</form>
 <% } %>

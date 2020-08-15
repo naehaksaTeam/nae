@@ -190,28 +190,30 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
-
 <p class="page_tt">장학금 관리</p>
 
 <% if(message != null){ %>
 	<%=message %>
 <% } %>
 <br>
-<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectss'">장학금 조회</button>
+<h3 style="float: left; margin-bottom: 8px; ">장학금 관리</h3>
 <% if(list != null){ %>
 <form method="post" name="ssselectform">
-<table class="tg">
+	<div align="right" >
+		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectss'">전체 조회</button>
+		&nbsp;&nbsp;
+		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/deletess'"> 삭 제 </button>
+		<% if(s == null){ %>
+		&nbsp;
+		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectoness'"> 수 정 </button>
+		<% } %>
+	</div>
+<table style="clear: both" class = "main_default">
 	<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th>
 	<% for(Scholarship ss : list){ %>
 	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname()%>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
 	<% } %>
 </table>
-	<button class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectss'">장학금 조회</button>
-	<input type="submit" value="삭제하기" onclick="javascript: ssselectform.action='/beet/deletess'">
-	<br>
-	<% if(s == null){ %>
-	<input type="submit" value="수정하기" onclick="javascript: ssselectform.action='/beet/selectoness'">
-	<% } %>
 </form>
 <br>
 
@@ -221,23 +223,28 @@ cursor: pointer;
 <input type="text" name="ssname" value="<%=s.getSsname()%>">
 <input type="text" name="benefitcon" value="<%=s.getBenefitcon()%>">
 <input type="number" name="value" value="<%=s.getValue()%>">
-<input type="submit" value="수정하기">
+<button class="btn btn-outline-secondary" type="submit"> 수 정 </button>
 </form>
 <% } %>
 <% } %>
 
 <br><br>
+
+<h3 style="float: left; margin-bottom: 8px; ">장학금 등록</h3>
 
 <form action="javascript:location.href='/beet/insertss'" method="post">
-<table class="tg">
-<tr><th>장학금명</th><td><input type="text" name="ssname"></td></tr>
-<tr><th>수혜조건</th><td><input type="text" name="benefitcon"></td></tr>
-<tr><th>장학금액</th><td><input type="number" name="value"></td></tr>
+<div align="right">
+<button class="btn btn-outline-secondary" type="submit"> 추 가 </button>
+</div>
+<table class = "main_default">
+<tr><th>장학금명</th><td><input type="text" placeholder="등록하실 장학금의 이름을 입력해주세요" name="ssname" style="outline: none; width: 98%; border: 0;" ></td></tr>
+<tr><th>수혜조건</th><td><input type="text" placeholder="등록하실 장학금의 수혜조건을 입력해주세요" style="outline: none; width: 98%; border: 0;" name="benefitcon"></td></tr>
+<tr><th>장학금액</th><td><input type="number" placeholder="등록하실 장학금의 금액을 입력해주세요" style="outline: none; width: 98%; border: 0;" name="value"></td></tr>
 </table>
-<input type="submit" value="장학금 추가">
-</form>
 
+</form>
 <br><br>
+
 
 </div>
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
@@ -331,7 +338,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<%@ include file = "/views/common/side.jsp" %>
+<%@ include file = "/views/scholarship/sideADMIN.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							
