@@ -196,9 +196,7 @@ cursor: pointer;
         }
     }
 </script>
-      
 
-<p class="page_tt">휴학/복학 관리</p>
 
 <h3 style="margin-top: 20px; padding-left: 25px; margin-top:10px; float: left;">신청내역 조회</h3>
 <div align="right" style="margin-bottom: 0px;">
