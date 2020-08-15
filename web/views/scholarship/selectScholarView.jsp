@@ -334,6 +334,9 @@ cursor: pointer;
 	</div>-->
 </div> 
 <!-- 서브메뉴 끝 -->
+<div class="column2">														
+<%@ include file = "sideADMIN.jsp" %>	
+</div>	
 						</div>
 								
 		</div>
