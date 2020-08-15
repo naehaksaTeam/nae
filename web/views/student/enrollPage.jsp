@@ -102,6 +102,9 @@ background-color:#2f3640;
 <br>
 <form method="post" action="/beet/minsert.cp" onsubmit="return validate();" >
 
+인증번호<br><br>
+<input class="form-control" type="text" name="code" required autofocus style="width:20%;">
+<br>
 <% if(who.equals("admin")){ %>
 <table id="outer" align="center" width="500" cellspacing="5" cellpadding="0">
 <tr class="">
@@ -322,7 +325,7 @@ background-color:#2f3640;
 <tr class="pp" class="aa">
 	<th width="120">입학날짜</th>
 	<td>
-	<input class="form-control" type="date" name="entrancedate" >
+	<input class="form-control" type="date" name="entrancedate" required>
 	<br>
 	</td>
 </tr>
@@ -352,9 +355,9 @@ background-color:#2f3640;
 <% if(request.getAttribute("result") == null){ %>
 회원가입 버튼을 눌러주세요!
 <% }else if(who.equals("professor")){ %>
-교수Id는 앞에 P가 반드시 붙어야 합니다.
+인증코드 불일치 또는 교수Id는 앞에 P가 반드시 붙어야 합니다.
 <% }else{ %>
-임직원(관리자)Id는 앞에 A가 반드시 붙어야 합니다.
+인증코드 불일치 또는 임직원(관리자)Id는 앞에 A가 반드시 붙어야 합니다.
 <% } %>
 </b>
 <br>

@@ -36,7 +36,8 @@ public class MemberInsertServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 회원가입 컨트롤러
-
+		String code = "beet1216";//회원가입 인증번호
+		
 		Member member = new Member();
 		
 		if(request.getParameter("major") != null) {
@@ -101,13 +102,25 @@ public class MemberInsertServlet extends HttpServlet {
 	
 		String who = request.getParameter("who");
 		
+		if(request.getParameter("code") == null || !(request.getParameter("code").equals(code))) {
+			System.out.println("인증 시도 text : " + request.getParameter("code"));
+			ArrayList<Major> list = new LectureService().selectCategories();
+			request.setAttribute("list", list);
+			
+			RequestDispatcher view = request.getRequestDispatcher("views/student/enrollPage.jsp");
+			request.setAttribute("who", who);
+			request.setAttribute("result", "no");
+			view.forward(request, response);
+		}
+			
 		if((who.equals("professor") && (request.getParameter("userid").substring(0,1)).equals("P")) ||
 			(who.equals("admin") && (request.getParameter("userid").substring(0,1)).equals("A")) ||
 			who.equals("student")) {
 
 			result = new MemberService().insertMember(member,who);
 			
-		}				
+		}	
+		
 
 		if(result > 0) {  
 			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
