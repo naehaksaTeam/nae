@@ -2,7 +2,6 @@
     pageEncoding="UTF-8" import="category.model.vo.Category, java.util.ArrayList"%>
 <% 
 	String catename = request.getParameter("catename");
-	Category ca = new Category("테스트계열");
 	String message = (String)request.getAttribute("message");
 	ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
 	

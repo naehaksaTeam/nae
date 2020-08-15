@@ -1,8 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="category.model.vo.Category, java.util.ArrayList"%>
+<% 
+	String catename = request.getParameter("catename");
+	String message = (String)request.getAttribute("message");
+	ArrayList<Category> list = (ArrayList<Category>)request.getAttribute("list");
+	
+%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- ★★★★★★★★title -->
 	<title> </title>
 
@@ -154,7 +165,8 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+                                                                									<br><br><br>
+																										<h1><span>계열 관리</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -177,16 +189,46 @@ cursor: pointer;
 		<div class="wpb_wrapper">
 		
 <!-- --------------------------------------------------------------------------- -->		
-		
+		<div style="width: 60%;">
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
+<h3 style="float: left; margin-bottom: 8px;">전체 조회</h3>
 
-<p class="page_tt">컬럼명여따쓰세요</p>
+<div align="right" style="margin-bottom: 0;" >
+<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectca'" style="height: 34px; margin-bottom: 0px;"> 조 회 </button>
+</div>
 
-<table class="main_default">
-  <tr>
-    <td>테스트</td>
-    </tr>
-    </table>
+<div align="center">
+<% if(message != null){ %>
+	<hr>
+	<%= message %>
+	<hr>
+<% } %>
+<% if(list != null){ %>
+	<form method="post" name="cateform">
+
+	<table class = "main_default">
+	<tr><th>계열명</th></tr>
+	<% for(Category category : list){ %>
+		<tr><td style="text-align: left"><input type="radio" name="catename" required="required" value="<%= category.getCategoryname() %>"> <%= category.getCategoryname() %></td></tr>
+	<% } %>
+	</table>
+	<div align="right" style="margin-top: 5px;">
+		<button class="btn btn-outline-secondary" type="submit" onclick="javascript: cateform.action='/beet/deleteca'"> 삭 제 </button>
+	</div>
+	<br>
+	<input type="text" name="newname" placeholder="수정 후의 계열명 입력란" style="width: 50%"> 
+	<button class="btn btn-outline-secondary" type="submit" onclick="javascript: cateform.action='/beet/updateca'"> 수 정 </button>
+	</form>
+<% } %>
+<br>
+<form action="/beet/insertca" method="post">
+<input placeholder="추가하실 계열명 입력란" type="text" name="catename" style="width: 50%">
+<button class="btn btn-outline-secondary" type="submit" > 추 가 </button>
+</form>
+
+</div>
+
+</div>
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
 
@@ -278,7 +320,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<%@ include file = "/views/common/side.jsp" %>
+<%@ include file = "/views/scholarship/sideADMIN.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							

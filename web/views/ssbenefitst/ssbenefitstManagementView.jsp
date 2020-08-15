@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -376,7 +376,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<%@ include file = "/views/ssbenefitst/side.jsp" %>
+<%@ include file = "/views/scholarship/sideADMIN.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							
