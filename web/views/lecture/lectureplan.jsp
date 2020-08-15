@@ -186,16 +186,16 @@ cursor: pointer;
 <table style="border:2px solid black;">
 <tr>
 <th>
-&nbsp;강의코드&nbsp;
+강의코드
 </th>
 <th>
 &nbsp;강의명&nbsp;
 </th>
 <th>
-&nbsp;강의 카테고리&nbsp;
+강의 카테고리
 </th>
 <th>
-&nbsp;수강 정원&nbsp;
+수강 정원
 </th>
 <th>
 &nbsp;강의 내용&nbsp;
@@ -207,7 +207,7 @@ cursor: pointer;
 &nbsp;강의교수&nbsp;
 </th>
 <th>
-&nbsp;강의실&nbsp;
+강의실
 </th>
 </tr>
 <% ArrayList<Lecture> list = (ArrayList<Lecture>)request.getAttribute("list");  %>
@@ -225,11 +225,11 @@ cursor: pointer;
 <td style="border : 1px solid black;">
 <%= l.getCapacity() %>
 </td>
-<td style="border : 1px solid black;">
+<td style="border : 1px solid black;width:30%;">
 <%= l.getContent() %>
 </td>
 <td style="border : 1px solid black;">
-<%= l.getLtime() %>
+<%= l.getLtime() %>,<%= l.getLclock() %>시
 </td>
 <td style="border : 1px solid black;">
 <%= l.getName() %>
