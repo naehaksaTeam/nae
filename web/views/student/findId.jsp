@@ -207,7 +207,7 @@ cursor: pointer;
 			<div class="col-md-10 inputbb">
 				<div class="form-group">
 					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
-						<input type="treasure" name="treasure" class="form-control"
+						<input type="text" name="treasure" class="form-control"
 							id="treasure" placeholder="나의보물1호" required>
 					</div>
 				</div>
