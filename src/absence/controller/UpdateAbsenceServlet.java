@@ -1,6 +1,7 @@
 package absence.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,6 +28,8 @@ public class UpdateAbsenceServlet extends HttpServlet {
 		AbsenceService aservice = new AbsenceService();
 		Absence a = aservice.selectOneAbsence(requestid);
 
+		PrintWriter out = response.getWriter();
+		
 		RequestDispatcher view = null;
 		if (a.getApproval().equals("N")) {
 			int result = aservice.updateYAbsence(requestid);
@@ -37,29 +40,48 @@ public class UpdateAbsenceServlet extends HttpServlet {
 					if(ab.equals("a")) { // 휴학신청일때
 						int r = aservice.studentCountPlus(a.getStudentid());
 						if(r > 0) {
-							response.sendRedirect("selectaball");
+							 out.print("<script>");
+							  out.print("alert('승인처리가  완료되었습니다.');");
+							  out.print("location.href = '/beet/selectaball'");
+							  out.print("</script>");
+							  out.close();
 						}else {
-							view = request.getRequestDispatcher("views/common/error.jsp");
-							request.setAttribute("message", "학생정보 변경에 실패해였습니다.");
-							view.forward(request, response);
+							 out.print("<script>");
+							  out.print("alert('학생정보 변경에 실패하였습니다.');");
+							  out.print("location.href = '/selectaball'");
+							  out.print("</script>");
+							  out.close();
 						}
 					}else { //복학신청일때
-						response.sendRedirect("selectaball");
+						 out.print("<script>");
+						  out.print("alert('승인처리가  완료되었습니다.');");
+						  out.print("location.href = '/selectaball'");
+						  out.print("</script>");
+						  out.close();
 					}
 				}else {
-					view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", "학생정보 변경에 실패해였습니다.");
-					view.forward(request, response);
+					 out.print("<script>");
+					  out.print("alert('학생정보 변경에 실패하였습니다.');");
+					  out.print("location.href = '/selectaball'");
+					  out.print("</script>");
+					  out.close();
+
 				}
 			}else {
-				view = request.getRequestDispatcher("views/common/error.jsp");
-				request.setAttribute("message", "승인에 실패해였습니다.");
-				view.forward(request, response);
+				 out.print("<script>");
+				  out.print("alert('승인에 실패하였습니다.');");
+				  out.print("location.href = '/selectaball'");
+				  out.print("</script>");
+				  out.close();
+
 			}
 		}else {	//approval이 Y면 되돌려보낸다
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "이미 승인 완료된 신청입니다.");
-			view.forward(request, response);
+			 out.print("<script>");
+			  out.print("alert('이미 승인 완료된 신청입니다.');");
+			  out.print("location.href = '/selectaball'");
+			  out.print("</script>");
+			  out.close();
+
 		}
 	}
 

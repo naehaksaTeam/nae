@@ -189,16 +189,31 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
+<script>
+    function numberMaxLength(e){
+        if(e.value.length > e.maxLength){
+            e.value = e.value.slice(0, e.maxLength);
+        }
+    }
+</script>
+      
 
 <p class="page_tt">휴학/복학 관리</p>
 
-<h3 style="margin-bottom: 8px; padding-left: 25px;  float: left;">신청내역 조회</h3>
+<h3 style="margin-top: 20px; padding-left: 25px; margin-top:10px; float: left;">신청내역 조회</h3>
 <div align="right" style="margin-bottom: 0px;">
 	<button style="height: 34px;" class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaball'">전 체 조 회</button>
 	&nbsp;&nbsp;&nbsp;
 	<button style="height: 34px;" class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaba?value=a'">휴 학 조 회</button>
 	&nbsp;
 	<button style="height: 34px;" class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaba?value=b'">복 학 조 회</button>
+
+	<div style="margin-top: 8px; margin-bottom: 5px;">
+	<form action="/beet/selectabSearch" method="post">
+	<input type="text" placeholder=" 학번을 입력하세요" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
+	<button style="height: 34px;" type="submit" class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaba?value=b'"> 검 색 </button>
+	</form>
+	</div>
 </div>
 <% if(list != null){ %>
 <form method="post" name="managerform">
