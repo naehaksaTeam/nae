@@ -23,18 +23,25 @@ public class InsertScholarshipServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Scholarship ss = new Scholarship();
 		String ssname = request.getParameter("ssname");
+
+		System.out.println(ssname);
+		System.out.println(request.getParameter("benefitcon"));
+		System.out.println(request.getParameter("value"));
 		
 		ss.setSsname(ssname);
 		ss.setBenefitcon(request.getParameter("benefitcon"));
 		ss.setValue(Integer.parseInt(request.getParameter("value")));
 		
 		
-		int result = new ScholarshipService().insertScholarship(ss);
 		
+		int result = new ScholarshipService().insertScholarship(ss);
+		RequestDispatcher view = null;
 		if(result > 0) {
-			response.sendRedirect("views/scholarship/scholarshipManagementView.jsp");
+			view = request.getRequestDispatcher("selectss");
+			request.setAttribute("message", ssname + "추가에 성공하였습니다");
+			view.forward(request, response);
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", ssname + "추가에 실패하였습니다");
 			view.forward(request, response);
 		}

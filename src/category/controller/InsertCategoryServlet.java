@@ -26,7 +26,7 @@ public class InsertCategoryServlet extends HttpServlet {
 		System.out.println("서블릿의 result : " + result);
 		RequestDispatcher view = null;
 		if(result > 0) {
-			view = request.getRequestDispatcher("views/categoryTest/categoryTestView.jsp");
+			view = request.getRequestDispatcher("selectca");
 			request.setAttribute("message", catename +" 이 추가되었습니다.");
 			view.forward(request, response);
 		}else {

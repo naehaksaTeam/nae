@@ -1,6 +1,7 @@
 package absence.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import absence.model.service.AbsenceService;
-import student.model.service.MemberService;
 
 @WebServlet("/insertab")
 public class InsertAbsenceServlet extends HttpServlet {
@@ -26,14 +26,29 @@ public class InsertAbsenceServlet extends HttpServlet {
 		String value = request.getParameter("value");
 		String studentid = request.getParameter("studentid");
 		
+		System.out.println(value);
+		System.out.println(studentid);
+		
 		int result = new AbsenceService().insertAbsence(value, studentid); 
+		
+		PrintWriter out = response.getWriter();
+		
+		RequestDispatcher view = null;
+		if(result >0) { //성공한다면 		
 
-		if(result >0) { //성공한다면 absenceRequestView.jsp }else {
-			response.sendRedirect("/beet/views/absence/absenceSelectView.jsp");
+			  out.print("<script>");
+			  out.print("alert('신청이 완료되었습니다.');");
+			  out.print("location.href = 'selectab?studentid="+studentid+"'");
+			  out.print("</script>");
+			  out.close();
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("error", "신청에러입니다");
-			view.forward(request, response);
+			
+			 out.print("<script>");
+			  out.print("alert('신청에 실패하였습니다.');");
+			  out.print("location.href = 'selectab?studentid="+studentid+"'");
+			  out.print("</script>");
+			  out.close();
+
 		}
 	}
 

@@ -18,8 +18,8 @@ import student.model.vo.Member;
  * Servlet Filter implementation class SessionCheckFilter
  */
 @WebFilter("*.ss")
-public class SessionCheckFilter implements Filter {
-
+public class SessionCheckFilter implements Filter, java.io.Serializable{
+	private final static long serialVersionUID = 354999433;
 	/**
 	 * Default constructor.
 	 */
@@ -44,7 +44,7 @@ public class SessionCheckFilter implements Filter {
 		// 로그인 하지 않았다면 error.jsp 내보냄
 		// 로그인 한 상태면 요청한 서블릿으로 넘어감
 
-		HttpServletRequest hrequest = (HttpServletRequest) request;
+		HttpServletRequest hrequest = (HttpServletRequest)request;
 		Member loginMember = (Member)hrequest.getSession(false).getAttribute("loginMember");
 		// 세션객체를 꺼내서 그 안에 저장된 getAttribute 를 가져옴
 		if (loginMember == null) {

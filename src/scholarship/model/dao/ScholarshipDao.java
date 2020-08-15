@@ -31,9 +31,10 @@ public class ScholarshipDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		close(rset);
-		close(stmt);
+		}finally {
+			close(rset);
+			close(stmt);
+		}	
 		return list;
 	};
 
@@ -53,9 +54,10 @@ public class ScholarshipDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		close(rset);
-		close(pstmt);
+		}finally {
+			close(rset);
+			close(pstmt);
+		}	
 		return ss;
 	}
 	
@@ -73,8 +75,9 @@ public class ScholarshipDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
-		close(pstmt);
 		return result;
 	}
 
@@ -82,19 +85,20 @@ public class ScholarshipDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query="update scholarship set ssname= ?, value= ? where ssname = ?";
+		String query="update scholarship set ssname = ?, benefitcon= ?, value= ? where ssname = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, ss.getSsname());
-			pstmt.setInt(2, ss.getValue());
-			pstmt.setString(3, originname);
+			pstmt.setString(2, ss.getBenefitcon());
+			pstmt.setInt(3, ss.getValue());
+			pstmt.setString(4, originname);
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
-		close(pstmt);
-		
 		return result;
 	}
 	
@@ -110,9 +114,9 @@ public class ScholarshipDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
-		close(pstmt);
-		
 		return result;
 	}
 

@@ -18,7 +18,7 @@ import attendance.model.vo.Atndn;
  */
 @WebServlet("/atnlist")
 public class AtndnSelectServlet extends HttpServlet {
-	private static final long serialVersionUID = 413L;
+	private static final long serialVersionUID = 41321332L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,11 +37,12 @@ public class AtndnSelectServlet extends HttpServlet {
 		String lcode = request.getParameter("lcode");
 		ArrayList<Atndn> list = new AtndnService().selectLctrAtndn(sid, lcode);
 		RequestDispatcher view = null;
-		
+
 		if(list.size() > 0) {
 			view = request.getRequestDispatcher("/views/attendance/lctrAtndnView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
+			
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "나의 강의목록 조회 실패");

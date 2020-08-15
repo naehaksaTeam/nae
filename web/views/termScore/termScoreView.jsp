@@ -27,13 +27,13 @@
   </tr>
 </thead>
 <tbody>
-<% for (TermScore tscore : list) { %>
+<% for (TermScore t1score : list) { %>
   <tr>
-   	<td><%= tscore.getSemester() %></td>
-    <td><%= tscore.getTermaplpoint() %></td>
-    <td><%= tscore.getTermgetpoint() %></td>
-    <td><%= tscore.getGrdpoint() %></td>
-    <td><%= tscore.getTgpa() %></td>
+   	<td><%= t1score.getSemester() %></td>
+    <td><%= t1score.getTermaplpoint() %></td>
+    <td><%= t1score.getTermgetpoint() %></td>
+    <td><%= t1score.getGrdpoint() %></td>
+    <td><%= t1score.getTgpa() %></td>
   </tr>
   <% } %>
 </tbody>

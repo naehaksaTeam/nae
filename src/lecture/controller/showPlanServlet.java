@@ -1,5 +1,5 @@
 package lecture.controller;
-
+//강의계획서 전체 보기
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -16,9 +16,9 @@ import lecture.model.vo.Lecture;
 /**
  * Servlet implementation class showPlanServlet
  */
-@WebServlet("/showplan")
+@WebServlet("/showplan.ss")
 public class showPlanServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 378979800L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -33,7 +33,7 @@ public class showPlanServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Lecture> list = new LectureService().selectAllPlan();
+		ArrayList<Lecture> list = new LectureService().selectAllPlan();//모든 강의계획서보기
 		
 		RequestDispatcher view = null;
 		

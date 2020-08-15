@@ -10,16 +10,21 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 import lecture.model.dao.LectureDao;
+import lecture.model.vo.ApplyReception;
 import lecture.model.vo.Lecture;
+import lecture.model.vo.Major;
+import lecture.model.vo.Rest;
+import lecture.model.vo.TimeTable;
+import student.model.vo.Member;
 
 public class LectureService {
 
 	private LectureDao ldao = new LectureDao();
-	
+
 	public LectureService() {
-		
+
 	}
-	
+
 	public Lecture loginCheck(String id, String pw) {
 		Connection conn = getConnection();
 		Lecture member = ldao.loginCheck(conn, id, pw);
@@ -28,11 +33,11 @@ public class LectureService {
 	}
 
 	public int insertLecture(Lecture member) {
-		Connection conn =getConnection();
+		Connection conn = getConnection();
 		int result = ldao.insertLecture(conn, member);
-		if(result > 0) {
+		if (result > 0) {
 			commit(conn);
-		}else {
+		} else {
 			rollback(conn);
 		}
 		close(conn);
@@ -40,33 +45,36 @@ public class LectureService {
 	}
 
 	public Lecture selectLecture(String userid) {
-		
+
 		Connection conn = getConnection();
 		Lecture member = ldao.selectLecture(conn, userid);
 		close(conn);
 		return member;
-		
+
 	}
 
-	public int deleteLecture(String id) {
-		Connection conn = getConnection();
+	public String deleteLecture(String lecture) {
+		//개설된 강좌 내리기
+		String r = "";
 		
-		int result = ldao.deleteLecture(conn, id);
-		if(result > 0) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		}
+		Connection conn = getConnection();
+		r = ldao.selectRoom(conn,lecture);
 		close(conn);
-		return result;
+		if(r.equals(lecture)) {
+			conn = getConnection();
+			ldao.deleteLecture(conn, lecture);
+			commit(conn);
+			close(conn);
+		}
+		return r;
 	}
-	
+
 	public int updateLecture(Lecture member) {
 		Connection conn = getConnection();
 		int result = ldao.updateLecture(conn, member);
-		if(result > 0) {
+		if (result > 0) {
 			commit(conn);
-		}else {
+		} else {
 			rollback(conn);
 		}
 		close(conn);
@@ -85,7 +93,7 @@ public class LectureService {
 		int result = ldao.updateLoginOK(conn, userid, loginok);
 		if (result > 0) {
 			commit(conn);
-		}else {
+		} else {
 			rollback(conn);
 		}
 		close(conn);
@@ -129,31 +137,147 @@ public class LectureService {
 
 	public int selectCheckId(String userid) {
 		Connection conn = getConnection();
-		int idcount = ldao.selectCheckId(conn,userid);
+		int idcount = ldao.selectCheckId(conn, userid);
 		close(conn);
 		return idcount;
 	}
 
 	public ArrayList<Lecture> selectAllPlan() {
+		// 강의 계획서 조회
 		Connection conn = getConnection();
 		ArrayList<Lecture> list = ldao.selectAllPlan(conn);
 		close(conn);
-		
+
 		return list;
 	}
-	lscore.setReceptionno(String.join(",",request.getParameterValues("category"))); 
-	lscore.setReceptionno(String.join(",",request.getParameterValues("receptionno")));
-	lscore.setLcode(String.join(",",request.getParameterValues("lcode")));
-	lscore.setLname(String.join(",",request.getParameterValues("lname")));
-	lscore.setCategory(String.join(",",request.getParameterValues("category")));
-	lscore.setAtndnscore(Integer.parseInt(String.join(",",request.getParameterValues("atndnscore"))));
-	lscore.setMidscore(Integer.parseInt(String.join(",",request.getParameterValues("midscore"))));
-	lscore.setFinalscore(Integer.parseInt(String.join(",",request.getParameterValues("finalscore"))));
-	lscore.setTotalscore(Integer.parseInt(String.join(",",request.getParameterValues("totalscore"))));
-	lscore.setGrade(String.join(",",request.getParameterValues("grade"))));
-	
-	public int updateScore(reception, lcode, lname, category, atndnscore, midscore, finslscore, totalscore) {
+
+	public TimeTable selecTimeTable(String studentid, String clock) {
+		// 시간표 조회
 		Connection conn = getConnection();
-		int result = lado.updateScore(conn, reception, lcode, lname, category, atndnscore, midscore, finslscore, totalscore)
+		TimeTable list = ldao.selecTimeTable(conn,studentid,clock);
+		close(conn);
+		if(list.getName() == null) {
+			String n = "공강";
+			list.setDay(n);
+			list.setName(n);
+			list.setTime(n);
+		}
+		return list;
+	}
+
+	public String createRoom(String lecture,int roommax) {
+		String r = "";
+		
+		Connection conn = getConnection();
+		r = ldao.selectRoom(conn,lecture);
+		close(conn);
+		if(r.equals(lecture)) {
+			return "already";
+		}else {
+			conn = getConnection();
+			ldao.createRoom(conn,lecture,roommax);
+			commit(conn);
+			close(conn);
+			conn = getConnection();
+			r = ldao.selectRoom(conn,lecture);
+			close(conn);
+		}
+		return r;
+	}
+
+	public ArrayList<Lecture> selectOpenedLectures() {
+		//열려있는 강의 가져오기
+		Connection conn = getConnection();
+		ArrayList<Lecture> list = ldao.selectOpenedLectures(conn);
+		close(conn);
+
+		return list;
+	}
+
+	public int applyLecture(String lname, String name,ApplyReception ar) {
+		//수강신청버튼구현
+		int r = 0;
+		Connection conn = getConnection();
+		r = ldao.applyLecture(conn,lname,name);
+		if(r > 0) {
+			commit(conn);
+			close(conn);
+			conn = getConnection();
+			r = ldao.preapplyLecture(conn,ar);
+			if(r > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			close(conn);
+		}else {
+			rollback(conn);
+			close(conn);
+		}
+	
+		return r;
+	
+		
+	}
+
+	public ArrayList<Rest> selectRest() {
+		//휴보강버튼
+		Connection conn = getConnection();
+		ArrayList<Rest> list = ldao.selectRest(conn);
+		close(conn);
+		return list;
+	}
+
+	public ArrayList<Member> selectAllUsers() {
+		//교수리스트 조회
+		Connection conn = getConnection();
+		ArrayList<Member> list = ldao.selectAllUsers(conn);
+		close(conn);
+		return list;
+		
+	}
+
+	public ArrayList<Lecture> selectMyLectures(String id) {
+		//교수의 과목 조회
+		Connection conn = getConnection();
+		ArrayList<Lecture> list = ldao.selectMyLectures(conn,id);
+		close(conn);
+		return list;
+	}
+
+	public int insertRest(Rest r) {
+		//휴보강신청 버튼
+		int rst = 0;
+		Connection conn = getConnection();
+		rst = ldao.insertRest(conn,r);
+		if(rst > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return rst;
+	}
+
+	public int delRest(String no) {
+		//휴보강 철회 버튼
+		int r = 0;
+		Connection conn = getConnection();
+		r = ldao.delRest(conn,no);
+		if(r > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return r;
+	}
+
+	public ArrayList<Major> selectCategories() {
+		//카테고리 조회
+		Connection conn = getConnection();
+		ArrayList<Major> list = ldao.selectCategories(conn);
+		close(conn);
+		return list;
 	}
 }

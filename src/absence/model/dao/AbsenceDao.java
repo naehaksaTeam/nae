@@ -18,21 +18,21 @@ public class AbsenceDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence";
+		String query = "select * from absence order by requestdate desc";
 		
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
-				
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("id"),rset.getDate("requestdate"), rset.getDate("limitcanceldate"), rset.getString("approval"));
 				list.add(ab);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-		close(stmt);
+			close(rset);
+			close(stmt);
 		}
 		return list;
 	};
@@ -50,12 +50,13 @@ public class AbsenceDao {
 			rset = pstmt.executeQuery();
 
 			if(rset.next()) {
-				absence = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
+				absence = new Absence(rset.getString("requestid"), rset.getString("id"),rset.getDate("requestdate"), rset.getDate("limitcanceldate"), rset.getString("approval"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-		close(pstmt);
+			close(rset);
+			close(pstmt);
 		}
 		return absence;
 	};
@@ -66,7 +67,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence where studentid = ?";
+		String query = "select * from absence where id = ?  order by requestdate desc";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -81,7 +82,8 @@ public class AbsenceDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-		close(pstmt);
+			close(rset);
+			close(pstmt);
 		}
 		return list;
 	};
@@ -89,13 +91,13 @@ public class AbsenceDao {
 	public int insertAbsence(Connection conn, String value, String studentid) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "insert into absence values(concat( ?, (select max(to_number(substr(requestid,2)))+1 from absence where substr(requsetid,1,1) = ?)), ?, default, default, default)";
+		String query = "insert into absence values(concat( ?, (select max(to_number(substr(requestid,2)))+1 from absence where substr(requestid,1,1) = ?)), ?, default, default, default)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, value);
-			pstmt.setString(2, studentid);
-			pstmt.setString(3, value);
+			pstmt.setString(2, value);
+			pstmt.setString(3, studentid);
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -142,6 +144,61 @@ public class AbsenceDao {
 		return result;
 	};
 	
+	//신청취소하면 학생테이블가서 휴학여부바꾸어줌
+	public int studentAbsenceChange(Connection conn, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "  update student set ABSENCEWHETHER = (select case ABSENCEWHETHER when 'Y' then 'N' when 'N' then 'Y' end from student where id = ?) where id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+			pstmt.setString(2, id);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int studentCountPlus(Connection conn, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "  update student set absencecount = absencecount+1 where id = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int studentCountMinus(Connection conn, String id) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query = "  update student set absencecount = absencecount-1 where id = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, id);
+
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 	public int deleteAbsence(Connection conn, String requestid) {
 		int result = 0; // 신청취소가 되면 승인여부고려해서 학생테이블의 휴학웨더 바꾸어준다.
 		PreparedStatement pstmt = null;
@@ -167,7 +224,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence where appoval = ?";
+		String query = "select * from absence where appoval = ?  order by requestdate desc";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -175,15 +232,41 @@ public class AbsenceDao {
 			
 			rset = pstmt.executeQuery();
 			while(rset.next()) {
-				Absence ab = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
+				Absence ab = new Absence(rset.getString("requestid"), rset.getString("id"),rset.getDate("requestdate"), rset.getDate("limitcanceldate"), rset.getString("approval"));
 				
 				list.add(ab);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
-		close(pstmt);
 		return list;
+	}
+	
+	public String selectApprovalChk(Connection conn, String requestid) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String approval = null;
+		
+		String query = "select approval from absence where requestid = ? ";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, requestid);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				approval = rset.getString("approval");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return approval;
 	}
 
 	public ArrayList<Absence> selectABA(Connection conn, String value) {
@@ -191,7 +274,7 @@ public class AbsenceDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from absence where substr(requestid,1,1) = ?";
+		String query = "select * from absence where substr(requestid,1,1) = ?  order by requestdate desc";
 
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -199,16 +282,40 @@ public class AbsenceDao {
 			rset = pstmt.executeQuery();
 
 			while(rset.next()) {
-				Absence absence = new Absence(rset.getString("requestid"), rset.getString("studentid"),rset.getDate("requestdate"), rset.getDate("limitcancledate"), rset.getString("approval"));
+				Absence absence = new Absence(rset.getString("requestid"), rset.getString("id"),rset.getDate("requestdate"), rset.getDate("limitcanceldate"), rset.getString("approval"));
 
 				list.add(absence);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-		close(pstmt);
+			close(rset);
+			close(pstmt);
 		}
 		return list;
 	}
+	
+	public float canceldateChk(Connection conn, String requestid) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		float date = 0.0f;
 
+		String query = " select round(to_number(LIMITCANCELDATE - sysdate),2) as \"date\" from absence where requestid = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, requestid);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				date  = rset.getFloat("date");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return date;
+	}
 }

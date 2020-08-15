@@ -12,35 +12,66 @@
 <head>
 <meta charset="UTF-8">
 <title>beet</title>
+<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: inherit;
+	text-align: left;
+	vertical-align: top;
+}
+.tg td {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+.tg th {
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: bolder;
+	overflow: hidden;
+	padding: 10px 5px;
+	word-break: normal;
+}
+</style>
 </head>
 <body>
+<%@ include file="../common/header.jsp"%>
+</header>
+<%@ include file="../common/side.jsp"%>
 <br>
 <h1>CATEGORY TEST PAGE</h1>
 <div align="center">
-<button onclick="javascript:location.href='/beet/deleteca?catename=테스트계열'">계열 삭제</button>
-
-<form action="/beet/insertca" method="post">
-<input type="text" name="catename" required>
-<input type="submit" value="계열 추가">
-</form>
 
 <button onclick="javascript:location.href='/beet/selectca'">계열 조회</button>
 <br>
 <% if(list != null){ %>
-	<form action="/beet/updateca" method="post">
-	<table style="border: solid 1px; background-color: teal;">
+	<form method="post" name="cateform">
+	<table style="border: solid 1px; background-color: teal; width: 150px;"  class="tg">
 	<tr><th>계열명</th></tr>
 	<% for(Category category : list){ %>
-		<tr><td><input type="checkbox" name="catename" value="<%= category.getCategoryname() %>"><%= category.getCategoryname() %></td></tr>
+		<tr><td><input type="radio" name="catename" value="<%= category.getCategoryname() %>"><%= category.getCategoryname() %></td></tr>
 	<% } %>
 	</table>
+	<input type="submit" value="계열삭제" onclick="javascript: cateform.action='/beet/deleteca'">
 	<br>
-	<input type="text" name="newname">수정할 계열이름
-	<input type="submit" value="계열 수정">
+	수정할 이름<input type="text" name="newname">
+	<input type="submit" value="계열수정" onclick="javascript: cateform.action='/beet/updateca'">
 	</form>
 <% } %>
-
 <br>
+<form action="/beet/insertca" method="post">
+추가할 이름<input type="text" name="catename">
+<input type="submit" value="계열추가">
+</form>
 <% if(message != null){ %>
 	<hr>
 	<%= message %>

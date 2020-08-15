@@ -26,12 +26,13 @@ public class SelectScholarshipServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(list != null) {
-			view = request.getRequestDispatcher("views/scholarship/selectScholarView.jsp");
+			view = request.getRequestDispatcher("views/scholarship/scholarshipManagementView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");
 			request.setAttribute("message", "장학금 조회에 실패하였습니다");
+			view.forward(request, response);
 		}
 	}
 

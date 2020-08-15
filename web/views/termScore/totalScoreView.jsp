@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="termScore.model.vo.TermScore, student.model.vo.Member, java.util.ArrayList " %>	
-<% TermScore tscore = (TermScore)request.getAttribute("tscore"); %>
+<% TermScore tscore = (TermScore)request.getAttribute("tscore"); %> 
 <!DOCTYPE html>
 <html>
 <head>

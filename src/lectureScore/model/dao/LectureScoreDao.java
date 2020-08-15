@@ -48,6 +48,7 @@ public class LectureScoreDao {
 		} finally {
 			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 
 		return list;
@@ -86,6 +87,7 @@ public class LectureScoreDao {
 		} finally {
 			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 
 		return list;
@@ -131,6 +133,7 @@ public class LectureScoreDao {
 		}finally {
 			close(rset);
 			close(pstmt);
+			close(conn);
 		}
 		return list;
 	}
@@ -152,12 +155,14 @@ public class LectureScoreDao {
 			pstmt.setInt(4, (lscore.getAtndnscore()+lscore.getMidscore()+lscore.getFinalscore()));
 			pstmt.setString(5, lscore.getGrade());
 			pstmt.setString(6, lscore.getReceptionno());
-			result = pstmt.executeUpdate();
+			result = pstmt.executeUpdate();	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
+			
 			close(pstmt);
+			close(conn);
 		}
 		return result;
 	}
@@ -183,6 +188,7 @@ public class LectureScoreDao {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
+			close(conn);
 		}
 		return result;
 	}
@@ -221,6 +227,7 @@ public class LectureScoreDao {
 			} finally {
 				close(rset);
 				close(stmt);
+				close(conn);
 			}
 			
 			return list;
@@ -261,6 +268,7 @@ public class LectureScoreDao {
 			} finally {
 				close(rset);
 				close(pstmt);
+				close(conn);
 			}
 			
 			return list;
@@ -300,6 +308,7 @@ public class LectureScoreDao {
 			} finally {
 				close(rset);
 				close(pstmt);
+				close(conn);
 			}
 			
 			return list;

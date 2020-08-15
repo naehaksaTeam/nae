@@ -43,7 +43,7 @@ public class TermScoreSelectServlet extends HttpServlet {
 		
 		if(list != null) {
 			view = request.getRequestDispatcher("views/termScore/termScoreView.jsp");
-			request.setAttribute("list",  list);
+			request.setAttribute("tlist",  list);
 			view.forward(request, response);
 		}else {
 			view = request.getRequestDispatcher("views/common/error.jsp");

@@ -26,7 +26,7 @@ public class DeleteCategoryServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(result >0) {
-			view = request.getRequestDispatcher("views/categoryTest/categoryTestView.jsp");
+			view = request.getRequestDispatcher("selectca");
 			request.setAttribute("message", catename + " 계열의 삭제가 완료되었습니다.");
 			view.forward(request, response);
 		}else {

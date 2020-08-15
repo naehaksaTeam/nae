@@ -1,6 +1,8 @@
 package attendance.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,42 +34,47 @@ public class AtndnUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String pid = request.getParameter("userid");
+		String semester = "202001";
+		String lcode = request.getParameter("lcode");
+		
+		ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester, lcode);
+		
+		if(list != null) {
+			request.setAttribute("list", list);
+		}
+		
+		
+		int whoCount = 0;
+		String week = request.getParameter("selectweek");
+		
+		ArrayList<Atndn> list2 = new ArrayList<Atndn>();
+		while(request.getParameter("who" + ++whoCount) != null ) {
 	
-				request.setCharacterEncoding("utf-8");
-				
-				Atndn atndn = new Atndn();
-		/*
-		 * atndn.setSid(String.join(",", request.getParameterValues("sid")));
-		 * atndn.setSname(String.join(",", request.getParameterValues("sname")));
-		 * atndn.setMajorname(String.join(",",
-		 * request.getParameterValues("majorname"))); atndn.setWeek1(String.join(",",
-		 * request.getParameterValues("week1"))); atndn.setWeek2(String.join(",",
-		 * request.getParameterValues("week2"))); atndn.setWeek3(String.join(",",
-		 * request.getParameterValues("week3"))); atndn.setWeek4(String.join(",",
-		 * request.getParameterValues("week4"))); atndn.setWeek5(String.join(",",
-		 * request.getParameterValues("week5"))); atndn.setWeek6(String.join(",",
-		 * request.getParameterValues("week6"))); atndn.setWeek7(String.join(",",
-		 * request.getParameterValues("week7"))); atndn.setWeek8(String.join(",",
-		 * request.getParameterValues("week8"))); atndn.setWeek9(String.join(",",
-		 * request.getParameterValues("week9"))); atndn.setWeek10(String.join(",",
-		 * request.getParameterValues("week10"))); atndn.setWeek11(String.join(",",
-		 * request.getParameterValues("week11"))); atndn.setWeek12(String.join(",",
-		 * request.getParameterValues("week12"))); atndn.setWeek13(String.join(",",
-		 * request.getParameterValues("week13"))); atndn.setWeek14(String.join(",",
-		 * request.getParameterValues("week14"))); atndn.setWeek15(String.join(",",
-		 * request.getParameterValues("week15"))); atndn.setWeek16(String.join(",",
-		 * request.getParameterValues("week16")));
-		 */
-				
-				int result = new AtndnService().updateAtndn(atndn);
-				
-				if(result > 0) {
-					response.sendRedirect("/beet/atnupdate?userid=" + atndn.getSid());
-				}else {
-					RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", atndn.getSid()+ " 출결 수정 실패");
-					view.forward(request, response);
-				}	
+			Atndn atndn = new Atndn();
+			atndn.setLcode(request.getParameter("lcode"));
+			atndn.setSid(request.getParameter("who" + whoCount));
+			atndn.setWeek1(week);
+			atndn.setThisweek(request.getParameter("selectfour" + whoCount));
+			
+			list2.add(atndn);
+		}
+
+		
+		int result = new AtndnService().updateWeekAll(list2);
+		
+		RequestDispatcher view = null;
+		
+		if(result > 0) {
+			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
+			request.setAttribute("result", "yes");
+			view.forward(request, response);
+		}else {
+			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
+			request.setAttribute("result", "no");
+			view.forward(request, response);
+		}
+		
 	}
 
 	/**

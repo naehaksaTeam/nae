@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import scholarship.model.service.ScholarshipService;
+import scholarship.model.vo.Scholarship;
 import ssbenefitst.model.service.SsbenefitstService;
 import ssbenefitst.model.vo.Ssbenefitst;
 
@@ -23,15 +25,19 @@ public class SelectSsbenefitstServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String studentid = request.getParameter("studentid");
-		System.out.println(studentid);
-		ArrayList<Ssbenefitst> list = new SsbenefitstService().selectPrivateSsst(studentid);
+
+		ArrayList<Ssbenefitst> listssst = new SsbenefitstService().selectPrivateSsst(studentid);
+		ArrayList<Scholarship> list = new ScholarshipService().selectScholarship();
+		
+		
 		
 		RequestDispatcher view = null;
-		if(list != null) {
-			view = request.getRequestDispatcher("views/scholarship/selectScholarView.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		}
+
+		view = request.getRequestDispatcher("views/scholarship/selectScholarView.jsp");
+		request.setAttribute("listssst", listssst);
+		request.setAttribute("list", list);
+		view.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
