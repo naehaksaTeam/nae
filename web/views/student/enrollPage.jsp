@@ -248,7 +248,7 @@ cursor: pointer;
 </tr>
 <tr class="">
 	<th>*아이디</th>
-	<td><input type="text" name="userid" value="<%= userid %>" required> &nbsp; 
+	<td><input type="text" name="userid" value="<%= userid %>" required> &nbsp;&nbsp; &nbsp; &nbsp;  &nbsp;&nbsp; &nbsp; &nbsp; 
 	<input type="button" value="중복체크" onclick="return false;"></td>
 </tr>
 <tr>
@@ -299,7 +299,7 @@ cursor: pointer;
 <tr>
 	<th colspan="2">
 		<input type="submit" value="가입하기"> &nbsp; 
-		<button onclick="javascript:location.href='/beet/index.jsp'">작성취소</button> 
+	<input type="reset" class="down_default" target="_blank" value="작성취소"> 
 	</th>	
 </tr>
 </table>
@@ -371,7 +371,7 @@ cursor: pointer;
 <tr class="">
 	<th colspan="2">
 		<input type="submit" value="가입하기"> &nbsp; 
-		<button onclick="javascript:location.href='/beet/index.jsp'">작성취소</button> 
+		<input type="reset" class="down_default" target="_blank" value="작성취소"> 
 	</th>	
 </tr>
 </table>

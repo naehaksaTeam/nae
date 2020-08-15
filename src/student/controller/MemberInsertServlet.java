@@ -35,7 +35,7 @@ public class MemberInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 회원 정보 추가 처리용 컨트롤러
+		// 회원가입 컨트롤러
 
 		Member member = new Member();
 		
@@ -113,6 +113,7 @@ public class MemberInsertServlet extends HttpServlet {
 			RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 	
 			view.forward(request, response);
+			System.out.println("doget성공");
 		}else {  
 			ArrayList<Major> list = new LectureService().selectCategories();
 			request.setAttribute("list", list);
@@ -121,6 +122,7 @@ public class MemberInsertServlet extends HttpServlet {
 			request.setAttribute("who", who);
 			request.setAttribute("result", "no");
 			view.forward(request, response);
+		
 		}
 				
 	}
@@ -131,6 +133,6 @@ public class MemberInsertServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+		
 	}
-
 }
