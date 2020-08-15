@@ -190,7 +190,6 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
-
 <p class="page_tt">장학금 관리</p>
 
 <% if(message != null){ %>
@@ -244,8 +243,8 @@ cursor: pointer;
 </table>
 
 </form>
-
 <br><br>
+
 
 </div>
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
@@ -339,14 +338,14 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<%-- <%@ include file = "/views/scholarship/sideADMIN.jsp" %> --%>
-<div class="column_inner">
+<%@ include file = "/views/scholarship/sideADMIN.jsp" %>
+<!-- <div class="column_inner">
 <aside class="sidebar">
 							
 		<div class="widget "><div id="dc_jqaccordion_widget-8">		
 		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
 
-<ul  style="float: left;" id="menu-%ed%96%89%ec%a0%95" class="menu">
+<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
   <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
   <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
   <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
@@ -357,7 +356,7 @@ cursor: pointer;
 
 		</div>
 		</div></div>		</aside>
-	</div>
+	</div>-->
 </div> 
 <!-- 서브메뉴 끝 -->
 						</div>
