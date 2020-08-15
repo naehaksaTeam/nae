@@ -329,15 +329,16 @@ cursor: pointer;
 
 </div> 
 	</div> </div></div></div></div></div>
-																 
+																	 
 								</div>
-																	
-									
+<div class="column2">														
+<%@ include file = "sideADMIN.jsp" %>	
+</div>	
 							</div>
 
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
-<%@ include file = "sideADMIN.jsp" %>
+
 <!-- 서브메뉴 끝 -->
 						</div>
 								
