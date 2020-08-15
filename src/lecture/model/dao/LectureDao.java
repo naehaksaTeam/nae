@@ -383,6 +383,7 @@ public class LectureDao {
 				l.setName(rset.getString("name"));
 				l.setRoom(rset.getString("room"));
 				l.setContent(rset.getString("content"));
+				l.setLclock(rset.getString("lclock"));
 				
 				list.add(l);
 				

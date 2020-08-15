@@ -207,25 +207,25 @@ cursor: pointer;
 <h1>휴보강신청페이지</h1>
 <hr>
 
-<table style="border:2px solid black;" id="resttable">
+<table style="border:2px solid black;width:105%;" id="resttable">
 <tr>
-<th>&nbsp;접수번호&nbsp;</th><th>&nbsp;신청교수&nbsp;</th><th>&nbsp;사유&nbsp;</th><th>&nbsp;수업방식&nbsp;</th><th>&nbsp;휴강일자&nbsp;</th>
-<th>&nbsp;보강일자&nbsp;</th><th>&nbsp;보강시간&nbsp;</th><th>&nbsp;강의코드&nbsp;</th><th>&nbsp;강의실명&nbsp;</th><th>&nbsp;대강자 교수&nbsp;</th>
+<th>번호</th><th>&nbsp;신청교수&nbsp;</th><th>&nbsp;사유&nbsp;</th><th>&nbsp;수업방식&nbsp;</th><th>&nbsp;휴강일&nbsp;</th>
+<th>&nbsp;보강일&nbsp;</th><th>&nbsp;보강시간&nbsp;</th><th>&nbsp;강의코드&nbsp;</th><th>&nbsp;강의실명&nbsp;</th><th>대리교수</th>
 <th>권한실행</th>
 </tr>
 <% for(Rest r : list){ %>
 <tr>
-<td><%= r.getReceptionno() %></td>
-<td><%= r.getId() %></td>
-<td><%= r.getReason() %></td>
-<td><%= r.getWay() %></td>
+<td style="width:0%;"><%= r.getReceptionno() %></td>
+<td style="width:10%;"><%= r.getId() %></td>
+<td style="width:7%;"><%= r.getReason() %></td>
+<td style="width:11%;"><%= r.getWay() %></td>
 <td><%= r.getDayoff() %></td>
 <td><%= r.getRday() %></td>
-<td><%= r.getRtime() %></td>
-<td><%= r.getLcode() %></td>
-<td><%= r.getRoom() %></td>
-<td><%= r.getSubid() %></td>
-<td>
+<td style="width:10%;"><%= r.getRtime() %></td>
+<td style="width:10%;"><%= r.getLcode() %></td>
+<td style="width:10%;"><%= r.getRoom() %></td>
+<td  style="width:9%;"><%= r.getSubid() %></td>
+<td style="width:10%;">
 <button onclick="javascript:location.href='/beet/delrest?what=<%= r.getReceptionno() %>'">신청철회</button>
 </td>
 </tr>
