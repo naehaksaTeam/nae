@@ -237,10 +237,10 @@ cursor: pointer;
 <%= l.getCapacity() %>
 </td>
 <td style="border : 1px solid skyblue;text-align : center;" >
-&nbsp;<%= l.getLtime() %>, <%= l.getContent() %>시&nbsp;
+&nbsp;<%= l.getLtime() %>, <%= l.getLclock() %>시&nbsp;
 </td>
 <td style="border : 1px solid skyblue;text-align : center;" >
-<%= l.getProfessorid() %>
+<%= l.getName() %>
 </td>
 <td style="border : 1px solid skyblue;text-align : center;" >
 <%= l.getRoom() %>
