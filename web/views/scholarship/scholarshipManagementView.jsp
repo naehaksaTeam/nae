@@ -191,20 +191,19 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
-<% if(message != null){ %>
-	<%=message %>
-<% } %>
-<br>
+
 <h3>장학금 관리</h3>
 <% if(list != null){ %>
-<form method="post" name="ssselectform">
 	<div align="right" style="margin-bottom: 8px;" >
-		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectss'">전체 조회</button>
+		<button style="height: 34" class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectss'">전체 조회</button>
+	</div>
+<form method="post" name="ssselectform">
+	<div align="right" style="margin-bottom: 8px;" >	
 		&nbsp;&nbsp;
-		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/deletesshh'"> 삭 제 </button>
+		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:ssselectform.action='/beet/deletess'"> 삭 제 </button>
 		<% if(s == null){ %>
 		&nbsp;
-		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:location.href='/beet/selectoness'"> 수 정 </button>
+		<button style="height: 34" class="btn btn-outline-secondary" type="submit" onclick="javascript:ssselectform.action='/beet/selectoness'"> 수 정 </button>
 		<% } %>
 	</div>
 <table style="clear: both" class = "main_default">
@@ -231,14 +230,14 @@ cursor: pointer;
 
 <h3>장학금 등록</h3>
 
-<form action="javascript:location.href='/beet/insertss'" method="post">
+<form name="insertssform" method="post">
 <div align="right" style="margin-bottom: 8px;">
-<button class="btn btn-outline-secondary" type="submit"> 추 가 </button>
+<button class="btn btn-outline-secondary" type="submit" onclick="javascript: insertssform.action='/beet/insertss'" > 추 가 </button>
 </div>
 <table class = "main_default">
-<tr><th>장학금명</th><td><input type="text" placeholder="등록하실 장학금의 이름을 입력해주세요" name="ssname" style="outline: none; width: 98%; border: 0;" ></td></tr>
-<tr><th>수혜조건</th><td><input type="text" placeholder="수혜조건을 입력해주세요" style="outline: none; width: 98%; border: 0;" name="benefitcon"></td></tr>
-<tr><th>장학금액</th><td><input type="number" placeholder="금액을 입력해주세요" style="outline: none; width: 98%; border: 0;" name="value"></td></tr>
+<tr><th>장학금명</th><td><input type="text" placeholder="등록하실 장학금의 이름을 입력해주세요" required="required" name="ssname" style="outline: none; width: 98%; border: 0;" ></td></tr>
+<tr><th>수혜조건</th><td><input type="text" placeholder="수혜조건을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="benefitcon"></td></tr>
+<tr><th>장학금액</th><td><input type="number" placeholder="금액을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="value"></td></tr>
 </table>
 
 </form>

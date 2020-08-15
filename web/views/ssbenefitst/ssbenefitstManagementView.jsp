@@ -231,7 +231,7 @@ cursor: pointer;
 <input type="hidden" name="benefitterm" value="<%=stst.getBenefitterm() %>">
 <input type="hidden" name="studentid" value="<%=stst.getStudentid() %>">
 	<% if(stst.getStudentid() != null){ %>
-	<h3>조회하신 결과입니다</h3>
+	<h3 style="margin-bottom: 8px;">조회하신 결과입니다</h3>
 	<table class = "main_default">
 		<tr><th>수혜학기</th><th>학 번</th><th>장학금명</th></tr>
 		<tr><th><%=stst.getBenefitterm() %></th>
@@ -243,7 +243,7 @@ cursor: pointer;
 	<button class="btn btn-outline-secondary" type="submit"> 삭 제 </button>
 	</div>
 	<% }else{ %>
-	<h3>조회하신 조건에 맞는 결과가 없습니다.</h3>
+	<h3 style="margin-bottom: 8px;">조회하신 조건에 맞는 결과가 없습니다.</h3>
 	<% } %>
 </form>
 <% }%>
@@ -295,7 +295,7 @@ cursor: pointer;
 <br>
 <div align="center">
 <p><strong>< 안 내 ></strong><br>
-추가 버튼을 누르면 입력하신 등수에 따라서 장학금이 지급될 것이며, 입력하신 학기의 다음 학기에 장학금이 수혜됩니다.
+추가 버튼을 누르면 입력하신 등수에 따라서 장학금이 지급될 예정이며<br>장학금 수혜학기는 입력하신 학기의 다음 학기로 저장됩니다.
 </p>
 <br>
 <button class="btn btn-outline-secondary" type="submit">장학금수혜학생 추가</button>
