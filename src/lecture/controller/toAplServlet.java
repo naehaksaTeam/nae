@@ -38,7 +38,7 @@ public class toAplServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		
-		view = request.getRequestDispatcher("/views/lecture/수강과목추가.jsp");
+		view = request.getRequestDispatcher("/views/lecture/addlecture.jsp");
 		request.setAttribute("list", list);
 		request.setAttribute("list2", list2);
 		request.setAttribute("result", "null제거용_비뜨비뜨");

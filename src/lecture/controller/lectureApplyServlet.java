@@ -79,15 +79,15 @@ public class lectureApplyServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(r > 0) {
-			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
+			view = request.getRequestDispatcher("/views/lecture/applylecture.jsp");
 			request.setAttribute("result", "ok");
 			view.forward(request, response);
 		}else if(r == -1){
-			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
+			view = request.getRequestDispatcher("/views/lecture/applylecture.jsp");
 			request.setAttribute("result", "already");
 			view.forward(request, response);
 		}else {
-			view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
+			view = request.getRequestDispatcher("/views/lecture/applylecture.jsp");
 			request.setAttribute("result", "no");
 			view.forward(request, response);
 		}

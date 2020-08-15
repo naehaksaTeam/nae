@@ -37,7 +37,7 @@ public class showPlanServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		
-		view = request.getRequestDispatcher("/views/lecture/강의계획서.jsp");
+		view = request.getRequestDispatcher("/views/lecture/lectureplan.jsp");
 		request.setAttribute("list", list);
 		view.forward(request, response);
 	}
