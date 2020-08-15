@@ -32,7 +32,7 @@ height:5%;
 background-color:#2f3640;
 }
 .btns{
-padding:10%;
+padding:7%;
 font-size:300%;
 background-color:#2f3640;
 }
@@ -43,7 +43,7 @@ right:2%;
 margin-right:1%;*/
 }
 .btns:hover{
-padding:7%;
+padding:9%;
 font-size:600%;
 }
  a:link { color: red; text-decoration: none;}
