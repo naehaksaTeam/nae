@@ -85,10 +85,10 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="content_inner ">
 		<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
 			<!-- ★배경 이미지 (변경시 backgroud-image, src 두군데 수정해야해요 --------------->
-		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/test.jpg); 
+		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/page.jpg); 
 			height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 		<div class="image not_responsive">
-			<img itemprop="image" src="/beet/resources/images/test.jpg" alt="&nbsp;">
+			<img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;">
 		</div>
 		<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					
@@ -104,6 +104,14 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="container">
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
+							<div class="column1">
+				<div class="column_inner">
+			<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;">
+			<div class=" full_section_inner clearfix">
+			<div class="wpb_column vc_column_container vc_col-sm-12">
+			<div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
 			<p class="page_tt"> 출결/성적 관리</p>  <!-- ★본문 제목 -------------------->
 							
@@ -199,7 +207,23 @@ select {width: 40px; height:20px; margin:0px}
 		%>
 	</table>
 							
-							
+</div> 
+	</div> </div></div></div></div></div></div></div>
+
+<!-- 서브메뉴★★★ 여기에 써주세요 -->
+<!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
+<div class="column2">	
+<%@ include file = "side.jsp" %>
+
+</div> 
+<!-- 서브메뉴 끝 -->
+						</div>
+								
+		</div>
+        	</div>
+				
+	</div>
+</div>							
 							
 													
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>

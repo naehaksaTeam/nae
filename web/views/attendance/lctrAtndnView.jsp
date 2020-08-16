@@ -154,8 +154,8 @@ cursor: pointer;
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
-			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/page.jpg); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
 						<div class="container_inner clearfix">
@@ -188,17 +188,17 @@ cursor: pointer;
 	</p>				
  <table class="main_default" >
 <thead>
-  <th>
+  <tr>
     <th  rowspan="2">과목코드<br></th>
     <th  rowspan="2">과목명</th>
     <th  rowspan="2">강의요일</th>
     <th  rowspan="2">출석률</th>
     <th  rowspan="2">결석1/4초과여부</th>
     <th  colspan="17">출석현황</th>
-  </th>
- 
+  </tr>
+
   <tr>
-    <td ><input type="checkbox" style="height:20px;"></button></td>
+  
     <td >1주</td>
     <td >2주</td>
     <td >3주</td>
@@ -217,11 +217,11 @@ cursor: pointer;
     <td >16주</td>
   
   </tr>
-</thead>
+  </thead>
 <tbody>
-  <% for (Atndn atndn : list){ %>
+  <% int i = 1; for (Atndn atndn : list){ %>
   <tr>
-  	<td><input type="checkbox" name="checked"></td>
+
     <td><%= atndn.getLcode() %></td>
     <td ><%= atndn.getLname() %></td>
     <td ><%= atndn.getLtime() %></td>

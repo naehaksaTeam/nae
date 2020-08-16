@@ -1,23 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="java.util.Date, java.text.SimpleDateFormat, java.util.ArrayList,
-				lectureScore.model.vo.LectureScore, student.model.vo.Member" %>   
- 
-<%
-Member loginmember = (Member)session.getAttribute("loginMember");
-ArrayList<LectureScore> list = (ArrayList<LectureScore>)request.getAttribute("list");
-Date lastmodified = new Date();
-SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
-%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
- <meta charset="UTF-8">
-	<!-- ★★★★★★★★title -->
-	<title> </title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ <meta charset="UTF-8">
+ <%@ page
+	import="java.util.ArrayList, student.model.vo.Member, lectureScore.model.vo.LectureScore"%>
+<%
+	ArrayList<LectureScore> list = (ArrayList<LectureScore>) request.getAttribute("list");
+	int i = 1;
+%>
+	<!-- ★★★★★★★★title -->
+	<title> </title>
+
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 
 
@@ -60,8 +58,8 @@ img.emoji {
 	padding: 0 !important;
 }
 </style>
-<link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
 <link rel="stylesheet" id="layerslider-css" href="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.5.1" type="text/css" media="all">
+<link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
 <link rel="stylesheet" id="bbse-popup-view-css" href="https://www.cha.ac.kr/wp-content/plugins/bbs-e-popup/css/bbse-popup-style.css?ver=4.7.18" type="text/css" media="all">
 <link rel="stylesheet" id="default_style-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/style.css?ver=4.7.18" type="text/css" media="all">
 <link rel="stylesheet" id="qode_font_awesome-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/font-awesome/css/font-awesome.min.css?ver=4.7.18" type="text/css" media="all">
@@ -166,7 +164,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>성적조회</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -182,66 +180,84 @@ cursor: pointer;
 						
 						<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 							
-		
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">강의목록</p>
+<p class="page_tt">성적조회</p>
 
+<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/lctrsearchall'">전체보기</button>
+	<!-- 항목별 검색 기능 추가  -->
+<!-- 	<fieldset>
+		<input type="radio" name="item" id="uid"> 회원 아이디 &nbsp; <input
+			type="radio" name="item" id="ugen"> 성별 &nbsp; <input
+			type="radio" name="item" id="uage"> 연령대 &nbsp;
+	</fieldset> -->
+	<fieldset>
+	<select id="field" onchange="javascript:selectfield(this);">
+		<option id="searchAll" value="all">-</option>
+		<option id="searchName" value="sname">이름</option>
+		<option id="searchLctr" value="lname">강의명</option>
+	</select>
 
-  <select class="semester" id="myselect" >
-            <option value="201901">201901</option>
-            <option value="201902">201902</option>
-            <option value="202001">202001</option>
-</select>	  
-    
- <table class="main_default">
-<thead>
-  <tr>
-    <th>순번</th>
-    <th>학년학기</th>
-    <th>이수구분</th>
-    <th>과목번호</th>
-    <th>과목명</th>
-    <th>출결입력</th>
-    <th>성적입력</th>
-    <th>성적입력날짜</th>
-  </tr>
-</thead>
-<tbody>
-<% int i = 1; for (LectureScore lscore : list) { %>
-
-  <tr>
-  	<td><%= i %></td><% i += 1; %>
-    <td><%= lscore.getSemester() %></td>
-    <td><%=lscore.getCategory() %></td>
-  	 <td><%=lscore.getLcode() %></td>
-	<td id="lname"><%=lscore.getLname()%></td>
-	<td>
-	<form action="/beet/atnupdate" method="post">
-			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
-			<input type="hidden" name="lcode" value="<%=lscore.getLcode() %>">
-			<input type="hidden" name="semester" value="">
-			<input class="btn btn-outline-secondary" type="submit" value="출결관리">
-		</form>
-		</td>
-	<td>
-		<form action="/beet/scselect.p" method="post">
-			<input class="btn btn-outline-secondary" type="submit" value="성적관리">
-			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
-			<input type="hidden" name="lname" value="<%=lscore.getLname() %>">
-		</form>
-	</td>
-	<td ><%=format1.format(lastmodified) %></td>
+	<!-- 검색폼  -->
+	<form style="float:right !important" action="/beet/adsearch" method="post" id="idform" class="lform">
 	
-	<% } %>
-  
-  </tr>
-</tbody>
-</table>   
-    
-    
+		<input type="hidden" name="action" value="">
+		<input type="search" name="keyword"> &nbsp; 
+			<input class="btn btn-outline-secondary" type="submit" value="검색">
+		</fieldset>
+	</form>
+
+	<table class="main_default">
+		<thead>
+			<tr>
+				<th>순번</th>
+				<th>학기</th>
+				<th>이수구분</th>
+				<th>강의번호</th>
+				<th>강의명</th>
+				<th>학생번호</th>
+				<th>학생명</th>
+				<th>계열</th>
+				<th>학과</th>
+				<th>재수강여부</th>
+				<th>등급</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<%
+				for (LectureScore lscore : list) {
+			%>
+			<tr>
+				<td><%=i%></td>
+				<%
+					i += 1;
+				%>
+				<td><%=lscore.getSemester()%></td>
+				<td><%=lscore.getCategory()%></td>
+				<td><%=lscore.getLcode()%></td>
+				<td><%=lscore.getLname()%></td>
+				<td><%=lscore.getSid()%></td>
+				<td><%=lscore.getSname()%></td>
+				<td><%=lscore.getCategoryname()%></td>
+				<td><%=lscore.getMajorname()%></td>
+				<td><%=lscore.getRetake()%></td>
+				<td><%=lscore.getGrade()%></td>
+			</tr>
+			<%
+				}
+			%>
+		</tbody>
+	</table>
+<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+	 function selectfield(obj) {
+		 jQuery('input[name=action]').attr('value',obj.value);
+	    }
+
+	</script>
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
 
@@ -320,7 +336,6 @@ cursor: pointer;
 -->
 
 <!-- ------------------------------------------ -->
-
 
 
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
