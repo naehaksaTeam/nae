@@ -69,9 +69,15 @@ img.emoji {
 <!-- 추가된내용 -->
 <% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("P") ||
 		((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A") ){ %>
+
 #applybtn{
 display:none;
 }
+
+.chk{
+display:none;
+}
+
 <% } %>
 <!-- 추가된내용 -->
 </style>
@@ -270,7 +276,7 @@ cursor: pointer;
 
 <% if((session.getAttribute(l.getLname())) == null ){ %>
 <form action="/beet/lapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
-<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn" class="btn btn-outline-secondary">수강신청</button>
+<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn" class="btn btn-outline-secondary chk">수강신청</button>
 <input type="text" style="display:none;" name="room" value="<%= l.getRoom() %>">
 <input type="text" style="display:none;" name="lcode" value="<%= l.getLcode() %>">
 <input type="text" style="display:none;" name="lpersonnel" value="<%= l.getCapacity() %>">
@@ -287,7 +293,7 @@ cursor: pointer;
 &nbsp;
 <% }else{ %>
 <form action="/beet/dlapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
-<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn" class="btn btn-outline-secondary">신청취소</button>
+<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn" class="btn btn-outline-secondary chk">신청취소</button>
 <input type="text" style="display:none;" name="lcode" value="<%= l.getLcode() %>">
 </form>
 <% } %>
