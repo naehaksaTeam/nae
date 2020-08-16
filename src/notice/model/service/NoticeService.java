@@ -104,7 +104,6 @@ public class NoticeService {
 		Connection conn = getConnection();
 		ArrayList<Notice> list = ndao.selectNewTop5(conn);
 		close(conn);
-		System.out.println("간당");
 		return list;
 	}
 	

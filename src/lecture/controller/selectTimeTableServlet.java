@@ -51,7 +51,7 @@ public class selectTimeTableServlet extends HttpServlet {
 		map.put("list14", list14);
 		map.put("list15", list15);
 		RequestDispatcher view = null;
-		view = request.getRequestDispatcher("/views/lecture/시간표조회.jsp");
+		view = request.getRequestDispatcher("/views/lecture/selecttime.jsp");
 		if(list9 != null)request.setAttribute("list", map);
 		view.forward(request, response);
 		

@@ -7,10 +7,10 @@ import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import attendance.model.dao.AtndnDao;
 import attendance.model.vo.Atndn;
+
 
 public class AtndnService {
 	private AtndnDao adao = new AtndnDao(); 
@@ -29,9 +29,9 @@ public class AtndnService {
 	 * close(conn); return list; }
 	 */
 	
-	public ArrayList<Atndn> selectLctrAtndn(String sid, String lcode){
+	public ArrayList<Atndn> selectLctrAtndn(String sid){
 		Connection conn = getConnection();
-		 ArrayList<Atndn>  list = adao.selectLctrAtndn(conn, sid, lcode);
+		 ArrayList<Atndn>  list = adao.selectLctrAtndn(conn, sid);
 		close(conn);
 		return list;
 	}
@@ -58,10 +58,10 @@ public class AtndnService {
 		return result;
 	}
 
-	public int updateWeekAll(HashMap map) {
+	public int updateWeekAll(ArrayList<Atndn> list2) {
 		//출결 여러개 업데이트
 		Connection conn = getConnection();
-		int r = adao.updateWeekAll(conn,map);
+		int r = adao.updateWeekAll(conn,list2);
 		if(r > 0) {
 			commit(conn);
 		}else {
@@ -74,6 +74,15 @@ public class AtndnService {
 	public ArrayList<Atndn> selectMyLctrSemstr(String sid, String semester) {
 		Connection conn = getConnection();
 		 ArrayList<Atndn>  list = adao.selectMyLctrSemstr(conn, sid, semester);
+		close(conn);
+		return list;
+	}
+
+	
+	//과목하나조회
+	public ArrayList<Atndn> selectOneAtndn(String lcode, String semester) {
+		Connection conn = getConnection();
+		ArrayList<Atndn> list = adao.selectOneAtndn(conn, lcode, semester);
 		close(conn);
 		return list;
 	}

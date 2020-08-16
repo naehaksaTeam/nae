@@ -11,7 +11,6 @@
 
 <div class="fit-vids-style" id="fit-vids-style" style="display: none;">&shy;<style>                 .fluid-width-video-wrapper {                   width: 100%;                                position: relative;                         padding: 0;                      					 min-height: 1px;                         }                                                                                       .fluid-width-video-wrapper iframe,          .fluid-width-video-wrapper object,          .fluid-width-video-wrapper embed {             position: absolute;                         top: 0;                                     left: 0;                                    width: 100%;                                height: 100%;                            }                                         </style></div><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://www.cha.ac.kr/wp-includes/js/wp-emoji-release.min.js?ver=4.7.18" type="text/javascript" defer=""></script></head><body data-rsssl="1" class="page-template-default page page-id-980 page-child parent-pageid-1429  qode_grid_1300 side_menu_slide_with_content width_370 footer_responsive_adv qode-child-theme-ver-1.0.0 qode-theme-ver-11.1 qode-theme-bridge wpb-js-composer js-comp-ver-5.1.1 vc_responsive" itemscope="" itemtype="http://schema.org/WebPage" style="height: auto; overflow: auto;">
 
-	
 			
 						<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 		
@@ -135,7 +134,7 @@ cursor: pointer;
 		
 			<div class="wrapper">
 	<div class="wrapper_inner">
-<%@ include file = "/views/common/header.jsp" %>
+<%@ include file = "/views/common/header222.jsp" %>
 <a id="back_to_top" href="#" class="off">
 			
 		</a>
@@ -171,21 +170,11 @@ cursor: pointer;
 								<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;"><div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element ">
 		<div class="wpb_wrapper">
-#selecttable td{
-width:300px;
-height:300px;
-background-color:#dff9fb;
-color:black;
-text-align:center;
-font-size:300%
-}
-a:link {text-decoration: none; color: black;}
-a:visited {text-decoration: none; color: black;}
-a:active {text-decoration: none; color: black;}
-a:hover {text-decoration: none; color: black; font-size:200%;}
+
 </style>
 <body>
 <form class="form-horizontal" role="form" method="POST" action="/beet/findpwd">
+			<center>
 		비밀번호찾기
 		<div class="row">
 			<div class="col-md-10 inputbb">
@@ -210,11 +199,11 @@ a:hover {text-decoration: none; color: black; font-size:200%;}
 
 		<div class="row">
 			<div class="col-md-10 inputbb">
-				<input type="submit" class="btn btn-outline-secondary findbtn">찾기 
+				<input type="submit" class="btn btn-outline-secondary findbtn">
 				
 			</div>
 		</div>
-		
+		</center>
 	</form>
 </body>
 </html>

@@ -171,7 +171,7 @@ cursor: pointer;
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/page.jpg); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
@@ -207,38 +207,32 @@ cursor: pointer;
 
 <p class="page_tt">올해 일정 보기</p>
 
-<table class="main_default"  align="center" width="700" border="1" cellspacing="0">
+<table class="main_default" >
 
   <tr><th colspan="2" >1월 학사일정</th></tr>
 <% for (Schedule s :list1){ %> 
 <tr>
-<td  align="center"><%=s.getSchstartyear() %>년 <%=s.getSchstartmonth() %>월 <%=s.getSchstartdate() %>일 ~ <%=s.getSchendyear() %>년 <%=s.getSchendmonth() %>월 <%=s.getSchenddate() %>일 </td>
+<td  align="center" width="450" ><%=s.getSchstartyear() %>년 <%=s.getSchstartmonth() %>월 <%=s.getSchstartdate() %>일 ~ <%=s.getSchendyear() %>년 <%=s.getSchendmonth() %>월 <%=s.getSchenddate() %>일 </td>
 <td align="center"><%=s.getSchname() %></td>
 
 </tr>
-</thead>
-<tr>
-<td  align="center"><%=s.getSchstartyear() %>년 <%=s.getSchstartmonth() %>월 <%=s.getSchstartdate() %>일 ~ <%=s.getSchendyear() %>년 <%=s.getSchendmonth() %>월 <%=s.getSchenddate() %>일 </td>
-<td align="center"><%=s.getSchname() %></td>
-</tr>
+
 <% } %>
 </table> 
 
-<br>
-<br>
-<table class="main_default"  align="center" width="700" border="1" cellspacing="0">
+<br><br><br><br>
+<table class="main_default" >
 
   <tr><th colspan="2" >2월 학사일정</th></tr>
 <% for (Schedule s2 :list2){ %> 
 <tr>
-<td align="center"><%=s2.getSchstartyear() %>년 <%=s2.getSchstartmonth() %>월 <%=s2.getSchstartdate() %>일 ~ <%=s2.getSchendyear() %>년 <%=s2.getSchendmonth() %>월 <%=s2.getSchenddate() %>일 </td>
+<td align="center" width="450" ><%=s2.getSchstartyear() %>년 <%=s2.getSchstartmonth() %>월 <%=s2.getSchstartdate() %>일 ~ <%=s2.getSchendyear() %>년 <%=s2.getSchendmonth() %>월 <%=s2.getSchenddate() %>일 </td>
 <td align="center"> <%=s2.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
 <colgroup>
 <col style="50%">
@@ -247,145 +241,131 @@ cursor: pointer;
   <tr><th colspan="2" >3월 학사일정</th></tr>
 <% for (Schedule s3 :list3){ %> 
 <tr>
-<td align="center"><%=s3.getSchstartyear() %>년 <%=s3.getSchstartmonth() %>월 <%=s3.getSchstartdate() %>일 ~ <%=s3.getSchendyear() %>년 <%=s3.getSchendmonth() %>월 <%=s3.getSchenddate() %>일 </td>
+<td align="center" width="450" ><%=s3.getSchstartyear() %>년 <%=s3.getSchstartmonth() %>월 <%=s3.getSchstartdate() %>일 ~ <%=s3.getSchendyear() %>년 <%=s3.getSchendmonth() %>월 <%=s3.getSchenddate() %>일 </td>
 <td align="center"><%=s3.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">4월 학사일정</th></tr>
 <% for (Schedule s4 :list4){ %> 
 <tr>
-<td align="center"><%=s4.getSchstartyear() %>년 <%=s4.getSchstartmonth() %>월 <%=s4.getSchstartdate() %>일 ~ <%=s4.getSchendyear() %>년 <%=s4.getSchendmonth() %>월 <%=s4.getSchenddate() %>일 </td>
+<td align="center" width="450" ><%=s4.getSchstartyear() %>년 <%=s4.getSchstartmonth() %>월 <%=s4.getSchstartdate() %>일 ~ <%=s4.getSchendyear() %>년 <%=s4.getSchendmonth() %>월 <%=s4.getSchenddate() %>일 </td>
 <td align="center"><%=s4.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
 
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">5월 학사일정</th></tr>
 <% for (Schedule s5 :list5){ %> 
 <tr>
-<td align="center"><%=s5.getSchstartyear() %>년 <%=s5.getSchstartmonth() %>월 <%=s5.getSchstartdate() %>일 ~ <%=s5.getSchendyear() %>년 <%=s5.getSchendmonth() %>월 <%=s5.getSchenddate() %>일 </td>
+<td align="center" width="450"><%=s5.getSchstartyear() %>년 <%=s5.getSchstartmonth() %>월 <%=s5.getSchstartdate() %>일 ~ <%=s5.getSchendyear() %>년 <%=s5.getSchendmonth() %>월 <%=s5.getSchenddate() %>일 </td>
 <td align="center"><%=s5.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
 
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">6월 학사일정</th></tr>
 <% for (Schedule s6 :list6){ %> 
 <tr>
-<td align="center"><%=s6.getSchstartyear() %>년 <%=s6.getSchstartmonth() %>월 <%=s6.getSchstartdate() %>일 ~ <%=s6.getSchendyear() %>년 <%=s6.getSchendmonth() %>월 <%=s6.getSchenddate() %>일 </td>
+<td align="center" width="450"><%=s6.getSchstartyear() %>년 <%=s6.getSchstartmonth() %>월 <%=s6.getSchstartdate() %>일 ~ <%=s6.getSchendyear() %>년 <%=s6.getSchendmonth() %>월 <%=s6.getSchenddate() %>일 </td>
 <td align="center"><%=s6.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
 
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">7월 학사일정</th></tr>
 <% for (Schedule s7 :list7){ %> 
 <tr>
-<td align="center"><%=s7.getSchstartyear() %>년 <%=s7.getSchstartmonth() %>월 <%=s7.getSchstartdate() %>일 ~ <%=s7.getSchendyear() %>년 <%=s7.getSchendmonth() %>월 <%=s7.getSchenddate() %>일 </td>
+<td align="center" width="450"><%=s7.getSchstartyear() %>년 <%=s7.getSchstartmonth() %>월 <%=s7.getSchstartdate() %>일 ~ <%=s7.getSchendyear() %>년 <%=s7.getSchendmonth() %>월 <%=s7.getSchenddate() %>일 </td>
 <td align="center"><%=s7.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
 
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">8월 학사일정</th></tr>
 <% for (Schedule s8 :list8){ %> 
 <tr>
-<td align="center"><%=s8.getSchstartyear() %>년 <%=s8.getSchstartmonth() %>월 <%=s8.getSchstartdate() %>일 ~ <%=s8.getSchendyear() %>년 <%=s8.getSchendmonth() %>월 <%=s8.getSchenddate() %>일 </td>
+<td align="center" width="450"><%=s8.getSchstartyear() %>년 <%=s8.getSchstartmonth() %>월 <%=s8.getSchstartdate() %>일 ~ <%=s8.getSchendyear() %>년 <%=s8.getSchendmonth() %>월 <%=s8.getSchenddate() %>일 </td>
 <td align="center"><%=s8.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
 
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">9월 학사일정</th></tr>
 <% for (Schedule s9 :list9){ %> 
 <tr>
-<td align="center"><%=s9.getSchstartyear() %>년 <%=s9.getSchstartmonth() %>월 <%=s9.getSchstartdate() %>일 ~ <%=s9.getSchendyear() %>년 <%=s9.getSchendmonth() %>월 <%=s9.getSchenddate() %>일 </td>
+<td align="center" width="450"><%=s9.getSchstartyear() %>년 <%=s9.getSchstartmonth() %>월 <%=s9.getSchstartdate() %>일 ~ <%=s9.getSchendyear() %>년 <%=s9.getSchendmonth() %>월 <%=s9.getSchenddate() %>일 </td>
 <td align="center"><%=s9.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
 
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">10월 학사일정</th></tr>
 <% for (Schedule s10 :list10){ %> 
 <tr>
-<td align="center"><%=s10.getSchstartyear() %>년 <%=s10.getSchstartmonth() %>월 <%=s10.getSchstartdate() %>일 ~ <%=s10.getSchendyear() %>년 <%=s10.getSchendmonth() %>월 <%=s10.getSchenddate() %>일 </td>
+<td align="center" width="450"><%=s10.getSchstartyear() %>년 <%=s10.getSchstartmonth() %>월 <%=s10.getSchstartdate() %>일 ~ <%=s10.getSchendyear() %>년 <%=s10.getSchendmonth() %>월 <%=s10.getSchenddate() %>일 </td>
 <td align="center"><%=s10.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
 
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">11월 학사일정</th></tr>
 <% for (Schedule s11 :list11){ %> 
 <tr>
-<td align="center"><%=s11.getSchstartyear() %>년 <%=s11.getSchstartmonth() %>월 <%=s11.getSchstartdate() %>일 ~ <%=s11.getSchendyear() %>년 <%=s11.getSchendmonth() %>월 <%=s11.getSchenddate() %>일 </td>
+<td align="center" width="450"><%=s11.getSchstartyear() %>년 <%=s11.getSchstartmonth() %>월 <%=s11.getSchstartdate() %>일 ~ <%=s11.getSchendyear() %>년 <%=s11.getSchendmonth() %>월 <%=s11.getSchenddate() %>일 </td>
 <td align="center"><%=s11.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
-
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">12월 학사일정</th></tr>
 <% for (Schedule s12 :list12){ %> 
 <tr>
-<td align="center"><%=s12.getSchstartyear() %>년 <%=s12.getSchstartmonth() %>월 <%=s12.getSchstartdate() %>일 ~ <%=s12.getSchendyear() %>년 <%=s12.getSchendmonth() %>월 <%=s12.getSchenddate() %>일 </td>
+<td align="center" width="450"><%=s12.getSchstartyear() %>년 <%=s12.getSchstartmonth() %>월 <%=s12.getSchstartdate() %>일 ~ <%=s12.getSchendyear() %>년 <%=s12.getSchendmonth() %>월 <%=s12.getSchenddate() %>일 </td>
 <td align="center"><%=s12.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
-
-<br>
-<br>
+<br><br><br><br>
 <table class="main_default">
   <tr><th colspan="2" width="300">1월 학사일정</th></tr>
 <% for (Schedule s13 :list13){ %> 
 <tr>
-<td align="center"><%=s13.getSchstartyear() %>년 <%=s13.getSchstartmonth() %>월 <%=s13.getSchstartdate() %>일 ~ <%=s13.getSchendyear() %>년 <%=s13.getSchendmonth() %>월 <%=s13.getSchenddate() %>일 </td>
+<td align="center" width="450"><%=s13.getSchstartyear() %>년 <%=s13.getSchstartmonth() %>월 <%=s13.getSchstartdate() %>일 ~ <%=s13.getSchendyear() %>년 <%=s13.getSchendmonth() %>월 <%=s13.getSchenddate() %>일 </td>
 <td align="center"><%=s13.getSchname() %></td>
 </tr>
 <% } %>
 </table> 
 
 
-
-<br>
-<br>
+<br><br><br><br>
 
 
 <br>

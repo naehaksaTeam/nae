@@ -147,7 +147,6 @@ public class LectureService {
 		Connection conn = getConnection();
 		ArrayList<Lecture> list = ldao.selectAllPlan(conn);
 		close(conn);
-
 		return list;
 	}
 
@@ -279,5 +278,24 @@ public class LectureService {
 		ArrayList<Major> list = ldao.selectCategories(conn);
 		close(conn);
 		return list;
+	}
+
+	public ApplyReception selectLapply(String name,String lname) {
+		Connection conn = getConnection();
+		ApplyReception a = ldao.selectLapply(conn,name,lname);
+		close(conn);
+		return a;
+	}
+
+	public int deleteApply(String lname, String name,String lectureName) {
+		Connection conn = getConnection();
+		int r = ldao.deleteApply(conn,lname,name,lectureName);
+		if(r > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return r;
 	}
 }

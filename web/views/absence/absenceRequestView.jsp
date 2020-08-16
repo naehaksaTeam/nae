@@ -14,9 +14,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- ★★★★★★★★title -->
-	<title> </title>
+	<title>beet</title>
 
-<!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
+
+
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+<script>
+$(document).ready(function(){
+    if( (<%=(Member)session.getAttribute("loginMember")%>)  == null ){
+    	location.href = '/beet/index.jsp'
+    }
+});
+</script>
 
 
 <div class="fit-vids-style" id="fit-vids-style" style="display: none;">&shy;<style>                 .fluid-width-video-wrapper {                   width: 100%;                                position: relative;                         padding: 0;                      					 min-height: 1px;                         }                                                                                       .fluid-width-video-wrapper iframe,          .fluid-width-video-wrapper object,          .fluid-width-video-wrapper embed {             position: absolute;                         top: 0;                                     left: 0;                                    width: 100%;                                height: 100%;                            }                                         </style></div><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://www.cha.ac.kr/wp-includes/js/wp-emoji-release.min.js?ver=4.7.18" type="text/javascript" defer=""></script></head><body data-rsssl="1" class="page-template-default page page-id-980 page-child parent-pageid-1429  qode_grid_1300 side_menu_slide_with_content width_370 footer_responsive_adv qode-child-theme-ver-1.0.0 qode-theme-ver-11.1 qode-theme-bridge wpb-js-composer js-comp-ver-5.1.1 vc_responsive" itemscope="" itemtype="http://schema.org/WebPage" style="height: auto; overflow: auto;">
@@ -157,8 +166,8 @@ cursor: pointer;
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
-			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;/beet/resources/images/page.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
 						<div class="container_inner clearfix">
@@ -191,26 +200,14 @@ cursor: pointer;
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">휴학/복학 신청 및 조회</p>
-
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
-
-<h3>TEST BUTTON</h3>
-<button class="btn btn-outline-secondary"onclick="javascript:location.href='/beet/selectaball'">[관리자] ABSENCE 휴학/복학 </button>
-<button class="btn btn-outline-secondary"onclick="javascript:location.href='/beet/selectca'">[관리자] CATEGORY VIEW 카테고리관리</button>
-<button class="btn btn-outline-secondary"onclick="javascript:location.href='/beet/selectbenest?studentid<%=membermm.getId() %>'">[학 생] SCHOLARSHIP 장학조회 </button>
-<button class="btn btn-outline-secondary"onclick="javascript:location.href='/beet/selectss'">[관리자] SCHOLARSHIP 장학관리</button>
-<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectbeneall'">[관리자] SSBENEFIT 장학금수혜학생관리</button>
-
-
-<br><br>
-<hr>
-<br><br>
-
 
 <h3 style="margin-bottom: 10px; padding-left: 25px;"><%=membermm.getName() %> 님의 신청내역 조회</h3>
 
 <% if(list.size() > 0){ %>
+	<div align="right" style="margin-bottom: 8px;">
+		<button class="btn btn-outline-secondary" onclick="javascript: requestform.action='/beet/selectab?studentid=<%=membermm.getId()%>'"> 조 회 </button>
+	</div>
 <form method="post" name="requestform">
 <table  class = "main_default">
 		<colgroup>
@@ -230,7 +227,7 @@ cursor: pointer;
 		
 		<% for(Absence aa : list){ %>
 		<tr><td>
-				<input type="radio" name="requestid" value="<%=aa.getRequestid()%>">
+				<input type="radio" name="requestid" required="required"  value="<%=aa.getRequestid()%>">
 				<% if(aa.getRequestid().substring(0, 1).equals("a")){ %>
 					휴학 신청
 				<% }else{ %>
@@ -246,11 +243,8 @@ cursor: pointer;
 	</table>
 	
 	<div align="right" style="margin-top: 15px;">
-	<button class="btn btn-outline-secondary" onclick="javascript: requestform.action='/beet/selectab?studentid=<%=membermm.getId()%>'"> 조 회 </button>
-	&nbsp; &nbsp;
-	<button class="btn btn-outline-secondary" onclick="javascript: requestform.action='/beet/deleteab'">신청취소</button>		
+		<button class="btn btn-outline-secondary" onclick="javascript: requestform.action='/beet/deleteab'">신청취소</button>
 	</div>
-	
 </form>
 <% }else{ %>
 
@@ -304,14 +298,12 @@ cursor: pointer;
 <p><strong>[ 안 내 사 항 ]</strong><br>
 		<br>
 		※ 휴학<br>
-		  - 휴학 신청은 정해진 기간 내에만 가능합니다.<br>
 		  - 휴학 신청은 졸업 전까지 6번 가능합니다.<br>
 		  - 신청 후에 관리자의 승인은 며칠이 소요될 수 있습니다<br>
 		  - 승인 후에 신청 취소시 마이페이지에서 휴학여부를 확인해주세요.<br> 
 		  &nbsp;&nbsp;확인이 어려울 시 학과 사무실로 문의 바랍니다.<br>
 		<br>
 		※ 복학<br>
-		  - 복학신청은 정해진 기간 내에만 가능합니다.<br>
 		  - 신청 후에 관리자의 승인은 며칠이 소요될 수 있습니다<br>		  
 		  - 승인 후에 신청 취소시 마이페이지에서 휴학여부를 확인해주세요.<br> 
 		  &nbsp;&nbsp;확인이 어려울 시 학과 사무실로 문의 바랍니다.<br>
@@ -319,9 +311,17 @@ cursor: pointer;
 		</p>
 		
 		<div align="center" style="margin-top: 10px; padding-right: 35%;">
+		<% if(membermm.getAbsencecount() != 6){ %>
 			<button class="btn btn-outline-secondary"  name="value" value="a" 
 			onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=membermm.getId()%>'">휴학신청
 			</button>
+		<% }else{ %>
+			<div align="center">
+			<p><strong>휴학신청은 최대 6번까지 가능합니다.</strong><br>
+			<%= membermm.getName() %> 님의 신청 횟수는 <%=membermm.getAbsencecount() %> 번 입니다.
+			</p>
+			</div>
+		<% } %>
 		</div>
 <% } %>
 </div>
