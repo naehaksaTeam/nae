@@ -304,9 +304,17 @@ cursor: pointer;
 		</p>
 		
 		<div align="center" style="margin-top: 10px; padding-right: 35%;">
+		<% if(membermm.getAbsencecount() != 6){ %>
 			<button class="btn btn-outline-secondary"  name="value" value="a" 
 			onclick="javascript:location.href='/beet/insertab?value=a&studentid=<%=membermm.getId()%>'">휴학신청
 			</button>
+		<% }else{ %>
+			<div align="center">
+			<p><strong>휴학신청은 최대 6번까지 가능합니다.</strong><br>
+			<%= membermm.getName() %> 님의 신청 횟수는 <%=membermm.getAbsencecount() %> 번 입니다.
+			</p>
+			</div>
+		<% } %>
 		</div>
 <% } %>
 </div>
