@@ -116,7 +116,7 @@ select {width: 40px; height:20px; margin:0px}
 <%=list.get(0).getLtime()%> / <%=list.get(0).getCapacity()%>명</div></p>
 <p><progress id="prog" value="<%=diffWeeks%>" max="100" style="display:inline;"><div id="progress">진도율: <%=diffWeeks%>%</div></progress></p>
  --%>
-<input type="button" value="팝업창 호출" onclick="showPopup();" />
+<input type="button" value="출결입력 호출" onclick="showPopup();" />
 <p>≫ 수강생 조회</p>				
 <table class="main_default">
 <thead>
