@@ -49,6 +49,7 @@ position:relative;
 		<form><button onclick="javascript:location.href='/beet/'" class="btn btn-outline-secondary findbtn">취소</button></form>
 <br>
 &nbsp;		
+
 </form>
 	
 </div>
