@@ -229,7 +229,7 @@ cursor: pointer;
 </tr>
 <tr>
 	<th>일정 내용</th>
-	<td style="text-align: left;"><textarea rows="2" cols="70" name="schname"><%= schedule.getSchname() %></textarea></td></tr>
+	<td style="text-align: left;"><textarea rows="5" cols="70" name="schname"><%= schedule.getSchname() %></textarea></td></tr>
 <tr>
 	<th colspan="4" >
 	
