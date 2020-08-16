@@ -1,8 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isErrorPage="true" %>
+<%
+	String error = (String)request.getAttribute("message");
+%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- ★★★★★★★★title -->
 	<title> </title>
 
@@ -154,7 +162,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>내학사에 오신걸 환영합니다</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -180,16 +188,19 @@ cursor: pointer;
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">컬럼명여따쓰세요</p>
+<p class="page_tt">에러 발생</p>
 
-<table class="main_default">
-  <tr>
-    <td>테스트</td>
-    </tr>
-    </table>
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
+<div align="center">
+<% if(error != null){ %>
 
+<p><strong><%= error%></strong></p>
 
+<% } %>
+
+<button class="btn btn-outline-secondary" onclick="javascript:loaction.href='/beet/main/main.jps'"> 메인 페이지 </button>&nbsp;&nbsp;&nbsp;
+<button class="btn btn-outline-secondary" onclick="javascript:history.go(-1)"> 이전 페이지 </button>
+</div>
 
 
 <!-- 버튼예시 

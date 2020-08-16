@@ -7,10 +7,10 @@ import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import attendance.model.dao.AtndnDao;
 import attendance.model.vo.Atndn;
+
 
 public class AtndnService {
 	private AtndnDao adao = new AtndnDao(); 
@@ -58,10 +58,10 @@ public class AtndnService {
 		return result;
 	}
 
-	public int updateWeekAll(HashMap map) {
+	public int updateWeekAll(ArrayList<Atndn> list2) {
 		//출결 여러개 업데이트
 		Connection conn = getConnection();
-		int r = adao.updateWeekAll(conn,map);
+		int r = adao.updateWeekAll(conn,list2);
 		if(r > 0) {
 			commit(conn);
 		}else {
@@ -76,6 +76,15 @@ public class AtndnService {
 		 ArrayList<Atndn>  list = adao.selectMyLctrSemstr(conn, sid, semester);
 		close(conn);
 		return list;
+	}
+
+	
+	//과목하나조회
+	public Atndn selectOneAtndn(String sid, String lcode) {
+		Connection conn = getConnection();
+		Atndn atndn = adao.selectOneAtndn(conn, sid, lcode);
+		close(conn);
+		return atndn;
 	}
 
 }

@@ -1,7 +1,6 @@
 package attendance.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,16 +13,16 @@ import attendance.model.service.AtndnService;
 import attendance.model.vo.Atndn;
 
 /**
- * Servlet implementation class AtndnEditListServlet
+ * Servlet implementation class MyAtndnLctrDetailServlet
  */
-@WebServlet("/atnedit.p")
-public class AtndnEditViewServlet extends HttpServlet {
+@WebServlet("/dlAtndn")
+public class MyAtndnLctrDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AtndnEditViewServlet() {
+    public MyAtndnLctrDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,23 +31,25 @@ public class AtndnEditViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String pid = request.getParameter("userid");
-		String semester = request.getParameter("semester");
+		
+		String sid = request.getParameter("userid");
 		String lcode = request.getParameter("lcode");
 		
-		ArrayList<Atndn> list = new AtndnService().selectProfAtndnList(pid, semester, lcode);
-		
+		System.out.println(sid);
+		System.out.println(lcode);
+		Atndn atndn = new AtndnService().selectOneAtndn(sid, lcode);
+
 		RequestDispatcher view = null;
-		
-		if(list != null) {
-			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
-			request.setAttribute("list", list);
+		if(atndn != null) { //성공
+			view = request.getRequestDispatcher("views/attendance/myLctrDetailView.jsp");
+			request.setAttribute("atndn", atndn);
 			view.forward(request, response);
-		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", pid + "강의 출결관리페이지 조회 실패");
+		}else { //실패
+			view = request.getRequestDispatcher("views/common/error.jsp"); // 상대경로만 사용
+			request.setAttribute("message", "상세조회 요청 실패");
 			view.forward(request, response);
 		}
+
 	}
 
 	/**

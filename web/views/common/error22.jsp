@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="notice.model.vo.Notice"%>
+    pageEncoding="UTF-8"%>
 <%
-	Notice notice = (Notice) request.getAttribute("notice");
+	String error = (String)request.getAttribute("message");
 %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -54,9 +54,6 @@ img.emoji {
 	vertical-align: -0.1em !important;
 	background: none !important;
 	padding: 0 !important;
-}
-.detailtable{
-border:2px solid black;
 }
 </style>
 <link rel="stylesheet" id="layerslider-css" href="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.5.1" type="text/css" media="all">
@@ -165,8 +162,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<br><br><br>
-																										<h1><span>학교 소식</span></h1>
+																										<h1><span>내학사에 오신 걸 환영합니다</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -181,7 +177,7 @@ cursor: pointer;
 					
 						
 						<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
-							<div class="column1" style="margin-left:3%;">
+							<div class="column1">
 																				<div class="column_inner">
 								
 								<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;"><div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
@@ -189,74 +185,22 @@ cursor: pointer;
 		<div class="wpb_wrapper">
 		
 <!-- --------------------------------------------------------------------------- -->		
-	
-	
-	<h3>상세보기</h3>
-
-	<br>
-	<div align="center">
-	<table class="main_default" id="outer" align="center" cellspacing="5" cellpadding="0">
-		<tr>
-			<th>제 목 :</th>
-			<td><%=notice.getNoticeTitle()%></td>
-		</tr>
-		<tr>
-			<th>작성자 :</th>
-			<td><%=notice.getNoticeWriter()%></td>
-		</tr>
-		<tr>
-			<th>등록날짜 :</th>
-			<td><%=notice.getNoticeDate()%></td>
-		</tr>
-		<tr>
-			<th>첨부파일 : </th>
-			<td>
-				<%
-					if (notice.getOriginalFile() != null) {
-				%> <a
-				href="/beet/nfiledown?ofile=<%=notice.getOriginalFile()%>&rfile=<%=notice.getRenameFile()%>"><%=notice.getOriginalFile()%></a>
-				<%
-					} else {
-				%> &nbsp; <%
- 	}
- %>
-			</td>
-		</tr>
-
-		<tr>
-			<th>내 용 :</th>	
-			<td><%=notice.getNoticeContent().replaceAll("\r\n", "<br>")%></td>
-		</tr>
-
-	</table>
- </div>
- <br>
-	<div  align="center">
-		<button class="btn btn-outline-secondary findbtn" onclick="javascript:history.go(-1);">뒤로</button>
-		<!--  관리자일때 아닐때 구분해서 표기해야함 관리자면 보이고 아니면 안보임  -->
-		<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
-			<button class="btn btn-outline-secondary findbtn"
-			onclick="javascript:location.href='/beet/nupdate.ad1?noticeno=<%=notice.getNoticeNo()%>';">수정</button>
-		<button class="btn btn-outline-secondary findbtn"
-			onclick="javascript:location.href='/beet/ndelete.ad?noticeno=<%=notice.getNoticeNo()%>';">삭제하기</button>
-	<% }else{ %>
-		
-	<% } %>
-		
-		
-	</div>
-	
-	
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
+<p class="page_tt">에러 발생</p>
+
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
+<div align="center">
+<% if(error != null){ %>
 
+<p><strong><%= error%></strong></p>
 
-		
+<% } %>
 
-
-
+<button class="btn btn-outline-secondary" onclick="javascript:loaction.href='/beet/main/main.jps'"> 메인 페이지 </button>&nbsp;&nbsp;&nbsp;
+<button class="btn btn-outline-secondary" onclick="javascript:history.go(-1)"> 이전 페이지 </button>
+</div>
 <!-- 버튼예시 
 <p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">버튼</a></strong></p>
 <p style="text-align: center;"><strong><a class="down_default" href="#" target="_blank">글자에 맞춰 버튼크기변경</a></strong></p>
@@ -341,28 +285,7 @@ cursor: pointer;
 							</div>
 
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
-<!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 
-<!-- <div class="column_inner">
-<aside class="sidebar">
-							
-		<div class="widget "><div id="dc_jqaccordion_widget-8">		
-		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
-
-<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
-  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
-  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
-  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
-  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
-  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
-</ul>		
-
-
-		</div>
-		</div></div>		</aside>
-	</div>-->
-</div> 
-<!-- 서브메뉴 끝 -->
 						</div>
 								
 		</div>

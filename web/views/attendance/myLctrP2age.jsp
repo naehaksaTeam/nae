@@ -1,11 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ page
+	import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member,
+java.util.Date, java.text.SimpleDateFormat"%>
+<%
+	Member loginmember = (Member) session.getAttribute("loginMember");
+	ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
+
+	Set<String> set = new HashSet<String>();
+	for (Atndn a : list) {
+		set.add(a.getSemester());
+	}
+	Iterator<String> it = set.iterator();
+	
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("E");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+	Date today = new Date();
+	String day = sdf.format(today);
+	Date enter = sdf2.parse("2020-03-02");
+
+	long diff = today.getTime() - enter.getTime();
+	long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
+					
+%>   
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
 	<!-- ★★★★★★★★title -->
 	<title> </title>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 
 
@@ -154,7 +181,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>나의 강의조회</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -176,19 +203,13 @@ cursor: pointer;
 	<div class="wpb_text_column wpb_content_element ">
 		<div class="wpb_wrapper">
 		
-		
-		
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">컬럼명여따쓰세요</p>
 
-<table class="main_default">
-  <tr>
-    <td>테스트</td>
-    </tr>
-    </table>
+
+	
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
 
@@ -207,39 +228,133 @@ cursor: pointer;
 ≫ 그냥 글 써보는중 <br>
 ≫ 게시판에 대한 설명이 필요하면 여기에 쓰세요<br></p>-->
 
-<!-- 가로테이블예시 
-<p>≫ 가로테이블 명</p>
-<table class="main_default">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 20%;"> 
-<col style="width: 30%;"> 
-<col style="width: 40%;"> 
-</colgroup>
-<thead>
-<tr>
-<th>컬럼명1</th>
-<th>컬럼명2</th>
-<th>컬럼명3</th>
-<th>컬럼명4</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>td 1</td>
-<td>td 2</td>
-<td>td 3</td>
-<td>td 4</td>
-</tr>
-<tr>
-<td>td 5</td>
-<td>td 6</td>
-<td>td 7</td>
-<td>td 8</td>
-</tr>
-</tbody>
-</table>-->
 
+
+<table class="main_default">
+
+<tbody>
+<% for (Atndn a : list) {
+	if (a.getLtime().equals(day) && a.getSemester().equals("202001")) {
+		%>
+		<p>≫ 오늘의 강의</p>
+<colgroup>
+<col style="width:20%">
+<col style="width:20%">
+<col style="width:20%">
+<col style="width:10%">
+<col style="width:30%">
+</colgroup>
+<tr >
+	<td colspan="4" style="">
+	<div style="float:center;font-size:2.0em"><%=a.getLname()%></div></td>
+	<!-- <td style="width=30%"><button class=button>강의실로 이동</button></td> -->
+	<td><div style="float:left;margin-left:15px;margin-top:20px;font-size:0.9em"><%=a.getLcode()%> / <%=a.getCategory()%> / <%=a.getLtime()%> / <%=a.getCapacity()%>명</div></td>
+</tr>
+<tr>
+	<td colspan="4" style="color: green;"><progress id="prog"
+		value="<%=diffWeeks%>" max="100"></td>
+	<td id="progress">진도율: <%=diffWeeks%>%
+	</td>
+</tr>
+	<% }}%>
+</tbody>
+</table>
+
+<br>
+<br>
+<p>≫ 나의 강의목록</p>
+<table class="main_default" cellpadding="10px">
+		<tr>
+			<form action="/beet/mylctrSeme" method="post">
+			<input type="hidden" name="userid" value="<%=loginmember.getId()%>"> 
+			<input type="hidden" name="semester" value=""> 
+			<select id="field" onchange="javascript:selectfield(this);" style="width: 80px">
+				<%-- <%
+					while (it.hasNext()) {
+				%>
+				<option><%=it.next()%></option>
+				<% 
+					}
+				%>
+ --%>
+ 				<option>202001</option>
+ 				<option>201902</option>
+ 				<option>201901</option>
+			</select>
+			</form>
+		</tr>
+		<tr style="font-size:15px">
+			<th>과목번호</th>
+			<th>이수구분</th>
+			<th>과목명</th>
+			<th>강의시간</th>
+			<th>학점</th>
+			<th>수강인원</th>
+			<th>담당교수</th>
+			<th>출결</th>
+
+		</tr>
+		<%
+			for (Atndn a : list) {
+		%>
+		<tr>
+
+			<td><%=a.getLcode()%></td>
+			<td><%=a.getCategory()%></td>
+			<td><%=a.getLname()%></td>
+			<td><%=a.getLtime()%></td>
+			<td><%=a.getLpoint()%></td>
+			<td><%=a.getCapacity()%></td>
+			<td><%=a.getPname()%></td>
+			<td>
+				<form id="hi" action="/beet/atnlist" method="post">
+					<input class="down_default" type="hidden" name="userid" value="<%=(Member)session.getAttribute("loginMember")%>"> 
+						<input type="hidden" name="lcode" value="<%=a.getLcode()%>"> 
+						<input type="submit" class="btn-sm btn btn-outline-secondary" value="출결조회">
+    
+    
+				</form>
+			</td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+
+
+	<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+	jQuery( '#hi' ).click( function() {
+		 var str = ""
+	            var tdArr = new Array();    // 배열 선언
+	            var checkBtn = $(this);
+		
+	            var no = td.eq(0).text();
+		} );
+
+		function selectfield(obj) {
+			jQuery('input[name=semester]').attr('value', obj.value);
+			
+			jQuery("#field").click(function() {
+			     this.form.submit();
+			});
+
+		}
+
+	
+			
+	/* 	$(function() {
+		    $('#field').click(function() {
+		        localStorage.setItem('savelist', this.value);
+		    });
+		    
+		   if(localStorage.getItem('savelist')){
+		    	 $('#field').val(localStorage.getItem('todoData'));
+		    }
+		}); 
+		 */
+		
+</script>
 
 <!-- 세로테이블예시 
 <p> ≫ 세로테이블명</p>
@@ -280,7 +395,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<%@ include file = "/views/common/side.jsp" %>
+<%@ include file = "/views/attendance/side.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							
@@ -336,6 +451,8 @@ cursor: pointer;
     p {
         margin: 0 0 1em;
     }
+    
+ 
 
 </style>
 			<script type="text/javascript">

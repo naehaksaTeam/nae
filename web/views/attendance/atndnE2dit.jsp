@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="notice.model.vo.Notice"%>
+    pageEncoding="UTF-8"%>
+    <%@ page
+	import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member,
+java.util.Date, java.text.SimpleDateFormat"%>
 <%
-	Notice notice = (Notice) request.getAttribute("notice");
+	Member loginmember = (Member) session.getAttribute("loginMember");
+	ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- ★★★★★★★★title -->
-	<title> </title>
+	<title> beet</title>
 
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 
@@ -54,9 +57,6 @@ img.emoji {
 	vertical-align: -0.1em !important;
 	background: none !important;
 	padding: 0 !important;
-}
-.detailtable{
-border:2px solid black;
 }
 </style>
 <link rel="stylesheet" id="layerslider-css" href="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.5.1" type="text/css" media="all">
@@ -165,8 +165,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<br><br><br>
-																										<h1><span>학교 소식</span></h1>
+																										<h1><span>출결/성적</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -181,79 +180,62 @@ cursor: pointer;
 					
 						
 						<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
-							<div class="column1" style="margin-left:3%;">
-																				<div class="column_inner">
-								
-								<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;"><div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element ">
-		<div class="wpb_wrapper">
+							
 		
-<!-- --------------------------------------------------------------------------- -->		
-	
-	
-	<h3>상세보기</h3>
-
-	<br>
-	<div align="center">
-	<table class="main_default" id="outer" align="center" cellspacing="5" cellpadding="0">
-		<tr>
-			<th>제 목 :</th>
-			<td><%=notice.getNoticeTitle()%></td>
-		</tr>
-		<tr>
-			<th>작성자 :</th>
-			<td><%=notice.getNoticeWriter()%></td>
-		</tr>
-		<tr>
-			<th>등록날짜 :</th>
-			<td><%=notice.getNoticeDate()%></td>
-		</tr>
-		<tr>
-			<th>첨부파일 : </th>
-			<td>
-				<%
-					if (notice.getOriginalFile() != null) {
-				%> <a
-				href="/beet/nfiledown?ofile=<%=notice.getOriginalFile()%>&rfile=<%=notice.getRenameFile()%>"><%=notice.getOriginalFile()%></a>
-				<%
-					} else {
-				%> &nbsp; <%
- 	}
- %>
-			</td>
-		</tr>
-
-		<tr>
-			<th>내 용 :</th>	
-			<td><%=notice.getNoticeContent().replaceAll("\r\n", "<br>")%></td>
-		</tr>
-
-	</table>
- </div>
- <br>
-	<div  align="center">
-		<button class="btn btn-outline-secondary findbtn" onclick="javascript:history.go(-1);">뒤로</button>
-		<!--  관리자일때 아닐때 구분해서 표기해야함 관리자면 보이고 아니면 안보임  -->
-		<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
-			<button class="btn btn-outline-secondary findbtn"
-			onclick="javascript:location.href='/beet/nupdate.ad1?noticeno=<%=notice.getNoticeNo()%>';">수정</button>
-		<button class="btn btn-outline-secondary findbtn"
-			onclick="javascript:location.href='/beet/ndelete.ad?noticeno=<%=notice.getNoticeNo()%>';">삭제하기</button>
-	<% }else{ %>
-		
-	<% } %>
-		
-		
-	</div>
-	
-	
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
+<p class="page_tt">출결입력</p>
 
+<form action="/beet/atnupdate" method="post">
+	<table id="stable" class="main_default" cellpadding="10px">
+		<tr>
+			<select id="selected" name="selectweek">
+				<% for (int i = 1; i <= 16; i++) { %>
+				<option value="week<%= i %>"><%=i%>주차
+				</option>
+				<% } %>
+			</select>
 
+		</tr>
+		<tr>
+			<th>순번</th>
+			<th>학번</th>
+			<th>학과</th>
+			<th>이름</th>
+			<th>출결입력</th>
+
+		</tr>
+			<%
+				int i = 1;
+				for (Atndn a : list) {
+			%>
+			<tr>
+				<td><%= i %></td>
+				<td><%=a.getSid()%><input type="text" name="who<%= i %>" value="<%= a.getSid() %>" style="display:none;"></td>
+				<td><%=a.getMajorname()%><input type="text" name="lcode" value="<%= a.getLcode() %>" style="display:none;"></td>
+				<td><%=a.getSname()%></td>
+				<td><select class="atndt" name="selectfour<%= i %>" style="width: 80px; height: 30px">
+						<option value="-" selected disabled hidden>-</option>
+						<option value="1">출석</option>
+						<option value="2">결석</option>
+						<option value="3">조퇴</option>
+						<option value="4">지각</option>
+				</select></td>
+				</td>
+			</tr>
+			<%
+				}
+			%>
 		
+	</table>
+	<p style="position:relative;float:center;margin-top:50px" align="center">
+		<input class="btn btn-outline-secondary" type="submit" value="저장"> &nbsp;
+		<input class="btn btn-outline-secondary" type="reset" value="취소"> &nbsp;
+	</p>
+	
+</form>
+
 
 
 
@@ -332,36 +314,10 @@ cursor: pointer;
 <!-- ------------------------------------------ -->
 
 
-</div> 
-	</div> </div></div></div></div></div>
-																 
-								</div>
-																	
-									
-							</div>
 
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 
-<!-- <div class="column_inner">
-<aside class="sidebar">
-							
-		<div class="widget "><div id="dc_jqaccordion_widget-8">		
-		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
-
-<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
-  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
-  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
-  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
-  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
-  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
-</ul>		
-
-
-		</div>
-		</div></div>		</aside>
-	</div>-->
-</div> 
 <!-- 서브메뉴 끝 -->
 						</div>
 								

@@ -176,7 +176,7 @@ cursor: pointer;
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
 																										<br><br><br>
-																										<h1><span>휴학/복학 신청 및 조회</span></h1>
+																										<h1><span>학교 소식</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -199,17 +199,17 @@ cursor: pointer;
 		<div class="wpb_wrapper">
 		
 <!-- --------------------------------------------------------------------------- -->		
-<hr>
-	<h1 align="center">학교소식</h1>
-	<h2 align="center">
+
+<h3>학교소식<h3>
+	<h4 align="center">
 		전체 : 
 		<%=listCount%>개
-	</h2>
+	</h4>
 	<br>
 	
 
 <div align="center">
-	<table  style="border:2px solid black;">
+	<table class="main_default" id="outer" align="center" cellspacing="5" cellpadding="0">
 		<tr>
 			<th>번호</th>
 			
@@ -354,9 +354,9 @@ cursor: pointer;
 	</div>
 	<br>
 	<!--  만일 관리자라면 글쓰기가 보여야함 ! 지금은 누구나다보임 -->
-	<div align="center">
+	<div align="right">
 		<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
-		<button class="btn btn-outline-secondary findbtn" onclick="noticeInsertForm();">글쓰기</button>
+		<button class="btn btn-outline-secondary findbtn" onclick="noticeInsertForm();">추가</button>
 	<% }else{ %>
 		
 	<% } %>
@@ -369,8 +369,8 @@ cursor: pointer;
 	<form action="/beet/nsearch">
 		<select name="searchoption">
 
+			<option value="no">글번호</option>
 			<option value="writer">작성자</option>
-			<option value="date">작성날짜</option>
 			<option value="content">글내용</option>
 		</select> <input type="text" name="search">
 		<button class="btn btn-outline-secondary findbtn" type="submit" value="로그인">검색</button>
@@ -378,7 +378,11 @@ cursor: pointer;
 	</form>
 </div>	
 	
-	
+<script type="text/javascript">
+	function noticeInsertForm() {
+		location.href = "/beet/views/notice/noticeInsertView.jsp";
+	}
+</script>	
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->

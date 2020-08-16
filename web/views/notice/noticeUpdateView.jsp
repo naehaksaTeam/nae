@@ -169,7 +169,7 @@ cursor: pointer;
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
 																										<br><br><br>
-																										<h1><span>휴학/복학 신청 및 조회</span></h1>
+																										<h1><span>학교 소식</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -194,8 +194,7 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 	
 	
-<hr>
-	<h1 align="center">수정페이지</h1>
+<h3>수 정</h3>
 	<br>
 	<form action="/beet/nupdate.ad2" method="post"
 		enctype="multipart/form-data">
@@ -204,20 +203,20 @@ cursor: pointer;
 			value="<%=notice.getOriginalFile()%>"> <input type="hidden"
 			name="rfile" value="<%=notice.getRenameFile()%>">
 	<div  align="center" width="500" border="1" cellspacing="0">
-		<table  style="border:2px solid black;">
+		<table class="main_default" id="outer" align="center" cellspacing="5" cellpadding="0">
 			<tr>
-				<th>제 목</th>
+				<th>제 목 :</th>
 				<td><input type="text" name="title"
 					value="<%=notice.getNoticeTitle()%>" size="50"></td>
 			</tr>
 			<tr>
-				<th>작성자</th>
+				<th>작성자 :</th>
 				<td><input type="text" name="writer" readonly
 					value="<%=notice.getNoticeWriter()%>"></td>
 			</tr>
 
 			<tr>
-				<th>첨부파일</th>
+				<th>첨부파일 :</th>
 				<td>
 					<%
 						if (notice.getOriginalFile() != null) {
@@ -236,16 +235,17 @@ cursor: pointer;
 				</td>
 			</tr>
 			<tr>
-				<th>내 용</th>
-				<td><textarea rows="30" clospan="30" name="content"><%=notice.getNoticeContent()%></textarea></td>
+				<th>내 용 :</th>
+				<td><textarea rows="1" cols="70" name="content"><%=notice.getNoticeContent()%></textarea></td>
 			</tr>
-			<tr>
-				<th colspan="2"><input class="btn btn-outline-secondary findbtn" type="submit" value="수정하기">
-					&nbsp; <input class="btn btn-outline-secondary findbtn" type="reset" value="초기화"> &nbsp; <input
-					type="button" value="이전 페이지로" class="btn btn-outline-secondary findbtn"
-					onclick="javascript:history.go(-1); return false;"></th>
-			</tr>
+			
 		</table>
+		<div align="right">
+				<input class="btn btn-outline-secondary findbtn" type="submit" value="수정하기">
+					&nbsp; <input class="btn btn-outline-secondary findbtn" type="reset" value="초기화"> &nbsp; <input
+					type="button" value="뒤로" class="btn btn-outline-secondary findbtn"
+					onclick="javascript:history.go(-1); return false;">
+			</div>
 	</form>
 	</div>	
 	
