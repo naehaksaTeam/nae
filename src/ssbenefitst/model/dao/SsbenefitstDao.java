@@ -148,7 +148,7 @@ public class SsbenefitstDao {
 		ResultSet rset = null;
 		
 		
-		String query = "select * from ssbenefitst where id = ?";
+		String query = "select * from ssbenefitst where id = ? order by benefitterm desc";
 		
 		try {
 			pstmt = conn.prepareStatement(query);

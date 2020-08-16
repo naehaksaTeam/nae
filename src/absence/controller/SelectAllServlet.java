@@ -33,13 +33,6 @@ public class SelectAllServlet extends HttpServlet {
 			view = request.getRequestDispatcher("views/absence/absenceManagementView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
-		}else{
-			 out.print("<script>");
-			  out.print("alert('휴학, 복학 신청 내역이 없거나 조회에 실패하였습니다.');");
-			  out.print("location.href = 'selectaball'");
-			  out.print("</script>");
-			  out.close();
-
 		}
 	}
 
