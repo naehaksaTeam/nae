@@ -144,7 +144,7 @@ select {width: 40px; height:20px; margin:0px}
 		</thead>
 		<tbody>
 			<%
-				for (LectureScore lscore : list) {
+				int i = 0; for (LectureScore lscore : list) {
 			%>
 			<tr>
 				<td><%=i%></td>
