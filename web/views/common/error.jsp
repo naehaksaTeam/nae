@@ -29,7 +29,6 @@
 <%if( (Member)session.getAttribute("loginMember") != null ){ %>
 <button class="btn btn-outline-secondary" onclick="javascript:loaction.href='/beet/views/main/main.jps'"> 메인 페이지 </button>&nbsp;&nbsp;&nbsp;
 <% } %>
-<br>
 <button class="btn btn-outline-secondary" onclick="javascript:history.go(-1)"> 이전 페이지 </button>
 </div>
 

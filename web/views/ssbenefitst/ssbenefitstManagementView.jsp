@@ -242,9 +242,9 @@ cursor: pointer;
 
 	<form action="/beet/selectonessst?" method="post">
 	<input type="hidden" value="<%=currentPage%>" name="page">
-	학기 입력<input class="number" type="number" placeholder="ex)202001" 
+	학기 입력<input class="number" required="required" type="number" placeholder="ex)202001" 
 						name="benefitterm" maxlength="6" oninput="numberMaxLength(this);"/>&nbsp;&nbsp;
-	학번 입력<input type="text"  placeholder="학번 입력란" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
+	학번 입력<input type="text" required="required" placeholder="학번 입력란" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
 	<button class="btn btn-outline-secondary" type="submit" style="height: 32px;"> 검 색 </button>
 	</form>
 </div>
@@ -320,10 +320,10 @@ cursor: pointer;
 <h3 style="margin-bottom: 8px;">성적장학금 입력</h3>
 <form action="/beet/insertscoress" method="post">
 <table class = "main_default">
-<tr><th>성적검색할 학기</th><td><input style="outline: none; width: 98%; border: 0;" class="number" type="number" placeholder="ex)202001" 
+<tr><th>성적검색할 학기</th><td><input required="required" style="outline: none; width: 98%; border: 0;" class="number" type="number" placeholder="ex)202001" 
 						name="term1" maxlength="6" oninput="numberMaxLength(this);"/></td></tr>
-<tr><th>성적등수입력</th><td>시작등수 :<input style="outline: none; width: 40%; border: 0;" type="number" name="startrank" maxlength="4" oninput="numberMaxLength(this);"> &nbsp;
-						 끝등수 :<input style="outline: none; width: 40%; border: 0;" type="number" name="endrank" maxlength="4" oninput="numberMaxLength(this);"></td></tr>
+<tr><th>성적등수입력</th><td>시작등수 :<input required="required" style="outline: none; width: 40%; border: 0;" type="number" name="startrank" maxlength="4" oninput="numberMaxLength(this);"> &nbsp;
+						 끝등수 :<input required="required" style="outline: none; width: 40%; border: 0;" type="number" name="endrank" maxlength="4" oninput="numberMaxLength(this);"></td></tr>
 <tr><th>장학금명</th><td><input placeholder="장학금명을 입력하세요. 위에서 조회된 장학금명만 입력가능합니다." style="outline: none; width: 98%; border: 0;" type="text" name="ssname1"></td></tr>
 </table>
 <br>

@@ -216,7 +216,7 @@ cursor: pointer;
 
 	<div style="margin-top: 8px; margin-bottom: 5px;">
 	<form action="/beet/selectabSearch" method="post">
-	<input type="text" placeholder=" 학번을 입력하세요" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
+	<input required="required" type="text" placeholder=" 학번을 입력하세요" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
 	<button style="height: 34px;" type="submit" class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaba?value=b'"> 검 색 </button>
 	</form>
 	</div>
@@ -244,7 +244,7 @@ cursor: pointer;
 <% for(Absence ab : list){ %>
 <tr>
 	<td>
-		<input type="radio" name="requestid" value="<%=ab.getRequestid()%>">
+		<input type="radio" name="requestid" required="required" value="<%=ab.getRequestid()%>">
 		<% if(ab.getRequestid().substring(0, 1).equals("a")){ %>
 			휴학 신청 [<%=ab.getRequestid()%>]
 		<% }else{ %>
