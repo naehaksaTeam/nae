@@ -28,7 +28,8 @@ public class InsertScholarshipServlet extends HttpServlet {
 		ss.setSsname(ssname);
 		ss.setBenefitcon(request.getParameter("benefitcon"));
 		ss.setValue(Integer.parseInt(request.getParameter("value")));
-		
+		ss.setStartrank(Integer.parseInt(request.getParameter("startrank")));
+		ss.setEndrank(Integer.parseInt(request.getParameter("endrank")));
 		int result = new ScholarshipService().insertScholarship(ss);
 		
 		PrintWriter out = response.getWriter();

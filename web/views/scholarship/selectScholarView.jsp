@@ -219,12 +219,14 @@ cursor: pointer;
 </div>
 <br><br><br>
 <div align="center">
-<h3 style="text-align: left; margin-bottom: 8px;">장학금 전체 조회</h3>
+<h3 style="text-align: left; margin-bottom: 8px;">성적장학금 전체 조회</h3>
 <table class = "main_default">
-<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th></tr>
+<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th><th>시작등수</th><th>끝등수</th></tr>
 <% if(list != null){ %>
 	<% for(Scholarship ss : list){ %>
-	<tr><th><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
+	<tr><th><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> 
+		<td><%= ss.getStartrank() %></td><td><%= ss.getEndrank() %></td>
+	</tr>
 	<% } %>
 <% } %>
 </table>

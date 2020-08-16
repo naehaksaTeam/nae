@@ -304,37 +304,47 @@ cursor: pointer;
 </form> --%>
 
 <% if(sslist != null){ %>
-<h3 style="margin-bottom: 8px;">장학금 조회</h3>
+<h3 style="margin-bottom: 8px;">성적장학금 관리</h3>
+<form name="sssssss" method="post">
 <table class = "main_default">
-<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th></tr>
+<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th><th>시작등수</th><th>끝등수</th></tr>
 	<% for(Scholarship ss : sslist){ %>
-	<tr><th><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
+	<tr><th><input type="radio" required="required" value="<%=ss.getSsname() %>" readonly="readonly" name="ssname1"></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> 
+			<td><%= ss.getStartrank() %></td><td><%= ss.getEndrank() %></td>
+	</tr>
 	<% } %>
 </table>
+<br>
+<div align="center">
+<p><strong>< 안 내 ></strong><br>
+장학금을 선택하고 성적을 검색할 학기를 입력해주세요.<br>
+입력 버튼을 누르면 성적장학금 입력이 완료됩니다.<br>장학금 수혜학기는 입력하신 학기의 다음 학기로 저장됩니다.
+</p>
+<br>
+</div>
+<div align="center">
+성적검색할 학기<input required="required" style="outline: none; " class="number" type="number" placeholder="ex)202001" 
+						name="term1" maxlength="6" oninput="numberMaxLength(this);"/>
+<button class="btn btn-outline-secondary" type="submit" onclick="javascript: sssssss.action='/beet/insertscoress'">성적장학금 입력</button>
+</div>
+</form>
 <% } %>
 <div align="right" style="margin-top: 8px;">
 <button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectss'">장학금 관리페이지로 이동</button>
 </div>
 <br><br>
 
-<h3 style="margin-bottom: 8px;">성적장학금 입력</h3>
+<!-- <h3 style="margin-bottom: 8px;">성적장학금 입력</h3>
 <form action="/beet/insertscoress" method="post">
 <table class = "main_default">
-<tr><th>성적검색할 학기</th><td><input required="required" style="outline: none; width: 98%; border: 0;" class="number" type="number" placeholder="ex)202001" 
-						name="term1" maxlength="6" oninput="numberMaxLength(this);"/></td></tr>
+
 <tr><th>성적등수입력</th><td>시작등수 :<input required="required" style="outline: none; width: 40%; border: 0;" type="number" name="startrank" maxlength="4" oninput="numberMaxLength(this);"> &nbsp;
 						 끝등수 :<input required="required" style="outline: none; width: 40%; border: 0;" type="number" name="endrank" maxlength="4" oninput="numberMaxLength(this);"></td></tr>
 <tr><th>장학금명</th><td><input placeholder="장학금명을 입력하세요. 위에서 조회된 장학금명만 입력가능합니다." style="outline: none; width: 98%; border: 0;" type="text" name="ssname1"></td></tr>
 </table>
-<br>
-<div align="center">
-<p><strong>< 안 내 ></strong><br>
-추가 버튼을 누르면 입력하신 등수에 따라서 장학금이 지급될 예정이며<br>장학금 수혜학기는 입력하신 학기의 다음 학기로 저장됩니다.
-</p>
-<br>
-<button class="btn btn-outline-secondary" type="submit">장학금수혜학생 추가</button>
-</div>
-</form>
+<br> -->
+
+
 
 
 
