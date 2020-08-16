@@ -251,22 +251,22 @@ cursor: pointer;
 </table>
 	<div align="center" style="margin-top: 5px;">
 	<% if(currentPage <= 1){ %>
-	[처 음]&nbsp;
+	[ 처 음 ]&nbsp;
 	<% }else{ %>
-		<a href="/beet/selectbeneall">[처 음]</a>
+		<a href="/beet/selectbeneall">[ 처 음 ]</a>
 	<% } %>
 	
 	<!-- 현재 페이지가 속한 그룹의 숫자 출력 처리 -->
 	<% for(int p = startPage; p <= endPage; p++){ 
 		if(p == currentPage){ %>
-		<font color="1e90ff" size="4"><b>[<%= p %>]</b></font>
+		<font color="#5C4BFD" size="4"><b>[<%= p %>]</b></font>
 		<% }else{ %>
 		<a href="/beet/selectbeneall?page=<%= p %>"><%= p %></a>
 	<% }} %>
 	
 	
 	<% if(currentPage >= maxPage){ %>
-		[ 끝 ]&nbsp;
+		[&nbsp; 끝 &nbsp;]&nbsp;
 	<% }else{ %>
 		<a href="/beet/selectbeneall?page=<%= maxPage %>">[ 끝 ]</a>
 	<% } %>
