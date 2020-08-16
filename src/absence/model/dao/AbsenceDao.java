@@ -91,7 +91,7 @@ public class AbsenceDao {
 	public int insertAbsence(Connection conn, String value, String studentid) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "insert into absence values(concat( ?, (select max(to_number(substr(requestid,2)))+1 from absence where substr(requestid,1,1) = ?)), ?, default, default, default)";
+		String query = "insert into absence values(concat( ?, (select nvl(max(to_number(substr(requestid,2))), 0)+1 from absence where substr(requestid,1,1) = ?)), ?, default, default, default)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
