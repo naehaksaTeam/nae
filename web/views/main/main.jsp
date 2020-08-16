@@ -520,7 +520,7 @@ function calendar()
 <!-- 메인페이지작성 -->
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background beetimg" style="background-size: 1920px;height: 700px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+		<div class="title title_size_medium  position_left  has_fixed_background beetimg" style="background-size: 1920px;height: 600px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
