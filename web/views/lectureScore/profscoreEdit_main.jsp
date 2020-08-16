@@ -220,7 +220,7 @@ cursor: pointer;
 	<td id="lname"><%=lscore.getLname()%></td>
 	<td>
 	<form action="/beet/atnedit.p" method="post">
-			<input class="btn btn-outline-secondary" type="submit" style="width:60pt;height:20pt;" value="출결관리">
+			<input class="btn btn-outline-secondary" type="submit" value="출결관리">
 			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
 			<input type="hidden" name="lcode" value="<%=lscore.getLcode() %>">
 			<input type="hidden" name="semester" value="">
@@ -228,7 +228,7 @@ cursor: pointer;
 		</td>
 	<td>
 		<form action="/beet/scselect.p" method="post">
-			<input class="btn btn-outline-secondary" type="submit" style="width:60pt;height:20pt;" value="성적관리">
+			<input class="btn btn-outline-secondary" type="submit" value="성적관리">
 			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
 			<input type="hidden" name="lname" value="<%=lscore.getLname() %>">
 		</form>

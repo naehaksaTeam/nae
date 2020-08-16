@@ -448,7 +448,7 @@ public class AtndnDao {
 				return result;
 			}
 
-			public int updateWeekAll(Connection conn, HashMap map) {
+			public int updateWeekAll(Connection conn, ArrayList<Atndn> list2) {
 				int r = 0;
 				String query ="insert into attendance values ('','','','','','','','','','','','','','','','','','','','')";
 				return r;

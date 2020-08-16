@@ -82,78 +82,121 @@ select {width: 40px; height:20px; margin:0px}
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt"> 출결/성적 관리  <!-- ★본문 제목 -------------------->
+			<p class="page_tt"> 출결/성적 관리 </p> <!-- ★본문 제목 -------------------->
 							
-			<input id="chnScoreBtn" class="btn btn-outline-secondary" type="button" style="float:right" value="성적수정">
-			</p>
-			<strong><div id="editSc" class="container" style="margin-bottom:10px;padding-top:3px;width:100%;height:35px;background-color:#20c997 !important;color:#ffffff;display:block">
-			<center>성적 수정모드 </center></strong></div>
-			
-	<table class="main_default" id="sctable" style="font-size:0.9em">
-	<thead>
-		<tr>
-			<th>-</th>
-			<th>순번</th>
-			<th>계열</th>
-			<th>학과</th>
-			<th>학번</th>
-			<th>성명</th>
-			<th>재수강여부</th>
-			<th>출석점수</th>
-			<th>중간점수</th>
-			<th>기말점수</th>
-			<th>총점수</th>
-			<th>등급</th>
-		</tr>
-	</thead>
-	<form id="test1">
-	<tbody>
-	
-		<div id="dataArea">
-			<% int i=1;for(LectureScore lscore : list) {%>
-			<p id="p_<%=i %>">
-		<tr>
-			<td><input name="chk" type="checkbox" style="height:20px;"></button></td>
-			<td style="display:none"><%=lscore.getReceptionno()%></td>
-			<td><%=++i %></td>
-			<td><%=lscore.getCategoryname() %></td>
-			<td><%=lscore.getMajorname()%></td>
-			<td><%=lscore.getSid()%></td>
-			<td><%=lscore.getSname()%></td>
-			<td><%=lscore.getRetake()%></td>
-			<td><input id=as<%=i %> class="insert" type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
-			<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
-			<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getFinalscore()%>" /></td>
-			<td><%=lscore.getTotalscore()%></td>
-			<td><select name="selectg">
-					<option value="-" selected disabled hidden>-</option>
-					<option value="A+" <%=(lscore.getGrade().trim().equals("A+"))?"selected":"" %>>A+</option>
-					<option value="A" <%=(lscore.getGrade().trim().equals("A"))?"selected":"" %>>A</option>
-					<option value="B+" <%=(lscore.getGrade().trim().equals("B+"))?"selected":"" %>>B+</option>
-					<option value="B" <%=(lscore.getGrade().trim().equals("B"))?"selected":"" %>>B</option>
-					<option value="C+" <%=(lscore.getGrade().trim().equals("C+"))?"selected":"" %>>C+</option>
-					<option value="C" <%=(lscore.getGrade().trim().equals("C"))?"selected":"" %>>C</option>
-					<option value="D+" <%=(lscore.getGrade().trim().equals("D+"))?"selected":"" %>>D+</option>
-					<option value="D" <%=(lscore.getGrade().trim().equals("D"))?"selected":"" %>>D</option>
-					<option value="F" <%=(lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
-				</select></td>
-		
-		</tr>
-		</p>
-		<% } %>
-	</tbody>
-	</form>
-</table>
-
-	<div id="savechn">
-	<center>
-		<br>
-		<strong>* 변경 후 반드시 저장을 눌러주세요 </strong>
-			<div style="height:10px"></div>
-		<input id="abc" type="button" value="저장"> &nbsp; 
-		<input id="sccancle" type="button" value="취소"> &nbsp; 
-	</center>
-			</div>						
+			<input class="btn btn-outline-secondary" type="button" value="성적수정" onclick="activeEle()">
+			<table class="main_default" id="sctable" style="font-size:0.9em">
+			<thead>
+				<tr>
+								<th>
+									-
+								</th>
+								<th>
+									순번
+								</th>
+								<th>
+									계열
+								</th>
+								<th>
+									학과
+								</th>
+								<th>
+									학번
+								</th>
+								<th>
+									성명
+								</th>
+								<th>
+									재수강여부
+								</th>
+								<th>
+									출석점수
+								</th>
+								<th>
+									중간점수
+								</th>
+								<th>
+									기말점수
+								</th>
+								<th>
+									총점수
+								</th>
+								<th>
+									등급
+								</th>
+							</tr>
+							</thead>
+							<tbody>
+							<div id="dataArea">
+								<% int i=1;for(LectureScore lscore : list) {%>
+								<p id="p_<%=i %>
+									">
+									<tr>
+										<td>
+											<input name="chk" type="checkbox" style="height:20px;"></button>
+										</td>
+										<td class="nr">
+											<%=i %>
+										</td>
+										<% i+=1; %>
+										<input type="hidden" value="<%=lscore.getReceptionno() %>">
+										<td>
+											<%=lscore.getCategoryname() %>
+										</td>
+										<td>
+											<%=lscore.getMajorname()%>
+										</td>
+										<td>
+											<%=lscore.getSid()%>
+										</td>
+										<td>
+											<%=lscore.getSname()%>
+										</td>
+										<td>
+											<%=lscore.getRetake()%>
+										</td>
+										<td>
+											<input class="insert" type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" />
+										</td>
+										<td>
+											<input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" />
+										</td>
+										<td>
+											<input class="insert" type="text" readonly="readonly" value="<%=lscore.getFinalscore()%>" />
+										</td>
+										<td>
+											<input class="insert" type="text" readonly="readonly" value="<%=lscore.getTotalscore()%>" />
+										</td>
+										<td>
+											<select name="selectg">
+												<option value="-" selected disabled hidden>-</option>
+												<option value="A+" <%=(lscore.getGrade().trim().equals("A+"))?"selected":"" %>>A+</option>
+												<option value="A" <%=(lscore.getGrade().trim().equals("A"))?"selected":"" %>>A</option>
+												<option value="B+" <%=(lscore.getGrade().trim().equals("B+"))?"selected":"" %>>B+</option>
+												<option value="B" <%=(lscore.getGrade().trim().equals("B"))?"selected":"" %>>B</option>
+												<option value="C+" <%=(lscore.getGrade().trim().equals("C+"))?"selected":"" %>>C+</option>
+												<option value="C" <%=(lscore.getGrade().trim().equals("C"))?"selected":"" %>>C</option>
+												<option value="D+" <%=(lscore.getGrade().trim().equals("D+"))?"selected":"" %>>D+</option>
+												<option value="D" <%=(lscore.getGrade().trim().equals("D"))?"selected":"" %>>D</option>
+												<option value="F" <%=(lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
+											</select>
+										</td>
+										<!-- 					<td><input class="checkBtn" type="button" value="테스트"> &nbsp;</td>
+					<td><input type="button" value="행테스트"> &nbsp;</td> -->
+									</tr>
+								</p>
+								<% } %>
+								</tbody>
+								</table>
+								<br>
+								<br>
+								<center>
+								<br>
+									<strong>* 변경 후 반드시 저장을 눌러주세요 </strong>
+									<div style="height:10px">
+									</div>
+									<input id="abc" type="button" value="저장"> &nbsp; <input id="sccancle" type="button" value="취소"> &nbsp; </center>
+									
 									
 									
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
@@ -161,43 +204,9 @@ select {width: 40px; height:20px; margin:0px}
 <script>
 <!-- 스크립트 쓰는곳   -->
 //수정가능 
-$(document).ready(function(){
-	$("#savechn").hide();
-	$("#editSc").hide();
-});
-	
-$("#chnScoreBtn").click(function() {
-	if($('#chnScoreBtn').prop('readonly', true)){
-		var result = confirm("성적을 수정하시겠습니까?");
-		
-		if(result){
-			$("input[type=text]").removeAttr('readonly');
-			$("#savechn").show();
-			$("#editSc").show();
-			
-
-			$("input[type=text]").keyup(function()  {
-				var chk = $(this)
-				var tr = chk.parent().parent();
-				 var checkbox = tr.find('td:first-child :checkbox');
-			     //checkbox.prop('checked', !checkbox.is(':checked'));
-			     checkbox.prop("checked", true);
-			});
-
-		}else{
-			$("input[type=text]").attr('readonly', true);
-			$("#savechn").hide();
-			}
-		}
-			
-		
-		});
-
-
-	
-	
-
-
+function activeEle() {
+	$("input[type=text]").removeAttr('readonly');
+}
 //숫자 0~100사이만 입력
 var replaceNotInt = /[^0-9]/gi;
 $(document).ready(function(){
@@ -216,10 +225,8 @@ $(document).ready(function(){
 	  $(this).val(jQuery(this).val().replace(replaceNotInt, ""));  
   }); 
 }); 
-
-
 //테스트
-/* $(document).ready(function(){
+$(document).ready(function(){
 	$("input:checkbox[name=chk]").keyup(function(){
         if(jQuery("input:checkbox[name=chk]").is(":checked")){
             alert("체크박스 체크했음!");
@@ -227,80 +234,45 @@ $(document).ready(function(){
             alert("체크박스 체크 해제!");
         }
     });	
-}); */
-
-
-
-
-
-
+});
+$("input[type=text]").keyup(function()  {
+	var chk = $(this)
+	var tr = chk.parent().parent();
+	 var checkbox = tr.find('td:first-child :checkbox');
+     //checkbox.prop('checked', !checkbox.is(':checked'));
+     checkbox.prop("checked", true);
+});
 $(".chk").click(function(){ 	
-
+		alert('a');
+        var rowData = new Array(); 
+        var tdArr = new Array();
       	var chk = $(this);
         //var checkbox = $("input[name=user_CheckBox]:checked");
 });
-
-
-
 $("#abc").click(function(){ 
-	var aJSONArray = new Array();	
-    var checkbox = $("input:checkbox[name=chk]:checked");	
-    
+        var rowData = new Array(); 
+        var checkbox = $("input:checkbox[name=chk]:checked");	
    checkbox.each(function(i) {
-	   
 	var tr = checkbox.parent().parent().eq(i);
 	var td = tr.children();
-	var aJson<%=i%> = new Object(); 
+	var dataObj = new Object;
 	//rowData.push(tr.text());
-	aJson<%=i%>.receptionno = td.eq(1).text();
-	aJson<%=i%>.atndnScore = td.eq(8).find('input[type="text"]').val();
-	aJson<%=i%>.midScore = td.eq(9).find('input[type="text"]').val();
-	aJson<%=i%>.finalScore = td.eq(10).find('input[type="text"]').val();
-	aJson<%=i%>.totalScore = td.eq(11).find('input[type="text"]').val();
-	aJson<%=i%>.grade = td.eq(12).find('select[name="selectg"] option:selected').val();
+	dataObj.categoryname= td.eq(3).text();
+	dataObj.majorname = td.eq(4).text();
+	var sid = td.eq(5).text();
+	var sname = td.eq(6).text();
+	var retake = td.eq(7).text();
 	
-	aJSONArray.push(aJson<%=i%>); 
-	 
-   });
-
-   /* var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
-		totalScore, grade]; */
-	/* var aa = JSON.stringify(dataArray); */
-
-   $.ajax({
-	   	url : "/beet/scupdate.p",
-		method : 'post',
-		traditional : true,
-		async : true,
-		data : {jsondata : JSON.stringify(aJSONArray)},
-		success : function(data){
-			alert("변경사항을 저장했습니다!")
-			$("input[type=text]").attr('readonly', true);
-			$("#savechn").hide();
-		},
-		error :  function(request, status, error) {
-			alert("변경사항을 저장했습니다!")
-			$("input[type=text]").attr('readonly', true);
-			$("#savechn").hide();
-			$("#editSc").hide();
-		
-			$("input[type=checkbox]").prop("checked", false);
-			document.reload();
-		}	
-		
-		}); 
-	   
-   console.log(aJSONArray);
-   });
-   //$("#test1").serialize(),
-   
- 
-/* 	var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
+	var atndnScore = td.eq(8).find('input[type="text"]').val();
+	var midScore = td.eq(9).find('input[type="text"]').val();
+	var finalScore = td.eq(10).find('input[type="text"]').val();
+	var totalScore = td.eq(11).find('input[type="text"]').val();
+	var grade = td.eq(12).find('select[name="selectg"] option:selected').val();
+	var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
 		totalScore, grade];
 	var aa = JSON.stringify(dataArray);
-	var jsonArray = JSON.parse(JSON.stringify(dataArray)); */
+	var jsonArray = JSON.parse(JSON.stringify(dataArray));
 /* 	jQuery.ajax({
-
 		url : "/beet/scoreup",
 		contentType : 'application/json',
 		method : 'post',
@@ -312,7 +284,8 @@ $("#abc").click(function(){
 	        alert(error);
 		}
 		}); */
-   
+   });
+});
 </script>
 		</div> </div>
 						</div>

@@ -58,10 +58,10 @@ public class AtndnService {
 		return result;
 	}
 
-	public int updateWeekAll(HashMap map) {
+	public int updateWeekAll(ArrayList<Atndn> list2) {
 		//출결 여러개 업데이트
 		Connection conn = getConnection();
-		int r = adao.updateWeekAll(conn,map);
+		int r = adao.updateWeekAll(conn,list2);
 		if(r > 0) {
 			commit(conn);
 		}else {
