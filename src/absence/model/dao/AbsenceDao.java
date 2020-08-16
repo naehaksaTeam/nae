@@ -318,28 +318,4 @@ public class AbsenceDao {
 		}
 		return date;
 	}
-
-	public int selectAbCount(Connection conn, String studentid) {
-		int abCount = 0;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String query = "select absencecount from student where id = ?";
-
-		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, studentid);
-			rset = pstmt.executeQuery();
-
-			if(rset.next()) {
-				abCount = rset.getInt("absececount");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		return abCount;
-	}
 }

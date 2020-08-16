@@ -26,8 +26,7 @@ public class deleteAbsenceAdminServlet extends HttpServlet {
 		AbsenceService aservice = new AbsenceService();
 		Absence a = aservice.selectOneAbsence(requestid);
 		String ab = requestid.substring(0, 1);
-		
-		int abCount = aservice.selectAbCount(a.getStudentid());
+
 		PrintWriter out = response.getWriter();
 		
 		RequestDispatcher view = null;
@@ -38,26 +37,18 @@ public class deleteAbsenceAdminServlet extends HttpServlet {
 				int re = aservice.studentAbsenceChange(a.getStudentid());
 				if (re > 0) {
 					if (ab.equals("a")) {
-						if(abCount != 0 ) { // 휴학 카운트가 0이 아니면 마이너스하고
-							int r = aservice.studentCountMinus(a.getStudentid());
-							if (r > 0) {
-								
-								 out.print("<script>");
-								  out.print("alert('삭제가 완료되었습니다.');");
-								  out.print("location.href = 'selectaball'");
-								  out.print("</script>");
-								  out.close();
-							} else {
-								
-								 out.print("<script>");
-								  out.print("alert('학생정보 변경에 실패하였습니다.');");
-								  out.print("location.href = 'selectaball'");
-								  out.print("</script>");
-								  out.close();
-							}
-						}else {// 휴학카운트 0 이면 마이너스 안함
+						int r = aservice.studentCountMinus(a.getStudentid());
+						if (r > 0) {
+							
 							 out.print("<script>");
 							  out.print("alert('삭제가 완료되었습니다.');");
+							  out.print("location.href = 'selectaball'");
+							  out.print("</script>");
+							  out.close();
+						} else {
+							
+							 out.print("<script>");
+							  out.print("alert('학생정보 변경에 실패하였습니다.');");
 							  out.print("location.href = 'selectaball'");
 							  out.print("</script>");
 							  out.close();

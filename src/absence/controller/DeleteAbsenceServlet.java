@@ -17,107 +17,96 @@ import absence.model.vo.Absence;
 public class DeleteAbsenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public DeleteAbsenceServlet() {
-		// TODO Auto-generated constructor stub
-	}
+    public DeleteAbsenceServlet() {
+        // TODO Auto-generated constructor stub
+    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestid = request.getParameter("requestid");
 		String ab = requestid.substring(0, 1);
-
+		
 		System.out.println("requestid : " + requestid);
-
+		
 		AbsenceService aservice = new AbsenceService();
 		Absence a = aservice.selectOneAbsence(requestid);
-		int abCount = aservice.selectAbCount(a.getStudentid());
-
-		PrintWriter out = response.getWriter();
+		
+		 PrintWriter out  = response.getWriter();
 		RequestDispatcher view = null;
-
+		
 		float date = aservice.canceldateChk(requestid);
-		if (date > 0) {
+		if(date > 0) {
 			String approval = aservice.selectApprovalChk(requestid);
-			if (approval.equals("Y")) {// 승인완료, 학생테이블가서 바꿔줘야함
+			if(approval.equals("Y")){//승인완료, 학생테이블가서 바꿔줘야함
 				int result = aservice.deleteAbsence(requestid);
-				if (result > 0) { // 휴학 취소되면 학생테이블 가서 변경
+				if(result > 0) { // 휴학 취소되면 학생테이블 가서 변경
 					int re = aservice.studentAbsenceChange(a.getStudentid());
-					if (re > 0) {
-						if (ab.equals("a")) {
-							if (abCount != 0) { // 휴학 카운트가 0이 아닐때
-								int r = aservice.studentCountMinus(a.getStudentid());
-								if (r > 0) {
+					if(re > 0) {
+						if(ab.equals("a")) {
+							int r = aservice.studentCountMinus(a.getStudentid());
+							if(r > 0) {
+								
+								 out.print("<script>");
+								  out.print("alert('휴학신청취소가 완료되었습니다.');");
+								  out.print("location.href = 'selectab?studentid="+a.getStudentid()+"'");
+								  out.print("</script>");
+								  out.close();
 
-									out.print("<script>");
-									out.print("alert('휴학신청취소가 완료되었습니다.');");
-									out.print("location.href = 'selectab?studentid=" + a.getStudentid() + "'");
-									out.print("</script>");
-									out.close();
-
-								} else {
-									out.print("<script>");
-									out.print("alert('학생정보 변경에 실패하였습니다.');");
-									out.print("location.href = 'selectab?studentid=" + a.getStudentid() + "'");
-									out.print("</script>");
-									out.close();
-								}
-							} else { // 휴학 카운트가 0이면 - 안한다.
-								out.print("<script>");
-								out.print("alert('휴학신청취소가 완료되었습니다.');");
-								out.print("location.href = 'selectab?studentid=" + a.getStudentid() + "'");
-								out.print("</script>");
-								out.close();
+							}else {
+								 out.print("<script>");
+								  out.print("alert('학생정보 변경에 실패하였습니다.');");
+								  out.print("location.href = 'selectab?studentid="+a.getStudentid()+"'");
+								  out.print("</script>");
+								  out.close();
 							}
-						} else {
-							out.print("<script>");
-							out.print("alert('복학신청취소가 완료되었습니다.');");
-							out.print("location.href = 'selectab?studentid=" + a.getStudentid() + "'");
-							out.print("</script>");
-							out.close();
+						}else {
+							 out.print("<script>");
+							  out.print("alert('복학신청취소가 완료되었습니다.');");
+							  out.print("location.href = 'selectab?studentid="+a.getStudentid()+"'");
+							  out.print("</script>");
+							  out.close();
 						}
-					} else {
-						out.print("<script>");
-						out.print("alert('학생정보 변경에 실패하였습니다.');");
-						out.print("location.href = 'selectab?studentid=" + a.getStudentid() + "'");
-						out.print("</script>");
-						out.close();
+					}else {
+						 out.print("<script>");
+						  out.print("alert('학생정보 변경에 실패하였습니다.');");
+						  out.print("location.href = 'selectab?studentid="+a.getStudentid()+"'");
+						  out.print("</script>");
+						  out.close();
 					}
-				} else {
-					out.print("<script>");
-					out.print("alert('휴학신청취소에 실패하였습니다.');");
-					out.print("location.href = 'selectab?studentid=" + a.getStudentid() + "'");
-					out.print("</script>");
-					out.close();
+				}else {
+					 out.print("<script>");
+					  out.print("alert('휴학신청취소에 실패하였습니다.');");
+					  out.print("location.href = 'selectab?studentid="+a.getStudentid()+"'");
+					  out.print("</script>");
+					  out.close();
 
 				}
-			} else { // 승인안된상황
+			}else{ // 승인안된상황 
 				int result = aservice.deleteAbsence(requestid);
-				if (result > 0) {
-					out.print("<script>");
-					out.print("alert('신청취소가 완료되었습니다.');");
-					out.print("location.href = 'selectab?studentid=" + a.getStudentid() + "'");
-					out.print("</script>");
-					out.close();
-				} else {
-					out.print("<script>");
-					out.print("alert('휴학신청취소에 실패하였습니다.');");
-					out.print("location.href = 'selectab?studentid=" + a.getStudentid() + "'");
-					out.print("</script>");
-					out.close();
+				if(result > 0){
+					 out.print("<script>");
+					  out.print("alert('신청취소가 완료되었습니다.');");
+					  out.print("location.href = 'selectab?studentid="+a.getStudentid()+"'");
+					  out.print("</script>");
+					  out.close();
+				}else {
+					 out.print("<script>");
+					  out.print("alert('휴학신청취소에 실패하였습니다.');");
+					  out.print("location.href = 'selectab?studentid="+a.getStudentid()+"'");
+					  out.print("</script>");
+					  out.close();
 				}
 			}
-		} else {// 취소날짜가 지났음
-			out.print("<script>");
-			out.print("alert('취소가능한 날짜가 지났습니다');");
-			out.print("location.href = 'selectab?studentid=" + a.getStudentid() + "'");
-			out.print("</script>");
-			out.close();
+		}else {//취소날짜가 지났음
+			 out.print("<script>");
+			  out.print("alert('취소가능한 날짜가 지났습니다');");
+			  out.print("location.href = 'selectab?studentid="+a.getStudentid()+"'");
+			  out.print("</script>");
+			  out.close();
 
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
 
