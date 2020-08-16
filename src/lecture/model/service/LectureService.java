@@ -292,10 +292,8 @@ public class LectureService {
 		int r = ldao.deleteApply(conn,lname,name,lectureName);
 		if(r > 0) {
 			commit(conn);
-			System.out.println("성공");
 		}else {
 			rollback(conn);
-			System.out.println("실패");
 		}
 		close(conn);
 		return r;
