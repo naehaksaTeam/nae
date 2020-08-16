@@ -304,9 +304,9 @@ cursor: pointer;
 </table>
 
 	 	<p style="text-align: center;"><strong>
-	 		<input type="submit"  class="down_default" target="_blank" value="수정하기"> 
+	 		<input type="submit"  class="btn btn-outline-secondary" target="_blank" value="수정하기"> 
 	 		&nbsp; 
-	 		<input type="reset" class="down_default" target="_blank" value="수정취소"> 
+	 		<input type="reset" class="btn btn-outline-secondary" target="_blank" value="수정취소"> 
 	 	</strong></p>
 	 	<p style="text-align: center;"><strong>
 	 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
