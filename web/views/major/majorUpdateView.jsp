@@ -222,13 +222,14 @@ cursor: pointer;
 		</table>
 		</div>
 		<div align="right">
-		<tr>
-				<th colspan="2"><input type="submit" value="수정하기">
-					&nbsp; <input type="reset" value="초기화"> &nbsp; <input
-					type="button" value="뒤로"
-					onclick="javascript:history.go(-1); return false;"></th>
-			</tr>
-			</div>
+		<button class="btn btn-outline-secondary"
+			onclick="javascript:location.href='/beet/majorupdate.ad?majorno=<%=major.getMajorno()%>';">수정</button>
+			<button class="btn btn-outline-secondary" type="reset">초기화</button>
+		<button  class="btn btn-outline-secondary" onclick="javascript:history.go(-1);">뒤로</button>
+		<!--  관리자일때 아닐때 구분해서 표기해야함 관리자면 보이고 아니면 안보임  -->
+		
+		
+		</div>
 	</form>
 	
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->

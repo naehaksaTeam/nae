@@ -240,7 +240,7 @@ cursor: pointer;
 	<% }else{ %>
 		
 	<% } %>
-			<button onclick="javascript:history.go(-1);" class="btn btn-outline-secondary findbtn" >뒤로</button>
+			<button onclick="javascript:history.go(-1);" class="btn btn-outline-secondary" >뒤로</button>
 	</div>
 	
 	

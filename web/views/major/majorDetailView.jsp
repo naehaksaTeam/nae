@@ -220,11 +220,11 @@ cursor: pointer;
 	
 	<br>
 	<div align="right">
-		<button onclick="javascript:history.go(-1);">뒤로</button>
+		<button  class="btn btn-outline-secondary" onclick="javascript:history.go(-1);">뒤로</button>
 		<!--  관리자일때 아닐때 구분해서 표기해야함 관리자면 보이고 아니면 안보임  -->
-		<button
+		<button class="btn btn-outline-secondary"
 			onclick="javascript:location.href='/beet/majorupdate.ad?majorno=<%=major.getMajorno()%>';">수정</button>
-		<button
+		<button class="btn btn-outline-secondary"
 			onclick="javascript:location.href='/beet/majordelete.ad?majorno=<%=major.getMajorno()%>';">삭제</button>
 	</div>
 	
