@@ -1,6 +1,6 @@
 package lecture.model.dao;
 
-import static common.JDBCTemp.close;
+import static common.JDBCTemp.*;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -802,6 +802,62 @@ public class LectureDao {
 			pstmt.setString(6, ar.getRoom());
 			
 			rst = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return rst;
+	}
+
+
+	public ApplyReception selectLapply(Connection conn, String name,String lname) {
+		ApplyReception a = new ApplyReception();
+		String query = "select * from lapplication l join lecture using (lcode) where l.id = '" + name + "' and lname = '" + lname + "' and semester = (select to_char(sysdate,'yyyy')||case when(to_char(sysdate,'mm'))>7 then '02' ELSE '01' end from dual)";
+		Statement stmt = null;
+		ResultSet rset =  null;
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()) {
+				a.setId(rset.getString("id"));
+				a.setLcode(rset.getString("lcode"));
+				a.setLpersonnel(rset.getString("lpersonnel"));
+				a.setReceptionno(rset.getString("receptionno"));
+				a.setRetake(rset.getString("retake"));
+				a.setRoom(rset.getString("room"));
+				a.setSemester(rset.getString("lname"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return a;
+	}
+
+
+	public int deleteApply(Connection conn, String lname, String name, String lectureName) {
+		int rst = 0;
+		PreparedStatement pstmt = null;
+		String query = "delete from lapplication where id = ? and lcode = ? and semester = (select to_char(sysdate,'yyyy')||case when(to_char(sysdate,'mm'))>7 then '02' ELSE '01' end from dual)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, name);
+			pstmt.setString(2, lname);
+			
+			rst = pstmt.executeUpdate();
+			if(rst > 0) {
+				commit(conn);
+				close(pstmt);
+				query = "delete from " + tc + lectureName + " where name = ?";
+				pstmt = conn.prepareStatement(query);
+				pstmt.setString(1, name);
+				rst = pstmt.executeUpdate();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

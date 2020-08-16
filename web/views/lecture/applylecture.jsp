@@ -6,6 +6,11 @@
 if(request.getAttribute("resultForSession") != null){
 session.setAttribute((String)request.getAttribute("resultForSession"), (String)request.getAttribute("result")); 
 }
+String nowTarget = (String)request.getAttribute("resultForSession");
+
+if(request.getAttribute("result5") != null && (request.getAttribute("result5")).equals("ok")){
+	session.setAttribute("delbtn" + nowTarget, null);
+}
 %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
@@ -206,6 +211,7 @@ cursor: pointer;
 
 
 <h2>현재 열린 강의 목록</h2>
+<hr>
 <table style="border:2px solid black;">
 <tr>
 <th>
@@ -276,15 +282,13 @@ cursor: pointer;
 <% session.setAttribute("delbtn" + l.getLname(),"show"); %>
 <% } %>
 </td>
-<td>
+<td style="border : 1px solid skyblue;text-align : center;">
 <% if((session.getAttribute("delbtn" + l.getLname())) == null){  %>
 &nbsp;
 <% }else{ %>
-<form action="/beet/lapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
-<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn" class="btn btn-outline-secondary">수강신청</button>
-<input type="text" style="display:none;" name="room" value="<%= l.getRoom() %>">
+<form action="/beet/dlapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
+<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn" class="btn btn-outline-secondary">신청취소</button>
 <input type="text" style="display:none;" name="lcode" value="<%= l.getLcode() %>">
-<input type="text" style="display:none;" name="lpersonnel" value="<%= l.getCapacity() %>">
 </form>
 <% } %>
 </td>
@@ -302,6 +306,16 @@ cursor: pointer;
 결과 : 이미 수강신청에 성공!
 <% }else{ %>
 행운을 빕니다...!
+<% } %>
+<% } %>
+<br>
+<% if((request.getAttribute("result5")) != null ){ %>
+<% if((request.getAttribute("result5")).equals("ok")){ %>
+수강신청 취소완료!
+<% }else if((request.getAttribute("result5")).equals("no")){ %>
+오류 : 수강신청 취소실패 ...
+<% }else{ %>
+명령 대기중...
 <% } %>
 <% } %>
 </div>

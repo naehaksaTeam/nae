@@ -1,11 +1,7 @@
 package lecture.controller;
-//수강신청
+
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,16 +15,16 @@ import lecture.model.vo.ApplyReception;
 import lecture.model.vo.Lecture;
 
 /**
- * Servlet implementation class lectureApplyServlet
+ * Servlet implementation class deleteApplyServlet
  */
-@WebServlet("/lapply")
-public class lectureApplyServlet extends HttpServlet {
-	private static final long serialVersionUID = 3433454344L;
+@WebServlet("/dlapply")
+public class deleteApplyServlet extends HttpServlet {
+	private static final long serialVersionUID = 33242657665L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public lectureApplyServlet() {
+    public deleteApplyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,66 +35,32 @@ public class lectureApplyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Lecture> list = new LectureService().selectOpenedLectures();//개설된강좌목록불러오기
 		request.setAttribute("list", list);
+		
 		String lname = request.getParameter("lname");
 		String name = request.getParameter("who");
+		String lcode = request.getParameter("lcode");
 
 		ApplyReception reception = (ApplyReception)new LectureService().selectLapply(name,lname);
 		
 		request.setAttribute("resultForSession", lname);//신청여부 구분하기
 		
 		RequestDispatcher view = null;
-		
-		if(reception.getReceptionno() != null) {
+		int r = 0;
+		System.out.println("delete : " + reception);
+		if(reception.getReceptionno() == null) {
 			view = request.getRequestDispatcher("/views/lecture/applylecture.jsp");
-			request.setAttribute("result", "already");
+			request.setAttribute("result5", "no");
 			view.forward(request, response);
 		}else {
-		
-			//receptionno 만들기
-			DateFormat yyyy = new SimpleDateFormat ("yyyy");
-			DateFormat mm = new SimpleDateFormat ("MM");
-			
-			java.util.Date today = Calendar.getInstance().getTime();
-			
-			String year = (yyyy.format(today)).substring(2,4); 
-			String month;
-			if(Integer.parseInt(mm.format(today)) <  6) {
-				month = "01";
-			}else {
-				month = "02";
-			}
-			Random ran = new Random();
-			String serial = "" + (ran.nextInt(998) + 1);
-			
-			String receptionno = "r" + year + month + serial;
-					
-	//		java.util.Date time = new java.util.Date();		
-	//		String time1 = format1.format(time);
-			
-			ApplyReception ar = new ApplyReception();
-			ar.setId(name);
-			ar.setLcode(request.getParameter("lcode"));
-			ar.setLpersonnel(request.getParameter("lpersonnel"));
-			ar.setReceptionno(receptionno);
-			ar.setRoom(request.getParameter("room"));
-			ar.setSemester(yyyy.format(today) + month);
-			
-			int r = new LectureService().applyLecture(lname,name,ar);//수강신청버튼
-			
-			reception = (ApplyReception)new LectureService().selectLapply(name,lname);
-			request.setAttribute("reception", reception);
+			r = new LectureService().deleteApply(lcode,name,lname);
 			
 			if(r > 0) {
 				view = request.getRequestDispatcher("/views/lecture/applylecture.jsp");
-				request.setAttribute("result", "ok");
-				view.forward(request, response);
-			}else if(r == -1){
-				view = request.getRequestDispatcher("/views/lecture/applylecture.jsp");
-				request.setAttribute("result", "already");
+				request.setAttribute("result5", "ok");
 				view.forward(request, response);
 			}else {
 				view = request.getRequestDispatcher("/views/lecture/applylecture.jsp");
-				request.setAttribute("result", "no");
+				request.setAttribute("result5", "no");
 				view.forward(request, response);
 			}
 		}
