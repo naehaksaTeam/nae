@@ -1,14 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="java.util.Date, java.text.SimpleDateFormat, java.util.ArrayList,
-				lectureScore.model.vo.LectureScore, student.model.vo.Member" %>   
- 
+ <%@ page
+	import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member,
+java.util.Date, java.text.SimpleDateFormat"%>
 <%
-Member loginmember = (Member)session.getAttribute("loginMember");
-ArrayList<LectureScore> list = (ArrayList<LectureScore>)request.getAttribute("list");
-Date lastmodified = new Date();
-SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
-%>
+	Member loginmember = (Member) session.getAttribute("loginMember");
+	ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
+
+	Set<String> set = new HashSet<String>();
+	for (Atndn a : list) {
+		set.add(a.getSemester());
+	}
+	Iterator<String> it = set.iterator();
+	
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("E");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+	Date today = new Date();
+	String day = sdf.format(today);
+	Date enter = sdf2.parse("2020-03-02");
+
+	long diff = today.getTime() - enter.getTime();
+	long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
+					
+%>   
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
@@ -60,8 +75,8 @@ img.emoji {
 	padding: 0 !important;
 }
 </style>
-<link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
 <link rel="stylesheet" id="layerslider-css" href="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.5.1" type="text/css" media="all">
+<link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
 <link rel="stylesheet" id="bbse-popup-view-css" href="https://www.cha.ac.kr/wp-content/plugins/bbs-e-popup/css/bbse-popup-style.css?ver=4.7.18" type="text/css" media="all">
 <link rel="stylesheet" id="default_style-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/style.css?ver=4.7.18" type="text/css" media="all">
 <link rel="stylesheet" id="qode_font_awesome-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/font-awesome/css/font-awesome.min.css?ver=4.7.18" type="text/css" media="all">
@@ -166,7 +181,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>나의 강의조회</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -181,67 +196,20 @@ cursor: pointer;
 					
 						
 						<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
-							
+							<div class="column1">
+																				<div class="column_inner">
+								
+								<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;"><div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
 		
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">강의목록</p>
 
 
-  <select class="semester" id="myselect" >
-            <option value="201901">201901</option>
-            <option value="201902">201902</option>
-            <option value="202001">202001</option>
-</select>	  
-    
- <table class="main_default">
-<thead>
-  <tr>
-    <th>순번</th>
-    <th>학년학기</th>
-    <th>이수구분</th>
-    <th>과목번호</th>
-    <th>과목명</th>
-    <th>출결입력</th>
-    <th>성적입력</th>
-    <th>성적입력날짜</th>
-  </tr>
-</thead>
-<tbody>
-<% int i = 1; for (LectureScore lscore : list) { %>
-
-  <tr>
-  	<td><%= i %></td><% i += 1; %>
-    <td><%= lscore.getSemester() %></td>
-    <td><%=lscore.getCategory() %></td>
-  	 <td><%=lscore.getLcode() %></td>
-	<td id="lname"><%=lscore.getLname()%></td>
-	<td>
-	<form action="/beet/atnedit.p" method="post">
-			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
-			<input type="hidden" name="lcode" value="<%=lscore.getLcode() %>">
-			<input type="hidden" name="semester" value="">
-			<input class="btn btn-outline-secondary" type="submit" value="출결관리">
-		</form>
-		</td>
-	<td>
-		<form action="/beet/scselect.p" method="post">
-			<input class="btn btn-outline-secondary" type="submit" value="성적관리">
-			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
-			<input type="hidden" name="lname" value="<%=lscore.getLname() %>">
-		</form>
-	</td>
-	<td ><%=format1.format(lastmodified) %></td>
 	
-	<% } %>
-  
-  </tr>
-</tbody>
-</table>   
-    
-    
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 
 
@@ -260,39 +228,133 @@ cursor: pointer;
 ≫ 그냥 글 써보는중 <br>
 ≫ 게시판에 대한 설명이 필요하면 여기에 쓰세요<br></p>-->
 
-<!-- 가로테이블예시 
-<p>≫ 가로테이블 명</p>
-<table class="main_default">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 20%;"> 
-<col style="width: 30%;"> 
-<col style="width: 40%;"> 
-</colgroup>
-<thead>
-<tr>
-<th>컬럼명1</th>
-<th>컬럼명2</th>
-<th>컬럼명3</th>
-<th>컬럼명4</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>td 1</td>
-<td>td 2</td>
-<td>td 3</td>
-<td>td 4</td>
-</tr>
-<tr>
-<td>td 5</td>
-<td>td 6</td>
-<td>td 7</td>
-<td>td 8</td>
-</tr>
-</tbody>
-</table>-->
 
+
+<table class="main_default">
+
+<tbody>
+<% for (Atndn a : list) {
+	if (a.getLtime().equals(day) && a.getSemester().equals("202001")) {
+		%>
+		<p>≫ 오늘의 강의</p>
+<colgroup>
+<col style="width:20%">
+<col style="width:20%">
+<col style="width:20%">
+<col style="width:10%">
+<col style="width:30%">
+</colgroup>
+<tr >
+	<td colspan="4" style="">
+	<div style="float:center;font-size:2.0em"><%=a.getLname()%></div></td>
+	<!-- <td style="width=30%"><button class=button>강의실로 이동</button></td> -->
+	<td><div style="float:left;margin-left:15px;margin-top:20px;font-size:0.9em"><%=a.getLcode()%> / <%=a.getCategory()%> / <%=a.getLtime()%> / <%=a.getCapacity()%>명</div></td>
+</tr>
+<tr>
+	<td colspan="4" style="color: green;"><progress id="prog"
+		value="<%=diffWeeks%>" max="100"></td>
+	<td id="progress">진도율: <%=diffWeeks%>%
+	</td>
+</tr>
+	<% }}%>
+</tbody>
+</table>
+
+<br>
+<br>
+<p>≫ 나의 강의목록</p>
+<table class="main_default" cellpadding="10px">
+		<tr>
+			<form action="/beet/mylctrSeme" method="post">
+			<input type="hidden" name="userid" value="<%=loginmember.getId()%>"> 
+			<input type="hidden" name="semester" value=""> 
+			<select id="field" onchange="javascript:selectfield(this);" style="width: 80px">
+				<%-- <%
+					while (it.hasNext()) {
+				%>
+				<option><%=it.next()%></option>
+				<% 
+					}
+				%>
+ --%>
+ 				<option>202001</option>
+ 				<option>201902</option>
+ 				<option>201901</option>
+			</select>
+			</form>
+		</tr>
+		<tr style="font-size:15px">
+			<th>과목번호</th>
+			<th>이수구분</th>
+			<th>과목명</th>
+			<th>강의시간</th>
+			<th>학점</th>
+			<th>수강인원</th>
+			<th>담당교수</th>
+			<th>출결</th>
+
+		</tr>
+		<%
+			for (Atndn a : list) {
+		%>
+		<tr>
+
+			<td><%=a.getLcode()%></td>
+			<td><%=a.getCategory()%></td>
+			<td><%=a.getLname()%></td>
+			<td><%=a.getLtime()%></td>
+			<td><%=a.getLpoint()%></td>
+			<td><%=a.getCapacity()%></td>
+			<td><%=a.getPname()%></td>
+			<td>
+				<form id="hi" action="/beet/atnlist" method="post">
+					<input class="down_default" type="hidden" name="userid" value="<%=(Member)session.getAttribute("loginMember")%>"> 
+						<input type="hidden" name="lcode" value="<%=a.getLcode()%>"> 
+						<input type="submit" class="btn-sm btn btn-outline-secondary" value="출결조회">
+    
+    
+				</form>
+			</td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+
+
+	<script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
+	<script type="text/javascript">
+	jQuery( '#hi' ).click( function() {
+		 var str = ""
+	            var tdArr = new Array();    // 배열 선언
+	            var checkBtn = $(this);
+		
+	            var no = td.eq(0).text();
+		} );
+
+		function selectfield(obj) {
+			jQuery('input[name=semester]').attr('value', obj.value);
+			
+			jQuery("#field").click(function() {
+			     this.form.submit();
+			});
+
+		}
+
+	
+			
+	/* 	$(function() {
+		    $('#field').click(function() {
+		        localStorage.setItem('savelist', this.value);
+		    });
+		    
+		   if(localStorage.getItem('savelist')){
+		    	 $('#field').val(localStorage.getItem('todoData'));
+		    }
+		}); 
+		 */
+		
+</script>
 
 <!-- 세로테이블예시 
 <p> ≫ 세로테이블명</p>
@@ -322,10 +384,37 @@ cursor: pointer;
 <!-- ------------------------------------------ -->
 
 
+</div> 
+	</div> </div></div></div></div></div>
+																 
+								</div>
+																	
+									
+							</div>
 
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
+<div class="column2">	
+<%@ include file = "/views/attendance/side.jsp" %>
+<!-- <div class="column_inner">
+<aside class="sidebar">
+							
+		<div class="widget "><div id="dc_jqaccordion_widget-8">		
+		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
 
+<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
+  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
+  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
+  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
+  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
+  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
+</ul>		
+
+
+		</div>
+		</div></div>		</aside>
+	</div>-->
+</div> 
 <!-- 서브메뉴 끝 -->
 						</div>
 								
@@ -362,6 +451,8 @@ cursor: pointer;
     p {
         margin: 0 0 1em;
     }
+    
+ 
 
 </style>
 			<script type="text/javascript">

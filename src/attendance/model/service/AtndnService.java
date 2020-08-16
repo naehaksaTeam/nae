@@ -7,10 +7,10 @@ import static common.JDBCTemp.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import attendance.model.dao.AtndnDao;
 import attendance.model.vo.Atndn;
+
 
 public class AtndnService {
 	private AtndnDao adao = new AtndnDao(); 
@@ -76,6 +76,15 @@ public class AtndnService {
 		 ArrayList<Atndn>  list = adao.selectMyLctrSemstr(conn, sid, semester);
 		close(conn);
 		return list;
+	}
+
+	
+	//과목하나조회
+	public Atndn selectOneAtndn(String sid, String lcode) {
+		Connection conn = getConnection();
+		Atndn atndn = adao.selectOneAtndn(conn, sid, lcode);
+		close(conn);
+		return atndn;
 	}
 
 }

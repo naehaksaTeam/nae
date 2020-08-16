@@ -1,11 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <%@ page
+ <%@ page
 	import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member,
 java.util.Date, java.text.SimpleDateFormat"%>
 <%
 	Member loginmember = (Member) session.getAttribute("loginMember");
-	ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
-%>
+	Atndn atndn = (Atndn)request.getAttribute("atndn");
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("E");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+	Date today = new Date();
+	String day = sdf.format(today);
+	Date enter = sdf2.parse("2020-03-02");
+
+	long diff = today.getTime() - enter.getTime();
+	long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
+					
+%>   
+
 <!DOCTYPE html>
 <html lang="ko-KR" class="myhaksa" style="height: auto; overflow: auto;">
 
@@ -82,79 +93,83 @@ select {width: 40px; height:20px; margin:0px}
 
 		<h1 style="margin-top:75px"><span >출결/성적</span></h1> <!-- ★h1 이름 (메뉴이름 여기에 써주세요) ------------------------------------------>
 		</div> </div> </div> </div> </div> </div> </div>
-				
+				</p>
 		<div class="container">
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt">출결입력</p>  <!-- ★본문 제목 -------------------->
-				
-<p class="page_tt">전체출결조회</p>		
+			<p class="page_tt">출결조회 : <%=atndn.getLname()%><div style="display:inline;font-size:0.9em"><%=atndn.getLcode()%> / <%=atndn.getCategory()%> / <%=atndn.getLtime()%> / <%=atndn.getCapacity()%>명</div></p>
+<p><progress id="prog" value="<%=diffWeeks%>" max="100" style="display:inline;"><div id="progress">진도율: <%=diffWeeks%></div></p>
 
-
-	<p class="page_tt">출결입력</p>
-
-<form action="/beet/atnupdate" method="post">
-	<table id="stable" class="main_default" cellpadding="10px">
-		<tr>
-			<select id="selected" name="selectweek">
-				<% for (int i = 1; i <= 16; i++) { %>
-				<option value="week<%= i %>"><%=i%>주차
-				</option>
-				<% } %>
-			</select>
-
-		</tr>
-		<tr>
-			<th> - </th>
-			<th>순번</th>
-			<th>학번</th>
-			<th>학과</th>
-			<th>이름</th>
-			<th>출결입력</th>
-
-		</tr>
-			<%
-				int i = 1;
-				for (Atndn a : list) {
-			%>
-			<tr>
-				<td><input name="chk" type="checkbox" style="height:20px;"></button></td>
-				<td><%= i %></td>
-				<td><%=a.getSid()%><input type="text" name="who<%= i %>" value="<%= a.getSid() %>" style="display:none;"></td>
-				<td><%=a.getMajorname()%><input type="text" name="lcode" value="<%= a.getLcode() %>" style="display:none;"></td>
-				<td><%=a.getSname()%></td>
-				<td><select class="atndt" name="selectfour<%= i %>" style="width: 80px; height: 30px">
-						<option value="-" selected disabled hidden>-</option>
-						<option value="1">출석</option>
-						<option value="2">결석</option>
-						<option value="3">조퇴</option>
-						<option value="4">지각</option>
-				</select></td>
-				</td>
-			</tr>
-			<%
-				}
-			%>
-		
-	</table>
-	<p style="position:relative;float:center;margin-top:50px" align="center">
-		<input class="btn btn-outline-secondary" type="submit" value="저장"> &nbsp;
-		<input class="btn btn-outline-secondary" type="reset" value="취소"> &nbsp;
-	</p>
 	
-</form>	
-				
-				
-				
-				
-				
-				
+	
+<p>≫ 출결조회</p>				
+<table class="main_default">
+<thead>
+<tr>
+<th>WEEK1</th>
+<th>WEEK2</th>
+<th>WEEK3</th>
+<th>WEEK4</th>
+<th>WEEK5</th>
+<th>WEEK6</th>
+<th>WEEK7</th>
+<th>WEEK8</th>
+</tr>
+<tr>
+<td><%=atndn.getWeek1() %></td>
+<td><%=atndn.getWeek2() %></td>
+<td><%=atndn.getWeek3() %></td>
+<td><%=atndn.getWeek4() %></td>
+<td><%=atndn.getWeek5() %></td>
+<td><%=atndn.getWeek6() %></td>
+<td><%=atndn.getWeek7() %></td>
+<td><%=atndn.getWeek8() %></td>
+</tr>
+<tr>
+<th>WEEK9</th>
+<th>WEEK10</th>
+<th>WEEK11</th>
+<th>WEEK12</th>
+<th>WEEK13</th>
+<th>WEEK14</th>
+<th>WEEK15</th>
+<th>WEEK16</th>
+</tr>
+<tr>
+<td><%=atndn.getWeek9() %></td>
+<td><%=atndn.getWeek10() %></td>
+<td><%=atndn.getWeek11() %></td>
+<td><%=atndn.getWeek12() %></td>
+<td><%=atndn.getWeek13() %></td>
+<td><%=atndn.getWeek14() %></td>
+<td><%=atndn.getWeek15() %></td>
+<td><%=atndn.getWeek16() %></td>
+</tr>
+</table>		
+							
+							
 													
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 <script>
 <!-- 스크립트 쓰는곳   -->
+jQuery( '#hi' ).click( function() {
+	 var str = ""
+           var tdArr = new Array();    // 배열 선언
+           var checkBtn = $(this);
+	
+           var no = td.eq(0).text();
+	} );
 
+	function selectfield(obj) {
+		jQuery('input[name=semester]').attr('value', obj.value);
+		
+		jQuery("#field").click(function() {
+		     this.form.submit();
+		});
+
+	}				
+				
 </script>
 </div> </div></div></div>
 					

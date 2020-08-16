@@ -1,23 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="java.util.Date, java.text.SimpleDateFormat, java.util.ArrayList,
-				lectureScore.model.vo.LectureScore, student.model.vo.Member" %>   
- 
+    <%@ page
+	import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member,
+java.util.Date, java.text.SimpleDateFormat"%>
 <%
-Member loginmember = (Member)session.getAttribute("loginMember");
-ArrayList<LectureScore> list = (ArrayList<LectureScore>)request.getAttribute("list");
-Date lastmodified = new Date();
-SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
+	Member loginmember = (Member) session.getAttribute("loginMember");
+	ArrayList<Atndn> list = (ArrayList<Atndn>) request.getAttribute("list");
 %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
-	<!-- ★★★★★★★★title -->
-	<title> </title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	<!-- ★★★★★★★★title -->
+	<title> beet</title>
+
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
 
 
@@ -60,8 +59,8 @@ img.emoji {
 	padding: 0 !important;
 }
 </style>
-<link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
 <link rel="stylesheet" id="layerslider-css" href="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.5.1" type="text/css" media="all">
+<link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
 <link rel="stylesheet" id="bbse-popup-view-css" href="https://www.cha.ac.kr/wp-content/plugins/bbs-e-popup/css/bbse-popup-style.css?ver=4.7.18" type="text/css" media="all">
 <link rel="stylesheet" id="default_style-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/style.css?ver=4.7.18" type="text/css" media="all">
 <link rel="stylesheet" id="qode_font_awesome-css" href="https://www.cha.ac.kr/wp-content/themes/bridge/css/font-awesome/css/font-awesome.min.css?ver=4.7.18" type="text/css" media="all">
@@ -166,7 +165,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span>출결/성적</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -183,66 +182,59 @@ cursor: pointer;
 						<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 							
 		
-<!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">강의목록</p>
+<p class="page_tt">출결입력</p>
 
+<form action="/beet/atnupdate" method="post">
+	<table id="stable" class="main_default" cellpadding="10px">
+		<tr>
+			<select id="selected" name="selectweek">
+				<% for (int i = 1; i <= 16; i++) { %>
+				<option value="week<%= i %>"><%=i%>주차
+				</option>
+				<% } %>
+			</select>
 
-  <select class="semester" id="myselect" >
-            <option value="201901">201901</option>
-            <option value="201902">201902</option>
-            <option value="202001">202001</option>
-</select>	  
-    
- <table class="main_default">
-<thead>
-  <tr>
-    <th>순번</th>
-    <th>학년학기</th>
-    <th>이수구분</th>
-    <th>과목번호</th>
-    <th>과목명</th>
-    <th>출결입력</th>
-    <th>성적입력</th>
-    <th>성적입력날짜</th>
-  </tr>
-</thead>
-<tbody>
-<% int i = 1; for (LectureScore lscore : list) { %>
+		</tr>
+		<tr>
+			<th>순번</th>
+			<th>학번</th>
+			<th>학과</th>
+			<th>이름</th>
+			<th>출결입력</th>
 
-  <tr>
-  	<td><%= i %></td><% i += 1; %>
-    <td><%= lscore.getSemester() %></td>
-    <td><%=lscore.getCategory() %></td>
-  	 <td><%=lscore.getLcode() %></td>
-	<td id="lname"><%=lscore.getLname()%></td>
-	<td>
-	<form action="/beet/atnedit.p" method="post">
-			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
-			<input type="hidden" name="lcode" value="<%=lscore.getLcode() %>">
-			<input type="hidden" name="semester" value="">
-			<input class="btn btn-outline-secondary" type="submit" value="출결관리">
-		</form>
-		</td>
-	<td>
-		<form action="/beet/scselect.p" method="post">
-			<input class="btn btn-outline-secondary" type="submit" value="성적관리">
-			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
-			<input type="hidden" name="lname" value="<%=lscore.getLname() %>">
-		</form>
-	</td>
-	<td ><%=format1.format(lastmodified) %></td>
+		</tr>
+			<%
+				int i = 1;
+				for (Atndn a : list) {
+			%>
+			<tr>
+				<td><%= i %></td>
+				<td><%=a.getSid()%><input type="text" name="who<%= i %>" value="<%= a.getSid() %>" style="display:none;"></td>
+				<td><%=a.getMajorname()%><input type="text" name="lcode" value="<%= a.getLcode() %>" style="display:none;"></td>
+				<td><%=a.getSname()%></td>
+				<td><select class="atndt" name="selectfour<%= i %>" style="width: 80px; height: 30px">
+						<option value="-" selected disabled hidden>-</option>
+						<option value="1">출석</option>
+						<option value="2">결석</option>
+						<option value="3">조퇴</option>
+						<option value="4">지각</option>
+				</select></td>
+				</td>
+			</tr>
+			<%
+				}
+			%>
+		
+	</table>
+	<p style="position:relative;float:center;margin-top:50px" align="center">
+		<input class="btn btn-outline-secondary" type="submit" value="저장"> &nbsp;
+		<input class="btn btn-outline-secondary" type="reset" value="취소"> &nbsp;
+	</p>
 	
-	<% } %>
-  
-  </tr>
-</tbody>
-</table>   
-    
-    
-<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
+</form>
 
 
 

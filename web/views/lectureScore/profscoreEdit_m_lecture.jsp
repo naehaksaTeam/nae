@@ -194,10 +194,6 @@ $("#chnScoreBtn").click(function() {
 		});
 
 
-	
-	
-
-
 //숫자 0~100사이만 입력
 var replaceNotInt = /[^0-9]/gi;
 $(document).ready(function(){
@@ -299,20 +295,7 @@ $("#abc").click(function(){
 		totalScore, grade];
 	var aa = JSON.stringify(dataArray);
 	var jsonArray = JSON.parse(JSON.stringify(dataArray)); */
-/* 	jQuery.ajax({
-
-		url : "/beet/scoreup",
-		contentType : 'application/json',
-		method : 'post',
-		data : {jsondata : JSON.stringify(dataArray)},
-		success : function(data){
-			alert(data);
-		},
-		error :  function(request, status, error) {
-	        alert(error);
-		}
-		}); */
-   
+ 
 </script>
 		</div> </div>
 						</div>
@@ -334,143 +317,5 @@ $("#abc").click(function(){
 		</div>
 	</div>
 </div> <!-- wrapper 닫음 -->
-			
-
-<!-- 여기는 수정금지! -->
-<!-- <script type="text/javascript">
-				jQuery(document).ready(function($) {
-					jQuery('#dc_jqaccordion_widget-4-item .menu').dcAccordion({
-						eventType: 'click',
-						hoverDelay: 0,
-						menuClose: false,
-						autoClose: true,
-						saveState: false,
-						autoExpand: true,
-						classExpand: 'current-menu-item',
-						classDisable: '',
-						showCount: false,
-						disableLink: true,
-						cookie: 'dc_jqaccordion_widget-4',
-						speed: 'normal'
-					});
-				});
-			</script>
-		
-						<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					jQuery('#dc_jqaccordion_widget-5-item .menu').dcAccordion({
-						eventType: 'click',
-						hoverDelay: 0,
-						menuClose: false,
-						autoClose: true,
-						saveState: false,
-						autoExpand: true,
-						classExpand: 'current-menu-item',
-						classDisable: '',
-						showCount: false,
-						disableLink: false,
-						cookie: 'dc_jqaccordion_widget-5',
-						speed: 'slow'
-					});
-				});
-			</script>
-		
-						<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					jQuery('#dc_jqaccordion_widget-6-item .menu').dcAccordion({
-						eventType: 'click',
-						hoverDelay: 0,
-						menuClose: false,
-						autoClose: true,
-						saveState: false,
-						autoExpand: true,
-						classExpand: 'current-menu-item',
-						classDisable: '',
-						showCount: false,
-						disableLink: true,
-						cookie: 'dc_jqaccordion_widget-6',
-						speed: 'normal'
-					});
-				});
-			</script>
-		
-						<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					jQuery('#dc_jqaccordion_widget-7-item .menu').dcAccordion({
-						eventType: 'click',
-						hoverDelay: 0,
-						menuClose: false,
-						autoClose: true,
-						saveState: false,
-						autoExpand: true,
-						classExpand: 'current-menu-item',
-						classDisable: '',
-						showCount: false,
-						disableLink: true,
-						cookie: 'dc_jqaccordion_widget-7',
-						speed: 'normal'
-					});
-				});
-			</script>
-		
-						<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					jQuery('#dc_jqaccordion_widget-8-item .menu').dcAccordion({
-						eventType: 'click',
-						hoverDelay: 0,
-						menuClose: false,
-						autoClose: true,
-						saveState: false,
-						autoExpand: true,
-						classExpand: 'current-menu-item',
-						classDisable: '',
-						showCount: false,
-						disableLink: true,
-						cookie: 'dc_jqaccordion_widget-8',
-						speed: 'normal'
-					});
-				});
-			</script>
-		
-						<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					jQuery('#dc_jqaccordion_widget-9-item .menu').dcAccordion({
-						eventType: 'click',
-						hoverDelay: 0,
-						menuClose: true,
-						autoClose: true,
-						saveState: false,
-						autoExpand: false,
-						classExpand: 'current-menu-item',
-						classDisable: '',
-						showCount: false,
-						disableLink: true,
-						cookie: 'dc_jqaccordion_widget-9',
-						speed: 'normal'
-					});
-				});
-			</script>
-		
-						<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					jQuery('#dc_jqaccordion_widget-10-item .menu').dcAccordion({
-						eventType: 'click',
-						hoverDelay: 0,
-						menuClose: true,
-						autoClose: true,
-						saveState: false,
-						autoExpand: false,
-						classExpand: 'current-menu-item',
-						classDisable: '',
-						showCount: false,
-						disableLink: true,
-						cookie: 'dc_jqaccordion_widget-10',
-						speed: 'slow'
-					});
-				});
-			</script> -->
-		
-
-
 </body>
 </html>

@@ -92,6 +92,11 @@ select {width: 40px; height:20px; margin:0px}
 <p class="page_tt">전체출결조회</p>		
 
 
+
+
+
+
+
 	<p class="page_tt">출결입력</p>
 
 <form action="/beet/atnupdate" method="post">
@@ -154,6 +159,14 @@ select {width: 40px; height:20px; margin:0px}
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 <script>
 <!-- 스크립트 쓰는곳   -->
+function selectfield(obj) {
+	jQuery('input[name=semester]').attr('value', obj.value);
+	
+	jQuery("#field").click(function() {
+	     this.form.submit();
+	});
+
+}
 
 </script>
 </div> </div></div></div>

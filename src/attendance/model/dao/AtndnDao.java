@@ -117,9 +117,9 @@ public class AtndnDao {
 //		PreparedStatement pstmt = null;
 //		ResultSet rset = null;
 //		
-//		String query = "select studentid, category, lcode, lname, ltime, professorname ,absent3,"
+//		String query = "select sid, sname, categoryname, category, lcode, lname, ltime, pname ,absent3,"
 //				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16"
-//				+ "from AtndnView where id = ? and lcode = ?";
+//				+ "from AtndnView where lcode = ? and semester = ?";
 //		
 //		try {
 //			pstmt = conn.prepareStatement(query);
@@ -247,12 +247,6 @@ public class AtndnDao {
 
 		return result;
 	}
-
-//update 강의 출결수정(교수, 개별)
-
-//update 강의 출결수정(교수, 다중선택)
-
-//delete 강의 출결삭제 (교수, 개별선택)
 
 //delete 강의 출결삭제(교수, 다중선택) -> 그냥 default 값으로update? 일단 만듦  
 
@@ -487,4 +481,63 @@ public class AtndnDao {
 				}
 				return list;
 			}
+
+			
+			//과목하나조회 
+			public Atndn selectOneAtndn(Connection conn, String sid, String lcode) {
+				Atndn atndn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rset = null;
+				
+				String query = "select sid, category, lcode, lname, ltime, pname ,absent3, lpoint, capacity, "
+						+  " week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16"
+						+ " from AtndnView where sid = ? and lcode = ?";
+
+			  try {
+				   pstmt = conn.prepareStatement(query);
+				   pstmt.setString(1, sid);
+				   pstmt.setString(2, lcode);
+				   
+				   rset = pstmt.executeQuery();	
+				   
+				   if(rset.next()) {
+					   atndn = new Atndn();
+					   
+					   atndn.setSid(sid);
+					   atndn.setLcode(lcode); 
+						  atndn.setCategory(rset.getString("category")); 
+						  atndn.setLname(rset.getString("lname")); 
+						  atndn.setLtime(rset.getString("ltime")); 
+						  atndn.setPname(rset.getString("pname")); //
+						  atndn.setAbsent3((rset.getString("absent3").equals("Y"))?"출석미달":"-"); //
+						  atndn.setLpoint(rset.getInt("lpoint"));
+						  atndn.setCapacity(rset.getInt("capacity")); 
+						  atndn.setWeek1((rset.getString("week1").equals("1"))? "○" : ((rset.getString("week1").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek2((rset.getString("week2").equals("1"))? "○" : ((rset.getString("week2").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek3((rset.getString("week3").equals("1"))? "○" : ((rset.getString("week3").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek4((rset.getString("week4").equals("1"))? "○" : ((rset.getString("week4").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek5((rset.getString("week5").equals("1"))? "○" : ((rset.getString("week5").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek6((rset.getString("week6").equals("1"))? "○" : ((rset.getString("week6").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek7((rset.getString("week7").equals("1"))? "○" : ((rset.getString("week7").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek8((rset.getString("week8").equals("1"))? "○" : ((rset.getString("week8").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek9((rset.getString("week9").equals("1"))? "○" : ((rset.getString("week9").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek10((rset.getString("week10").equals("1"))? "○" : ((rset.getString("week10").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek11((rset.getString("week11").equals("1"))? "○" : ((rset.getString("week11").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek12((rset.getString("week12").equals("1"))? "○" : ((rset.getString("week12").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek13((rset.getString("week13").equals("1"))? "○" : ((rset.getString("week13").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek14((rset.getString("week14").equals("1"))? "○" : ((rset.getString("week14").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek15((rset.getString("week15").equals("1"))? "○" : ((rset.getString("week15").equals("2"))? "Ⅹ" : "△" ));
+							atndn.setWeek16((rset.getString("week16").equals("1"))? "○" : ((rset.getString("week16").equals("2"))? "Ⅹ" : "△" ));
+						
+						  
+				   }
+			  } catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					close(rset);
+					close(pstmt);
+				}
+				return atndn;
+			}
+
 }
