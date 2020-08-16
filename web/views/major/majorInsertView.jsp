@@ -210,12 +210,15 @@ cursor: pointer;
 			
 		</table>
 		</div>
+		<br>
 		<div align="right">
+				
 			
-				<th colspan="2"><input type="submit" value="등록하기">
-					&nbsp; <input type="reset" value="초기화"> &nbsp; <input
-					type="button" value="목록"
-					onclick="javascript:history.go(-1); return false;"></th>
+				<button class="btn btn-outline-secondary" type="submit" >등록하기</button>
+					<button  class="btn btn-outline-secondary" type="reset" >초기화</button>
+				
+					<button class="btn btn-outline-secondary"  onclick="javascript:history.go(-1); return false;">목록</button>
+					
 			
 			</div>
 	</form>
