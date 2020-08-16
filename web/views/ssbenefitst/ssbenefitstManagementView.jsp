@@ -4,6 +4,11 @@
     <%
 	ArrayList<Ssbenefitst> list = (ArrayList<Ssbenefitst>)request.getAttribute("list");
 	ArrayList<Scholarship> sslist = (ArrayList<Scholarship>)request.getAttribute("sslist");
+	int listCount = ((Integer)request.getAttribute("listCount")).intValue(); //객체를 인트로 바꾸는 것
+	int startPage =  ((Integer)request.getAttribute("startPage")).intValue();
+	int endPage =  ((Integer)request.getAttribute("endPage")).intValue();
+	int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
+	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 	Ssbenefitst stst = (Ssbenefitst)request.getAttribute("ssst");
 %>
 <!DOCTYPE html>
@@ -199,33 +204,6 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
-
-
-<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
-<h3>장학금수혜학생 전체 조회</h3>
-<div align="right" style="margin-bottom: 8px;">
-<button style="margin-bottom: 5px;" onclick="javascript:location.href='/beet/selectbeneall'" class="btn btn-outline-secondary"> &nbsp;조 &nbsp;회&nbsp; </button>
-
-	<form action="/beet/selectonessst" method="post">
-	학기 입력<input class="number" type="number" placeholder="ex)202001" 
-						name="benefitterm" maxlength="6" oninput="numberMaxLength(this);"/>&nbsp;&nbsp;
-	학번 입력<input type="text"  placeholder="학번 입력란" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
-	<button class="btn btn-outline-secondary" type="submit" style="height: 32px;"> 검 색 </button>
-	</form>
-</div>
-<% if(list != null){ %>
-<table class = "main_default">
-<tr><th>수혜학기</th><th>학 번</th><th>장학금명</th></tr>
-
-	<% for(Ssbenefitst ssst : list){ %>
-	<tr><th><%=ssst.getBenefitterm() %></th>
-		<td><%=ssst.getStudentid() %></td>
-		<td><%=ssst.getSsname() %></td> </tr>
-	<% } %>
-</table>	
-	
-<% } %>
-
 <% if(stst != null){ %>
 <form action="/beet/deletebenest" method="post">
 <input type="hidden" name="benefitterm" value="<%=stst.getBenefitterm() %>">
@@ -242,11 +220,58 @@ cursor: pointer;
 	<div align="center" style="margin-top: 8px;">
 	<button class="btn btn-outline-secondary" type="submit"> 삭 제 </button>
 	</div>
-	<% }else{ %>
-	<h3 style="margin-bottom: 8px;">조회하신 조건에 맞는 결과가 없습니다.</h3>
 	<% } %>
 </form>
+<br><br>
 <% }%>
+
+
+<!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
+<h3>장학금수혜학생 전체 조회</h3>
+<div align="right" style="margin-bottom: 8px;">
+<button style="margin-bottom: 5px;" onclick="javascript:location.href='/beet/selectbeneall?page=1'" class="btn btn-outline-secondary"> &nbsp;조 &nbsp;회&nbsp; </button>
+
+	<form action="/beet/selectonessst?" method="post">
+	<input type="hidden" value="<%=currentPage%>" name="page">
+	학기 입력<input class="number" type="number" placeholder="ex)202001" 
+						name="benefitterm" maxlength="6" oninput="numberMaxLength(this);"/>&nbsp;&nbsp;
+	학번 입력<input type="text"  placeholder="학번 입력란" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
+	<button class="btn btn-outline-secondary" type="submit" style="height: 32px;"> 검 색 </button>
+	</form>
+</div>
+
+<% if(list != null){ %>
+<table class = "main_default">
+<tr><th>수혜학기</th><th>학 번</th><th>장학금명</th></tr>
+	<% for(Ssbenefitst ssst : list){ %>
+	<tr><th><%=ssst.getBenefitterm() %></th>
+		<td><%=ssst.getStudentid() %></td>
+		<td><%=ssst.getSsname() %></td> </tr>
+	<% } %>
+</table>
+	<div align="center" style="margin-top: 5px;">
+	<% if(currentPage <= 1){ %>
+	[처 음]&nbsp;
+	<% }else{ %>
+		<a href="/beet/selectbeneall">[처 음]</a>
+	<% } %>
+	
+	<!-- 현재 페이지가 속한 그룹의 숫자 출력 처리 -->
+	<% for(int p = startPage; p <= endPage; p++){ 
+		if(p == currentPage){ %>
+		<font color="1e90ff" size="4"><b>[<%= p %>]</b></font>
+		<% }else{ %>
+		<a href="/beet/selectbeneall?page=<%= p %>"><%= p %></a>
+	<% }} %>
+	
+	
+	<% if(currentPage >= maxPage){ %>
+		[ 끝 ]&nbsp;
+	<% }else{ %>
+		<a href="/beet/selectbeneall?page=<%= maxPage %>">[ 끝 ]</a>
+	<% } %>
+	</div>	
+<% } %>
 
 <br><br>
 
