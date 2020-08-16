@@ -154,8 +154,8 @@ cursor: pointer;
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
-			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;/beet/resources/images/page.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
 						<div class="container_inner clearfix">
@@ -236,16 +236,16 @@ cursor: pointer;
 	<div  align="right" >
 	
 	<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
-		<button onclick="majorInsertForm();">추가</button>
+			<button onclick="majorInsertForm();" class="btn btn-outline-secondary" >추가</button>
 	<% }else{ %>
 		
 	<% } %>
-		<button onclick="javascript:history.go(-1);">뒤로</button>
+			<button onclick="javascript:history.go(-1);" class="btn btn-outline-secondary findbtn" >뒤로</button>
 	</div>
 	
 	
 
-	</form>
+	
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
 <script type="text/javascript">

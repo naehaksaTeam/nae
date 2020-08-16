@@ -113,42 +113,42 @@ public class AtndnDao {
 	
 	
 //select 강의 주차별 (selectone) 
-//	public Atndn selectOneLctr(Connection conn, String id, String lcode) {
-//		ArrayList<Atndn> list = new ArrayList<Atndn>();
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		String query = "select sid, sname, categoryname, category, lcode, lname, ltime, pname ,absent3,"
-//				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16"
-//				+ "from AtndnView where lcode = ? and semester = ?";
-//		
-//		try {
-//			pstmt = conn.prepareStatement(query);
-//			pstmt.setString(1, id);
-//			
-//			rset = pstmt.executeQuery(); 
-//			while(rset.next()) {
-//				Atndn atndn = new Atndn();
-//				
-//				atndn.setStudentid(rset.getString("studentid"));
-//				atndn.setCategory(rset.getString("category"));
-//				atndn.setLcode(rset.getString("lcode"));
-//				atndn.setLname(rset.getString("lname"));
-//				atndn.setLtime(rset.getString("ltime"));
-//				atndn.setProfessorname(rset.getString("professorname"));
-//				atndn.setAbsent3((rset.getString("absent3").equals("Y"))?"출석미달":"-");
-//				atndn.setLcode(rset.getString("category"));
-//				
-//				
-//				atndn.setLpoint(rset.getInt("lpoint"));
-//				atndn.setCapacity(rset.getInt("capacity"));
-//				
-//				list.add(atndn);
-//			}
-//		
-//		}
-//		return list;
-//	}
+	/* 근데 매개변수로는 id랑 lcode를  받는데 쿼리문 물음표는 lcode랑 semester에 되어 있어요
+	 *  
+	 * public ArrayList<Atndn> selectOneLctr(Connection conn, String id, String
+	 * lcode) { ArrayList<Atndn> list = new ArrayList<Atndn>(); PreparedStatement
+	 * pstmt = null; ResultSet rset = null;
+	 * 
+	 * String query =
+	 * "select sid, sname, category, lcode, lname, ltime, pname ,absent3, " +
+	 * " week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 "
+	 * + " from AtndnView where lcode = ? and semester = ? " +
+	 * " group by sid, sname, category, lcode, lname, ltime, pname ,absent3, " +
+	 * " week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 "
+	 * ;
+	 * 
+	 * try { pstmt = conn.prepareStatement(query); pstmt.setString(1, id);
+	 * 
+	 * rset = pstmt.executeQuery(); while(rset.next()) { Atndn atndn = new Atndn();
+	 * 
+	 * atndn.setSid(rset.getString("studentid"));
+	 * atndn.setCategory(rset.getString("category"));
+	 * atndn.setLcode(rset.getString("lcode"));
+	 * atndn.setLname(rset.getString("lname"));
+	 * atndn.setLtime(rset.getString("ltime"));
+	 * atndn.setPname(rset.getString("professorname"));
+	 * atndn.setAbsent3((rset.getString("absent3").equals("Y"))?"출석미달":"-");
+	 * atndn.setLcode(rset.getString("category"));
+	 * 
+	 * 
+	 * atndn.setLpoint(rset.getInt("lpoint"));
+	 * atndn.setCapacity(rset.getInt("capacity"));
+	 * 
+	 * list.add(atndn); }
+	 * 
+	 * }catch (Exception e) { e.printStackTrace(); }finally { close(rset);
+	 * close(pstmt); } return list; }
+	 */
 
 //select 강의 학기별 (리스트, 
 	public ArrayList selectMyTermLctr(Connection conn, String studentid) {
