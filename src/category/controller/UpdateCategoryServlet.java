@@ -1,6 +1,7 @@
 package category.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,16 +26,21 @@ public class UpdateCategoryServlet extends HttpServlet {
 		System.out.println("newname : "+ newname + " ,  catename : " + catename);
 		
 		int result = new CategoryService().updateCategory(catename, newname);
+		PrintWriter out = response.getWriter();
 		
 		RequestDispatcher view = null;
 		if(result >0) {
-			view = request.getRequestDispatcher("selectca");
-			request.setAttribute("message", catename +" 수정이 완료되었습니다.");
-			view.forward(request, response);
+			 out.print("<script>");
+			  out.print("alert('수정이 완료되었습니다.');");
+			  out.print("location.href = 'selectca'");
+			  out.print("</script>");
+			  out.close();
 		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", catename +" 수정에 실패하였습니다.\n한 개만 선택해주세요");
-			view.forward(request, response);
+			 out.print("<script>");
+			  out.print("alert('수정에 실패해였습니다.');");
+			  out.print("location.href = 'selectca'");
+			  out.print("</script>");
+			  out.close();
 		}
 		
 	}

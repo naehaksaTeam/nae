@@ -35,7 +35,7 @@ function validate(){
 function sendDelete(){
 	
 	//회원 탈퇴처리 서블릿 요청함.
-	location.href = "/mdelete?id=<%= member1111.getId() %>";
+	location.href = "/beet/mdelete?id=<%= member1111.getId() %>";
 	return false;
 }
 </script>
@@ -173,8 +173,8 @@ cursor: pointer;
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
-			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;/beet/resources/images/page.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
@@ -304,9 +304,9 @@ cursor: pointer;
 </table>
 
 	 	<p style="text-align: center;"><strong>
-	 		<input type="submit"  class="down_default" target="_blank" value="수정하기"> 
+	 		<input type="submit"  class="btn btn-outline-secondary" target="_blank" value="수정하기"> 
 	 		&nbsp; 
-	 		<input type="reset" class="down_default" target="_blank" value="수정취소"> 
+	 		<input type="reset" class="btn btn-outline-secondary" target="_blank" value="수정취소"> 
 	 	</strong></p>
 	 	<p style="text-align: center;"><strong>
 	 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 

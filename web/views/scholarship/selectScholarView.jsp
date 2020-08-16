@@ -15,9 +15,18 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- ★★★★★★★★title -->
-	<title> </title>
+	<title>beet</title>
 
-<!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+<script>
+$(document).ready(function(){
+    if( (<%=(Member)session.getAttribute("loginMember")%>)  == null ){
+    	location.href = '/beet/index.jsp'
+    }
+});
+</script>
+
+
 
 
 <div class="fit-vids-style" id="fit-vids-style" style="display: none;">&shy;<style>                 .fluid-width-video-wrapper {                   width: 100%;                                position: relative;                         padding: 0;                      					 min-height: 1px;                         }                                                                                       .fluid-width-video-wrapper iframe,          .fluid-width-video-wrapper object,          .fluid-width-video-wrapper embed {             position: absolute;                         top: 0;                                     left: 0;                                    width: 100%;                                height: 100%;                            }                                         </style></div><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://www.cha.ac.kr/wp-includes/js/wp-emoji-release.min.js?ver=4.7.18" type="text/javascript" defer=""></script></head><body data-rsssl="1" class="page-template-default page page-id-980 page-child parent-pageid-1429  qode_grid_1300 side_menu_slide_with_content width_370 footer_responsive_adv qode-child-theme-ver-1.0.0 qode-theme-ver-11.1 qode-theme-bridge wpb-js-composer js-comp-ver-5.1.1 vc_responsive" itemscope="" itemtype="http://schema.org/WebPage" style="height: auto; overflow: auto;">
@@ -158,14 +167,15 @@ cursor: pointer;
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
-			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;/beet/resources/images/page.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+                                                                										<br><br><br>
+																										<h1><span>나의 장학금 조회</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -190,34 +200,33 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
-
-<p class="page_tt">컬럼명여따쓰세요</p>
-
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 <div align="center" >
 <%-- <button onclick="javascript:location.href='/beet/selectbenest?studentid=<%=m.getId()%>'">나의 장학금 조회</button> --%>
-<h1 ><%=((Member)session.getAttribute("loginMember")).getName()%>님의 장학금 조회</h1>
-<table class="tg">
+<h3 style="text-align: left; margin-bottom: 8px;"><%=((Member)session.getAttribute("loginMember")).getName()%>님의 장학금 조회</h3>
+<table class = "main_default">
 
-<% if(stlist.size() != 0){ %>
+<% if(!stlist.isEmpty()){ %>
 	<tr><th>수혜학기</th><th>장학금명</th></tr>
 	<% for(Ssbenefitst ssst : stlist){%>
 	<tr><td><%=ssst.getBenefitterm()%></td><td><%=ssst.getSsname() %></td></tr>
 	<% } %>
 	
 <% }else{ %>
-<tr><td colspan="2">장학금수혜정보가 없습니다.</td></tr>
+<tr><th colspan="2">장학금수혜정보가 없습니다.</th></tr>
 <% } %>
 </table>
 </div>
-
+<br><br><br>
 <div align="center">
-<h1>장학금 전체 조회</h1>
-<table class="tg">
-<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th></tr>
+<h3 style="text-align: left; margin-bottom: 8px;">성적장학금 전체 조회</h3>
+<table class = "main_default">
+<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th><th>시작등수</th><th>끝등수</th></tr>
 <% if(list != null){ %>
 	<% for(Scholarship ss : list){ %>
-	<tr><th><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
+	<tr><th><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> 
+		<td><%= ss.getStartrank() %></td><td><%= ss.getEndrank() %></td>
+	</tr>
 	<% } %>
 <% } %>
 </table>
@@ -313,7 +322,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<%@ include file = "/views/common/side.jsp" %>
+<%@ include file = "/views/scholarship/sideSTUDENT.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							
@@ -334,6 +343,9 @@ cursor: pointer;
 	</div>-->
 </div> 
 <!-- 서브메뉴 끝 -->
+<%-- <div class="column2">														
+<%@ include file = "sideADMIN.jsp" %>	
+</div>	 --%>
 						</div>
 								
 		</div>

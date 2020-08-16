@@ -65,7 +65,7 @@ public class EnrollPageServlet extends HttpServlet {
 				
 				//4. 받은 결과에 따라 성공/실패 뷰 선택해서 내보내기
 				if(result > 0) {
-					response.sendRedirect("beet/web/index.jsp");
+					response.sendRedirect("/beet/web/index.jsp");
 				}else {
 				
 					RequestDispatcher view = request

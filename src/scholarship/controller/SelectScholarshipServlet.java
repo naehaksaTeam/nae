@@ -27,6 +27,9 @@ public class SelectScholarshipServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		if(list != null) {
 			view = request.getRequestDispatcher("views/scholarship/scholarshipManagementView.jsp");
+			if((Scholarship)request.getAttribute("ss") != null) {
+				request.setAttribute("ss", (Scholarship)request.getAttribute("ss"));
+			}
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {

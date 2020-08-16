@@ -50,9 +50,14 @@ padding: 14px 0px 14px 20px;
 <ul id="menu-%ed%96%89%ec%a0%95" class="menu">
 <form action="/beet/mylctr" method="get">
 <input type="hidden" name="userid" value="<%=((Member)session.getAttribute("loginMember")).getId() %>">
-<li><input type="submit" class="btn-sm subui" value="강의조회"></li>
-
+<li><input type="submit" class="btn-sm subui" value="강의목록"></li>
  </form>
+ 
+ <form action="/beet/atnlist" method="get">
+<input type="hidden" name="userid" value="<%=((Member)session.getAttribute("loginMember")).getId() %>">
+<li><input type="submit" class="btn-sm subui" value="출결조회"></li>
+ </form> 
+ 
  
  <form action="/beet/myScore" method="get">
 <input type="hidden" name="userid" value="<%=((Member)session.getAttribute("loginMember")).getId() %>">

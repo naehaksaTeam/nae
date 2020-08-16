@@ -133,6 +133,9 @@ cursor: pointer;
 
 </head>
 <body>
+<%if( (Member)session.getAttribute("loginMember") == null ){ %>
+<meta http-equiv="refresh" content="0;url=/beet/">
+<% } %>
     <header class="has_top has_header_fixed_right scroll_header_top_area dark stick scrolled_not_transparent page_header">
                 <div class="header_inner clearfix">
 
@@ -262,7 +265,7 @@ cursor: pointer;
                                                 <a href="/beet/lctrsearchall?userid=<%= ((Member)session.getAttribute("loginMember")).getId() %>" class=""><i class="menu_icon blank fa"></i><span>성적조회</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2492" class="">
-                                                <a href="/beet/mlist.ad" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
+                                                <a href="/beet/selectss" class=""><i class="menu_icon blank fa"></i><span>등록/장학</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-13721" class="">
                                                 <a href="/beet/toapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" class=""><i class="menu_icon blank fa"></i><span>수강신청</span><span class="plus"></span></a>

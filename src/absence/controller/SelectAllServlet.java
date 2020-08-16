@@ -1,6 +1,7 @@
 package absence.controller;
-
+ 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -25,14 +26,12 @@ public class SelectAllServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Absence> list = new AbsenceService().selectAbsence();
 		
+		PrintWriter out= response.getWriter();
+		
 		RequestDispatcher view = null;
 		if(list != null) {
 			view = request.getRequestDispatcher("views/absence/absenceManagementView.jsp");
 			request.setAttribute("list", list);
-			view.forward(request, response);
-		}else{
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "휴학, 복학 신청 내역이 없거나 조회에 실패하였습니다.");
 			view.forward(request, response);
 		}
 	}

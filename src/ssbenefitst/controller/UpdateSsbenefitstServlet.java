@@ -22,6 +22,7 @@ public class UpdateSsbenefitstServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Ssbenefitst newssst, Ssbenefitst originssst  객체 2개 보내야함
+		//홈페이지에서 구현하지 않음
 		Ssbenefitst originssst = new Ssbenefitst();
 		Ssbenefitst newssst = new Ssbenefitst();
 		

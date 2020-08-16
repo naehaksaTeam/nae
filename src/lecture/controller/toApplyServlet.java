@@ -34,7 +34,7 @@ public class toApplyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Lecture> list = new LectureService().selectOpenedLectures();//개설된 강좌목록 불러오기
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/lecture/수강신청.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/lecture/applylecture.jsp");
 		request.setAttribute("list", list);
 		request.setAttribute("result", "null값제거용_루삥뽕");
 		view.forward(request, response);

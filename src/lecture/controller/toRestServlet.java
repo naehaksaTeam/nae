@@ -20,7 +20,7 @@ import student.model.vo.Member;
  */
 @WebServlet("/torest")
 public class toRestServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 33454545L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -39,7 +39,7 @@ public class toRestServlet extends HttpServlet {
 		String id = request.getParameter("who");
 		ArrayList<Lecture> list3 = new LectureService().selectMyLectures(id);
 		
-		RequestDispatcher view = request.getRequestDispatcher("/views/lecture/휴보강신청.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("/views/lecture/rest.jsp");
 		request.setAttribute("list", list);
 		request.setAttribute("list2", list2);
 		request.setAttribute("list3", list3);

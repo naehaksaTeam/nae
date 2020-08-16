@@ -23,7 +23,8 @@ public class AtndnDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where sid = ? ";
+		String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where sid = ? "
+				+ "group by sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, id);
@@ -53,18 +54,17 @@ public class AtndnDao {
 
 
 	// select 출결현황
-	public ArrayList<Atndn> selectLctrAtndn(Connection conn, String sid, String lcode) {
+	public ArrayList<Atndn> selectLctrAtndn(Connection conn, String sid) {
 		ArrayList<Atndn> list = new ArrayList<Atndn>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
 		String query = "select sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3,"
 				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 "
-				+ "from AtndnView where sid = ? and lcode = ?";
+				+ "from AtndnView where sid = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, sid);
-			pstmt.setString(2, lcode);
+			pstmt.setString(1, sid);  
 			
 			rset = pstmt.executeQuery();
 			while (rset.next()) {
@@ -105,21 +105,22 @@ public class AtndnDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			close(conn);
 		}
 
 		return list;
-	}
-
+	}	
+	
+	
+	
 //select 강의 주차별 (selectone) 
 //	public Atndn selectOneLctr(Connection conn, String id, String lcode) {
 //		ArrayList<Atndn> list = new ArrayList<Atndn>();
 //		PreparedStatement pstmt = null;
 //		ResultSet rset = null;
 //		
-//		String query = "select studentid, category, lcode, lname, ltime, professorname ,absent3,"
+//		String query = "select sid, sname, categoryname, category, lcode, lname, ltime, pname ,absent3,"
 //				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16"
-//				+ "from AtndnView where id = ? and lcode = ?";
+//				+ "from AtndnView where lcode = ? and semester = ?";
 //		
 //		try {
 //			pstmt = conn.prepareStatement(query);
@@ -173,7 +174,6 @@ public class AtndnDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			close(conn);
 		}
 
 		return list;
@@ -202,7 +202,6 @@ public class AtndnDao {
 		} finally {
 		
 			close(pstmt);
-			close(conn);
 		}
 
 		return result;
@@ -242,17 +241,10 @@ public class AtndnDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(conn);
 		}
 
 		return result;
 	}
-
-//update 강의 출결수정(교수, 개별)
-
-//update 강의 출결수정(교수, 다중선택)
-
-//delete 강의 출결삭제 (교수, 개별선택)
 
 //delete 강의 출결삭제(교수, 다중선택) -> 그냥 default 값으로update? 일단 만듦  
 
@@ -306,7 +298,6 @@ public class AtndnDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(conn);
 		}
 
 		return list;
@@ -360,7 +351,6 @@ public class AtndnDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			close(conn);
 		}
 		return list;
 	}
@@ -401,11 +391,55 @@ public class AtndnDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			close(conn);
 		}
 
 		return list;
 	}
+	
+	
+//교수 과목별 출결상세 
+	public ArrayList<Atndn> selectProfAtndnLctrOne(Connection conn, String lcode, String semester) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Atndn> list = new ArrayList<Atndn>();
+
+		String query = "select distinct a.lcode, a.id sid,  week1, week2, week3, week4, week5, week6, "
+				+ "week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 " 
+				+ "from attendance a join AtndnView  v on (a.lcode = v.lcode) "
+				+ " where v.lcode = ? and semester = ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, lcode);
+			pstmt.setString(2, semester);
+			
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				Atndn atndn = new Atndn();
+				
+				atndn.setSid(rset.getString("sid"));
+				atndn.setPid(rset.getString("pid"));
+				atndn.setSemester(rset.getString("semester"));
+				atndn.setCategory(rset.getString("category"));
+				atndn.setLcode(rset.getString("lcode"));
+				atndn.setSname(rset.getString("sname"));
+				atndn.setCapacity(rset.getInt("capacity"));
+				atndn.setMajorname(rset.getString("majorname"));
+				atndn.setLcode(rset.getString("lcode"));
+
+				list.add(atndn);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
+	
 	
 	//update Atndn 
 			public int updateAtndn(Connection conn, Atndn atndn) {
@@ -448,7 +482,7 @@ public class AtndnDao {
 				return result;
 			}
 
-			public int updateWeekAll(Connection conn, HashMap map) {
+			public int updateWeekAll(Connection conn, ArrayList<Atndn> list2) {
 				int r = 0;
 				String query ="insert into attendance values ('','','','','','','','','','','','','','','','','','','','')";
 				return r;
@@ -483,8 +517,137 @@ public class AtndnDao {
 				} finally {
 					close(rset);
 					close(pstmt);
-					close(conn);
 				}
 				return list;
 			}
+
+			
+			//과목하나조회 
+			public ArrayList<Atndn> selectOneAtndn(Connection conn, String lcode, String semester) {
+				ArrayList<Atndn> list = null;
+				PreparedStatement pstmt = null;
+				ResultSet rset = null;
+				
+				String query = "select sid, sname, majorname, category, lcode, lname, lpoint, capacity, ltime, pname ,absent3, week1, week2, week3, week4, week5, week6, week7, week8, week9, " + 
+						"week10, week11, week12, week13, week14, week15, week16 from AtndnView where lcode = ? and semester = ?";
+
+			  try {
+				   pstmt = conn.prepareStatement(query);
+				   pstmt.setString(1, lcode);
+				   pstmt.setString(2, semester);
+				   
+				   rset = pstmt.executeQuery();
+
+			
+				   
+				   
+				   
+				   
+				   while(rset.next()) {
+					   Atndn atndn = new Atndn();
+
+					   System.out.println(rset.getString("sid"));
+					   System.out.println(rset.getString("sname"));
+					   System.out.println(rset.getString("majorname"));
+					   System.out.println(rset.getString("category"));
+					   System.out.println(rset.getString("lname"));
+					   System.out.println(rset.getString("ltime"));
+					   System.out.println(rset.getString("pname"));
+					   System.out.println(rset.getString("absent3"));
+					   System.out.println(rset.getString("lpoint"));
+					   System.out.println(rset.getString("capacity"));
+					   System.out.println(rset.getString("week1"));
+					   System.out.println(rset.getString("week2"));
+					   System.out.println(rset.getString("week3"));
+					   System.out.println(rset.getString("week4"));
+					   System.out.println(rset.getString("week5"));
+					   System.out.println(rset.getString("week6"));
+					   System.out.println(rset.getString("week7"));
+					   System.out.println(rset.getString("week8"));
+					   System.out.println(rset.getString("week9"));
+					   System.out.println(rset.getString("week10"));
+					   System.out.println(rset.getString("week11"));
+					   System.out.println(rset.getString("week12"));
+					   System.out.println(rset.getString("week13"));
+					   System.out.println(rset.getString("week14"));
+					   System.out.println(rset.getString("week15"));
+					   System.out.println(rset.getString("week16"));
+				
+					   atndn.setLcode(lcode); 
+					   atndn.setSid(rset.getString("sid"));
+					   atndn.setSname(rset.getString("sname"));
+					   atndn.setMajorname(rset.getString("majorname"));
+						  atndn.setCategory(rset.getString("category")); 
+						  atndn.setLname(rset.getString("lname")); 
+						  atndn.setLtime(rset.getString("ltime")); 
+						  atndn.setPname(rset.getString("pname")); 
+						  atndn.setAbsent3(rset.getString("absent3")); 
+						  atndn.setLpoint(rset.getInt("lpoint"));
+						  atndn.setCapacity(rset.getInt("capacity")); 
+						  atndn.setWeek1(rset.getString("week1"));
+						  atndn.setWeek2(rset.getString("week2"));
+						  atndn.setWeek3(rset.getString("week3"));
+						  atndn.setWeek4(rset.getString("week4"));
+						  atndn.setWeek5(rset.getString("week5"));
+						  atndn.setWeek6(rset.getString("week6"));
+						  atndn.setWeek7(rset.getString("week7"));
+						  atndn.setWeek8(rset.getString("week8"));
+						  atndn.setWeek9(rset.getString("week9"));
+						  atndn.setWeek10(rset.getString("week10"));
+						  atndn.setWeek11(rset.getString("week11"));
+						  atndn.setWeek12(rset.getString("week12"));
+						  atndn.setWeek13(rset.getString("week13"));
+						  atndn.setWeek14(rset.getString("week14"));
+						  atndn.setWeek15(rset.getString("week15"));
+						  atndn.setWeek16(rset.getString("week16"));
+						  
+						  
+						  
+						  
+				/*
+				 * atndn.setWeek1((rset.getString("week1").equals("1"))? "○" :
+				 * ((rset.getString("week1").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek2((rset.getString("week2").equals("1"))? "○" :
+				 * ((rset.getString("week2").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek3((rset.getString("week3").equals("1"))? "○" :
+				 * ((rset.getString("week3").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek4((rset.getString("week4").equals("1"))? "○" :
+				 * ((rset.getString("week4").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek5((rset.getString("week5").equals("1"))? "○" :
+				 * ((rset.getString("week5").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek6((rset.getString("week6").equals("1"))? "○" :
+				 * ((rset.getString("week6").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek7((rset.getString("week7").equals("1"))? "○" :
+				 * ((rset.getString("week7").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek8((rset.getString("week8").equals("1"))? "○" :
+				 * ((rset.getString("week8").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek9((rset.getString("week9").equals("1"))? "○" :
+				 * ((rset.getString("week9").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek10((rset.getString("week10").equals("1"))? "○" :
+				 * ((rset.getString("week10").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek11((rset.getString("week11").equals("1"))? "○" :
+				 * ((rset.getString("week11").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek12((rset.getString("week12").equals("1"))? "○" :
+				 * ((rset.getString("week12").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek13((rset.getString("week13").equals("1"))? "○" :
+				 * ((rset.getString("week13").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek14((rset.getString("week14").equals("1"))? "○" :
+				 * ((rset.getString("week14").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek15((rset.getString("week15").equals("1"))? "○" :
+				 * ((rset.getString("week15").equals("2"))? "Ⅹ" : "△" ));
+				 * atndn.setWeek16((rset.getString("week16").equals("1"))? "○" :
+				 * ((rset.getString("week16").equals("2"))? "Ⅹ" : "△" ));
+				 */
+						
+						  list.add(atndn); 
+				   }
+			  } catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					close(rset);
+					close(pstmt);
+				}
+				return list;
+			}
+
 }
