@@ -215,9 +215,9 @@ cursor: pointer;
 	<button style="height: 34px;" class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaba?value=b'">복 학 조 회</button>
 
 	<div style="margin-top: 8px; margin-bottom: 5px;">
-	<form action="/beet/selectabSearch" method="post">
-	<input required="required" type="text" placeholder=" 학번을 입력하세요" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
-	<button style="height: 34px;" type="submit" class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaba?value=b'"> 검 색 </button>
+	<form name="formform" method="post">
+	<input type="text" placeholder="학번을 입력하세요" maxlength="9" oninput="numberMaxLength(this);" required="required" name="studentid">
+	<button style="height: 34px;" type="submit" class="btn btn-outline-secondary" onclick="javascript:formform.action='/beet/selectabSearch'"> 검 색 </button>
 	</form>
 	</div>
 </div>
@@ -268,7 +268,7 @@ cursor: pointer;
 <% }else{ %>
 <div align="center" style="margin-top: 10%; margin-left: 5%; ">
 	<br>
-	<h3>신청 내역이 없습니다</h3>
+	<h3>입력하신 학번으로 검색되는 신청 내역이 없습니다</h3>
 	<br><br><br>
 	<button class="btn btn-outline-secondary" onclick="javascript:loaction.href='/beet/views/main/main.jps'"> 메인 페이지 </button>&nbsp;&nbsp;&nbsp;
 	<button class="btn btn-outline-secondary" onclick="javascript:history.go(-1)"> 이전 페이지 </button>
