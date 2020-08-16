@@ -15,9 +15,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- ★★★★★★★★title -->
-	<title> </title>
+	<title>beet</title>
 
-<!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
+<script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+<script>
+$(document).ready(function(){
+    if( (<%=(Member)session.getAttribute("loginMember")%>)  == null ){
+    	location.href = '/beet/index.jsp'
+    }
+});
+</script>
+
 
 
 <div class="fit-vids-style" id="fit-vids-style" style="display: none;">&shy;<style>                 .fluid-width-video-wrapper {                   width: 100%;                                position: relative;                         padding: 0;                      					 min-height: 1px;                         }                                                                                       .fluid-width-video-wrapper iframe,          .fluid-width-video-wrapper object,          .fluid-width-video-wrapper embed {             position: absolute;                         top: 0;                                     left: 0;                                    width: 100%;                                height: 100%;                            }                                         </style></div><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://www.cha.ac.kr/wp-includes/js/wp-emoji-release.min.js?ver=4.7.18" type="text/javascript" defer=""></script></head><body data-rsssl="1" class="page-template-default page page-id-980 page-child parent-pageid-1429  qode_grid_1300 side_menu_slide_with_content width_370 footer_responsive_adv qode-child-theme-ver-1.0.0 qode-theme-ver-11.1 qode-theme-bridge wpb-js-composer js-comp-ver-5.1.1 vc_responsive" itemscope="" itemtype="http://schema.org/WebPage" style="height: auto; overflow: auto;">
@@ -209,7 +217,7 @@ cursor: pointer;
 <table style="clear: both" class = "main_default">
 	<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th>
 	<% for(Scholarship ss : list){ %>
-	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname()%>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
+	<tr><th><input type="radio" required="required" name="ssname" value="<%=ss.getSsname()%>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
 	<% } %>
 </table>
 </form>
@@ -235,9 +243,9 @@ cursor: pointer;
 <button class="btn btn-outline-secondary" type="submit" onclick="javascript: insertssform.action='/beet/insertss'" > 추 가 </button>
 </div>
 <table class = "main_default">
-<tr><th>장학금명</th><td><input type="text" placeholder="등록하실 장학금의 이름을 입력해주세요" required="required" name="ssname" style="outline: none; width: 98%; border: 0;" ></td></tr>
-<tr><th>수혜조건</th><td><input type="text" placeholder="수혜조건을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="benefitcon"></td></tr>
-<tr><th>장학금액</th><td><input type="number" placeholder="금액을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="value"></td></tr>
+<tr><th>장학금명</th><td><input type="text" required="required" placeholder="등록하실 장학금의 이름을 입력해주세요" required="required" name="ssname" style="outline: none; width: 98%; border: 0;" ></td></tr>
+<tr><th>수혜조건</th><td><input type="text" required="required" placeholder="수혜조건을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="benefitcon"></td></tr>
+<tr><th>장학금액</th><td><input type="number" required="required" placeholder="금액을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="value"></td></tr>
 </table>
 
 </form>
