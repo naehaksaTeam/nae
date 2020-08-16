@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 			// 로그인한 동안 여러 페이지와 서블릿들이 공유하고자 원하는 정보 저장함
 			session.setAttribute("loginMember", loginMember);
 
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/beet/views/main/main.jsp");
 		} else {
 			// 로그인 요청한 클라이언트 브라우저로 에러페이지 내보냄
 			// response.sendRedirect("views/common/error.jsp");
