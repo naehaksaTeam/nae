@@ -218,7 +218,7 @@ cursor: pointer;
 			<tr>
 				<th>내용 :</th>
 				
-				<td><textarea rows="1" cols="70" name="content"></textarea></td>
+				<td><textarea rows="20" cols="70" name="content"></textarea></td>
 			</tr>
 			
 		</table>

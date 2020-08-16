@@ -204,7 +204,7 @@ cursor: pointer;
 	<% } %>
 	
 <% }else{ %>
-<tr><td colspan="2">장학금수혜정보가 없습니다.</td></tr>
+<tr><th colspan="2">장학금수혜정보가 없습니다.</th></tr>
 <% } %>
 </table>
 </div>
