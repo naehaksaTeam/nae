@@ -13,18 +13,27 @@ import ssbenefitst.model.vo.Ssbenefitst;
 public class SsbenefitstDao {
 	public SsbenefitstDao() {}
 
-	public ArrayList<Ssbenefitst> selectSsbenefitst(Connection conn) {
+	public ArrayList<Ssbenefitst> selectSsbenefitst(Connection conn, int currentPage, int limit) {
 		ArrayList<Ssbenefitst> list = new ArrayList<Ssbenefitst>();
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from ssbenefitst";
+		String query = "select * from "
+	      		+ " (select rownum rnum, benefitterm, id, ssname "
+	      		+ " from (select * from ssbenefitst order by benefitterm desc)) "
+	      		+ " where rnum >= ? and rnum <= ? ";
+		
+		int startRow = ( (currentPage - 1) * limit ) + 1;
+	      //1페이지면 1~10, 2페이지면 11~20
+	    int endRow = startRow + limit - 1;
 		
 		try {
-			stmt = conn.createStatement();
-			
-			rset = stmt.executeQuery(query);
-			
+	    	 pstmt = conn.prepareStatement(query);
+	         pstmt.setInt(1, startRow);
+	         pstmt.setInt(2, endRow);
+	         
+	         rset = pstmt.executeQuery();
+	         
 			while(rset.next()) {
 				Ssbenefitst ssst = new Ssbenefitst(rset.getInt("benefitterm"), rset.getString("id"), rset.getString("ssname"));
 				
@@ -34,7 +43,7 @@ public class SsbenefitstDao {
 			e.printStackTrace();
 		}finally {
 			close(rset);
-			close(stmt);
+			close(pstmt);
 		}
 		
 		return list;
@@ -243,7 +252,32 @@ public class SsbenefitstDao {
 		}
 		
 		return result;
-	};
+	}
+
+	public int getListCount(Connection conn) {
+		int listCount = 0;
+		Statement stmt =null;
+		ResultSet rset =null;
+		
+		String query ="select count(*) from ssbenefitst";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			if(rset.next()) {
+				listCount = rset.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
+		}
+		
+		return listCount;
+	}
 	
 	
 }

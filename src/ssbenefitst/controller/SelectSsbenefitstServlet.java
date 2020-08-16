@@ -36,6 +36,8 @@ public class SelectSsbenefitstServlet extends HttpServlet {
 		view = request.getRequestDispatcher("views/scholarship/selectScholarView.jsp");
 		request.setAttribute("listssst", listssst);
 		request.setAttribute("list", list);
+		
+		
 		view.forward(request, response);
 
 	}
