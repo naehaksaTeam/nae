@@ -166,25 +166,11 @@ cursor: pointer;
 
 <style>
 
-
-/* 
-.box{
-    width: 1000px;
-    min-height: 300px;  
-    margin: 10px auto;
-    display: flex;
-
+.col-sm-3{
+		overflow:hidden;
+		word-break:break-all;
 
 }
-
-
-.box h2{
-   align: center;
-   font-size: 18px;
-   font-family: cursive;
-   color: slategray;
-/*     line-height: 25px;
-    margin: 0; */
     
 }
 .a{
@@ -208,32 +194,7 @@ aa{
     font-size: 14pt;
 }
 
-/* 
 
-.b{
-    border: 2px solid #dfe4ea;
-    flex:1;
-    margin: 0px;
-    width:30%;
-    box-sizing: border-box;
-     background-image: url("/beet/resources/images/a2.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-}
-
-.c{
-    border: 2px solid #dfe4ea;
-    flex:1;
-     width:30%;
-    box-sizing: border-box;
-    background-image: url("/beet/resources/images/a.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-} */
 #mainNotice td{
 	text-align: left;"
 }
@@ -657,11 +618,11 @@ function calendar()
 					</div>
 				</div>
 			</div>
-		
+
 			
 			<div class="col-sm-3">
 				<div class="panel panel-primary"
-					style="border-color: #edeef1; height: 330px">
+					style="border-color: #edeef1; height: 330px; ">
 					<div class="panel-footer">공지사항</div>
 					<div class="panel-body">
 					 <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
@@ -681,7 +642,7 @@ function calendar()
 					  <table style="width:20; margin:auto; padding-top:10px;" id="mainSchedule" cellspacing="0">
   
          <tr>
-            <th style="color: #4682B4">일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th><th style="color: #4682B4"> 일정 </th>
+            <th style="color: #4682B4">일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th style="color: #4682B4"> 일정 </th>
          </tr>
          
          </table>
