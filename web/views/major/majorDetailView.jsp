@@ -7,6 +7,11 @@
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
 	<!-- ★★★★★★★★title -->
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<title> </title>
 
 <!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
@@ -220,11 +225,11 @@ cursor: pointer;
 	
 	<br>
 	<div align="right">
-		<button onclick="javascript:history.go(-1);">뒤로</button>
+		<button  class="btn btn-outline-secondary" onclick="javascript:history.go(-1);">뒤로</button>
 		<!--  관리자일때 아닐때 구분해서 표기해야함 관리자면 보이고 아니면 안보임  -->
-		<button
+		<button class="btn btn-outline-secondary"
 			onclick="javascript:location.href='/beet/majorupdate.ad?majorno=<%=major.getMajorno()%>';">수정</button>
-		<button
+		<button class="btn btn-outline-secondary"
 			onclick="javascript:location.href='/beet/majordelete.ad?majorno=<%=major.getMajorno()%>';">삭제</button>
 	</div>
 	
