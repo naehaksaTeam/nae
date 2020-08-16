@@ -172,7 +172,7 @@ cursor: pointer;
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
 																										<br><br><br>
-																										<h1><span>휴학/복학 신청 및 조회</span></h1>
+																										<h1><span>학교 소식</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -196,41 +196,44 @@ cursor: pointer;
 		
 <!-- --------------------------------------------------------------------------- -->		
 	
-<h1 align="center">등록</h1>
+<h3>추 가</h3>
 	<!-- from에서 입력값들과 파일을 같이 전송하려면 반드시 enctype="multipart/form-data" 속성을 추가해야함 -->
 	<form action="/beet/ninsert.ad" method="post"
 		enctype="multipart/form-data">
-		<div align="center" width="500" border="3" cellspacing="0" cellpading="5">
- 		<table  style="border:2px solid black;">
+		<div  align="center"  >
+ 		<table class="main_default" id="outer" align="center" cellspacing="5" cellpadding="0">
 			<tr>
-				<th>제목</th>
+				<th>제목 :</th>
 				<td><input type="text" name="title" size="50"></td>
 			</tr>
 			<tr>
-				<th>작성자</th>
+				<th>작성자 :</th>
 				<td><input type="text" name="writer" value="<%-- <%=  %> --%>"></td>
 			</tr>
 			<tr>
-				<th>파일 선택 :</th>
+				<th>첨부파일 :</th>
 				<td><input type="file" name="ofile" multiple="multiple">
 				</td>
 			</tr>
 			<tr>
-				<th>내용</th>
-				<td><textarea rows="5" cols="50" name="content"></textarea></td>
+				<th>내용 :</th>
+				
+				<td><textarea rows="1" cols="70" name="content"></textarea></td>
 			</tr>
-			<tr>
-				<th colspan="2"><input class="btn btn-outline-secondary findbtn" type="submit" value="등록하기">
-					&nbsp; <input class="btn btn-outline-secondary findbtn" type="reset" value="작성취소"> &nbsp; <input
-					type="button" class="btn btn-outline-secondary findbtn" value="목록"
-					onclick="javascript:history.go(-1); return false;"></th>
-			</tr>
+			
 		</table>
 		</div>
-	</form>	
 	
+	 
+	<div  align="right">
 	
-		
+				<input class="btn btn-outline-secondary findbtn" type="submit" value="등록하기">
+					&nbsp; <input class="btn btn-outline-secondary findbtn" type="reset" value="초기화"> &nbsp; <input
+					type="button" class="btn btn-outline-secondary findbtn" value="목록"
+					onclick="javascript:history.go(-1); return false;">
+			
+	</div>
+	</form>		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
