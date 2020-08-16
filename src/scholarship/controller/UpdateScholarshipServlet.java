@@ -1,6 +1,7 @@
 package scholarship.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,26 +24,29 @@ public class UpdateScholarshipServlet extends HttpServlet {
 		Scholarship ss = new Scholarship();
 		String ssname = request.getParameter("ssname");
 		String originname = request.getParameter("originname");
-		
-		System.out.println(ssname);
-		System.out.println(request.getParameter("benefitcon"));
-		System.out.println(request.getParameter("value"));
-		
 
 		ss.setSsname(ssname);
 		ss.setBenefitcon(request.getParameter("benefitcon"));
 		ss.setValue(Integer.parseInt(request.getParameter("value")));
+		ss.setStartrank(Integer.parseInt(request.getParameter("startrank")));
+		ss.setEndrank(Integer.parseInt(request.getParameter("endrank")));
 
 		int result = new ScholarshipService().updateScholarship(ss, originname);
+		
+		PrintWriter out = response.getWriter();
 		RequestDispatcher view = null;
 		if(result > 0) {
-			view = request.getRequestDispatcher("selectss");
-			request.setAttribute("message", ssname + "수정에 성공하였습니다");
-			view.forward(request, response);
+			out.print("<script>");
+			out.print("alert('수정에 성공하였습니다.');");
+			out.print("location.href = 'selectss'");
+			out.print("</script>");
+			out.close();
 		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", ssname + "수정에 실패하였습니다");
-			view.forward(request, response);
+			out.print("<script>");
+			out.print("alert('수정에 실패하였습니다.');");
+			out.print("location.href = 'selectss'");
+			out.print("</script>");
+			out.close();
 		}
 		
 		

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/lsearch")
 public class lectureSearchServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3767887L;
        
     /**
      * @see HttpServlet#HttpServlet()

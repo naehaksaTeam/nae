@@ -7,6 +7,10 @@
 		function testConfirm(){
 			//confirm창에서 선택하는 것을  result에 저장
 			result = window.confirm("정말 삭제할꺼냐?");
+<<<<<<< HEAD
+=======
+			test = window.prompt
+>>>>>>> d413755b7e51d2f80e713f43916edaf3566c81d3
 			//alert(result);
 			if(result){
 				alert("실제 db에서 삭제하는 작업을 수행 - state값 변경");

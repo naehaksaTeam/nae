@@ -3,6 +3,7 @@
 <%@page import="java.util.Calendar, java.util.ArrayList, notice.model.vo.Notice"%>
 
 <%@ page contentType="text/html; charset=UTF-8"%>
+
 <% Member m = (Member)session.getAttribute("loginMember"); %>
 
 <%   request.setCharacterEncoding("utf-8");
@@ -15,6 +16,28 @@
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="/beet/resourse/css/main.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+</style>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+ 
+ 
 	<!-- ★★★★★★★★title -->
 	<title> </title>
 
@@ -130,15 +153,23 @@ font-weight: 600;
 cursor: pointer;
 }		</style>
 
+	<script type="text/javascript" src="https://www.cha.ac.kr/wp-includes/js/wp-embed.min.js?ver=4.7.18"></script>
+<noscript><style type="text/css"> .wpb_animate_when_almost_visible { opacity: 1; }</style></noscript>
+	<link href="https://fonts.googleapis.com/earlyaccess/notosanskr" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/earlyaccess/nanumgothic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+
 
 
 
 <style>
 
 
-
+/* 
 .box{
-    width: 1200px;
+    width: 1000px;
     min-height: 300px;  
     margin: 10px auto;
     display: flex;
@@ -151,6 +182,7 @@ cursor: pointer;
    align: center;
    font-size: 18px;
    font-family: cursive;
+   color: slategray;
 /*     line-height: 25px;
     margin: 0; */
     
@@ -168,17 +200,23 @@ cursor: pointer;
     background-size: cover
    
     
+} 
+
+aa{
+ 	
+    color: white;
+    font-size: 14pt;
 }
 
-
+/* 
 
 .b{
     border: 2px solid #dfe4ea;
     flex:1;
-    margin: 0px 7%;
+    margin: 0px;
     width:30%;
     box-sizing: border-box;
-     background-image: url("/beet/resources/images/a.jpg");
+     background-image: url("/beet/resources/images/a2.jpg");
     min-height: 100%;
     background-position: center;
     background-size: cover
@@ -186,74 +224,42 @@ cursor: pointer;
 }
 
 .c{
-     border: 2px solid #dfe4ea;
-     flex:1;
+    border: 2px solid #dfe4ea;
+    flex:1;
      width:30%;
-     box-sizing: border-box;
-      background-image: url("/beet/resources/images/a.jpg");
+    box-sizing: border-box;
+    background-image: url("/beet/resources/images/a.jpg");
     min-height: 100%;
     background-position: center;
     background-size: cover
    
+} */
+#mainNotice td{
+	text-align: left;"
 }
+
+
+.d ul{
+   
+
+   font-family:돋움;
+   font-size:17px;
+   padding:50px;
+
+}
+/* 
 .d{
     border: 2px solid #dfe4ea;
     flex:1;
      width:30%;
     box-sizing: border-box;
-    background-image: url("/beet/resources/images/a.jpg");
+     background-image: url("/beet/resources/images/a2.jpg");
     min-height: 100%;
     background-position: center;
     background-size: cover
+    text-align: left;"
    
-}
-.d td{
-	text-align: left;"
-}
-
-.e #mainNotice{
-   
-
-   font-family:돋움;
-   font-size:17px;
-   padding:50px;
-
-}
-
-
-.e{
-    border: 2px solid #dfe4ea;
-    flex:1;
-    margin: 0px 6%;
-     width:30%;
-    box-sizing: border-box;
-    background-image: url("/beet/resources/images/a.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-}
-
-.f ul{
-   
-
-   font-family:돋움;
-   font-size:17px;
-   padding:50px;
-
-}
-
-.f{
-    border: 2px solid #dfe4ea;
-    flex:1;
-     width:30%;
-    box-sizing: border-box;
-     background-image: url("/beet/resources/images/a.jpg");
-    min-height: 100%;
-    background-position: center;
-    background-size: cover
-   
-}
+} */
 
 
 table.cal_calendar{
@@ -295,7 +301,6 @@ a:hover {text-decoration: none; color: red;}
 </style>
 
 
-
 <script type="text/javascript" src="/beet/resources/js/jquery-3.5.1.min.js"></script>
 
 <script type="text/javascript"> 
@@ -326,7 +331,7 @@ $(function(){
          var values = "";
          for(var i in json.list){
             values += "<tr><td>"+ json.list[i].schstartdate
-            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a href='/beet/schlist" +"'>" 
+            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td><a href='/beet/schlist" +"'>" 
              + decodeURIComponent(json.list[i].schname).replace(/\+/gi, " ")+ "</td></tr>";
          } 
 
@@ -360,7 +365,7 @@ $(function(){
          for(var i in json.list){
             values += "<tr><td><a href='/beet/ndetail?noticeno=" + json.list[i].no + "'>" 
             + decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
-            + "</a></td><td>"+ json.list[i].date + "</td></tr>";
+            + "</a></td><td>"+ json.list[i].date + "</td></tr><br>";
          }  
          
          
@@ -398,7 +403,7 @@ $(function(){
          var values = "";
          for(var i in json.list){
             values += "<tr><td>"+ json.list[i].SEMESTER
-            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>" + json.list[i].TERMGETPOINT + "</td></tr>";
+            + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td>" + json.list[i].TERMGETPOINT + "</td></tr><br>";
             
          } 
          
@@ -554,7 +559,7 @@ function calendar()
 <!-- 메인페이지작성 -->
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+		<div class="title title_size_medium  position_left  has_fixed_background beetimg" style="background-size: 1920px;height: 600px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
@@ -562,9 +567,48 @@ function calendar()
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
 																										<h1><span>학사관리 포털</span></h1>
-
 																										</div>
+
+              <%if(m.getId().substring(0, 1).equals("P")){ %>
+                <aa> 코드 : <%= m.getId() %><br>
+                    <%=m.getCategoryname() %>&nbsp;&nbsp;
+                      <strong><%= m.getName() %>교수님 </strong><br>
+                        내학사에 오신것을 환영합니다.</aa>
+                      
+            <% }else if(m.getId().substring(0, 1).equals("A")){ %>
+                <aa>관리자 코드 : <%= m.getId() %><br>
+                     <strong> <%= m.getName() %>관리자님 </strong><br>
+                      내학사에 오신것을 환영합니다.</aa>
+                      
+            <% }else{ %>
+                <aa>내 학번 : <%= m.getId() %><br>
+                 <%=m.getCategoryname() %>&nbsp;&nbsp;
+                      <strong><%= m.getName() %>님</strong> <br>
+                      내학사에 오신것을 환영합니다.</aa>
+            <%} %>
+            <br>
+          <div class="title_subtitle_holder_inner" id="mainScore" style="color: white;">
+  			 <%if((!(m.getId().substring(0, 1).equals("P")) && !(m.getId().substring(0, 1).equals("A")))){ %>
+         	<br>
+         	<br><br>
+              <h1><span>나의 학점 현황</span></h1>
+        		<br>
+               <th style="color: #4682B4; text-align: left;"><strong>학기</strong>
+               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+               <th style="color: #4682B4"><strong> 취득학점 </strong></th>
+         		<br>
+        	 
+        	 <%}else{ %>
+        
+       		 <%} %>
+        </div>
+					
+																									
 								                                                            </div>
+								                                                            
+			                                                            
+								                                                            
+								                                                            
 						</div>
 					</div>
 				</div>
@@ -576,41 +620,99 @@ function calendar()
 
 
 <!-- <<<<<<< HEAD:web/views/main/mainSample.jsp -->
-<div id="outer">
+<br>
+ 
+		
+		
+		
+		<div class="row main-row" style=" height: 330px; margin:0 auto;" >
+			<div class="col-sm-3">
+				<div class="panel panel-primary"
+					style="border-color: #edeef1;" >
+					<div class="panel-footer">캘린더</div>
+					<div class="panel-body">
+					
+					   <script type="text/javascript">
+            calendar();
+         </script>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="panel panel-primary"
+					style="border-color: #edeef1; height: 330px">
+					<div class="panel-footer">날씨</div>
+					<div class="panel-body">
+					     <table style="width:20; margin:auto; padding-top:10px;" id="mainWeather" cellspacing="0">
+        <ul>
+         	
+            <li class="강수량"></li>
+   
+            <li class="기온"></li>
+        
+            <li class="습도"></li>
+         
+        </ul>
+        </table>
+					</div>
+				</div>
+			</div>
+		
+			
+			<div class="col-sm-3">
+				<div class="panel panel-primary"
+					style="border-color: #edeef1; height: 330px">
+					<div class="panel-footer">공지사항</div>
+					<div class="panel-body">
+					 <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
+         <tr>
+            <th style="color: #4682B4; text-align: left;">제목</th><th style="color: #4682B4">작성 날짜</th>
+            
+         </tr>
+         </table>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<div class="panel panel-primary"
+					style="border-color: #edeef1; height: 330px">
+					<div class="panel-footer"><%=month %>월 학사일정</div>
+					<div class="panel-body">
+					  <table style="width:20; margin:auto; padding-top:10px;" id="mainSchedule" cellspacing="0">
+  
+         <tr>
+            <th style="color: #4682B4">일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp</th><th style="color: #4682B4"> 일정 </th>
+         </tr>
+         
+         </table>
+					</div>
+				</div>
+			</div>
+		</div> 
+		
+		
+		
+	<!-- </div> -->
+	<br>
+
+
+
+
+<%-- <div id="outer">
 
 <br>
 <br>
  <div class="box">
 
-        <div class="a"  style="padding-top: 60px; padding-left: 50px;" >
-              <%if(m.getId().substring(0, 1).equals("P")){ %>
-                <h2> 코드 : <%= m.getId() %><br>
-                    <%=m.getCategoryname() %><br>
-                      <%= m.getName() %>교수님 <br>
-                        내학사에 오신것을 환영합니다.</h2>
-                      
-            <% }else if(m.getId().substring(0, 1).equals("A")){ %>
-                <h2>관리자 코드 : <%= m.getId() %><br>
-                      <%= m.getName() %>관리자님 <br>
-                      내학사에 오신것을 환영합니다.</h2>
-                      
-            <% }else{ %>
-                <h2>내 학번 : <%= m.getId() %><br>
-                 <%=m.getCategoryname() %><br>
-                      <%= m.getName() %>님 <br>
-                      내학사에 오신것을 환영합니다.</h2>
-            <%} %>
-            
-        </div>
         
-        <div class="b" >
+        <div class="a" style="padding-top: 30px; padding-left: 0px;" >
            <h2 align="center"; >캘린더</h2>
            <script type="text/javascript">
             calendar();
          </script>
         </div>
         
-        <div class="c" style="padding-top: 30px; padding-left: 0px;">
+        <div class="b" style="padding-top: 30px; padding-left: 0px;">
          <table style="width:20; margin:auto; padding-top:10px;" id="mainSchedule" cellspacing="0">
         <h2 align="center";> <%=month %>월 학사일정</h2>
          <tr>
@@ -624,7 +726,7 @@ function calendar()
  <br>
  
   <div class="box">
-        <div class="d" style="padding-top: 30px; padding-left: 0px;" >
+        <div class="c" style="padding-top: 30px; padding-left: 0px;" >
           <h2 align="center";>최신 공지글</h2>
          <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
          <tr>
@@ -634,31 +736,22 @@ function calendar()
          </table>
   
         </div>
-        <div class="e" style="padding-top: 30px; padding-left: 0px;">
-  			 <%if((!(m.getId().substring(0, 1).equals("P")) && !(m.getId().substring(0, 1).equals("A")))){ %>
-            <table style="width:20; margin:auto; padding-top:10px;" id="mainScore" cellspacing="0">
-              <h2 align="center";>나의 학점 현황</h2>
-        
-               <th style="color: #4682B4; text-align: left;">학기&nbsp;&nbsp;</th><th style="color: #4682B4"> 취득학점 </th>
-         
-        	 </table>
-        	 <%}else{ %>
-        
-       		 <%} %>
-        </div>
+    
         
         
-        <div class="f" style="padding-top: 30px; padding-left: 0px;">
+        <div class="d" style="padding-top: 30px; padding-left: 0px;">
                <h2 align="center";>날씨</h2>
           
       
           <table style="width:20; margin:auto; padding-top:10px;" id="mainWeather" cellspacing="0">
         <ul>
-          
+         	
             <li class="강수량"></li>
+   
             <li class="기온"></li>
+        
             <li class="습도"></li>
-            
+         
         </ul>
         </table>
         </div>
@@ -667,7 +760,7 @@ function calendar()
 
 
  </div>
-
+ --%>
 
 
 
@@ -947,6 +1040,23 @@ wcs_add["wa"] = "4ee24a9a806764";
 wcs_do();
 </script>
 
+<script  type="text/javascript">
+/////by jaegu
+const imgClass = document.querySelector(".beetimg");
+var source = "/beet/resources/university/u";
+var num = 1;
+var source2 = ".jpg"
+
+var img = document.createElement("img");
+
+function cg(){
+imgClass.style.backgroundImage= "url(" + source + num + source2 + ")";
+if(++num > 4){num = 1;}
+}
+cg();
+setInterval(cg,4000);
+////by jaegu
+</script>
 
 <div id="wp-a11y-speak-polite" aria-live="polite" aria-relevant="additions text" aria-atomic="true" class="screen-reader-text wp-a11y-speak-region"></div><div id="wp-a11y-speak-assertive" aria-live="assertive" aria-relevant="additions text" aria-atomic="true" class="screen-reader-text wp-a11y-speak-region"></div></body></html></html>
 

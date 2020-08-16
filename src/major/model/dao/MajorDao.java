@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import major.model.vo.Major;
 import major.model.vo.Major1;
 import major.model.vo.Major2;
+import notice.model.vo.Notice;
 
 
 
@@ -46,46 +47,32 @@ public class MajorDao {
 		return listCount;
 	}
 
-	public ArrayList<Major> selectList(Connection conn, int currentPage, int limit) {
+	public ArrayList<Major> selectList(Connection conn) {
 		ArrayList<Major> list = new ArrayList<Major>();
-		PreparedStatement pstmt = null;
+		Statement stmt = null;
 		ResultSet rset = null;
-
-		String query = "SELECT * FROM (SELECT ROWNUM RNUM, majorno, majorname, capacity, tuition, categoryname  "
-				+ "                        FROM (SELECT * FROM major ORDER BY majorno desc)) "
-				+ "WHERE RNUM >= ? AND RNUM <= ?";
-		System.out.println("select List 조회성공!");
-		int startRow = (currentPage - 1) * limit + 1;
-		int endRow = startRow + limit - 1;
-
+		
+		String query = "select * from major ";
 		try {
-			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, startRow);
-			pstmt.setInt(2, endRow);
-
-			rset = pstmt.executeQuery();
-
-			while (rset.next()) {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			
+			while(rset.next()) {
 				Major major = new Major();
-
 				major.setMajorno(rset.getString("majorno"));
 				major.setMajorname(rset.getString("majorname"));
 				major.setCapacity(rset.getInt("capacity"));
 				major.setTuition(rset.getInt("tuition"));
 				major.setCategoryname(rset.getString("categoryname"));
 				
-				
-
 				list.add(major);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
+			close(stmt);
 			close(rset);
-			close(pstmt);
 		}
-
 		return list;
 	}
 

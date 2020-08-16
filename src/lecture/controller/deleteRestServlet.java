@@ -19,7 +19,7 @@ import lecture.model.vo.Rest;
  */
 @WebServlet("/delrest")
 public class deleteRestServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 32322312L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -47,11 +47,11 @@ public class deleteRestServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		
 		if(r > 0) {
-			view = request.getRequestDispatcher("/views/lecture/휴보강신청.jsp");
+			view = request.getRequestDispatcher("/views/lecture/rest.jsp");
 			request.setAttribute("result", "good");
 			view.forward(request, response);
 		}else {
-			view = request.getRequestDispatcher("/views/lecture/휴보강신청.jsp");
+			view = request.getRequestDispatcher("/views/lecture/rest.jsp");
 			request.setAttribute("result", "bad");
 			view.forward(request, response);
 		}

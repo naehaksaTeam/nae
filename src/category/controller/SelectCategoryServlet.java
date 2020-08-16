@@ -26,7 +26,7 @@ public class SelectCategoryServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(list !=null) {
-			view = request.getRequestDispatcher("views/categoryTest/categoryTestView.jsp");
+			view = request.getRequestDispatcher("views/categoryTest/categoryManagementView.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		} else {

@@ -58,7 +58,9 @@ public class FindPasswordServlet extends HttpServlet {
 				
 				
 			}else {
-				response.sendRedirect("views/common/error.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+				request.setAttribute("message", "일치하는 정보가 없습니다.");
+				view.forward(request, response);
 			}
 		
 		}else if(firstword.equals("A")) {
@@ -72,7 +74,9 @@ public class FindPasswordServlet extends HttpServlet {
 				
 				
 			}else {
-				response.sendRedirect("views/common/error.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+				request.setAttribute("message", "일치하는 정보가 없습니다.");
+				view.forward(request, response);
 			}
 			
 			
@@ -89,7 +93,9 @@ public class FindPasswordServlet extends HttpServlet {
 				
 				
 			}else {
-				response.sendRedirect("views/common/error.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("views/common/error.jsp");
+				request.setAttribute("message", "일치하는 정보가 없습니다.");
+				view.forward(request, response);
 			}
 			
 			

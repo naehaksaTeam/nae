@@ -13,6 +13,7 @@ import major.model.dao.MajorDao;
 import major.model.vo.Major;
 import major.model.vo.Major1;
 import major.model.vo.Major2;
+import notice.model.vo.Notice;
 
 
 
@@ -21,12 +22,7 @@ public class MajorService {
 	
 	public MajorService() {}
 
-	public ArrayList<Major> selectList(int currentPage, int limit) {
-		Connection conn = getConnection();
-	      ArrayList<Major> list = mdao.selectList(conn, currentPage, limit);
-	      close(conn);
-	      return list;
-	   }
+	
 
 	public int getListCount() {
 		 Connection conn = getConnection();
@@ -134,6 +130,13 @@ public class MajorService {
 		close(conn);
 		
 		return major2;
+	}
+
+	public ArrayList<Major> selectList() {
+		Connection conn = getConnection();
+		ArrayList<Major> list = mdao.selectList(conn);
+		close(conn);
+		return list;
 	}
 
 	/*
