@@ -197,8 +197,9 @@ cursor: pointer;
     }
 </script>
 
-
+<% if(!list.isEmpty()){ %>
 <h3 style="margin-top: 20px; padding-left: 25px; margin-top:10px; float: left;">신청내역 조회</h3>
+
 <div align="right" style="margin-bottom: 0px;">
 	<button style="height: 34px;" class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectaball'">전 체 조 회</button>
 	&nbsp;&nbsp;&nbsp;
@@ -213,7 +214,7 @@ cursor: pointer;
 	</form>
 	</div>
 </div>
-<% if(list != null){ %>
+
 <form method="post" name="managerform">
 <table class="main_default">
 <colgroup>
@@ -257,6 +258,14 @@ cursor: pointer;
 <button class="btn btn-outline-secondary" type="submit" onclick="javascript: managerform.action='/beet/deleteabad'">신청삭제 (복구불가)</button>
 </div>
 </form>
+<% }else{ %>
+<div align="center" style="margin-top: 10%; margin-left: 5%; ">
+	<br>
+	<h3>신청 내역이 없습니다</h3>
+	<br><br><br>
+	<button class="btn btn-outline-secondary" onclick="javascript:loaction.href='/beet/views/main/main.jps'"> 메인 페이지 </button>&nbsp;&nbsp;&nbsp;
+	<button class="btn btn-outline-secondary" onclick="javascript:history.go(-1)"> 이전 페이지 </button>
+</div>
 <% } %>
 
 
