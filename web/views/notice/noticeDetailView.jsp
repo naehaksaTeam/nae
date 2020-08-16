@@ -166,7 +166,7 @@ cursor: pointer;
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
 																										<br><br><br>
-																										<h1><span>휴학/복학 신청 및 조회</span></h1>
+																										<h1><span>학교 소식</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -190,22 +190,22 @@ cursor: pointer;
 		
 <!-- --------------------------------------------------------------------------- -->		
 	
-	<hr>
-	<h1 align="center">상세보기</h1>
+	
+	<h3>상세보기</h3>
 
 	<br>
 	<div align="center">
-	<table class="detailtable">
+	<table class="main_default" id="outer" align="center" cellspacing="5" cellpadding="0">
 		<tr>
-			<th>제 목</th>
+			<th>제 목 :</th>
 			<td><%=notice.getNoticeTitle()%></td>
 		</tr>
 		<tr>
-			<th>작성자</th>
+			<th>작성자 :</th>
 			<td><%=notice.getNoticeWriter()%></td>
 		</tr>
 		<tr>
-			<th>등록날짜</th>
+			<th>등록날짜 :</th>
 			<td><%=notice.getNoticeDate()%></td>
 		</tr>
 		<tr>
@@ -224,7 +224,7 @@ cursor: pointer;
 		</tr>
 
 		<tr>
-			<th>내 용</th>
+			<th>내 용 :</th>	
 			<td><%=notice.getNoticeContent().replaceAll("\r\n", "<br>")%></td>
 		</tr>
 

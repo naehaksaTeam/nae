@@ -170,7 +170,7 @@ cursor: pointer;
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
 																										<br><br><br>
-																										<h1><span>휴학/복학 신청 및 조회</span></h1>
+																										<h1><span>학교 소식</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -193,14 +193,12 @@ cursor: pointer;
 		<div class="wpb_wrapper">
 		
 <!-- --------------------------------------------------------------------------- -->		
-<h2 align="center"></h2>
-	<hr>
-	<h1 align="center">공지사항</h1>
+<h3>상세 조회</h3>
 	<br>
 	
 
 	<div align="center">
-	<table  style="border:2px solid black;">
+	<table class="main_default" id="outer" align="center" cellspacing="5" cellpadding="0">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>
@@ -264,9 +262,9 @@ cursor: pointer;
 	</table>
 	<br>
 	</div>
-	<div  align="center" >
-		<button class="btn btn-outline-secondary findbtn" onclick="noticeInsertForm();">글쓰기</button>
-		<button class="btn btn-outline-secondary findbtn" onclick="javascript:history.go(-1);">뒤로</button>
+	<div  align="right" >
+		<button class="btn btn-outline-secondary findbtn" onclick="noticeInsertForm();">추가</button>
+		<button class="btn btn-outline-secondary findbtn" onclick="javascript:location.href='/beet/nlist'">뒤로</button>
 	</div>
 	<hr>
 	<br>
@@ -283,7 +281,11 @@ cursor: pointer;
 	</form>
 </div>	
 	
-	
+<script type="text/javascript">
+	function noticeInsertForm() {
+		location.href = "/beet/views/notice/noticeInsertView.jsp";
+	}
+</script>	
 	
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
