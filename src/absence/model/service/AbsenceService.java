@@ -153,4 +153,11 @@ public class AbsenceService {
 		close(conn);
 		return result;
 	}
+
+	public int selectAbCount(String studentid) {
+		Connection conn = getConnection();
+		int abCount = adao.selectAbCount(conn, studentid);
+		close(conn);
+		return abCount;
+	}
 }
