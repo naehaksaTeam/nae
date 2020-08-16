@@ -46,6 +46,9 @@ public class LectureDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		return member;
@@ -65,6 +68,8 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 		
 		
@@ -162,6 +167,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -181,6 +189,8 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
 		
 		return result;
@@ -206,6 +216,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -232,6 +245,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -258,6 +274,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -282,6 +301,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -305,6 +327,9 @@ public class LectureDao {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(stmt);
 		}
 		
 		return list;
@@ -358,6 +383,7 @@ public class LectureDao {
 				l.setName(rset.getString("name"));
 				l.setRoom(rset.getString("room"));
 				l.setContent(rset.getString("content"));
+				l.setLclock(rset.getString("lclock"));
 				
 				list.add(l);
 				

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/updateplan")
 public class updatePlanServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 3545445L;
        
     /**
      * @see HttpServlet#HttpServlet()

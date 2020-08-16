@@ -1,6 +1,7 @@
 package absence.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,6 +27,8 @@ public class deleteAbsenceAdminServlet extends HttpServlet {
 		Absence a = aservice.selectOneAbsence(requestid);
 		String ab = requestid.substring(0, 1);
 
+		PrintWriter out = response.getWriter();
+		
 		RequestDispatcher view = null;
 
 		if (a.getApproval().equals("Y")) {// 승인완료, 학생테이블가서 바꿔줘야함
@@ -36,33 +39,55 @@ public class deleteAbsenceAdminServlet extends HttpServlet {
 					if (ab.equals("a")) {
 						int r = aservice.studentCountMinus(a.getStudentid());
 						if (r > 0) {
-							response.sendRedirect("selectaball");
+							
+							 out.print("<script>");
+							  out.print("alert('삭제가 완료되었습니다.');");
+							  out.print("location.href = 'selectaball'");
+							  out.print("</script>");
+							  out.close();
 						} else {
-							view = request.getRequestDispatcher("views/common/error.jsp");
-							request.setAttribute("message", "학생정보 변경에 실패하였습니다.");
-							view.forward(request, response);
+							
+							 out.print("<script>");
+							  out.print("alert('학생정보 변경에 실패하였습니다.');");
+							  out.print("location.href = 'selectaball'");
+							  out.print("</script>");
+							  out.close();
 						}
 					} else {
-						response.sendRedirect("selectaball");
+						 out.print("<script>");
+						  out.print("alert('삭제가 완료되었습니다.');");
+						  out.print("location.href = 'selectaball'");
+						  out.print("</script>");
+						  out.close();
 					}
 				} else {
-					view = request.getRequestDispatcher("views/common/error.jsp");
-					request.setAttribute("message", "학생정보 변경에 실패하였습니다.");
-					view.forward(request, response);
+					 out.print("<script>");
+					  out.print("alert('학생정보 변경에 실패하였습니다.');");
+					  out.print("location.href = 'selectaball'");
+					  out.print("</script>");
+					  out.close();
 				}
 			} else {
-				view = request.getRequestDispatcher("views/common/error.jsp");
-				request.setAttribute("message", "신청정보 삭제에 실패하였습니다.");
-				view.forward(request, response);
+				 out.print("<script>");
+				  out.print("alert('학생정보 변경에 실패하였습니다.');");
+				  out.print("location.href = 'selectaball'");
+				  out.print("</script>");
+				  out.close();
 			}
 		}else {//승인이 안됬으면 그냥 삭제만 진행
 			int result = aservice.deleteAbsence(requestid);
 			if (result > 0) {
-				response.sendRedirect("selectaball");
+				 out.print("<script>");
+				  out.print("alert('삭제가 완료되었습니다.');");
+				  out.print("location.href = 'selectaball'");
+				  out.print("</script>");
+				  out.close();
 			} else {
-				view = request.getRequestDispatcher("views/common/error.jsp");
-				request.setAttribute("message", "신청정보 삭제에 실패하였습니다.");
-				view.forward(request, response);
+				 out.print("<script>");
+				  out.print("alert('신청정보 삭제에 실패하였습니다.');");
+				  out.print("location.href = 'selectaball'");
+				  out.print("</script>");
+				  out.close();
 			}
 			
 		}

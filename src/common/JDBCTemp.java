@@ -12,7 +12,6 @@ import java.sql.Statement;
 import java.util.Properties;
 
 public class JDBCTemp {
-	
 	public static Connection getConnection() {
 		Connection conn = null;
 		Properties p = new Properties();

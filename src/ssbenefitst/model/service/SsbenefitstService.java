@@ -18,9 +18,9 @@ public class SsbenefitstService {
 	
 	public SsbenefitstService() {};
 	
-	public ArrayList<Ssbenefitst> selectSsbenefitst() {
+	public ArrayList<Ssbenefitst> selectSsbenefitst(int currentPage, int limit) {
 		Connection conn = getConnection();
-		ArrayList<Ssbenefitst> list = ssstdao.selectSsbenefitst(conn);
+		ArrayList<Ssbenefitst> list = ssstdao.selectSsbenefitst(conn, currentPage, limit);
 		close(conn);
 		return list;
 	};
@@ -106,7 +106,16 @@ public class SsbenefitstService {
 				rollback(conn);
 			}
 		}
+		close(conn);
 		return result;
-	};
+	}
+
+	public int getListCount() {
+		Connection conn = getConnection();
+		int listCount = ssstdao.getListCount(conn);
+		close(conn);
+		return listCount;
+	}
+
 	
 }

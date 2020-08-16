@@ -44,15 +44,15 @@ public class lectureAddServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(result.equals(lecture)) {
-			view = request.getRequestDispatcher("/views/lecture/수강과목추가.jsp");
+			view = request.getRequestDispatcher("/views/lecture/addlecture.jsp");
 			request.setAttribute("result", "ok");
 			view.forward(request, response);
 		}else if(result.equals("already")){
-			view = request.getRequestDispatcher("/views/lecture/수강과목추가.jsp");
+			view = request.getRequestDispatcher("/views/lecture/addlecture.jsp");
 			request.setAttribute("result", "already");
 			view.forward(request, response);
 		}else{
-			view = request.getRequestDispatcher("/views/lecture/수강과목추가.jsp");
+			view = request.getRequestDispatcher("/views/lecture/addlecture.jsp");
 			request.setAttribute("result", "no");
 			view.forward(request, response);
 		}

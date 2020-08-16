@@ -66,12 +66,6 @@ public class NoticeService {
 		return result;
 	}
 
-	public ArrayList<Notice> selectTop5() {
-		Connection conn = getConnection();
-		ArrayList<Notice> list = ndao.selectTop5(conn);
-		close(conn);
-		return list;
-	}
 
 	public int getListCount() {
       Connection conn = getConnection();
@@ -96,12 +90,12 @@ public class NoticeService {
 	         rollback(conn);
 	      close(conn);
 	   }
-/////////////	
 
+	
 
-	public ArrayList<Notice> selectTop3() {
+	public ArrayList<Notice> searchList(String keyword, String searchOption) {
 		Connection conn = getConnection();
-		ArrayList<Notice> list = ndao.selectTop3(conn);
+		ArrayList<Notice> list = ndao.searchList(conn,keyword,searchOption);
 		close(conn);
 		return list;
 	}
@@ -113,5 +107,8 @@ public class NoticeService {
 		return list;
 	}
 	
-///////////////
+
+	
+	
+
 }

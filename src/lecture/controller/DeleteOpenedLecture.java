@@ -18,7 +18,7 @@ import lecture.model.vo.Lecture;
  */
 @WebServlet("/ldel")
 public class DeleteOpenedLecture extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 311246578567L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -43,11 +43,11 @@ public class DeleteOpenedLecture extends HttpServlet {
 		RequestDispatcher view = null;
 		
 		if(r.equals(lname)) {
-			view = request.getRequestDispatcher("/views/lecture/수강과목추가.jsp");
+			view = request.getRequestDispatcher("/views/lecture/addlecture.jsp");
 			request.setAttribute("result", "good");
 			view.forward(request, response);
 		}else{
-			view = request.getRequestDispatcher("/views/lecture/수강과목추가.jsp");
+			view = request.getRequestDispatcher("/views/lecture/addlecture.jsp");
 			request.setAttribute("result", "bad");
 			view.forward(request, response);
 		}

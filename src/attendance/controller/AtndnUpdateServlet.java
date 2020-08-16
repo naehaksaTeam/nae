@@ -59,17 +59,18 @@ public class AtndnUpdateServlet extends HttpServlet {
 			
 			list2.add(atndn);
 		}
-		
-		
+
 		
 		int result = new AtndnService().updateWeekAll(list2);
 		
 		RequestDispatcher view = null;
 		
 		if(result > 0) {
-			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
-			request.setAttribute("result", "yes");
-			view.forward(request, response);
+			/*
+			 * view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
+			 * request.setAttribute("result", "yes"); view.forward(request, response);
+			 */
+			response.sendRedirect("/beet/views/attendance/atndnEdit.jsp");
 		}else {
 			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
 			request.setAttribute("result", "no");

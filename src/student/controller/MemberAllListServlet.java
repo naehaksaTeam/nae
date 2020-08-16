@@ -18,7 +18,7 @@ import student.model.vo.Member;
  */
 @WebServlet("/alllist")
 public class MemberAllListServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8989988989L;
        
     /**
      * @see HttpServlet#HttpServlet()

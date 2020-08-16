@@ -1,6 +1,7 @@
 package category.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,15 +25,20 @@ public class DeleteCategoryServlet extends HttpServlet {
 		
 		int result = new CategoryService().deleteCategory(catename);
 		
+		PrintWriter out = response.getWriter();
 		RequestDispatcher view = null;
 		if(result >0) {
-			view = request.getRequestDispatcher("selectca");
-			request.setAttribute("message", catename + " 계열의 삭제가 완료되었습니다.");
-			view.forward(request, response);
+			 out.print("<script>");
+			  out.print("alert('삭제가 완료되었습니다.');");
+			  out.print("location.href = 'selectca'");
+			  out.print("</script>");
+			  out.close();
 		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", catename + " 계열 삭제에 실패하였습니다.");
-			view.forward(request, response);
+			 out.print("<script>");
+			  out.print("alert('삭제에 실패하였습니다.');");
+			  out.print("location.href = 'selectca'");
+			  out.print("</script>");
+			  out.close();
 		}
 	}
 

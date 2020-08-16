@@ -31,9 +31,10 @@ public class ScholarshipDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		close(rset);
-		close(stmt);
+		}finally {
+			close(rset);
+			close(stmt);
+		}	
 		return list;
 	};
 
@@ -53,9 +54,10 @@ public class ScholarshipDao {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-		close(rset);
-		close(pstmt);
+		}finally {
+			close(rset);
+			close(pstmt);
+		}	
 		return ss;
 	}
 	
@@ -73,8 +75,9 @@ public class ScholarshipDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
-		close(pstmt);
 		return result;
 	}
 
@@ -93,9 +96,9 @@ public class ScholarshipDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
-		close(pstmt);
-		
 		return result;
 	}
 	
@@ -111,9 +114,9 @@ public class ScholarshipDao {
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			close(pstmt);
 		}
-		close(pstmt);
-		
 		return result;
 	}
 
