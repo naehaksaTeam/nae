@@ -68,8 +68,8 @@ public class ProfScoreUpdateServlet extends HttpServlet {
 		out.write(sendJSON.toJSONString()); 
 		out.flush();
 		out.close();
-	};
-	}	
+	}
+
 		
 	/*
 	 * request.setCharacterEncoding("utf-8");

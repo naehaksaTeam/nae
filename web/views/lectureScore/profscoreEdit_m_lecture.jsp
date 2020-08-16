@@ -319,18 +319,66 @@ jQuery(".chk").click(function(){
         //var checkbox = $("input[name=user_CheckBox]:checked");
 });
 
+JsonArray arr = new JSONArray();
 
-jQuery("#abc").click(function(){ 
-        var rowData = new Array(); 
+jQuery("#abc").click(function(){
+       // var rowData = new Array(); 
         var checkbox = $("input:checkbox[name=chk]:checked");	
-     	
+        <% int k=0;%>	
    checkbox.each(function(i) {
 	
 	var tr = checkbox.parent().parent().eq(i);
 	var td = tr.children();
-	var dataObj = new Object;
+	JSONObject data<%=++k%> = new JSONObject();
+	
+	data<%=k%>.put("categoryname", td.eq(3).text());
+	data<%=k%>.put("majorname", td.eq(4).text());
+	data<%=k%>.put("sid", td.eq(5).text());
+	data<%=k%>.put("sname", td.eq(6).text());
+	data<%=k%>.put("retake", td.eq(7).text());
+	data<%=k%>.put("atndnScore", td.eq(8).find('input[type="text"]').val());
+	data<%=k%>.put("midScore", td.eq(9).find('input[type="text"]').val());
+	data<%=k%>.put("finalScore", td.eq(10).find('input[type="text"]').val());
+	data<%=k%>.put("totalScore", td.eq(11).find('input[type="text"]').val());
+	data<%=k%>.put("grade", td.eq(12).find('select[name="selectg"] option:selected').val());
+	
+	arr.add(data<%=i%>);
+   }
+
+	
+	JSONObject univ = new JSONObject();
+	univ.put("univ", arr);
+	
+	json = univ.toJSONString();
+	
+	
+	
 	//rowData.push(tr.text());
+	
+	
+	
+	
+	/*
+	2번 시도
+	
 	dataObj.categoryname= td.eq(3).text();
+	dataObj.majorname = td.eq(4).text();
+	dataObj.sid = td.eq(5).text();
+	dataObj.sname = td.eq(6).text();
+	dataObj.retake = td.eq(7).text();
+	dataObj.atndnScore = td.eq(8).find('input[type="text"]').val();
+	dataObj.midScore = td.eq(9).find('input[type="text"]').val();
+	dataObj.finalScore = td.eq(10).find('input[type="text"]').val();
+	dataObj.totalScore = td.eq(11).find('input[type="text"]').val();
+	dataObj.grade = td.eq(12).find('select[name="selectg"] option:selected').val(); 
+	
+	aJsonArray.push(aJson);
+   });
+   
+   var sJson = JSON.stringify(aJsonArray);
+    */
+	
+	/* dataObj.categoryname= td.eq(3).text();
 	dataObj.majorname = td.eq(4).text();
 	var sid = td.eq(5).text();
 	var sname = td.eq(6).text();
@@ -339,8 +387,7 @@ jQuery("#abc").click(function(){
 	var midScore = td.eq(9).find('input[type="text"]').val();
 	var finalScore = td.eq(10).find('input[type="text"]').val();
 	var totalScore = td.eq(11).find('input[type="text"]').val();
-	var grade = td.eq(12).find('select[name="selectg"] option:selected').val();
-
+	var grade = td.eq(12).find('select[name="selectg"] option:selected').val(); */
 	var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
 		totalScore, grade];
 	var aa = JSON.stringify(dataArray);
@@ -357,7 +404,7 @@ jQuery("#abc").click(function(){
 	        alert(error);
 		}
 		}); */
-   });
+ 
 });
 </script>
 	

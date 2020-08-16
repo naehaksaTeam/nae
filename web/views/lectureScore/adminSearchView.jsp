@@ -198,7 +198,7 @@ cursor: pointer;
 
 	<!-- 검색폼  -->
 	<form action="/beet/adsearch" method="post" id="idform" class="lform">
-	
+		
 		<input type="hidden" name="action" value="">
 		<input type="search" name="keyword"> &nbsp; 
 			<input type="submit" value="검색">
