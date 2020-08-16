@@ -80,11 +80,11 @@ public class AtndnService {
 
 	
 	//과목하나조회
-	public Atndn selectOneAtndn(String sid, String lcode) {
+	public ArrayList<Atndn> selectOneAtndn(String lcode, String semester) {
 		Connection conn = getConnection();
-		Atndn atndn = adao.selectOneAtndn(conn, sid, lcode);
+		ArrayList<Atndn> list = adao.selectOneAtndn(conn, lcode, semester);
 		close(conn);
-		return atndn;
+		return list;
 	}
 
 }

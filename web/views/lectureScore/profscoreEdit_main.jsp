@@ -166,7 +166,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+																										<h1><span style="margin-top:80px">출결/성적관리</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -219,12 +219,19 @@ cursor: pointer;
   	 <td><%=lscore.getLcode() %></td>
 	<td id="lname"><%=lscore.getLname()%></td>
 	<td>
-	<form action="/beet/atnupdate" method="post">
+	<form action="/beet/dlAtndn" method="post">
+			<input type="hidden" name="lcode" value="<%=lscore.getLcode() %>">
+			<input type="hidden" name="semester" value="202001">
+			<input class="btn btn-outline-secondary" type="submit" value="출결관리">
+		</form>
+
+
+<%-- 	<form action="/beet/atnupdate" method="post">
 			<input type="hidden" name="userid" value="<%=loginmember.getId() %>">
 			<input type="hidden" name="lcode" value="<%=lscore.getLcode() %>">
 			<input type="hidden" name="semester" value="">
 			<input class="btn btn-outline-secondary" type="submit" value="출결관리">
-		</form>
+		</form> --%>
 		</td>
 	<td>
 		<form action="/beet/scselect.p" method="post">

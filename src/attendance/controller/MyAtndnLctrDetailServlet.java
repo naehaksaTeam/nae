@@ -1,6 +1,7 @@
 package attendance.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,17 +33,14 @@ public class MyAtndnLctrDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String sid = request.getParameter("userid");
 		String lcode = request.getParameter("lcode");
-		
-		System.out.println(sid);
-		System.out.println(lcode);
-		Atndn atndn = new AtndnService().selectOneAtndn(sid, lcode);
+		String semester = request.getParameter("semester");
+		ArrayList<Atndn> list = new AtndnService().selectOneAtndn(lcode, semester);
 
 		RequestDispatcher view = null;
-		if(atndn != null) { //성공
-			view = request.getRequestDispatcher("views/attendance/myLctrDetailView.jsp");
-			request.setAttribute("atndn", atndn);
+		if(list != null) { //성공
+			view = request.getRequestDispatcher("views/attendance/profAtndnEdit_lctr.jsp");
+			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else { //실패
 			view = request.getRequestDispatcher("views/common/error.jsp"); // 상대경로만 사용
