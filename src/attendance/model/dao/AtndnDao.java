@@ -523,22 +523,20 @@ public class AtndnDao {
 
 			
 			//과목하나조회 
-			public Atndn selectOneAtndn(Connection conn, String lcode, String semester) {
+			public Atndn selectOneAtndn(Connection conn, String sid, String lcode) {
 				Atndn atndn = null;
 				PreparedStatement pstmt = null;
 				ResultSet rset = null;
 				
-				String query = "select sid, sname, category, lcode, lname, ltime, pname ,absent3, week1, week2, week3, week4,"
-						+ " week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 " + 
-						"from AtndnView where lcode = ? and semester = ? " + 
-						"group by sid, sname, category, lcode, lname, ltime, pname ,absent3, week1, week2, week3, week4, "
-						+ " week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16";
+				String query = "select sid, category, lcode, lname, ltime, pname ,absent3, lpoint, capacity, "
+						+  " week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16"
+						+ " from AtndnView where pid = ? and lcode = ?";
 
 			  try {
 				   pstmt = conn.prepareStatement(query);
-				   			
-				   pstmt.setString(1, lcode);
-				   pstmt.setString(2, semester);
+				   pstmt.setString(1, sid);
+				   pstmt.setString(2, lcode);
+				   
 				   rset = pstmt.executeQuery();	
 				   
 				   if(rset.next()) {
