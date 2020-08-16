@@ -77,26 +77,91 @@ select {width: 40px; height:20px; margin:0px}
 
 		<h1 style="margin-top:75px"><span >출결/성적</span></h1> <!-- ★h1 이름 (메뉴이름 여기에 써주세요) ------------------------------------------>
 		</div> </div> </div> </div> </div> </div> </div>
-				</p>
+				
 		<div class="container">
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt"> 출결/성적 관리</p>  <!-- ★본문 제목 -------------------->
-													
+			<p class="page_tt"> 본문제목자리<!-- ★본문 제목 -------------------->
+
+	<div class="column1" style="margin-left:3%;">
+	<div class="column_inner">					
+	<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;">
+	<div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12">
+	<div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element ">
+	<div class="wpb_wrapper">
+		
+
+		<!-- 본문 내용 자리  -->
+
+
+
+
+
+
+
+
+
+
+
+
+</div></div> </div></div></div></div></div></div></div> <!-- div column1 끝 -->
+
+<!-- 서브메뉴★★★ 여기에 써주세요 -->
+<!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
+
+<!-- <div class="column_inner">
+<aside class="sidebar">
+							
+		<div class="widget "><div id="dc_jqaccordion_widget-8">		
+		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
+
+<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
+  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
+  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
+  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
+  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
+  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
+</ul>		
+
+
+		</div>
+		</div></div>		</aside>
+	</div>-->
+</div> 
+<!-- 서브메뉴 끝 -->
+						</div>
+								
+		</div>
+        	</div>
+				
+	</div>
+</div>
+
+
+
+
+
+
+
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 <script>
 <!-- 스크립트 쓰는곳   -->
+//수정가능 
+
  
 </script>
-</div> </div></div></div>
+		</div> </div>
+						</div>
+					</div>
 					
 					
 <!-- footer -->		
 <center>			
 <footer>
 	<div class="footer_inner clearfix" >
-	<div class="footer_bottom_holder" style="background-color:#13436b !important">
+	<div class="footer_bottom_holder" style="background-color:#555555 !important">
 	<div class="container" style="background-color:#13436B;color:#ffffff;padding-top:10px">
 	NAEHAKSA ©202008 KH Information Educational Semi Project 6DDUKE
 	</div>

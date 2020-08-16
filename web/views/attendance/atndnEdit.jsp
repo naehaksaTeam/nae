@@ -67,10 +67,10 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="content_inner ">
 		<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
 			<!-- ★배경 이미지 (변경시 backgroud-image, src 두군데 수정해야해요 --------------->
-		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/test.jpg); 
+		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/page.jpg); 
 			height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 		<div class="image not_responsive">
-			<img itemprop="image" src="/beet/resources/images/test.jpg" alt="&nbsp;">
+			<img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;">
 		</div>
 		<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					
@@ -87,10 +87,6 @@ select {width: 40px; height:20px; margin:0px}
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt">출결입력</p>  <!-- ★본문 제목 -------------------->
-				
-<p class="page_tt">전체출결조회</p>		
-
 
 	<p class="page_tt">출결입력</p>
 
@@ -106,7 +102,7 @@ select {width: 40px; height:20px; margin:0px}
 
 		</tr>
 		<tr>
-			<th> - </th>
+			<th><input type="checkbox" class="chk" id="chk_all"></th>
 			<th>순번</th>
 			<th>학번</th>
 			<th>학과</th>
@@ -119,17 +115,17 @@ select {width: 40px; height:20px; margin:0px}
 				for (Atndn a : list) {
 			%>
 			<tr>
-				<td><input name="chk" type="checkbox" style="height:20px;"></button></td>
+				<td><input name="chk" class="chk" type="checkbox" style="height:20px;"></button></td>
 				<td><%= i %></td>
 				<td><%=a.getSid()%><input type="text" name="who<%= i %>" value="<%= a.getSid() %>" style="display:none;"></td>
 				<td><%=a.getMajorname()%><input type="text" name="lcode" value="<%= a.getLcode() %>" style="display:none;"></td>
 				<td><%=a.getSname()%></td>
 				<td><select class="atndt" name="selectfour<%= i %>" style="width: 80px; height: 30px">
 						<option value="-" selected disabled hidden>-</option>
-						<option value="1">출석</option>
-						<option value="2">결석</option>
-						<option value="3">조퇴</option>
-						<option value="4">지각</option>
+						<option value="1" >출석</option>
+						<option value="2" >결석</option>
+						<option value="3" >조퇴</option>
+						<option value="4" >지각</option>
 				</select></td>
 				</td>
 			</tr>
@@ -154,6 +150,15 @@ select {width: 40px; height:20px; margin:0px}
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 <script>
 <!-- 스크립트 쓰는곳   -->
+$("#chk_all").click(function(){
+    if($("#chk_all").is(":checked")){
+        $(".chk").prop("checked", true);
+    }
+    else{
+        $(".chk").prop("checked", false);
+    }
+});
+
 
 </script>
 </div> </div></div></div>
@@ -163,8 +168,8 @@ select {width: 40px; height:20px; margin:0px}
 <center>			
 <footer>
 	<div class="footer_inner clearfix" >
-	<div class="footer_bottom_holder" style="background-color:#13436b !important">
-	<div class="container" style="background-color:#13436B;color:#ffffff;padding-top:10px">
+	<div class="footer_bottom_holder" style="background-color:#555555 !important">
+	<div class="container" style="background-color:#555555;color:#ffffff;padding-top:10px">
 	NAEHAKSA ©202008 KH Information Educational Semi Project 6DDUKE
 	</div>
 	</div>

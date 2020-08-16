@@ -35,7 +35,7 @@ function validate(){
 function sendDelete(){
 	
 	//회원 탈퇴처리 서블릿 요청함.
-	location.href = "/mdelete?id=<%= member1111.getId() %>";
+	location.href = "/beet/mdelete?id=<%= member1111.getId() %>";
 	return false;
 }
 </script>

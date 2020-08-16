@@ -96,7 +96,6 @@ public class NoticeDao {
 			pstmt.setString(5, notice.getRenameFile());
 			pstmt.setInt(6, notice.getNoticeReadCount());
 			result = pstmt.executeUpdate();
-			System.out.println("dao성공!");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

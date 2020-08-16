@@ -147,7 +147,6 @@ public class LectureService {
 		Connection conn = getConnection();
 		ArrayList<Lecture> list = ldao.selectAllPlan(conn);
 		close(conn);
-
 		return list;
 	}
 

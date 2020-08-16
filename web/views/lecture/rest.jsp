@@ -22,6 +22,13 @@ int num = 500;//랜덤 범위
 	
 			
 						<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+<!-- button css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- button css -->
 		
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="pingback" href="https://www.cha.ac.kr/xmlrpc.php">
@@ -207,26 +214,26 @@ cursor: pointer;
 <h1>휴보강신청페이지</h1>
 <hr>
 
-<table style="border:2px solid black;" id="resttable">
+<table style="border:2px solid black;width:105%;" id="resttable">
 <tr>
-<th>&nbsp;접수번호&nbsp;</th><th>&nbsp;신청교수&nbsp;</th><th>&nbsp;사유&nbsp;</th><th>&nbsp;수업방식&nbsp;</th><th>&nbsp;휴강일자&nbsp;</th>
-<th>&nbsp;보강일자&nbsp;</th><th>&nbsp;보강시간&nbsp;</th><th>&nbsp;강의코드&nbsp;</th><th>&nbsp;강의실명&nbsp;</th><th>&nbsp;대강자 교수&nbsp;</th>
+<th>번호</th><th>&nbsp;신청교수&nbsp;</th><th>&nbsp;사유&nbsp;</th><th>&nbsp;수업방식&nbsp;</th><th>&nbsp;휴강일&nbsp;</th>
+<th>&nbsp;보강일&nbsp;</th><th>&nbsp;보강시간&nbsp;</th><th>&nbsp;강의코드&nbsp;</th><th>&nbsp;강의실명&nbsp;</th><th>대리교수</th>
 <th>권한실행</th>
 </tr>
 <% for(Rest r : list){ %>
 <tr>
-<td><%= r.getReceptionno() %></td>
-<td><%= r.getId() %></td>
-<td><%= r.getReason() %></td>
-<td><%= r.getWay() %></td>
+<td style="width:0%;"><%= r.getReceptionno() %></td>
+<td style="width:10%;"><%= r.getId() %></td>
+<td style="width:7%;"><%= r.getReason() %></td>
+<td style="width:11%;"><%= r.getWay() %></td>
 <td><%= r.getDayoff() %></td>
 <td><%= r.getRday() %></td>
-<td><%= r.getRtime() %></td>
-<td><%= r.getLcode() %></td>
-<td><%= r.getRoom() %></td>
-<td><%= r.getSubid() %></td>
-<td>
-<button onclick="javascript:location.href='/beet/delrest?what=<%= r.getReceptionno() %>'">신청철회</button>
+<td style="width:10%;"><%= r.getRtime() %></td>
+<td style="width:10%;"><%= r.getLcode() %></td>
+<td style="width:10%;"><%= r.getRoom() %></td>
+<td  style="width:9%;"><%= r.getSubid() %></td>
+<td style="width:10%;">
+<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/delrest?what=<%= r.getReceptionno() %>'">신청철회</button>
 </td>
 </tr>
 <% } %>
@@ -290,7 +297,7 @@ cursor: pointer;
 <td colspan="3">
 <i style="color:blue;">&nbsp;&nbsp;나는 로봇이 아닙니다.</i> <input type="radio" name="receptionno" checked required value="<%= ran.nextInt(num) + list.size() %>">
 </td>
-<td><button type="submit" name="userid" value="<%= ((Member)session.getAttribute("loginMember")).getId() %>">휴보강 신청</button></td>
+<td><button class="btn btn-outline-secondary" type="submit" name="userid" value="<%= ((Member)session.getAttribute("loginMember")).getId() %>">휴보강 신청</button></td>
 </tr>
 </table>
 </form>
@@ -406,24 +413,7 @@ cursor: pointer;
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
 <%@ include file = "side.jsp" %>
-<!-- <div class="column_inner">
-<aside class="sidebar">
-							
-		<div class="widget "><div id="dc_jqaccordion_widget-8">		
-		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
 
-<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
-  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
-  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
-  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
-  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
-  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
-</ul>		
-
-
-		</div>
-		</div></div>		</aside>
-	</div>-->
 </div> 
 <!-- 서브메뉴 끝 -->
 						</div>

@@ -53,18 +53,17 @@ public class AtndnDao {
 
 
 	// select 출결현황
-	public ArrayList<Atndn> selectLctrAtndn(Connection conn, String sid, String lcode) {
+	public ArrayList<Atndn> selectLctrAtndn(Connection conn, String sid) {
 		ArrayList<Atndn> list = new ArrayList<Atndn>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
 		String query = "select sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3,"
 				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 "
-				+ "from AtndnView where sid = ? and lcode = ?";
+				+ "from AtndnView where sid = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setString(1, sid);
-			pstmt.setString(2, lcode);
+			pstmt.setString(1, sid);  
 			
 			rset = pstmt.executeQuery();
 			while (rset.next()) {
@@ -105,12 +104,13 @@ public class AtndnDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			close(conn);
 		}
 
 		return list;
-	}
-
+	}	
+	
+	
+	
 //select 강의 주차별 (selectone) 
 //	public Atndn selectOneLctr(Connection conn, String id, String lcode) {
 //		ArrayList<Atndn> list = new ArrayList<Atndn>();
@@ -173,7 +173,6 @@ public class AtndnDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			close(conn);
 		}
 
 		return list;
@@ -202,7 +201,6 @@ public class AtndnDao {
 		} finally {
 		
 			close(pstmt);
-			close(conn);
 		}
 
 		return result;
@@ -242,7 +240,6 @@ public class AtndnDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(conn);
 		}
 
 		return result;
@@ -300,7 +297,6 @@ public class AtndnDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-			close(conn);
 		}
 
 		return list;
@@ -354,7 +350,6 @@ public class AtndnDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			close(conn);
 		}
 		return list;
 	}
@@ -395,11 +390,55 @@ public class AtndnDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			close(conn);
 		}
 
 		return list;
 	}
+	
+	
+//교수 과목별 출결상세 
+	public ArrayList<Atndn> selectProfAtndnLctrOne(Connection conn, String lcode, String semester) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		ArrayList<Atndn> list = new ArrayList<Atndn>();
+
+		String query = "select distinct a.lcode, a.id sid,  week1, week2, week3, week4, week5, week6, "
+				+ "week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 " 
+				+ "from attendance a join AtndnView  v on (a.lcode = v.lcode) "
+				+ " where v.lcode = ? and semester = ?";
+
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, lcode);
+			pstmt.setString(2, semester);
+			
+			rset = pstmt.executeQuery();
+
+			while (rset.next()) {
+				Atndn atndn = new Atndn();
+				
+				atndn.setSid(rset.getString("sid"));
+				atndn.setPid(rset.getString("pid"));
+				atndn.setSemester(rset.getString("semester"));
+				atndn.setCategory(rset.getString("category"));
+				atndn.setLcode(rset.getString("lcode"));
+				atndn.setSname(rset.getString("sname"));
+				atndn.setCapacity(rset.getInt("capacity"));
+				atndn.setMajorname(rset.getString("majorname"));
+				atndn.setLcode(rset.getString("lcode"));
+
+				list.add(atndn);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return list;
+	}
+	
 	
 	//update Atndn 
 			public int updateAtndn(Connection conn, Atndn atndn) {
@@ -477,7 +516,6 @@ public class AtndnDao {
 				} finally {
 					close(rset);
 					close(pstmt);
-					close(conn);
 				}
 				return list;
 			}

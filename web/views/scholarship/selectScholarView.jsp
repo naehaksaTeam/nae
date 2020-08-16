@@ -165,7 +165,8 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>강의 h1이름자리</span></h1>
+                                                                										<br><br><br>
+																										<h1><span>나의 장학금 조회</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -190,16 +191,13 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
-
-<p class="page_tt">컬럼명여따쓰세요</p>
-
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
 <div align="center" >
 <%-- <button onclick="javascript:location.href='/beet/selectbenest?studentid=<%=m.getId()%>'">나의 장학금 조회</button> --%>
-<h1 ><%=((Member)session.getAttribute("loginMember")).getName()%>님의 장학금 조회</h1>
-<table class="tg">
+<h3 style="text-align: left; margin-bottom: 8px;"><%=((Member)session.getAttribute("loginMember")).getName()%>님의 장학금 조회</h3>
+<table class = "main_default">
 
-<% if(stlist.size() != 0){ %>
+<% if(!stlist.isEmpty()){ %>
 	<tr><th>수혜학기</th><th>장학금명</th></tr>
 	<% for(Ssbenefitst ssst : stlist){%>
 	<tr><td><%=ssst.getBenefitterm()%></td><td><%=ssst.getSsname() %></td></tr>
@@ -210,10 +208,10 @@ cursor: pointer;
 <% } %>
 </table>
 </div>
-
+<br><br><br>
 <div align="center">
-<h1>장학금 전체 조회</h1>
-<table class="tg">
+<h3 style="text-align: left; margin-bottom: 8px;">장학금 전체 조회</h3>
+<table class = "main_default">
 <tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th></tr>
 <% if(list != null){ %>
 	<% for(Scholarship ss : list){ %>
@@ -313,7 +311,7 @@ cursor: pointer;
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
 <div class="column2">	
-<%@ include file = "/views/common/side.jsp" %>
+<%@ include file = "/views/scholarship/sideSTUDENT.jsp" %>
 <!-- <div class="column_inner">
 <aside class="sidebar">
 							
@@ -334,6 +332,9 @@ cursor: pointer;
 	</div>-->
 </div> 
 <!-- 서브메뉴 끝 -->
+<%-- <div class="column2">														
+<%@ include file = "sideADMIN.jsp" %>	
+</div>	 --%>
 						</div>
 								
 		</div>

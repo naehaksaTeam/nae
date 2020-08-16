@@ -14,6 +14,13 @@
 	
 			
 						<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+
+<!-- button css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- button css -->	
 		
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="pingback" href="https://www.cha.ac.kr/xmlrpc.php">
@@ -179,23 +186,23 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 <% if(session.getAttribute("loginMember") == null ){ %>
 <h1>비회원 상태입니다.</h1>
-<br><button onclick="javascript:location.href='/beet/'">첫 화면으로!</button>
+<br><button onclick="javascript:location.href='/beet/'" class="btn btn-outline-secondary">첫 화면으로!</button>
 <% }else{ %>
 <h1>강의계획서</h1>
 <hr>
 <table style="border:2px solid black;">
 <tr>
 <th>
-&nbsp;강의코드&nbsp;
+강의코드
 </th>
 <th>
 &nbsp;강의명&nbsp;
 </th>
 <th>
-&nbsp;강의 카테고리&nbsp;
+강의 카테고리
 </th>
 <th>
-&nbsp;수강 정원&nbsp;
+수강 정원
 </th>
 <th>
 &nbsp;강의 내용&nbsp;
@@ -207,7 +214,7 @@ cursor: pointer;
 &nbsp;강의교수&nbsp;
 </th>
 <th>
-&nbsp;강의실&nbsp;
+강의실
 </th>
 </tr>
 <% ArrayList<Lecture> list = (ArrayList<Lecture>)request.getAttribute("list");  %>
@@ -225,11 +232,11 @@ cursor: pointer;
 <td style="border : 1px solid black;">
 <%= l.getCapacity() %>
 </td>
-<td style="border : 1px solid black;">
+<td style="border : 1px solid black;width:30%;">
 <%= l.getContent() %>
 </td>
 <td style="border : 1px solid black;">
-<%= l.getLtime() %>
+<%= l.getLtime() %>,<%= l.getLclock() %>시
 </td>
 <td style="border : 1px solid black;">
 <%= l.getName() %>

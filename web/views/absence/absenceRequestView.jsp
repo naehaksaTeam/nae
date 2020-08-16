@@ -190,26 +190,8 @@ cursor: pointer;
 <!-- --------------------------------------------------------------------------- -->		
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
-<script type="text/javascript">
-
-
-</script>
-<p class="page_tt">휴학/복학 신청 및 조회</p>
 
 <!-- 테이블명 class = "main_default" 으로 붙여주세요 -->
-
-<h3>TEST BUTTON</h3>
-<button class="btn btn-outline-secondary"onclick="javascript:location.href='/beet/selectaball'">[관리자] ABSENCE 휴학/복학 </button>
-<button class="btn btn-outline-secondary"onclick="javascript:location.href='/beet/selectca'">[관리자] CATEGORY VIEW 카테고리관리</button>
-<button class="btn btn-outline-secondary"onclick="javascript:location.href='/beet/selectbenest?studentid<%=membermm.getId() %>'">[학 생] SCHOLARSHIP 장학조회 </button>
-<button class="btn btn-outline-secondary"onclick="javascript:location.href='/beet/selectss'">[관리자] SCHOLARSHIP 장학관리</button>
-<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectbeneall'">[관리자] SSBENEFIT 장학금수혜학생관리</button>
-
-
-<br><br>
-<hr>
-<br><br>
-
 
 <h3 style="margin-bottom: 10px; padding-left: 25px;"><%=membermm.getName() %> 님의 신청내역 조회</h3>
 

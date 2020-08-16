@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
+<title>beet</title>
 </head>
 <style>
 
@@ -48,7 +47,23 @@ img.emoji {
 	background: none !important;
 	padding: 0 !important;
 }
+#selecttable td{
+width:300px;
+height:300px;
+background-color:#dff9fb;
+color:black;
+text-align:center;
+font-size:300%
+}
+a:link {text-decoration: none; color: black;}
+a:visited {text-decoration: none; color: black;}
+a:active {text-decoration: none; color: black;}
+a:hover {text-decoration: none; color: black; font-size:200%;}
+.column1{
+margin-left:40%;
+}
 </style>
+
 <link rel="stylesheet" id="layerslider-css" href="https://www.cha.ac.kr/wp-content/plugins/LayerSlider/static/layerslider/css/layerslider.css?ver=6.5.1" type="text/css" media="all">
 <link rel="stylesheet" id="ls-google-fonts-css" href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,regular,700%7CNunito:300,regular,200,600&amp;subset=latin%2Clatin-ext" type="text/css" media="all">
 <link rel="stylesheet" id="bbse-popup-view-css" href="https://www.cha.ac.kr/wp-content/plugins/bbs-e-popup/css/bbse-popup-style.css?ver=4.7.18" type="text/css" media="all">
@@ -154,7 +169,7 @@ cursor: pointer;
 					<div class="container">
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
-                                                                					
+                                                                						
 						</div>
 					</div>
 				</div>
@@ -175,22 +190,39 @@ cursor: pointer;
 
 </style>
 
-
 <body>
+	<form class="form-horizontal" role="form" method="POST" action="/beet/findid">
+		아이디찾기
+		<div class="row">
+			<div class="col-md-10 inputbb">
+				<div class="form-group has-danger">
+					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+						<input type="text" name="name" class="form-control" id="name"
+							placeholder="이름" required autofocus>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-10 inputbb">
+				<div class="form-group">
+					<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+						<input type="text" name="treasure" class="form-control"
+							id="treasure" placeholder="나의보물1호" required>
+					</div>
+				</div>
+			</div>
+		</div>
 
+		<div class="row">
+			<div class="col-md-10 inputbb">
+				<button type="submit" class="btn btn-outline-secondary findbtn">찾기</button>
+			</div>
+		</div>
+	<% if(request.getAttribute("message") != null) {%>
 
-
-<table id="selecttable">
-<td>
-<a href="/beet/toenroll?who=student">학생</a>
-</td>
-<td>
-<a href="/beet/toenroll?who=professor">교수</a>
-</td>
-<td>
-<a href="/beet/toenroll?who=admin">임직원</a>
-</td>
-</table>
-
+	<%= request.getAttribute("message") %>
+	<% } %>
+	</form>
 </body>
 </html>
