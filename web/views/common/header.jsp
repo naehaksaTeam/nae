@@ -133,7 +133,7 @@ cursor: pointer;
 
 </head>
 <body>
-<%if( (Member)session.getAttribute("loginMember") != null ){ %>
+<%if( (Member)session.getAttribute("loginMember") == null ){ %>
 <meta http-equiv="refresh" content="0;url=/beet/">
 <% } %>
     <header class="has_top has_header_fixed_right scroll_header_top_area dark stick scrolled_not_transparent page_header">
