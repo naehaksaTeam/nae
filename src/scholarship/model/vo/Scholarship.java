@@ -7,16 +7,20 @@ public class Scholarship implements Serializable{
 	private String ssname;
 	private String benefitcon;
 	private int value;
+	private int startrank;
+	private int endrank;
 
 	public Scholarship() {
 		super();
 	}
 
-	public Scholarship(String ssname, String benefitcon, int value) {
+	public Scholarship(String ssname, String benefitcon, int value, int startrank, int endrank) {
 		super();
 		this.ssname = ssname;
 		this.benefitcon = benefitcon;
 		this.value = value;
+		this.startrank = startrank;
+		this.endrank = endrank;
 	}
 
 	public String getSsname() {
@@ -43,11 +47,28 @@ public class Scholarship implements Serializable{
 		this.value = value;
 	}
 
+	public int getStartrank() {
+		return startrank;
+	}
+
+	public void setStartrank(int startrank) {
+		this.startrank = startrank;
+	}
+
+	public int getEndrank() {
+		return endrank;
+	}
+
+	public void setEndrank(int endrank) {
+		this.endrank = endrank;
+	}
+
 	@Override
 	public String toString() {
-		return "Scholarship [ssname=" + ssname + ", benefitcon=" + benefitcon + ", value=" + value + "]";
+		return "Scholarship [ssname=" + ssname + ", benefitcon=" + benefitcon + ", value=" + value + ", startrank="
+				+ startrank + ", endrank=" + endrank + "]";
 	}
-	
+
 	
 	
 }
