@@ -218,20 +218,20 @@ cursor: pointer;
 	<table class = "main_default">
 	<tr><th>계열명</th></tr>
 	<% for(Category category : list){ %>
-		<tr><td style="text-align: left"><input type="radio" name="catename" required="required" value="<%= category.getCategoryname() %>"> <%= category.getCategoryname() %></td></tr>
+		<tr><td style="text-align: left"><input type="radio" name="catename" required="required" required="required" value="<%= category.getCategoryname() %>"> <%= category.getCategoryname() %></td></tr>
 	<% } %>
 	</table>
 	<div align="right" style="margin-top: 5px;">
 		<button class="btn btn-outline-secondary" type="submit" onclick="javascript: cateform.action='/beet/deleteca'"> 삭 제 </button>
 	</div>
 	<br>
-	<input type="text" name="newname" placeholder="수정 후의 계열명 입력란" style="width: 50%"> 
+	<input type="text" name="newname" required="required" placeholder="수정 후의 계열명 입력란" style="width: 50%"> 
 	<button class="btn btn-outline-secondary" type="submit" onclick="javascript: cateform.action='/beet/updateca'"> 수 정 </button>
 	</form>
 <% } %>
 <br>
 <form action="/beet/insertca" method="post">
-<input placeholder="추가하실 계열명 입력란" type="text" name="catename" style="width: 50%">
+<input placeholder="추가하실 계열명 입력란" required="required" type="text" name="catename" style="width: 50%">
 <button class="btn btn-outline-secondary" type="submit" > 추 가 </button>
 </form>
 

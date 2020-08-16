@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isErrorPage="true" import="student.model.vo.Member"%>
-<%
-	String error = (String)request.getAttribute("message");
-%>
+<% String error = (String)request.getAttribute("message"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,23 +13,13 @@
 <title>beet</title>
 </head>
 <body>
-
-
-
 <div align="center" style="margin-top: 20%;">
 <p>에러 발생</p>
-
 <% if(error != null){ %>
-
 <p><strong><h1><%= error%></h1></strong></p>
-
-<% } %>
-<%if( (Member)session.getAttribute("loginMember") != null ){ %>
-<button class="btn btn-outline-secondary" onclick="javascript:loaction.href='/beet/views/main/main.jps'"> 메인 페이지 </button>&nbsp;&nbsp;&nbsp;
 <% } %>
 <br>
 <button class="btn btn-outline-secondary" onclick="javascript:history.go(-1)"> 이전 페이지 </button>
 </div>
-
 </body>
 </html>

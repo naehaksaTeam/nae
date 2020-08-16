@@ -217,7 +217,7 @@ cursor: pointer;
 <table style="clear: both" class = "main_default">
 	<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th>
 	<% for(Scholarship ss : list){ %>
-	<tr><th><input type="radio" name="ssname" value="<%=ss.getSsname()%>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
+	<tr><th><input type="radio" required="required" name="ssname" value="<%=ss.getSsname()%>"><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
 	<% } %>
 </table>
 </form>
@@ -243,9 +243,9 @@ cursor: pointer;
 <button class="btn btn-outline-secondary" type="submit" onclick="javascript: insertssform.action='/beet/insertss'" > 추 가 </button>
 </div>
 <table class = "main_default">
-<tr><th>장학금명</th><td><input type="text" placeholder="등록하실 장학금의 이름을 입력해주세요" required="required" name="ssname" style="outline: none; width: 98%; border: 0;" ></td></tr>
-<tr><th>수혜조건</th><td><input type="text" placeholder="수혜조건을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="benefitcon"></td></tr>
-<tr><th>장학금액</th><td><input type="number" placeholder="금액을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="value"></td></tr>
+<tr><th>장학금명</th><td><input type="text" required="required" placeholder="등록하실 장학금의 이름을 입력해주세요" required="required" name="ssname" style="outline: none; width: 98%; border: 0;" ></td></tr>
+<tr><th>수혜조건</th><td><input type="text" required="required" placeholder="수혜조건을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="benefitcon"></td></tr>
+<tr><th>장학금액</th><td><input type="number" required="required" placeholder="금액을 입력해주세요" required="required" style="outline: none; width: 98%; border: 0;" name="value"></td></tr>
 </table>
 
 </form>

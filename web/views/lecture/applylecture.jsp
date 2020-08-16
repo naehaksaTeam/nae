@@ -1,7 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList,lecture.model.vo.Lecture,student.model.vo.Member
     ,lecture.model.vo.ApplyReception" %>
-<% session.setAttribute((String)request.getAttribute("resultForSession"), "no"); %>
+   
+<% 
+if(request.getAttribute("resultForSession") != null){
+session.setAttribute((String)request.getAttribute("resultForSession"), (String)request.getAttribute("result")); 
+}
+%>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
@@ -227,6 +232,9 @@ cursor: pointer;
 <th>
 &nbsp;신청하기&nbsp;
 </th>
+<th>
+&nbsp;신청취소&nbsp;
+</th>
 </tr>
 <% ArrayList<Lecture> list = (ArrayList<Lecture>)request.getAttribute("list");  %>
 <% for(Lecture l : list){ %>
@@ -265,6 +273,19 @@ cursor: pointer;
 <b>마감</b>
 <% }else{ %>
 <b>신청성공</b>
+<% session.setAttribute("delbtn" + l.getLname(),"show"); %>
+<% } %>
+</td>
+<td>
+<% if((session.getAttribute("delbtn" + l.getLname())) == null){  %>
+&nbsp;
+<% }else{ %>
+<form action="/beet/lapply?who=<%= ((Member)session.getAttribute("loginMember")).getId() %>" method="post">
+<button type="submit" name="lname" value="<%= l.getLname() %>" id="applybtn" class="btn btn-outline-secondary">수강신청</button>
+<input type="text" style="display:none;" name="room" value="<%= l.getRoom() %>">
+<input type="text" style="display:none;" name="lcode" value="<%= l.getLcode() %>">
+<input type="text" style="display:none;" name="lpersonnel" value="<%= l.getCapacity() %>">
+</form>
 <% } %>
 </td>
 </tr>
