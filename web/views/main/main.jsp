@@ -625,7 +625,7 @@ function calendar()
 		
 		
 		
-		<div class="row main-row" style=" height: 700px; margin:0 auto;" >
+		<div class="row main-row" style=" height: 330px; margin:0 auto;" >
 			<div class="col-sm-3">
 				<div class="panel panel-primary"
 					style="border-color: #edeef1;" >
@@ -640,7 +640,7 @@ function calendar()
 			</div>
 			<div class="col-sm-3">
 				<div class="panel panel-primary"
-					style="border-color: #edeef1; height: 300px">
+					style="border-color: #edeef1; height: 330px">
 					<div class="panel-footer">날씨</div>
 					<div class="panel-body">
 					     <table style="width:20; margin:auto; padding-top:10px;" id="mainWeather" cellspacing="0">
@@ -661,7 +661,7 @@ function calendar()
 			
 			<div class="col-sm-3">
 				<div class="panel panel-primary"
-					style="border-color: #edeef1; height: 300px">
+					style="border-color: #edeef1; height: 330px">
 					<div class="panel-footer">공지사항</div>
 					<div class="panel-body">
 					 <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
@@ -675,7 +675,7 @@ function calendar()
 			</div>
 			<div class="col-sm-3">
 				<div class="panel panel-primary"
-					style="border-color: #edeef1; height: 300px">
+					style="border-color: #edeef1; height: 330px">
 					<div class="panel-footer"><%=month %>월 학사일정</div>
 					<div class="panel-body">
 					  <table style="width:20; margin:auto; padding-top:10px;" id="mainSchedule" cellspacing="0">
