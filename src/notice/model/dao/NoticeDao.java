@@ -279,7 +279,7 @@ public class NoticeDao {
 		
 		}else{
 		
-			 query = "select * from notice where noticecontent like  ? ORDER BY noticedate desc";
+			 query = "select * from notice where noticetitle like  ? ORDER BY noticedate desc";
 		}
 
 		try {

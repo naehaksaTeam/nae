@@ -225,7 +225,12 @@ cursor: pointer;
 
 		<tr>
 			<th>내 용 :</th>	
-			<td><%=notice.getNoticeContent().replaceAll("\r\n", "<br>")%></td>
+			<td>
+			<%if(notice.getNoticeContent() !=null){ %>
+			<%=notice.getNoticeContent().replaceAll("\r\n", "<br>")%>
+			<% }else{ %>없음
+			<% } %>
+			</td>
 		</tr>
 
 	</table>

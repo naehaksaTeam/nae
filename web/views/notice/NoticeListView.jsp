@@ -356,7 +356,7 @@ cursor: pointer;
 
 			<option value="no">글번호</option>
 			<option value="writer">작성자</option>
-			<option value="content">글내용</option>
+			<option value="title">글제목</option>
 		</select> <input type="text" name="search">
 		<button class="btn btn-outline-secondary findbtn" type="submit" value="로그인">검색</button>
 

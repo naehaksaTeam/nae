@@ -216,14 +216,7 @@ cursor: pointer;
 		<tr>
 			<td><%=n.getNoticeNo()%></td>
 			<td>
-				<%
-					if (n.getNoticeTitle().length() > 10) {
-				%> 
-				<%=n.getNoticeTitle().substring(0, 10)%> <%
- 	} else {
- %> <%=n.getNoticeTitle()%> <%
- 	}
- %>
+			<a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%= n.getNoticeTitle() %></a>
 
 			</td>
 
@@ -231,15 +224,7 @@ cursor: pointer;
 			<td><%=n.getNoticeWriter()%></td>
 			<td><%=n.getNoticeDate()%></td>
 			<td>
-				<%
-					if (n.getNoticeContent().length() > 15) {
-				%> <a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent().substring(0, 15)%></a>
-				<%
-					} else {
-				%> <a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent()%></a>
-				<%
-					}
-				%>
+				<%=n.getNoticeContent() %>
 
 			</td>
 			<td>
@@ -274,7 +259,7 @@ cursor: pointer;
 			<option value="no">글번호</option>
 			<option value="writer">작성자</option>
 
-			<option value="content">글내용</option>
+			<option value="title">글제목</option>
 		</select> <input type="text" name="search">
 		<button class="btn btn-outline-secondary findbtn" type="submit" value="로그인">검색</button>
 
