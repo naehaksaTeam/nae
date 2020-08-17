@@ -269,9 +269,13 @@ $("#abc").click(function(){
 		async : true,
 		data : {jsondata : JSON.stringify(aJSONArray)},
 		success : function(data){
-			alert("변경사항을 저장했습니다!")
+			alert("변경사항을 저장했습니다!");
 			$("input[type=text]").attr('readonly', true);
 			$("#savechn").hide();
+			$("#editSc").hide();
+		
+			$("input[type=checkbox]").prop("checked", false);
+			document.reload();
 		},
 		error :  function(request, status, error) {
 			alert("변경사항을 저장했습니다!")

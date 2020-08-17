@@ -500,6 +500,11 @@ public class AtndnDao {
 				return list;
 			}
 
+	//출결업데이트
+		
+			
+			
+			
 			
 	//S1-1 학생 - 해당 강의 One 에 대한 1~15주차 출결조회 
 			public Atndn selectOneAtndn(Connection conn,String sid, String lcode, String semester) {
@@ -710,6 +715,34 @@ public class AtndnDao {
 					close(pstmt);
 				}
 				return list;
+			}
+
+
+
+
+
+
+			public int updateOneAtndn(Connection conn, String sid, String value, String week, String lcode) {
+				int result = 0;
+				PreparedStatement pstmt = null;
+				
+				String query = "update attendance set ? = ? where lcode= ? and id = ?"; 
+				
+				try {
+					pstmt = conn.prepareStatement(query);
+					
+					pstmt.setString(1, week);
+					pstmt.setString(2, value);
+					pstmt.setString(3, lcode);
+					pstmt.setString(4, sid);
+					
+					result = pstmt.executeUpdate();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}finally {
+					close(pstmt);
+				}
+				return result; 
 			}
 
 
