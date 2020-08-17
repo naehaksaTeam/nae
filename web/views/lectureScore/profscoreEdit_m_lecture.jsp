@@ -137,6 +137,7 @@ select {width: 40px; height:20px; margin:0px}
 					<option value="D" <%=(lscore.getGrade().trim().equals("D"))?"selected":"" %>>D</option>
 					<option value="F" <%=(lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
 				</select></td>
+		
 		</tr>
 		</p>
 		<% } %>
