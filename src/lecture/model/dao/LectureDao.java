@@ -406,7 +406,7 @@ public class LectureDao {
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "select lname,ltime,lclock from  lapplication join lecture using (lcode) where lapplication.id = ? and lclock = ?";
+		String query = "select lname,ltime,lclock from  lapplication join lecture using (lcode) where lapplication.id = ? and lclock = ? and semester = (select to_char(sysdate,'yyyy')||case when(to_char(sysdate,'mm'))>7 then '02' ELSE '01' end from dual)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
