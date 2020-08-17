@@ -236,16 +236,92 @@ $(".chk").click(function(){
         //var checkbox = $("input[name=user_CheckBox]:checked");
 });
 
+JsonArray arr = new JSONArray();
 
+<<<<<<< HEAD
+jQuery("#abc").click(function(){
+       // var rowData = new Array(); 
+        var checkbox = $("input:checkbox[name=chk]:checked");	
+        <% int k=0;%>	
+=======
 
 $("#abc").click(function(){ 
 	var aJSONArray = new Array();	
     var checkbox = $("input:checkbox[name=chk]:checked");	
     
+>>>>>>> d413755b7e51d2f80e713f43916edaf3566c81d3
    checkbox.each(function(i) {
 	   
 	var tr = checkbox.parent().parent().eq(i);
 	var td = tr.children();
+<<<<<<< HEAD
+	JSONObject data<%=++k%> = new JSONObject();
+	
+	data<%=k%>.put("categoryname", td.eq(3).text());
+	data<%=k%>.put("majorname", td.eq(4).text());
+	data<%=k%>.put("sid", td.eq(5).text());
+	data<%=k%>.put("sname", td.eq(6).text());
+	data<%=k%>.put("retake", td.eq(7).text());
+	data<%=k%>.put("atndnScore", td.eq(8).find('input[type="text"]').val());
+	data<%=k%>.put("midScore", td.eq(9).find('input[type="text"]').val());
+	data<%=k%>.put("finalScore", td.eq(10).find('input[type="text"]').val());
+	data<%=k%>.put("totalScore", td.eq(11).find('input[type="text"]').val());
+	data<%=k%>.put("grade", td.eq(12).find('select[name="selectg"] option:selected').val());
+	
+	arr.add(data<%=i%>);
+   }
+
+	
+	JSONObject univ = new JSONObject();
+	univ.put("univ", arr);
+	
+	json = univ.toJSONString();
+	
+	
+	
+	//rowData.push(tr.text());
+	
+	
+	
+	
+	/*
+	2번 시도
+	
+	dataObj.categoryname= td.eq(3).text();
+	dataObj.majorname = td.eq(4).text();
+	dataObj.sid = td.eq(5).text();
+	dataObj.sname = td.eq(6).text();
+	dataObj.retake = td.eq(7).text();
+	dataObj.atndnScore = td.eq(8).find('input[type="text"]').val();
+	dataObj.midScore = td.eq(9).find('input[type="text"]').val();
+	dataObj.finalScore = td.eq(10).find('input[type="text"]').val();
+	dataObj.totalScore = td.eq(11).find('input[type="text"]').val();
+	dataObj.grade = td.eq(12).find('select[name="selectg"] option:selected').val(); 
+	
+	aJsonArray.push(aJson);
+   });
+   
+   var sJson = JSON.stringify(aJsonArray);
+    */
+	
+	/* dataObj.categoryname= td.eq(3).text();
+	dataObj.majorname = td.eq(4).text();
+	var sid = td.eq(5).text();
+	var sname = td.eq(6).text();
+	var retake = td.eq(7).text();
+	var atndnScore = td.eq(8).find('input[type="text"]').val();
+	var midScore = td.eq(9).find('input[type="text"]').val();
+	var finalScore = td.eq(10).find('input[type="text"]').val();
+	var totalScore = td.eq(11).find('input[type="text"]').val();
+	var grade = td.eq(12).find('select[name="selectg"] option:selected').val(); */
+	var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
+		totalScore, grade];
+	var aa = JSON.stringify(dataArray);
+	var jsonArray = JSON.parse(JSON.stringify(dataArray));
+/* 	jQuery.ajax({
+		url : "/beet/scoreup",
+		contentType : 'application/json',
+=======
 	var aJson<%=i%> = new Object(); 
 	//rowData.push(tr.text());
 	aJson<%=i%>.receptionno = td.eq(1).text();
@@ -265,6 +341,7 @@ $("#abc").click(function(){
 
    $.ajax({
 	   	url : "/beet/scupdate.p",
+>>>>>>> d413755b7e51d2f80e713f43916edaf3566c81d3
 		method : 'post',
 		traditional : true,
 		async : true,
@@ -275,6 +352,13 @@ $("#abc").click(function(){
 			$("#savechn").hide();
 		},
 		error :  function(request, status, error) {
+<<<<<<< HEAD
+	        alert(error);
+		}
+		}); */
+ 
+});
+=======
 			alert("변경사항을 저장했습니다!")
 			$("input[type=text]").attr('readonly', true);
 			$("#savechn").hide();
@@ -296,6 +380,7 @@ $("#abc").click(function(){
 	var aa = JSON.stringify(dataArray);
 	var jsonArray = JSON.parse(JSON.stringify(dataArray)); */
  
+>>>>>>> d413755b7e51d2f80e713f43916edaf3566c81d3
 </script>
 		</div> </div>
 						</div>

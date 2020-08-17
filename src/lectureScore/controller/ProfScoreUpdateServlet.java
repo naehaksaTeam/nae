@@ -75,7 +75,53 @@ public class ProfScoreUpdateServlet extends HttpServlet {
 			request.setAttribute("message", "성적입력에 실패했습니다.");
 			view.forward(request, response);
 		}
+<<<<<<< HEAD
+		sendJSON.put("list", jarr);
+		
+		response.setContentType("application/json; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.write(sendJSON.toJSONString()); 
+		out.flush();
+		out.close();
+	}
+
+		
+	/*
+	 * request.setCharacterEncoding("utf-8");
+	 * 
+	 * 
+	 * LectureScore lscore = new LectureScore();
+	 * 
+	 * lscore.setReceptionno(request.getParameter("receptionno"));
+	 * lscore.setLcode(request.getParameter("lcode"));
+	 * lscore.setLname(request.getParameter("lname"));
+	 * lscore.setCategory(request.getParameter("category"));
+	 * lscore.setAtndnscore(Integer.parseInt(request.getParameter("atndnscore")));
+	 * lscore.setMidscore(Integer.parseInt(request.getParameter("midscore")));
+	 * lscore.setFinalscore(Integer.parseInt(request.getParameter("finalscore")));
+	 * lscore.setTotalscore(Integer.parseInt(request.getParameter("totalscore")));
+	 * lscore.setGrade(request.getParameter("grade"));
+	 * 
+	 * int result = new LectureScoreService().updateScore(lscore);
+	 * 
+	 * if(result > 0) {
+	 * response.sendRedirect("/beet/scmain.p?userid="+lscore.getPid()); }else {
+	 * RequestDispatcher view =
+	 * request.getRequestDispatcher("views/common/error.jsp");
+	 * request.setAttribute("message", " 성적 수정 실패"); view.forward(request,
+	 * response); } }
+	 */
+
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+=======
 		  
+>>>>>>> d413755b7e51d2f80e713f43916edaf3566c81d3
 	}
 
 }
