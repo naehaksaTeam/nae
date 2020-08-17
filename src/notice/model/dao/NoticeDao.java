@@ -62,7 +62,7 @@ public class NoticeDao {
 			if (rset.next()) {
 				notice = new Notice();
 				notice.setNoticeNo(noticeNo);
-				notice.setNoticeNo(rset.getInt("NOTICENO"));
+			    notice.setAdNo(rset.getString("ADNO")); 
 				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
 				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
 				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
@@ -205,7 +205,7 @@ public class NoticeDao {
 				+ "                        FROM (SELECT * FROM notice ORDER BY noticeno desc)) "
 				+ "WHERE RNUM >= ? AND RNUM <= ?";
 
-		int startRow = (currentPage - 1) * limit + 1;
+		int startRow =( (currentPage - 1) * limit) + 1;
 		int endRow = startRow + limit - 1;
 
 		try {
@@ -236,7 +236,7 @@ public class NoticeDao {
 			close(rset);
 			close(pstmt);
 		}
-
+		System.out.println("dao"+list);
 		return list;
 	}
 
@@ -278,7 +278,7 @@ public class NoticeDao {
 		
 		}else{
 		
-			 query = "select * from notice where noticecontent like  ? ORDER BY noticedate desc";
+			 query = "select * from notice where noticetitle like  ? ORDER BY noticedate desc";
 		}
 
 		try {
@@ -336,8 +336,9 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(stmt);
 			close(rset);
+			close(stmt);
+			
 		}
 		System.out.println("멘인의 탑 5dao"+ list);
 		return list;
