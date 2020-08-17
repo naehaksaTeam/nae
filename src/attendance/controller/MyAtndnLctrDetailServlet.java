@@ -34,7 +34,7 @@ public class MyAtndnLctrDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String lcode = request.getParameter("lcode");
-		String semester = request.getParameter("semester");
+		String semester = "202001";
 		ArrayList<Atndn> list = new AtndnService().selectOneAtndn(lcode, semester);
 
 		RequestDispatcher view = null;

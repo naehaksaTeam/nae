@@ -199,7 +199,7 @@ select {width: 40px; height:20px; margin:0px}
 		<input type="submit" class="btn-sm btn btn-outline-secondary" value="출결조회">
     
     
-				</form>
+		</form>
 			</td>
 		</tr>
 		<%
