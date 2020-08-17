@@ -14,12 +14,9 @@ import major.model.vo.Major1;
 import major.model.vo.Major2;
 import notice.model.vo.Notice;
 
-
-
-
 public class MajorDao {
 	public MajorDao() {
-		
+
 	}
 
 	public int getListCount(Connection conn) {
@@ -43,7 +40,7 @@ public class MajorDao {
 			close(stmt);
 		}
 		System.out.println("getListCount Dao성공 !");
-		
+
 		return listCount;
 	}
 
@@ -51,25 +48,25 @@ public class MajorDao {
 		ArrayList<Major> list = new ArrayList<Major>();
 		Statement stmt = null;
 		ResultSet rset = null;
-		
+
 		String query = "select * from major ";
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
-			
-			while(rset.next()) {
+
+			while (rset.next()) {
 				Major major = new Major();
 				major.setMajorno(rset.getString("majorno"));
 				major.setMajorname(rset.getString("majorname"));
 				major.setCapacity(rset.getInt("capacity"));
 				major.setTuition(rset.getInt("tuition"));
 				major.setCategoryname(rset.getString("categoryname"));
-				
+
 				list.add(major);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(stmt);
 			close(rset);
 		}
@@ -77,10 +74,10 @@ public class MajorDao {
 	}
 
 	public int insertMajor(Connection conn, Major major) {
-		int result =0;
+		int result = 0;
 		PreparedStatement pstmt = null;
-		
-		String query= "insert into major values(?,?,?,?,?)";
+
+		String query = "insert into major values(?,?,?,?,?)";
 		System.out.println("dao성공!");
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -89,18 +86,17 @@ public class MajorDao {
 			pstmt.setInt(3, major.getCapacity());
 			pstmt.setInt(4, major.getTuition());
 			pstmt.setString(5, major.getCategoryname());
-			
-			
+
 			result = pstmt.executeUpdate();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
-		
+
 		return result;
-}
+	}
 
 	public Major selectOne(Connection conn, String majorno) {
 		Major major = null;
@@ -120,7 +116,7 @@ public class MajorDao {
 				major.setCapacity(rset.getInt("capacity"));
 				major.setTuition(rset.getInt("tuition"));
 				major.setCategoryname(rset.getString("categoryname"));
-				
+
 			}
 
 		} catch (Exception e) {
@@ -128,10 +124,10 @@ public class MajorDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			
+
 		}
 		return major;
-		
+
 	}
 
 	public int deleteMajor(Connection conn, String majorNo) {
@@ -162,20 +158,19 @@ public class MajorDao {
 		ResultSet rset = null;
 
 		String query = "select * from major where majorno=?";
-			System.out.println("하나고름!");
+		System.out.println("하나고름!");
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, majorNo);
 			rset = pstmt.executeQuery();
 			if (rset.next()) {
-				 major = new Major();
+				major = new Major();
 				major.setMajorno(rset.getString("majorno"));
 				major.setMajorname(rset.getString("majorname"));
 				major.setCapacity(rset.getInt("capacity"));
 				major.setTuition(rset.getInt("tuition"));
 				major.setCategoryname(rset.getString("categoryname"));
-				
-				
+
 			}
 
 		} catch (Exception e) {
@@ -183,7 +178,7 @@ public class MajorDao {
 		} finally {
 			close(rset);
 			close(pstmt);
-			
+
 		}
 		return major;
 	}
@@ -196,14 +191,11 @@ public class MajorDao {
 		System.out.println("update!");
 		try {
 			pstmt = conn.prepareStatement(query);
-			
-			
+
 			pstmt.setString(1, major.getMajorname());
 			pstmt.setInt(2, major.getCapacity());
 			pstmt.setInt(3, major.getTuition());
 			pstmt.setString(4, major.getMajorno());
-			
-			
 
 			result = pstmt.executeUpdate();
 
@@ -219,41 +211,35 @@ public class MajorDao {
 		PreparedStatement pstmt = null;
 		Major1 major1 = null;
 		ResultSet rset = null;
-		String query = "select a.categoryname  , b.majorname   , a.id  , a.name  , b.tuition " + 
-				"from student a " + 
-				"join major b on a.majorno=b.majorno " + 
-				"where id = ?";
+		String query = "select a.categoryname  , b.majorname   , a.id  , a.name  , b.tuition " + "from student a "
+				+ "join major b on a.majorno=b.majorno " + "where id = ?";
 		System.out.println("select tuition 도착");
 		try {
-			
+
 			pstmt = conn.prepareStatement(query);
-			
+
 			pstmt.setString(1, id);
-			
-			
-			
-		rset = 	pstmt.executeQuery();
-			if(rset.next()) {
+
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
 				major1 = new Major1();
-				
+
 				major1.setCategoryname(rset.getString("categoryname"));
 				major1.setMajorname(rset.getString("majorname"));
 				major1.setId(rset.getString("id"));
 				major1.setName(rset.getString("name"));
 				major1.setTuition(rset.getInt("tuition"));
-				
-				
+
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rset);
 			close(pstmt);
-			
+
 		}
-		System.out.println("major1 dao 에서 나온값 : "+major1);
+		System.out.println("major1 dao 에서 나온값 : " + major1);
 		return major1;
 	}
 
@@ -261,25 +247,25 @@ public class MajorDao {
 		Date term = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-		
-		String query ="  select sysdate from dual where sysdate between (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
-								"  from schedule " + 
-								"  where schname like '%1학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate)) " + 
-								"  and (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
-								"  from schedule " + 
-								"  where schname like '%2학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate))";
-		
+
+		String query = "  select sysdate from dual where sysdate between (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') "
+				+ "  from schedule "
+				+ "  where schname like '%1학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate)) "
+				+ "  and (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') "
+				+ "  from schedule "
+				+ "  where schname like '%2학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate))";
+
 		try {
 			stmt = conn.createStatement();
-			
+
 			rset = stmt.executeQuery(query);
-			
-			if(rset.next()) {
+
+			if (rset.next()) {
 				term = rset.getDate("sysdate");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(stmt);
 		}
 		return term;
@@ -289,25 +275,25 @@ public class MajorDao {
 		Date termcheck = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-		
-		String query =" select sysdate from dual where sysdate between (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
-								" from schedule " + 
-								" where schname like '%1학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate)) " + 
-								" and (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
-								" from schedule " + 
-								" where schname like '%1학기%' and schname like '%종강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate))";
-		
+
+		String query = " select sysdate from dual where sysdate between (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') "
+				+ " from schedule "
+				+ " where schname like '%1학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate)) "
+				+ " and (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') "
+				+ " from schedule "
+				+ " where schname like '%1학기%' and schname like '%종강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate))";
+
 		try {
 			stmt = conn.createStatement();
-			
+
 			rset = stmt.executeQuery(query);
-			
-			if(rset.next()) {
+
+			if (rset.next()) {
 				termcheck = rset.getDate("sysdate");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(stmt);
 		}
 		return termcheck;
@@ -317,71 +303,59 @@ public class MajorDao {
 		Date termcheck = null;
 		Statement stmt = null;
 		ResultSet rset = null;
-		
-		String query =" select sysdate from dual where sysdate between (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
-								" from schedule " + 
-								" where schname like '%2학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate)) " + 
-								" and (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') " + 
-								" from schedule " + 
-								" where schname like '%2학기%' and schname like '%종강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate))";
-		
+
+		String query = " select sysdate from dual where sysdate between (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') "
+				+ " from schedule "
+				+ " where schname like '%2학기%' and schname like '%개강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate)) "
+				+ " and (select to_date(concat(lpad(SCHSTARTMONTH, 2, 0), lpad(SCHSTARTDATE, 2, 0)), 'MMdd') "
+				+ " from schedule "
+				+ " where schname like '%2학기%' and schname like '%종강%' and extract(YEAR from to_date(SCHSTARTYEAR, 'yyyy')) = extract(YEAR from sysdate))";
+
 		try {
 			stmt = conn.createStatement();
-			
+
 			rset = stmt.executeQuery(query);
-			
-			if(rset.next()) {
+
+			if (rset.next()) {
 				termcheck = rset.getDate("sysdate");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(stmt);
 		}
 		return termcheck;
 	}
 
-	
-	
-
 	public Major2 OneValueAndBene(Connection conn, String id) {
 		PreparedStatement pstmt = null;
 		Major2 major2 = null;
 		ResultSet rset = null;
-		String query = "select value, lpad(benefitterm,4) c " + 
-				"from ssbenefitst a " + 
-				"left join scholarship b  " + 
-				"on a.ssname = b.ssname " + 
-				"where id= ?";
+		String query = "select value, lpad(benefitterm,4) c " + "from ssbenefitst a " + "left join scholarship b  "
+				+ "on a.ssname = b.ssname " + "where id= ?";
 		System.out.println("select Onevalueandbene 도착");
 		try {
-			
+
 			pstmt = conn.prepareStatement(query);
-			
+
 			pstmt.setString(1, id);
-			
-			
-			
-		rset = 	pstmt.executeQuery();
-			if(rset.next()) {
+
+			rset = pstmt.executeQuery();
+			if (rset.next()) {
 				major2 = new Major2();
-				
+
 				major2.setValue(rset.getInt("value"));
 				major2.setBenefitterm(rset.getInt("c"));
-				
-				
-				
+
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rset);
 			close(pstmt);
-			
+
 		}
-		System.out.println("major2에서 나온값 : "+major2);
 		return major2;
 	}
 
@@ -419,22 +393,4 @@ public class MajorDao {
 	 * stub return null; }
 	 */
 
-
-	
-
-
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

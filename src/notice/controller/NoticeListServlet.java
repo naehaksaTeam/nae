@@ -85,7 +85,11 @@ public class NoticeListServlet extends HttpServlet {
 					request.setAttribute("startPage",startPage);
 					request.setAttribute("endPage", endPage);
 					request.setAttribute("listCount",listCount);
+
 					System.out.println("보내기직전!");
+
+					System.out.println(request);
+
 					view.forward(request, response);
 					System.out.println("보내기성공!!");
 				}else {
