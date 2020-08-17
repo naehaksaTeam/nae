@@ -153,8 +153,8 @@ cursor: pointer;
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
-			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;/beet/resources/images/page.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
 						<div class="container_inner clearfix">
@@ -210,7 +210,12 @@ cursor: pointer;
 		<tr>
 			<th><%= major1.getCategoryname() %></th>
 			<th><%= major1.getMajorname() %></th>
-			<th><%= major2.getBenefitterm() %></th>
+			<th><%if(major2 !=null){ %>
+			<%=major2.getBenefitterm() %>
+			<%}else{ %>
+			2020
+			<% } %>
+			</th>
 			<th><% if(thisterm != null){ %>
 					<%=thisterm%>
 				<% } %>
@@ -218,8 +223,16 @@ cursor: pointer;
 			<th><%= major1.getName() %></th>
 			<th><%= major1.getId() %></th>
 			<th><%= major1.getTuition() %>원</th>
-			<th><%= major2.getValue() %>원</th>
-			<th><%= major1.getTuition()- major2.getValue() %>원</th>
+			<th><%if(major2 !=null){ %>
+			
+			<%=major2.getValue() %>
+			<%} %></th>
+			
+			<th><%if(major2 !=null){ %>
+			<%=major1.getTuition() - major2.getValue() %>
+			<%} %>
+			</th>
+		
 			<th>2020.08.12</th>
 		</tr>
 		<% } %>

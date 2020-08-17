@@ -219,6 +219,7 @@ cursor: pointer;
   </tr>
   </thead>
 <tbody>
+<% if (!list.isEmpty()){ %>
   <% int i = 1; for (Atndn atndn : list){ %>
   <tr>
 
@@ -245,6 +246,7 @@ cursor: pointer;
     <td ><%= atndn.getWeek16() %></td>   
   </tr>
   <% } %>
+ <% } %>
 </tbody>
 </table>
 
