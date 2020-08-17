@@ -308,9 +308,10 @@ cursor: pointer;
 			<td><%=a.getCapacity()%></td>
 			<td><%=a.getPname()%></td>
 			<td>
-				<form id="hi" action="/beet/atnlist" method="post">
+				<form id="hi" action="/beet/dlAtndn" method="post">
 					<input class="down_default" type="hidden" name="userid" value="<%=(Member)session.getAttribute("loginMember")%>"> 
-						<input type="hidden" name="lcode" value="<%=a.getLcode()%>"> 
+						<input type="hidden" name="lcode" value="<%=a.getLcode()%>">
+						 <input type="hidden" name="semester" value="202001">
 						<input type="submit" class="btn-sm btn btn-outline-secondary" value="출결조회">
     
     
