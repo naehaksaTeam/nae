@@ -162,8 +162,8 @@ cursor: pointer;
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
-			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;/beet/resources/images/page.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
 						<div class="container_inner clearfix">
@@ -216,14 +216,7 @@ cursor: pointer;
 		<tr>
 			<td><%=n.getNoticeNo()%></td>
 			<td>
-				<%
-					if (n.getNoticeTitle().length() > 10) {
-				%> 
-				<%=n.getNoticeTitle().substring(0, 10)%> <%
- 	} else {
- %> <%=n.getNoticeTitle()%> <%
- 	}
- %>
+			<a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%= n.getNoticeTitle() %></a>
 
 			</td>
 
@@ -231,15 +224,7 @@ cursor: pointer;
 			<td><%=n.getNoticeWriter()%></td>
 			<td><%=n.getNoticeDate()%></td>
 			<td>
-				<%
-					if (n.getNoticeContent().length() > 15) {
-				%> <a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent().substring(0, 15)%></a>
-				<%
-					} else {
-				%> <a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent()%></a>
-				<%
-					}
-				%>
+				<%=n.getNoticeContent() %>
 
 			</td>
 			<td>
@@ -274,7 +259,7 @@ cursor: pointer;
 			<option value="no">글번호</option>
 			<option value="writer">작성자</option>
 
-			<option value="content">글내용</option>
+			<option value="title">글제목</option>
 		</select> <input type="text" name="search">
 		<button class="btn btn-outline-secondary findbtn" type="submit" value="로그인">검색</button>
 

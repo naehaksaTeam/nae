@@ -3,6 +3,11 @@
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 	<!-- ★★★★★★★★title -->
 	<title> </title>
 
@@ -147,8 +152,8 @@ cursor: pointer;
 <div class="content " style="min-height: 755px; padding-top: 0px;">
 						<div class="content_inner  ">
 									<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
-		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image: url(&quot;https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
-			<div class="image not_responsive"><img itemprop="image" src="https://new.cha.ac.kr/wp-content/uploads/2017/09/title_default-1.jpg" alt="&nbsp;"> </div>
+		<div class="title title_size_medium  position_left  has_fixed_background " style="background-size: 1920px; background-image:  url(&quot;/beet/resources/images/page.jpg&quot;); height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
+			<div class="image not_responsive"><img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;"> </div>
 										<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					<div class="container">
 						<div class="container_inner clearfix">
@@ -210,12 +215,15 @@ cursor: pointer;
 			
 		</table>
 		</div>
+		<br>
 		<div align="right">
+				
 			
-				<th colspan="2"><input type="submit" value="등록하기">
-					&nbsp; <input type="reset" value="초기화"> &nbsp; <input
-					type="button" value="목록"
-					onclick="javascript:history.go(-1); return false;"></th>
+				<button class="btn btn-outline-secondary" type="submit" >등록하기</button>
+					<button  class="btn btn-outline-secondary" type="reset" >초기화</button>
+				
+					<button class="btn btn-outline-secondary"  onclick="javascript:history.go(-1); return false;">목록</button>
+					
 			
 			</div>
 	</form>

@@ -62,10 +62,10 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="content_inner ">
 		<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
 			<!-- ★배경 이미지 (변경시 backgroud-image, src 두군데 수정해야해요 --------------->
-		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/test.jpg); 
+		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/page.jpg); 
 			height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 		<div class="image not_responsive">
-			<img itemprop="image" src="/beet/resources/images/test.jpg" alt="&nbsp;">
+			<img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;">
 		</div>
 		<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					
@@ -137,7 +137,6 @@ select {width: 40px; height:20px; margin:0px}
 					<option value="D" <%=(lscore.getGrade().trim().equals("D"))?"selected":"" %>>D</option>
 					<option value="F" <%=(lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
 				</select></td>
-		
 		</tr>
 		</p>
 		<% } %>

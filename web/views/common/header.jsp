@@ -133,6 +133,9 @@ cursor: pointer;
 
 </head>
 <body>
+<%if( (Member)session.getAttribute("loginMember") == null ){ %>
+<meta http-equiv="refresh" content="0;url=/beet/">
+<% } %>
     <header class="has_top has_header_fixed_right scroll_header_top_area dark stick scrolled_not_transparent page_header">
                 <div class="header_inner clearfix">
 
@@ -238,7 +241,7 @@ cursor: pointer;
                                             </li>
                                             
                                             <li id="nav-menu-item-2045" class="">
-                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                                <a href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-5823" class="">
                                                 <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
@@ -271,7 +274,7 @@ cursor: pointer;
                                                 <a href="/beet/selectaball" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2045" class="">
-                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                                <a href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-5823" class="">
                                                 <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
@@ -304,7 +307,7 @@ cursor: pointer;
                                                 <a href="/beet/selectab?studentid=<%=m1.getId()%>" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2045" class="">
-                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                                <a href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-5823" class="">
                                                 <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>

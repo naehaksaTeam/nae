@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import lectureScore.model.service.LectureScoreService;
 import lectureScore.model.vo.LectureScore;
 
+
+
+//관리자 성적조회 
 /**
  * Servlet implementation class LectureSearchAll
  */

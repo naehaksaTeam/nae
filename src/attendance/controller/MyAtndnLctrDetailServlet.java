@@ -1,6 +1,7 @@
 package attendance.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import attendance.model.service.AtndnService;
 import attendance.model.vo.Atndn;
+
+
+
+//P1-1 교수- 선택한 과목을 듣는 수강생 조회 
+
+
+
 
 /**
  * Servlet implementation class MyAtndnLctrDetailServlet
@@ -31,13 +39,10 @@ public class MyAtndnLctrDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String sid = request.getParameter("userid");
 		String lcode = request.getParameter("lcode");
-		
-		System.out.println(sid);
-		System.out.println(lcode);
-		Atndn atndn = new AtndnService().selectOneAtndn(sid, lcode);
+		String semester = "202001";
+		Atndn atndn = new AtndnService().selectOneAtndn(sid, lcode, semester);
 
 		RequestDispatcher view = null;
 		if(atndn != null) { //성공

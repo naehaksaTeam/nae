@@ -6,7 +6,7 @@
 <% Member m = (Member)session.getAttribute("loginMember"); %>
 
 <head>
-  
+  <link href="/beet/resources/university/uu1.ico" rel="shortcut icon" type="image/x-icon">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -33,8 +33,23 @@ div.form-group{
 	padding-top: 18%;
 }
 </style>
-<body>
+<script type="text/javascript" src="http://jsgetip.appspot.com"></script>
+<script>
+const tar = document.querySelector("body");
+//that = ip();
+//tar.innerText = "hello" + ip(); 
+//document.write(ip());
 
+</script>
+<body>
+<%
+String ipaddress;
+	if (request.getHeader("HTTP_X_FORWARDED_FOR") == null) {
+        ipaddress = request.getRemoteAddr();
+    } else {
+        ipaddress = request.getHeader("HTTP_X_FORWARDED_FOR");
+    }
+%>
 <br><br><br><br><br><br><br><br><br>
 <% if(m != null){ %>	
 <meta http-equiv="refresh" content="0;url=/beet/views/main/main.jsp">
@@ -50,6 +65,7 @@ div.form-group{
 	<h1 style="color:white;">PASSWORD<span style="color:black;">&nbsp;</span></h1><input type="password" name="userpwd" class="form-control" id="pwd" required>
 	<br><button type="submit" value="로그인" class="btn btn-dark">로그인</button>
 	</div>
+	<input type="text" name="where" value="<%= ipaddress %>" style="display:none;" />
 	</form>
 	
 	<div  style=" margin-left: 50%;">

@@ -83,7 +83,6 @@ public class TermScoreDao {
 	}
 	//관리자용 성적조회 ? 
 	
-//////////////////////////////////by kyu///////////
 	public ArrayList<TermScore> selectMain(Connection conn, String id) {
 		ArrayList<TermScore> list = new ArrayList<TermScore>();
 		PreparedStatement pstmt = null;
@@ -118,5 +117,4 @@ public class TermScoreDao {
 		System.out.println("dao"+ list);
 		return list;
 	}	
-/////////////////////////
 }

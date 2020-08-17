@@ -20,6 +20,15 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
  
+ <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
+<script>
+$(document).ready(function(){
+    if( (<%=(Member)session.getAttribute("loginMember")%>)  == null ){
+    	location.href = '/beet/index.jsp'
+    }
+});
+</script>
+ 
  <script>
     function numberMaxLength(e){
         if(e.value.length > e.maxLength){
@@ -27,10 +36,10 @@
         }
     }
 </script>
-	<!-- ★★★★★★★★title -->
-	<title> </title>
 
-<!-- 세션 아래 인클루드코드 복사해서 쓰세요! -->
+	<title>beet</title>
+
+
 
 
 <div class="fit-vids-style" id="fit-vids-style" style="display: none;">&shy;<style>                 .fluid-width-video-wrapper {                   width: 100%;                                position: relative;                         padding: 0;                      					 min-height: 1px;                         }                                                                                       .fluid-width-video-wrapper iframe,          .fluid-width-video-wrapper object,          .fluid-width-video-wrapper embed {             position: absolute;                         top: 0;                                     left: 0;                                    width: 100%;                                height: 100%;                            }                                         </style></div><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script src="https://www.cha.ac.kr/wp-includes/js/wp-emoji-release.min.js?ver=4.7.18" type="text/javascript" defer=""></script></head><body data-rsssl="1" class="page-template-default page page-id-980 page-child parent-pageid-1429  qode_grid_1300 side_menu_slide_with_content width_370 footer_responsive_adv qode-child-theme-ver-1.0.0 qode-theme-ver-11.1 qode-theme-bridge wpb-js-composer js-comp-ver-5.1.1 vc_responsive" itemscope="" itemtype="http://schema.org/WebPage" style="height: auto; overflow: auto;">
@@ -233,9 +242,9 @@ cursor: pointer;
 
 	<form action="/beet/selectonessst?" method="post">
 	<input type="hidden" value="<%=currentPage%>" name="page">
-	학기 입력<input class="number" type="number" placeholder="ex)202001" 
+	학기 입력<input class="number" required="required" type="number" placeholder="ex)202001" 
 						name="benefitterm" maxlength="6" oninput="numberMaxLength(this);"/>&nbsp;&nbsp;
-	학번 입력<input type="text"  placeholder="학번 입력란" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
+	학번 입력<input type="text" required="required" placeholder="학번 입력란" maxlength="9" oninput="numberMaxLength(this);" name="studentid">
 	<button class="btn btn-outline-secondary" type="submit" style="height: 32px;"> 검 색 </button>
 	</form>
 </div>
@@ -295,37 +304,47 @@ cursor: pointer;
 </form> --%>
 
 <% if(sslist != null){ %>
-<h3 style="margin-bottom: 8px;">장학금 조회</h3>
+<h3 style="margin-bottom: 8px;">성적장학금 관리</h3>
+<form name="sssssss" method="post">
 <table class = "main_default">
-<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th></tr>
+<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th><th>시작등수</th><th>끝등수</th></tr>
 	<% for(Scholarship ss : sslist){ %>
-	<tr><th><%=ss.getSsname() %></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> </tr>
+	<tr><th><input type="radio" required="required" value="<%=ss.getSsname() %>" readonly="readonly" name="ssname1"></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> 
+			<td><%= ss.getStartrank() %></td><td><%= ss.getEndrank() %></td>
+	</tr>
 	<% } %>
 </table>
+<br>
+<div align="center">
+<p><strong>< 안 내 ></strong><br>
+장학금을 선택하고 성적을 검색할 학기를 입력해주세요.<br>
+입력 버튼을 누르면 성적장학금 입력이 완료됩니다.<br>장학금 수혜학기는 입력하신 학기의 다음 학기로 저장됩니다.
+</p>
+<br>
+</div>
+<div align="center">
+성적검색할 학기<input required="required" style="outline: none; " class="number" type="number" placeholder="ex)202001" 
+						name="term1" maxlength="6" oninput="numberMaxLength(this);"/>
+<button class="btn btn-outline-secondary" type="submit" onclick="javascript: sssssss.action='/beet/insertscoress'">성적장학금 입력</button>
+</div>
+</form>
 <% } %>
 <div align="right" style="margin-top: 8px;">
 <button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/selectss'">장학금 관리페이지로 이동</button>
 </div>
 <br><br>
 
-<h3 style="margin-bottom: 8px;">성적장학금 입력</h3>
+<!-- <h3 style="margin-bottom: 8px;">성적장학금 입력</h3>
 <form action="/beet/insertscoress" method="post">
 <table class = "main_default">
-<tr><th>성적검색할 학기</th><td><input style="outline: none; width: 98%; border: 0;" class="number" type="number" placeholder="ex)202001" 
-						name="term1" maxlength="6" oninput="numberMaxLength(this);"/></td></tr>
-<tr><th>성적등수입력</th><td>시작등수 :<input style="outline: none; width: 40%; border: 0;" type="number" name="startrank" maxlength="4" oninput="numberMaxLength(this);"> &nbsp;
-						 끝등수 :<input style="outline: none; width: 40%; border: 0;" type="number" name="endrank" maxlength="4" oninput="numberMaxLength(this);"></td></tr>
+
+<tr><th>성적등수입력</th><td>시작등수 :<input required="required" style="outline: none; width: 40%; border: 0;" type="number" name="startrank" maxlength="4" oninput="numberMaxLength(this);"> &nbsp;
+						 끝등수 :<input required="required" style="outline: none; width: 40%; border: 0;" type="number" name="endrank" maxlength="4" oninput="numberMaxLength(this);"></td></tr>
 <tr><th>장학금명</th><td><input placeholder="장학금명을 입력하세요. 위에서 조회된 장학금명만 입력가능합니다." style="outline: none; width: 98%; border: 0;" type="text" name="ssname1"></td></tr>
 </table>
-<br>
-<div align="center">
-<p><strong>< 안 내 ></strong><br>
-추가 버튼을 누르면 입력하신 등수에 따라서 장학금이 지급될 예정이며<br>장학금 수혜학기는 입력하신 학기의 다음 학기로 저장됩니다.
-</p>
-<br>
-<button class="btn btn-outline-secondary" type="submit">장학금수혜학생 추가</button>
-</div>
-</form>
+<br> -->
+
+
 
 
 

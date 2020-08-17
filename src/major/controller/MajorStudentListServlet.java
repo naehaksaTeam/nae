@@ -43,22 +43,20 @@ public class MajorStudentListServlet extends HttpServlet {
 		/* Date payment = new MajorService().paymentCheck(); */
 		String thisterm = new MajorService().termCheck();
 		Major2 major2 = new MajorService().selectOneValueAndBene(id);
-		
-		System.out.println(major2);
-		System.out.println(major1);
-		
-		System.out.println(thisterm);
+
 		RequestDispatcher view = null;
-		if(major1 != null) {
+		
+		if(major1 != null ) {
 			view = request.getRequestDispatcher("views/major/majortuition.jsp");
-			
+			if(major2 != null) {
 			request.setAttribute("major2", major2);
+			}
 			request.setAttribute("major1", major1);
 			request.setAttribute("thisterm", thisterm);
 			view.forward(request,response);
 		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "등록금 고지서 조회실패 !");
+			view = request.getRequestDispatcher("views/major/majortuition.jsp");
+			request.setAttribute("message", "등록금 고지서 조회실패!");
 			view.forward(request,response);
 		}
 	}

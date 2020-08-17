@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="student.model.vo.Member" errorPage="../../views/common/error.jsp" %>
 <!DOCTYPE html>
 <html>
+<link href="/beet/resources/university/uu1.ico" rel="shortcut icon" type="image/x-icon">
 <head>
 <meta charset="UTF-8">
 <title>수강신청 메뉴 테스트 페이지</title>

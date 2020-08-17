@@ -25,7 +25,7 @@ public class ScholarshipDao {
 			rset = stmt.executeQuery(query);
 			
 			while(rset.next()) {
-				Scholarship ss = new Scholarship(rset.getString("ssname"), rset.getString("benefitcon"), rset.getInt("value"));
+				Scholarship ss = new Scholarship(rset.getString("ssname"), rset.getString("benefitcon"), rset.getInt("value"), rset.getInt("startrank"), rset.getInt("endrank"));
 				
 				list.add(ss);
 			}
@@ -50,7 +50,7 @@ public class ScholarshipDao {
 			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				ss = new Scholarship(rset.getString("ssname"), rset.getString("benefitcon"), rset.getInt("value"));
+				ss = new Scholarship(rset.getString("ssname"), rset.getString("benefitcon"), rset.getInt("value"),  rset.getInt("startrank"), rset.getInt("endrank"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,12 +65,14 @@ public class ScholarshipDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query="insert into scholarship values(?,?,?)";
+		String query="insert into scholarship values(?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, ss.getSsname());
 			pstmt.setString(2, ss.getBenefitcon());
 			pstmt.setInt(3, ss.getValue());
+			pstmt.setInt(4, ss.getStartrank());
+			pstmt.setInt(5, ss.getEndrank());
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -85,13 +87,15 @@ public class ScholarshipDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query="update scholarship set ssname = ?, benefitcon= ?, value= ? where ssname = ?";
+		String query="update scholarship set ssname = ?, benefitcon= ?, value= ? startrank = ?, endrank = ? where ssname = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, ss.getSsname());
 			pstmt.setString(2, ss.getBenefitcon());
 			pstmt.setInt(3, ss.getValue());
-			pstmt.setString(4, originname);
+			pstmt.setInt(4, ss.getStartrank());
+			pstmt.setInt(5, ss.getEndrank());
+			pstmt.setString(6, originname);
 			
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {

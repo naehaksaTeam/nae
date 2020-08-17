@@ -279,4 +279,23 @@ public class LectureService {
 		close(conn);
 		return list;
 	}
+
+	public ApplyReception selectLapply(String name,String lname) {
+		Connection conn = getConnection();
+		ApplyReception a = ldao.selectLapply(conn,name,lname);
+		close(conn);
+		return a;
+	}
+
+	public int deleteApply(String lname, String name,String lectureName) {
+		Connection conn = getConnection();
+		int r = ldao.deleteApply(conn,lname,name,lectureName);
+		if(r > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return r;
+	}
 }

@@ -12,6 +12,8 @@ public class LectureScoreService {
 	
 	public LectureScoreService() {}
 	
+	
+//S3 - 성적조회 	
 	public ArrayList<LectureScore> selectLectureScore(String sid, String semester){
 		Connection conn = getConnection();
 		ArrayList<LectureScore> list = ldao.selectLectureScore(conn, sid, semester);

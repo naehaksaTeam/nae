@@ -1,4 +1,4 @@
-package 날씨.model.service;
+package weather.model.service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
