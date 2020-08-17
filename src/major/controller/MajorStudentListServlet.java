@@ -50,7 +50,7 @@ public class MajorStudentListServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		
-		if(major1 != null && major2 != null) {
+		if(major1 != null && major2 == null) {
 			view = request.getRequestDispatcher("views/major/majortuition.jsp");
 			
 			request.setAttribute("major2", major2);
@@ -58,8 +58,8 @@ public class MajorStudentListServlet extends HttpServlet {
 			request.setAttribute("thisterm", thisterm);
 			view.forward(request,response);
 		}else {
-			view = request.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "등록금 고지서 조회실패 !<br>관리자 전용 페이지입니다.");
+			view = request.getRequestDispatcher("views/major/majortuition.jsp");
+			request.setAttribute("message", "등록금 고지서 조회실패!");
 			view.forward(request,response);
 		}
 	}

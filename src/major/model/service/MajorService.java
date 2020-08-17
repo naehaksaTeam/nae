@@ -125,8 +125,9 @@ public class MajorService {
 
 	public Major2 selectOneValueAndBene(String id) {
 		Connection conn = getConnection();
+		System.out.println("======================major2 "+id);
 		Major2 major2 = mdao.OneValueAndBene(conn, id);
-		System.out.println(major2);
+		System.out.println("서비스 major"+major2);
 		close(conn);
 		
 		return major2;

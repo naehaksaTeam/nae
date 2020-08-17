@@ -210,7 +210,12 @@ cursor: pointer;
 		<tr>
 			<th><%= major1.getCategoryname() %></th>
 			<th><%= major1.getMajorname() %></th>
-			<th><%= major2.getBenefitterm() %></th>
+			<th><%if(major2 !=null){ %>
+			<%=major2.getBenefitterm() %>
+			<%}else{ %>
+			2020
+			<% } %>
+			</th>
 			<th><% if(thisterm != null){ %>
 					<%=thisterm%>
 				<% } %>
@@ -218,8 +223,16 @@ cursor: pointer;
 			<th><%= major1.getName() %></th>
 			<th><%= major1.getId() %></th>
 			<th><%= major1.getTuition() %>원</th>
-			<th><%= major2.getValue() %>원</th>
-			<th><%= major1.getTuition()- major2.getValue() %>원</th>
+			<th><%if(major2 !=null){ %>
+			
+			<%=major2.getValue() %>
+			<%} %></th>
+			
+			<th><%if(major2 !=null){ %>
+			<%=major1.getTuition() - major2.getValue() %>
+			<%} %>
+			</th>
+		
 			<th>2020.08.12</th>
 		</tr>
 		<% } %>
