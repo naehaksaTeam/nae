@@ -226,7 +226,8 @@ cursor: pointer;
 			<th><%if(major2 !=null){ %>
 			
 			<%=major2.getValue() %>
-			<%} %></th>
+			<%} %>
+			</th>
 			
 			<th><%if(major2 !=null){ %>
 			<%=major1.getTuition() - major2.getValue() %>

@@ -85,8 +85,9 @@ public class NoticeListServlet extends HttpServlet {
 					request.setAttribute("startPage",startPage);
 					request.setAttribute("endPage", endPage);
 					request.setAttribute("listCount",listCount);
-					System.out.println("출력성공!");
+					System.out.println("보내기직전!");
 					view.forward(request, response);
+					System.out.println("보내기성공!!");
 				}else {
 					view = request.getRequestDispatcher("views/common/error.jsp");
 					request.setAttribute("message", currentPage +  "페이지에 대한 목록 조회 실패 !");
