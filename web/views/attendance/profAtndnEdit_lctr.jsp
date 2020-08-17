@@ -130,7 +130,7 @@ select {width: 40px; height:20px; margin:0px}
 <th style="font-size:0.7em">16주</th>
 </tr>
 <% int k=0 ;for(Atndn atndn : list) { %>
-<tr class="main_default">
+<tr class="main_default" style="">
 <td><%= ++k %></td>
 <td><%=atndn.getMajorname() %></td>
 <td><%= atndn.getSid() %></td>
