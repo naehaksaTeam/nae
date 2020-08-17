@@ -181,6 +181,13 @@ $(document).ready(function(){
 
 });	
 
+
+
+
+
+
+
+
 $("#updateScoreBtn").click(function(){
 	alert("작동!")
 });
@@ -192,8 +199,19 @@ $("#updateScoreBtn").click(function(){
 	 // 현재 클릭된 Row(<tr>)
 	var tr = $(this);
 	var td = tr.children();
+
 	
-<%-- 	var aSid = td.eq(2).text();
+	alert(td.eq(<%=diffWeeks%>+3).text())
+	
+	if( td.eq(<%=diffWeeks%>+3).text() == "○"){
+		td.eq(<%=diffWeeks%>+3).html("Ⅹ")
+	}else if(td.eq(<%=diffWeeks%>+3).text() == "Ⅹ"){
+		td.eq(<%=diffWeeks%>+3).html("△")
+	}else if(td.eq(<%=diffWeeks%>+3).text() == "△"){
+		td.eq(<%=diffWeeks%>+3).html("○")
+	}
+		
+	var aSid = td.eq(2).text();
 	var aAtndn = td.eq(<%=diffWeeks%>+3).text();
 	var getWeek = "week" + <%=diffWeeks%>
 	var aLcode = td.eq(20).text();
@@ -201,7 +219,7 @@ $("#updateScoreBtn").click(function(){
 	alert(aSid);
 	alert(getWeek);
 	alert(aAtndn);
-	alert(aLcode); --%>
+	alert(aLcode);
 	
 	$.ajax({
 		url : "/beet/atnup.p",
@@ -215,7 +233,7 @@ $("#updateScoreBtn").click(function(){
 			
 		},
 		success : function(data){
-			alert("저장!")
+			
 		}
 	});
 	
