@@ -336,8 +336,9 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(stmt);
 			close(rset);
+			close(stmt);
+			
 		}
 		System.out.println("멘인의 탑 5dao"+ list);
 		return list;
