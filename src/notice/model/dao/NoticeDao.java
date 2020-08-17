@@ -63,7 +63,7 @@ public class NoticeDao {
 			if (rset.next()) {
 				notice = new Notice();
 				notice.setNoticeNo(noticeNo);
-				notice.setNoticeNo(rset.getInt("NOTICENO"));
+			    notice.setAdNo(rset.getString("ADNO")); 
 				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
 				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
 				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
@@ -206,7 +206,7 @@ public class NoticeDao {
 				+ "                        FROM (SELECT * FROM notice ORDER BY noticeno desc)) "
 				+ "WHERE RNUM >= ? AND RNUM <= ?";
 
-		int startRow = (currentPage - 1) * limit + 1;
+		int startRow =( (currentPage - 1) * limit) + 1;
 		int endRow = startRow + limit - 1;
 
 		try {
@@ -237,7 +237,7 @@ public class NoticeDao {
 			close(rset);
 			close(pstmt);
 		}
-
+		System.out.println("dao"+list);
 		return list;
 	}
 
