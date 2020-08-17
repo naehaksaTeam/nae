@@ -307,9 +307,9 @@ cursor: pointer;
 <h3 style="margin-bottom: 8px;">성적장학금 관리</h3>
 <form name="sssssss" method="post">
 <table class = "main_default">
-<tr><th>장학금명</th><th>선택</th><th>수혜조건</th><th>장학금액</th><th>시작등수</th><th>끝등수</th></tr>
+<tr><th>장학금명</th><th>수혜조건</th><th>장학금액</th><th>시작등수</th><th>끝등수</th></tr>
 	<% for(Scholarship ss : sslist){ %>
-	<tr><th><%= ss.getSsname() %></th><td><input type="radio" value="<%= ss.getSsname() %>" readonly="readonly" name="ssname1" checked></td><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> 
+	<tr><th><input type="radio" required="required" value="<%=ss.getSsname() %>" readonly="readonly" name="ssname1"></th><td><%= ss.getBenefitcon() %></td><td><%= ss.getValue() %></td> 
 			<td><%= ss.getStartrank() %></td><td><%= ss.getEndrank() %></td>
 	</tr>
 	<% } %>

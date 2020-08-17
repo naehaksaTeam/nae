@@ -33,8 +33,16 @@ div.form-group{
 	padding-top: 18%;
 }
 </style>
-<body>
+<script type="text/javascript" src="http://jsgetip.appspot.com"></script>
+<script>
+const tar = document.querySelector("body");
+//that = ip();
+//tar.innerText = "hello" + ip(); 
+//document.write(ip());
 
+</script>
+<body>
+<%= request.getRemoteAddr()  %>
 <br><br><br><br><br><br><br><br><br>
 <% if(m != null){ %>	
 <meta http-equiv="refresh" content="0;url=/beet/views/main/main.jsp">

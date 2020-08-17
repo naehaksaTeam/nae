@@ -39,7 +39,7 @@ public class profAtndnOneServlet extends HttpServlet {
 
 		RequestDispatcher view = null;
 		if(list != null) { //성공
-			view = request.getRequestDispatcher("views/attendance/myLctrDetailView.jsp");
+			view = request.getRequestDispatcher("views/attendance/profAtndnEdit_lctr.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else { //실패

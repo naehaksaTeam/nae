@@ -55,7 +55,6 @@ padding: 14px 0px 14px 20px;
  
  <form action="/beet/atnlist" method="get">
 <input type="hidden" name="userid" type="text" value="<%=((Member)session.getAttribute("loginMember")).getId() %>">
-<input type="hidden" type="text"  name="semester" value="202001">
 <li><input type="submit" class="btn-sm subui" value="출결조회"></li>
  </form> 
  

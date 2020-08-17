@@ -1,21 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
- <%@ page
-	import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member,
-java.util.Date, java.text.SimpleDateFormat"%>
-<%
-	ArrayList<Atndn> list = (ArrayList<Atndn>)request.getAttribute("list");
-	
-	SimpleDateFormat sdf = new SimpleDateFormat("E");
-	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-	Date today = new Date();
-	String day = sdf.format(today);
-	Date enter = sdf2.parse("2020-03-02");
-
-	long diff = today.getTime() - enter.getTime();
-	long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
-					
-%>   
-
+<%@ page import="java.util.ArrayList, student.model.vo.Member, lectureScore.model.vo.LectureScore"%>
+<% ArrayList<LectureScore> list = (ArrayList<LectureScore>)request.getAttribute("list"); %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="myhaksa" style="height: auto; overflow: auto;">
 
@@ -97,64 +82,68 @@ select {width: 40px; height:20px; margin:0px}
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt"> 출결 관리  <!-- ★본문 제목 -------------------->
+			<p class="page_tt"> 출결/성적 관리  <!-- ★본문 제목 -------------------->
 							
-			<input id="chnScoreBtn" class="btn btn-outline-secondary" type="button" style="float:right" value="출결호출">
+			<input id="chnScoreBtn" class="btn btn-outline-secondary" type="button" style="float:right" value="성적수정">
 			</p>
-			<!-- <strong><div id="editSc" class="container" style="margin-bottom:10px;padding-top:3px;width:100%;height:35px;background-color:#20c997 !important;color:#ffffff;display:block">
-			<center>성적 수정모드 </center></strong> --></div>
+			<strong><div id="editSc" class="container" style="margin-bottom:10px;padding-top:3px;width:100%;height:35px;background-color:#20c997 !important;color:#ffffff;display:block">
+			<center>성적 수정모드 </center></strong></div>
 			
-			
-	<table class="main_default" style="width:80%">
-<thead>
-<tr>
-<th>순번</th>
-<th>학과</th>
-<th>학번</th>
-<th>성명</th>
-<th>WEEK1</th>
-<th>WEEK2</th>
-<th>WEEK3</th>
-<th>WEEK4</th>
-<th>WEEK5</th>
-<th>WEEK6</th>
-<th>WEEK7</th>
-<th>WEEK8</th>
-<th>WEEK9</th>
-<th>WEEK10</th>
-<th>WEEK11</th>
-<th>WEEK12</th>
-<th>WEEK13</th>
-<th>WEEK14</th>
-<th>WEEK15</th>
-<th>WEEK16</th>
-</tr>
-<% int k=0 ;for(Atndn atndn : list) { %>
-<tr>
-<td><%= ++k %></td>
-<td><%=atndn.getMajorname() %></td>
-<td><%= atndn.getSid() %></td>
-<td><%= atndn.getSname() %></td>
-<td><%=atndn.getWeek1() %></td>
-<td><%=atndn.getWeek2() %></td>
-<td><%=atndn.getWeek3() %></td>
-<td><%=atndn.getWeek4() %></td>
-<td><%=atndn.getWeek5() %></td>
-<td><%=atndn.getWeek6() %></td>
-<td><%=atndn.getWeek7() %></td>
-<td><%=atndn.getWeek8() %></td>
-<td><%=atndn.getWeek9() %></td>
-<td><%=atndn.getWeek10() %></td>
-<td><%=atndn.getWeek11() %></td>
-<td><%=atndn.getWeek12() %></td>
-<td><%=atndn.getWeek13() %></td>
-<td><%=atndn.getWeek14() %></td>
-<td><%=atndn.getWeek15() %></td>
-<td><%=atndn.getWeek16() %></td>
-</tr>
-<% } %>
-
-</table>		
+	<table class="main_default" id="sctable" style="font-size:0.9em">
+	<thead>
+		<tr>
+			<th>-</th>
+			<th>순번</th>
+			<th>계열</th>
+			<th>학과</th>
+			<th>학번</th>
+			<th>성명</th>
+			<th>재수강여부</th>
+			<th>출석점수</th>
+			<th>중간점수</th>
+			<th>기말점수</th>
+			<th>총점수</th>
+			<th>등급</th>
+		</tr>
+	</thead>
+	<form id="test1">
+	<tbody>
+	
+		<div id="dataArea">
+			<% int i=1;for(LectureScore lscore : list) {%>
+			<p id="p_<%=i %>">
+		<tr>
+			<td><input name="chk" type="checkbox" style="height:20px;"></button></td>
+			<td style="display:none"><%=lscore.getReceptionno()%></td>
+			<td><%=++i %></td>
+			<td><%=lscore.getCategoryname() %></td>
+			<td><%=lscore.getMajorname()%></td>
+			<td><%=lscore.getSid()%></td>
+			<td><%=lscore.getSname()%></td>
+			<td><%=lscore.getRetake()%></td>
+			<td><input id=as<%=i %> class="insert" type="text" readonly="readonly" value="<%=lscore.getAtndnscore()%>" /></td>
+			<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getMidscore()%>" /></td>
+			<td><input class="insert" type="text" readonly="readonly" value="<%=lscore.getFinalscore()%>" /></td>
+			<td><%=lscore.getTotalscore()%></td>
+			<td><select name="selectg">
+					<option value="-" selected disabled hidden>-</option>
+					<option value="A+" <%=(lscore.getGrade().trim().equals("A+"))?"selected":"" %>>A+</option>
+					<option value="A" <%=(lscore.getGrade().trim().equals("A"))?"selected":"" %>>A</option>
+					<option value="B+" <%=(lscore.getGrade().trim().equals("B+"))?"selected":"" %>>B+</option>
+					<option value="B" <%=(lscore.getGrade().trim().equals("B"))?"selected":"" %>>B</option>
+					<option value="C+" <%=(lscore.getGrade().trim().equals("C+"))?"selected":"" %>>C+</option>
+					<option value="C" <%=(lscore.getGrade().trim().equals("C"))?"selected":"" %>>C</option>
+					<option value="D+" <%=(lscore.getGrade().trim().equals("D+"))?"selected":"" %>>D+</option>
+					<option value="D" <%=(lscore.getGrade().trim().equals("D"))?"selected":"" %>>D</option>
+					<option value="F" <%=(lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
+				</select></td>
+		
+		</tr>
+		</p>
+		<% } %>
+	</tbody>
+	</form>
+</table>
 
 	<div id="savechn">
 	<center>
@@ -249,7 +238,7 @@ $(".chk").click(function(){
 
 
 
-<%-- $("#abc").click(function(){ 
+$("#abc").click(function(){ 
 	var aJSONArray = new Array();	
     var checkbox = $("input:checkbox[name=chk]:checked");	
     
@@ -268,7 +257,7 @@ $(".chk").click(function(){
 	
 	aJSONArray.push(aJson<%=i%>); 
 	 
-   }); --%>
+   });
 
    /* var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
 		totalScore, grade]; */

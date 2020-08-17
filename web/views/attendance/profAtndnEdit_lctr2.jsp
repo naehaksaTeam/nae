@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, student.model.vo.Member, lectureScore.model.vo.LectureScore"%>
-<% ArrayList<LectureScore> list = (ArrayList<LectureScore>)request.getAttribute("list"); %>
+ <%@ page
+	import="attendance.model.vo.Atndn, java.util.*, student.model.vo.Member,
+java.util.Date, java.text.SimpleDateFormat"%>
+<%
+	ArrayList<Atndn> list = (ArrayList<Atndn>)request.getAttribute("list");
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("E");
+	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+	Date today = new Date();
+	String day = sdf.format(today);
+	Date enter = sdf2.parse("2020-03-02");
+
+	long diff = today.getTime() - enter.getTime();
+	long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
+					
+%>   
+
 <!DOCTYPE html>
 <html lang="ko-KR" class="myhaksa" style="height: auto; overflow: auto;">
 
@@ -77,131 +92,93 @@ select {width: 40px; height:20px; margin:0px}
 
 		<h1 style="margin-top:75px"><span >출결/성적</span></h1> <!-- ★h1 이름 (메뉴이름 여기에 써주세요) ------------------------------------------>
 		</div> </div> </div> </div> </div> </div> </div>
-				
+				</p>
 		<div class="container">
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt"> 본문제목자리<!-- ★본문 제목 -------------------->
-
-
-
-
-
-
-
-	<div class="column1" style="margin-left:3%;">
-	<div class="column_inner">					
-	<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;">
-	<div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12">
-	<div class="vc_column-inner "><div class="wpb_wrapper">
+				<div class="column1">
+				<div class="column_inner">
+			<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;">
+			<div class=" full_section_inner clearfix">
+			<div class="wpb_column vc_column_container vc_col-sm-12">
+			<div class="vc_column-inner "><div class="wpb_wrapper">
 	<div class="wpb_text_column wpb_content_element ">
-	<div class="wpb_wrapper">
+		<div class="wpb_wrapper">
 		
-
-	
-<p class="page_tt">성적조회</p>
-
-<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/lctrsearchall'">전체보기</button>
-	<!-- 항목별 검색 기능 추가  -->
-<!-- 	<fieldset>
-		<input type="radio" name="item" id="uid"> 회원 아이디 &nbsp; <input
-			type="radio" name="item" id="ugen"> 성별 &nbsp; <input
-			type="radio" name="item" id="uage"> 연령대 &nbsp;
-	</fieldset> -->
-	<fieldset>
-	<select id="field" onchange="javascript:selectfield(this);">
-		<option id="searchAll" value="all">-</option>
-		<option id="searchName" value="sname">이름</option>
-		<option id="searchLctr" value="lname">강의명</option>
-	</select>
-
-	<!-- 검색폼  -->
-	<form action="/beet/adsearch" method="post" id="idform" class="lform">
+<!-- --------------------------------------------------------------------------- -->		
 		
-	<form style="float:right !important" action="/beet/adsearch" method="post" id="idform" class="lform">
-	
-		<input type="hidden" name="action" value="">
-		<input type="search" name="keyword"> &nbsp; 
-			<input class="btn btn-outline-secondary" type="submit" value="검색">
-		</fieldset>
-	</form>
+      <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-	<table class="main_default">
-		<thead>
-			<tr>
-				<th>순번</th>
-				<th>학기</th>
-				<th>이수구분</th>
-				<th>강의번호</th>
-				<th>강의명</th>
-				<th>학생번호</th>
-				<th>학생명</th>
-				<th>계열</th>
-				<th>학과</th>
-				<th>재수강여부</th>
-				<th>등급</th>
+<%-- <p class="page_tt">출결조회 : <%=list.get(0).getLname()%>
+<div style="display:inline;font-size:0.9em">
+<%=list.get(0).getLcode()%> / <%=list.get(0).getCategory()%> / 
+<%=list.get(0).getLtime()%> / <%=list.get(0).getCapacity()%>명</div></p>
+<p><progress id="prog" value="<%=diffWeeks%>" max="100" style="display:inline;"><div id="progress">진도율: <%=diffWeeks%>%</div></progress></p>
+ --%>
+<input type="button" value="출결입력 호출" onclick="showPopup();" />
+<p>≫ 수강생 조회</p>				
+<table class="main_default">
+<thead>
+<tr>
+<th>순번</th>
+<th>학과</th>
+<th>학번</th>
+<th>성명</th>
+<th>WEEK1</th>
+<th>WEEK2</th>
+<th>WEEK3</th>
+<th>WEEK4</th>
+<th>WEEK5</th>
+<th>WEEK6</th>
+<th>WEEK7</th>
+<th>WEEK8</th>
+<th>WEEK9</th>
+<th>WEEK10</th>
+<th>WEEK11</th>
+<th>WEEK12</th>
+<th>WEEK13</th>
+<th>WEEK14</th>
+<th>WEEK15</th>
+<th>WEEK16</th>
+</tr>
+<% int k=0 ;for(Atndn atndn : list) { %>
+<tr>
+<td><%= ++k %></td>
+<td><%=atndn.getMajorname() %></td>
+<td><%= atndn.getSid() %></td>
+<td><%= atndn.getSname() %></td>
+<td><%=atndn.getWeek1() %></td>
+<td><%=atndn.getWeek2() %></td>
+<td><%=atndn.getWeek3() %></td>
+<td><%=atndn.getWeek4() %></td>
+<td><%=atndn.getWeek5() %></td>
+<td><%=atndn.getWeek6() %></td>
+<td><%=atndn.getWeek7() %></td>
+<td><%=atndn.getWeek8() %></td>
+<td><%=atndn.getWeek9() %></td>
+<td><%=atndn.getWeek10() %></td>
+<td><%=atndn.getWeek11() %></td>
+<td><%=atndn.getWeek12() %></td>
+<td><%=atndn.getWeek13() %></td>
+<td><%=atndn.getWeek14() %></td>
+<td><%=atndn.getWeek15() %></td>
+<td><%=atndn.getWeek16() %></td>
+</tr>
+<% } %>
 
-			</tr>
-		</thead>
-		<tbody>
-			<%
-				int i = 0; for (LectureScore lscore : list) {
-			%>
-			<tr>
-				<td><%=i%></td>
-				<%
-					i += 1;
-				%>
-				<td><%=lscore.getSemester()%></td>
-				<td><%=lscore.getCategory()%></td>
-				<td><%=lscore.getLcode()%></td>
-				<td><%=lscore.getLname()%></td>
-				<td><%=lscore.getSid()%></td>
-				<td><%=lscore.getSname()%></td>
-				<td><%=lscore.getCategoryname()%></td>
-				<td><%=lscore.getMajorname()%></td>
-				<td><%=lscore.getRetake()%></td>
-				<td><%=lscore.getGrade()%></td>
-			</tr>
-			<%
-				}
-			%>
-		</tbody>
-	</table>
+</table>		
 
 
 
-
-
-
-
-
-
-
-</div></div> </div></div></div></div></div></div></div> <!-- div column1 끝 -->
+</div> 
+	</div> </div></div></div></div></div></div></div>
 
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
+<div class="column2">	
+<%@ include file = "side.jsp" %>
 
-<!-- <div class="column_inner">
-<aside class="sidebar">
-							
-		<div class="widget "><div id="dc_jqaccordion_widget-8">		
-		<div class="dcjq-accordion" id="dc_jqaccordion_widget-8-item">
-
-<ul id="menu-%ed%96%89%ec%a0%95" class="menu">
-  <li id="menu-item-9101" class="menu001-9101"><a href="#">강의계획서</a></li>
-  <li id="menu-item-9102" class="menu002-9102"><a href="#">수강신청</a></li>
-  <li id="menu-item-9103" class="menu003-9103"><a href="#">시간표조회</a></li> <li id="menu-item-9104" class="menu004-9104"><a href="#">휴보강신청</a></li>
-  <li id="menu-item-9105" class="menu005-9105"><a href="#">수강과목추가</a></li> 
-  <li id="menu-item-9106" class="menu006-9106"><a href="#">첫화면으로</a></li>
-</ul>		
-
-
-		</div>
-		</div></div>		</aside>
-	</div>-->
 </div> 
 <!-- 서브메뉴 끝 -->
 						</div>
@@ -211,33 +188,42 @@ select {width: 40px; height:20px; margin:0px}
 				
 	</div>
 </div>
-
-
-
-
-
-
-
+									
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 <script>
 <!-- 스크립트 쓰는곳   -->
-//수정가능 
- function selectfield(obj) {
-		 jQuery('input[name=action]').attr('value',obj.value);
-	    }
+jQuery( '#hi' ).click( function() {
+	 var str = ""
+           var tdArr = new Array();    // 배열 선언
+           var checkBtn = $(this);
+	
+           var no = td.eq(0).text();
+	} );
 
- 
-</script>
-		</div> </div>
-						</div>
-					</div>
-					
+	function selectfield(obj) {
+		jQuery('input[name=semester]').attr('value', obj.value);
+		
+		jQuery("#field").click(function() {
+		     this.form.submit();
+		});
+
+	}		
+	
+	
+	function showPopup() { 
+		window.open("views/attendance/profAtndnEdit_update.jsp", "a", "width=800, height=600, left=100, top=50"); };	
+	
+				
+</script>]
+
+</div> </div></div></div>
+				
 					
 <!-- footer -->		
 <center>			
 <footer>
 	<div class="footer_inner clearfix" >
-	<div class="footer_bottom_holder" style="background-color:#555555 !important">
+	<div class="footer_bottom_holder" style="background-color:#13436b !important">
 	<div class="container" style="background-color:#13436B;color:#ffffff;padding-top:10px">
 	NAEHAKSA ©202008 KH Information Educational Semi Project 6DDUKE
 	</div>

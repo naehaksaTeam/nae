@@ -3,7 +3,6 @@
 <% String error = (String)request.getAttribute("message"); %>
 <!DOCTYPE html>
 <html>
-<link href="/beet/resources/university/uu1.ico" rel="shortcut icon" type="image/x-icon">
 <head>
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">

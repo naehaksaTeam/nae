@@ -69,13 +69,13 @@ public class NoticeListServlet extends HttpServlet {
 				if(maxPage< endPage) {
 					endPage = maxPage;
 				}
-		/*
-		 * System.out.println(currentPage); System.out.println(listCount);
-		 * System.out.println(list); System.out.println(maxPage);
-		 * System.out.println(startPage); System.out.println(endPage);
-		 */
+				System.out.println(currentPage);
+				System.out.println(listCount);
+				System.out.println(list);
+				System.out.println(maxPage);
+				System.out.println(startPage);
+				System.out.println(endPage);
 				RequestDispatcher view = null;
-				System.out.println("사이즈"+list.size());
 				if(list.size() >0) {
 					view = request.getRequestDispatcher("views/notice/NoticeListView.jsp");
 					
@@ -85,9 +85,8 @@ public class NoticeListServlet extends HttpServlet {
 					request.setAttribute("startPage",startPage);
 					request.setAttribute("endPage", endPage);
 					request.setAttribute("listCount",listCount);
-					
+					System.out.println("출력성공!");
 					view.forward(request, response);
-				
 				}else {
 					view = request.getRequestDispatcher("views/common/error.jsp");
 					request.setAttribute("message", currentPage +  "페이지에 대한 목록 조회 실패 !");

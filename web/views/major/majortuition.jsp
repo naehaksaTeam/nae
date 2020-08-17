@@ -226,14 +226,8 @@ cursor: pointer;
 			<th><%= major1.getTuition() %>원</th>
 			<th><%if(major2 !=null){ %>
 			
-<<<<<<< HEAD
-			<%=major2.getValue() %>
-			<%} %>
-			</th>
-=======
 			<%=major2.getValue() %>&nbsp;
 			<%} %> </th>
->>>>>>> 08e69d01bc9f8b1e1810286552d280ea039d317a
 			
 			<th><%if(major2 !=null){ %>
 			<%=major1.getTuition() - major2.getValue() %>
