@@ -336,8 +336,7 @@ $(function(){
          } 
 
          $("#mainSchedule").html($("#mainSchedule").html() + values); 
-         
-         
+       
          
       },
       error: function(jqXHR, textstatus, errorthrown){

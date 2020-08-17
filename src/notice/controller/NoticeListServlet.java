@@ -85,7 +85,7 @@ public class NoticeListServlet extends HttpServlet {
 					request.setAttribute("startPage",startPage);
 					request.setAttribute("endPage", endPage);
 					request.setAttribute("listCount",listCount);
-					System.out.println("출력성공!");
+					System.out.println(request);
 					view.forward(request, response);
 				}else {
 					view = request.getRequestDispatcher("views/common/error.jsp");
