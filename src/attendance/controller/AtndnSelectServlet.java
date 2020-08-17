@@ -34,13 +34,9 @@ public class AtndnSelectServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String sid = request.getParameter("userid");
-		String semester = request.getParameter("semester");
+		String semester = "202001";
 		
-		String lcode= null;
 		
-		if(request.getParameter("lcode") != null) {
-			
-		}
 		ArrayList<Atndn> list = new AtndnService().selectLctrAtndn(sid, semester);
 		RequestDispatcher view = null;
 

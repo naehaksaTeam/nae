@@ -472,7 +472,7 @@ public class AtndnDao {
 				PreparedStatement pstmt = null;
 				ResultSet rset = null;
 
-				String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView where sid = ? and semester = ? ";
+				String query = "select sid, semester, lcode, category, lname, lpoint, capacity, ltime, pname from AtndnView2 where sid = ? and semester = ? ";
 				try {
 					pstmt = conn.prepareStatement(query);
 					pstmt.setString(1, sid);

@@ -62,8 +62,6 @@ select {width: 40px; height:20px; margin:0px}
 
 
 /* ★ css style은 여기에 써주세요------------------------------------------------- */
-
-
 </style>
 
 <div class="wrapper">
@@ -97,26 +95,20 @@ select {width: 40px; height:20px; margin:0px}
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt"> 출결 관리</p>  <!-- ★본문 제목 -------------------->
+			<p class="page_tt"> 출결 관리 > <%= list.get(0).getLname() %> 
+			<label style="font-size:0.6em;color:#777777;margin-bottom:20px"><%= list.get(0).getLcode() %> / <%= list.get(0).getLpoint() %> / <%= list.get(0).getLtime() %>요일 / <%= diffWeeks %></label></p>  <!-- ★본문 제목 -------------------->
 			
+	<table id="AtndnTable" class="main_default">
 			<div>
 			<center>
 			<form action="/beet/atnone.p" method="post">
-			<input id="updateScoreBtn" class="btn btn-outline-secondary" type="button" value="이번 주 출결입력"  style="width:200px;height:40px;font-size:1.2em;">
+			<input id="updateScoreBtn" class="tototo btn btn-outline-secondary" type="button" value="이번 주 출결입력"  style="width:200px;height:40px;font-size:1.2em;margin-bottom:30px">
 			</form>
 			</center>
 			</div>
 			<!-- <strong><div id="editSc" class="container" style="margin-bottom:10px;padding-top:3px;width:100%;height:35px;background-color:#20c997 !important;color:#ffffff;display:block">
 			<center>성적 수정모드 </center></strong> --></div>
-			
-<ul>
-<li><%= list.get(0).getLname() %></li>
-<li><%= list.get(0).getLcode() %></li>
-<li><%= list.get(0).getLpoint() %></li>
-<li><%= list.get(0).getLtime() %>요일</li>
-<li><%= diffWeeks %></li>
-</ul>		
-	<table id="AtndnTable" class="main_default">
+
 <thead>
 <tr>
 <th>순번</th>
@@ -166,11 +158,7 @@ select {width: 40px; height:20px; margin:0px}
 </tr>
 <% } %>
 </table>		
-					
-	<button id="update" type="button">Button</button>
-<div class="counter">1</div>								
-<div class="counter">1</div>								
-<div class="counter">1</div>								
+								
 									
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 
@@ -178,19 +166,35 @@ select {width: 40px; height:20px; margin:0px}
 <!-- 스크립트 쓰는곳   -->
 //수정가능 
 $(document).ready(function(){
+	$('#AtndnTable tr').mouseover(function(){
+
+	    $(this).attr('style', "background-color:yellow");
+
+	 }).mouseout(function() {
+
+	    $(this).removeAttr('style');
+
+	 });
 
 });	
 
 
-
-
-
-
-
-
 $("#updateScoreBtn").click(function(){
-	alert("작동!")
-});
+	
+	
+	
+	if($(this).val() != "이번 주 출결입력"){
+		$(this).attr('value', '이번 주 출결입력');
+		$(".week<%=diffWeeks%>").removeAttr('style');
+		alert("출결정보가 변경되었습니다");
+
+
+
+	}else{		
+		$(".week<%=diffWeeks%>").attr('style', "background-color:yellow;font-weight:800");
+		$(this).attr('value', '<%=diffWeeks%>주 출결수정');
+		$(this).attr('class', 'btn btn-outline-secondary');
+	
 
 	$("#AtndnTable tr").click(function(){
 	 var str = ""
@@ -200,8 +204,6 @@ $("#updateScoreBtn").click(function(){
 	var tr = $(this);
 	var td = tr.children();
 
-	
-	alert(td.eq(<%=diffWeeks%>+3).text())
 	
 	if( td.eq(<%=diffWeeks%>+3).text() == "○"){
 		td.eq(<%=diffWeeks%>+3).html("Ⅹ")
@@ -215,12 +217,7 @@ $("#updateScoreBtn").click(function(){
 	var aAtndn = td.eq(<%=diffWeeks%>+3).text();
 	var getWeek = "week" + <%=diffWeeks%>
 	var aLcode = td.eq(20).text();
-	
-	alert(aSid);
-	alert(getWeek);
-	alert(aAtndn);
-	alert(aLcode);
-	
+
 	$.ajax({
 		url : "/beet/atnup.p",
 		method : "post",
@@ -236,48 +233,13 @@ $("#updateScoreBtn").click(function(){
 			
 		}
 	});
-	
-	//$('.week10').after( '<p>Hello</p>' );
-	
-/* 	$("#update").click(function() {
-    $('.counter').html(function(i, val) {
-        $.ajax({
-            url: '/path/to/script/',
-            type: 'POST',
-            data: {increment: true},
-            success: function() { alert('Request has returned') }
-        });
-        return +val+1;
-    });
-}
-	 */
-	
-	/* 
-	var form = document.createElement('form');
 
-	var objs;
-
-	objs = document.createElement('input');
-
-	objs.setAttribute('type', 'hidden');
-
-	objs.setAttribute('name', 'name');
-
-	objs.setAttribute('value', value);
-
-	form.appendChild(objs);
-
-	form.setAttribute('method', 'post');
-
-	form.setAttribute('action', "/action.php");
-
-	document.body.appendChild(form);
-
-	form.submit(); */
 
 });	
+	}
 
 
+});	
 
 
 
