@@ -4,7 +4,7 @@ package major.model.vo;
 
 
 public class Major2 implements java.io.Serializable{
-	private static final long serialVersionUID=22222L;
+	private static final long serialVersionUID=222231232132L;
 
 	
 		private int value ;

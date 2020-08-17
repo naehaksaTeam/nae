@@ -34,7 +34,7 @@ public class NoticeDao {
 				notice.setNoticeTitle(rset.getString("noticetitle"));
 				notice.setNoticeWriter(rset.getString("noticewriter"));
 				notice.setNoticeDate(rset.getDate("noticedate"));
-				notice.setNoticeContent(rset.getString("noticecontent").replace("\n", " "));
+				notice.setNoticeContent(rset.getString("noticecontent"));
 				notice.setOriginalFile(rset.getString("originalfile"));
 				notice.setNoticeReadCount(rset.getInt("noticereadcount"));
 				list.add(notice);
@@ -42,8 +42,9 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(stmt);
 			close(rset);
+			close(stmt);
+
 		}
 		return list;
 	}
@@ -74,8 +75,8 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rset);
+			close(pstmt);
 		}
 		return notice;
 	}
@@ -303,8 +304,8 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rset);
+			close(pstmt);
 		}
 		return list;
 	}
@@ -315,7 +316,7 @@ public class NoticeDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query="SELECT * FROM (SELECT ROWNUM RNUM, NOTICENO, NOTICETITLE, NOTICEDATE FROM (SELECT * FROM NOTICE ORDER BY NOTICEDATE DESC)) WHERE RNUM >= 1 AND RNUM <= 5";  
+		String query="SELECT * FROM (SELECT ROWNUM RNUM, NOTICENO, case when LENGTH(NOTICETITLE) > 21 then concat(substr(NOTICETITLE,1,15),'···') when LENGTH(NOTICETITLE) < 24 then NOTICETITLE end as \"NOTICETITLE\", NOTICEDATE FROM (SELECT * FROM NOTICE ORDER BY NOTICEDATE DESC)) WHERE RNUM >= 1 AND RNUM <= 5";  
 				
 		
 		try {
