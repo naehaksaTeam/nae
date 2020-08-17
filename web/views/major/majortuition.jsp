@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="major.model.vo.Major1" import="major.model.vo.Major2"%>
+    pageEncoding="UTF-8" import="major.model.vo.Major1, major.model.vo.Major2"%>
 <% 
 	Major1 major1 = (Major1)request.getAttribute("major1");
 	String thisterm = (String)request.getAttribute("thisterm");
@@ -190,6 +190,7 @@ cursor: pointer;
 <!--  밑에 우와같이 납부하여 주시기 바랍니다. -->
 <!--  납입장소  -->
 
+
 <h3>등록금 고지서 조회</h3>
 <br>
 <div align="center">
@@ -210,16 +211,29 @@ cursor: pointer;
 		<tr>
 			<th><%= major1.getCategoryname() %></th>
 			<th><%= major1.getMajorname() %></th>
-			<th><%= major2.getBenefitterm() %></th>
+			<th><%if(major2 !=null){ %>
+			<%=major2.getBenefitterm() %>
+			<%}else{ %>
+			2020
+			<% } %>
+			</th>
 			<th><% if(thisterm != null){ %>
 					<%=thisterm%>
-				<% } %>
+				<% } %>&nbsp;
 			</th>
 			<th><%= major1.getName() %></th>
 			<th><%= major1.getId() %></th>
 			<th><%= major1.getTuition() %>원</th>
-			<th><%= major2.getValue() %>원</th>
-			<th><%= major1.getTuition()- major2.getValue() %>원</th>
+			<th><%if(major2 !=null){ %>
+			
+			<%=major2.getValue() %>&nbsp;
+			<%} %> </th>
+			
+			<th><%if(major2 !=null){ %>
+			<%=major1.getTuition() - major2.getValue() %>
+			<%} %>&nbsp;
+			</th>
+		
 			<th>2020.08.12</th>
 		</tr>
 		<% } %>
