@@ -363,9 +363,16 @@ $(function(){
          
          var values = "";
          for(var i in json.list){
+        	 
+  
             values += "<tr><td><a href='/beet/ndetail?noticeno=" + json.list[i].no + "'>" 
             + decodeURIComponent(json.list[i].title).replace(/\+/gi, " ")
             + "</a></td><td>"+ json.list[i].date + "</td></tr><br>";
+            
+            
+       	 
+
+            
          }  
          
          
@@ -664,7 +671,7 @@ function calendar()
 					style="border-color: #edeef1; height: 330px">
 					<div class="panel-footer">공지사항</div>
 					<div class="panel-body">
-					 <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
+					 <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0" >
          <tr>
             <th style="color: #4682B4; text-align: left;">제목</th><th style="color: #4682B4">작성 날짜</th>
             
