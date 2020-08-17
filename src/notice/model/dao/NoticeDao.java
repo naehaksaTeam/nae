@@ -42,8 +42,9 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(stmt);
 			close(rset);
+			close(stmt);
+
 		}
 		return list;
 	}
@@ -74,8 +75,8 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rset);
+			close(pstmt);
 		}
 		return notice;
 	}
@@ -303,8 +304,8 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(pstmt);
 			close(rset);
+			close(pstmt);
 		}
 		return list;
 	}
