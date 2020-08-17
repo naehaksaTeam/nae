@@ -33,6 +33,12 @@ div.form-group{
 	padding-top: 18%;
 }
 </style>
+<script type="text/javascript" src="http://jsgetip.appspot.com"></script>
+<script>
+const tar = document.querySelector("usr");
+document.write( ip() );
+
+</script>
 <body>
 
 <br><br><br><br><br><br><br><br><br>
