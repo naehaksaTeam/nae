@@ -239,7 +239,7 @@ cursor: pointer;
                                             </li>
                                             
                                             <li id="nav-menu-item-2045" class="">
-                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                                <a href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-5823" class="">
                                                 <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
@@ -272,7 +272,7 @@ cursor: pointer;
                                                 <a href="/beet/selectaball" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2045" class="">
-                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                                <a href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-5823" class="">
                                                 <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
@@ -305,7 +305,7 @@ cursor: pointer;
                                                 <a href="/beet/selectab?studentid=<%=m1.getId()%>" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2045" class="">
-                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                                <a href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-5823" class="">
                                                 <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>

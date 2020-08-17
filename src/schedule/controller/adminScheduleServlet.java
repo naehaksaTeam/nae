@@ -44,6 +44,7 @@ public class adminScheduleServlet extends HttpServlet {
 				endPage = maxPage;
 			}
 			RequestDispatcher view = null;
+		
 			if(list.size() > 0) {
 				view = request.getRequestDispatcher("views/schedule/newschedule.jsp");
 				request.setAttribute("list", list);

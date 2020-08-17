@@ -17,6 +17,10 @@ import org.json.simple.JSONObject;
 import attendance.model.service.AtndnService;
 import attendance.model.vo.Atndn;
 
+
+
+//s1 나의 수강과목 메인 출력
+
 /**
  * Servlet implementation class MyLctrServlet
  */

@@ -15,6 +15,8 @@ import attendance.model.service.AtndnService;
 import attendance.model.vo.Atndn;
 
 
+
+
 /**
  * Servlet implementation class AtndnUpdateServlet
  */
@@ -44,7 +46,7 @@ public class AtndnUpdateServlet extends HttpServlet {
 			request.setAttribute("list", list);
 		}
 		
-		
+		//P1-1-1 출결업데이트		
 		int whoCount = 0;
 		String week = request.getParameter("selectweek");
 		
