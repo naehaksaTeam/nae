@@ -117,13 +117,10 @@ select {width: 40px; height:20px; margin:0px}
 	</select>
 
 	<!-- 검색폼  -->
-<<<<<<< HEAD
 	<form action="/beet/adsearch" method="post" id="idform" class="lform">
 		
-=======
 	<form style="float:right !important" action="/beet/adsearch" method="post" id="idform" class="lform">
 	
->>>>>>> d413755b7e51d2f80e713f43916edaf3566c81d3
 		<input type="hidden" name="action" value="">
 		<input type="search" name="keyword"> &nbsp; 
 			<input class="btn btn-outline-secondary" type="submit" value="검색">
