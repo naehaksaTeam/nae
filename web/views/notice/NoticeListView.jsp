@@ -218,45 +218,27 @@ cursor: pointer;
 
 			<th>작성자</th>
 			<th>작성날짜</th>
-			<th>글내용</th>
+			
 			<th>첨부파일</th>
 			<th>조회수</th>
 
 		</tr>
+		<%if(list != null){ %>
 		<%
 			for (Notice n : list) {
 		%>
+		
 		<tr>
 			<td><%=n.getNoticeNo()%></td>
 			
 			<td>
-				<%
-					if (n.getNoticeTitle().length() > 10) {
-				%> <%=n.getNoticeTitle().substring(0, 10)%>
-				<%
-					} else {
-				%> <%=n.getNoticeTitle()%> <%
- 	}
- %>
-
+			<a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%= n.getNoticeTitle() %></a>
 			</td>
 
 
 			<td><%=n.getNoticeWriter()%></td>
 			<td><%=n.getNoticeDate()%></td>
-			<td>
-				<%
-					if (n.getNoticeContent().length() > 15) {
-				%> <a
-				href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent().substring(0, 15)%></a>
-				<%
-					} else {
-				%> <a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent()%></a>
-				<%
-					}
-				%>
-
-			</td>
+			
 			<td>
 				<%
 					if (n.getOriginalFile() != null) {
@@ -275,6 +257,9 @@ cursor: pointer;
 				}
 			%>
 		</tr>
+		<%}else{ %>
+		
+		<% } %>
 	</table>
 	<br>
 	</div>

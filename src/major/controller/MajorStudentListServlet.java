@@ -43,17 +43,14 @@ public class MajorStudentListServlet extends HttpServlet {
 		/* Date payment = new MajorService().paymentCheck(); */
 		String thisterm = new MajorService().termCheck();
 		Major2 major2 = new MajorService().selectOneValueAndBene(id);
-		
-		System.out.println(major2);
-		System.out.println(major1);
-		System.out.println(thisterm);
-		
+
 		RequestDispatcher view = null;
 		
-		if(major1 != null && major2 == null) {
+		if(major1 != null ) {
 			view = request.getRequestDispatcher("views/major/majortuition.jsp");
-			
+			if(major2 != null) {
 			request.setAttribute("major2", major2);
+			}
 			request.setAttribute("major1", major1);
 			request.setAttribute("thisterm", thisterm);
 			view.forward(request,response);

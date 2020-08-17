@@ -34,7 +34,7 @@ public class NoticeDao {
 				notice.setNoticeTitle(rset.getString("noticetitle"));
 				notice.setNoticeWriter(rset.getString("noticewriter"));
 				notice.setNoticeDate(rset.getDate("noticedate"));
-				notice.setNoticeContent(rset.getString("noticecontent").replace("\n", " "));
+				notice.setNoticeContent(rset.getString("noticecontent"));
 				notice.setOriginalFile(rset.getString("originalfile"));
 				notice.setNoticeReadCount(rset.getInt("noticereadcount"));
 				list.add(notice);

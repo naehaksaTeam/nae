@@ -15,7 +15,10 @@ import attendance.model.vo.Atndn;
 public class AtndnService {
 	private AtndnDao adao = new AtndnDao(); 
 	public AtndnService() {}
+
 	
+	
+	//s1 나의 수강과목 메인 출력	
 	public ArrayList<Atndn> selectMyLctr(String sid) {
 		Connection conn = getConnection();
 		 ArrayList<Atndn>  list = adao.selectMyLctr(conn, sid);
@@ -37,7 +40,7 @@ public class AtndnService {
 	}
 
 
- //성적이랑 합침 
+
 	public ArrayList<Atndn> selectProfAtndnList(String pid, String semester, String lcode) {
 		Connection conn = getConnection();
 		 ArrayList<Atndn>  list = adao.selectProfAtndnList(conn, pid, semester, lcode);
@@ -57,9 +60,12 @@ public class AtndnService {
 		close(conn);
 		return result;
 	}
-
+	
+	
+	
+	//P1-1-1 출결업데이트
 	public int updateWeekAll(ArrayList<Atndn> list2) {
-		//출결 여러개 업데이트
+
 		Connection conn = getConnection();
 		int r = adao.updateWeekAll(conn,list2);
 		if(r > 0) {
@@ -79,12 +85,22 @@ public class AtndnService {
 	}
 
 	
-	//과목하나조회
-	public ArrayList<Atndn> selectOneAtndn(String lcode, String semester) {
+//S1-1 학생 - 해당 강의 One 에 대한 1~15주차 출결조회 
+	public Atndn selectOneAtndn(String sid, String lcode, String semester) {
 		Connection conn = getConnection();
-		ArrayList<Atndn> list = adao.selectOneAtndn(conn, lcode, semester);
+		Atndn atndn = adao.selectOneAtndn(conn,sid, lcode, semester);
+		close(conn);
+		return atndn;
+	}
+
+	
+	//P1-1 교수- 선택한 과목을 듣는 수강생 조회 
+	public ArrayList<Atndn> selectOneAtndnStd(String lcode, String semester) {
+		Connection conn = getConnection();
+		ArrayList<Atndn> list = adao.selectOneAtndnStd(conn, lcode, semester);
 		close(conn);
 		return list;
+	
 	}
 
 }
