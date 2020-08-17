@@ -41,7 +41,7 @@ public class AtndnEditViewServlet extends HttpServlet {
 		RequestDispatcher view = null;
 		
 		if(list != null) {
-			view = request.getRequestDispatcher("views/attendance/atndnEdit.jsp");
+			view = request.getRequestDispatcher("views/attendance/profAtndnEdit_update.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
 		}else {

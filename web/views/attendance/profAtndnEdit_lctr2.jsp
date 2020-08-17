@@ -77,10 +77,10 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="content_inner ">
 		<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
 			<!-- ★배경 이미지 (변경시 backgroud-image, src 두군데 수정해야해요 --------------->
-		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/page.jpg); 
+		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/test.jpg); 
 			height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 		<div class="image not_responsive">
-			<img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;">
+			<img itemprop="image" src="/beet/resources/images/test.jpg" alt="&nbsp;">
 		</div>
 		<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					
@@ -92,20 +92,33 @@ select {width: 40px; height:20px; margin:0px}
 
 		<h1 style="margin-top:75px"><span >출결/성적</span></h1> <!-- ★h1 이름 (메뉴이름 여기에 써주세요) ------------------------------------------>
 		</div> </div> </div> </div> </div> </div> </div>
-				
+				</p>
 		<div class="container">
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt"> 출결 관리  <!-- ★본문 제목 -------------------->
-							
-			<input id="chnScoreBtn" class="btn btn-outline-secondary" type="button" style="float:right" value="출결호출">
-			</p>
-			<!-- <strong><div id="editSc" class="container" style="margin-bottom:10px;padding-top:3px;width:100%;height:35px;background-color:#20c997 !important;color:#ffffff;display:block">
-			<center>성적 수정모드 </center></strong> --></div>
-			
-			
-	<table class="main_default" style="width:80%">
+				<div class="column1">
+				<div class="column_inner">
+			<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;">
+			<div class=" full_section_inner clearfix">
+			<div class="wpb_column vc_column_container vc_col-sm-12">
+			<div class="vc_column-inner "><div class="wpb_wrapper">
+	<div class="wpb_text_column wpb_content_element ">
+		<div class="wpb_wrapper">
+		
+<!-- --------------------------------------------------------------------------- -->		
+		
+      <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
+
+<%-- <p class="page_tt">출결조회 : <%=list.get(0).getLname()%>
+<div style="display:inline;font-size:0.9em">
+<%=list.get(0).getLcode()%> / <%=list.get(0).getCategory()%> / 
+<%=list.get(0).getLtime()%> / <%=list.get(0).getCapacity()%>명</div></p>
+<p><progress id="prog" value="<%=diffWeeks%>" max="100" style="display:inline;"><div id="progress">진도율: <%=diffWeeks%>%</div></progress></p>
+ --%>
+<input type="button" value="출결입력 호출" onclick="showPopup();" />
+<p>≫ 수강생 조회</p>				
+<table class="main_default">
 <thead>
 <tr>
 <th>순번</th>
@@ -156,162 +169,55 @@ select {width: 40px; height:20px; margin:0px}
 
 </table>		
 
-	<div id="savechn">
-	<center>
-		<br>
-		<strong>* 변경 후 반드시 저장을 눌러주세요 </strong>
-			<div style="height:10px"></div>
-		<input id="abc" type="button" value="저장"> &nbsp; 
-		<input id="sccancle" type="button" value="취소"> &nbsp; 
-	</center>
-			</div>						
-									
+
+
+</div> 
+	</div> </div></div></div></div></div></div></div>
+
+<!-- 서브메뉴★★★ 여기에 써주세요 -->
+<!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
+<div class="column2">	
+<%@ include file = "side.jsp" %>
+
+</div> 
+<!-- 서브메뉴 끝 -->
+						</div>
+								
+		</div>
+        	</div>
+				
+	</div>
+</div>
 									
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
-
 <script>
 <!-- 스크립트 쓰는곳   -->
-//수정가능 
-$(document).ready(function(){
-	$("#savechn").hide();
-	$("#editSc").hide();
-});
+jQuery( '#hi' ).click( function() {
+	 var str = ""
+           var tdArr = new Array();    // 배열 선언
+           var checkBtn = $(this);
 	
-$("#chnScoreBtn").click(function() {
-	if($('#chnScoreBtn').prop('readonly', true)){
-		var result = confirm("성적을 수정하시겠습니까?");
-		
-		if(result){
-			$("input[type=text]").removeAttr('readonly');
-			$("#savechn").show();
-			$("#editSc").show();
-			
+           var no = td.eq(0).text();
+	} );
 
-			$("input[type=text]").keyup(function()  {
-				var chk = $(this)
-				var tr = chk.parent().parent();
-				 var checkbox = tr.find('td:first-child :checkbox');
-			     //checkbox.prop('checked', !checkbox.is(':checked'));
-			     checkbox.prop("checked", true);
-			});
-
-		}else{
-			$("input[type=text]").attr('readonly', true);
-			$("#savechn").hide();
-			}
-		}
-			
+	function selectfield(obj) {
+		jQuery('input[name=semester]').attr('value', obj.value);
 		
+		jQuery("#field").click(function() {
+		     this.form.submit();
 		});
 
-
-//숫자 0~100사이만 입력
-var replaceNotInt = /[^0-9]/gi;
-$(document).ready(function(){
-	$("input[type=text]").on("focusout", function() { 
-      var x = $(this).val();
-      if (x.length > 0) {
-          if (x.match(replaceNotInt)) {
-             x = x.replace(replaceNotInt, "");
-          }
-          $(this).val(x);
-          if(x > 100) {
-        	  jQuery(this).val('100');
-          }
-      }
-  }).on("keyup", function() {
-	  $(this).val(jQuery(this).val().replace(replaceNotInt, ""));  
-  }); 
-}); 
-
-
-//테스트
-/* $(document).ready(function(){
-	$("input:checkbox[name=chk]").keyup(function(){
-        if(jQuery("input:checkbox[name=chk]").is(":checked")){
-            alert("체크박스 체크했음!");
-        }else{
-            alert("체크박스 체크 해제!");
-        }
-    });	
-}); */
-
-
-
-
-
-
-$(".chk").click(function(){ 	
-
-      	var chk = $(this);
-        //var checkbox = $("input[name=user_CheckBox]:checked");
-});
-
-
-
-<%-- $("#abc").click(function(){ 
-	var aJSONArray = new Array();	
-    var checkbox = $("input:checkbox[name=chk]:checked");	
-    
-   checkbox.each(function(i) {
-	   
-	var tr = checkbox.parent().parent().eq(i);
-	var td = tr.children();
-	var aJson<%=i%> = new Object(); 
-	//rowData.push(tr.text());
-	aJson<%=i%>.receptionno = td.eq(1).text();
-	aJson<%=i%>.atndnScore = td.eq(8).find('input[type="text"]').val();
-	aJson<%=i%>.midScore = td.eq(9).find('input[type="text"]').val();
-	aJson<%=i%>.finalScore = td.eq(10).find('input[type="text"]').val();
-	aJson<%=i%>.totalScore = td.eq(11).find('input[type="text"]').val();
-	aJson<%=i%>.grade = td.eq(12).find('select[name="selectg"] option:selected').val();
+	}		
 	
-	aJSONArray.push(aJson<%=i%>); 
-	 
-   }); --%>
+	
+	function showPopup() { 
+		window.open("views/attendance/profAtndnEdit_update.jsp", "a", "width=800, height=600, left=100, top=50"); };	
+	
+				
+</script>]
 
-   /* var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
-		totalScore, grade]; */
-	/* var aa = JSON.stringify(dataArray); */
-
-   $.ajax({
-	   	url : "/beet/scupdate.p",
-		method : 'post',
-		traditional : true,
-		async : true,
-		data : {jsondata : JSON.stringify(aJSONArray)},
-		success : function(data){
-			alert("변경사항을 저장했습니다!")
-			$("input[type=text]").attr('readonly', true);
-			$("#savechn").hide();
-		},
-		error :  function(request, status, error) {
-			alert("변경사항을 저장했습니다!")
-			$("input[type=text]").attr('readonly', true);
-			$("#savechn").hide();
-			$("#editSc").hide();
-		
-			$("input[type=checkbox]").prop("checked", false);
-			document.reload();
-		}	
-		
-		}); 
-	   
-   console.log(aJSONArray);
-   });
-   //$("#test1").serialize(),
-   
- 
-/* 	var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
-		totalScore, grade];
-	var aa = JSON.stringify(dataArray);
-	var jsonArray = JSON.parse(JSON.stringify(dataArray)); */
- 
-</script>
-		</div> </div>
-						</div>
-					</div>
-					
+</div> </div></div></div>
+				
 					
 <!-- footer -->		
 <center>			

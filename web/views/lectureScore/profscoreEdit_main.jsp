@@ -219,7 +219,7 @@ cursor: pointer;
   	 <td><%=lscore.getLcode() %></td>
 	<td id="lname"><%=lscore.getLname()%></td>
 	<td>
-	<form action="/beet/dlAtndn" method="post">
+	<form action="/beet/atnone.p" method="post">
 			<input type="hidden" name="lcode" value="<%=lscore.getLcode() %>">
 			<input type="hidden" name="semester" value="202001">
 			<input class="btn btn-outline-secondary" type="submit" value="출결관리">
