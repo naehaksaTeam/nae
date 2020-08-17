@@ -253,7 +253,7 @@ public class MajorDao {
 			close(pstmt);
 			
 		}
-		
+		System.out.println("major1 dao 에서 나온값 : "+major1);
 		return major1;
 	}
 
@@ -353,7 +353,7 @@ public class MajorDao {
 				"left join scholarship b  " + 
 				"on a.ssname = b.ssname " + 
 				"where id= ?";
-		
+		System.out.println("select Onevalueandbene 도착");
 		try {
 			
 			pstmt = conn.prepareStatement(query);
@@ -381,7 +381,7 @@ public class MajorDao {
 			close(pstmt);
 			
 		}
-		
+		System.out.println("major2에서 나온값 : "+major2);
 		return major2;
 	}
 
