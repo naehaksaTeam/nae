@@ -99,6 +99,10 @@ select {width: 40px; height:20px; margin:0px}
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
 			<p class="page_tt"> 출결 관리  <!-- ★본문 제목 -------------------->
 							
+							
+							
+							
+							
 			<input id="chnScoreBtn" class="btn btn-outline-secondary" type="button" style="float:right" value="출결호출">
 			</p>
 			<!-- <strong><div id="editSc" class="container" style="margin-bottom:10px;padding-top:3px;width:100%;height:35px;background-color:#20c997 !important;color:#ffffff;display:block">
