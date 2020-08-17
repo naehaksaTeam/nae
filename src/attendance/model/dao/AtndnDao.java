@@ -524,10 +524,10 @@ public class AtndnDao {
 			
 			//과목하나조회 
 			public ArrayList<Atndn> selectOneAtndn(Connection conn, String lcode, String semester) {
-				ArrayList<Atndn> list = null;
+				ArrayList<Atndn> list = new ArrayList<Atndn>();
 				PreparedStatement pstmt = null;
 				ResultSet rset = null;
-				
+
 				String query = "select sid, sname, majorname, category, lcode, lname, lpoint, capacity, ltime, pname ,absent3, week1, week2, week3, week4, week5, week6, week7, week8, week9, " + 
 						"week10, week11, week12, week13, week14, week15, week16 from AtndnView where lcode = ? and semester = ?";
 
@@ -538,11 +538,6 @@ public class AtndnDao {
 				   
 				   rset = pstmt.executeQuery();
 
-			
-				   
-				   
-				   
-				   
 				   while(rset.next()) {
 					   Atndn atndn = new Atndn();
 
@@ -553,7 +548,9 @@ public class AtndnDao {
 					   System.out.println(rset.getString("lname"));
 					   System.out.println(rset.getString("ltime"));
 					   System.out.println(rset.getString("pname"));
+					   
 					   System.out.println(rset.getString("absent3"));
+					   
 					   System.out.println(rset.getString("lpoint"));
 					   System.out.println(rset.getString("capacity"));
 					   System.out.println(rset.getString("week1"));
@@ -584,63 +581,61 @@ public class AtndnDao {
 						  atndn.setAbsent3(rset.getString("absent3")); 
 						  atndn.setLpoint(rset.getInt("lpoint"));
 						  atndn.setCapacity(rset.getInt("capacity")); 
-						  atndn.setWeek1(rset.getString("week1"));
-						  atndn.setWeek2(rset.getString("week2"));
-						  atndn.setWeek3(rset.getString("week3"));
-						  atndn.setWeek4(rset.getString("week4"));
-						  atndn.setWeek5(rset.getString("week5"));
-						  atndn.setWeek6(rset.getString("week6"));
-						  atndn.setWeek7(rset.getString("week7"));
-						  atndn.setWeek8(rset.getString("week8"));
-						  atndn.setWeek9(rset.getString("week9"));
-						  atndn.setWeek10(rset.getString("week10"));
-						  atndn.setWeek11(rset.getString("week11"));
-						  atndn.setWeek12(rset.getString("week12"));
-						  atndn.setWeek13(rset.getString("week13"));
-						  atndn.setWeek14(rset.getString("week14"));
-						  atndn.setWeek15(rset.getString("week15"));
-						  atndn.setWeek16(rset.getString("week16"));
-						  
-						  
-						  
-						  
-				/*
-				 * atndn.setWeek1((rset.getString("week1").equals("1"))? "○" :
-				 * ((rset.getString("week1").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek2((rset.getString("week2").equals("1"))? "○" :
-				 * ((rset.getString("week2").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek3((rset.getString("week3").equals("1"))? "○" :
-				 * ((rset.getString("week3").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek4((rset.getString("week4").equals("1"))? "○" :
-				 * ((rset.getString("week4").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek5((rset.getString("week5").equals("1"))? "○" :
-				 * ((rset.getString("week5").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek6((rset.getString("week6").equals("1"))? "○" :
-				 * ((rset.getString("week6").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek7((rset.getString("week7").equals("1"))? "○" :
-				 * ((rset.getString("week7").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek8((rset.getString("week8").equals("1"))? "○" :
-				 * ((rset.getString("week8").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek9((rset.getString("week9").equals("1"))? "○" :
-				 * ((rset.getString("week9").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek10((rset.getString("week10").equals("1"))? "○" :
-				 * ((rset.getString("week10").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek11((rset.getString("week11").equals("1"))? "○" :
-				 * ((rset.getString("week11").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek12((rset.getString("week12").equals("1"))? "○" :
-				 * ((rset.getString("week12").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek13((rset.getString("week13").equals("1"))? "○" :
-				 * ((rset.getString("week13").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek14((rset.getString("week14").equals("1"))? "○" :
-				 * ((rset.getString("week14").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek15((rset.getString("week15").equals("1"))? "○" :
-				 * ((rset.getString("week15").equals("2"))? "Ⅹ" : "△" ));
-				 * atndn.setWeek16((rset.getString("week16").equals("1"))? "○" :
-				 * ((rset.getString("week16").equals("2"))? "Ⅹ" : "△" ));
-				 */
-						
-						  list.add(atndn); 
-				   }
+//						  atndn.setWeek1(rset.getString("week1"));
+//						  atndn.setWeek2(rset.getString("week2"));
+//						  atndn.setWeek3(rset.getString("week3"));
+//						  atndn.setWeek4(rset.getString("week4"));
+//						  atndn.setWeek5(rset.getString("week5"));
+//						  atndn.setWeek6(rset.getString("week6"));
+//						  atndn.setWeek7(rset.getString("week7"));
+//						  atndn.setWeek8(rset.getString("week8"));
+//						  atndn.setWeek9(rset.getString("week9"));
+//						  atndn.setWeek10(rset.getString("week10"));
+//						  atndn.setWeek11(rset.getString("week11"));
+//						  atndn.setWeek12(rset.getString("week12"));
+//						  atndn.setWeek13(rset.getString("week13"));
+//						  atndn.setWeek14(rset.getString("week14"));
+//						  atndn.setWeek15(rset.getString("week15"));
+//						  atndn.setWeek16(rset.getString("week16"));
+//						  
+
+				
+				  atndn.setWeek1((rset.getString("week1").equals("1"))? "○" :
+				  ((rset.getString("week1").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek2((rset.getString("week2").equals("1"))? "○" :
+				  ((rset.getString("week2").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek3((rset.getString("week3").equals("1"))? "○" :
+				  ((rset.getString("week3").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek4((rset.getString("week4").equals("1"))? "○" :
+				  ((rset.getString("week4").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek5((rset.getString("week5").equals("1"))? "○" :
+				  ((rset.getString("week5").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek6((rset.getString("week6").equals("1"))? "○" :
+				  ((rset.getString("week6").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek7((rset.getString("week7").equals("1"))? "○" :
+				  ((rset.getString("week7").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek8((rset.getString("week8").equals("1"))? "○" :
+				  ((rset.getString("week8").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek9((rset.getString("week9").equals("1"))? "○" :
+				  ((rset.getString("week9").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek10((rset.getString("week10").equals("1"))? "○" :
+				  ((rset.getString("week10").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek11((rset.getString("week11").equals("1"))? "○" :
+				  ((rset.getString("week11").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek12((rset.getString("week12").equals("1"))? "○" :
+				  ((rset.getString("week12").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek13((rset.getString("week13").equals("1"))? "○" :
+				  ((rset.getString("week13").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek14((rset.getString("week14").equals("1"))? "○" :
+				  ((rset.getString("week14").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek15((rset.getString("week15").equals("1"))? "○" :
+				  ((rset.getString("week15").equals("2"))? "Ⅹ" : "△" ));
+				  atndn.setWeek16((rset.getString("week16").equals("1"))? "○" :
+				  ((rset.getString("week16").equals("2"))? "Ⅹ" : "△" ));
+				 
+
+				  list.add(atndn); 
+				   }	
 			  } catch (Exception e) {
 					e.printStackTrace();
 				}finally {
