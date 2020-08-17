@@ -5,6 +5,7 @@
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
  
+ 
 <head>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
  <meta charset="UTF-8">
@@ -19,6 +20,7 @@
 	
 			
 						<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+		
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="pingback" href="https://www.cha.ac.kr/xmlrpc.php">
 	<link rel="shortcut icon" type="image/x-icon" href="https://www.cha.ac.kr/wp-content/uploads/2017/06/cha_favi.png">
@@ -239,7 +241,7 @@ cursor: pointer;
                                             </li>
                                             
                                             <li id="nav-menu-item-2045" class="">
-                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                                <a href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-5823" class="">
                                                 <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
@@ -272,7 +274,7 @@ cursor: pointer;
                                                 <a href="/beet/selectaball" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2045" class="">
-                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                                <a href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-5823" class="">
                                                 <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>
@@ -305,7 +307,7 @@ cursor: pointer;
                                                 <a href="/beet/selectab?studentid=<%=m1.getId()%>" class=""><i class="menu_icon blank fa"></i><span>휴학/복학</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-2045" class="">
-                                                <a target="_blank" href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
+                                                <a href="/beet/nlist" class=""><i class="menu_icon blank fa"></i><span>학교소식</span><span class="plus"></span></a>
                                             </li>
                                             <li id="nav-menu-item-5823" class="">
                                                 <a href="/beet/schlist" class="current  active"><i class="menu_icon blank fa"></i><span>학사일정</span><span class="plus"></span></a>

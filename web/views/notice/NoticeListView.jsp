@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList , notice.model.vo.Notice"%>
+<%@page import="java.util.ArrayList, notice.model.vo.Notice"%>
 
 <%
-	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+	ArrayList<Notice> list = (ArrayList<Notice>) request.getAttribute("list");
 	int listCount = ((Integer) request.getAttribute("listCount")).intValue();
 	int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 	int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 	int maxPage = ((Integer) request.getAttribute("maxPage")).intValue();
 	int currentPage = ((Integer) request.getAttribute("currentPage")).intValue();
+	Notice notice =(Notice)request.getAttribute("notice");
 %>
 <!DOCTYPE html>
 <html lang="ko-KR" class="js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths js_active  vc_desktop  vc_transform  vc_transform  js csstransitions skrollr skrollr-desktop" style="height: auto; overflow: auto;"><head>
@@ -217,27 +218,45 @@ cursor: pointer;
 
 			<th>작성자</th>
 			<th>작성날짜</th>
-			
+			<th>글내용</th>
 			<th>첨부파일</th>
 			<th>조회수</th>
 
 		</tr>
-		<%if(list != null){ %>
 		<%
 			for (Notice n : list) {
 		%>
-		
 		<tr>
 			<td><%=n.getNoticeNo()%></td>
 			
 			<td>
-			<a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%= n.getNoticeTitle() %></a>
+				<%
+					if (n.getNoticeTitle().length() > 10) {
+				%> <%=n.getNoticeTitle().substring(0, 10)%>
+				<%
+					} else {
+				%> <%=n.getNoticeTitle()%> <%
+ 	}
+ %>
+
 			</td>
 
 
 			<td><%=n.getNoticeWriter()%></td>
 			<td><%=n.getNoticeDate()%></td>
-			
+			<td>
+				<%
+					if (n.getNoticeContent().length() > 15) {
+				%> <a
+				href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent().substring(0, 15)%></a>
+				<%
+					} else {
+				%> <a href="/beet/ndetail?noticeno=<%=n.getNoticeNo()%>"><%=n.getNoticeContent()%></a>
+				<%
+					}
+				%>
+
+			</td>
 			<td>
 				<%
 					if (n.getOriginalFile() != null) {
@@ -256,9 +275,6 @@ cursor: pointer;
 				}
 			%>
 		</tr>
-		<%}else{ %>
-		
-		<% } %>
 	</table>
 	<br>
 	</div>
@@ -356,7 +372,7 @@ cursor: pointer;
 
 			<option value="no">글번호</option>
 			<option value="writer">작성자</option>
-			<option value="content">글내용</option>
+			<option value="title">글제목</option>
 		</select> <input type="text" name="search">
 		<button class="btn btn-outline-secondary findbtn" type="submit" value="로그인">검색</button>
 

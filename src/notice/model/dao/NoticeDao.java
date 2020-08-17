@@ -34,7 +34,7 @@ public class NoticeDao {
 				notice.setNoticeTitle(rset.getString("noticetitle"));
 				notice.setNoticeWriter(rset.getString("noticewriter"));
 				notice.setNoticeDate(rset.getDate("noticedate"));
-				notice.setNoticeContent(rset.getString("noticecontent"));
+				notice.setNoticeContent(rset.getString("noticecontent").replace("\n", " "));
 				notice.setOriginalFile(rset.getString("originalfile"));
 				notice.setNoticeReadCount(rset.getInt("noticereadcount"));
 				list.add(notice);
@@ -42,9 +42,8 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rset);
 			close(stmt);
-
+			close(rset);
 		}
 		return list;
 	}
@@ -63,7 +62,7 @@ public class NoticeDao {
 			if (rset.next()) {
 				notice = new Notice();
 				notice.setNoticeNo(noticeNo);
-				notice.setNoticeNo(rset.getInt("NOTICENO"));
+			    notice.setAdNo(rset.getString("ADNO")); 
 				notice.setNoticeTitle(rset.getString("NOTICETITLE"));
 				notice.setNoticeWriter(rset.getString("NOTICEWRITER"));
 				notice.setNoticeDate(rset.getDate("NOTICEDATE"));
@@ -75,8 +74,8 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rset);
 			close(pstmt);
+			close(rset);
 		}
 		return notice;
 	}
@@ -206,7 +205,7 @@ public class NoticeDao {
 				+ "                        FROM (SELECT * FROM notice ORDER BY noticeno desc)) "
 				+ "WHERE RNUM >= ? AND RNUM <= ?";
 
-		int startRow = (currentPage - 1) * limit + 1;
+		int startRow =( (currentPage - 1) * limit) + 1;
 		int endRow = startRow + limit - 1;
 
 		try {
@@ -237,7 +236,7 @@ public class NoticeDao {
 			close(rset);
 			close(pstmt);
 		}
-
+		System.out.println("dao"+list);
 		return list;
 	}
 
@@ -279,7 +278,7 @@ public class NoticeDao {
 		
 		}else{
 		
-			 query = "select * from notice where noticecontent like  ? ORDER BY noticedate desc";
+			 query = "select * from notice where noticetitle like  ? ORDER BY noticedate desc";
 		}
 
 		try {
@@ -304,8 +303,8 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			close(rset);
 			close(pstmt);
+			close(rset);
 		}
 		return list;
 	}
@@ -316,7 +315,7 @@ public class NoticeDao {
 		Statement stmt = null;
 		ResultSet rset = null;
 		
-		String query="SELECT * FROM (SELECT ROWNUM RNUM, NOTICENO, case when LENGTH(NOTICETITLE) > 21 then concat(substr(NOTICETITLE,1,15),'···') when LENGTH(NOTICETITLE) < 24 then NOTICETITLE end as \"NOTICETITLE\", NOTICEDATE FROM (SELECT * FROM NOTICE ORDER BY NOTICEDATE DESC)) WHERE RNUM >= 1 AND RNUM <= 5";  
+		String query="SELECT * FROM (SELECT ROWNUM RNUM, NOTICENO, NOTICETITLE, NOTICEDATE FROM (SELECT * FROM NOTICE ORDER BY NOTICEDATE DESC)) WHERE RNUM >= 1 AND RNUM <= 5";  
 				
 		
 		try {
@@ -337,8 +336,9 @@ public class NoticeDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
-			close(stmt);
 			close(rset);
+			close(stmt);
+			
 		}
 		System.out.println("멘인의 탑 5dao"+ list);
 		return list;
