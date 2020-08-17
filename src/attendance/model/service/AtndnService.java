@@ -103,4 +103,17 @@ public class AtndnService {
 	
 	}
 
+
+
+	public int updateOneAtndn(String sid, String value, String week, String lcode) {
+		Connection conn = getConnection();
+		int result = adao.updateOneAtndn(conn, sid, value, week, lcode);
+		if (result > 0)
+			commit(conn);
+		else
+			rollback(conn);
+		close(conn);
+		return result;
+	}
+
 }

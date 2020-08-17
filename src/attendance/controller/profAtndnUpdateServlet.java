@@ -1,10 +1,8 @@
 package attendance.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,19 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import attendance.model.service.AtndnService;
-import attendance.model.vo.Atndn;
+
+
+
 
 /**
- * Servlet implementation class MyAtndnLctrDetailServlet
+ * Servlet implementation class AtndnUpdateServlet
  */
-@WebServlet("/atnone.p")
-public class profAtndnOneServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/atnup.p")
+public class profAtndnUpdateServlet extends HttpServlet {
+	private static final long serialVersionUID = 414L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public profAtndnOneServlet() {
+    public profAtndnUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +33,25 @@ public class profAtndnOneServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		String sid = request.getParameter("sid");
+		String value = (request.getParameter("value").equals("○"))? "1" : ((request.getParameter("sid").equals("Ⅹ"))? "2" : "3" );
+		String week = request.getParameter("getweek");
 		String lcode = request.getParameter("lcode");
-		String semester = "202001";
-		ArrayList<Atndn> list = new AtndnService().selectOneAtndnStd(lcode, semester);
-
+		
+		
+		int result = new AtndnService().updateOneAtndn(sid, value, week, lcode);
 		RequestDispatcher view = null;
-		if(list != null) { //성공
-			view = request.getRequestDispatcher("views/attendance/profAtndnEdit_lctr.jsp");
-			ServletContext sc = this.getServletContext();
-			RequestDispatcher rd = sc.getRequestDispatcher("/dispatcher2");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-		}else { //실패
-			view = request.getRequestDispatcher("views/common/error.jsp"); // 상대경로만 사용
-			request.setAttribute("message", "상세조회 요청 실패");
-			view.forward(request, response);
-		}
-
+		
+		if(result > 0) { //성공하면 목록으로 갈것다
+	           //서블릿이 서블릿 호출할때 문법
+	           response.sendRedirect("atnone.p");
+	           
+	        }else {
+	           view = request.getRequestDispatcher("views/common/error.jsp");
+	           request.setAttribute("message", "출결입력실패");
+	           view.forward(request, response);
+	        }
+		
 	}
 
 	/**
