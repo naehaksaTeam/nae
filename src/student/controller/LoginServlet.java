@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 		// String 변수 = request.getParameter("name 속성에 설정한 이름");
 		String userid = request.getParameter("userid");
 		String userpwd = request.getParameter("userpwd");
-		String check = request.getParameter("userchk");
+		String where = request.getParameter("where");
 		System.out.println(userid + ", " + userpwd);
 
 		// 3. Model 객체 선언 및 생성하고,
