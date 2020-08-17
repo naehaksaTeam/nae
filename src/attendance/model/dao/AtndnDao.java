@@ -54,17 +54,20 @@ public class AtndnDao {
 
 
 	// select 출결현황
-	public ArrayList<Atndn> selectLctrAtndn(Connection conn, String sid) {
+	public ArrayList<Atndn> selectLctrAtndn(Connection conn, String sid, String semester){
 		ArrayList<Atndn> list = new ArrayList<Atndn>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String query = "select sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3,"
-				+ "week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 "
-				+ "from AtndnView where sid = ?";
+		String query =	"select sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3, week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 " + 
+				" from AtndnView " + 
+				" where sid = ? " + 
+				" and semester = ? " + 
+				" group by sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3, week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, sid);  
+			pstmt.setString(2, semester);
 			
 			rset = pstmt.executeQuery();
 			while (rset.next()) {

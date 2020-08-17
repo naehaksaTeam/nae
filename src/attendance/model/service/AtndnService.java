@@ -29,9 +29,9 @@ public class AtndnService {
 	 * close(conn); return list; }
 	 */
 	
-	public ArrayList<Atndn> selectLctrAtndn(String sid){
+	public ArrayList<Atndn> selectLctrAtndn(String sid, String semester){
 		Connection conn = getConnection();
-		 ArrayList<Atndn>  list = adao.selectLctrAtndn(conn, sid);
+		 ArrayList<Atndn>  list = adao.selectLctrAtndn(conn, sid, semester);
 		close(conn);
 		return list;
 	}
