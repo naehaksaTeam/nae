@@ -45,7 +45,9 @@ public class MajorStudentListServlet extends HttpServlet {
 		Major2 major2 = new MajorService().selectOneValueAndBene(id);
 
 		RequestDispatcher view = null;
-		
+		System.out.println(major1);
+		System.out.println(major2);
+		System.out.println(thisterm);
 		if(major1 != null ) {
 			view = request.getRequestDispatcher("views/major/majortuition.jsp");
 			if(major2 != null) {

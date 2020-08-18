@@ -59,7 +59,7 @@ public class MajorInsertServlet extends HttpServlet {
 			
 			RequestDispatcher view = request
 					.getRequestDispatcher("views/common/error.jsp");
-			request.setAttribute("message", "회원 가입 실패!");
+			request.setAttribute("message", "추가 처리 실패 ");
 			view.forward(request, response);
 		}
 	}
