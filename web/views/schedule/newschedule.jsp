@@ -276,9 +276,9 @@ cursor: pointer;
 
 
 <% if(currentPage >= maxPage){ %>
-	[맨끝]&nbsp;
+	[마지막]&nbsp;
 <% }else{ %>
-	<a href="/beet/adsch?page=<%= maxPage %>">[맨끝]</a>
+	<a href="/beet/adsch?page=<%= maxPage %>">[마지막]</a>
 <% } %>
 
 <button class="btn btn-outline-secondary" onclick="dis()">새로등록</button>
