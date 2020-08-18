@@ -231,7 +231,8 @@ cursor: pointer;
 			
 			<th><%if(major2 !=null){ %>
 			<%=major1.getTuition() - major2.getValue() %>
-			<%} %>&nbsp;
+			<%} %>
+			<%=major1.getTuition() %>
 			</th>
 		
 			<th>2020.08.12</th>

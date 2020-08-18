@@ -236,9 +236,8 @@ cursor: pointer;
 	</table>
  </div>
  <br>
-	<div  align="center">
-		<button class="btn btn-outline-secondary findbtn" onclick="javascript:history.go(-1);">뒤로</button>
-		<!--  관리자일때 아닐때 구분해서 표기해야함 관리자면 보이고 아니면 안보임  -->
+	<div  align="right">
+		
 		<% if(((Member)session.getAttribute("loginMember")).getId().substring(0,1).equals("A")){ %>
 			<button class="btn btn-outline-secondary findbtn"
 			onclick="javascript:location.href='/beet/nupdate.ad1?noticeno=<%=notice.getNoticeNo()%>';">수정</button>
@@ -247,7 +246,8 @@ cursor: pointer;
 	<% }else{ %>
 		
 	<% } %>
-		
+		<button class="btn btn-outline-secondary findbtn" onclick="javascript:history.go(-1);">뒤로</button>
+		<!--  관리자일때 아닐때 구분해서 표기해야함 관리자면 보이고 아니면 안보임  -->
 		
 	</div>
 	
