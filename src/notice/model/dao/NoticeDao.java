@@ -317,7 +317,6 @@ public class NoticeDao {
 		
 		String query="SELECT * FROM (SELECT ROWNUM RNUM, NOTICENO, case when LENGTH(NOTICETITLE) > 23 then concat(substr(NOTICETITLE,1,15),'···') when LENGTH(NOTICETITLE) < 26 then NOTICETITLE end as \"NOTICETITLE\", NOTICEDATE FROM (SELECT * FROM NOTICE ORDER BY NOTICEDATE DESC)) WHERE RNUM >= 1 AND RNUM <= 5";  
 				
-				
 		
 		try {
 			stmt = conn.createStatement();

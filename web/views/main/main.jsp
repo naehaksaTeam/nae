@@ -606,13 +606,16 @@ function calendar()
 					<div class="panel-body">
 					     <table style="width:20; margin:auto; padding-top:10px;" id="mainWeather" cellspacing="0">
         <ul>
-         	
-            <li class="강수량"></li>
+         	<br>
+         	<div style="float: left; padding-left: 10px;"><img src="/beet/resources/images/tem.png" width="100" height="150"></div>
+         	<div>
+         	<br>
+         	<li class="강수량" style="text-align: center; font-size: 20px;"></li>
    
-            <li class="기온"></li>
+            <li class="기온" style="text-align: center; font-size: 20px; padding-right: 3px;"></li>
         
-            <li class="습도"></li>
-         
+            <li class="습도" style="text-align: center; font-size: 20px; padding-right: 20px;"></li>
+         	</div>
         </ul>
         </table>
 					</div>
