@@ -78,10 +78,10 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="content_inner ">
 		<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
 			<!-- ★배경 이미지 (변경시 backgroud-image, src 두군데 수정해야해요 --------------->
-		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/test.jpg); 
+		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/page.jpg); 
 			height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 		<div class="image not_responsive">
-			<img itemprop="image" src="/beet/resources/images/test.jpg" alt="&nbsp;">
+			<img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;">
 		</div>
 		<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					
@@ -111,11 +111,10 @@ select {width: 40px; height:20px; margin:0px}
 		
       <!--★★★★★★★★★★★★★★★여기에 본문작성★★★★★★★ -->
 
-<p class="page_tt">출결조회 : <%=atndn.getLname()%>
-<div style="display:inline;font-size:0.9em">
-<%=atndn.getLcode()%> / <%=atndn.getCategory()%> / 
-<%=atndn.getLtime()%> / <%=atndn.getCapacity()%>명</div></p>
-<p><progress id="prog" value="<%=diffWeeks%>" max="100" style="display:inline;"><div id="progress">진도율: <%=diffWeeks%>%</div></p>
+<p class="page_tt">출결조회 : <%=atndn.getLname()%> 
+ <input type="button" class="btn btn-outline-secondary" value="이전페이지로 이동" onclick="javascript:history.go(-1); return false;" style="float:right;"></p>
+<p style="display:inline;font-size:0.9em"><%=atndn.getLcode()%> / <%=atndn.getCategory()%> / <%=atndn.getLtime()%> / <%=atndn.getCapacity()%>명
+<progress id="prog" value="<%=diffWeeks%>" max="100" style="display:inline;"><div id="progress">진도율: <%=diffWeeks%>%</div></p>
 
 
 <p>≫ 출결조회</p>				

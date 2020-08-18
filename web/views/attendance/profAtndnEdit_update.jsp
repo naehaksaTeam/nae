@@ -67,7 +67,7 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="content_inner ">
 		<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
 			<!-- ★배경 이미지 (변경시 backgroud-image, src 두군데 수정해야해요 --------------->
-		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/test.jpg); 
+		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/page.jpg); 
 			height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 		<div class="image not_responsive">
 			<img itemprop="image" src="/beet/resources/images/test.jpg" alt="&nbsp;">
