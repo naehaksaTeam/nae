@@ -75,7 +75,7 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="title_subtitle_holder">
 		<div class="title_subtitle_holder_inner">
 
-		<h1 style="margin-top:75px"><span >출결/성적</span></h1> <!-- ★h1 이름 (메뉴이름 여기에 써주세요) ------------------------------------------>
+		<h1 style="margin-top:75px"><span >성적조회</span></h1> <!-- ★h1 이름 (메뉴이름 여기에 써주세요) ------------------------------------------>
 		</div> </div> </div> </div> </div> </div> </div>
 				
 		<div class="container">
