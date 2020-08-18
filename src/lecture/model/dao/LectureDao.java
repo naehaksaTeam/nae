@@ -405,7 +405,6 @@ public class LectureDao {
 	public TimeTable selecTimeTable(Connection conn, String studentid, String clock) {
 		//시간표조회
 		TimeTable t = new TimeTable();
-		Map m = new HashMap();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "select * from( select * from lplan join professor using (id) join lecture using (lcode)right join (SELECT SUBSTR(table_name,3,length(table_name)) lname FROM all_tables  where owner = 'BEETPROJECT1' and table_name like 'ZZ%') a using (lname) join lapplication using (lcode) right join (select SUBSTR(table_name,3,length(table_name)) lname, data_default from SYS.all_tab_columns where owner = 'BEETPROJECT1'  and table_name like 'ZZ%') using ( lname )) where id = ? and lclock = ? and semester = (select to_char(sysdate,'yyyy')||case when(to_char(sysdate,'mm'))>7 then '02' ELSE '01' end from dual)";
