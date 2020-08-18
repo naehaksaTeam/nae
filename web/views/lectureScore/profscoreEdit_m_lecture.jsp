@@ -137,7 +137,6 @@ select {width: 40px; height:20px; margin:0px}
 					<option value="D" <%=(lscore.getGrade().trim().equals("D"))?"selected":"" %>>D</option>
 					<option value="F" <%=(lscore.getGrade().trim().equals("F"))?"selected":"" %>>F</option>
 				</select></td>
-		
 		</tr>
 		</p>
 		<% } %>
@@ -270,9 +269,13 @@ $("#abc").click(function(){
 		async : true,
 		data : {jsondata : JSON.stringify(aJSONArray)},
 		success : function(data){
-			alert("변경사항을 저장했습니다!")
+			alert("변경사항을 저장했습니다!");
 			$("input[type=text]").attr('readonly', true);
 			$("#savechn").hide();
+			$("#editSc").hide();
+		
+			$("input[type=checkbox]").prop("checked", false);
+			document.reload();
 		},
 		error :  function(request, status, error) {
 			alert("변경사항을 저장했습니다!")

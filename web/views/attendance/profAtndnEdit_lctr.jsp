@@ -9,10 +9,10 @@ java.util.Date, java.text.SimpleDateFormat"%>
 	SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 	Date today = new Date();
 	String day = sdf.format(today);
-	Date enter = sdf2.parse("2020-03-02");
+	Date enter = sdf2.parse("2020-06-8");
 
 	long diff = today.getTime() - enter.getTime();
-	long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 * 2;
+	long diffWeeks = diff / (24 * 60 * 60 * 1000) / 7 ;
 					
 %>   
 
@@ -62,8 +62,6 @@ select {width: 40px; height:20px; margin:0px}
 
 
 /* ★ css style은 여기에 써주세요------------------------------------------------- */
-
-
 </style>
 
 <div class="wrapper">
@@ -93,79 +91,74 @@ select {width: 40px; height:20px; margin:0px}
 		<h1 style="margin-top:75px"><span >출결/성적</span></h1> <!-- ★h1 이름 (메뉴이름 여기에 써주세요) ------------------------------------------>
 		</div> </div> </div> </div> </div> </div> </div>
 				
-		<div class="container">
+		<div class="container" >
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt"> 출결 관리  <!-- ★본문 제목 -------------------->
-							
-			<input id="chnScoreBtn" class="btn btn-outline-secondary" type="button" style="float:right" value="출결호출">
-			</p>
+			<p class="page_tt"> 출결 관리 > <%= list.get(0).getLname() %> 
+			<label style="font-size:0.6em;color:#777777;margin-bottom:20px"><%= list.get(0).getLcode() %> / <%= list.get(0).getLpoint() %> / <%= list.get(0).getLtime() %>요일 / <%= diffWeeks %></label></p>  <!-- ★본문 제목 -------------------->
+			
+	<table id="AtndnTable" class="main_default">
+			<div>
+			<center>
+			<form action="/beet/atnone.p" method="post">
+			<input id="updateScoreBtn" class="tototo btn btn-outline-secondary" type="button" value="이번 주 출결입력"  style="width:200px;height:40px;font-size:1.2em;margin-bottom:30px">
+			</form>
+			</center>
+			</div>
 			<!-- <strong><div id="editSc" class="container" style="margin-bottom:10px;padding-top:3px;width:100%;height:35px;background-color:#20c997 !important;color:#ffffff;display:block">
 			<center>성적 수정모드 </center></strong> --></div>
-			
-			
-	<table class="main_default" style="width:80%">
+
 <thead>
 <tr>
 <th>순번</th>
 <th>학과</th>
 <th>학번</th>
 <th>성명</th>
-<th>WEEK1</th>
-<th>WEEK2</th>
-<th>WEEK3</th>
-<th>WEEK4</th>
-<th>WEEK5</th>
-<th>WEEK6</th>
-<th>WEEK7</th>
-<th>WEEK8</th>
-<th>WEEK9</th>
-<th>WEEK10</th>
-<th>WEEK11</th>
-<th>WEEK12</th>
-<th>WEEK13</th>
-<th>WEEK14</th>
-<th>WEEK15</th>
-<th>WEEK16</th>
+<th style="font-size:0.7em" value="1">1주</th>
+<th style="font-size:0.7em" value="2">2주</th>
+<th style="font-size:0.7em" value="3">3주</th>
+<th style="font-size:0.7em" value="4">4주</th>
+<th style="font-size:0.7em" value="5">5주</th>
+<th style="font-size:0.7em" value="6">6주</th>
+<th style="font-size:0.7em" value="7">7주</th>
+<th style="font-size:0.7em" value="8">8주</th>
+<th style="font-size:0.7em" value="9">9주</th>
+<th style="font-size:0.7em" value="10">10주</th>
+<th style="font-size:0.7em" value="11">11주</th>
+<th style="font-size:0.7em" value="12">12주</th>
+<th style="font-size:0.7em" value="13">13주</th>
+<th style="font-size:0.7em" value="14">14주</th>
+<th style="font-size:0.7em" value="15">15주</th>
+<th style="font-size:0.7em" value="16">16 주</th>
 </tr>
 <% int k=0 ;for(Atndn atndn : list) { %>
-<tr>
+<tr style="border:1px solid">
 <td><%= ++k %></td>
 <td><%=atndn.getMajorname() %></td>
 <td><%= atndn.getSid() %></td>
 <td><%= atndn.getSname() %></td>
-<td><%=atndn.getWeek1() %></td>
-<td><%=atndn.getWeek2() %></td>
-<td><%=atndn.getWeek3() %></td>
-<td><%=atndn.getWeek4() %></td>
-<td><%=atndn.getWeek5() %></td>
-<td><%=atndn.getWeek6() %></td>
-<td><%=atndn.getWeek7() %></td>
-<td><%=atndn.getWeek8() %></td>
-<td><%=atndn.getWeek9() %></td>
-<td><%=atndn.getWeek10() %></td>
-<td><%=atndn.getWeek11() %></td>
-<td><%=atndn.getWeek12() %></td>
-<td><%=atndn.getWeek13() %></td>
-<td><%=atndn.getWeek14() %></td>
-<td><%=atndn.getWeek15() %></td>
-<td><%=atndn.getWeek16() %></td>
+<td class="week1"><%=atndn.getWeek1() %></td>
+<td class="week2"><%=atndn.getWeek2() %></td>
+<td class="week3"><%=atndn.getWeek3() %></td>
+<td class="week4" ><%=atndn.getWeek4() %></td>
+<td class="week5"><%=atndn.getWeek5() %></td>
+<td class="week6"><%=atndn.getWeek6() %></td>
+<td class="week7"><%=atndn.getWeek7() %></td>
+<td class="week8"><%=atndn.getWeek8() %></td>
+<td class="week9"><%=atndn.getWeek9() %></td>
+<td class="week10"><%=atndn.getWeek10() %></td>
+<td class="week11"><%=atndn.getWeek11() %></td>
+<td class="week12"><%=atndn.getWeek12() %></td>
+<td class="week13"><%=atndn.getWeek13() %></td>
+<td class="week14"><%=atndn.getWeek14() %></td>
+<td class="week15"><%=atndn.getWeek15() %></td>
+<td class="week16"><%=atndn.getWeek16() %></td>
+<td style="display:none"><%=atndn.getLcode() %></td>
 </tr>
 <% } %>
-
 </table>		
-
-	<div id="savechn">
-	<center>
-		<br>
-		<strong>* 변경 후 반드시 저장을 눌러주세요 </strong>
-			<div style="height:10px"></div>
-		<input id="abc" type="button" value="저장"> &nbsp; 
-		<input id="sccancle" type="button" value="취소"> &nbsp; 
-	</center>
-			</div>						
-									
+								
 									
 <script type="text/javascript" src="/beet/resources/js/jQuery.js"></script>
 
@@ -173,140 +166,83 @@ select {width: 40px; height:20px; margin:0px}
 <!-- 스크립트 쓰는곳   -->
 //수정가능 
 $(document).ready(function(){
-	$("#savechn").hide();
-	$("#editSc").hide();
-});
+	$('#AtndnTable tr').mouseover(function(){
+
+	    $(this).attr('style', "background-color:yellow");
+
+	 }).mouseout(function() {
+
+	    $(this).removeAttr('style');
+
+	 });
+
+});	
+
+
+$("#updateScoreBtn").click(function(){
 	
-$("#chnScoreBtn").click(function() {
-	if($('#chnScoreBtn').prop('readonly', true)){
-		var result = confirm("성적을 수정하시겠습니까?");
-		
-		if(result){
-			$("input[type=text]").removeAttr('readonly');
-			$("#savechn").show();
-			$("#editSc").show();
-			
-
-			$("input[type=text]").keyup(function()  {
-				var chk = $(this)
-				var tr = chk.parent().parent();
-				 var checkbox = tr.find('td:first-child :checkbox');
-			     //checkbox.prop('checked', !checkbox.is(':checked'));
-			     checkbox.prop("checked", true);
-			});
-
-		}else{
-			$("input[type=text]").attr('readonly', true);
-			$("#savechn").hide();
-			}
-		}
-			
-		
-		});
-
-
-//숫자 0~100사이만 입력
-var replaceNotInt = /[^0-9]/gi;
-$(document).ready(function(){
-	$("input[type=text]").on("focusout", function() { 
-      var x = $(this).val();
-      if (x.length > 0) {
-          if (x.match(replaceNotInt)) {
-             x = x.replace(replaceNotInt, "");
-          }
-          $(this).val(x);
-          if(x > 100) {
-        	  jQuery(this).val('100');
-          }
-      }
-  }).on("keyup", function() {
-	  $(this).val(jQuery(this).val().replace(replaceNotInt, ""));  
-  }); 
-}); 
-
-
-//테스트
-/* $(document).ready(function(){
-	$("input:checkbox[name=chk]").keyup(function(){
-        if(jQuery("input:checkbox[name=chk]").is(":checked")){
-            alert("체크박스 체크했음!");
-        }else{
-            alert("체크박스 체크 해제!");
-        }
-    });	
-}); */
+	
+	
+	if($(this).val() != "이번 주 출결입력"){
+		$(this).attr('value', '이번 주 출결입력');
+		$(".week<%=diffWeeks%>").removeAttr('style');
+		alert("출결정보가 변경되었습니다");
 
 
 
+	}else{		
+		$(".week<%=diffWeeks%>").attr('style', "background-color:yellow;font-weight:800");
+		$(this).attr('value', '<%=diffWeeks%>주 출결수정');
+		$(this).attr('class', 'btn btn-outline-secondary');
+	
 
-
-
-$(".chk").click(function(){ 	
-
-      	var chk = $(this);
-        //var checkbox = $("input[name=user_CheckBox]:checked");
-});
-
-
-
-<%-- $("#abc").click(function(){ 
-	var aJSONArray = new Array();	
-    var checkbox = $("input:checkbox[name=chk]:checked");	
-    
-   checkbox.each(function(i) {
-	   
-	var tr = checkbox.parent().parent().eq(i);
+	$("#AtndnTable tr").click(function(){
+	 var str = ""
+	 var tdArr = new Array();
+	            
+	 // 현재 클릭된 Row(<tr>)
+	var tr = $(this);
 	var td = tr.children();
-	var aJson<%=i%> = new Object(); 
-	//rowData.push(tr.text());
-	aJson<%=i%>.receptionno = td.eq(1).text();
-	aJson<%=i%>.atndnScore = td.eq(8).find('input[type="text"]').val();
-	aJson<%=i%>.midScore = td.eq(9).find('input[type="text"]').val();
-	aJson<%=i%>.finalScore = td.eq(10).find('input[type="text"]').val();
-	aJson<%=i%>.totalScore = td.eq(11).find('input[type="text"]').val();
-	aJson<%=i%>.grade = td.eq(12).find('select[name="selectg"] option:selected').val();
+
 	
-	aJSONArray.push(aJson<%=i%>); 
-	 
-   }); --%>
+	if( td.eq(<%=diffWeeks%>+3).text() == "○"){
+		td.eq(<%=diffWeeks%>+3).html("Ⅹ")
+	}else if(td.eq(<%=diffWeeks%>+3).text() == "Ⅹ"){
+		td.eq(<%=diffWeeks%>+3).html("△")
+	}else if(td.eq(<%=diffWeeks%>+3).text() == "△"){
+		td.eq(<%=diffWeeks%>+3).html("○")
+	}
+		
+	var aSid = td.eq(2).text();
+	var aAtndn = td.eq(<%=diffWeeks%>+3).text();
+	var getWeek = "week" + <%=diffWeeks%>
+	var aLcode = td.eq(20).text();
 
-   /* var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
-		totalScore, grade]; */
-	/* var aa = JSON.stringify(dataArray); */
-
-   $.ajax({
-	   	url : "/beet/scupdate.p",
-		method : 'post',
-		traditional : true,
+	$.ajax({
+		url : "/beet/atnup.p",
+		method : "post",
 		async : true,
-		data : {jsondata : JSON.stringify(aJSONArray)},
-		success : function(data){
-			alert("변경사항을 저장했습니다!")
-			$("input[type=text]").attr('readonly', true);
-			$("#savechn").hide();
+		data : {
+			sid : td.eq(2).text(),
+			value : td.eq(<%=diffWeeks%>+3).text(),
+			getweek : "week" + <%=diffWeeks%>,
+			lcode : td.eq(20).text()
+			
 		},
-		error :  function(request, status, error) {
-			alert("변경사항을 저장했습니다!")
-			$("input[type=text]").attr('readonly', true);
-			$("#savechn").hide();
-			$("#editSc").hide();
-		
-			$("input[type=checkbox]").prop("checked", false);
-			document.reload();
-		}	
-		
-		}); 
-	   
-   console.log(aJSONArray);
-   });
-   //$("#test1").serialize(),
-   
- 
-/* 	var dataArray = [categoryname, majorname, sid, sname, retake, atndnScore, midScore, finalScore,
-		totalScore, grade];
-	var aa = JSON.stringify(dataArray);
-	var jsonArray = JSON.parse(JSON.stringify(dataArray)); */
- 
+		success : function(data){
+			
+		}
+	});
+
+
+});	
+	}
+
+
+});	
+
+
+
 </script>
 		</div> </div>
 						</div>

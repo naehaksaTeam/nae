@@ -42,7 +42,14 @@ const tar = document.querySelector("body");
 
 </script>
 <body>
-<%= request.getRemoteAddr()  %>
+<%
+String ipaddress;
+	if (request.getHeader("HTTP_X_FORWARDED_FOR") == null) {
+        ipaddress = request.getRemoteAddr();
+    } else {
+        ipaddress = request.getHeader("HTTP_X_FORWARDED_FOR");
+    }
+%>
 <br><br><br><br><br><br><br><br><br>
 <% if(m != null){ %>	
 <meta http-equiv="refresh" content="0;url=/beet/views/main/main.jsp">
@@ -58,6 +65,7 @@ const tar = document.querySelector("body");
 	<h1 style="color:white;">PASSWORD<span style="color:black;">&nbsp;</span></h1><input type="password" name="userpwd" class="form-control" id="pwd" required>
 	<br><button type="submit" value="로그인" class="btn btn-dark">로그인</button>
 	</div>
+	<input type="text" name="where" value="<%= ipaddress %>" style="display:none;" />
 	</form>
 	
 	<div  style=" margin-left: 50%;">

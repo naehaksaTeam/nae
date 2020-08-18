@@ -166,33 +166,13 @@ cursor: pointer;
 
 <style>
 
-
-/* 
-.box{
-    width: 1000px;
-    min-height: 300px;  
-    margin: 10px auto;
-    display: flex;
-
+.col-sm-3{
+		overflow:hidden;
+		word-break:break-all;
 
 }
-
-
-.box h2{
-   align: center;
-   font-size: 18px;
-   font-family: cursive;
-   color: slategray;
-/*     line-height: 25px;
-    margin: 0; */
     
-
-#mainWeather li{
-
-	text-align: center;
 }
-
-
 .a{
  
     border: 2px solid #dfe4ea;
@@ -220,7 +200,6 @@ aa{
 }
 
 
-
 .d ul{
    
 
@@ -229,6 +208,19 @@ aa{
    padding:50px;
 
 }
+/* 
+.d{
+    border: 2px solid #dfe4ea;
+    flex:1;
+     width:30%;
+    box-sizing: border-box;
+     background-image: url("/beet/resources/images/a2.jpg");
+    min-height: 100%;
+    background-position: center;
+    background-size: cover
+    text-align: left;"
+   
+} */
 
 
 table.cal_calendar{
@@ -594,7 +586,7 @@ function calendar()
 		
 		
 		
-		<div class="row main-row" style=" height: 330px; margin:0 auto; " >
+		<div class="row main-row" style=" height: 330px; margin:0 auto;" >
 			<div class="col-sm-3">
 				<div class="panel panel-primary"
 					style="border-color: #edeef1;" >
@@ -610,28 +602,30 @@ function calendar()
 			<div class="col-sm-3">
 				<div class="panel panel-primary"
 					style="border-color: #edeef1; height: 330px">
-					<div class="panel-footer" >날씨</div>
+					<div class="panel-footer">날씨</div>
 					<div class="panel-body">
-					     <table style="width:20; margin:0; padding-top:10px; cellspacing:0;" id="mainWeather" >
+					     <table style="width:20; margin:auto; padding-top:10px;" id="mainWeather" cellspacing="0">
         <ul>
-        	<br><br>
-         	
-            <li class="강수량" style="text-align: center; font-size:20px;"></li>
+         	<br>
+         	<div style="float: left; padding-left: 10px;"><img src="/beet/resources/images/tem.png" width="100" height="150"></div>
+         	<div>
+         	<br>
+         	<li class="강수량" style="text-align: center; font-size: 20px;"></li>
    
-            <li class="기온" style="text-align: center; padding-right: 3px; font-size:20px;"></li>
+            <li class="기온" style="text-align: center; font-size: 20px; padding-right: 3px;"></li>
         
-            <li class="습도" style="text-align: center; padding-right: 20px; font-size:20px;"></li>
-         
+            <li class="습도" style="text-align: center; font-size: 20px; padding-right: 20px;"></li>
+         	</div>
         </ul>
         </table>
 					</div>
 				</div>
 			</div>
-		
+
 			
 			<div class="col-sm-3">
 				<div class="panel panel-primary"
-					style="border-color: #edeef1; height: 330px">
+					style="border-color: #edeef1; height: 330px; ">
 					<div class="panel-footer">공지사항</div>
 					<div class="panel-body">
 					 <table style="width:20; margin:auto; padding-top:10px;" id="mainNotice"  cellspacing="0">
@@ -651,7 +645,7 @@ function calendar()
 					  <table style="width:20; margin:auto; padding-top:10px;" id="mainSchedule" cellspacing="0">
   
          <tr>
-            <th style="color: #4682B4;">일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th style="color: #4682B4"> 일정 </th>
+            <th style="color: #4682B4">일 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th style="color: #4682B4"> 일정 </th>
          </tr>
          
          </table>
@@ -738,11 +732,11 @@ function calendar()
 
 
 </div>
-<br>
+
 
 
 	<footer>
-		<div class="footer_inner clearfix " style="margin-top:auto;">
+		<div class="footer_inner clearfix " style="margin-top:45px;">
 				<div class="footer_top_holder">
             			
 					</div>
