@@ -1,6 +1,7 @@
 package lecture.model.dao;
 
-import static common.JDBCTemp.*;
+import static common.JDBCTemp.close;
+import static common.JDBCTemp.commit;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,13 +9,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import lecture.model.vo.ApplyReception;
 import lecture.model.vo.Lecture;
 import lecture.model.vo.Major;
 import lecture.model.vo.Rest;
 import lecture.model.vo.TimeTable;
-import oracle.net.aso.l;
 import student.model.vo.Member;
 
 public class LectureDao {
@@ -403,10 +405,10 @@ public class LectureDao {
 	public TimeTable selecTimeTable(Connection conn, String studentid, String clock) {
 		//시간표조회
 		TimeTable t = new TimeTable();
-		
+		Map m = new HashMap();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "select lname,ltime,lclock from  lapplication join lecture using (lcode) where lapplication.id = ? and lclock = ? and semester = (select to_char(sysdate,'yyyy')||case when(to_char(sysdate,'mm'))>7 then '02' ELSE '01' end from dual)";
+		String query = "select * from( select * from lplan join professor using (id) join lecture using (lcode)right join (SELECT SUBSTR(table_name,3,length(table_name)) lname FROM all_tables  where owner = 'BEETPROJECT1' and table_name like 'ZZ%') a using (lname) join lapplication using (lcode) right join (select SUBSTR(table_name,3,length(table_name)) lname, data_default from SYS.all_tab_columns where owner = 'BEETPROJECT1'  and table_name like 'ZZ%') using ( lname )) where id = ? and lclock = ? and semester = (select to_char(sysdate,'yyyy')||case when(to_char(sysdate,'mm'))>7 then '02' ELSE '01' end from dual)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
