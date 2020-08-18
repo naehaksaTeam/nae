@@ -97,14 +97,16 @@ select {width: 40px; height:20px; margin:0px}
 			<!-------------★여기에 본문작성------------------------------------------------------------------------->
 			<p class="page_tt"> 출결 관리 > <%= list.get(0).getLname() %> 
 			<label style="font-size:0.6em;color:#777777;margin-bottom:20px"><%= list.get(0).getLcode() %> / <%= list.get(0).getLpoint() %> / <%= list.get(0).getLtime() %>요일 / <%= diffWeeks %></label></p>  <!-- ★본문 제목 -------------------->
-			
+			<input type="button" class="btn btn-outline-secondary" value="이전페이지로 이동" onclick="javascript:history.go(-1); return false;" style="float:right;">
 	<table id="AtndnTable" class="main_default">
 			<div>
 			<center>
 			<form action="/beet/atnone.p" method="post">
 			<input id="updateScoreBtn" class="tototo btn btn-outline-secondary" type="button" value="이번 주 출결입력"  style="width:200px;height:40px;font-size:1.2em;margin-bottom:30px">
 			</form>
+			
 			</center>
+			
 			</div>
 			<!-- <strong><div id="editSc" class="container" style="margin-bottom:10px;padding-top:3px;width:100%;height:35px;background-color:#20c997 !important;color:#ffffff;display:block">
 			<center>성적 수정모드 </center></strong> --></div>
