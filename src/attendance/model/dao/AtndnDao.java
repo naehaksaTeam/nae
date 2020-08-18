@@ -65,14 +65,25 @@ public class AtndnDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
-		String query = " select sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3,  " + 
-				"nvl(week1, 0) as \"1\", nvl(week2, 0) as \"2\", nvl(week3, 0) as \"3\", nvl(week4, 0) as \"4\", nvl(week5, 0) as \"5\", nvl(week6, 0) as \"6\", nvl(week7, 0) as \"7\", nvl(week8, 0) as \"8\", nvl(week9, 0) as \"9\", nvl(week10, 0) as\"9\",  " + 
-				"nvl(week11, 0) as \"11\", nvl(week12, 0) as \"12\", nvl(week13, 0) as \"13\", nvl(week14, 0) as \"14\", nvl(week15, 0) as \"15\", nvl(week16, 0) as \"16\" " + 
-				"				 from AtndnView   " + 
-				"				 where sid = ?  " + 
-				"				 and semester = ?   " + 
-				"				 group by sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3,  " + 
-				"                        week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 ";
+		
+		String query = "select sid, semester, category, lcode, lname, ltime, lpoint, pname ,absent3, nvl(week1, 0) as \"1\", nvl(week2, 0) as \"2\", nvl(week3, 0) as \"3\", nvl(week4, 0) as \"4\"," + 
+				"        nvl(week5, 0) as \"5\", nvl(week6, 0) as \"6\", nvl(week7, 0) as \"7\", nvl(week8, 0) as \"8\", nvl(week9, 0) as \"9\", " + 
+				"        nvl(week10, 0) as \"10\", nvl(week11, 0) as \"11\", nvl(week12, 0) as \"12\", nvl(week13, 0) as \"13\", nvl(week14, 0) as \"14\", nvl(week15, 0) as \"15\", nvl(week16, 0) as \"16\" from AtndnView2" + 
+				"       where sid = ? and semester =? group by sid, semester, category, lcode, lname, ltime, lpoint, pname ,absent3, week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16";
+		/*
+		 * String query =
+		 * " select sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3,  "
+		 * +
+		 * "nvl(week1, 0) as \"1\", nvl(week2, 0) as \"2\", nvl(week3, 0) as \"3\", nvl(week4, 0) as \"4\", nvl(week5, 0) as \"5\", nvl(week6, 0) as \"6\", nvl(week7, 0) as \"7\", nvl(week8, 0) as \"8\", nvl(week9, 0) as \"9\", nvl(week10, 0) as\"10\",  "
+		 * +
+		 * "nvl(week11, 0) as \"11\", nvl(week12, 0) as \"12\", nvl(week13, 0) as \"13\", nvl(week14, 0) as \"14\", nvl(week15, 0) as \"15\", nvl(week16, 0) as \"16\" "
+		 * + "				 from AtndnView2   " + "				 where sid = ?  " +
+		 * "				 and semester = ?   " +
+		 * "				 group by sid, semester, category, lcode, lname, ltime, lpoint, room, pname ,absent3,  "
+		 * +
+		 * "                        week1, week2, week3, week4, week5, week6, week7, week8, week9, week10, week11, week12, week13, week14, week15, week16 "
+		 * ;
+		 */
 				
 			try {
 			pstmt = conn.prepareStatement(query);
@@ -89,7 +100,6 @@ public class AtndnDao {
 				atndn.setLname(rset.getString("lname"));
 				atndn.setLtime(rset.getString("ltime"));
 				atndn.setLpoint(rset.getInt("lpoint"));
-				atndn.setRoom(rset.getString("room"));
 				atndn.setPname(rset.getString("pname"));
 				atndn.setAbsent3((rset.getString("absent3").equals("Y")) ? "출석미달" : "-");
 				atndn.setWeek1((rset.getString("1").equals("1"))? "○" : ((rset.getString("1").equals("2"))? "Ⅹ" : "△" ));

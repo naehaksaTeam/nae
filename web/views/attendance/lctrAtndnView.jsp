@@ -161,7 +161,7 @@ cursor: pointer;
 						<div class="container_inner clearfix">
 								<div class="title_subtitle_holder">
                                                                 									<div class="title_subtitle_holder_inner">
-																										<h1><span>출결현황</span></h1>
+																										<h1><span style="margin-top:80px">출결현황</span></h1>
 
 																										</div>
 								                                                            </div>
@@ -192,9 +192,8 @@ cursor: pointer;
     <th  rowspan="2">과목코드<br></th>
     <th  rowspan="2">과목명</th>
     <th  rowspan="2">강의요일</th>
-    <th  rowspan="2">출석률</th>
     <th  rowspan="2">결석1/4초과여부</th>
-    <th  colspan="17">출석현황</th>
+    <th  colspan="18">출석현황</th>
   </tr>
 
   <tr>
@@ -226,7 +225,6 @@ cursor: pointer;
     <td><%= atndn.getLcode() %></td>
     <td ><%= atndn.getLname() %></td>
     <td ><%= atndn.getLtime() %></td>
-    <td></td>
     <td ><%= atndn.getAbsent3() %></td>
     <td ><%= atndn.getWeek1() %></td>
     <td ><%= atndn.getWeek2() %></td>

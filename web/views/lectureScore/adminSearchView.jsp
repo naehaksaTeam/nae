@@ -62,10 +62,10 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="content_inner ">
 		<div class="title_outer title_without_animation" data-animation="yes" data-height="350">
 			<!-- ★배경 이미지 (변경시 backgroud-image, src 두군데 수정해야해요 --------------->
-		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/test.jpg); 
+		<div class="title title_size_medium position_left has_fixed_background " style="background-size: 1920px; background-image: url(/beet/resources/images/page.jpg); 
 			height: 350px; background-color: rgb(153, 153, 153); background-position: center 2.205px;">
 		<div class="image not_responsive">
-			<img itemprop="image" src="/beet/resources/images/test.jpg" alt="&nbsp;">
+			<img itemprop="image" src="/beet/resources/images/page.jpg" alt="&nbsp;">
 		</div>
 		<div class="title_holder skrollable skrollable-between" data-0="opacity:1" data-300="opacity:0" style="padding-top: 133px; height: 217px; opacity: 1;">
 					
@@ -81,42 +81,26 @@ select {width: 40px; height:20px; margin:0px}
 		<div class="container">
 			<div class="container_inner default_template_holder clearfix page_container_inner">
 			<div class="two_columns_75_25 background_color_sidebar grid2 clearfix">
-			<!-------------★여기에 본문작성------------------------------------------------------------------------->
-			<p class="page_tt"> 본문제목자리<!-- ★본문 제목 -------------------->
-
-
-
-
-
-
-
-	<div class="column1" style="margin-left:3%;">
-	<div class="column_inner">					
-	<div class="vc_row wpb_row section vc_row-fluid " style=" text-align:left;">
-	<div class=" full_section_inner clearfix"><div class="wpb_column vc_column_container vc_col-sm-12">
-	<div class="vc_column-inner "><div class="wpb_wrapper">
-	<div class="wpb_text_column wpb_content_element ">
-	<div class="wpb_wrapper">
-		
-
-	
+			<!-------------★여기에 본문작성------------------------------------------------------------------------->	
 <p class="page_tt">성적조회</p>
 
-<button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/lctrsearchall'">전체보기</button>
+<div style=""><button class="btn btn-outline-secondary" onclick="javascript:location.href='/beet/lctrsearchall'">전체보기</button></div>
 	<!-- 항목별 검색 기능 추가  -->
 <!-- 	<fieldset>
 		<input type="radio" name="item" id="uid"> 회원 아이디 &nbsp; <input
 			type="radio" name="item" id="ugen"> 성별 &nbsp; <input
 			type="radio" name="item" id="uage"> 연령대 &nbsp;
 	</fieldset> -->
+	<div style="display:inline">
 	<fieldset>
-	<select id="field" onchange="javascript:selectfield(this);">
+	<select id="field" onchange="javascript:selectfield(this);" style="display:inline;width:70px;height:30px">
 		<option id="searchAll" value="all">-</option>
 		<option id="searchName" value="sname">이름</option>
 		<option id="searchLctr" value="lname">강의명</option>
 	</select>
 
 	<!-- 검색폼  -->
+	<div style="display:inline">
 	<form action="/beet/adsearch" method="post" id="idform" class="lform">
 		
 	<form style="float:right !important" action="/beet/adsearch" method="post" id="idform" class="lform">
@@ -126,6 +110,7 @@ select {width: 40px; height:20px; margin:0px}
 			<input class="btn btn-outline-secondary" type="submit" value="검색">
 		</fieldset>
 	</form>
+	</div>
 
 	<table class="main_default">
 		<thead>
@@ -179,7 +164,7 @@ select {width: 40px; height:20px; margin:0px}
 
 
 
-</div></div> </div></div></div></div></div></div></div> <!-- div column1 끝 -->
+ <!-- div column1 끝 -->
 
 <!-- 서브메뉴★★★ 여기에 써주세요 -->
 <!-- 안쓰면 바로아랫줄column2~ 서브메뉴끝까지  지워버리세요-->
