@@ -268,7 +268,7 @@ cursor: pointer;
 <% }else{ %>
 <div align="center" style="margin-top: 10%; margin-left: 5%; ">
 	<br>
-	<h3>입력하신 학번으로 검색되는 신청 내역이 없습니다</h3>
+	<h3>휴학, 복학 신청 내역이 없습니다</h3>
 	<br><br><br>
 	<button class="btn btn-outline-secondary" onclick="javascript:loaction.href='/beet/views/main/main.jps'"> 메인 페이지 </button>&nbsp;&nbsp;&nbsp;
 	<button class="btn btn-outline-secondary" onclick="javascript:history.go(-1)"> 이전 페이지 </button>

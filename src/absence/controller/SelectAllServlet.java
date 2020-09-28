@@ -26,8 +26,6 @@ public class SelectAllServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Absence> list = new AbsenceService().selectAbsence();
 		
-		PrintWriter out= response.getWriter();
-		
 		RequestDispatcher view = null;
 		if(list != null) {
 			view = request.getRequestDispatcher("views/absence/absenceManagementView.jsp");
