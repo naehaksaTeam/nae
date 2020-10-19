@@ -21,13 +21,13 @@ import attendance.model.vo.Atndn;
  * Servlet implementation class AtndnUpdateServlet
  */
 @WebServlet("/atnupdate")
-public class AtndnUpdateServlet extends HttpServlet {
+public class AtndnUpdateServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 414L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AtndnUpdateServlet() {
+    public AtndnUpdateServlet2() {
         super();
         // TODO Auto-generated constructor stub
     }

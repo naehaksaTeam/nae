@@ -4,6 +4,7 @@
 <%
 	ArrayList<Absence> list = (ArrayList<Absence>)request.getAttribute("list");
 	Member membermm = (Member)session.getAttribute("loginMember");
+	//Member mm = (Member)session.getAttribute("loginMember");
 %>
     
   
@@ -135,7 +136,7 @@
 </table>
 </div>
 <footer>
-<%@ include file="../common/footer.jsp"%>
+<%-- <%@ include file="../common/footer.jsp"%> --%>
 </footer>
 </body>
 </html>

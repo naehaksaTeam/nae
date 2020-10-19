@@ -7,7 +7,7 @@
 Member lmember = (Member)session.getAttribute("loginMember");
 Date lastmodified = new Date();
 SimpleDateFormat format1 = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss");
-
+//ArrayList<Atndn> list = (ArrayList<Atndn>)request.getAttribute("list");
 Set<String> set = new HashSet<String>();
 for (Atndn a : list) {
 	session.setAttribute("semester", a.getSemester());
