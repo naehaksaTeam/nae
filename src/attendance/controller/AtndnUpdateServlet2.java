@@ -20,7 +20,7 @@ import attendance.model.vo.Atndn;
 /**
  * Servlet implementation class AtndnUpdateServlet
  */
-@WebServlet("/atnupdate")
+@WebServlet("/atnupdate2")
 public class AtndnUpdateServlet2 extends HttpServlet {
 	private static final long serialVersionUID = 414L;
        

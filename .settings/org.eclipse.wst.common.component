@@ -2,7 +2,7 @@
     <wb-module deploy-name="naehaksa">
         <wb-resource deploy-path="/" source-path="/web" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="beet"/>
         <property name="java-output-path" value="/naehaksa/build/classes"/>
+        <property name="context-root" value="beet"/>
     </wb-module>
 </project-modules>
